@@ -6,7 +6,103 @@
  "exam_focus": "对齐 10ENGB 年考试卷：Section 1 为 King Lear 节选短答（16 题，覆盖分国与放逐、谄媚语言、暴风雨、poor naked wretches、Gloucester 失明、Edmund/Edgar、Cordelia 之死、戏剧反讽、hamartia、blindness motif、power/loss/identity）；Section 2 为 TKAMB×Mississippi Burning 比较论文（10 题：thesis、主题句、节选整合、手法对比、主题轴、结尾回收）；另加 4 题两节通用的写作技巧。 剧本引文（Shakespeare, King Lear）均已按 MIT Complete Works（shakespeare.mit.edu）原文逐句核校，仅正字法随该版。",
  "questions": [
   {
-   "id": "eng-001",
+   "topic": "李尔王 · 剧情",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "How does King Lear decide how to divide his kingdom at the start of the play?",
+   "options": [
+    "By giving the largest share to the eldest daughter",
+    "By asking each daughter to say how much she loves him",
+    "By holding a tournament between the dukes",
+    "By drawing lots with his daughters"
+   ],
+   "answer": 1,
+   "explanation": "开场李尔要求三个女儿各自表达对他的爱，按表达分国土。这是全剧的引爆点——把爱变成可计量的表演。",
+   "source": "Yearly Study Guide 2026 · English（5 multiple choice questions based on the events of your play）",
+   "id": "eng-001"
+  },
+  {
+   "topic": "李尔王 · 剧情",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "What word does Cordelia use when asked to declare her love, which triggers Lear's rage?",
+   "options": [
+    "Love",
+    "Everything",
+    "Nothing",
+    "Half"
+   ],
+   "answer": 2,
+   "explanation": "Cordelia 回答 \"Nothing\"：她不愿用溢美之词换取国土。Lear 把诚实当作否定，随即剥夺她的继承权。",
+   "source": "Yearly Study Guide 2026 · English",
+   "id": "eng-002"
+  },
+  {
+   "topic": "李尔王 · 剧情",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Who is the faithful nobleman banished for speaking in defence of Cordelia, and how does he return?",
+   "options": [
+    "Gloucester, disguised as Poor Tom",
+    "Kent, disguised as the servant Caius",
+    "Albany, disguised as a knight",
+    "Edmund, disguised as a messenger"
+   ],
+   "answer": 1,
+   "explanation": "Kent 因替 Cordelia 辩护被驱逐，之后装扮成仆役 Caius 继续服侍李尔。Poor Tom 是 Edgar 的伪装，Albany 未伪装。",
+   "source": "Yearly Study Guide 2026 · English",
+   "id": "eng-003"
+  },
+  {
+   "topic": "李尔王 · 剧情",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "How does Goneril and Regan's treatment of Lear change after they gain power?",
+   "options": [
+    "They give him more knights than he had before",
+    "They reduce the number of knights he may keep, eventually refusing them entirely",
+    "They exile him to France",
+    "They crown him king of a smaller region"
+   ],
+   "answer": 1,
+   "explanation": "李尔约定保留 100 名骑士，Goneril 先减到 50，Regan 再减到 25（后为 0），并拒绝收留他。剥夺随从是关键羞辱点。",
+   "source": "Yearly Study Guide 2026 · English",
+   "id": "eng-004"
+  },
+  {
+   "topic": "李尔王 · 剧情",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Edmund plots against Edgar and Gloucester. Which action most directly sets his plan in motion?",
+   "options": [
+    "He tells Edgar that Gloucester wants him dead, then claims Edgar plotted to kill Gloucester",
+    "He openly challenges Edgar to a duel",
+    "He reports Edgar to the King",
+    "He forges a letter and calls a tournament"
+   ],
+   "answer": 0,
+   "explanation": "Edmund 伪造信件、诱骗 Edgar 逃跑，再向 Gloucester 报告『Edgar 谋害父亲』，使 Edgar 被通缉，自己成为合法继承人。",
+   "source": "Yearly Study Guide 2026 · English",
+   "id": "eng-005"
+  },
+  {
+   "topic": "李尔王 · 剧情",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "How does the play end for Lear and Cordelia?",
+   "options": [
+    "They rule the kingdom together",
+    "Cordelia is hanged on Edmund's orders and Lear dies of grief with her body",
+    "Lear is killed in battle by Albany",
+    "They flee to France and survive"
+   ],
+   "answer": 1,
+   "explanation": "Edmund 下令吊死 Cordelia，李尔赶到时已晚，抱着她的尸体死去。没有恢复秩序的幸福结局，只有 Albany 与 Edgar 收拾残局。",
+   "source": "Yearly Study Guide 2026 · English",
+   "id": "eng-006"
+  },
+  {
+   "id": "eng-007",
    "topic": "李尔王 · 分国与 Cordelia 的「Nothing」",
    "difficulty": "easy",
    "type": "short",
@@ -17,7 +113,7 @@
    "source": "King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-002",
+   "id": "eng-008",
    "topic": "李尔王 · 谄媚的语言（Act 1 Sc 1）",
    "difficulty": "easy",
    "type": "short",
@@ -28,7 +124,7 @@
    "source": "King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-003",
+   "id": "eng-009",
    "topic": "李尔王 · 视觉隐喻与 blindness motif",
    "difficulty": "easy",
    "type": "short",
@@ -39,7 +135,7 @@
    "source": "King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-004",
+   "id": "eng-010",
    "topic": "李尔王 · hamartia（龙的比喻）",
    "difficulty": "medium",
    "type": "short",
@@ -50,7 +146,7 @@
    "source": "King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-005",
+   "id": "eng-011",
    "topic": "李尔王 · 权力、失去与身份",
    "difficulty": "medium",
    "type": "short",
@@ -61,7 +157,7 @@
    "source": "King Lear Act 2 Scene 4 (quote: Shakespeare, King Lear 2.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-006",
+   "id": "eng-012",
    "topic": "李尔王 · 「reason not the need」",
    "difficulty": "medium",
    "type": "short",
@@ -72,7 +168,7 @@
    "source": "King Lear Act 2 Scene 4 (quote: Shakespeare, King Lear 2.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-007",
+   "id": "eng-013",
    "topic": "李尔王 · 暴风雨的象征（Act 3 Sc 2）",
    "difficulty": "hard",
    "type": "short",
@@ -83,7 +179,7 @@
    "source": "King Lear Act 3 Scene 2 (quote: Shakespeare, King Lear 3.2); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-008",
+   "id": "eng-014",
    "topic": "李尔王 · poor naked wretches（转折点）",
    "difficulty": "medium",
    "type": "short",
@@ -94,7 +190,7 @@
    "source": "King Lear Act 3 Scene 4 (quote: Shakespeare, King Lear 3.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-009",
+   "id": "eng-015",
    "topic": "李尔王 · 「lendings」与身份剥除",
    "difficulty": "easy",
    "type": "short",
@@ -105,7 +201,7 @@
    "source": "King Lear Act 3 Scene 4 (quote: Shakespeare, King Lear 3.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-010",
+   "id": "eng-016",
    "topic": "李尔王 · Gloucester 失明（Act 3 Sc 7）",
    "difficulty": "hard",
    "type": "short",
@@ -116,7 +212,7 @@
    "source": "King Lear Act 3 Scene 7 (quote: Shakespeare, King Lear 3.7); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-011",
+   "id": "eng-017",
    "topic": "李尔王 · 「I stumbled when I saw」的反讽",
    "difficulty": "medium",
    "type": "short",
@@ -127,7 +223,7 @@
    "source": "King Lear Act 4 Scene 1 (quote: Shakespeare, King Lear 4.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-012",
+   "id": "eng-018",
    "topic": "李尔王 · Edmund 的价值观与戏剧功能",
    "difficulty": "medium",
    "type": "short",
@@ -138,7 +234,7 @@
    "source": "King Lear Act 1 Scene 2 (quote: Shakespeare, King Lear 1.2); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-013",
+   "id": "eng-019",
    "topic": "李尔王 · 伪造信与戏剧反讽",
    "difficulty": "medium",
    "type": "short",
@@ -149,7 +245,7 @@
    "source": "Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage (Act 1 Scenes 1–3 questions and practice extracts)"
   },
   {
-   "id": "eng-014",
+   "id": "eng-020",
    "topic": "李尔王 · 诸神与人的处境",
    "difficulty": "hard",
    "type": "short",
@@ -160,7 +256,7 @@
    "source": "King Lear Act 4 Scene 1 (quote: Shakespeare, King Lear 4.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-015",
+   "id": "eng-021",
    "topic": "李尔王 · Cordelia 之死与诗性公正",
    "difficulty": "hard",
    "type": "short",
@@ -171,7 +267,7 @@
    "source": "King Lear Act 5 Scene 3 (quote: Shakespeare, King Lear 5.3); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-016",
+   "id": "eng-022",
    "topic": "李尔王 · 「I am not ague-proof」与身份转变",
    "difficulty": "easy",
    "type": "short",
@@ -182,7 +278,7 @@
    "source": "King Lear Act 4 Scene 6 (quote: Shakespeare, King Lear 4.6); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage"
   },
   {
-   "id": "eng-017",
+   "id": "eng-023",
    "topic": "比较论文 · thesis 判别",
    "difficulty": "easy",
    "type": "mcq",
@@ -198,7 +294,7 @@
    "source": "Section 2 · Comparative essay — thesis and introduction (10ENGA unit overview; LEEDER 10ENGB exam outline)"
   },
   {
-   "id": "eng-018",
+   "id": "eng-024",
    "topic": "比较论文 · 主题句功能",
    "difficulty": "easy",
    "type": "mcq",
@@ -214,7 +310,7 @@
    "source": "Section 2 · Comparative essay — body paragraph structure (TKAMB BP1/BP2/BP3 scaffolds)"
   },
   {
-   "id": "eng-019",
+   "id": "eng-025",
    "topic": "比较论文 · 写 thesis statement",
    "difficulty": "medium",
    "type": "short",
@@ -225,7 +321,7 @@
    "source": "Section 2 · Comparative essay — thesis writing (LEEDER 10ENGB exam outline: comparative essay, 20 marks)"
   },
   {
-   "id": "eng-020",
+   "id": "eng-026",
    "topic": "比较论文 · 引文整合策略",
    "difficulty": "medium",
    "type": "mcq",
@@ -241,7 +337,7 @@
    "source": "Section 2 · Comparative essay — integrating the supplied extract (LEEDER 10ENGB exam outline, 20 marks)"
   },
   {
-   "id": "eng-021",
+   "id": "eng-027",
    "topic": "比较论文 · 节选整合的要求",
    "difficulty": "medium",
    "type": "short",
@@ -252,7 +348,7 @@
    "source": "Section 2 · Comparative essay — extract integration (LEEDER 10ENGB exam outline)"
   },
   {
-   "id": "eng-022",
+   "id": "eng-028",
    "topic": "比较论文 · 手法对比（叙述 vs 镜头）",
    "difficulty": "medium",
    "type": "mcq",
@@ -268,7 +364,7 @@
    "source": "Section 2 · Comparative essay — comparing literary and film techniques (10ENGA film study: visual storytelling, cinematography, director's purpose)"
   },
   {
-   "id": "eng-023",
+   "id": "eng-029",
    "topic": "比较论文 · 主题轴「法律失效」",
    "difficulty": "easy",
    "type": "mcq",
@@ -284,7 +380,7 @@
    "source": "Section 2 · Comparative essay — theme axis: the law fails (10ENGA unit overview; film study context)"
   },
   {
-   "id": "eng-024",
+   "id": "eng-030",
    "topic": "比较论文 · 主题轴「个体责任」",
    "difficulty": "easy",
    "type": "mcq",
@@ -300,7 +396,7 @@
    "source": "Section 2 · Comparative essay — theme axis: individual responsibility (10ENGA unit overview)"
   },
   {
-   "id": "eng-025",
+   "id": "eng-031",
    "topic": "比较论文 · 段落规划",
    "difficulty": "hard",
    "type": "short",
@@ -311,7 +407,7 @@
    "source": "Section 2 · Comparative essay — paragraph planning (TKAMB BP scaffolds + film deconstruction lessons)"
   },
   {
-   "id": "eng-026",
+   "id": "eng-032",
    "topic": "比较论文 · 结尾回收",
    "difficulty": "hard",
    "type": "mcq",
@@ -327,7 +423,7 @@
    "source": "Section 2 · Comparative essay — conclusion (LEEDER 10ENGB exam outline: integrate the extract, sustain the argument)"
   },
   {
-   "id": "eng-027",
+   "id": "eng-033",
    "topic": "写作技巧 · 描述 vs 分析",
    "difficulty": "easy",
    "type": "mcq",
@@ -343,7 +439,7 @@
    "source": "Writing skills · Analytical vs descriptive sentences (Term 3 weeks 8–10: refining analytical writing)"
   },
   {
-   "id": "eng-028",
+   "id": "eng-034",
    "topic": "写作技巧 · 什么叫「使用节选」",
    "difficulty": "easy",
    "type": "mcq",
@@ -359,7 +455,7 @@
    "source": "Writing skills · Using the supplied extract (LEEDER 10ENGB exam outline, Section 2 criteria)"
   },
   {
-   "id": "eng-029",
+   "id": "eng-035",
    "topic": "写作技巧 · 写主题句",
    "difficulty": "medium",
    "type": "short",
@@ -370,7 +466,7 @@
    "source": "Writing skills · Topic sentences for comparative paragraphs (TKAMB BP scaffolds)"
   },
   {
-   "id": "eng-030",
+   "id": "eng-036",
    "topic": "写作技巧 · 比较性主题句",
    "difficulty": "easy",
    "type": "mcq",

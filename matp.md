@@ -1,4 +1,4 @@
-# 数学 P · 10 年级 · 复习测验（43 题）
+# 数学 P · 10 年级 · 复习测验（49 题）
 
 > 按 10MATP 26 的 Scope & Sequence 与 2025 年校内 half-yearly 真题格式，覆盖利息与折旧、所得税（税率表、应税收入、PAYG 与净收入）、代数与指数律、方程与不等式（含联立方程）、坐标几何与函数图像、直角三角形三角、表面积与体积、数据统计（含标准差）与概率九大板块。
 
@@ -289,6 +289,48 @@
 
   ______________________________
 
+**44. [网络 · 术语]** In a network diagram, the number of edges meeting at a vertex is called its:
+
+- A. Order
+- B. Degree
+- C. Weight
+- D. Path
+
+**45. [网络 · 欧拉回路]** A connected network has vertices with degrees 2, 2, 4, 2, 2. Which statement is true?
+
+- A. It has no Eulerian circuit
+- B. It cannot be drawn without lifting the pen
+- C. It has an Eulerian circuit because every vertex has even degree
+- D. It has exactly one odd vertex
+
+**46. [网络 · 欧拉路径]** A network has exactly two vertices of odd degree. What can be concluded?
+
+- A. No Eulerian trail exists
+- B. The network is not connected
+- C. Every vertex must be visited twice
+- D. An Eulerian trail exists, starting and finishing at the two odd-degree vertices
+
+**47. [网络 · 最小生成树]** A town must connect four buildings with cable at minimum total length. The possible connections and lengths (km) are AB 2, AC 5, BC 3, BD 4, CD 1. What is the minimum total length?
+
+- A. 6 km
+- B. 10 km
+- C. 8 km
+- D. 7 km
+
+**48. [网络 · 最短路径]** Using the network in which AB = 2, BC = 3, AC = 5, BD = 4 and CD = 1 (all in km), what is the shortest distance from A to D?
+
+- A. 7 km
+- B. 6 km
+- C. 5 km
+- D. 9 km
+
+**49. [网络 · 平面图]** A planar graph is one that:
+
+- A. Has no cycles
+- B. Has all vertices of equal degree
+- C. Can be drawn on a plane without any edges crossing
+- D. Contains no more than four vertices
+
 ---
 
 ## 答案与解析
@@ -464,3 +506,27 @@
 **43.** (a) Mean = 25 ÷ 10 = 2.5 goals. (b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals.  
 　解析：先求均值 2.5，再逐个算偏差平方：6.25+2.25+2.25+0.25+0.25+0.25+0.25+0.25+6.25+12.25 = 30.5，除以 n=10 后开方得 1.75。本题按总体标准差（除以 n）计算；若除以 n−1=9 会得 1.84，那是样本标准差的口径。  
 　出处：2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf · Q7(e) · New Century 10 Standard-Core Textbook.pdf · 5.03
+
+**44.** B. Degree  
+　解析：一个顶点连出的边数叫度数（degree）。奇度顶点数决定能否一笔画完：全偶数→可回到起点；恰好两个奇数→可一笔画但终点不同。  
+　出处：Yearly Study Guide 2026 · Mathematics Core/Standard（Networks: terminology）
+
+**45.** C. It has an Eulerian circuit because every vertex has even degree  
+　解析：所有顶点度数都是偶数 → 存在欧拉回路（从任意点出发、每条边走一次并回到起点）。只要有一个奇度点就不成立。  
+　出处：Yearly Study Guide 2026 · Mathematics Standard（Eulerian trails and circuits）
+
+**46.** D. An Eulerian trail exists, starting and finishing at the two odd-degree vertices  
+　解析：恰好两个奇度点 → 存在欧拉路径（一笔画），必须从一个奇点出发、另一个奇点结束。若想回到起点（回路）则需要全部为偶数。  
+　出处：Yearly Study Guide 2026 · Mathematics Standard（Eulerian trials and circuits）
+
+**47.** A. 6 km  
+　解析：最小生成树=选 3 条边连成整体且不成环。按长度排序：CD 1、AB 2、BC 3 → 三条边连接 A-B-C-D 且无环，总长 1+2+3=6。再加任一条都会成环。  
+　出处：Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path and minimum spanning trees）
+
+**48.** B. 6 km  
+　解析：所有路线都经过 C 或 B：A→B→D=6，A→B→C→D=6，A→C→D=6。最短为 6 km，所以选 6 km。  
+　出处：Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path）
+
+**49.** C. Can be drawn on a plane without any edges crossing  
+　解析：平面图指能在平面上画出、边彼此不交叉的图。是否看起来交叉不重要，能否重新画成不交叉才重要。  
+　出处：Yearly Study Guide 2026 · Mathematics Core（Network terminology and planar graphs）
