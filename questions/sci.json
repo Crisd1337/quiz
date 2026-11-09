@@ -7,224 +7,6 @@
  "questions": [
   {
    "id": "sci-001",
-   "topic": "电磁学 · 单位与符号",
-   "difficulty": "easy",
-   "type": "mcq",
-   "stem": "Which row correctly matches each quantity with its unit and symbol?",
-   "options": [
-    "Current – volts (V); voltage – amperes (A); resistance – ohms (Ω)",
-    "Current – amperes (A); voltage – ohms (Ω); resistance – volts (V)",
-    "Current – ohms (Ω); voltage – volts (V); resistance – amperes (A)",
-    "Current – amperes (A); voltage – volts (V); resistance – ohms (Ω)"
-   ],
-   "explanation": "电流单位安培 A，电压单位伏特 V，电阻单位欧姆 Ω。在 V=IR 里 I 是电流、V 是电压、R 是电阻，符号不能互换。",
-   "source": "Term 4 · Yearly Examination（Section 1）+ 2020 Year 10 Yearly Examination Answers（Part C Q6 单位表）",
-   "answer": 3
-  },
-  {
-   "id": "sci-002",
-   "topic": "电磁学 · 串联电路",
-   "difficulty": "easy",
-   "type": "mcq",
-   "stem": "Which statement about a series circuit is correct?",
-   "options": [
-    "The voltage across each component equals the supply voltage.",
-    "There is more than one path for the current to follow.",
-    "The total resistance is smaller than the smallest resistance in the circuit.",
-    "The current is the same at every point in the circuit."
-   ],
-   "explanation": "串联只有一条通路，所以电流处处相同；电压由各元件分掉。只有并联才是各支路电压等于电源电压、总电阻更小。",
-   "source": "Electromagnetism.pdf（Series vs Parallel Circuits）",
-   "answer": 3
-  },
-  {
-   "id": "sci-003",
-   "topic": "电磁学 · 并联电路",
-   "difficulty": "medium",
-   "type": "mcq",
-   "stem": "Two identical globes are connected in parallel to a battery. One globe burns out. What happens to the other globe?",
-   "options": [
-    "It glows with the same brightness as before.",
-    "It goes out at the same time as the other one.",
-    "It glows more brightly than before.",
-    "It glows less brightly than before."
-   ],
-   "explanation": "并联时每条支路都单独接在电源两端，电压都等于电源电压；一条支路断了，另一条支路的电压和电流不变，亮度不变。",
-   "source": "2020 Year 10 Yearly Examination Answers（Part C Q3 并联灯泡烧坏）",
-   "answer": 0
-  },
-  {
-   "id": "sci-004",
-   "topic": "电磁学 · 短路故障",
-   "difficulty": "hard",
-   "type": "mcq",
-   "stem": "Two identical globes are connected in series with a battery. A wire is accidentally connected straight across globe 1, so that current can bypass it. What is the effect?",
-   "options": [
-    "Both globes go out, because the circuit is now broken.",
-    "Globe 1 stays bright and globe 2 goes out.",
-    "Globe 1 goes out and globe 2 becomes brighter than before.",
-    "Nothing changes, because current must pass through every component in a series circuit."
-   ],
-   "explanation": "导线把 1 号灯短路，电流走电阻几乎为零的导线，1 号灯不亮；回路总电阻下降、电流增大，2 号灯更亮。短路≠断路。",
-   "source": "Electromagnetism.pdf（Series circuit 单一通路 / 电阻与电流关系）+ 课程标准补充（短路）",
-   "answer": 2
-  },
-  {
-   "id": "sci-005",
-   "topic": "电磁学 · 静电与电流",
-   "difficulty": "easy",
-   "type": "short",
-   "stem": "Distinguish between static electricity and current electricity. (2 marks)",
-   "options": [],
-   "answer": "• Static electricity is the build-up of charge on an object, caused by the separation and accumulation of charged particles (e.g. rubbing a plastic comb through hair); the charges do not flow.\n• Current electricity is the flow of charged particles (usually electrons) through a conductor such as copper.",
-   "explanation": "静电是电荷在物体上积聚、不流动；电流是电荷（通常是电子）在导体中持续流动。",
-   "source": "Electromagnetism Revision - Circuits（Lesson 1 Activity 2：What is Electricity?）"
-  },
-  {
-   "id": "sci-006",
-   "topic": "电磁学 · 欧姆定律",
-   "difficulty": "easy",
-   "type": "short",
-   "stem": "State Ohm's law, including the equation and the unit of each quantity. (2 marks)",
-   "options": [],
-   "answer": "• Ohm's law: the voltage (potential difference) across a conductor equals the current through it multiplied by its resistance, V = IR.\n• Units: volts (V) for voltage, amperes (A) for current, ohms (Ω) for resistance.",
-   "explanation": "欧姆定律 V=IR；单位 V、A、Ω。电流的符号是 I，不要和电压 V 混。",
-   "source": "Electromagnetism Revision - Ohm's Law（Lesson 2 Activity 2）+ STUDENT 7. Electromagnetism 2022.docx（Practical 2）"
-  },
-  {
-   "id": "sci-007",
-   "topic": "电磁学 · 电阻",
-   "difficulty": "easy",
-   "type": "short",
-   "stem": "Define resistance and state two factors that increase the resistance of a metal wire. (2 marks)",
-   "options": [],
-   "answer": "• Resistance is a measure of how much a material opposes (reduces) the flow of electric current through it.\n• Resistance increases as the wire becomes longer and as the wire becomes thinner (smaller cross-sectional area); heating the wire also increases its resistance.",
-   "explanation": "电阻表示材料对电流的阻碍程度；导线越长、越细（横截面积越小）电阻越大，温度升高电阻也增大。",
-   "source": "Electromagnetism Revision - Ohm's Law（Lesson 1 Activity 4 Resistance）"
-  },
-  {
-   "id": "sci-008",
-   "topic": "电磁学 · 电表连接",
-   "difficulty": "easy",
-   "type": "short",
-   "stem": "Name the instrument used to measure current and the instrument used to measure voltage, and state how each one is connected. (2 marks)",
-   "options": [],
-   "answer": "• Current is measured with an ammeter, which is connected in series with the component.\n• Voltage (potential difference) is measured with a voltmeter, which is connected in parallel across the component.",
-   "explanation": "电流表串联、电压表并联。名称、测量对象、连接方式三样都要写全才拿满分。",
-   "source": "STUDENT 7. Electromagnetism 2022.docx（Practical 1）+ Electromagnetism.pdf（Knowledge 2）"
-  },
-  {
-   "id": "sci-009",
-   "topic": "电磁学 · 电表位置原理",
-   "difficulty": "medium",
-   "type": "short",
-   "stem": "Explain why an ammeter must be connected in series and a voltmeter in parallel with a light bulb. (3 marks)",
-   "options": [],
-   "answer": "• Components in series carry the same current, so an ammeter in series measures the current that actually flows through the bulb.\n• Components in parallel have the same potential difference across them, so a voltmeter in parallel measures the voltage across the bulb.\n• A voltmeter has a very high resistance, so if it were placed in series it would reduce the current in the circuit and change the quantity being measured.",
-   "explanation": "串联元件电流相同，所以电流表要串；并联元件电压相同，所以电压表要并。电压表内阻很大，串进去会改变电路电流。",
-   "source": "Electromagnetism.pdf（Explain the difference between the positioning of the ammeter and the voltmeter）"
-  },
-  {
-   "id": "sci-010",
-   "topic": "电磁学 · 欧姆定律计算",
-   "difficulty": "medium",
-   "type": "short",
-   "stem": "A rheostat has a maximum resistance of 10.5 Ω. A power pack delivers 12 V to the rheostat. Calculate the current through the device, showing your working. (2 marks)",
-   "options": [],
-   "answer": "• I = V ÷ R = 12 V ÷ 10.5 Ω\n• = 1.14 A (accept about 1.1 A)",
-   "explanation": "I=V/R=12÷10.5=1.14 A。先写公式再代数，单位不要漏。",
-   "source": "Electromagnetism Revision - Ohm's Law（Activity 3, Q2）"
-  },
-  {
-   "id": "sci-011",
-   "topic": "电磁学 · 欧姆定律变形",
-   "difficulty": "medium",
-   "type": "short",
-   "stem": "A television tube passes a current of 0.25 A and is labelled 240 V. Calculate the resistance of the tube. (2 marks)",
-   "options": [],
-   "answer": "• R = V ÷ I = 240 V ÷ 0.25 A\n• = 960 Ω",
-   "explanation": "R=V/I=240÷0.25=960 Ω。求电阻要先变形为 R=V/I，别直接相减。",
-   "source": "Electromagnetism Revision - Ohm's Law（Activity 3, Q3）"
-  },
-  {
-   "id": "sci-012",
-   "topic": "电磁学 · 电路保护计算",
-   "difficulty": "medium",
-   "type": "short",
-   "stem": "A power pack delivers 12 V and its circuit breaker triggers when the current reaches 5 A. Calculate the lowest possible circuit resistance before the breaker triggers, and state what happens if the resistance drops below this value. (3 marks)",
-   "options": [],
-   "answer": "• R = V ÷ I = 12 V ÷ 5 A = 2.4 Ω\n• If the resistance falls below 2.4 Ω, the current rises above 5 A.\n• The circuit breaker then trips (opens the circuit) and cuts off the current, protecting the equipment.",
-   "explanation": "R=12/5=2.4 Ω。电阻一旦低于 2.4 Ω，电流就超过 5 A，断路器跳闸切断电路——这就是它的保护作用。",
-   "source": "Electromagnetism Revision - Ohm's Law（Activity 3, Q4）"
-  },
-  {
-   "id": "sci-013",
-   "topic": "电磁学 · 串并联对比",
-   "difficulty": "easy",
-   "type": "short",
-   "stem": "Compare series and parallel circuits in terms of (a) the number of paths, (b) the current, (c) the voltage across each component, and (d) which arrangement has the larger total resistance. (4 marks)",
-   "options": [],
-   "answer": "• (a) Series has only one path for the current; parallel has two or more paths.\n• (b) In series the current is the same at every point; in parallel the current splits between the branches, so the total current is larger.\n• (c) In series the supply voltage is shared between the components; in parallel each branch has the full supply voltage across it.\n• (d) For the same resistors, the series arrangement has the larger total resistance, because the current must pass through every resistor one after another; in parallel the extra paths lower the total resistance.",
-   "explanation": "串联：一条路、电流处处相同、电压被分掉、总电阻更大；并联：多条路、电流分流、各支路电压=电源电压、总电阻更小。",
-   "source": "Electromagnetism.pdf（Series vs Parallel Circuits / Parallel Circuit）"
-  },
-  {
-   "id": "sci-014",
-   "topic": "电磁学 · 并联的优点",
-   "difficulty": "medium",
-   "type": "short",
-   "stem": "State two advantages of wiring lights in parallel in a house, and explain why houses are wired this way. (3 marks)",
-   "options": [],
-   "answer": "• Each light gets the full supply voltage, so it glows at its normal brightness.\n• If one globe fails the others keep working, because each branch is a separate path.\n• Each light can be switched on or off independently — the same reason the classroom light switches are wired in parallel.",
-   "explanation": "并联各支路电压都等于电源电压、一个坏了不影响其他、还能单独开关——所以家庭和教室照明都用并联。",
-   "source": "Electromagnetism.pdf（Benefits of parallel circuits）+ Electromagnetism Revision - Circuits（Lesson 3 Q5）"
-  },
-  {
-   "id": "sci-015",
-   "topic": "电磁学 · 电动机原理",
-   "difficulty": "medium",
-   "type": "short",
-   "stem": "Explain how the coil of a simple DC motor is made to rotate when the switch is closed. (3 marks)",
-   "options": [],
-   "answer": "• Current flows through the coil, creating a magnetic field around the current-carrying wire (Oersted's discovery).\n• This field interacts with the field of the permanent magnet, producing a force (torque) on the coil, so the coil turns.\n• The commutator and brushes reverse the current every half turn, so the coil keeps rotating in the same direction.",
-   "explanation": "通电线圈产生磁场，与永久磁铁磁场相互作用产生力矩使线圈转动；换向器每半圈换向，保证持续同向旋转。",
-   "source": "Term 3 Electromagnetism Week 10 Answers（Activity 3 · 电机转动原理）"
-  },
-  {
-   "id": "sci-016",
-   "topic": "电磁学 · 电磁感应",
-   "difficulty": "medium",
-   "type": "short",
-   "stem": "A bar magnet is pushed into a coil of wire connected to a galvanometer, and the needle deflects. (a) Name the process that produces this current. (b) State two changes that would make the induced current larger. (3 marks)",
-   "options": [],
-   "answer": "• (a) Electromagnetic induction — a changing magnetic field induces a current in a conductor (Faraday's law).\n• (b) Any two of: push the magnet in faster, use a stronger magnet, use more turns of wire, or use a coil with a larger area.",
-   "explanation": "磁铁与线圈相对运动→磁场变化→感应电流（法拉第电磁感应）。更快、更强磁铁、更多匝数、更大面积都能增大感应电流。",
-   "source": "Term 4 Electromagnetism Week 1 Answers（Faraday 电磁感应 / Activity 5 结论）"
-  },
-  {
-   "id": "sci-017",
-   "topic": "电磁学 · 数据读取与梯度",
-   "difficulty": "hard",
-   "type": "short",
-   "stem": "The table shows the voltage across, and the current through, a wire and a light bulb.\n\nVoltage (V): 0 | 2 | 4 | 6 | 8 | 10 | 12\nCurrent in wire (A): 0 | 0.8 | 2.1 | 2.9 | 4.2 | 5.3 | 6.1\nCurrent in light bulb (A): 0 | 0.9 | 1.9 | 2.8 | 3.1 | 3.3 | 3.6\n\n(a) Describe the trend shown by each conductor. (b) Calculate the gradient of the wire and state what it represents. (4 marks)",
-   "options": [],
-   "answer": "• (a) For both conductors the current increases as the voltage increases.\n• The wire is a straight line through the origin (proportional), so its resistance is constant — it is ohmic.\n• The light bulb curves: the current rises more and more slowly as voltage increases, so its resistance is increasing — it is non-ohmic.\n• (b) gradient = ΔV/ΔI = (12 − 2) V ÷ (6.1 − 0.8) A ≈ 1.9 Ω, which represents the resistance of the wire, because R = V/I.",
-   "explanation": "两列电流都随电压增大；导线是过原点的直线（欧姆元件，电阻恒定），灯泡是曲线（非欧姆，电阻随温度升高）。梯度 ΔV/ΔI≈1.9 Ω 就是导线电阻。",
-   "source": "Electromagnetism.pdf（Voltage/Current 数据表）+ Electromagnetism Revision - Ohm's Law（Lesson 3, Q1、Q5）"
-  },
-  {
-   "id": "sci-018",
-   "topic": "电磁学 · 非欧姆元件",
-   "difficulty": "hard",
-   "type": "short",
-   "stem": "Explain why a light bulb gives a non-ohmic response while a metal wire approximately obeys Ohm's law. (3 marks)",
-   "options": [],
-   "answer": "• As the current increases, the tungsten filament heats up.\n• The atoms in the hot filament vibrate more, so electrons collide with them more often and it becomes harder for charge to flow — resistance rises as the bulb gets hotter, so current is no longer proportional to voltage.\n• The wire stays at almost constant temperature, so its resistance stays constant and V is proportional to I.",
-   "explanation": "灯丝通电后升温，原子振动加剧、电子碰撞增多，电阻随温度升高而增大，所以 V–I 图是曲线；导线温度几乎不变，电阻恒定，近似欧姆。",
-   "source": "Electromagnetism.pdf（Practical 2 Response：non-ohmic resistor）+ Electromagnetism Revision - Ohm's Law（Lesson 3, Q6）"
-  },
-  {
-   "id": "sci-019",
    "topic": "进化 · 达尔文的证据",
    "difficulty": "easy",
    "type": "mcq",
@@ -240,7 +22,7 @@
    "answer": 1
   },
   {
-   "id": "sci-020",
+   "id": "sci-002",
    "topic": "进化 · 拉马克与达尔文",
    "difficulty": "easy",
    "type": "mcq",
@@ -256,7 +38,7 @@
    "answer": 1
   },
   {
-   "id": "sci-021",
+   "id": "sci-003",
    "topic": "进化 · 选择压力",
    "difficulty": "hard",
    "type": "mcq",
@@ -272,7 +54,7 @@
    "answer": 2
   },
   {
-   "id": "sci-022",
+   "id": "sci-004",
    "topic": "进化 · 选择压力定义",
    "difficulty": "easy",
    "type": "short",
@@ -283,7 +65,7 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part A · Selection pressures / B1）"
   },
   {
-   "id": "sci-023",
+   "id": "sci-005",
    "topic": "进化 · 自然选择的步骤",
    "difficulty": "medium",
    "type": "short",
@@ -294,7 +76,7 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B2）"
   },
   {
-   "id": "sci-024",
+   "id": "sci-006",
    "topic": "进化 · 变异的来源",
    "difficulty": "easy",
    "type": "short",
@@ -305,7 +87,7 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B3）+ Year 10 - Evolution.pptx（Mutations）"
   },
   {
-   "id": "sci-025",
+   "id": "sci-007",
    "topic": "进化 · 达尔文的观察与推论",
    "difficulty": "easy",
    "type": "short",
@@ -316,7 +98,7 @@
    "source": "Year 10 - Evolution.pptx（The Theory of Evolution）"
   },
   {
-   "id": "sci-026",
+   "id": "sci-008",
    "topic": "进化 · 拉马克与达尔文对比",
    "difficulty": "medium",
    "type": "short",
@@ -327,7 +109,7 @@
    "source": "Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）+ Year 10 - Evolution.pptx"
   },
   {
-   "id": "sci-027",
+   "id": "sci-009",
    "topic": "进化 · 工业黑化",
    "difficulty": "medium",
    "type": "short",
@@ -338,7 +120,7 @@
    "source": "Term 4 - Evolution - Week 2（Case Study: Peppered Moth）"
   },
   {
-   "id": "sci-028",
+   "id": "sci-010",
    "topic": "进化 · 现存物种的证据",
    "difficulty": "medium",
    "type": "short",
@@ -349,7 +131,7 @@
    "source": "Year 10 - Evolution.pptx（Evidence for Evolution – Living Species）"
   },
   {
-   "id": "sci-029",
+   "id": "sci-011",
    "topic": "进化 · 化石测年",
    "difficulty": "medium",
    "type": "short",
@@ -360,7 +142,7 @@
    "source": "Year 10 - Evolution.pptx（Techniques used to date fossils）"
   },
   {
-   "id": "sci-030",
+   "id": "sci-012",
    "topic": "进化 · 华莱士线",
    "difficulty": "easy",
    "type": "short",
@@ -371,7 +153,7 @@
    "source": "Year 10 - Evolution.pptx（Wallace's Line）"
   },
   {
-   "id": "sci-031",
+   "id": "sci-013",
    "topic": "进化 · 生命起源实验",
    "difficulty": "easy",
    "type": "short",
@@ -382,7 +164,7 @@
    "source": "Year 10 - Evolution.pptx（Urey-Miller experiment）"
   },
   {
-   "id": "sci-032",
+   "id": "sci-014",
    "topic": "进化 · 蜥蜴情景分析",
    "difficulty": "hard",
    "type": "short",
@@ -393,7 +175,7 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 1 / C1）"
   },
   {
-   "id": "sci-033",
+   "id": "sci-015",
    "topic": "进化 · 孔雀鱼情景分析",
    "difficulty": "hard",
    "type": "short",
@@ -404,7 +186,7 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 3 / C3）"
   },
   {
-   "id": "sci-034",
+   "id": "sci-016",
    "topic": "进化 · 乳糖耐受综合应用",
    "difficulty": "hard",
    "type": "short",
@@ -415,7 +197,7 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part D · Apply your knowledge / D1）"
   },
   {
-   "id": "sci-035",
+   "id": "sci-017",
    "topic": "技能 · 数据制图",
    "difficulty": "easy",
    "type": "mcq",
@@ -431,7 +213,7 @@
    "answer": 1
   },
   {
-   "id": "sci-036",
+   "id": "sci-018",
    "topic": "技能 · 变量识别",
    "difficulty": "easy",
    "type": "mcq",
@@ -447,7 +229,7 @@
    "answer": 0
   },
   {
-   "id": "sci-037",
+   "id": "sci-019",
    "topic": "技能 · 误差与可靠性",
    "difficulty": "medium",
    "type": "mcq",
@@ -463,7 +245,7 @@
    "answer": 0
   },
   {
-   "id": "sci-038",
+   "id": "sci-020",
    "topic": "技能 · 实验设计",
    "difficulty": "easy",
    "type": "short",
@@ -474,7 +256,7 @@
    "source": "Identifying Variables.docx + Term 3 Reactive Chemistry Week 7（surface area investigation）"
   },
   {
-   "id": "sci-039",
+   "id": "sci-021",
    "topic": "技能 · 数据制表",
    "difficulty": "easy",
    "type": "short",
@@ -485,7 +267,7 @@
    "source": "How to Tabulate Data.docx"
   },
   {
-   "id": "sci-040",
+   "id": "sci-022",
    "topic": "技能 · 图表类型选择",
    "difficulty": "medium",
    "type": "short",
@@ -496,7 +278,7 @@
    "source": "How to draw a column graph.docx + Stage 5 Graphing-1.docx"
   },
   {
-   "id": "sci-041",
+   "id": "sci-023",
    "topic": "技能 · 误差类型",
    "difficulty": "medium",
    "type": "short",
@@ -507,7 +289,7 @@
    "source": "Half Yearly Revision.pdf（Validity – Errors）"
   },
   {
-   "id": "sci-042",
+   "id": "sci-024",
    "topic": "技能 · 效度与信度",
    "difficulty": "medium",
    "type": "short",
@@ -518,7 +300,7 @@
    "source": "Half Yearly Revision.pdf（Validity / Reliability）"
   },
   {
-   "id": "sci-043",
+   "id": "sci-025",
    "topic": "技能 · 数据趋势与碱基配对",
    "difficulty": "hard",
    "type": "short",
@@ -529,7 +311,7 @@
    "source": "2020 Year 10 Yearly Examination Answers（Part E Q1–Q3 DNA 碱基数据分析）"
   },
   {
-   "id": "sci-044",
+   "id": "sci-026",
    "topic": "技能 · 求梯度与斜率含义",
    "difficulty": "hard",
    "type": "short",
@@ -540,7 +322,7 @@
    "source": "2020 Year 10 Yearly Examination Answers（Part E Q7：由梯度求电阻）"
   },
   {
-   "id": "sci-045",
+   "id": "sci-027",
    "topic": "技能 · 插值读数",
    "difficulty": "medium",
    "type": "short",
@@ -549,6 +331,383 @@
    "answer": "• (a) 5 m/s² is halfway between 4 m/s² (305 N) and 6 m/s² (448 N), so the force is about (305 + 448) ÷ 2 ≈ 376 N (accept 370–380 N).\n• (b) The relationship is linear: the force increases by a constant amount (about 74 N) for every extra 1 m/s² of deceleration.",
    "explanation": "5 m/s² 位于 4 与 6 之间，插值得 (305+448)/2≈376 N；两者是线性关系，每增加 1 m/s² 力约增加 74 N（梯度 960/13≈74）。",
    "source": "Half Yearly Revision.pdf（Deceleration–Force 数据表）"
+  },
+  {
+   "topic": "有机化学 · 烷烃通式",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which general formula correctly represents the alkanes?",
+   "options": [
+    "CnH2n+2",
+    "CnH2n",
+    "CnH2n-2",
+    "CnH2n+1OH"
+   ],
+   "answer": 0,
+   "explanation": "烷烃是饱和烃，碳碳之间全是单键，通式 CnH2n+2。CnH2n 是烯烃（一个双键），CnH2n+1OH 是醇。",
+   "id": "sci-028",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 命名",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "What is the IUPAC name of the compound CH3–CH2–CH3?",
+   "options": [
+    "Methane",
+    "Ethane",
+    "Propane",
+    "Butane"
+   ],
+   "answer": 2,
+   "explanation": "三个碳的烷烃是 propane（丙烷）。methane 1 个碳，ethane 2 个，butane 4 个。",
+   "id": "sci-029",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 官能团",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Which functional group is present in ethanol, CH3CH2OH?",
+   "options": [
+    "Carboxyl group (–COOH)",
+    "Hydroxyl group (–OH)",
+    "Carbon–carbon double bond (C=C)",
+    "Ester linkage (–COO–)"
+   ],
+   "answer": 1,
+   "explanation": "乙醇的官能团是羟基 –OH，化合物类别为醇。–COOH 是羧酸，C=C 是烯烃，–COO– 是酯。",
+   "id": "sci-030",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 不饱和烃检验",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Bromine water is added to a sample. The orange-brown colour disappears. What does this show?",
+   "options": [
+    "The sample contains a carboxylic acid",
+    "The sample contains an alkene (C=C)",
+    "The sample contains only single bonds",
+    "The sample is an alkane"
+   ],
+   "answer": 1,
+   "explanation": "溴水褪色是不饱和键的检验：烯烃与 Br2 加成，双键打开，颜色消失。烷烃不发生这个反应，颜色不变。",
+   "id": "sci-031",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 同分异构",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "Butane and 2-methylpropane both have the molecular formula C4H10. They are best described as:",
+   "options": [
+    "Isotopes",
+    "Isomers",
+    "Allotropes",
+    "Polymers"
+   ],
+   "answer": 1,
+   "explanation": "同分异构体：分子式相同、结构不同。丁烷是直链，2-甲基丙烷是支链。isotope 是同位素（原子），allotrope 是同素异形体（单质），polymer 是聚合物。",
+   "id": "sci-032",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 燃烧产物",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "A hydrocarbon burns completely in excess oxygen. Which two products are formed?",
+   "options": [
+    "Carbon monoxide and hydrogen",
+    "Carbon dioxide and water",
+    "Carbon and oxygen",
+    "Ethanol and carbon dioxide"
+   ],
+   "answer": 1,
+   "explanation": "完全燃烧：烃 + O2 → CO2 + H2O。氧气不足（不完全燃烧）才产生 CO 和碳黑。",
+   "id": "sci-033",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 检验 CO2",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which test identifies the gas produced when a hydrocarbon burns completely?",
+   "options": [
+    "It turns limewater milky",
+    "It pops with a lighted splint",
+    "It relights a glowing splint",
+    "It bleaches damp litmus paper"
+   ],
+   "answer": 0,
+   "explanation": "CO2 使石灰水变浑浊（生成 CaCO3 沉淀）。带火星木条复燃是氧气，爆鸣声是氢气，漂白湿石蕊是氯气。",
+   "id": "sci-034",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 加成反应",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Ethene reacts with hydrogen in the presence of a nickel catalyst. The product is:",
+   "options": [
+    "Ethane",
+    "Ethanol",
+    "Ethanoic acid",
+    "Ethyl ethanoate"
+   ],
+   "answer": 0,
+   "explanation": "加氢（hydrogenation）：C2H4 + H2 → C2H6，烯烃变烷烃。加的是氢不是水，所以不是乙醇。",
+   "id": "sci-035",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 酯化反应",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "Ethanol reacts with ethanoic acid to produce a compound with a sweet smell. This reaction is called:",
+   "options": [
+    "Neutralisation",
+    "Esterification",
+    "Polymerisation",
+    "Combustion"
+   ],
+   "answer": 1,
+   "explanation": "醇 + 羧酸 → 酯 + 水，需要浓硫酸催化加热。产物是乙酸乙酯，有果香味，是酯化反应。",
+   "id": "sci-036",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 加聚反应",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Polythene (polyethylene) is made from ethene. Which type of reaction produces it?",
+   "options": [
+    "Substitution",
+    "Addition polymerisation",
+    "Condensation",
+    "Fermentation"
+   ],
+   "answer": 1,
+   "explanation": "乙烯分子（含 C=C）彼此加成、双键打开连成长链，叫加成聚合（addition polymerisation），产物是聚乙烯。",
+   "id": "sci-037",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 官能团识别",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Which of these compounds contains a carboxyl group and will turn blue litmus red?",
+   "options": [
+    "CH3OH",
+    "CH3COOH",
+    "CH3CH3",
+    "C2H4"
+   ],
+   "answer": 1,
+   "explanation": "CH3COOH 是乙酸（醋酸），含 –COOH，是弱酸，使蓝色石蕊变红。CH3OH 是醇（中性），CH3CH3 是烷烃，C2H4 是烯烃。",
+   "id": "sci-038",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 乙醇用途",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Ethanol is increasingly used as a fuel because it:",
+   "options": [
+    "Burns without releasing carbon dioxide",
+    "Can be produced by fermentation of plant material and is renewable",
+    "Has a higher energy density than octane",
+    "Does not require oxygen to burn"
+   ],
+   "answer": 1,
+   "explanation": "乙醇可由糖类发酵制得，属可再生燃料，常与汽油混合作 E10。它燃烧同样产生 CO2，能量密度也低于汽油。",
+   "id": "sci-039",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 分子式与结构",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "A molecule has the structural formula CH3–CH=CH–CH3. Which statement is correct?",
+   "options": [
+    "It is a saturated compound with no double bonds",
+    "It contains four carbon atoms and one double bond",
+    "It is an alcohol",
+    "It contains a carboxyl group"
+   ],
+   "answer": 1,
+   "explanation": "四个碳、一个 C=C，是丁烯（butene），不饱和。有双键说明不是饱和化合物，也没有 –OH 或 –COOH。",
+   "id": "sci-040",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 沸点趋势",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "As the carbon chain of a homologous series of alkanes increases, the boiling point:",
+   "options": [
+    "Decreases, because molecules get lighter",
+    "Increases, because dispersion forces between molecules get stronger",
+    "Stays the same",
+    "Increases, because the molecules become more polar"
+   ],
+   "answer": 1,
+   "explanation": "同系物中碳链越长，电子云越大、分子间色散力越强，需要更多能量才能分开，所以沸点升高。烷烃是非极性的，不因极性升高。",
+   "id": "sci-041",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 命名练习",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "The compound CH3–CH2–CH2–OH is named:",
+   "options": [
+    "Propan-1-ol",
+    "Propanoic acid",
+    "Propanal",
+    "Propane"
+   ],
+   "answer": 0,
+   "explanation": "三个碳 + 羟基 → 丙醇；羟基在链端，写作 propan-1-ol。Propanoic acid 是丙酸，propanal 是丙醛，propane 是烷烃。",
+   "id": "sci-042",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 反应类型",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Methane reacts with chlorine in the presence of ultraviolet light. This is an example of:",
+   "options": [
+    "Addition",
+    "Substitution",
+    "Esterification",
+    "Polymerisation"
+   ],
+   "answer": 1,
+   "explanation": "烷烃在紫外光下与卤素发生取代反应：一个 H 被 Cl 取代，生成 CH3Cl 和 HCl。是取代，不是加成（加成要双键）。",
+   "id": "sci-043",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry"
+  },
+  {
+   "topic": "有机化学 · 结构式书写",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "Draw the full structural formula of ethanol and identify its functional group. Then explain why ethanol is soluble in water.",
+   "answer": "CH3–CH2–OH, with every C–H and C–O bond shown (C2H5OH). Functional group: hydroxyl (–OH). Ethanol is soluble because the –OH group forms hydrogen bonds with water molecules.",
+   "explanation": "结构式要画出所有键，不能只写 C2H6O。可溶性来自羟基与水的氢键——碳链只有 2 个碳，疏水部分小，不足以阻止溶解。",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry（绘图 + 解释题）",
+   "points": [
+    {
+     "t": "Correct structural formula CH3–CH2–OH with all bonds shown",
+     "m": 1
+    },
+    {
+     "t": "Identifies the hydroxyl (–OH) group",
+     "m": 1
+    },
+    {
+     "t": "Explains hydrogen bonding between –OH and water as the reason for solubility",
+     "m": 1
+    }
+   ],
+   "id": "sci-044",
+   "options": []
+  },
+  {
+   "topic": "有机化学 · 证据解释",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "A student adds bromine water to two unknown colourless liquids. Sample A decolourises the bromine water at room temperature; sample B does not. Explain what this tells you about the bonding in each sample, and name a possible compound for A and for B.",
+   "answer": "Sample A contains a carbon–carbon double bond (unsaturated): bromine adds across the C=C, so the orange colour disappears. Sample B has only single bonds (saturated) and does not react at room temperature. A could be ethene/hexene; B could be hexane/ethane.",
+   "explanation": "这道是典型的「证据 + 解释」题：先给现象对应的化学原因（加成），再分别给出饱和/不饱和的判断，最后各举一例。只写「A 不饱和」拿不到满分。",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
+   "points": [
+    {
+     "t": "Sample A is unsaturated: bromine adds across the C=C double bond, removing the colour",
+     "m": 1
+    },
+    {
+     "t": "Sample B is saturated: only single bonds, no reaction at room temperature",
+     "m": 1
+    },
+    {
+     "t": "Gives a valid alkene for A (e.g. ethene/hexene) and alkane for B (e.g. ethane/hexane)",
+     "m": 1
+    }
+   ],
+   "id": "sci-045",
+   "options": []
+  },
+  {
+   "topic": "有机化学 · 比较与用途",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Compare the structure and reactivity of an alkane and an alkene, and explain why alkenes are used to make plastics.",
+   "answer": "Alkanes have only single C–C bonds and are saturated, so they mainly undergo substitution (with UV light) and combustion. Alkenes contain a C=C double bond, are unsaturated, and readily undergo addition reactions. Because alkenes can join to each other by addition (addition polymerisation), they form long-chain polymers such as polyethene and PVC.",
+   "explanation": "分值来自三块：结构差异（单键 vs 双键）、反应差异（取代/燃烧 vs 加成）、与塑料的联系（加聚）。缺一块扣一块。",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
+   "points": [
+    {
+     "t": "Alkanes: single bonds, saturated, substitution/combustion",
+     "m": 1
+    },
+    {
+     "t": "Alkenes: C=C double bond, unsaturated, addition reactions",
+     "m": 1
+    },
+    {
+     "t": "Addition polymerisation of alkenes produces polymers such as polyethene/PVC",
+     "m": 1
+    }
+   ],
+   "id": "sci-046",
+   "options": []
+  },
+  {
+   "topic": "有机化学 · 同系物规律",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Methanol, ethanol and propanol are members of the same homologous series. State one property that changes in a regular way down the series and explain why.",
+   "answer": "Boiling point increases from methanol to propanol. As the carbon chain lengthens, the molecules have more electrons and a larger surface area, so dispersion forces between molecules become stronger and more energy is needed to separate them.",
+   "explanation": "同系物题的套路：先说「指向哪个规律性变化」（沸点升高），再用分子间作用力解释。只说「分子变大」不够，要落到色散力/能量。",
+   "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
+   "points": [
+    {
+     "t": "Identifies a trend (e.g. boiling point increases with chain length)",
+     "m": 1
+    },
+    {
+     "t": "Explains via stronger dispersion forces / more energy needed to separate molecules",
+     "m": 1
+    }
+   ],
+   "id": "sci-047",
+   "options": []
+  },
+  {
+   "topic": "有机化学 · 实验设计",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "Describe a fair test to compare how completely ethanol and octane burn. Identify the independent, dependent and controlled variables.",
+   "answer": "Independent variable: the fuel used (ethanol vs octane). Dependent variable: a measure of completeness of combustion, e.g. the amount of soot produced, the colour of the flame, or the mass of CO2/heat released per gram. Controlled: same mass of fuel, same burner, same distance from the flame to the surface, same volume of water heated, same starting temperature, same oxygen supply. Judge completeness by the least soot and the cleanest blue flame.",
+   "explanation": "考纲 Part C 明确列了「Identifying Variables」和「Planning Investigations」。答案必须三项变量齐全，并给出可测量的指标，不能只写「观察火焰」。",
+   "source": "Yearly Study Guide 2026 · Science Part C: Skills（Planning Investigations / Identifying Variables）",
+   "points": [
+    {
+     "t": "States the independent variable (fuel type) and dependent variable with a measurable indicator",
+     "m": 1
+    },
+    {
+     "t": "Lists at least three controlled variables (mass of fuel, distance, water volume/temperature, oxygen supply)",
+     "m": 1
+    },
+    {
+     "t": "Explains how completeness of combustion is judged (soot / flame colour / products)",
+     "m": 1
+    }
+   ],
+   "id": "sci-048",
+   "options": []
   }
  ]
 }
