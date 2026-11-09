@@ -28,6 +28,10 @@ h1{font-size:24px;letter-spacing:-.01em;margin:0;font-weight:650}
 .ptitle{font-size:11px;color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);
  border-radius:999px;padding:1px 8px}
 .cd{font-size:12.5px;color:var(--dim)}
+.examline{margin:14px 0 0;display:flex;gap:8px;flex-wrap:wrap;font-size:11.5px;color:var(--dim)}
+.examline span{border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.examline span.next{border-color:var(--accent);color:var(--fg)}
+.examline b{color:var(--warn);font-weight:600;margin-left:3px}
 .cd b{color:var(--warn);font-size:14px}
 .xpbar{height:4px;background:var(--panel2);border-radius:99px;overflow:hidden}
 .xpbar i{display:block;height:100%;background:var(--accent);border-radius:99px}
@@ -148,7 +152,7 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
 </div>
 
 <div id="profile" class="hero"></div>
-<div id="countdown" class="hero" style="display:none"></div>
+<div id="examline" class="examline"></div>
 
 <div class="cta">
   <a class="big" href="all.html"><b>综合卷 · 全科</b><span>从 16 科抽题混做，414 题可选</span></a>
@@ -334,6 +338,25 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
 </div>
 <script>
 (function(){
+  var EXAMS=[["English","2026-11-23","P1–P2"],["Science","2026-11-24","P3–P4"],
+    ["Maths","2026-11-25","P3–P4"],["History","2026-11-26","P1"],
+    ["Geography","2026-11-26","P2"],["PDHPE","2026-11-26","P5"],
+    ["Electives","2026-11-27","P1–P2"]];
+  (function(){
+    var host=document.getElementById("examline"); if(!host) return;
+    var now=new Date(); now.setHours(0,0,0,0);
+    var html="", first=true;
+    EXAMS.forEach(function(e){
+      var d=new Date(e[1]+"T00:00:00");
+      var n=Math.round((d-now)/864e5);
+      if(n<0) return;
+      var mm=(+e[1].slice(5,7)), dd=(+e[1].slice(8,10));
+      html += '<span'+(first?' class="next"':'')+'>'+mm+'/'+dd+' '+e[0]+
+              (first?'<b>'+n+' 天后</b>':' · '+n+' 天')+'</span>';
+      first=false;
+    });
+    host.innerHTML=html;
+  })();
   var done=0, started=0;
   document.querySelectorAll('[data-slug]').forEach(function(card){
     var slug=card.dataset.slug, txt=card.querySelector('[data-prog]');
@@ -888,10 +911,25 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
     equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
     shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
 
-  function examDays(){
-    var d=new Date("2026-11-16T00:00:00"), now=new Date(); now.setHours(0,0,0,0);
-    var n=Math.round((d-now)/864e5);
-    return (n>=0 && n<=120) ? n : null;
+  var EXAM_LIST=[
+    ["English",  "2026-11-23", "P1–P2"],
+    ["Science",  "2026-11-24", "P3–P4"],
+    ["Maths",    "2026-11-25", "P3–P4"],
+    ["History",  "2026-11-26", "P1"],
+    ["Geography","2026-11-26", "P2"],
+    ["PDHPE",    "2026-11-26", "P5"],
+    ["Electives","2026-11-27", "P1–P2"]
+  ];
+  function daysTo(iso){
+    var d=new Date(iso+"T00:00:00"), now=new Date(); now.setHours(0,0,0,0);
+    return Math.round((d-now)/864e5);
+  }
+  function nextExam(){
+    for(var i=0;i<EXAM_LIST.length;i++){
+      var n=daysTo(EXAM_LIST[i][1]);
+      if(n>=0) return {name:EXAM_LIST[i][0], date:EXAM_LIST[i][1], per:EXAM_LIST[i][2], days:n};
+    }
+    return null;
   }
 
   function renderQuests(host){
@@ -1018,7 +1056,8 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
     var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
-    var dd = examDays();
+    var ne = nextExam();
+    var dd = ne ? ne.days : null;
     var badgeHtml = BADGES.map(function(x){
       return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
@@ -1029,7 +1068,7 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
         '<span class="xpv">'+xp+'</span>'+
         '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
         title+'<span class="grow"></span>'+
-        (dd!==null?'<span class="cd">距 Science 年考 <b>'+dd+'</b> 天</span>':'')+
+        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
       '</div>'+
       '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
       '<div class="metaline">'+

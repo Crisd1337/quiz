@@ -277,7 +277,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
 <header>
   <div class="bar">
     <h1>心理与福祉</h1>
-    <span class="meta">CW 26 · 15 题</span>
+    <span class="meta">CW 26 · 15 题 · Elective 11/27 P1–P2</span>
     <span class="spacer"></span>
     <span class="pill" id="counter">0 / 15</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
@@ -1248,10 +1248,25 @@ load(); render();
     equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
     shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
 
-  function examDays(){
-    var d=new Date("2026-11-16T00:00:00"), now=new Date(); now.setHours(0,0,0,0);
-    var n=Math.round((d-now)/864e5);
-    return (n>=0 && n<=120) ? n : null;
+  var EXAM_LIST=[
+    ["English",  "2026-11-23", "P1–P2"],
+    ["Science",  "2026-11-24", "P3–P4"],
+    ["Maths",    "2026-11-25", "P3–P4"],
+    ["History",  "2026-11-26", "P1"],
+    ["Geography","2026-11-26", "P2"],
+    ["PDHPE",    "2026-11-26", "P5"],
+    ["Electives","2026-11-27", "P1–P2"]
+  ];
+  function daysTo(iso){
+    var d=new Date(iso+"T00:00:00"), now=new Date(); now.setHours(0,0,0,0);
+    return Math.round((d-now)/864e5);
+  }
+  function nextExam(){
+    for(var i=0;i<EXAM_LIST.length;i++){
+      var n=daysTo(EXAM_LIST[i][1]);
+      if(n>=0) return {name:EXAM_LIST[i][0], date:EXAM_LIST[i][1], per:EXAM_LIST[i][2], days:n};
+    }
+    return null;
   }
 
   function renderQuests(host){
@@ -1378,7 +1393,8 @@ load(); render();
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
     var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
-    var dd = examDays();
+    var ne = nextExam();
+    var dd = ne ? ne.days : null;
     var badgeHtml = BADGES.map(function(x){
       return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
@@ -1389,7 +1405,7 @@ load(); render();
         '<span class="xpv">'+xp+'</span>'+
         '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
         title+'<span class="grow"></span>'+
-        (dd!==null?'<span class="cd">距 Science 年考 <b>'+dd+'</b> 天</span>':'')+
+        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
       '</div>'+
       '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
       '<div class="metaline">'+
