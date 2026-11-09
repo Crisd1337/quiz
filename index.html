@@ -578,6 +578,137 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
   var SEEN_KEY="dsh-seen-v1";
   function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
   function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+
+  /* ===== 排行榜：分阶段披露（战中抽屉 / 战后全屏） ===== */
+  var LB={sort:"pct", list:[], open:false, at:0, timer:null};
+  var LB_TABS=[["pct","正确率"],["score","答对题数"],["speed","用时"]];
+
+  function lbMetric(x, sort){
+    if(sort==="score") return (x.correct!==undefined?x.correct:Math.round(x.pct*x.answered/100))+" 题";
+    if(sort==="speed") return x.ms>0 ? fmtMs(x.ms) : "—";
+    return x.pct+"%";
+  }
+  function fmtMs(ms){ var s=Math.round(ms/1000); return Math.floor(s/60)+"'"+String(s%60).padStart(2,"0")+'"'; }
+
+  function lbFetch(cb){
+    if(!apibase()){ if(cb) cb(); return; }
+    var now=Date.now();
+    if(now-LB.at < 3500 && LB.list.length){ if(cb) cb(); return; }
+    LB.at=now;
+    fetch(apibase()+"/board?day="+encodeURIComponent(todayKey())+"&sort="+LB.sort)
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok && d.list){ LB.list=d.list; if(cb) cb(); } })
+      .catch(function(){});
+  }
+
+  function lbRowsHtml(){
+    var me=nick()||"我";
+    var start = LB.list.length>3 ? 3 : 0;
+    return LB.list.slice(start).map(function(x,i){
+      var mine = x.name===me;
+      return '<div class="lb-row'+(mine?' me':'')+'" data-k="'+x.name+'">'+
+        '<span class="rk">'+(i+start+1)+'</span>'+
+        '<span class="rname">'+x.name+(mine?'（我）':'')+'</span>'+
+        '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
+    }).join("") || '<div class="mutedsmall">今天还没有人上榜</div>';
+  }
+
+  function lbPodiumHtml(){
+    var top=LB.list.slice(0,3), me=nick()||"我";
+    if(!top.length) return "";
+    var order=[1,0,2]; // 2nd, 1st, 3rd
+    return '<div class="podium">'+order.map(function(idx){
+      var x=top[idx]; if(!x) return '<div></div>';
+      var place=idx+1, cls="p"+place;
+      return '<div class="pod '+cls+'"><div class="av">'+place+'</div>'+
+        '<div class="nm">'+x.name+(x.name===me?' ·我':'')+'</div>'+
+        '<div class="sc">'+lbMetric(x,LB.sort)+'</div></div>';
+    }).join("")+'</div>';
+  }
+
+  function lbSelfHtml(){
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    if(idx<0) return '<div class="lb-self"><span class="rk">—</span><span class="rname">你还没上榜，交卷即可参与</span></div>';
+    var x=LB.list[idx];
+    return '<div class="lb-self"><span class="rk">'+(idx+1)+'</span><span class="rname">'+me+'（我）</span>'+
+      '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
+  }
+
+  function lbRender(){
+    var box=document.getElementById("lbBody"); if(!box) return;
+    var before={};
+    box.querySelectorAll(".lb-row").forEach(function(el){ before[el.dataset.k]=el.getBoundingClientRect().top; });
+    box.innerHTML = lbPodiumHtml() +
+      '<div class="lb-list" id="lbList">'+lbRowsHtml()+'</div>' + lbSelfHtml();
+    box.querySelectorAll(".lb-row").forEach(function(el){
+      var old=before[el.dataset.k]; if(old===undefined) return;
+      var now=el.getBoundingClientRect().top, dy=old-now;
+      if(Math.abs(dy)<1) return;
+      el.style.transform="translateY("+dy+"px)";
+      requestAnimationFrame(function(){ el.style.transition="transform .32s ease"; el.style.transform=""; });
+    });
+  }
+
+  function lbOpen(){
+    var ov=document.getElementById("lbOverlay");
+    if(!ov || !apibase()) return;
+    ov.classList.add("on"); LB.open=true;
+    lbFetch(lbRender);
+    if(LB.timer) clearInterval(LB.timer);
+    LB.timer=setInterval(function(){ if(LB.open) lbFetch(lbRender); }, 5000);
+  }
+  function lbClose(){
+    var ov=document.getElementById("lbOverlay");
+    if(ov) ov.classList.remove("on");
+    LB.open=false;
+    if(LB.timer){ clearInterval(LB.timer); LB.timer=null; }
+  }
+  window.__openLB=lbOpen;
+
+  function lbFab(){
+    var el=document.getElementById("lbFab");
+    if(!el || !apibase()) return;
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    if(idx>=0) el.innerHTML='🏆 第 <b>'+(idx+1)+'</b> 名';
+    else if(LB.list.length) el.innerHTML='🏆 最高 <b>'+LB.list[0].pct+'%</b>';
+    else el.innerHTML='🏆 今日榜';
+  }
+
+  // 交卷时上传耗时
+  function lbSubmit(ms){
+    if(!apibase()) return;
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return;
+    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21,
+        ms:ms||0, day:rec.date})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d&&d.ok){ LB.list=d.list||LB.list; lbRender(); lbFab(); } })
+      .catch(function(){});
+  }
+  window.lbSubmit=lbSubmit;
+
+  function lbInit(){
+    if(!apibase()) return;
+    var ov=document.getElementById("lbOverlay");
+    if(ov) ov.addEventListener("click", function(e){ if(e.target===ov) lbClose(); });
+    var cl=document.getElementById("lbClose"); if(cl) cl.onclick=lbClose;
+    var fab=document.getElementById("lbFab");
+    if(fab && document.getElementById("app")){ fab.style.display="flex"; fab.onclick=lbOpen; }
+    document.querySelectorAll(".lb-tabs button").forEach(function(b){
+      b.onclick=function(){
+        LB.sort=b.dataset.sort;
+        document.querySelectorAll(".lb-tabs button").forEach(function(x){ x.classList.toggle("on", x===b); });
+        lbFetch(lbRender);
+      };
+    });
+    var dd=document.getElementById("lbDay"); if(dd) dd.textContent=todayKey();
+    lbFetch(function(){ lbRender(); lbFab(); });
+    setInterval(function(){ lbFetch(function(){ lbFab(); if(LB.open) lbRender(); }); }, 8000);
+  }
+
   function awardForQ(id, diff, type, ok){
     var base = type==='short' ? ({easy:12,medium:16,hard:22}[diff]||16)
                               : ({easy:8, medium:10,hard:14}[diff]||10);
@@ -669,7 +800,7 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
     return {ok:true,msg:"已领取"};
   }
   window.claimQuest=claimQuest;
-  window.awardForQ=awardForQ;
+  window.awardForQ=awardForQ; window.lbOpen=lbOpen; window.lbClose=lbClose; window.lbInit=lbInit;
   window.awardXP=awardXP; window.checkBadges=checkBadges;
   window.GAME={db:db,levelOf:levelOf,BADGES:BADGES,bdb:bdb,todayCount:todayCount,streakDays:streakDays,
     GOAL:GOAL,coins:readCoins,inv:readInv,buffs:readBuffs,SHOP:SHOP,buy:buy,equipTheme:equipTheme,
@@ -870,7 +1001,8 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
     }
   });
   applyTheme();
-  if(document.readyState!=='loading') renderAll(); else document.addEventListener('DOMContentLoaded', renderAll);
+  if(document.readyState!=='loading'){ renderAll(); if(window.lbInit) lbInit(); }
+  else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
 </script>

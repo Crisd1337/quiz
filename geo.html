@@ -131,6 +131,42 @@ footer{padding-bottom:96px}
 .sfxbtn{background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:8px;
  padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
 .prof-tools{margin-top:10px}
+.lb-fab{position:fixed;right:16px;bottom:84px;z-index:30;display:none;align-items:center;gap:6px;
+ background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:12.5px;
+ color:var(--fg);cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.35)}
+.lb-fab b{color:var(--warn)}
+.lb-overlay{position:fixed;inset:0;z-index:70;background:rgba(5,7,11,.7);backdrop-filter:blur(8px);
+ display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:.22s}
+.lb-overlay.on{opacity:1;pointer-events:auto}
+.lb-sheet{width:min(660px,100%);max-height:88vh;overflow:auto;background:var(--bg);border:1px solid var(--line);
+ border-radius:20px 20px 0 0;padding:18px 18px 20px;transform:translateY(28px);transition:.28s cubic-bezier(.2,.8,.2,1)}
+.lb-overlay.on .lb-sheet{transform:translateY(0)}
+.lb-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.lb-head b{font-size:16px}
+.lb-tabs{display:flex;gap:6px;margin-bottom:16px}
+.lb-tabs button{flex:1;background:var(--card2);border:1px solid var(--line);color:var(--dim);border-radius:9px;
+ padding:7px 0;font:inherit;font-size:12.5px;cursor:pointer}
+.lb-tabs button.on{color:var(--fg);border-color:var(--accent);
+ background:color-mix(in srgb,var(--accent) 14%,var(--card2))}
+.podium{display:grid;grid-template-columns:1fr 1.18fr 1fr;gap:8px;align-items:end;margin-bottom:18px}
+.pod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center}
+.pod.p1{padding-top:22px;padding-bottom:18px}
+.pod .av{width:42px;height:42px;border-radius:50%;margin:0 auto 9px;display:flex;align-items:center;
+ justify-content:center;font-weight:700;font-size:15px}
+.pod .nm{font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pod .sc{font-size:17px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.pod.p1{border-color:#F59E0B;animation:breathe 2.8s ease-in-out infinite}
+.pod.p1 .av{background:#F59E0B;color:#1a1206}
+.pod.p2{border-color:#94A3B8}.pod.p2 .av{background:#94A3B8;color:#10161b}
+.pod.p3{border-color:#B45309}.pod.p3 .av{background:#B45309;color:#fce7d0}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 1px #F59E0B inset,0 0 16px rgba(245,158,11,.22)}
+ 50%{box-shadow:0 0 0 1px #F59E0B inset,0 0 34px rgba(245,158,11,.5)}}
+.lb-row{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px solid var(--line);font-size:13.5px}
+.lb-row .rk{width:22px;color:var(--dim);font-variant-numeric:tabular-nums}
+.lb-row.me{color:var(--accent);font-weight:600}
+.lb-self{position:sticky;bottom:0;margin-top:10px;padding:11px 8px;display:flex;gap:12px;align-items:center;
+ font-size:13.5px;font-weight:600;background:color-mix(in srgb,var(--accent) 13%,var(--bg));
+ border-top:1px solid var(--line);border-radius:0 0 6px 6px}
 .xp-toast{position:fixed;right:18px;bottom:92px;z-index:60;background:var(--card);border:1px solid var(--line);
  color:var(--dim);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;
  opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none}
@@ -227,6 +263,17 @@ footer{padding:22px 14px 30px;line-height:1.8}
   <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
 </header>
 <main id="app"></main>
+<div id="lbFab" class="lb-fab"></div>
+<div id="lbOverlay" class="lb-overlay"><div class="lb-sheet">
+  <div class="lb-head"><b>今日榜单</b><span class="muted" id="lbDay"></span>
+    <span style="flex:1"></span><button class="btn ghost" id="lbClose" style="padding:4px 10px;font-size:12px">关闭</button></div>
+  <div class="lb-tabs">
+    <button data-sort="pct" class="on">正确率</button>
+    <button data-sort="score">答对题数</button>
+    <button data-sort="speed">用时</button>
+  </div>
+  <div id="lbBody"></div>
+</div></div>
 <div id="nav" class="nav-overlay"><div class="nav-box">
   <div class="nav-head"><b>题号</b><span class="muted">绿=对 红=错 橙=半对 灰=未做</span><button class="btn ghost" id="navclose" style="margin-left:auto;padding:4px 10px">关闭</button></div>
   <div class="nav-grid" id="navgrid"></div>
@@ -334,7 +381,7 @@ function renderSetup() {
       idxs=idxs.concat(pool.slice(0,3));
     });
     state.order=idxs; state.idx=0; state.started=true; state.setup=false;
-    state.answers={}; state.daily=key; state.rewarded=false; save(); render();
+    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
   }
   document.getElementById("daily").onclick = startDaily;
   document.getElementById("startmix").onclick = () => {
@@ -348,7 +395,7 @@ function renderSetup() {
     });
     idxs.sort(() => Math.random() - 0.5);
     state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
-    state.answers = {}; save(); render();
+    state.answers = {}; state.t0 = Date.now(); save(); render();
   };
   calc();
 }
@@ -491,11 +538,13 @@ function showResult() {
         var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
         var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
         var DKEY = "dsh-daily-v1";
+        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
         var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
         if (drec.date !== state.daily || dPct > (drec.best || 0)) {
           drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
           localStorage.setItem(DKEY, JSON.stringify(drec));
         }
+        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
       } catch(e) {}
     }
     const answered = qs.filter(x => state.answers[x.id]).length;
@@ -533,6 +582,7 @@ function showResult() {
       ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
       <div class="actions">
         ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
+        <button class="btn ghost" id="showlb">🏆 查看今日榜单</button>
         <button class="btn ghost" id="again">整套重做</button>
         <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
       </div></div>`;
@@ -542,6 +592,8 @@ function showResult() {
     wrongIds.forEach(id => delete state.answers[id]);
     state.idx = 0; save(); render();
   };
+  const showlb = document.getElementById("showlb");
+  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
   document.getElementById("again").onclick = () => {
     state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
     save(); render();
@@ -859,6 +911,137 @@ load(); render();
   var SEEN_KEY="dsh-seen-v1";
   function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
   function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+
+  /* ===== 排行榜：分阶段披露（战中抽屉 / 战后全屏） ===== */
+  var LB={sort:"pct", list:[], open:false, at:0, timer:null};
+  var LB_TABS=[["pct","正确率"],["score","答对题数"],["speed","用时"]];
+
+  function lbMetric(x, sort){
+    if(sort==="score") return (x.correct!==undefined?x.correct:Math.round(x.pct*x.answered/100))+" 题";
+    if(sort==="speed") return x.ms>0 ? fmtMs(x.ms) : "—";
+    return x.pct+"%";
+  }
+  function fmtMs(ms){ var s=Math.round(ms/1000); return Math.floor(s/60)+"'"+String(s%60).padStart(2,"0")+'"'; }
+
+  function lbFetch(cb){
+    if(!apibase()){ if(cb) cb(); return; }
+    var now=Date.now();
+    if(now-LB.at < 3500 && LB.list.length){ if(cb) cb(); return; }
+    LB.at=now;
+    fetch(apibase()+"/board?day="+encodeURIComponent(todayKey())+"&sort="+LB.sort)
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok && d.list){ LB.list=d.list; if(cb) cb(); } })
+      .catch(function(){});
+  }
+
+  function lbRowsHtml(){
+    var me=nick()||"我";
+    var start = LB.list.length>3 ? 3 : 0;
+    return LB.list.slice(start).map(function(x,i){
+      var mine = x.name===me;
+      return '<div class="lb-row'+(mine?' me':'')+'" data-k="'+x.name+'">'+
+        '<span class="rk">'+(i+start+1)+'</span>'+
+        '<span class="rname">'+x.name+(mine?'（我）':'')+'</span>'+
+        '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
+    }).join("") || '<div class="mutedsmall">今天还没有人上榜</div>';
+  }
+
+  function lbPodiumHtml(){
+    var top=LB.list.slice(0,3), me=nick()||"我";
+    if(!top.length) return "";
+    var order=[1,0,2]; // 2nd, 1st, 3rd
+    return '<div class="podium">'+order.map(function(idx){
+      var x=top[idx]; if(!x) return '<div></div>';
+      var place=idx+1, cls="p"+place;
+      return '<div class="pod '+cls+'"><div class="av">'+place+'</div>'+
+        '<div class="nm">'+x.name+(x.name===me?' ·我':'')+'</div>'+
+        '<div class="sc">'+lbMetric(x,LB.sort)+'</div></div>';
+    }).join("")+'</div>';
+  }
+
+  function lbSelfHtml(){
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    if(idx<0) return '<div class="lb-self"><span class="rk">—</span><span class="rname">你还没上榜，交卷即可参与</span></div>';
+    var x=LB.list[idx];
+    return '<div class="lb-self"><span class="rk">'+(idx+1)+'</span><span class="rname">'+me+'（我）</span>'+
+      '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
+  }
+
+  function lbRender(){
+    var box=document.getElementById("lbBody"); if(!box) return;
+    var before={};
+    box.querySelectorAll(".lb-row").forEach(function(el){ before[el.dataset.k]=el.getBoundingClientRect().top; });
+    box.innerHTML = lbPodiumHtml() +
+      '<div class="lb-list" id="lbList">'+lbRowsHtml()+'</div>' + lbSelfHtml();
+    box.querySelectorAll(".lb-row").forEach(function(el){
+      var old=before[el.dataset.k]; if(old===undefined) return;
+      var now=el.getBoundingClientRect().top, dy=old-now;
+      if(Math.abs(dy)<1) return;
+      el.style.transform="translateY("+dy+"px)";
+      requestAnimationFrame(function(){ el.style.transition="transform .32s ease"; el.style.transform=""; });
+    });
+  }
+
+  function lbOpen(){
+    var ov=document.getElementById("lbOverlay");
+    if(!ov || !apibase()) return;
+    ov.classList.add("on"); LB.open=true;
+    lbFetch(lbRender);
+    if(LB.timer) clearInterval(LB.timer);
+    LB.timer=setInterval(function(){ if(LB.open) lbFetch(lbRender); }, 5000);
+  }
+  function lbClose(){
+    var ov=document.getElementById("lbOverlay");
+    if(ov) ov.classList.remove("on");
+    LB.open=false;
+    if(LB.timer){ clearInterval(LB.timer); LB.timer=null; }
+  }
+  window.__openLB=lbOpen;
+
+  function lbFab(){
+    var el=document.getElementById("lbFab");
+    if(!el || !apibase()) return;
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    if(idx>=0) el.innerHTML='🏆 第 <b>'+(idx+1)+'</b> 名';
+    else if(LB.list.length) el.innerHTML='🏆 最高 <b>'+LB.list[0].pct+'%</b>';
+    else el.innerHTML='🏆 今日榜';
+  }
+
+  // 交卷时上传耗时
+  function lbSubmit(ms){
+    if(!apibase()) return;
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return;
+    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21,
+        ms:ms||0, day:rec.date})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d&&d.ok){ LB.list=d.list||LB.list; lbRender(); lbFab(); } })
+      .catch(function(){});
+  }
+  window.lbSubmit=lbSubmit;
+
+  function lbInit(){
+    if(!apibase()) return;
+    var ov=document.getElementById("lbOverlay");
+    if(ov) ov.addEventListener("click", function(e){ if(e.target===ov) lbClose(); });
+    var cl=document.getElementById("lbClose"); if(cl) cl.onclick=lbClose;
+    var fab=document.getElementById("lbFab");
+    if(fab && document.getElementById("app")){ fab.style.display="flex"; fab.onclick=lbOpen; }
+    document.querySelectorAll(".lb-tabs button").forEach(function(b){
+      b.onclick=function(){
+        LB.sort=b.dataset.sort;
+        document.querySelectorAll(".lb-tabs button").forEach(function(x){ x.classList.toggle("on", x===b); });
+        lbFetch(lbRender);
+      };
+    });
+    var dd=document.getElementById("lbDay"); if(dd) dd.textContent=todayKey();
+    lbFetch(function(){ lbRender(); lbFab(); });
+    setInterval(function(){ lbFetch(function(){ lbFab(); if(LB.open) lbRender(); }); }, 8000);
+  }
+
   function awardForQ(id, diff, type, ok){
     var base = type==='short' ? ({easy:12,medium:16,hard:22}[diff]||16)
                               : ({easy:8, medium:10,hard:14}[diff]||10);
@@ -950,7 +1133,7 @@ load(); render();
     return {ok:true,msg:"已领取"};
   }
   window.claimQuest=claimQuest;
-  window.awardForQ=awardForQ;
+  window.awardForQ=awardForQ; window.lbOpen=lbOpen; window.lbClose=lbClose; window.lbInit=lbInit;
   window.awardXP=awardXP; window.checkBadges=checkBadges;
   window.GAME={db:db,levelOf:levelOf,BADGES:BADGES,bdb:bdb,todayCount:todayCount,streakDays:streakDays,
     GOAL:GOAL,coins:readCoins,inv:readInv,buffs:readBuffs,SHOP:SHOP,buy:buy,equipTheme:equipTheme,
@@ -1151,7 +1334,8 @@ load(); render();
     }
   });
   applyTheme();
-  if(document.readyState!=='loading') renderAll(); else document.addEventListener('DOMContentLoaded', renderAll);
+  if(document.readyState!=='loading'){ renderAll(); if(window.lbInit) lbInit(); }
+  else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
 </script>
