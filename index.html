@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canvas 复习测验</title>
+<style>
+:root{--bg:#0e1014;--card:#161a20;--card2:#1d222a;--fg:#e9edf3;--dim:#98a3b3;--line:#272d38;
+ --accent:#5b8cff;--ok:#2fbf71;--bad:#ff5f56;--warn:#f5a623}
+@media (prefers-color-scheme: light){:root{--bg:#f5f6f8;--card:#fff;--card2:#eef1f5;--fg:#1b1f26;
+ --dim:#5f6b7a;--line:#dfe4ea;--accent:#2f6bff;--ok:#1f9d5a;--bad:#d93b30;--warn:#b26a00}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:44px 20px 90px}
+h1{font-size:26px;margin:0 0 8px;letter-spacing:.2px}
+.lead{color:var(--dim);margin:0 0 24px;font-size:14.5px}
+
+.profile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 22px}
+.prof-main{display:flex;gap:16px;align-items:center}
+.lv{width:64px;height:64px;border-radius:18px;background:color-mix(in srgb,var(--accent) 16%,var(--card2));
+ display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 64px}
+.lvnum{font-size:24px;font-weight:700;color:var(--accent);line-height:1}
+.lvlab{font-size:10px;color:var(--dim);margin-top:2px}
+.prof-body{flex:1;min-width:0}
+.prof-line{display:flex;gap:10px;align-items:baseline;font-size:14px}
+.prof-line b{font-size:17px}
+.xpbar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin:8px 0 6px}
+.xpbar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.prof-meta{font-size:12px;color:var(--dim)}
+.prof-meta b{color:var(--fg)}
+.sfxbtn{background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:8px;
+ padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
+.prof-tools{margin-top:10px}
+.prof-note{font-size:12px;color:var(--dim);margin-top:8px;line-height:1.6}
+.prof-note b{color:var(--accent)}
+.ptitle{font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid color-mix(in srgb,var(--warn) 60%,var(--line));
+ color:var(--warn);margin-left:2px}
+.badges{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}
+.badge{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 4px;
+ text-align:center;opacity:.42}
+.badge.on{opacity:1;border-color:color-mix(in srgb,var(--warn) 55%,var(--line))}
+.badge .bi{display:block;font-size:18px;line-height:1.3}
+.badge .bn{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xp-toast{position:fixed;right:18px;bottom:24px;z-index:60;background:var(--card);border:1px solid var(--line);
+ color:var(--dim);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;
+ transform:translateY(8px);transition:.25s;pointer-events:none}
+.xp-toast.ok{border-color:var(--ok);color:var(--ok)}
+.xp-toast.up{opacity:1;transform:translateY(0)}
+@media (max-width:720px){.badges{grid-template-columns:repeat(4,1fr)}}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 26px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 18px;min-width:118px}
+.stat b{display:block;font-size:22px;line-height:1.15;font-variant-numeric:tabular-nums}
+.stat span{color:var(--dim);font-size:12px}
+
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 26px}
+.dbest{font-size:12px;color:var(--ok);font-weight:500}
+.qbox,.bbox{margin:0 0 24px}
+.qlist{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 4px}
+.qrow{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);font-size:13.5px}
+.qrow:last-child{border-bottom:0}
+.qrow.done .qname{color:var(--dim);text-decoration:line-through}
+.qtip{font-size:11px;padding:1px 7px;border-radius:999px;background:var(--card2);color:var(--dim);flex:0 0 auto}
+.qname{flex:1;min-width:0}
+.qbar{flex:0 0 90px;height:6px;background:var(--card2);border-radius:99px;overflow:hidden}
+.qbar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.qnum{font-size:12px;color:var(--dim);flex:0 0 auto;font-variant-numeric:tabular-nums}
+.qbtn{background:var(--ok);border:0;color:#fff;border-radius:8px;padding:5px 12px;font:inherit;font-size:12px;cursor:pointer}
+.qdone{font-size:12px;color:var(--dim);flex:0 0 auto}
+.rank{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.rrow{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px}
+.rrow:last-child{border-bottom:0}
+.rrow.me{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.rn{width:20px;color:var(--dim);text-align:center;font-variant-numeric:tabular-nums}
+.rrow:nth-child(1) .rn{color:var(--warn);font-weight:700}
+.rname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rp{font-weight:600;color:var(--ok)}
+.codebar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.codebar input{flex:1;min-width:180px;background:var(--card);border:1px solid var(--line);border-radius:10px;
+ padding:8px 12px;color:var(--fg);font:inherit;font-size:13px;outline:none}
+.btn2{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
+ padding:8px 14px;font:inherit;font-size:13px;cursor:pointer}
+.mutedsmall{color:var(--dim);font-size:12.5px;padding:14px 4px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.brow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12px;color:var(--dim)}
+.brow b{display:block;font-size:18px;color:var(--fg);margin-top:2px}
+.days{display:flex;gap:10px;align-items:flex-end;margin-top:12px;padding:0 2px;min-height:64px}
+.day{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;
+ font-size:10px;color:var(--dim);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 0}
+.day i{display:block;width:70%;background:color-mix(in srgb,var(--accent) 60%,transparent);border-radius:4px}
+.day em{font-style:normal;font-size:10px;color:var(--fg)}
+@media (max-width:640px){.board{grid-template-columns:repeat(2,1fr)}}
+.countdown{margin:0 0 18px;font-size:13.5px;color:var(--dim)}
+.countdown b{color:var(--warn);font-size:16px;margin:0 3px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;font-size:14.5px;
+ font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--fg);background:var(--card)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:hover{filter:brightness(1.06)}
+
+.search{display:flex;gap:10px;align-items:center;margin:0 0 22px}
+.search input{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;
+ padding:11px 14px;color:var(--fg);font:inherit;font-size:14px;outline:none}
+.search input:focus{border-color:var(--accent)}
+
+.group{margin:0 0 30px}
+.gh{font-size:14px;color:var(--dim);font-weight:600;margin:0 0 12px;display:flex;gap:10px;align-items:center}
+.gz{font-size:12px;font-weight:400;opacity:.8}
+.grid{display:grid;gap:14px}
+
+.card{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+ border-radius:16px;padding:16px 18px;text-decoration:none;color:inherit;transition:.16s}
+.card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.ico{font-size:26px;line-height:1.2;width:34px;text-align:center;flex:0 0 34px}
+.body{flex:1;min-width:0}
+.line1{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.card h3{margin:0;font-size:16.5px;font-weight:650}
+.tag{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+.scope{margin:6px 0 0;color:var(--dim);font-size:13px;line-height:1.55}
+
+.nums{display:flex;gap:10px;align-items:baseline;margin:11px 0 0;flex-wrap:wrap}
+.nums .n{font-variant-numeric:tabular-nums}
+.nums .n b{font-size:19px;color:var(--accent)}
+.nums .n i{font-style:normal;color:var(--dim);font-size:12px;margin-left:2px}
+.nums .nb{font-size:12px;color:var(--dim);background:var(--card2);border-radius:8px;padding:2px 8px}
+
+.progrow{display:flex;gap:12px;align-items:center;margin:12px 0 0}
+.progrow .pbar{flex:0 0 120px;height:5px;background:var(--card2);border-radius:99px;overflow:hidden;display:none}
+.progrow .pbar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px}
+.progtxt{flex:0 1 auto;min-width:0;font-size:12px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.go{color:var(--dim);font-size:13px;white-space:nowrap;align-self:center}
+.card.empty-result{display:none}
+footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-height:1.9}
+
+@media (max-width:640px){
+  .wrap{padding:28px 14px 70px}
+  h1{font-size:22px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stat{min-width:0;padding:10px 12px}
+  .stat b{font-size:18px}
+  .cta .btn{flex:1 1 auto;justify-content:center}
+  .card{padding:14px 15px;gap:12px}
+  .ico{width:26px;flex:0 0 26px;font-size:22px}
+  .card h3{font-size:15px}
+  .scope{font-size:12.5px}
+  .go{display:none}
+}
+</style></head><body><div class="wrap">
+<h1>Canvas 复习测验</h1>
+<p class="lead">共 16 门 · 411 题 · 基于你 Canvas 课程的真实材料</p>
+<div id="profile" class="profile"></div>
+<div class="stats" id="tstats"></div>
+<div id="countdown" class="countdown"></div>
+<div class="cta">
+  <a class="btn primary" href="all.html">🎓 综合卷 · 全科</a>
+  <a class="btn" href="all.html#daily" id="dailyBtn">🎯 今日挑战 <span id="dailyBest" class="dbest"></span></a>
+  <a class="btn" href="review.html">📕 错题本</a>
+  <a class="btn" href="shop.html">🛒 商城</a>
+</div>
+<div id="quests" class="qbox"></div>
+<div id="board" class="bbox"></div>
+<div class="search"><input id="q" type="search" placeholder="搜索课程、单元或代码（如 电磁学 / King Lear / 10SCI）" autocomplete="off"></div>
+<section class="group" data-group><h2 class="gh">年考重点<span class="gz">7 门</span></h2><div class="grid">
+      <a class="card" href="sci.html" data-slug="sci" data-total="45" data-search="科学 · 10 年级 年考版 电磁学 / 进化 / 技能 10sci 26 sci">
+        <div class="ico">🔬</div>
+        <div class="body">
+          <div class="line1"><h3>科学 · 10 年级</h3><span class="tag">年考版</span></div>
+          <p class="scope">电磁学 / 进化 / 技能</p>
+          <div class="nums">
+            <span class="n"><b>45</b><i>题</i></span>
+            <span class="nb">10 选择</span>
+            <span class="nb">35 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="sci">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="eng.html" data-slug="eng" data-total="30" data-search="英语 · 10 年级 年考版 king lear 短答 + 比较论文 10eng 26 eng">
+        <div class="ico">📖</div>
+        <div class="body">
+          <div class="line1"><h3>英语 · 10 年级</h3><span class="tag">年考版</span></div>
+          <p class="scope">King Lear 短答 + 比较论文</p>
+          <div class="nums">
+            <span class="n"><b>30</b><i>题</i></span>
+            <span class="nb">10 选择</span>
+            <span class="nb">20 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="eng">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="his.html" data-slug="his" data-total="28" data-search="历史 · 10 年级 年考版 术语选择 + 1991–2019 美国外交 10his 26 his">
+        <div class="ico">🏛</div>
+        <div class="body">
+          <div class="line1"><h3>历史 · 10 年级</h3><span class="tag">年考版</span></div>
+          <p class="scope">术语选择 + 1991–2019 美国外交</p>
+          <div class="nums">
+            <span class="n"><b>28</b><i>题</i></span>
+            <span class="nb">10 选择</span>
+            <span class="nb">18 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="his">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="geo.html" data-slug="geo" data-total="26" data-search="地理 · 10 年级 年考版 海岸单元（collaroy / 印度河） 10geo 26 geo">
+        <div class="ico">🌏</div>
+        <div class="body">
+          <div class="line1"><h3>地理 · 10 年级</h3><span class="tag">年考版</span></div>
+          <p class="scope">海岸单元（Collaroy / 印度河）</p>
+          <div class="nums">
+            <span class="n"><b>26</b><i>题</i></span>
+            <span class="nb">10 选择</span>
+            <span class="nb">16 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="geo">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="pdh.html" data-slug="pdh" data-total="30" data-search="pdhpe · 10 年级 年考版 道路安全 / 急救 / 心理健康 10pdh 26 pdh">
+        <div class="ico">🏃</div>
+        <div class="body">
+          <div class="line1"><h3>PDHPE · 10 年级</h3><span class="tag">年考版</span></div>
+          <p class="scope">道路安全 / 急救 / 心理健康</p>
+          <div class="nums">
+            <span class="n"><b>30</b><i>题</i></span>
+            <span class="nb">12 选择</span>
+            <span class="nb">18 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="pdh">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="matp.html" data-slug="matp" data-total="43" data-search="数学 p · 10 年级 年考版 金融 / 代数 / 坐标几何 / 统计 10matp 26 matp">
+        <div class="ico">📐</div>
+        <div class="body">
+          <div class="line1"><h3>数学 P · 10 年级</h3><span class="tag">年考版</span></div>
+          <p class="scope">金融 / 代数 / 坐标几何 / 统计</p>
+          <div class="nums">
+            <span class="n"><b>43</b><i>题</i></span>
+            <span class="nb">29 选择</span>
+            <span class="nb">14 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="matp">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="maths53.html" data-slug="maths53" data-total="43" data-search="数学 5.3 · 10 年级 年考版 根式 / 指数 / 对数 / 三角 / 概率 5.3 maths maths53">
+        <div class="ico">➗</div>
+        <div class="body">
+          <div class="line1"><h3>数学 5.3 · 10 年级</h3><span class="tag">年考版</span></div>
+          <p class="scope">根式 / 指数 / 对数 / 三角 / 概率</p>
+          <div class="nums">
+            <span class="n"><b>43</b><i>题</i></span>
+            <span class="nb">30 选择</span>
+            <span class="nb">13 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="maths53">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a></div></section><section class="group" data-group><h2 class="gh">非年考内容（有余力再看）<span class="gz">4 门</span></h2><div class="grid">
+      <a class="card" href="sciother.html" data-slug="sciother" data-total="33" data-search="科学 · 非年考 term 1–3 地球能量 / 遗传 / 运动 / 化学 / 气候 10sci 26 sciother">
+        <div class="ico">🧪</div>
+        <div class="body">
+          <div class="line1"><h3>科学 · 非年考</h3><span class="tag">Term 1–3</span></div>
+          <p class="scope">地球能量 / 遗传 / 运动 / 化学 / 气候</p>
+          <div class="nums">
+            <span class="n"><b>33</b><i>题</i></span>
+            <span class="nb">25 选择</span>
+            <span class="nb">8 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="sciother">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="hisother.html" data-slug="hisother" data-total="15" data-search="历史 · 非年考 term 1–3 holocaust / 冷战 / 民权 10his 26 hisother">
+        <div class="ico">📜</div>
+        <div class="body">
+          <div class="line1"><h3>历史 · 非年考</h3><span class="tag">Term 1–3</span></div>
+          <p class="scope">Holocaust / 冷战 / 民权</p>
+          <div class="nums">
+            <span class="n"><b>15</b><i>题</i></span>
+            <span class="nb">9 选择</span>
+            <span class="nb">6 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="hisother">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="geoother.html" data-slug="geoother" data-total="14" data-search="地理 · 非年考 term 1–2、4 福祉 / 原住民 / 气候变化 10geo 26 geoother">
+        <div class="ico">🗺</div>
+        <div class="body">
+          <div class="line1"><h3>地理 · 非年考</h3><span class="tag">Term 1–2、4</span></div>
+          <p class="scope">福祉 / 原住民 / 气候变化</p>
+          <div class="nums">
+            <span class="n"><b>14</b><i>题</i></span>
+            <span class="nb">10 选择</span>
+            <span class="nb">4 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="geoother">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="engother.html" data-slug="engother" data-total="14" data-search="英语 · 非年考 term 1–3 战争单元 / 诗歌 / 阅读卷 10eng 26 engother">
+        <div class="ico">📘</div>
+        <div class="body">
+          <div class="line1"><h3>英语 · 非年考</h3><span class="tag">Term 1–3</span></div>
+          <p class="scope">战争单元 / 诗歌 / 阅读卷</p>
+          <div class="nums">
+            <span class="n"><b>14</b><i>题</i></span>
+            <span class="nb">11 选择</span>
+            <span class="nb">3 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="engother">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a></div></section><section class="group" data-group><h2 class="gh">其他科目<span class="gz">5 门</span></h2><div class="grid">
+      <a class="card" href="ftn.html" data-slug="ftn" data-total="25" data-search="食品科技 · 10 年级 学科 食品安全 / 食物不平等 / 特殊需求 10ftn 26 ftn">
+        <div class="ico">🍳</div>
+        <div class="body">
+          <div class="line1"><h3>食品科技 · 10 年级</h3><span class="tag">学科</span></div>
+          <p class="scope">食品安全 / 食物不平等 / 特殊需求</p>
+          <div class="nums">
+            <span class="n"><b>25</b><i>题</i></span>
+            <span class="nb">18 选择</span>
+            <span class="nb">7 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="ftn">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="car.html" data-slug="car" data-total="20" data-search="生涯规划 · 10 年级 学科 就业路径 / 求职 / atar / usi·tfn 10car 26 car">
+        <div class="ico">🧭</div>
+        <div class="body">
+          <div class="line1"><h3>生涯规划 · 10 年级</h3><span class="tag">学科</span></div>
+          <p class="scope">就业路径 / 求职 / ATAR / USI·TFN</p>
+          <div class="nums">
+            <span class="n"><b>20</b><i>题</i></span>
+            <span class="nb">16 选择</span>
+            <span class="nb">4 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="car">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="sport.html" data-slug="sport" data-total="15" data-search="体育 · 10 年级 学科 规则 / 赛事 / 训练常识 sport 26 sport">
+        <div class="ico">🏅</div>
+        <div class="body">
+          <div class="line1"><h3>体育 · 10 年级</h3><span class="tag">学科</span></div>
+          <p class="scope">规则 / 赛事 / 训练常识</p>
+          <div class="nums">
+            <span class="n"><b>15</b><i>题</i></span>
+            <span class="nb">12 选择</span>
+            <span class="nb">3 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="sport">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="out.html" data-slug="out" data-total="15" data-search="户外教育 · 10 年级 学科 环境意识 / leave no trace 10out 26 out">
+        <div class="ico">🏕</div>
+        <div class="body">
+          <div class="line1"><h3>户外教育 · 10 年级</h3><span class="tag">学科</span></div>
+          <p class="scope">环境意识 / Leave No Trace</p>
+          <div class="nums">
+            <span class="n"><b>15</b><i>题</i></span>
+            <span class="nb">11 选择</span>
+            <span class="nb">4 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="out">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a>
+      <a class="card" href="cw.html" data-slug="cw" data-total="15" data-search="心理与福祉 辅导 焦虑 / 抑郁 / 求助渠道 cw 26 cw">
+        <div class="ico">💬</div>
+        <div class="body">
+          <div class="line1"><h3>心理与福祉</h3><span class="tag">辅导</span></div>
+          <p class="scope">焦虑 / 抑郁 / 求助渠道</p>
+          <div class="nums">
+            <span class="n"><b>15</b><i>题</i></span>
+            <span class="nb">12 选择</span>
+            <span class="nb">3 简答</span>
+          </div>
+          <div class="progrow"><span class="progtxt" data-prog="cw">未开始</span><span class="pbar"><i></i></span></div>
+        </div>
+        <div class="go">开始 →</div>
+      </a></div></section>
+<div id="noresult" style="display:none;color:var(--dim);padding:30px 0;text-align:center">没有匹配的课程</div>
+<footer>进度存在本机浏览器里，关掉再打开能接着做<br>
+<span style="opacity:.75">「📁 原始资料」指向 <code>../Canvas复习资料/</code>，需要与 <code>quiz</code> 文件夹放在同一层；只解压测验包时该链接会失效，不影响做题。</span></footer>
+</div>
+<script>
+(function(){
+  var done=0, started=0;
+  document.querySelectorAll('[data-slug]').forEach(function(card){
+    var slug=card.dataset.slug, txt=card.querySelector('[data-prog]'), bar=card.querySelector('.pbar i');
+    var s=null;
+    try { s=JSON.parse(localStorage.getItem('dsh-quiz-'+slug)||'null'); } catch(e) {}
+    if(!s||!s.order||!s.answers) return;
+    var total=s.order.length, ans=s.answers, ids=Object.keys(ans);
+    var right=0, wrong=0, sc=0;
+    ids.forEach(function(id){
+      var a=ans[id];
+      if(a&&a.ok==='ok') right++;
+      else if(a&&a.ok==='bad') wrong++;
+      if(a&&a.checked&&a.checked.length) sc++;
+    });
+    var n=ids.length;
+    if(n===0) return;
+    started++;
+    if(n>=total) done++;
+    if(bar) { bar.style.width=Math.round(n/total*100)+'%'; bar.parentNode.style.display='block'; }
+    if(txt) txt.textContent=n+'/'+total+' · ✓'+right+' ✗'+wrong+(sc?' · 简答 '+sc:'');
+  });
+  (function(){
+    var el=document.getElementById('countdown');
+    if(el){
+      var EXAMS=[["Science 年考","2026-11-16"]];
+      var now=new Date(); now.setHours(0,0,0,0);
+      var out=[];
+      EXAMS.forEach(function(e){
+        var d=new Date(e[1]+"T00:00:00");
+        var days=Math.round((d-now)/864e5);
+        if(days>=0 && days<=60) out.push(e[0]+' <b>'+days+'</b> 天');
+      });
+      el.innerHTML = out.length
+        ? ('📅 '+out.join(' · ')+'　<span style="opacity:.7">（其他科目日期 Canvas 上没写，问老师）</span>')
+        : '';
+    }
+    var best=document.getElementById('dailyBest');
+    if(best){
+      try{
+        var rec=JSON.parse(localStorage.getItem('dsh-daily-v1')||'{}');
+        var d=new Date(), k=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+        if(rec.date===k && rec.best!==undefined) best.textContent='· 今日最佳 '+rec.best+'%';
+        else best.textContent='· 21 题';
+      }catch(e){ best.textContent='· 21 题'; }
+    }
+  })();
+  var head=document.querySelector('.lead');
+  if(head&&started) head.innerHTML += ' <b>· 已开始 '+started+' 门，完成 '+done+' 门</b>';
+
+  var box=document.getElementById('q');
+  var cards=[].slice.call(document.querySelectorAll('[data-slug]'));
+  var groups=[].slice.call(document.querySelectorAll('[data-group]'));
+  var none=document.getElementById('noresult');
+  if(box) box.addEventListener('input', function(){
+    var q=box.value.trim().toLowerCase();
+    var shown=0;
+    cards.forEach(function(c){
+      var hit=!q||c.dataset.search.indexOf(q)>=0;
+      c.classList.toggle('empty-result', !hit);
+      if(hit) shown++;
+    });
+    groups.forEach(function(g){
+      var vis=g.querySelectorAll('[data-slug]:not(.empty-result)').length;
+      g.style.display = vis ? '' : 'none';
+    });
+    if(none) none.style.display = shown ? 'none' : '';
+  });
+})();
+</script>
+<script>
+(function(){
+  var log=[]; try { log=JSON.parse(localStorage.getItem('dsh-log-v1')||'[]'); } catch(e){}
+  var d0=new Date(); d0.setHours(0,0,0,0);
+  var today=log.filter(function(x){return x.t>=d0.getTime();});
+  var ok=today.filter(function(x){return x.ok;}).length;
+  var rate=today.length?Math.round(ok/today.length*100):0;
+  var days={}; log.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0); days[d.getTime()]=1; });
+  var streak=0, cur=d0.getTime();
+  while(days[cur]){ streak++; cur-=864e5; }
+  var el=document.getElementById('tstats');
+  if(el) el.innerHTML='<div class="stat"><b>'+today.length+'</b><span>今天做了</span></div>'+
+    '<div class="stat"><b>'+(today.length?rate+'%':'--')+'</b><span>今日正确率</span></div>'+
+    '<div class="stat"><b>'+streak+'</b><span>连续做题天数</span></div>'+
+    '<div class="stat"><b>'+log.length+'</b><span>累计作答</span></div>';
+})();
+</script>
+<script>
+(function(){
+  var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
+  var COIN_KEY="dsh-coins-v1", INV_KEY="dsh-inv-v1", BUFF_KEY="dsh-buffs-v1";
+  var LEVELS=[0,60,150,280,450,680,980,1360,1820,2360,3000,3750,4600,5560,6650,7880,9250,10800,12500,14400];
+  function db(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{"xp":0,"combo":0,"best":0}'); }catch(e){ return {xp:0,combo:0,best:0}; } }
+  function save(g){ try{ localStorage.setItem(KEY,JSON.stringify(g)); }catch(e){} }
+  function bdb(){ try{ return JSON.parse(localStorage.getItem(BKEY)||'{}'); }catch(e){ return {}; } }
+  function bsave(b){ try{ localStorage.setItem(BKEY,JSON.stringify(b)); }catch(e){} }
+  function log(){ try{ return JSON.parse(localStorage.getItem('dsh-log-v1')||'[]'); }catch(e){ return []; } }
+  function levelOf(xp){ var l=1; for(var i=0;i<LEVELS.length;i++){ if(xp>=LEVELS[i]) l=i+1; } return l; }
+  function nextAt(xp){ var l=levelOf(xp); return LEVELS[l]!==undefined?LEVELS[l]:null; }
+
+  /* ---------- 金币 / 库存 / 增益 ---------- */
+  function readCoins(){ var o={n:0,earned:0,dust:0}; try{ o=JSON.parse(localStorage.getItem(COIN_KEY)||'null')||o; }catch(e){} if(o.dust===undefined)o.dust=0; return o; }
+  function saveCoins(o){ try{ localStorage.setItem(COIN_KEY,JSON.stringify(o)); }catch(e){} }
+  function addCoins(n){ var c=readCoins(); c.n=(c.n||0)+n; c.earned=(c.earned||0)+Math.max(0,n); saveCoins(c); }
+  function addDust(n){ var c=readCoins(); c.dust=(c.dust||0)+n; saveCoins(c); }
+
+  /* 音效：WebAudio 现场合成，不依赖音频文件 */
+  var SFX_ON = (function(){ try{ return localStorage.getItem("dsh-sfx")!=="0"; }catch(e){ return true; } })();
+  var AC=null;
+  function beep(freq, dur, type, vol){
+    if(!SFX_ON) return;
+    try{
+      AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+      var o=AC.createOscillator(), g=AC.createGain();
+      o.type=type||"sine"; o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001, AC.currentTime);
+      g.gain.exponentialRampToValueAtTime(vol||0.06, AC.currentTime+0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime+(dur||0.12));
+      o.connect(g); g.connect(AC.destination);
+      o.start(); o.stop(AC.currentTime+(dur||0.12)+0.02);
+    }catch(e){}
+  }
+  function levelUpSound(){ [523,659,784,1046].forEach(function(f,i){ setTimeout(function(){ beep(f,0.16,"triangle",0.07); }, i*90); }); }
+  function toggleSfx(){ SFX_ON=!SFX_ON; try{ localStorage.setItem("dsh-sfx", SFX_ON?"1":"0"); }catch(e){} return SFX_ON; }
+  function readInv(){
+    var d={owned:[],equipped:{theme:"",title:""},uses:{}};
+    try{ var o=JSON.parse(localStorage.getItem(INV_KEY)||'null'); if(o){ d.owned=o.owned||[]; d.equipped=o.equipped||{theme:"",title:""}; d.uses=o.uses||{}; } }catch(e){}
+    return d;
+  }
+  function saveInv(d){ try{ localStorage.setItem(INV_KEY,JSON.stringify(d)); }catch(e){} }
+  function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
+  function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
+
+  var THEMES={
+    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
+    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
+    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
+    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+  };
+  function applyTheme(){
+    var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
+    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
+    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+  }
+  function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
+
+  var SHOP=[
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+  ];
+
+  function buy(id){
+    var item=null; SHOP.forEach(function(x){ if(x.id===id) item=x; });
+    if(!item) return {ok:false,msg:"没有这件商品"};
+    var c=readCoins(), inv=readInv();
+    if(item.t!=="use" && inv.owned.indexOf(id)>=0) return {ok:false,msg:"已经拥有了"};
+    var isDust = item.cur==="dust";
+    var bal = isDust ? (c.dust||0) : (c.n||0);
+    if(bal < item.p) return {ok:false,msg:(isDust?"星尘":"金币")+"不够，还差 "+(item.p-bal)};
+    if(isDust){ c.dust=(c.dust||0)-item.p; } else { c.n=(c.n||0)-item.p; }
+    saveCoins(c);
+    if(item.t==="use"){ inv.uses[id]=(inv.uses[id]||0)+1; }
+    else { inv.owned.push(id); }
+    saveInv(inv);
+    if(item.t==="theme"){ inv.equipped.theme=item.v; saveInv(inv); applyTheme(); }
+    if(item.t==="title"){ inv.equipped.title=item.v; saveInv(inv); }
+    if(item.t==="buff"){ var b=readBuffs(); b.xp2Until=Date.now()+30*60000; saveBuffs(b); }
+    return {ok:true,msg:"已购买："+item.n};
+  }
+  function equipTheme(v){ var inv=readInv(); inv.equipped.theme=v||""; saveInv(inv); applyTheme(); }
+  function equipTitle(v){ var inv=readInv(); inv.equipped.title=v||""; saveInv(inv); }
+
+  /* ---------- 提示 ---------- */
+  function toast(txt, ok){
+    var el=document.createElement('div');
+    el.className='xp-toast'+(ok?' ok':'');
+    el.textContent=txt;
+    document.body.appendChild(el);
+    setTimeout(function(){ el.classList.add('up'); }, 20);
+    setTimeout(function(){ el.remove(); }, 1500);
+  }
+
+  var BADGES=[
+    {id:'first',  n:'第一题',   d:'完成第一道题',        i:'🌱'},
+    {id:'combo5', n:'连对 5',   d:'一次连对 5 题',       i:'🔥'},
+    {id:'combo10',n:'连对 10',  d:'一次连对 10 题',      i:'⚡'},
+    {id:'daily',  n:'今日达标', d:'一天做满 30 题',      i:'✅'},
+    {id:'streak3',n:'三天不断', d:'连续 3 天做题',       i:'📅'},
+    {id:'streak7',n:'一周',     d:'连续 7 天做题',       i:'🏆'},
+    {id:'subject',n:'一科通关', d:'某科全部做完',        i:'🎯'},
+    {id:'review', n:'错题清零', d:'错题本清空',          i:'🧹'}
+  ];
+
+  function unlock(id){
+    var b=bdb(); if(b[id]) return false;
+    b[id]=Date.now(); bsave(b);
+    addCoins(20);
+    var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
+    if(meta) toast('🏅 解锁：'+meta.n+' · +20 币', true);
+    return true;
+  }
+
+  function todayCount(){
+    var d0=new Date(); d0.setHours(0,0,0,0);
+    return log().filter(function(x){ return x.t>=d0.getTime(); }).length;
+  }
+  function streakDays(){
+    var days={}, d0=new Date(); d0.setHours(0,0,0,0), t0=d0.getTime();
+    log().forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0); days[d.getTime()]=1; });
+    var gaps=shieldCount(), n=0, c=t0, used=0;
+    while(true){
+      if(days[c]){ n++; c-=864e5; continue; }
+      if(c===t0){ c-=864e5; continue; }
+      if(used<gaps){ used++; c-=864e5; continue; }
+      break;
+    }
+    return n;
+  }
+
+  function checkBadges(){
+    var g=db(), L=log();
+    if(L.length>=1) unlock('first');
+    if((g.best||0)>=5) unlock('combo5');
+    if((g.best||0)>=10) unlock('combo10');
+    if(todayCount()>=GOAL) unlock('daily');
+    if(streakDays()>=3) unlock('streak3');
+    if(streakDays()>=7) unlock('streak7');
+    try{
+      var rv=JSON.parse(localStorage.getItem('dsh-review-v1')||'{}');
+      if(L.length>10 && Object.keys(rv).length===0) unlock('review');
+    }catch(e){}
+    try{
+      var cards=document.querySelectorAll('[data-slug][data-total]');
+      for(var i=0;i<cards.length;i++){
+        var c=cards[i], sl=c.dataset.slug, tot=+c.dataset.total;
+        var st=JSON.parse(localStorage.getItem('dsh-quiz-'+sl)||'null');
+        if(st && st.answers && tot && Object.keys(st.answers).length>=tot){ unlock('subject'); break; }
+      }
+    }catch(e){}
+  }
+
+  function awardXP(base, ok){
+    var g=db();
+    if(ok){ g.combo=(g.combo||0)+1; } else { g.combo=0; }
+    var mult = ok ? Math.min(2, 1 + 0.1*Math.max(0, (g.combo||1)-1)) : 1;
+    var buffs=readBuffs(), dbl = buffs.xp2Until && Date.now()<buffs.xp2Until ? 2 : 1;
+    var gain = ok ? Math.round(base*mult*dbl) : Math.max(1, Math.round(base*0.2));
+    var before=levelOf(g.xp||0);
+    g.xp=(g.xp||0)+gain;
+    g.best=Math.max(g.best||0, g.combo||0);
+    save(g);
+    var coin = Math.max(1, Math.round(gain*0.5));
+    var crit = ok && Math.random()<0.12;
+    if(crit) coin*=2;
+    addCoins(coin);
+    if(ok) beep(crit?1180:660, 0.1, "sine", crit?0.08:0.05); else beep(180,0.14,"sawtooth",0.05);
+    toast('+'+gain+' XP · +'+coin+' 币'+(crit?' 暴击!':'')+(ok&&g.combo>1?' · 连对 '+g.combo:'')+(dbl>1?' · ×2':''), ok);
+    var after=levelOf(g.xp);
+    if(after>before){ setTimeout(function(){ toast('🎉 升到 Lv.'+after, true); levelUpSound(); }, 450); }
+    checkBadges();
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+
+  /* 答题计分：难度加权 + 重复递减（对标论文里盛大的“反刷”规则） */
+  var SEEN_KEY="dsh-seen-v1";
+  function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
+  function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+  function awardForQ(id, diff, type, ok){
+    var base = type==='short' ? ({easy:12,medium:16,hard:22}[diff]||16)
+                              : ({easy:8, medium:10,hard:14}[diff]||10);
+    var S=seen(), e=S[id]||{n:0,right:false,sealed:false}, mul=1, note="";
+    if(e.right && ok){
+      if(e.sealed || e.n>=3){ mul=0; note="已掌握，不再加分"; }
+      else { mul=0.3; note="重做已会的题，经验 ×0.3"; }
+    } else if(e.right && !ok){
+      mul=1; note="";
+    } else if(!e.right && ok && e.n>0){
+      mul=1; note="纠错 + 全额";
+    }
+    e.n=(e.n||0)+1;
+    if(ok){ e.right=true; if(e.n>=3 && mul===0) e.sealed=true; }
+    S[id]=e; saveSeen(S);
+    if(mul===0){ toast(note+" · 去刷没掌握的题", false); return; }
+    var gain = Math.round(base*mul);
+    if(note) toast(note, true);
+    awardXP(gain, ok);
+  }
+  /* ---- 每日挑战任务（对应“挑战”要素） ---- */
+  var QKEY="dsh-quest-v1";
+  var QTEMPL=[
+    {id:"q_ans12", n:"今天做满 12 题", tip:"数量", type:"count", target:12, r:{coin:40}},
+    {id:"q_ans20", n:"今天做满 20 题", tip:"数量", type:"count", target:20, r:{coin:60}},
+    {id:"q_combo5", n:"一次连对 5 题", tip:"连击", type:"combo", target:5, r:{coin:50}},
+    {id:"q_combo8", n:"一次连对 8 题", tip:"连击", type:"combo", target:8, r:{coin:70}},
+    {id:"q_hard3", n:"做对 3 道「较难」题", tip:"攻坚", type:"hard", target:3, r:{dust:1}},
+    {id:"q_acc80", n:"正确率 80%（至少 10 题）", tip:"精准", type:"acc", target:80, r:{coin:60}},
+    {id:"q_short3", n:"完成 3 道简答自评", tip:"写作", type:"short", target:3, r:{coin:45}},
+    {id:"q_daily", n:"完成今日挑战", tip:"每日", type:"daily", target:1, r:{dust:2}}
+  ];
+  function qseed(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; }; }
+  function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function todayLog(){ var d0=new Date(); d0.setHours(0,0,0,0); return log().filter(function(x){ return x.t>=d0.getTime(); }); }
+  function quests(){
+    var Q=null;
+    try{ Q=JSON.parse(localStorage.getItem(QKEY)||"null"); }catch(e){}
+    if(!Q || Q.date!==todayKey()){
+      var rnd=qseed("q:"+todayKey()), pool=QTEMPL.slice();
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      Q={date:todayKey(), list:pool.slice(0,3).map(function(x){return x.id;}), claimed:[]};
+      try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    }
+    return Q;
+  }
+  function questProgress(){
+    var L=todayLog(), n=L.length;
+    var okCnt=L.filter(function(x){return x.ok;}).length;
+    var maxCombo=0, cur=0;
+    L.slice().sort(function(a,b){return a.t-b.t;}).forEach(function(x){ if(x.ok){ cur++; maxCombo=Math.max(maxCombo,cur);} else cur=0; });
+    var hard=L.filter(function(x){ return x.ok && x.d==="hard"; }).length;
+    var short=L.filter(function(x){ return x.ty==="short"; }).length;
+    var acc = n>=10 ? Math.round(okCnt/n*100) : 0;
+    var dailyDone = 0;
+    try{ var dr=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); if(dr.date===todayKey()) dailyDone=1; }catch(e){}
+    return {count:n, combo:maxCombo, hard:hard, short:short, acc:acc, daily:dailyDone};
+  }
+  function questValue(q, p){ return p[q.type] || 0; }
+  window.quests=quests; window.questProgress=questProgress; window.questValue=questValue; window.QTEMPL=QTEMPL;
+
+  var CHEST_KEY="dsh-chest-v1";
+  function openChest(){
+    var roll=Math.random(), msg="", dust=0, coin=0;
+    if(roll<0.10){ dust=3; msg="💎 稀有宝箱：星尘 ×3"; addDust(3); }
+    else if(roll<0.45){ coin=Math.round(30+Math.random()*40); msg="🎁 宝箱：金币 +"+coin; addCoins(coin); }
+    else { dust=1; msg="🎁 宝箱：星尘 ×1"; addDust(1); }
+    try{ var c=JSON.parse(localStorage.getItem(CHEST_KEY)||'{"n":0}'); c.n=(c.n||0)+1; localStorage.setItem(CHEST_KEY,JSON.stringify(c)); }catch(e){}
+    setTimeout(function(){ toast(msg, true); beep(880,0.18,"triangle",0.07); }, 700);
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+  window.openChest=openChest;
+
+  function claimQuest(id){
+    var Q=quests(), meta=null;
+    QTEMPL.forEach(function(x){ if(x.id===id) meta=x; });
+    if(!meta) return {ok:false,msg:"任务不存在"};
+    if(Q.claimed.indexOf(id)>=0) return {ok:false,msg:"已经领过了"};
+    var p=questProgress();
+    if(questValue(meta,p) < meta.target) return {ok:false,msg:"还没完成"};
+    Q.claimed.push(id);
+    try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    if(meta.r.coin) addCoins(meta.r.coin);
+    if(meta.r.dust) addDust(meta.r.dust);
+    toast("✅ 任务完成："+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
+    beep(1046,0.16,"triangle",0.07);
+    if(window.__refreshProfile) window.__refreshProfile();
+    return {ok:true,msg:"已领取"};
+  }
+  window.claimQuest=claimQuest;
+  window.awardForQ=awardForQ;
+  window.awardXP=awardXP; window.checkBadges=checkBadges;
+  window.GAME={db:db,levelOf:levelOf,BADGES:BADGES,bdb:bdb,todayCount:todayCount,streakDays:streakDays,
+    GOAL:GOAL,coins:readCoins,inv:readInv,buffs:readBuffs,SHOP:SHOP,buy:buy,equipTheme:equipTheme,
+    equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
+    shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
+
+  function renderQuests(host){
+    if(!host) return;
+    var Q=quests(), p=questProgress();
+    var rows=Q.list.map(function(id){
+      var m=null; QTEMPL.forEach(function(x){ if(x.id===id) m=x; });
+      var v=Math.min(questValue(m,p), m.target), pct=Math.round(v/m.target*100);
+      var done=v>=m.target, claimed=Q.claimed.indexOf(id)>=0;
+      var btn = claimed ? '<span class="qdone">已领取</span>'
+              : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
+                      : '<span class="qnum">'+v+'/'+m.target+'</span>');
+      return '<div class="qrow'+(done?' done':'')+'"><span class="qtip">'+m.tip+'</span>'+
+        '<span class="qname">'+m.n+'</span>'+
+        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+btn+'</div>';
+    }).join("");
+    host.innerHTML='<h2 class="gh">今日任务 <span class="gz">每天 0 点刷新 · 3 个随机</span></h2><div class="qlist">'+rows+'</div>';
+  }
+  window.__renderQuests=renderQuests;
+
+  /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
+  var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
+  function apibase(){ try{ return (localStorage.getItem(AKEY)||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
+  function loadBoard(){
+    var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
+    fetch(apibase()+"/board?day="+encodeURIComponent(todayKey()))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok || !d.list) return;
+        if(!d.list.length){ box.innerHTML='<div class="mutedsmall">云端还没有今天的成绩，做一轮然后点「☁ 提交」</div>'; return; }
+        var me=nick()||"我";
+        box.innerHTML=d.list.map(function(x,i){
+          return '<div class="rrow'+(x.name===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+                 '<span class="rname">'+x.name+(x.name===me?'（我）':'')+'</span>'+
+                 '<span class="rp">'+x.pct+'%</span></div>';
+        }).join("");
+      })
+      .catch(function(){});
+  }
+  function pushScore(){
+    if(!apibase()) return {ok:false,msg:"还没设置服务器地址"};
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok) loadBoard(); })
+      .catch(function(){});
+    return {ok:true,msg:"已提交"};
+  }
+  window.loadBoard=loadBoard; window.pushScore=pushScore; window.apibase=apibase; window.setApi=setApi;
+  function b64e(str){ try{ return btoa(unescape(encodeURIComponent(str))).replace(/=+$/,"").replace(/\+/g,"-").replace(/\//g,"_"); }catch(e){ return ""; } }
+  function b64d(str){ try{ return decodeURIComponent(escape(atob(str.replace(/-/g,"+").replace(/_/g,"/")))); }catch(e){ return ""; } }
+  function nick(){ try{ return localStorage.getItem(NKEY)||""; }catch(e){ return ""; } }
+  function setNick(v){ try{ localStorage.setItem(NKEY, v); }catch(e){} }
+  function friends(){ try{ return JSON.parse(localStorage.getItem(FKEY)||"[]"); }catch(e){ return []; } }
+  function saveFriends(a){ try{ localStorage.setItem(FKEY, JSON.stringify(a.slice(0,60))); }catch(e){} }
+
+  function myCode(){
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    var g=db();
+    return {ok:true, code:b64e(JSON.stringify({v:1,d:rec.date,p:rec.best,n:rec.answer||21,
+      name:(nick()||"我"), xp:g.xp||0}))};
+  }
+  function addCode(str){
+    var raw=b64d((str||"").trim());
+    if(!raw) return {ok:false,msg:"码不对"};
+    var o; try{ o=JSON.parse(raw); }catch(e){ return {ok:false,msg:"码不对"}; }
+    if(!o || o.v!==1 || !o.d || o.p===undefined) return {ok:false,msg:"码不对"};
+    var list=friends();
+    list=list.filter(function(x){ return !(x.d===o.d && x.name===o.name); });
+    list.push({d:o.d, p:o.p, n:o.n||0, name:String(o.name||"同学").slice(0,12), xp:o.xp||0, t:Date.now()});
+    saveFriends(list);
+    return {ok:true,msg:"已加入 "+String(o.name||"同学").slice(0,12)+" 的 "+o.p+"%"};
+  }
+  window.myCode=myCode; window.addCode=addCode; window.nick=nick; window.setNick=setNick;
+
+  function renderBoard(host){
+    if(!host) return;
+    var g=db(), c=readCoins(), L=log();
+    var days={}, dayOk={};
+    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
+      var k=d.getTime();
+      days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
+    var dayList=Object.keys(days).map(function(k){
+      var d=new Date(+k);
+      return {ts:+k, d:(d.getMonth()+1)+"-"+d.getDate(), n:days[k], ok:dayOk[k],
+              pct:Math.round(dayOk[k]/days[k]*100)};
+    }).sort(function(a,b){ return b.ts-a.ts; }).slice(0,7);
+    var myRec={}; try{ myRec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    var rows=[];
+    if(myRec.date===todayKey()) rows.push({name:nick()||"我", p:myRec.best||0, me:true});
+    friends().filter(function(x){ return x.d===todayKey(); }).forEach(function(x){
+      rows.push({name:x.name, p:x.p, me:false});
+    });
+    rows.sort(function(a,b){ return b.p-a.p; });
+    var rankHtml = rows.length ? ('<div class="rank" id="rankbox">'+rows.map(function(r,i){
+      return '<div class="rrow'+(r.me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
+        '<span class="rp">'+r.p+'%</span></div>';
+    }).join("")+'</div>') : '<div class="rank" id="rankbox"><div class="mutedsmall">还没人交榜。做完「今日挑战」，复制战绩码发给同学互换。</div></div>';
+
+    host.innerHTML='<h2 class="gh">今日好友榜 <span class="gz">'+todayKey()+' · 靠战绩码互通，不用服务器</span></h2>'+
+      rankHtml +
+      '<div class="codebar"><button class="btn2" id="mecode">复制我的战绩码</button>'+
+      '<input id="friendcode" placeholder="粘贴同学的战绩码">'+
+      '<button class="btn2" id="addcode">加入</button>'+
+      (apibase()
+        ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>'
+        : '<button class="btn2" id="cfgapi">⚙ 设置服务器地址</button>')+'</div>'+
+      '<h2 class="gh" style="margin-top:22px">纪录榜 <span class="gz">本地 · 跟自己比</span></h2>'+
+      '<div class="board">'+
+        '<div class="brow"><span>总经验</span><b>'+g.xp+'</b></div>'+
+        '<div class="brow"><span>最高连对</span><b>'+(g.best||0)+'</b></div>'+
+        '<div class="brow"><span>累计作答</span><b>'+L.length+'</b></div>'+
+        '<div class="brow"><span>金币 / 星尘</span><b>'+(c.n||0)+' / '+(c.dust||0)+'</b></div>'+
+      '</div>'+
+      '<div class="days">'+dayList.map(function(x){
+        return '<div class="day"><em>'+x.pct+'%</em><i style="height:'+Math.max(4,Math.round(x.pct*0.5))+'px"></i>'+
+               '<span>'+x.d+'</span></div>';
+      }).join("")+'</div>';
+  }
+  window.__renderBoard=renderBoard;
+
+  function renderProfile(){
+    var host=document.getElementById('profile');
+    if(!host) return;
+    var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
+    var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
+    var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
+    var seenAll=seen(), fixed=0, mastered=0;
+    Object.keys(seenAll).forEach(function(k){ var e=seenAll[k]; if(e.right && e.n>1) fixed++; if(e.right && e.sealed) mastered++; });
+    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var badges=BADGES.map(function(x){
+      var got=b[x.id];
+      return '<div class="badge'+(got?' on':'')+'" title="'+x.d+'"><span class="bi">'+x.i+'</span>'+
+             '<span class="bn">'+x.n+'</span></div>';
+    }).join('');
+    host.innerHTML=
+      '<div class="prof-main">'+
+        '<div class="lv"><span class="lvnum">'+lv+'</span><span class="lvlab">等级</span></div>'+
+        '<div class="prof-body">'+
+          '<div class="prof-line"><b>'+xp+' XP</b>'+title+(nx?('<span class="muted">距 Lv.'+(lv+1)+' 还差 '+(nx-xp)+'</span>'):'<span class="muted">满级</span>')+'</div>'+
+          '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+          '<div class="prof-meta">今日 <b>'+tc+'</b>/'+GOAL+' 题 · 连续 <b>'+st+'</b> 天 · 连对纪录 <b>'+(g.best||0)+'</b>'+
+            ' · 金币 <b>'+(c.n||0)+'</b></div>'+
+          '<div class="prof-note">纠错 <b>'+fixed+'</b> 题 · 已掌握 <b>'+mastered+'</b> 题（做满 3 次不再计分）</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="badges">'+badges+'</div>'+
+      '<div class="prof-tools"><button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效开':'🔇 音效关')+'</button></div>'+
+      '<div class="prof-note dim">这套分数只认「答对的题」。读材料、琢磨思路、改答案、想通一个概念——这些没被计分，但它们才是真正在学的东西。</div>';
+  }
+  function renderAll(){
+    renderProfile();
+    setTimeout(loadBoard, 0);
+    renderQuests(document.getElementById("quests"));
+    renderBoard(document.getElementById("board"));
+  }
+  window.__refreshProfile=renderAll;
+  document.addEventListener("click", function(ev){
+    var s = ev.target.closest && ev.target.closest("#sfxbtn");
+    if(s){ var on = toggleSfx(); s.textContent = on ? "🔊 音效开" : "🔇 音效关"; return; }
+    var q = ev.target.closest && ev.target.closest("[data-claim]");
+    if(q){ claimQuest(q.getAttribute("data-claim")); renderAll(); return; }
+    if(ev.target.closest && ev.target.closest("#mecode")){
+      if(!nick()){ var nm=prompt("给自己起个名字（显示在好友榜）",""); if(nm) setNick(nm.slice(0,12)); }
+      var r=myCode();
+      if(!r.ok){ toast(r.msg,false); return; }
+      var ta=document.createElement("textarea"); ta.value=r.code;
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); toast("战绩码已复制，发给同学吧", true); }
+      catch(e){ toast("复制失败，手动选中："+r.code.slice(0,20)+"…", false); }
+      ta.remove();
+      return;
+    }
+    if(ev.target.closest && ev.target.closest("#cfgapi")){
+      var cur=apibase();
+      var v=prompt("填入 Cloudflare Worker 地址（留空则清除）", cur);
+      if(v===null) return;
+      setApi(v);
+      toast(v.trim()?"已保存，正在拉取云端榜…":"已清除服务器地址", true);
+      renderAll(); return;
+    }
+    if(ev.target.closest && ev.target.closest("#pushscore")){
+      var r2=pushScore(); toast(r2.msg, r2.ok); return;
+    }
+    if(ev.target.closest && ev.target.closest("#addcode")){
+      var inp=document.getElementById("friendcode");
+      var res=addCode(inp?inp.value:"");
+      toast(res.msg, res.ok); renderAll(); return;
+    }
+  });
+  applyTheme();
+  if(document.readyState!=='loading') renderAll(); else document.addEventListener('DOMContentLoaded', renderAll);
+})();
+</script>
+</body></html>

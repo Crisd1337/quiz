@@ -1,0 +1,374 @@
+{
+  "code": "10FTN 26",
+  "slug": "ftn",
+  "title": "Year 10 Food Technology",
+  "title_zh": "食品科技",
+  "exam_focus": "覆盖 Food Inequity、Food Trends、Food Safety & Hygiene（危险温区、2 小时/4 小时规则、mise en place）、Food for Specific Needs、Food for Special Occasions 五个单元，强调定义、法规数字与结构化简答。",
+  "questions": [
+    {
+      "id": "ftn-001",
+      "topic": "食品安全 · 危险温区",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "What is the temperature range of the food safety 'danger zone'?",
+      "options": [
+        "0°C to 5°C",
+        "5°C to 60°C",
+        "60°C to 100°C",
+        "-18°C to 4°C"
+      ],
+      "answer": 1,
+      "explanation": "危险温区是 5°C–60°C，这个区间里有害细菌繁殖最快。0°C 以下只是抑制生长，并不等于杀菌。",
+      "source": "Structured Responses (Sample Answers).pdf — The Danger Zone"
+    },
+    {
+      "id": "ftn-002",
+      "topic": "食品安全 · 2 小时/4 小时规则",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "Under the 2-hour / 4-hour rule, what must happen to potentially hazardous food that has been in the danger zone for more than 4 hours?",
+      "options": [
+        "It can be returned to the fridge and used again the next day",
+        "It can be reheated to 100°C and then served",
+        "It must be thrown away because bacteria levels are too high",
+        "It can be frozen and kept for up to one week"
+      ],
+      "answer": 2,
+      "explanation": "超过 4 小时细菌数量已高到可能引发食物中毒，必须丢弃，不能靠回锅或冷冻补救。很多同学会误以为重新加热就安全。",
+      "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule"
+    },
+    {
+      "id": "ftn-003",
+      "topic": "食品安全 · 2 小时/4 小时规则",
+      "difficulty": "medium",
+      "type": "mcq",
+      "stem": "A tray of cooked chicken has been sitting at room temperature for 3 hours. Under the 2-hour / 4-hour rule, which action is correct?",
+      "options": [
+        "Throw the chicken away immediately",
+        "Eat it now, but do not return it to the fridge",
+        "Return it to the fridge and use it later",
+        "Reheat it, then freeze it for the following week"
+      ],
+      "answer": 1,
+      "explanation": "超过 2 小时、不足 4 小时的食物仍可食用，但不能放回冰箱（否则只是把细菌一起冷藏）。只有 2 小时以内的食物才能冷藏。",
+      "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule"
+    },
+    {
+      "id": "ftn-004",
+      "topic": "食品安全 · 冷藏温度",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "To keep perishable food out of the danger zone, foods such as ham and salami should be stored at:",
+      "options": [
+        "4°C or below",
+        "8°C or below",
+        "About 22°C",
+        "About 60°C"
+      ],
+      "answer": 0,
+      "explanation": "冷藏需控制在 4°C 或以下，才能让细菌繁殖速度降到很低。8°C、22°C 都高于安全冷藏温度，挡不住细菌增殖。",
+      "source": "Structured Responses (Sample Answers).pdf — The Danger Zone（Industry Example）"
+    },
+    {
+      "id": "ftn-005",
+      "topic": "厨房运作 · Mise en place",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "In a commercial kitchen, 'mise en place' refers to:",
+      "options": [
+        "Cleaning down kitchen benches at the end of service",
+        "Preparing ingredients and equipment before cooking",
+        "Plating the finished dish neatly for service",
+        "Ordering stock and checking supplier deliveries"
+      ],
+      "answer": 1,
+      "explanation": "mise en place 是「备料到位」，包括切好洋葱、量好调料、预热烤箱等。缺了这一步会直接造成 poor workflow。",
+      "source": "Term 1 · Assumed Knowledge Quiz 6: Mise en place；Structured Responses (Sample Answers).pdf — Poor Workflow"
+    },
+    {
+      "id": "ftn-006",
+      "topic": "食物公平 · 定义",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "Which statement best defines food inequity?",
+      "options": [
+        "Everyone in a country has equal access to safe, nutritious food",
+        "Some groups have limited access to affordable, safe food while others do not",
+        "Restaurants charge different prices for the same meal",
+        "People choose not to eat certain foods for religious reasons"
+      ],
+      "answer": 1,
+      "explanation": "food inequity 强调「可获得性不平等」，是有的人吃不到足量、安全、有营养的食物。不要和宗教饮食禁忌或个人选择混为一谈。",
+      "source": "Term 1 · Food Inequity Assignment (Part 1 – Define)"
+    },
+    {
+      "id": "ftn-007",
+      "topic": "食物公平 · 受影响人群",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "According to the Term 1 unit, which group is identified as likely to experience food inequity in developed and developing countries?",
+      "options": [
+        "Professional athletes on high incomes",
+        "People on low incomes or who are unemployed",
+        "Full-time university students living on campus",
+        "Food critics who review restaurants"
+      ],
+      "answer": 1,
+      "explanation": "低收入或失业人群是课程列出的典型群体。同类的还有偏远地区居民、女性与儿童、老年人、慢性病患者、残障人士、原住民与无家可归者。",
+      "source": "Term 1 · Food Inequity Assignment（Introduction 受影响人群列表）"
+    },
+    {
+      "id": "ftn-008",
+      "topic": "食物公平 · 慈善机构",
+      "difficulty": "medium",
+      "type": "mcq",
+      "stem": "Which Australian organisation was listed in the Term 1 assignment as a charity that rescues surplus food and redistributes it to people experiencing food insecurity?",
+      "options": [
+        "OzHarvest",
+        "Woolworths",
+        "MasterChef Australia",
+        "Fair Work Australia"
+      ],
+      "answer": 0,
+      "explanation": "OzHarvest 是澳洲典型的食物救援慈善机构，把商家剩余的食材收集后分发给有需要的人。Woolworths 是超市企业，Fair Work 是职场监管机构，都不是慈善机构。",
+      "source": "Term 1 · Food Inequity Assignment (Part 1 – charity list)（机构职能为课程标准知识补充）"
+    },
+    {
+      "id": "ftn-009",
+      "topic": "食物趋势 · Snackification",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "The food trend known as 'snackification' refers to:",
+      "options": [
+        "Replacing main meals with more frequent, smaller snacks",
+        "Eating only two large meals a day and no snacks in between",
+        "Removing all snacks from your daily diet",
+        "Selling snacks only through supermarkets"
+      ],
+      "answer": 0,
+      "explanation": "snackification 指「正餐零食化」，人们用更多小份量、便携的进食场合取代传统三餐。它和「少吃零食」正好相反。",
+      "source": "Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends"
+    },
+    {
+      "id": "ftn-010",
+      "topic": "食物趋势 · 丑果蔬",
+      "difficulty": "medium",
+      "type": "mcq",
+      "stem": "Supermarkets selling 'ugly' fruit and vegetables is a trend that mainly aims to:",
+      "options": [
+        "Charge a higher price for imperfect-looking produce",
+        "Reduce food waste by selling produce rejected as ugly",
+        "Replace fresh produce with canned produce",
+        "Encourage farmers to grow fewer vegetables"
+      ],
+      "answer": 1,
+      "explanation": "这类趋势针对的是「长相不合格但完全可食用」的蔬果，目的是减少农场端和零售端的食物浪费。核心卖点是减废，而不是涨价。",
+      "source": "Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets"
+    },
+    {
+      "id": "ftn-011",
+      "topic": "食物趋势 · 明星厨师",
+      "difficulty": "medium",
+      "type": "mcq",
+      "stem": "How do celebrity chefs most directly influence food trends?",
+      "options": [
+        "By setting the official price of restaurant meals",
+        "By popularising ingredients and dishes through media exposure",
+        "By writing the national dietary guidelines used in all schools",
+        "By inspecting restaurants for food safety compliance"
+      ],
+      "answer": 1,
+      "explanation": "明星厨师通过电视节目、社交媒体和食谱把某些食材或做法带火，形成流行趋势。他们并不制定价格、膳食指南或做卫生检查。",
+      "source": "Term 2 · Food Trends: Quiz 2 Celebrity Chef"
+    },
+    {
+      "id": "ftn-012",
+      "topic": "特定需求 · 乳糜泻",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "A person with coeliac disease must avoid:",
+      "options": [
+        "All dairy products, such as milk",
+        "Gluten, found in wheat, barley and rye",
+        "All foods containing added sugar",
+        "All nuts, seeds and peanut products"
+      ],
+      "answer": 1,
+      "explanation": "乳糜泻是对麸质（gluten）的自身免疫反应，必须终身严格无麸质饮食。它属于免疫反应，不是普通「面粉过敏」。",
+      "source": "Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease"
+    },
+    {
+      "id": "ftn-013",
+      "topic": "特定需求 · 血糖生成指数",
+      "difficulty": "medium",
+      "type": "mcq",
+      "stem": "A food with a low glycaemic index (GI) is best described as one that:",
+      "options": [
+        "Raises blood glucose quickly and sharply",
+        "Is digested slowly and raises blood glucose gradually",
+        "Contains no carbohydrate or sugar at all",
+        "Must be avoided by everyone with diabetes at all times"
+      ],
+      "answer": 1,
+      "explanation": "低 GI 食物消化吸收慢，血糖上升平缓，饱腹感也更持久。高 GI 才是快速冲高血糖。低 GI 不等于零碳水，也不是所有糖尿病患者都要完全回避。",
+      "source": "Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index"
+    },
+    {
+      "id": "ftn-014",
+      "topic": "特定需求 · 过敏与不耐受",
+      "difficulty": "medium",
+      "type": "mcq",
+      "stem": "Which statement correctly distinguishes a food allergy from a food intolerance?",
+      "options": [
+        "An allergy involves the immune system, while an intolerance does not",
+        "An intolerance is always more dangerous than an allergy",
+        "An allergy can be removed by cooking the food thoroughly",
+        "They are two names for exactly the same reaction"
+      ],
+      "answer": 0,
+      "explanation": "食物过敏由免疫系统介导，可能引发呼吸困难等严重反应；不耐受多是消化酶不足，症状以肠胃不适为主。两者机制不同，不能互换使用。",
+      "source": "Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances"
+    },
+    {
+      "id": "ftn-015",
+      "topic": "特定需求 · 骨质疏松",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "Which two nutrients are most important for reducing the risk of osteoporosis?",
+      "options": [
+        "Iron and vitamin C",
+        "Calcium and vitamin D",
+        "Sodium and potassium",
+        "Protein and vitamin B12"
+      ],
+      "answer": 1,
+      "explanation": "钙是骨骼的主要矿物质，维生素 D 帮助钙吸收，两者缺一都会增加骨质疏松风险。只补钙不补维生素 D 吸收效率会打折扣。",
+      "source": "Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis"
+    },
+    {
+      "id": "ftn-016",
+      "topic": "特定需求 · 缺铁性贫血",
+      "difficulty": "medium",
+      "type": "mcq",
+      "stem": "Iron-deficiency anaemia is best managed by including more of which foods in the diet?",
+      "options": [
+        "Foods high in vitamin C only, such as citrus fruit and juice",
+        "Iron-rich foods such as red meat, legumes and leafy greens",
+        "Refined white flour products such as white bread",
+        "Foods high in calcium, such as milk and cheese"
+      ],
+      "answer": 1,
+      "explanation": "缺铁性贫血的饮食重点是补铁，红肉、豆类和深绿叶菜都是常见来源。维生素 C 能促进铁吸收，但它本身不是铁的来源。",
+      "source": "Term 3 · Food for Specific Needs: Quiz 8A Anaemia"
+    },
+    {
+      "id": "ftn-017",
+      "topic": "特殊场合 · 农历新年",
+      "difficulty": "easy",
+      "type": "mcq",
+      "stem": "In Chinese New Year celebrations, long noodles are served because they symbolise:",
+      "options": [
+        "Wealth in the form of gold coins",
+        "Longevity and a long life",
+        "The end of the harvest season",
+        "Good luck in school examinations"
+      ],
+      "answer": 1,
+      "explanation": "长寿面象征长寿，讲究不断开、不剪断。金元宝形状的饺子才和财富相关，两样不要混。",
+      "source": "Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year"
+    },
+    {
+      "id": "ftn-018",
+      "topic": "特殊场合 · 亡灵节",
+      "difficulty": "medium",
+      "type": "mcq",
+      "stem": "Día de los Muertos (Day of the Dead) is a celebration in which families:",
+      "options": [
+        "Fast for three days to mourn deceased relatives at home",
+        "Build ofrendas with food to honour deceased relatives",
+        "Give children cakes with a hidden coin inside",
+        "Throw a decorated birthday cake into the sea"
+      ],
+      "answer": 1,
+      "explanation": "亡灵节是墨西哥 11 月初的纪念活动，家人搭建 ofrenda 祭坛，摆放逝者生前喜爱的食物与物品。它的基调是纪念与团聚，不是哀悼性禁食。",
+      "source": "Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos"
+    },
+    {
+      "id": "ftn-019",
+      "topic": "厨房运作 · Poor workflow",
+      "difficulty": "hard",
+      "type": "short",
+      "stem": "Discuss how poor workflow can impact a chef working in a commercial kitchen. In your answer, identify one cause of poor workflow and one way it could be improved.",
+      "options": [],
+      "answer": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.",
+      "explanation": "结构化简答要按 Is–Affects–Caused by–Improved by–Example 五步写：先定义，再说影响、成因、改进方式，最后补一个行业例子。只写「很乱」拿不到分。",
+      "source": "Structured Responses (Sample Answers).pdf — Poor Workflow"
+    },
+    {
+      "id": "ftn-020",
+      "topic": "食物公平 · 发达国家中的不公平",
+      "difficulty": "hard",
+      "type": "short",
+      "stem": "Food inequity also exists in developed countries such as Australia. Identify two groups affected and explain one factor that makes it hard for them to access nutritious food.",
+      "options": [],
+      "answer": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.",
+      "explanation": "答案要「两个群体 + 一个原因」。常见失分是只列群体不解释原因；能被接受的典型原因是价格、交通距离、住宿条件（无厨房）或健康限制。",
+      "source": "Term 1 · Food Inequity Assignment（Introduction 与 Part 1）"
+    },
+    {
+      "id": "ftn-021",
+      "topic": "食物公平 · 慈善机构的作用与局限",
+      "difficulty": "hard",
+      "type": "short",
+      "stem": "Explain how charities such as OzHarvest or Foodbank reduce food inequity, and outline one limitation of relying on charities to solve food insecurity.",
+      "options": [],
+      "answer": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.",
+      "explanation": "拿分点有两层：先说慈善机构怎么「救急」（收集余粮、再分配），再指出结构性问题无法靠捐赠解决。只说「他们帮助穷人」不够深入。",
+      "source": "Term 1 · Food Inequity Assignment (Part 1 – charity research)＋Part 4（未来策略）"
+    },
+    {
+      "id": "ftn-022",
+      "topic": "食物趋势 · 社交媒体",
+      "difficulty": "hard",
+      "type": "short",
+      "stem": "Explain how social media drives food trends such as the #foodie movement and snackification, and identify one risk this creates for consumers.",
+      "options": [],
+      "answer": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.",
+      "explanation": "要写出「传播机制」（视觉内容、hashtag、网红）和「风险」（误导性营养信息、份量与健康问题）。只描述现象不解释机制容易被扣分。",
+      "source": "Term 2 · Food Trends: Quiz 6 #foodie；Quiz 4 Snackification and other Food Trends"
+    },
+    {
+      "id": "ftn-023",
+      "topic": "特定需求 · 运动员能量需求",
+      "difficulty": "medium",
+      "type": "short",
+      "stem": "Explain why a professional NRL player has different daily energy and nutrient requirements from a sedentary office worker.",
+      "options": [],
+      "answer": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.",
+      "explanation": "答案要落到「能量消耗差异 → 碳水/蛋白/水分需求差异」。只写「运动员吃得多」没有解释营养素的分配，属于低分答案。",
+      "source": "Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players；Quiz 7 Diet of an Olympic Athlete"
+    },
+    {
+      "id": "ftn-024",
+      "topic": "特殊场合 · 用食物庆祝的原因",
+      "difficulty": "medium",
+      "type": "short",
+      "stem": "Give two reasons why families and communities celebrate with particular foods, and support each reason with one example.",
+      "options": [],
+      "answer": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.",
+      "explanation": "两个理由要区分开：一个是「社交团聚」，一个是「文化/宗教象征」，并各配一个例子。只举例子不说明理由会丢分。",
+      "source": "Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food"
+    },
+    {
+      "id": "ftn-025",
+      "topic": "食品安全 · 个人卫生",
+      "difficulty": "hard",
+      "type": "short",
+      "stem": "Explain why personal hygiene is the responsibility of every food handler. Give two examples of poor personal hygiene that could contaminate food.",
+      "options": [],
+      "answer": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.",
+      "explanation": "要点是「个体行为会导致整批食物污染」以及具体错误做法（洗手、生病上岗、对着食物咳嗽）。Food Handler Basics 模块 2 就是这一块。",
+      "source": "Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)"
+    }
+  ]
+}

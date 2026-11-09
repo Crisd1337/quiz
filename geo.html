@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>地理 · 10 年级 · 复习测验</title>
+<style>
+:root{
+  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
+  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+}
+@media (prefers-color-scheme: light) {
+  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
+ backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
+.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
+.bar .meta{color:var(--dim);font-size:13px}
+.spacer{flex:1}
+.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
+ font-size:12px;color:var(--dim)}
+.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
+.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
+.chip.easy{color:#2fbf71;border-color:#2fbf7144}
+.chip.medium{color:#f5a623;border-color:#f5a62344}
+.chip.hard{color:#ff5f56;border-color:#ff5f5644}
+.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
+ background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
+ padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+.opt:disabled{cursor:default}
+.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
+ display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
+.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
+.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
+.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
+textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
+ border-radius:11px;padding:12px;font:inherit;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
+ border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.exp.show{display:block}
+.exp b{color:var(--accent)}
+.src{margin-top:8px;color:var(--dim);font-size:12px}
+.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
+ font:inherit;font-weight:600;cursor:pointer}
+button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+button.btn:disabled{opacity:.45;cursor:default}
+.done h2{margin:0 0 6px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
+.stat b{display:block;font-size:24px;line-height:1.2}
+.stat span{color:var(--dim);font-size:12px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.wronglist li{margin:4px 0}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
+kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+
+.chip.warn{border-color:#f5a62366;color:#f5a623}
+.muted{color:var(--dim);font-size:13px}
+.pts{display:grid;gap:8px;margin-top:12px}
+.pt{display:flex;gap:10px;align-items:flex-start;background:var(--card2);border:1px solid var(--line);
+ border-radius:10px;padding:10px 12px;cursor:pointer;font-size:14.5px}
+.pt.on{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--card2))}
+.pt input{margin-top:3px;width:16px;height:16px;flex:0 0 16px;accent-color:var(--ok)}
+.pt span{flex:1;min-width:0}
+.pt em{color:var(--dim);font-style:normal;font-size:12px;white-space:nowrap}
+.mine{margin-top:14px;background:var(--card2);border-radius:10px;padding:10px 12px;font-size:14px}
+.mine div{margin-top:6px;white-space:pre-wrap;color:var(--dim)}
+.fullans{margin-top:10px;font-size:14px}
+.fullans summary{cursor:pointer;color:var(--accent)}
+.fullans div{margin-top:8px;white-space:pre-wrap;color:var(--dim)}
+.setup{max-width:760px;margin:0 auto}
+.setup-head{margin:4px 0 20px}
+.setup-head h2{margin:0 0 6px;font-size:22px}
+.setup-head p{margin:0;font-size:13.5px;line-height:1.6}
+.setup-block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.setup-label{font-size:13px;color:var(--dim);margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.pick{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);
+ border-radius:10px;padding:11px 12px;cursor:pointer;font-size:14px;min-width:0}
+.pick input{width:16px;height:16px;flex:0 0 16px;accent-color:var(--accent)}
+.pick .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pick em{color:var(--dim);font-style:normal;font-size:12px;flex:0 0 auto}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
+ padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
+.setup-foot .sum{color:var(--dim);font-size:14px}
+.setup-foot .sum b{color:var(--fg);font-size:18px}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;padding:24px}
+.nav-overlay.on{display:block}
+.nav-box{max-width:720px;margin:6vh auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.nav-head{display:flex;gap:10px;align-items:center;margin-bottom:12px;font-size:14px;flex-wrap:wrap}
+.nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px;max-height:56vh;overflow:auto}
+.nav-grid button{padding:9px 0;border-radius:9px;border:1px solid var(--line);background:var(--card2);
+ color:var(--fg);font:inherit;font-size:13px;cursor:pointer}
+.nav-grid button.ok{border-color:var(--ok);color:var(--ok)}
+.nav-grid button.bad{border-color:var(--bad);color:var(--bad)}
+.nav-grid button.part{border-color:var(--warn);color:var(--warn)}
+html,body{max-width:100%;overflow-x:hidden}
+main{display:flex;flex-direction:column}
+.card{flex:0 0 auto}
+.chips{opacity:.92}
+.chip{font-size:11px;padding:2px 8px}
+.stem{font-size:19px;line-height:1.62;font-weight:500;margin:12px 0 20px}
+.opts{gap:12px}
+.opt{padding:14px 16px;font-size:15.5px;position:relative;border-left-width:3px}
+.opt .txt{flex:1;min-width:0}
+.opt .mk{margin-left:8px;font-weight:700}
+.opt.correct{border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad)}
+.actionbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:10px;align-items:center;
+ padding:10px max(16px,calc((100vw - 860px)/2)) calc(10px + env(safe-area-inset-bottom));
+ background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.actionbar .spacer{flex:1}
+main{padding-bottom:104px!important}
+footer{padding-bottom:96px}
+.sfxbtn{background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:8px;
+ padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
+.prof-tools{margin-top:10px}
+.xp-toast{position:fixed;right:18px;bottom:92px;z-index:60;background:var(--card);border:1px solid var(--line);
+ color:var(--dim);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;
+ opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none}
+.xp-toast.ok{border-color:var(--ok);color:var(--ok)}
+.xp-toast.up{opacity:1;transform:translateY(0)}
+.profile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 22px}
+.prof-main{display:flex;gap:16px;align-items:center}
+.lv{width:64px;height:64px;border-radius:18px;background:color-mix(in srgb,var(--accent) 16%,var(--card2));
+ display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 64px}
+.lvnum{font-size:24px;font-weight:700;color:var(--accent);line-height:1}
+.lvlab{font-size:10px;color:var(--dim);margin-top:2px}
+.prof-body{flex:1;min-width:0}
+.prof-line{display:flex;gap:10px;align-items:baseline;font-size:14px}
+.prof-line b{font-size:17px}
+.xpbar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin:8px 0 6px}
+.xpbar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.prof-meta{font-size:12px;color:var(--dim)}
+.prof-meta b{color:var(--fg)}
+.badges{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}
+.badge{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center;opacity:.45}
+.badge.on{opacity:1;border-color:color-mix(in srgb,var(--warn) 55%,var(--line))}
+.badge .bi{display:block;font-size:18px;line-height:1.3}
+.badge .bn{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:720px){ .badges{grid-template-columns:repeat(4,1fr)} }
+.panel{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:16px}
+.panel-h{font-size:12px;color:var(--dim);margin-bottom:10px}
+body{display:flex;flex-direction:column;min-height:100vh}
+main{flex:1 0 auto}
+footer{margin-top:auto}
+main,.card,.setup{max-width:100%}
+.opt,.pt,.pick,.mine,.exp{min-width:0}
+.stem,.opt span,.pt span{overflow-wrap:anywhere}
+.actions{flex-wrap:wrap}
+footer{padding:22px 14px 30px;line-height:1.8}
+
+@media (max-width:720px){
+  #scorepill{display:none}
+  .bar a.pill{display:none}
+  .bar{flex-wrap:wrap;row-gap:8px}
+  .bar h1{flex:1 1 100%;font-size:16px;margin:0}
+  .bar .spacer{display:none}
+  #restart{display:none}
+  #grid,#exam{padding:6px 10px!important;font-size:12px!important}
+  .progress{margin-top:6px}
+}
+@media (max-width:560px){
+  .bar{gap:8px}
+  .bar h1{font-size:17px;line-height:1.3}
+  .bar .meta{display:none}
+  .pill{padding:3px 9px;font-size:11px}
+  main{padding:12px 10px 84px}
+  .card{padding:14px;border-radius:12px}
+  .chips{gap:6px;margin-bottom:10px}
+  .chip{font-size:11px;padding:1px 7px}
+  .stem{font-size:15.5px;line-height:1.6;margin:2px 0 14px}
+  .opt{padding:12px;font-size:15px;line-height:1.5;gap:10px}
+  .opt .k{flex:0 0 22px;height:22px;font-size:11px}
+  .actions{gap:8px;margin-top:14px}
+  .actions .btn{padding:10px 12px;font-size:14px}
+  .stem{font-size:17px;margin:10px 0 16px}
+  .actionbar #prev,.actionbar #next{flex:1 1 0}
+  .actionbar #finish{flex:0 0 auto}
+  textarea{font-size:15px}
+  .picks{grid-template-columns:1fr}
+  .setup-head h2{font-size:20px}
+  .setup-block{padding:14px}
+  .seg{gap:6px}
+  .seg button{padding:12px 0;font-size:13px}
+  .setup-foot{flex-direction:column;align-items:stretch;gap:10px}
+  .setup-foot .sum{text-align:center}
+  .setup-foot .btn{width:100%;padding:12px 0;font-size:15px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stat{min-width:0;padding:10px 12px}
+  .stat b{font-size:18px}
+  footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>地理 · 10 年级</h1>
+    <span class="meta">10GEO 26 · 26 题</span>
+    <span class="spacer"></span>
+    <span class="pill" id="counter">0 / 26</span>
+    <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
+    <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
+    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">📋 题号</button>
+    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">⏱ 考试模式</button>
+    <span class="pill" id="clock" style="display:none"></span>
+    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+  </div>
+  <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
+</header>
+<main id="app"></main>
+<div id="nav" class="nav-overlay"><div class="nav-box">
+  <div class="nav-head"><b>题号</b><span class="muted">绿=对 红=错 橙=半对 灰=未做</span><button class="btn ghost" id="navclose" style="margin-left:auto;padding:4px 10px">关闭</button></div>
+  <div class="nav-grid" id="navgrid"></div>
+</div></div>
+<footer>键盘：<kbd>1</kbd>–<kbd>4</kbd> 选择 · <kbd>←</kbd><kbd>→</kbd> 切题 · <kbd>G</kbd> 题号 · <kbd>Enter</kbd> 下一题 · <kbd>S</kbd> 看成绩 · 进度自动保存在本机浏览器</footer>
+<script>
+const DATA = {"slug": "geo", "title": "地理 · 10 年级", "examMin": 50, "questions": [{"id": "geo-001", "topic": "环境变化 · 变化的速度与尺度", "difficulty": "easy", "type": "mcq", "stem": "Stimulus: A beach can lose a large volume of sand during a single East Coast Low, while a dune system may migrate inland over thousands of years. What does this comparison illustrate?", "options": ["That environmental change operates at different rates and scales", "That all coastal change is gradual rather than sudden", "That erosion is permanent and that deposition never occurs anywhere", "That coastal change is caused only by human activity"], "answer": 0, "explanation": "环境变化的时间尺度与空间尺度是 1.1 的核心概念：单次风暴可在数小时内改变海滩，沙丘迁移则需千年。两者并存，说明「变化」要按速率与尺度分别描述。", "source": "Term 3 · Lesson 1.1 Environmental Change（rate and scale of change）", "weak": false}, {"id": "geo-002", "topic": "海岸过程 · 沿岸流", "difficulty": "easy", "type": "mcq", "stem": "Stimulus: A wave approaches the beach at an angle. Its swash carries sand up the beach at that angle, and the backwash returns the sand straight down the slope. Repeated many times, this process produces:", "options": ["Deposition of fine sediment far out to sea beyond the shelf", "Longshore drift, moving sediment progressively along the shore", "Accretion, as sand builds up in one fixed spot on the beach", "A rip current carrying sand permanently offshore into deep water"], "answer": 1, "explanation": "斜向入射的波浪使泥沙呈「之」字形沿岸移动，这就是沿岸流（longshore drift）。判读关键是 swash 斜向、backwash 垂直回落，两者合成沿岸净输沙。", "source": "Term 3 · Lesson 1.2 Coastal Processes and Environments", "weak": false}, {"id": "geo-003", "topic": "海岸过程 · 淤积", "difficulty": "easy", "type": "mcq", "stem": "Lesson 1.3 asks you to define accretion before explaining dune formation. Accretion is best defined as:", "options": ["The transport of sediment from one beach to another by waves", "The removal of sand so that the shoreline retreats landward", "The build-up of sand so that the shoreline moves seaward", "The compaction of loose sand into solid rock over time"], "answer": 2, "explanation": "accretion（淤积／增生）＝泥沙净增加、岸线向海推进；其反面是 erosion（侵蚀）。它与 dune formation 的关系是：先有沙源堆积，风再把沙向内陆搬运并被植被固定成沙丘。", "source": "Term 3 · Lesson 1.3 Changing Land Use and Implications on the Global Coastline", "weak": false}, {"id": "geo-004", "topic": "Collaroy–Narrabeen · 脆弱性成因", "difficulty": "medium", "type": "mcq", "stem": "Stimulus: Collaroy–Narrabeen is a 3.6 km east-facing beach. It is described as the most at-risk beach from coastal erosion in NSW and the third most vulnerable in Australia. Which combination best accounts for that ranking?", "options": ["Rocky geology, negligible wave energy and a small tidal range", "Northern location, low wave energy and a wide, intact foredune", "Sheltered aspect, high rainfall and a very large, reliable sediment supply", "East-facing exposure, East Coast Lows and longshore sediment transport"], "answer": 3, "explanation": "材料把脆弱性归因于：面向东侧的地理位置、暴露于东海岸低压、以及沿岸输沙。注意两个排名范围不同（NSW 第一、全澳第三），不要读反。", "source": "Term 3 · Lesson 2.1 Introduction to Collaroy–Narrabeen", "weak": false}, {"id": "geo-005", "topic": "East Coast Lows · 天气图判读", "difficulty": "medium", "type": "mcq", "stem": "Stimulus: A synoptic chart shows tightly packed isobars and a closed low-pressure centre just off the NSW coast, with a cold front crossing the coast. What does this chart indicate, and why does it matter for Collaroy–Narrabeen?", "options": ["An East Coast Low, bringing heavy rain and large erosion-driven waves", "A high-pressure ridge, bringing calm seas and steady offshore winds", "A stationary front producing no wind and no coastal impact", "A tropical cyclone tracking inland across the ranges from the west"], "answer": 0, "explanation": "密集等压线＝气压梯度大＝强风；闭合低压＋冷锋＝东海岸低压，带来暴雨、强风与大浪。这正是 2016 年该海滩遭受严重侵蚀的天气背景。", "source": "Term 3 · Lesson 2.2 Understanding East Coast Lows（synoptic map）", "weak": false}, {"id": "geo-006", "topic": "Collaroy–Narrabeen · 沙丘带开发", "difficulty": "easy", "type": "mcq", "stem": "In Lesson 2.3 the original subdivision plans are compared with modern aerial photographs. What does the comparison show?", "options": ["No development occurred anywhere near the shoreline", "Housing was built inside the primary foredune zone", "The foredune was widened to protect the houses behind it", "Development was kept well inland of the foredune system"], "answer": 1, "explanation": "对比历史分区图与现代航拍可看出：住宅已进入原前丘（primary foredune）范围。前丘本是天然缓冲带，被占用后风暴波可直接冲击建筑。", "source": "Term 3 · Lesson 2.3 Development in Collaroy–Narrabeen", "weak": false}, {"id": "geo-007", "topic": "管理策略 · 预防／缓解／准备", "difficulty": "easy", "type": "mcq", "stem": "Which set correctly matches the three management categories taught in Lessons 3.1–3.2?", "options": ["Prevention — reducing impact; mitigation — planning response; preparedness — stopping change", "All three categories describe the same action taken at different scales", "Prevention — stopping change; mitigation — reducing impact; preparedness — planning response", "Prevention — planning response; mitigation — stopping change; preparedness — reducing impact"], "answer": 2, "explanation": "prevention 从源头避免（如禁止在前丘新建）、mitigation 减轻已发生变化的冲击（如海堤、补沙）、preparedness 为事件做准备（如预警与疏散）。分类决定评价标准，别混用。", "source": "Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems", "weak": false}, {"id": "geo-008", "topic": "海堤 · 过程改变", "difficulty": "medium", "type": "mcq", "stem": "Stimulus: A vertical seawall is built along a beach. In front of it the beach becomes narrower, and erosion increases at the ends of the wall. Which process best explains this pattern?", "options": ["The wall traps longshore drift, so sand builds up steadily in front of it", "The wall stops all wave action, so no erosion can occur near it", "The wall absorbs wave energy, so the beach in front grows wider", "The wall reflects wave energy and removes sediment from the budget"], "answer": 3, "explanation": "垂直海堤反射波能、冲刷堤脚，并打乱冲淤循环、改变沿岸输沙收支，导致堤前沙滩变窄、侵蚀向两端转移。这是 3.3 的核心机制，也是争议根源。", "source": "Term 3 · Lesson 3.3 The Controversial Seawall（Figure 1）", "weak": false}, {"id": "geo-009", "topic": "田野调查 · 样方与演替", "difficulty": "easy", "type": "mcq", "stem": "Stimulus: Quadrats along a transect from the beach to the hind dune show vegetation cover rising from almost nothing near the beach to dense cover behind the foredune. What does this pattern indicate?", "options": ["Succession, as wind and salt spray decline and the dune stabilises", "Longshore drift, as sediment is moved steadily along the shoreline", "Accretion, as the beach builds steadily seaward over time", "Erosion, as vegetation is stripped away from the foredune face by storms"], "answer": 0, "explanation": "越向内陆，风与盐雾胁迫减弱、沙丘趋于稳定，植被密度上升——这是沙丘演替（succession）。样方沿样带布设的用途正是把这种梯度量化。", "source": "Term 3 · Lesson 4.2 Transects and Coastal Data", "weak": false}, {"id": "geo-010", "topic": "印度河三角洲 · 沉积物饥饿", "difficulty": "medium", "type": "mcq", "stem": "Stimulus: In the Indus Delta, upstream dams and barrages divert river water. Satellite images show mangrove areas shrinking and bare mudflats expanding. Which chain of consequences explains this?", "options": ["More sediment reaches the delta, so mangroves are buried by sand", "Less water and sediment reach the delta, so deposition falls and the coast erodes", "Rising sea level is the only cause of mangrove loss in the delta", "Mangroves expand because the freshwater supply has increased substantially"], "answer": 1, "explanation": "这是「沉积物饥饿」链条：上游筑坝引水→淡水与泥沙减少→沉积速率低于侵蚀／沉降→岸线后退、红树林退化。海平面上升会加剧，但不是唯一原因。", "source": "Term 3 · Lessons 5.1–5.2 Introduction to Deltas / Management of the Indus Delta", "weak": false}, {"id": "geo-011", "topic": "环境变化 · 渐变与突变", "difficulty": "easy", "type": "short", "stem": "Explain the difference between a gradual and a rapid environmental change at the coast, using one example of each from this unit. (2 marks)", "options": [], "answer": "Gradual change is slow and cumulative, such as long-term shoreline recession as sediment supply falls. Rapid change is triggered by a single event, such as the storm cut produced when an East Coast Low drives large waves against the beach.", "explanation": "答题要点是「速率差异＋各举一例」。渐变例：长期岸线后退、沙丘演替；突变例：东海岸低压一夜之间造成的风暴侵蚀。", "source": "Term 3 · Lesson 1.1 Environmental Change", "points": [{"t": "Gradual change is slow and cumulative, such as long-term shoreline recession as sediment supply falls", "m": 1}, {"t": "Rapid change is triggered by a single event, such as the storm cut produced when an East Coast Low drives large waves against the beach", "m": 1}], "weak": false}, {"id": "geo-012", "topic": "海岸过程 · 沿岸流机制", "difficulty": "easy", "type": "short", "stem": "Explain how longshore drift moves sediment along a beach. (2 marks)", "options": [], "answer": "Waves approach the shore at an angle, so the swash carries sand diagonally up the beach, and the backwash returns it straight down the slope under gravity. Repeating this moves sediment progressively along the shore in one net direction.", "explanation": "必须写出「斜向上升＋垂直回落」这一对动作，两者合成沿岸净输沙。只写「波浪把沙带走」不完整。", "source": "Term 3 · Lesson 1.2 Coastal Processes and Environments", "points": [{"t": "Waves approach the shore at an angle, so the swash carries sand diagonally up the beach, and the backwash returns it straight down the slope under gravity", "m": 1}, {"t": "Repeating this moves sediment progressively along the shore in one net direction", "m": 1}], "weak": false}, {"id": "geo-013", "topic": "海岸过程 · 过程相互作用", "difficulty": "medium", "type": "short", "stem": "Explain how waves, currents, erosion and deposition interact to shape a beach. (3 marks)", "options": [], "answer": "Waves and currents deliver energy to the shore; erosion scours sediment from the beach face and dune during high-energy events; deposition rebuilds the beach and offshore bars when energy falls. The balance between erosion and deposition at a particular time determines whether the shoreline advances or retreats.", "explanation": "答题结构是「能量输入→侵蚀→沉积→净结果」。关键是说明两者是动态平衡，而不是单向过程。", "source": "Term 3 · Lesson 1.2 Coastal Processes and Environments", "points": [{"t": "Waves and currents deliver energy to the shore", "m": 1}, {"t": "erosion scours sediment from the beach face and dune during high-energy events", "m": 1}, {"t": "deposition rebuilds the beach and offshore bars when energy falls. The balance between erosion and deposition at a particular time determines whether the shoreline advances or retreats", "m": 1}], "weak": false}, {"id": "geo-014", "topic": "海岸过程 · 淤积与沙丘形成", "difficulty": "easy", "type": "short", "stem": "Explain what accretion is and how it is linked to dune formation. (2 marks)", "options": [], "answer": "Accretion is the net build-up of sand so that the shoreline moves seaward. Once sand accumulates above the reach of normal waves, wind transports it inland and vegetation traps it, building a foredune.", "explanation": "链条是：泥沙净堆积（accretion）→ 露出常浪面之上 → 风搬运 → 植被拦截固定 → 前丘形成。缺一环就说不通。", "source": "Term 3 · Lesson 1.3 Changing Land Use and Implications on the Global Coastline", "points": [{"t": "Accretion is the net build-up of sand so that the shoreline moves seaward", "m": 1}, {"t": "Once sand accumulates above the reach of normal waves, wind transports it inland and vegetation traps it, building a foredune", "m": 1}], "weak": false}, {"id": "geo-015", "topic": "Collaroy–Narrabeen · 自然脆弱性", "difficulty": "medium", "type": "short", "stem": "Stimulus: Collaroy–Narrabeen is a 3.6 km east-facing beach, described as the most at-risk beach from coastal erosion in NSW and third most vulnerable in Australia. Explain two natural factors that make it vulnerable. (4 marks)", "options": [], "answer": "First, its east-facing aspect exposes it directly to East Coast Lows and the large waves and storm surge they generate. Second, longshore sediment transport moves sand along the shore, so the supply at any one point is limited and the beach has a narrow sediment store, leaving little buffer when a storm coincides with a high tide.", "explanation": "自然因素要写「朝向暴露＋东海岸低压＋沿岸输沙／沙源有限」。人为因素（前丘被占）属另一题，这里答了不算错但不得分。", "source": "Term 3 · Lesson 2.1 Introduction to Collaroy–Narrabeen", "points": [{"t": "First, its east-facing aspect exposes it directly to East Coast Lows and the large waves and storm surge they generate", "m": 1}, {"t": "Second, longshore sediment transport moves sand along the shore, so the supply at any one point is limited and the beach has a narrow sediment store, leaving little buffer when a storm coincides with a high tide", "m": 1}], "weak": false}, {"id": "geo-016", "topic": "East Coast Lows · 2016 事件的机制", "difficulty": "hard", "type": "short", "stem": "Stimulus: A synoptic chart shows tightly packed isobars and a closed low off the NSW coast with a cold front crossing the coast. Explain why this system produced such destructive conditions at Collaroy–Narrabeen in 2016. (3 marks)", "options": [], "answer": "Tightly packed isobars mean a steep pressure gradient and therefore strong winds, which generate large waves and a storm surge that raises water levels at the shore. The cold front adds intense rainfall and runoff, so the combination of higher water and bigger waves produced a major storm cut and foredune erosion.", "explanation": "机制链：密集等压线→强风→大浪＋风暴增水；冷锋→暴雨。三者叠加正好赶上涨潮，才造成破坏性侵蚀。只写「风很大」拿不到满分。", "source": "Term 3 · Lesson 2.2 Understanding East Coast Lows", "points": [{"t": "Tightly packed isobars mean a steep pressure gradient and therefore strong winds, which generate large waves and a storm surge that raises water levels at the shore", "m": 1}, {"t": "The cold front adds intense rainfall and runoff, so the combination of higher water and bigger waves produced a major storm cut and foredune erosion", "m": 1}], "weak": false}, {"id": "geo-017", "topic": "Collaroy–Narrabeen · 开发与脆弱性", "difficulty": "medium", "type": "short", "stem": "Explain how development on the foredune increased the vulnerability of Collaroy–Narrabeen. (3 marks)", "options": [], "answer": "The foredune is the coastline's natural buffer: it absorbs wave energy and stores sand that can rebuild the beach after a storm. Removing it and building close to the shoreline means storm waves reach the structures directly, and the sediment store that would normally aid recovery has been lost, which accelerates long-term recession.", "explanation": "要写出前丘的两项功能（消浪＋储沙），再说明两者同时丧失的后果。只说「离海太近」不足以解释脆弱性为何被放大。", "source": "Term 3 · Lesson 2.3 Development in Collaroy–Narrabeen", "points": [{"t": "The foredune is the coastline's natural buffer: it absorbs wave energy and stores sand that can rebuild the beach after a storm", "m": 1}, {"t": "Removing it and building close to the shoreline means storm waves reach the structures directly, and the sediment store that would normally aid recovery has been lost, which accelerates long-term recession", "m": 1}], "weak": false}, {"id": "geo-018", "topic": "管理策略 · 分类与理由", "difficulty": "easy", "type": "short", "stem": "Classify each strategy as prevention, mitigation or preparedness, and justify your choice: (a) zoning that prevents new building on the foredune; (b) a seawall; (c) an evacuation plan. (3 marks)", "options": [], "answer": "(a) Prevention — it removes the exposure before damage can occur. (b) Mitigation — it reduces the impact of wave energy on assets that already exist. (c) Preparedness — it plans the response for when an event happens.", "explanation": "判断依据是「作用于变化之前／之中／之后」：预防在源头避免暴露，缓解降低既有资产的受损程度，准备安排事件发生时的应对。", "source": "Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems", "points": [{"t": "(a) Prevention — it removes the exposure before damage can occur", "m": 1}, {"t": "(b) Mitigation — it reduces the impact of wave energy on assets that already exist", "m": 1}, {"t": "(c) Preparedness — it plans the response for when an event happens", "m": 1}], "weak": false}, {"id": "geo-019", "topic": "海堤争议 · 立场评估", "difficulty": "hard", "type": "short", "stem": "Stimulus: Two stakeholders disagree about the Collaroy–Narrabeen seawall. One argues it protects homes; the other argues it damages the beach and shifts erosion along the coast. Evaluate both positions using your knowledge of coastal processes. (5 marks)", "options": [], "answer": "The protection argument is valid in the short term: the wall prevents wave attack on the houses immediately behind it. The criticism is also valid: a vertical wall reflects wave energy, removes sediment from the beach budget and can increase erosion at the ends of the wall, so the beach in front narrows and the problem shifts along the coast. The decision therefore trades protection of private assets against the loss of public beach.", "explanation": "评估题要「两边都成立＋说明代价」：短期保护有效，但过程代价（反射、输沙收支改变、侵蚀转移）真实存在。只站一边不给高分。", "source": "Term 3 · Lesson 3.3 The Controversial Seawall（stakeholder perspectives）", "points": [{"t": "The protection argument is valid in the short term: the wall prevents wave attack on the houses immediately behind it", "m": 1}, {"t": "The criticism is also valid: a vertical wall reflects wave energy, removes sediment from the beach budget and can increase erosion at the ends of the wall, so the beach in front narrows and the problem shifts along the coast", "m": 1}, {"t": "The decision therefore trades protection of private assets against the loss of public beach", "m": 1}], "weak": false}, {"id": "geo-020", "topic": "田野调查 · 海滩剖面", "difficulty": "medium", "type": "short", "stem": "Explain what a beach profile (cross-section) shows that the raw transect data does not. (3 marks)", "options": [], "answer": "A beach profile shows the shape of the beach — the position of the berm, the steepness of the beach face and the width of the beach — so the form can be compared between surveys. Raw data only gives distances and elevations as numbers, without showing how the surface is configured.", "explanation": "剖面图的价值是「形态可视化＋可比性」：同一位置两次剖面可直接叠加比较；原始数据则要另行处理才能看出形状变化。", "source": "Term 3 · Lesson 4.2 Transects and Coastal Data（cross-section）", "points": [{"t": "A beach profile shows the shape of the beach — the position of the berm, the steepness of the beach face and the width of the beach — so the form can be compared between surveys", "m": 1}, {"t": "Raw data only gives distances and elevations as numbers, without showing how the surface is configured", "m": 1}], "weak": false}, {"id": "geo-021", "topic": "田野调查 · 可靠性评估", "difficulty": "hard", "type": "short", "stem": "Investigation A sampled one quadrat at one site. Investigation B sampled ten quadrats at five sites using the same method. Explain which is more reliable and why, and suggest one further improvement. (4 marks)", "options": [], "answer": "B is more reliable, because a larger sample across more sites is more representative and reduces the influence of a local anomaly, and using a consistent method makes the results comparable. A further improvement would be to repeat the survey at the same stage of the tide, or after a storm, so that change over time can be measured rather than assumed.", "explanation": "可靠性三要素：样本量、覆盖范围、方法一致。改进建议要针对「可比性」或「时间重复」，而不是空泛地说「多做几次」。", "source": "Term 3 · Lesson 4.3 Mapping and Evaluating Coastal Fieldwork（reliability）", "points": [{"t": "B is more reliable, because a larger sample across more sites is more representative and reduces the influence of a local anomaly, and using a consistent method makes the results comparable", "m": 1}, {"t": "A further improvement would be to repeat the survey at the same stage of the tide, or after a storm, so that change over time can be measured rather than assumed", "m": 1}], "weak": false}, {"id": "geo-022", "topic": "印度河三角洲 · 三角洲形成", "difficulty": "easy", "type": "short", "stem": "Explain how a delta forms, using the process chain taught in Lesson 5.1. (3 marks)", "options": [], "answer": "A river carries sediment downstream until it reaches the sea, where its velocity falls sharply. Because competence falls with velocity, the sediment can no longer be carried and is deposited; repeated deposition builds a low, shifting plain of sediment at the river mouth — the delta.", "explanation": "链条必须完整：搬运→流速下降→搬运能力下降→沉积→堆积成三角洲。漏掉「competence 随流速下降」这一步是常见失分点。", "source": "Term 3 · Lesson 5.1 Introduction to Deltas and The Indus River Delta", "points": [{"t": "A river carries sediment downstream until it reaches the sea, where its velocity falls sharply. Because competence falls with velocity, the sediment can no longer be carried and is deposited", "m": 1}, {"t": "repeated deposition builds a low, shifting plain of sediment at the river mouth — the delta", "m": 1}], "weak": false}, {"id": "geo-023", "topic": "印度河三角洲 · 人类改造", "difficulty": "medium", "type": "short", "stem": "Explain how dams, barrages and water diversion degrade the Indus Delta. (4 marks)", "options": [], "answer": "They reduce the volume of freshwater and the load of sediment reaching the delta, so deposition falls below the rate of erosion and subsidence. The delta surface lowers, seawater intrudes into creeks and soils, and mangroves die back because the freshwater and sediment they depend on are withheld.", "explanation": "要写出「上游截流→水沙双减→沉积＜侵蚀＋沉降→地面降低、海水入侵→红树林退化」的完整链条，并点明这是「沉积物饥饿」。", "source": "Term 3 · Lessons 5.1–5.2（dams, barrages and water diversion）", "points": [{"t": "They reduce the volume of freshwater and the load of sediment reaching the delta, so deposition falls below the rate of erosion and subsidence", "m": 1}, {"t": "The delta surface lowers, seawater intrudes into creeks and soils, and mangroves die back because the freshwater and sediment they depend on are withheld", "m": 1}], "weak": false}, {"id": "geo-024", "topic": "印度河三角洲 · 红树林修复评估", "difficulty": "hard", "type": "short", "stem": "Evaluate the effectiveness of the Delta Blue Carbon Project in restoring the ecological functioning of the Indus Delta. (5 marks)", "options": [], "answer": "Positives: restored mangroves attenuate wave energy, reinforce the soil with their roots and trap sediment, so they rebuild the delta surface as well as restoring habitat and carbon storage, and the approach is community-based and largely self-maintaining once established. Limitations: mangroves cannot replace the water and sediment cut off upstream, so unless river flows are restored the gains are slow and limited in scale.", "explanation": "评估要「正面机制（消浪、固土、拦沙）＋局限（无法替代上游水沙）」。只写好处是描述，不是评估。", "source": "Term 3 · Lessons 5.2–5.3（Delta Blue Carbon Project）", "points": [{"t": "Positives: restored mangroves attenuate wave energy, reinforce the soil with their roots and trap sediment, so they rebuild the delta surface as well as restoring habitat and carbon storage, and the approach is community-based and largely self-maintaining once established", "m": 1}, {"t": "Limitations: mangroves cannot replace the water and sediment cut off upstream, so unless river flows are restored the gains are slow and limited in scale", "m": 1}], "weak": false}, {"id": "geo-025", "topic": "案例比较 · 两个海岸系统的退化程度", "difficulty": "hard", "type": "short", "stem": "Stimulus table (from the Revision Activities comparison): Collaroy–Narrabeen — 3.6 km east-facing ocean beach, NSW; East Coast Lows, waves and longshore drift; longshore sediment transport with the foredune largely removed; urban development in the foredune zone plus a vertical seawall; managed by seawall and planning controls. Indus Delta — river delta, Pakistan; river flow, tides and monsoonal floods; river sediment now reduced by dams and barrages; modified by dams, barrages and upstream diversion; managed by mangrove restoration. Using the table, explain which ecosystem is more degraded by human activity and justify your answer. (6 marks)", "options": [], "answer": "The Indus Delta is more degraded. Its sediment supply has been cut at the source by upstream dams and diversion, so deposition no longer keeps pace with erosion and subsidence, and whole areas of mangrove have been lost — the damage affects the functioning of the entire delta, not just one shoreline. Collaroy–Narrabeen is heavily modified, but sediment is still delivered by longshore transport and the impacts are concentrated along a single developed beach, where the response has been local engineering plus planning controls.", "explanation": "判据是「是否切断了系统赖以运转的物源」：印度河被切断水沙来源，属系统性退化；Collaroy 属局部改造过度。必须用表中证据，不能凭印象。", "source": "Term 3 · files/Revision Activities.docx（Collaroy–Narrabeen vs Indus Delta 对比框架）＋ Lessons 2.1–2.3、5.1–5.3", "points": [{"t": "The Indus Delta is more degraded", "m": 1}, {"t": "Its sediment supply has been cut at the source by upstream dams and diversion, so deposition no longer keeps pace with erosion and subsidence, and whole areas of mangrove have been lost — the damage affects the functioning of the entire delta, not just one shoreline", "m": 1}, {"t": "Collaroy–Narrabeen is heavily modified, but sediment is still delivered by longshore transport and the impacts are concentrated along a single developed beach, where the response has been local engineering plus planning controls", "m": 1}], "weak": false}, {"id": "geo-026", "topic": "综合评估 · 两地管理成效", "difficulty": "hard", "type": "short", "stem": "Evaluate the effectiveness of coastal management at Collaroy–Narrabeen and in the Indus Delta. In your answer, judge which approach is more sustainable and justify your judgement. (8 marks)", "options": [], "answer": "At Collaroy–Narrabeen, hard engineering protects property in the short term but reflects wave energy, narrows the beach and shifts erosion along the coast, and it is expensive to maintain — so it is effective for private assets but weak for the public beach. In the Indus Delta, mangrove restoration works with natural processes, is low cost and largely self-maintaining, and restores habitat and carbon storage as well as protection, but it cannot restore the water and sediment cut off upstream, so it depends on river flows being reinstated. Judged against sustainability, the delta approach is more sustainable because it rebuilds natural capital rather than replacing it, which is why the seawall is better classified as mitigation than as a solution.", "explanation": "8 分题要「两地各自评估＋明确判断＋理由」。判断标准落在「是否依靠并恢复自然过程」，并指出印度河方案的先决条件（恢复水沙），才算完整。", "source": "Term 3 · Lessons 3.1–3.3、5.2–5.3；Assessment Notification — Structured Response（20 分 structured response）", "points": [{"t": "At Collaroy–Narrabeen, hard engineering protects property in the short term but reflects wave energy, narrows the beach and shifts erosion along the coast, and it is expensive to maintain — so it is effective for private assets but weak for the public beach", "m": 1}, {"t": "In the Indus Delta, mangrove restoration works with natural processes, is low cost and largely self-maintaining, and restores habitat and carbon storage as well as protection, but it cannot restore the water and sediment cut off upstream, so it depends on river flows being reinstated", "m": 1}, {"t": "Judged against sustainability, the delta approach is more sustainable because it rebuilds natural capital rather than replacing it, which is why the seawall is better classified as mitigation than as a solution", "m": 1}], "weak": false}]};
+const KEY = "dsh-quiz-geo";
+const MULTI = DATA.slug === "all";
+const app = document.getElementById("app");
+let state = {idx:0, answers:{}, order:null};
+
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (s && s.answers) state = s;
+  } catch(e) {}
+  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
+  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
+  try {
+    const m = location.search.match(/[?&]q=([^&]+)/);
+    if (m) {
+      const qid = decodeURIComponent(m[1]);
+      const qi = DATA.questions.findIndex(x => x.id === qid);
+      const pos = state.order.indexOf(qi);
+      if (pos >= 0) state.idx = pos;
+    }
+  } catch(e) {}
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function renderSetup() {
+  const subs = DATA.subjects || {};
+  const keys = Object.keys(subs);
+  const saved = state.pick || {};
+  const opts = keys.map(k => {
+    const on = saved[k] !== false;
+    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
+      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
+  }).join("");
+  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
+  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
+  app.innerHTML = `<div class="setup">
+    <div class="setup-head">
+      <h2>综合卷 · 全科</h2>
+      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
+    </div>
+
+    <section class="setup-block">
+      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
+      <div class="picks">${opts}</div>
+    </section>
+
+    <section class="setup-block">
+      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
+    </section>
+
+    <div class="setup-foot">
+      <div class="sum">共 <b id="cnt">0</b> 题</div>
+      <button class="btn ghost" id="daily">今日挑战</button>
+      <button class="btn" id="startmix">开始答题 →</button>
+    </div>
+  </div>`;
+  const chosenCount = () => {
+    let c = 0;
+    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
+    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
+  };
+  const calc = () => {
+    let n = 0;
+    app.querySelectorAll(".pick input").forEach(cb => {
+      if (!cb.checked) return;
+      const k = cb.dataset.s, c = subs[k].n;
+      n += per ? Math.min(per, c) : c;
+    });
+    document.getElementById("cnt").textContent = n;
+    const pc = document.getElementById("pickcount");
+    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
+  };
+  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
+    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
+  });
+  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
+    state.per = +b.dataset.n; save(); render();
+  });
+  function seedRnd(str){
+    var h=2166136261;
+    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
+      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
+  }
+  function startDaily(){
+    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    var rnd=seedRnd("daily:"+key);
+    var idxs=[];
+    DAILY.forEach(function(sl){
+      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      idxs=idxs.concat(pool.slice(0,3));
+    });
+    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
+    state.answers={}; state.daily=key; state.rewarded=false; save(); render();
+  }
+  document.getElementById("daily").onclick = startDaily;
+  document.getElementById("startmix").onclick = () => {
+    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
+    if (!chosen.length) { alert("至少选一科"); return; }
+    let idxs = [];
+    chosen.forEach(k => {
+      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      pool.sort(() => Math.random() - 0.5);
+      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
+    });
+    idxs.sort(() => Math.random() - 0.5);
+    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
+    state.answers = {}; save(); render();
+  };
+  calc();
+}
+
+
+function render() {
+  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
+    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
+  }
+  if (MULTI && state.setup && !state.started) return renderSetup();
+  const qs = state.order.map(i => DATA.questions[i]);
+  const q = qs[state.idx];
+  const total = qs.length;
+  const answered = qs.filter(x => state.answers[x.id]).length;
+  const right = qs.filter(x => state.answers[x.id] === "ok").length;
+  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
+  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
+  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
+  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
+  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
+
+  const rec = state.answers[q.id];
+  const chips = `<div class="chips">
+      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
+      <span class="chip">${esc(q.topic)}</span>
+      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
+      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
+      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
+    </div>`;
+
+  let bodyHtml = "";
+  if (q.type === "mcq") {
+    const opts = (q.options || []).map((o, i) => {
+      let cls = "opt", mark = "";
+      if (rec) {
+        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
+        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
+      }
+      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
+        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}</span>${mark}</button>`;
+    }).join("");
+    bodyHtml = `<div class="opts">${opts}</div>`;
+  } else {
+    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
+    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    const checked = (rec && rec.checked) ? rec.checked : [];
+    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
+    const hasNum = /-?\d/.test(bareAns);
+    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
+      <div class="actions">
+        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
+        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
+      </div>`;
+    if (rec) {
+      bodyHtml += `<div class="panel">
+        <div class="panel-h">自评 · 勾选你写到的得分点</div>
+        <div class="pts">${pts.map((p,i)=>`
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
+        <div class="actions">
+          <button class="btn ghost" id="allpt">全部勾上</button>
+          <button class="btn ghost" id="nonept">全部取消</button>
+        </div>
+        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
+      </div>`;
+    }
+  }
+
+  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
+      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
+      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
+
+  const last = state.idx >= total - 1;
+  app.innerHTML = `<div class="card">${chips}<div class="stem">${esc(q.stem)}</div>
+      ${bodyHtml}${expHtml}</div>
+      <div class="actionbar">
+        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>← 上一题</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="finish">看成绩</button>
+        <button class="btn" id="next" ${last ? "disabled" : ""}>下一题 →</button>
+      </div>`;
+
+  if (q.type === "mcq") {
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const i = +b.dataset.i;
+      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
+      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
+      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
+      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
+      save(); render();
+    }));
+  } else {
+    const ta = document.getElementById("ta");
+    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
+    document.getElementById("reveal").onclick = () => {
+      const c = cur();
+      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
+      save(); render();
+    };
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
+      const c = cur(); const i = +cb.dataset.i;
+      const set = new Set(c.checked || []);
+      if (cb.checked) set.add(i); else set.delete(i);
+      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
+      const full = pts.every((_,i)=>set.has(i));
+      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
+      reviewMark(q.subj || DATA.slug, q.id, full);
+      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      save(); render();
+    }));
+    const nc = document.getElementById("numcheck");
+    if (nc) nc.onclick = () => {
+      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
+      const last = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
+      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
+    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
+  }
+  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
+  const nx = document.getElementById("next");
+  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
+  document.getElementById("finish").onclick = showResult;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function showResult() {
+  const qs = state.order.map(i => DATA.questions[i]);
+  if (!state.rewarded && qs.length) {
+    state.rewarded = true; save();
+    if (state.daily) {
+      try {
+        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
+        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
+        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
+        var DKEY = "dsh-daily-v1";
+        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
+        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
+          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
+          localStorage.setItem(DKEY, JSON.stringify(drec));
+        }
+      } catch(e) {}
+    }
+    const answered = qs.filter(x => state.answers[x.id]).length;
+    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
+    if (window.openChest && answered >= 3) openChest();
+  }
+  const rec = id => state.answers[id] || null;
+  const mcq = qs.filter(x => x.type === "mcq");
+  const shorts = qs.filter(x => x.type === "short");
+  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
+  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
+  const todo = qs.filter(x => !rec(x.id));
+  let earnedM = 0, totalM = 0, partM = 0;
+  const weak = [];
+  shorts.forEach(x => {
+    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
+    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const r = rec(x.id);
+    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    totalM += tot;
+    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
+  });
+  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
+  const needRedo = [...wrong, ...weak];
+  const wrongIds = needRedo.map(x => x.id);
+  app.innerHTML = `<div class="card done">
+      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
+      <div class="stats">
+        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
+        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
+        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
+        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
+      </div>
+      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
+      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
+      <div class="actions">
+        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
+        <button class="btn ghost" id="again">整套重做</button>
+        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
+      </div></div>`;
+  const redo = document.getElementById("redo");
+  if (redo) redo.onclick = () => {
+    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
+    wrongIds.forEach(id => delete state.answers[id]);
+    state.idx = 0; save(); render();
+  };
+  document.getElementById("again").onclick = () => {
+    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+    save(); render();
+  };
+}
+
+document.getElementById("grid").onclick = openNav;
+document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
+document.getElementById("nav").addEventListener("click", e => {
+  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
+});
+try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
+catch(e) { document.body.insertAdjacentHTML("afterbegin",
+  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
+
+document.getElementById("exam").onclick = startExam;
+if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
+
+document.getElementById("restart").onclick = () => {
+  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  save(); render();
+};
+
+document.addEventListener("keydown", e => {
+  if (MULTI && state.setup && !state.started) {
+    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
+    return;
+  }
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
+  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
+  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
+  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
+  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
+    else showResult();
+    return;
+  }
+  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
+  if (!q || q.type !== "mcq") return;
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= (q.options || []).length) {
+    if (!state.answers[q.id]) {
+      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
+      save(); render();
+    }
+  }
+});
+
+const REVIEW_KEY = "dsh-review-v1";
+const GAPS = [1, 3, 7];
+function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
+function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
+function reviewMark(slug, qid, correct){
+  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
+  if (correct) {
+    const it = db[id];
+    if (!it) return;
+    const st = (it.stage || 0) + 1;
+    if (st >= GAPS.length) delete db[id];
+    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
+  } else {
+    const old = db[id] || {};
+    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
+  }
+  reviewSave(db);
+}
+function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
+
+const LOG_KEY = "dsh-log-v1";
+function logAnswer(slug, qid, ok, diff, ty){
+  try {
+    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
+    if (arr.length > 3000) arr = arr.slice(-3000);
+    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
+  } catch(e) {}
+}
+function navState(qi){
+  const q = DATA.questions[qi], a = state.answers[q.id];
+  if (!a) return "";
+  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
+  const pts = q.points || [{m:1}], c = (a.checked || []).length;
+  if (c >= pts.length) return "ok";
+  if (c > 0) return "part";
+  return "";
+}
+function openNav(){
+  const grid = document.getElementById("navgrid");
+  grid.innerHTML = state.order.map((qi, pos) =>
+    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
+  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
+    state.idx = +b.dataset.pos; save();
+    document.getElementById("nav").classList.remove("on"); render();
+  });
+  document.getElementById("nav").classList.add("on");
+}
+
+let timerId = null;
+function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+function tickClock(){
+  const el = document.getElementById("clock");
+  if (!state.deadline) { if (el) el.style.display = "none"; return; }
+  const left = state.deadline - Date.now();
+  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
+            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
+  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
+}
+function startExam(){
+  const def = DATA.examMin || 60;
+  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
+  if (v === null) return;
+  const mins = parseInt(v, 10);
+  if (!mins || mins <= 0) return;
+  state.deadline = Date.now() + mins*60000; save();
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(tickClock, 1000);
+  tickClock();
+}
+
+
+load(); render();
+</script>
+<script>
+(function(){
+  var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
+  var COIN_KEY="dsh-coins-v1", INV_KEY="dsh-inv-v1", BUFF_KEY="dsh-buffs-v1";
+  var LEVELS=[0,60,150,280,450,680,980,1360,1820,2360,3000,3750,4600,5560,6650,7880,9250,10800,12500,14400];
+  function db(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{"xp":0,"combo":0,"best":0}'); }catch(e){ return {xp:0,combo:0,best:0}; } }
+  function save(g){ try{ localStorage.setItem(KEY,JSON.stringify(g)); }catch(e){} }
+  function bdb(){ try{ return JSON.parse(localStorage.getItem(BKEY)||'{}'); }catch(e){ return {}; } }
+  function bsave(b){ try{ localStorage.setItem(BKEY,JSON.stringify(b)); }catch(e){} }
+  function log(){ try{ return JSON.parse(localStorage.getItem('dsh-log-v1')||'[]'); }catch(e){ return []; } }
+  function levelOf(xp){ var l=1; for(var i=0;i<LEVELS.length;i++){ if(xp>=LEVELS[i]) l=i+1; } return l; }
+  function nextAt(xp){ var l=levelOf(xp); return LEVELS[l]!==undefined?LEVELS[l]:null; }
+
+  /* ---------- 金币 / 库存 / 增益 ---------- */
+  function readCoins(){ var o={n:0,earned:0,dust:0}; try{ o=JSON.parse(localStorage.getItem(COIN_KEY)||'null')||o; }catch(e){} if(o.dust===undefined)o.dust=0; return o; }
+  function saveCoins(o){ try{ localStorage.setItem(COIN_KEY,JSON.stringify(o)); }catch(e){} }
+  function addCoins(n){ var c=readCoins(); c.n=(c.n||0)+n; c.earned=(c.earned||0)+Math.max(0,n); saveCoins(c); }
+  function addDust(n){ var c=readCoins(); c.dust=(c.dust||0)+n; saveCoins(c); }
+
+  /* 音效：WebAudio 现场合成，不依赖音频文件 */
+  var SFX_ON = (function(){ try{ return localStorage.getItem("dsh-sfx")!=="0"; }catch(e){ return true; } })();
+  var AC=null;
+  function beep(freq, dur, type, vol){
+    if(!SFX_ON) return;
+    try{
+      AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+      var o=AC.createOscillator(), g=AC.createGain();
+      o.type=type||"sine"; o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001, AC.currentTime);
+      g.gain.exponentialRampToValueAtTime(vol||0.06, AC.currentTime+0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime+(dur||0.12));
+      o.connect(g); g.connect(AC.destination);
+      o.start(); o.stop(AC.currentTime+(dur||0.12)+0.02);
+    }catch(e){}
+  }
+  function levelUpSound(){ [523,659,784,1046].forEach(function(f,i){ setTimeout(function(){ beep(f,0.16,"triangle",0.07); }, i*90); }); }
+  function toggleSfx(){ SFX_ON=!SFX_ON; try{ localStorage.setItem("dsh-sfx", SFX_ON?"1":"0"); }catch(e){} return SFX_ON; }
+  function readInv(){
+    var d={owned:[],equipped:{theme:"",title:""},uses:{}};
+    try{ var o=JSON.parse(localStorage.getItem(INV_KEY)||'null'); if(o){ d.owned=o.owned||[]; d.equipped=o.equipped||{theme:"",title:""}; d.uses=o.uses||{}; } }catch(e){}
+    return d;
+  }
+  function saveInv(d){ try{ localStorage.setItem(INV_KEY,JSON.stringify(d)); }catch(e){} }
+  function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
+  function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
+
+  var THEMES={
+    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
+    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
+    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
+    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+  };
+  function applyTheme(){
+    var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
+    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
+    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+  }
+  function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
+
+  var SHOP=[
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+  ];
+
+  function buy(id){
+    var item=null; SHOP.forEach(function(x){ if(x.id===id) item=x; });
+    if(!item) return {ok:false,msg:"没有这件商品"};
+    var c=readCoins(), inv=readInv();
+    if(item.t!=="use" && inv.owned.indexOf(id)>=0) return {ok:false,msg:"已经拥有了"};
+    var isDust = item.cur==="dust";
+    var bal = isDust ? (c.dust||0) : (c.n||0);
+    if(bal < item.p) return {ok:false,msg:(isDust?"星尘":"金币")+"不够，还差 "+(item.p-bal)};
+    if(isDust){ c.dust=(c.dust||0)-item.p; } else { c.n=(c.n||0)-item.p; }
+    saveCoins(c);
+    if(item.t==="use"){ inv.uses[id]=(inv.uses[id]||0)+1; }
+    else { inv.owned.push(id); }
+    saveInv(inv);
+    if(item.t==="theme"){ inv.equipped.theme=item.v; saveInv(inv); applyTheme(); }
+    if(item.t==="title"){ inv.equipped.title=item.v; saveInv(inv); }
+    if(item.t==="buff"){ var b=readBuffs(); b.xp2Until=Date.now()+30*60000; saveBuffs(b); }
+    return {ok:true,msg:"已购买："+item.n};
+  }
+  function equipTheme(v){ var inv=readInv(); inv.equipped.theme=v||""; saveInv(inv); applyTheme(); }
+  function equipTitle(v){ var inv=readInv(); inv.equipped.title=v||""; saveInv(inv); }
+
+  /* ---------- 提示 ---------- */
+  function toast(txt, ok){
+    var el=document.createElement('div');
+    el.className='xp-toast'+(ok?' ok':'');
+    el.textContent=txt;
+    document.body.appendChild(el);
+    setTimeout(function(){ el.classList.add('up'); }, 20);
+    setTimeout(function(){ el.remove(); }, 1500);
+  }
+
+  var BADGES=[
+    {id:'first',  n:'第一题',   d:'完成第一道题',        i:'🌱'},
+    {id:'combo5', n:'连对 5',   d:'一次连对 5 题',       i:'🔥'},
+    {id:'combo10',n:'连对 10',  d:'一次连对 10 题',      i:'⚡'},
+    {id:'daily',  n:'今日达标', d:'一天做满 30 题',      i:'✅'},
+    {id:'streak3',n:'三天不断', d:'连续 3 天做题',       i:'📅'},
+    {id:'streak7',n:'一周',     d:'连续 7 天做题',       i:'🏆'},
+    {id:'subject',n:'一科通关', d:'某科全部做完',        i:'🎯'},
+    {id:'review', n:'错题清零', d:'错题本清空',          i:'🧹'}
+  ];
+
+  function unlock(id){
+    var b=bdb(); if(b[id]) return false;
+    b[id]=Date.now(); bsave(b);
+    addCoins(20);
+    var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
+    if(meta) toast('🏅 解锁：'+meta.n+' · +20 币', true);
+    return true;
+  }
+
+  function todayCount(){
+    var d0=new Date(); d0.setHours(0,0,0,0);
+    return log().filter(function(x){ return x.t>=d0.getTime(); }).length;
+  }
+  function streakDays(){
+    var days={}, d0=new Date(); d0.setHours(0,0,0,0), t0=d0.getTime();
+    log().forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0); days[d.getTime()]=1; });
+    var gaps=shieldCount(), n=0, c=t0, used=0;
+    while(true){
+      if(days[c]){ n++; c-=864e5; continue; }
+      if(c===t0){ c-=864e5; continue; }
+      if(used<gaps){ used++; c-=864e5; continue; }
+      break;
+    }
+    return n;
+  }
+
+  function checkBadges(){
+    var g=db(), L=log();
+    if(L.length>=1) unlock('first');
+    if((g.best||0)>=5) unlock('combo5');
+    if((g.best||0)>=10) unlock('combo10');
+    if(todayCount()>=GOAL) unlock('daily');
+    if(streakDays()>=3) unlock('streak3');
+    if(streakDays()>=7) unlock('streak7');
+    try{
+      var rv=JSON.parse(localStorage.getItem('dsh-review-v1')||'{}');
+      if(L.length>10 && Object.keys(rv).length===0) unlock('review');
+    }catch(e){}
+    try{
+      var cards=document.querySelectorAll('[data-slug][data-total]');
+      for(var i=0;i<cards.length;i++){
+        var c=cards[i], sl=c.dataset.slug, tot=+c.dataset.total;
+        var st=JSON.parse(localStorage.getItem('dsh-quiz-'+sl)||'null');
+        if(st && st.answers && tot && Object.keys(st.answers).length>=tot){ unlock('subject'); break; }
+      }
+    }catch(e){}
+  }
+
+  function awardXP(base, ok){
+    var g=db();
+    if(ok){ g.combo=(g.combo||0)+1; } else { g.combo=0; }
+    var mult = ok ? Math.min(2, 1 + 0.1*Math.max(0, (g.combo||1)-1)) : 1;
+    var buffs=readBuffs(), dbl = buffs.xp2Until && Date.now()<buffs.xp2Until ? 2 : 1;
+    var gain = ok ? Math.round(base*mult*dbl) : Math.max(1, Math.round(base*0.2));
+    var before=levelOf(g.xp||0);
+    g.xp=(g.xp||0)+gain;
+    g.best=Math.max(g.best||0, g.combo||0);
+    save(g);
+    var coin = Math.max(1, Math.round(gain*0.5));
+    var crit = ok && Math.random()<0.12;
+    if(crit) coin*=2;
+    addCoins(coin);
+    if(ok) beep(crit?1180:660, 0.1, "sine", crit?0.08:0.05); else beep(180,0.14,"sawtooth",0.05);
+    toast('+'+gain+' XP · +'+coin+' 币'+(crit?' 暴击!':'')+(ok&&g.combo>1?' · 连对 '+g.combo:'')+(dbl>1?' · ×2':''), ok);
+    var after=levelOf(g.xp);
+    if(after>before){ setTimeout(function(){ toast('🎉 升到 Lv.'+after, true); levelUpSound(); }, 450); }
+    checkBadges();
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+
+  /* 答题计分：难度加权 + 重复递减（对标论文里盛大的“反刷”规则） */
+  var SEEN_KEY="dsh-seen-v1";
+  function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
+  function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+  function awardForQ(id, diff, type, ok){
+    var base = type==='short' ? ({easy:12,medium:16,hard:22}[diff]||16)
+                              : ({easy:8, medium:10,hard:14}[diff]||10);
+    var S=seen(), e=S[id]||{n:0,right:false,sealed:false}, mul=1, note="";
+    if(e.right && ok){
+      if(e.sealed || e.n>=3){ mul=0; note="已掌握，不再加分"; }
+      else { mul=0.3; note="重做已会的题，经验 ×0.3"; }
+    } else if(e.right && !ok){
+      mul=1; note="";
+    } else if(!e.right && ok && e.n>0){
+      mul=1; note="纠错 + 全额";
+    }
+    e.n=(e.n||0)+1;
+    if(ok){ e.right=true; if(e.n>=3 && mul===0) e.sealed=true; }
+    S[id]=e; saveSeen(S);
+    if(mul===0){ toast(note+" · 去刷没掌握的题", false); return; }
+    var gain = Math.round(base*mul);
+    if(note) toast(note, true);
+    awardXP(gain, ok);
+  }
+  /* ---- 每日挑战任务（对应“挑战”要素） ---- */
+  var QKEY="dsh-quest-v1";
+  var QTEMPL=[
+    {id:"q_ans12", n:"今天做满 12 题", tip:"数量", type:"count", target:12, r:{coin:40}},
+    {id:"q_ans20", n:"今天做满 20 题", tip:"数量", type:"count", target:20, r:{coin:60}},
+    {id:"q_combo5", n:"一次连对 5 题", tip:"连击", type:"combo", target:5, r:{coin:50}},
+    {id:"q_combo8", n:"一次连对 8 题", tip:"连击", type:"combo", target:8, r:{coin:70}},
+    {id:"q_hard3", n:"做对 3 道「较难」题", tip:"攻坚", type:"hard", target:3, r:{dust:1}},
+    {id:"q_acc80", n:"正确率 80%（至少 10 题）", tip:"精准", type:"acc", target:80, r:{coin:60}},
+    {id:"q_short3", n:"完成 3 道简答自评", tip:"写作", type:"short", target:3, r:{coin:45}},
+    {id:"q_daily", n:"完成今日挑战", tip:"每日", type:"daily", target:1, r:{dust:2}}
+  ];
+  function qseed(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; }; }
+  function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function todayLog(){ var d0=new Date(); d0.setHours(0,0,0,0); return log().filter(function(x){ return x.t>=d0.getTime(); }); }
+  function quests(){
+    var Q=null;
+    try{ Q=JSON.parse(localStorage.getItem(QKEY)||"null"); }catch(e){}
+    if(!Q || Q.date!==todayKey()){
+      var rnd=qseed("q:"+todayKey()), pool=QTEMPL.slice();
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      Q={date:todayKey(), list:pool.slice(0,3).map(function(x){return x.id;}), claimed:[]};
+      try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    }
+    return Q;
+  }
+  function questProgress(){
+    var L=todayLog(), n=L.length;
+    var okCnt=L.filter(function(x){return x.ok;}).length;
+    var maxCombo=0, cur=0;
+    L.slice().sort(function(a,b){return a.t-b.t;}).forEach(function(x){ if(x.ok){ cur++; maxCombo=Math.max(maxCombo,cur);} else cur=0; });
+    var hard=L.filter(function(x){ return x.ok && x.d==="hard"; }).length;
+    var short=L.filter(function(x){ return x.ty==="short"; }).length;
+    var acc = n>=10 ? Math.round(okCnt/n*100) : 0;
+    var dailyDone = 0;
+    try{ var dr=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); if(dr.date===todayKey()) dailyDone=1; }catch(e){}
+    return {count:n, combo:maxCombo, hard:hard, short:short, acc:acc, daily:dailyDone};
+  }
+  function questValue(q, p){ return p[q.type] || 0; }
+  window.quests=quests; window.questProgress=questProgress; window.questValue=questValue; window.QTEMPL=QTEMPL;
+
+  var CHEST_KEY="dsh-chest-v1";
+  function openChest(){
+    var roll=Math.random(), msg="", dust=0, coin=0;
+    if(roll<0.10){ dust=3; msg="💎 稀有宝箱：星尘 ×3"; addDust(3); }
+    else if(roll<0.45){ coin=Math.round(30+Math.random()*40); msg="🎁 宝箱：金币 +"+coin; addCoins(coin); }
+    else { dust=1; msg="🎁 宝箱：星尘 ×1"; addDust(1); }
+    try{ var c=JSON.parse(localStorage.getItem(CHEST_KEY)||'{"n":0}'); c.n=(c.n||0)+1; localStorage.setItem(CHEST_KEY,JSON.stringify(c)); }catch(e){}
+    setTimeout(function(){ toast(msg, true); beep(880,0.18,"triangle",0.07); }, 700);
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+  window.openChest=openChest;
+
+  function claimQuest(id){
+    var Q=quests(), meta=null;
+    QTEMPL.forEach(function(x){ if(x.id===id) meta=x; });
+    if(!meta) return {ok:false,msg:"任务不存在"};
+    if(Q.claimed.indexOf(id)>=0) return {ok:false,msg:"已经领过了"};
+    var p=questProgress();
+    if(questValue(meta,p) < meta.target) return {ok:false,msg:"还没完成"};
+    Q.claimed.push(id);
+    try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    if(meta.r.coin) addCoins(meta.r.coin);
+    if(meta.r.dust) addDust(meta.r.dust);
+    toast("✅ 任务完成："+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
+    beep(1046,0.16,"triangle",0.07);
+    if(window.__refreshProfile) window.__refreshProfile();
+    return {ok:true,msg:"已领取"};
+  }
+  window.claimQuest=claimQuest;
+  window.awardForQ=awardForQ;
+  window.awardXP=awardXP; window.checkBadges=checkBadges;
+  window.GAME={db:db,levelOf:levelOf,BADGES:BADGES,bdb:bdb,todayCount:todayCount,streakDays:streakDays,
+    GOAL:GOAL,coins:readCoins,inv:readInv,buffs:readBuffs,SHOP:SHOP,buy:buy,equipTheme:equipTheme,
+    equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
+    shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
+
+  function renderQuests(host){
+    if(!host) return;
+    var Q=quests(), p=questProgress();
+    var rows=Q.list.map(function(id){
+      var m=null; QTEMPL.forEach(function(x){ if(x.id===id) m=x; });
+      var v=Math.min(questValue(m,p), m.target), pct=Math.round(v/m.target*100);
+      var done=v>=m.target, claimed=Q.claimed.indexOf(id)>=0;
+      var btn = claimed ? '<span class="qdone">已领取</span>'
+              : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
+                      : '<span class="qnum">'+v+'/'+m.target+'</span>');
+      return '<div class="qrow'+(done?' done':'')+'"><span class="qtip">'+m.tip+'</span>'+
+        '<span class="qname">'+m.n+'</span>'+
+        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+btn+'</div>';
+    }).join("");
+    host.innerHTML='<h2 class="gh">今日任务 <span class="gz">每天 0 点刷新 · 3 个随机</span></h2><div class="qlist">'+rows+'</div>';
+  }
+  window.__renderQuests=renderQuests;
+
+  /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
+  var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
+  function apibase(){ try{ return (localStorage.getItem(AKEY)||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
+  function loadBoard(){
+    var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
+    fetch(apibase()+"/board?day="+encodeURIComponent(todayKey()))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok || !d.list) return;
+        if(!d.list.length){ box.innerHTML='<div class="mutedsmall">云端还没有今天的成绩，做一轮然后点「☁ 提交」</div>'; return; }
+        var me=nick()||"我";
+        box.innerHTML=d.list.map(function(x,i){
+          return '<div class="rrow'+(x.name===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+                 '<span class="rname">'+x.name+(x.name===me?'（我）':'')+'</span>'+
+                 '<span class="rp">'+x.pct+'%</span></div>';
+        }).join("");
+      })
+      .catch(function(){});
+  }
+  function pushScore(){
+    if(!apibase()) return {ok:false,msg:"还没设置服务器地址"};
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok) loadBoard(); })
+      .catch(function(){});
+    return {ok:true,msg:"已提交"};
+  }
+  window.loadBoard=loadBoard; window.pushScore=pushScore; window.apibase=apibase; window.setApi=setApi;
+  function b64e(str){ try{ return btoa(unescape(encodeURIComponent(str))).replace(/=+$/,"").replace(/\+/g,"-").replace(/\//g,"_"); }catch(e){ return ""; } }
+  function b64d(str){ try{ return decodeURIComponent(escape(atob(str.replace(/-/g,"+").replace(/_/g,"/")))); }catch(e){ return ""; } }
+  function nick(){ try{ return localStorage.getItem(NKEY)||""; }catch(e){ return ""; } }
+  function setNick(v){ try{ localStorage.setItem(NKEY, v); }catch(e){} }
+  function friends(){ try{ return JSON.parse(localStorage.getItem(FKEY)||"[]"); }catch(e){ return []; } }
+  function saveFriends(a){ try{ localStorage.setItem(FKEY, JSON.stringify(a.slice(0,60))); }catch(e){} }
+
+  function myCode(){
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    var g=db();
+    return {ok:true, code:b64e(JSON.stringify({v:1,d:rec.date,p:rec.best,n:rec.answer||21,
+      name:(nick()||"我"), xp:g.xp||0}))};
+  }
+  function addCode(str){
+    var raw=b64d((str||"").trim());
+    if(!raw) return {ok:false,msg:"码不对"};
+    var o; try{ o=JSON.parse(raw); }catch(e){ return {ok:false,msg:"码不对"}; }
+    if(!o || o.v!==1 || !o.d || o.p===undefined) return {ok:false,msg:"码不对"};
+    var list=friends();
+    list=list.filter(function(x){ return !(x.d===o.d && x.name===o.name); });
+    list.push({d:o.d, p:o.p, n:o.n||0, name:String(o.name||"同学").slice(0,12), xp:o.xp||0, t:Date.now()});
+    saveFriends(list);
+    return {ok:true,msg:"已加入 "+String(o.name||"同学").slice(0,12)+" 的 "+o.p+"%"};
+  }
+  window.myCode=myCode; window.addCode=addCode; window.nick=nick; window.setNick=setNick;
+
+  function renderBoard(host){
+    if(!host) return;
+    var g=db(), c=readCoins(), L=log();
+    var days={}, dayOk={};
+    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
+      var k=d.getTime();
+      days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
+    var dayList=Object.keys(days).map(function(k){
+      var d=new Date(+k);
+      return {ts:+k, d:(d.getMonth()+1)+"-"+d.getDate(), n:days[k], ok:dayOk[k],
+              pct:Math.round(dayOk[k]/days[k]*100)};
+    }).sort(function(a,b){ return b.ts-a.ts; }).slice(0,7);
+    var myRec={}; try{ myRec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    var rows=[];
+    if(myRec.date===todayKey()) rows.push({name:nick()||"我", p:myRec.best||0, me:true});
+    friends().filter(function(x){ return x.d===todayKey(); }).forEach(function(x){
+      rows.push({name:x.name, p:x.p, me:false});
+    });
+    rows.sort(function(a,b){ return b.p-a.p; });
+    var rankHtml = rows.length ? ('<div class="rank" id="rankbox">'+rows.map(function(r,i){
+      return '<div class="rrow'+(r.me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
+        '<span class="rp">'+r.p+'%</span></div>';
+    }).join("")+'</div>') : '<div class="rank" id="rankbox"><div class="mutedsmall">还没人交榜。做完「今日挑战」，复制战绩码发给同学互换。</div></div>';
+
+    host.innerHTML='<h2 class="gh">今日好友榜 <span class="gz">'+todayKey()+' · 靠战绩码互通，不用服务器</span></h2>'+
+      rankHtml +
+      '<div class="codebar"><button class="btn2" id="mecode">复制我的战绩码</button>'+
+      '<input id="friendcode" placeholder="粘贴同学的战绩码">'+
+      '<button class="btn2" id="addcode">加入</button>'+
+      (apibase()
+        ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>'
+        : '<button class="btn2" id="cfgapi">⚙ 设置服务器地址</button>')+'</div>'+
+      '<h2 class="gh" style="margin-top:22px">纪录榜 <span class="gz">本地 · 跟自己比</span></h2>'+
+      '<div class="board">'+
+        '<div class="brow"><span>总经验</span><b>'+g.xp+'</b></div>'+
+        '<div class="brow"><span>最高连对</span><b>'+(g.best||0)+'</b></div>'+
+        '<div class="brow"><span>累计作答</span><b>'+L.length+'</b></div>'+
+        '<div class="brow"><span>金币 / 星尘</span><b>'+(c.n||0)+' / '+(c.dust||0)+'</b></div>'+
+      '</div>'+
+      '<div class="days">'+dayList.map(function(x){
+        return '<div class="day"><em>'+x.pct+'%</em><i style="height:'+Math.max(4,Math.round(x.pct*0.5))+'px"></i>'+
+               '<span>'+x.d+'</span></div>';
+      }).join("")+'</div>';
+  }
+  window.__renderBoard=renderBoard;
+
+  function renderProfile(){
+    var host=document.getElementById('profile');
+    if(!host) return;
+    var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
+    var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
+    var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
+    var seenAll=seen(), fixed=0, mastered=0;
+    Object.keys(seenAll).forEach(function(k){ var e=seenAll[k]; if(e.right && e.n>1) fixed++; if(e.right && e.sealed) mastered++; });
+    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var badges=BADGES.map(function(x){
+      var got=b[x.id];
+      return '<div class="badge'+(got?' on':'')+'" title="'+x.d+'"><span class="bi">'+x.i+'</span>'+
+             '<span class="bn">'+x.n+'</span></div>';
+    }).join('');
+    host.innerHTML=
+      '<div class="prof-main">'+
+        '<div class="lv"><span class="lvnum">'+lv+'</span><span class="lvlab">等级</span></div>'+
+        '<div class="prof-body">'+
+          '<div class="prof-line"><b>'+xp+' XP</b>'+title+(nx?('<span class="muted">距 Lv.'+(lv+1)+' 还差 '+(nx-xp)+'</span>'):'<span class="muted">满级</span>')+'</div>'+
+          '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+          '<div class="prof-meta">今日 <b>'+tc+'</b>/'+GOAL+' 题 · 连续 <b>'+st+'</b> 天 · 连对纪录 <b>'+(g.best||0)+'</b>'+
+            ' · 金币 <b>'+(c.n||0)+'</b></div>'+
+          '<div class="prof-note">纠错 <b>'+fixed+'</b> 题 · 已掌握 <b>'+mastered+'</b> 题（做满 3 次不再计分）</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="badges">'+badges+'</div>'+
+      '<div class="prof-tools"><button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效开':'🔇 音效关')+'</button></div>'+
+      '<div class="prof-note dim">这套分数只认「答对的题」。读材料、琢磨思路、改答案、想通一个概念——这些没被计分，但它们才是真正在学的东西。</div>';
+  }
+  function renderAll(){
+    renderProfile();
+    setTimeout(loadBoard, 0);
+    renderQuests(document.getElementById("quests"));
+    renderBoard(document.getElementById("board"));
+  }
+  window.__refreshProfile=renderAll;
+  document.addEventListener("click", function(ev){
+    var s = ev.target.closest && ev.target.closest("#sfxbtn");
+    if(s){ var on = toggleSfx(); s.textContent = on ? "🔊 音效开" : "🔇 音效关"; return; }
+    var q = ev.target.closest && ev.target.closest("[data-claim]");
+    if(q){ claimQuest(q.getAttribute("data-claim")); renderAll(); return; }
+    if(ev.target.closest && ev.target.closest("#mecode")){
+      if(!nick()){ var nm=prompt("给自己起个名字（显示在好友榜）",""); if(nm) setNick(nm.slice(0,12)); }
+      var r=myCode();
+      if(!r.ok){ toast(r.msg,false); return; }
+      var ta=document.createElement("textarea"); ta.value=r.code;
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); toast("战绩码已复制，发给同学吧", true); }
+      catch(e){ toast("复制失败，手动选中："+r.code.slice(0,20)+"…", false); }
+      ta.remove();
+      return;
+    }
+    if(ev.target.closest && ev.target.closest("#cfgapi")){
+      var cur=apibase();
+      var v=prompt("填入 Cloudflare Worker 地址（留空则清除）", cur);
+      if(v===null) return;
+      setApi(v);
+      toast(v.trim()?"已保存，正在拉取云端榜…":"已清除服务器地址", true);
+      renderAll(); return;
+    }
+    if(ev.target.closest && ev.target.closest("#pushscore")){
+      var r2=pushScore(); toast(r2.msg, r2.ok); return;
+    }
+    if(ev.target.closest && ev.target.closest("#addcode")){
+      var inp=document.getElementById("friendcode");
+      var res=addCode(inp?inp.value:"");
+      toast(res.msg, res.ok); renderAll(); return;
+    }
+  });
+  applyTheme();
+  if(document.readyState!=='loading') renderAll(); else document.addEventListener('DOMContentLoaded', renderAll);
+})();
+</script>
+</body>
+</html>

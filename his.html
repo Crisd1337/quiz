@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>历史 · 10 年级 · 复习测验</title>
+<style>
+:root{
+  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
+  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+}
+@media (prefers-color-scheme: light) {
+  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
+ backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
+.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
+.bar .meta{color:var(--dim);font-size:13px}
+.spacer{flex:1}
+.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
+ font-size:12px;color:var(--dim)}
+.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
+.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
+.chip.easy{color:#2fbf71;border-color:#2fbf7144}
+.chip.medium{color:#f5a623;border-color:#f5a62344}
+.chip.hard{color:#ff5f56;border-color:#ff5f5644}
+.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
+ background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
+ padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+.opt:disabled{cursor:default}
+.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
+ display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
+.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
+.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
+.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
+textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
+ border-radius:11px;padding:12px;font:inherit;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
+ border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.exp.show{display:block}
+.exp b{color:var(--accent)}
+.src{margin-top:8px;color:var(--dim);font-size:12px}
+.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
+ font:inherit;font-weight:600;cursor:pointer}
+button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+button.btn:disabled{opacity:.45;cursor:default}
+.done h2{margin:0 0 6px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
+.stat b{display:block;font-size:24px;line-height:1.2}
+.stat span{color:var(--dim);font-size:12px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.wronglist li{margin:4px 0}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
+kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+
+.chip.warn{border-color:#f5a62366;color:#f5a623}
+.muted{color:var(--dim);font-size:13px}
+.pts{display:grid;gap:8px;margin-top:12px}
+.pt{display:flex;gap:10px;align-items:flex-start;background:var(--card2);border:1px solid var(--line);
+ border-radius:10px;padding:10px 12px;cursor:pointer;font-size:14.5px}
+.pt.on{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--card2))}
+.pt input{margin-top:3px;width:16px;height:16px;flex:0 0 16px;accent-color:var(--ok)}
+.pt span{flex:1;min-width:0}
+.pt em{color:var(--dim);font-style:normal;font-size:12px;white-space:nowrap}
+.mine{margin-top:14px;background:var(--card2);border-radius:10px;padding:10px 12px;font-size:14px}
+.mine div{margin-top:6px;white-space:pre-wrap;color:var(--dim)}
+.fullans{margin-top:10px;font-size:14px}
+.fullans summary{cursor:pointer;color:var(--accent)}
+.fullans div{margin-top:8px;white-space:pre-wrap;color:var(--dim)}
+.setup{max-width:760px;margin:0 auto}
+.setup-head{margin:4px 0 20px}
+.setup-head h2{margin:0 0 6px;font-size:22px}
+.setup-head p{margin:0;font-size:13.5px;line-height:1.6}
+.setup-block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.setup-label{font-size:13px;color:var(--dim);margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.pick{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);
+ border-radius:10px;padding:11px 12px;cursor:pointer;font-size:14px;min-width:0}
+.pick input{width:16px;height:16px;flex:0 0 16px;accent-color:var(--accent)}
+.pick .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pick em{color:var(--dim);font-style:normal;font-size:12px;flex:0 0 auto}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
+ padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
+.setup-foot .sum{color:var(--dim);font-size:14px}
+.setup-foot .sum b{color:var(--fg);font-size:18px}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;padding:24px}
+.nav-overlay.on{display:block}
+.nav-box{max-width:720px;margin:6vh auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.nav-head{display:flex;gap:10px;align-items:center;margin-bottom:12px;font-size:14px;flex-wrap:wrap}
+.nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px;max-height:56vh;overflow:auto}
+.nav-grid button{padding:9px 0;border-radius:9px;border:1px solid var(--line);background:var(--card2);
+ color:var(--fg);font:inherit;font-size:13px;cursor:pointer}
+.nav-grid button.ok{border-color:var(--ok);color:var(--ok)}
+.nav-grid button.bad{border-color:var(--bad);color:var(--bad)}
+.nav-grid button.part{border-color:var(--warn);color:var(--warn)}
+html,body{max-width:100%;overflow-x:hidden}
+main{display:flex;flex-direction:column}
+.card{flex:0 0 auto}
+.chips{opacity:.92}
+.chip{font-size:11px;padding:2px 8px}
+.stem{font-size:19px;line-height:1.62;font-weight:500;margin:12px 0 20px}
+.opts{gap:12px}
+.opt{padding:14px 16px;font-size:15.5px;position:relative;border-left-width:3px}
+.opt .txt{flex:1;min-width:0}
+.opt .mk{margin-left:8px;font-weight:700}
+.opt.correct{border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad)}
+.actionbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:10px;align-items:center;
+ padding:10px max(16px,calc((100vw - 860px)/2)) calc(10px + env(safe-area-inset-bottom));
+ background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.actionbar .spacer{flex:1}
+main{padding-bottom:104px!important}
+footer{padding-bottom:96px}
+.sfxbtn{background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:8px;
+ padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
+.prof-tools{margin-top:10px}
+.xp-toast{position:fixed;right:18px;bottom:92px;z-index:60;background:var(--card);border:1px solid var(--line);
+ color:var(--dim);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;
+ opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none}
+.xp-toast.ok{border-color:var(--ok);color:var(--ok)}
+.xp-toast.up{opacity:1;transform:translateY(0)}
+.profile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 22px}
+.prof-main{display:flex;gap:16px;align-items:center}
+.lv{width:64px;height:64px;border-radius:18px;background:color-mix(in srgb,var(--accent) 16%,var(--card2));
+ display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 64px}
+.lvnum{font-size:24px;font-weight:700;color:var(--accent);line-height:1}
+.lvlab{font-size:10px;color:var(--dim);margin-top:2px}
+.prof-body{flex:1;min-width:0}
+.prof-line{display:flex;gap:10px;align-items:baseline;font-size:14px}
+.prof-line b{font-size:17px}
+.xpbar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin:8px 0 6px}
+.xpbar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.prof-meta{font-size:12px;color:var(--dim)}
+.prof-meta b{color:var(--fg)}
+.badges{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}
+.badge{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center;opacity:.45}
+.badge.on{opacity:1;border-color:color-mix(in srgb,var(--warn) 55%,var(--line))}
+.badge .bi{display:block;font-size:18px;line-height:1.3}
+.badge .bn{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:720px){ .badges{grid-template-columns:repeat(4,1fr)} }
+.panel{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:16px}
+.panel-h{font-size:12px;color:var(--dim);margin-bottom:10px}
+body{display:flex;flex-direction:column;min-height:100vh}
+main{flex:1 0 auto}
+footer{margin-top:auto}
+main,.card,.setup{max-width:100%}
+.opt,.pt,.pick,.mine,.exp{min-width:0}
+.stem,.opt span,.pt span{overflow-wrap:anywhere}
+.actions{flex-wrap:wrap}
+footer{padding:22px 14px 30px;line-height:1.8}
+
+@media (max-width:720px){
+  #scorepill{display:none}
+  .bar a.pill{display:none}
+  .bar{flex-wrap:wrap;row-gap:8px}
+  .bar h1{flex:1 1 100%;font-size:16px;margin:0}
+  .bar .spacer{display:none}
+  #restart{display:none}
+  #grid,#exam{padding:6px 10px!important;font-size:12px!important}
+  .progress{margin-top:6px}
+}
+@media (max-width:560px){
+  .bar{gap:8px}
+  .bar h1{font-size:17px;line-height:1.3}
+  .bar .meta{display:none}
+  .pill{padding:3px 9px;font-size:11px}
+  main{padding:12px 10px 84px}
+  .card{padding:14px;border-radius:12px}
+  .chips{gap:6px;margin-bottom:10px}
+  .chip{font-size:11px;padding:1px 7px}
+  .stem{font-size:15.5px;line-height:1.6;margin:2px 0 14px}
+  .opt{padding:12px;font-size:15px;line-height:1.5;gap:10px}
+  .opt .k{flex:0 0 22px;height:22px;font-size:11px}
+  .actions{gap:8px;margin-top:14px}
+  .actions .btn{padding:10px 12px;font-size:14px}
+  .stem{font-size:17px;margin:10px 0 16px}
+  .actionbar #prev,.actionbar #next{flex:1 1 0}
+  .actionbar #finish{flex:0 0 auto}
+  textarea{font-size:15px}
+  .picks{grid-template-columns:1fr}
+  .setup-head h2{font-size:20px}
+  .setup-block{padding:14px}
+  .seg{gap:6px}
+  .seg button{padding:12px 0;font-size:13px}
+  .setup-foot{flex-direction:column;align-items:stretch;gap:10px}
+  .setup-foot .sum{text-align:center}
+  .setup-foot .btn{width:100%;padding:12px 0;font-size:15px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stat{min-width:0;padding:10px 12px}
+  .stat b{font-size:18px}
+  footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>历史 · 10 年级</h1>
+    <span class="meta">10HIS 26 · 28 题</span>
+    <span class="spacer"></span>
+    <span class="pill" id="counter">0 / 28</span>
+    <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
+    <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
+    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">📋 题号</button>
+    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">⏱ 考试模式</button>
+    <span class="pill" id="clock" style="display:none"></span>
+    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+  </div>
+  <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
+</header>
+<main id="app"></main>
+<div id="nav" class="nav-overlay"><div class="nav-box">
+  <div class="nav-head"><b>题号</b><span class="muted">绿=对 红=错 橙=半对 灰=未做</span><button class="btn ghost" id="navclose" style="margin-left:auto;padding:4px 10px">关闭</button></div>
+  <div class="nav-grid" id="navgrid"></div>
+</div></div>
+<footer>键盘：<kbd>1</kbd>–<kbd>4</kbd> 选择 · <kbd>←</kbd><kbd>→</kbd> 切题 · <kbd>G</kbd> 题号 · <kbd>Enter</kbd> 下一题 · <kbd>S</kbd> 看成绩 · 进度自动保存在本机浏览器</footer>
+<script>
+const DATA = {"slug": "his", "title": "历史 · 10 年级", "examMin": 60, "questions": [{"id": "his-001", "topic": "年考术语 · 单极格局", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines unipolarity?", "options": ["One state is dominant, with no rival of comparable power", "Power is dispersed among several competing great powers", "Power is shared between two rival blocs that balance each other", "Power rests with whichever state acts first without consulting others"], "answer": 0, "explanation": "单极＝只有一个占绝对优势的力量中心，没有同级对手。两极是冷战的美苏互衡，多极是多方均衡；「Power rests with whichever state acts first without consulting others」 描述的是单边主义的行事方式，不是权力结构。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unipolarity）", "weak": false}, {"id": "his-002", "topic": "年考术语 · 多边行动", "difficulty": "easy", "type": "mcq", "stem": "Which action is the clearest example of multilateral action?", "options": ["One state acting alone without notifying any other government", "A coalition of states acting together under UN Security Council authorisation", "One state threatening to act alone unless its allies fall into line", "Two neighbouring states signing a border and trade agreement"], "answer": 1, "explanation": "multilateral 指多国共同参与、通常经国际机构协调的行动，关键词是「多国＋授权」。「One state acting alone without notifying any other government」 和 「One state threatening to act alone unless its allies fall into line」 是单边；「Two neighbouring states signing a border and trade agreement」 只有两国，属 bilateral，不是 multilateral。", "source": "Term 4 · Yearly Assessment Notification — Section One（Multilateral）", "weak": false}, {"id": "his-003", "topic": "年考术语 · 单边主义", "difficulty": "medium", "type": "mcq", "stem": "A government repeatedly insists it will act alone when allies disagree, even at the cost of isolation. This pattern of behaviour is best described as:", "options": ["Humanitarian intervention — force to protect civilians", "Multilateralism — several states act together", "Unilateralism — the habit of acting alone by choice", "Collective security — allies respond together"], "answer": 2, "explanation": "unilateralism 是一种「偏好／习惯」：明知盟友反对仍倾向自行行动。collective security 强调集体回应侵略，multilateralism 强调多国协调，都与题干相反。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateralism）", "weak": false}, {"id": "his-004", "topic": "年考术语 · 集体安全", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines collective security?", "options": ["A single state decides when and where military force will be used", "Each state builds enough weapons to deter rivals without any allies", "A powerful state intervenes inside another to stop human rights abuses", "States agree that an attack on one member is an attack on all"], "answer": 3, "explanation": "集体安全的核心是「一国受攻＝全体受攻」，成员共同回应（通常经联合国）。「Each state builds enough weapons to deter rivals without any allies」 是自行威慑，「A powerful state intervenes inside another to stop human rights abuses」 是人道干预，「A single state decides when and where military force will be used」 是单边决策。", "source": "Term 4 · Yearly Assessment Notification — Section One（Collective Security）", "weak": false}, {"id": "his-005", "topic": "年考术语 · 集体安全 vs 人道干预", "difficulty": "medium", "type": "mcq", "stem": "Which action is the clearest example of collective security rather than humanitarian intervention?", "options": ["A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait", "US troops landing in Somalia in 1992 to protect food convoys", "US-led forces invading Iraq in 2003 without any explicit UN approval", "NATO aircraft bombing Serbia in 1999 to stop ethnic cleansing"], "answer": 0, "explanation": "海湾战争回应的是「跨国侵略」这一对成员国的攻击，属集体安全的典型。其余三个的动因都是保护平民或推翻政权，属人道干预或先发制人，不是集体安全。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）", "weak": false}, {"id": "his-006", "topic": "年考术语 · 先发制人", "difficulty": "easy", "type": "mcq", "stem": "In the Bush Doctrine, pre-emption means:", "options": ["Intervening to stop a government killing its own citizens", "Striking first at a state or group judged to pose a future threat", "Waiting for an attack, then responding with UN approval", "Working through alliances so no single state decides on war"], "answer": 1, "explanation": "先发制人把动武时点前移到「威胁可能成真」之前，不等待实际攻击发生。这正是 Bush Doctrine 与集体安全、人道干预的关键区别。", "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption）", "weak": false}, {"id": "his-007", "topic": "年考术语 · 先发制人 vs 人道干预", "difficulty": "medium", "type": "mcq", "stem": "Which feature most clearly separates pre-emption from humanitarian intervention?", "options": ["Pre-emption targets only non-state groups; intervention only states", "Pre-emption is always multilateral; intervention is always unilateral in form", "Pre-emption answers a future threat; intervention answers harm under way", "Pre-emption always needs UN authorisation; intervention never does"], "answer": 2, "explanation": "区分点在「威胁的时间性」：先发制人针对尚未发生的威胁，人道干预针对正在发生的大规模伤害。授权方式、参与国数量、目标类型都不是二者的分界。", "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption / Humanitarian Intervention）", "weak": false}, {"id": "his-008", "topic": "年考术语 · 人道干预", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines humanitarian intervention?", "options": ["Defensive action taken after a direct attack on one's own soil", "Military action to seize disputed territory and its natural resources", "Economic sanctions agreed by a regional trade or security organisation", "Military action inside a state, without consent, to stop mass suffering"], "answer": 3, "explanation": "人道干预的三个要件：进入他国、未经该国同意、目的是制止大规模人道灾难。「Economic sanctions agreed by a regional trade or security organisation」 是制裁而非军事干预，「Defensive action taken after a direct attack on one's own soil」 是自卫。", "source": "Term 4 · Yearly Assessment Notification — Section One（Humanitarian Intervention）", "weak": false}, {"id": "his-009", "topic": "年考术语 · 单边与多边辨析", "difficulty": "medium", "type": "mcq", "stem": "In 2003 State A went to war with a small group of allies after failing to win UN Security Council support, while State B sent troops to a UN-authorised mission. Which pairing is correct?", "options": ["A — unilateral action; B — multilateral action", "A — multilateral action; B — unilateral action", "A — collective security; B — humanitarian intervention", "A — humanitarian intervention; B — collective security"], "answer": 0, "explanation": "判准是「是否有广泛授权」：A 只带少数盟友、绕过安理会，属单边；B 参与联合国授权任务，属多边。注意 A 虽有盟友，但「小圈子＋无授权」仍被归为单边行动。", "source": "Term 4 · Yearly Assessment Notification — Body 2（invasion of Iraq）", "weak": false}, {"id": "his-010", "topic": "年考术语 · unilateral 与 unilateralism", "difficulty": "medium", "type": "mcq", "stem": "Why does the course list both 'unilateral' and 'unilateralism' as separate terms?", "options": ["'Unilateralism' describes one action; 'unilateral' a whole doctrine", "'Unilateral' is one action taken alone; 'unilateralism' is the doctrine", "They are synonyms, listed twice for emphasis in the notes", "'Unilateral' describes economic policy; 'unilateralism' military policy"], "answer": 1, "explanation": "unilateral 是形容词，描述「单方采取的一次行动」；unilateralism 是名词，指「倾向单方行动的主义／政策取向」。Section One 考 metalanguage，正是要辨清词性与层级。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateral / Unilateralism）", "weak": false}, {"id": "his-011", "topic": "年考论证 · Body 1 选材", "difficulty": "easy", "type": "short", "stem": "Body 1 of the essay covers the 1990s. Name the two events from the notification's list that you would use, and justify your choice in one sentence. (2 marks)", "options": [], "answer": "The Gulf War (1991) and Somalia (1992–94). Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene.", "explanation": "Body 1 只需两个事件，但要形成「对照」而非并列：一个成功多边、一个暴露局限。选 Gulf War＋Somalia、或 Gulf War＋Kosovo 都可，关键是说明为何这两个能支撑主题句。", "source": "Term 4 · Yearly Assessment Notification — Body 1（possible events）", "points": [{"t": "The Gulf War (1991) and Somalia (1992–94)", "m": 1}, {"t": "Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene", "m": 1}], "weak": false}, {"id": "his-012", "topic": "年考论证 · 海湾战争与多边主义", "difficulty": "easy", "type": "short", "stem": "Explain how the Gulf War of 1991 demonstrates multilateralism. (2 marks)", "options": [], "answer": "The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.", "explanation": "多边主义的两个标志：联合国授权＋多国共同承担。答题要写出「谁授权、多少方参与、为何这算多边」，只写「很多国家参加」不够。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）", "points": [{"t": "The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.", "m": 1}], "weak": false}, {"id": "his-013", "topic": "年考论证 · 海湾战争为何属集体安全", "difficulty": "medium", "type": "short", "stem": "Explain why the Gulf War of 1991 is better described as collective security than as humanitarian intervention. (3 marks)", "options": [], "answer": "The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression. Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention.", "explanation": "关键分界是「触发原因」：集体安全回应国家对国家的侵略，人道干预回应政府对自己人民的伤害。海湾战争是前者，1990 年代后期科索沃才是后者的争议案例。", "source": "Term 4 · Yearly Assessment Notification — Section One + Body 1", "points": [{"t": "The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression", "m": 1}, {"t": "Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention", "m": 1}], "weak": false}, {"id": "his-014", "topic": "年考论证 · 索马里与人道干预的局限", "difficulty": "medium", "type": "short", "stem": "What did the US experience in Somalia (1992–94) reveal about the limits of humanitarian intervention? (3 marks)", "options": [], "answer": "A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal. It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country.", "explanation": "索马里常被用作「干预容易、收尾困难」的反面教材：任务目标从送粮扩到战斗、伤亡引发国内压力、最后撤军。写清这条因果链才能拿满分。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Somalia 1992-94）＋ 课程标准补充", "points": [{"t": "A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal", "m": 1}, {"t": "It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country", "m": 1}], "weak": true}, {"id": "his-015", "topic": "年考论证 · 卢旺达 1994 的干预失败", "difficulty": "medium", "type": "short", "stem": "Why is Rwanda (1994) usually described as a failure of humanitarian intervention? (3 marks)", "options": [], "answer": "The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide. The world stood aside, so the decade's humanitarian language was not matched by action.", "explanation": "答「失败」要有两层：现场力量不足＋大国政治上不愿介入（连 genocide 一词都回避）。这正好与同期科索沃的积极干预形成对照。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Rwanda 1994）＋ 课程标准补充", "points": [{"t": "The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide", "m": 1}, {"t": "The world stood aside, so the decade's humanitarian language was not matched by action", "m": 1}], "weak": true}, {"id": "his-016", "topic": "年考论证 · 科索沃的灰色地带", "difficulty": "hard", "type": "short", "stem": "Why is NATO's 1999 intervention in Kosovo often called a 'grey case' of humanitarian intervention? (4 marks)", "options": [], "answer": "The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate. It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance.", "explanation": "「灰色」＝动机正当但授权缺失：合法性与正当性分离。答题要同时写出两边，只说「救了人」或只说「违法」都拿不到高分。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Kosovo 1999）＋ 课程标准补充", "points": [{"t": "The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate", "m": 1}, {"t": "It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance", "m": 1}], "weak": true}, {"id": "his-017", "topic": "年考写作 · Body 1 主题句", "difficulty": "medium", "type": "short", "stem": "Write a topic sentence for Body 1 (the 1990s) that directly answers the essay question. (2 marks)", "options": [], "answer": "In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.", "explanation": "主题句必须含「时段＋论点」，不能只写「1990 年代有很多事件」。好的主题句还会预告张力（多边领导 vs 局限），为结尾 link 句留接口。", "source": "Term 4 · Yearly Assessment Notification — Body 1（topic sentence row）", "points": [{"t": "In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.", "m": 1}], "weak": false}, {"id": "his-018", "topic": "年考论证 · 九一一的转向", "difficulty": "easy", "type": "short", "stem": "Explain how the 9/11 attacks changed the priorities of US foreign policy. (3 marks)", "options": [], "answer": "They shifted US priorities from managing the post-Cold War order to a global 'war on terror'. The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation.", "explanation": "答题锚点是「优先级转移」：从维持后冷战秩序转向反恐。要写出至少两个具体表现（阿富汗、监控、军费、先发制人），不能只写「变得更 aggressive」。", "source": "Term 4 · Lesson 3.1 9/11 Attacks; Notification — Body 2（Impact of 9/11）", "points": [{"t": "They shifted US priorities from managing the post-Cold War order to a global 'war on terror'", "m": 1}, {"t": "The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation", "m": 1}], "weak": false}, {"id": "his-019", "topic": "年考论证 · Bush Doctrine 的特征", "difficulty": "easy", "type": "short", "stem": "Outline the key features of the Bush Doctrine. (3 marks)", "options": [], "answer": "Pre-emption — striking first against states or groups judged to pose a future threat; a willingness to act unilaterally when multilateral agreement could not be reached; regime change and the promotion of democracy; and the claim that American security required action beyond UN authorisation.", "explanation": "四个特征要能分别举例对应：先发制人（伊拉克）、单边（绕开安理会）、政权更替（推翻萨达姆）、推广民主。只背名字不解释会失分。", "source": "Term 4 · Lesson 3.2 The Bush Doctrine; Notification — Body 2", "points": [{"t": "Pre-emption — striking first against states or groups judged to pose a future threat", "m": 1}, {"t": "a willingness to act unilaterally when multilateral agreement could not be reached", "m": 1}, {"t": "regime change and the promotion of democracy", "m": 1}, {"t": "and the claim that American security required action beyond UN authorisation", "m": 1}], "weak": false}, {"id": "his-020", "topic": "年考论证 · 伊拉克战争为何是单边", "difficulty": "medium", "type": "short", "stem": "Explain why the 2003 invasion of Iraq is often described as unilateral rather than multilateral. (3 marks)", "options": [], "answer": "The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself. Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral.", "explanation": "判准不是「有没有盟友」，而是「有没有广泛授权与共同承担」。美国确有盟友，但小圈子＋无安理会授权，因此在教材分类中被归为单边。", "source": "Term 4 · Lesson 4.2 Iraq; Notification — Body 2（invasion of Iraq）", "points": [{"t": "The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself", "m": 1}, {"t": "Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral", "m": 1}], "weak": false}, {"id": "his-021", "topic": "年考论证 · 1991 与 2003 对照", "difficulty": "hard", "type": "short", "stem": "Contrast the multilateralism of the 1991 Gulf War with the unilateralism of the 2003 invasion of Iraq. (4 marks)", "options": [], "answer": "In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression. In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack.", "explanation": "对照要落在三个可比的维度：授权（有／无）、联盟规模与分担（广泛／小圈子）、目标（恢复现状／改变政权）。三点对齐，分数就稳。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War）＋ Body 2（Iraq）", "points": [{"t": "In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression", "m": 1}, {"t": "In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack", "m": 1}], "weak": false}, {"id": "his-022", "topic": "年考论证 · 中国崛起与单极秩序", "difficulty": "hard", "type": "short", "stem": "Explain how the rise of China challenged unipolarity after 2001. (3 marks)", "options": [], "answer": "China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence. As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific.", "explanation": "单极受到挑战＝出现接近同级的对手。答题要给经济（WTO、体量）＋军事＋制度性倡议三类证据，只说「中国变强了」太空泛。", "source": "Term 4 · Yearly Assessment Notification — Body 3（Rise of China）＋ 课程标准补充", "points": [{"t": "China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence", "m": 1}, {"t": "As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific", "m": 1}], "weak": true}, {"id": "his-023", "topic": "年考论证 · 软实力下降", "difficulty": "easy", "type": "short", "stem": "Explain what a decline in US soft power means, and give one example from the period. (2 marks)", "options": [], "answer": "Soft power is influence gained through attraction — culture, values and institutions — rather than through coercion or payment. The Iraq War and the abuse of prisoners at Abu Ghraib damaged America's international reputation in the 2000s, making other states less willing to cooperate.", "explanation": "软实力＝吸引力（文化、价值、制度），与以军力或金钱施压的硬实力相对。举 2003 年后形象受损的例子最直接。", "source": "Term 4 · Yearly Assessment Notification — Body 3（Decline in US soft power）＋ 课程标准补充", "points": [{"t": "Soft power is influence gained through attraction — culture, values and institutions — rather than through coercion or payment", "m": 1}, {"t": "The Iraq War and the abuse of prisoners at Abu Ghraib damaged America's international reputation in the 2000s, making other states less willing to cooperate", "m": 1}], "weak": true}, {"id": "his-024", "topic": "年考论证 · 保护主义与去全球化", "difficulty": "easy", "type": "short", "stem": "Explain how the rise of protectionism and deglobalisation shaped US foreign policy after 2008. (2 marks)", "options": [], "answer": "The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade. The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation.", "explanation": "保护主义＝用关税与壁垒保护本国产业；去全球化＝削弱贸易与投资的一体化。答题要给具体政策（退出 TPP、对华关税），否则只是复述定义。", "source": "Term 4 · Yearly Assessment Notification — Body 3（protectionism/deglobalisation）＋ 课程标准补充", "points": [{"t": "The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade", "m": 1}, {"t": "The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation", "m": 1}], "weak": true}, {"id": "his-025", "topic": "年考论证 · 单极到多极", "difficulty": "hard", "type": "short", "stem": "Explain the shift from unipolarity towards a more multipolar order between 1991 and 2019. (3 marks)", "options": [], "answer": "In 1991 the United States was the only superpower, with no economic or military peer. By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant.", "explanation": "多极化的证据是「权力分散」：经济体量接近、区域大国自主性上升、制度性替代出现。注意区分「军事仍最强」与「总体权力不再独大」。", "source": "Term 4 · Yearly Assessment Notification — Body 3 ＋ 课程标准补充", "points": [{"t": "In 1991 the United States was the only superpower, with no economic or military peer", "m": 1}, {"t": "By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant", "m": 1}], "weak": true}, {"id": "his-026", "topic": "年考写作 · Body 2 的结构", "difficulty": "medium", "type": "short", "stem": "Explain how you would structure Body 2 (9/11 and Iraq) — which events, and what the link sentence must do. (3 marks)", "options": [], "answer": "Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine. The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force.", "explanation": "Body 2 的写法是「触发→理论→实践」三步。link 句不能只说「所以美国变了」，要指明「相对 Body 1 变了什么」。", "source": "Term 4 · Yearly Assessment Notification — Body 2（events to include）", "points": [{"t": "Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine", "m": 1}, {"t": "The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force", "m": 1}], "weak": false}, {"id": "his-027", "topic": "年考写作 · 论点句", "difficulty": "hard", "type": "short", "stem": "Write a thesis statement that answers: 'Explain the development of US foreign policy between 1991 and 2019.' (3 marks)", "options": [], "answer": "Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.", "explanation": "论点句要能覆盖三段而不只是第一段：多边领导 → 单边先发 → 应对衰落。一句话讲清「变化方向」，就是 thesis。", "source": "Term 4 · Yearly Assessment Notification — Section Two（thesis statement row）", "points": [{"t": "Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.", "m": 1}], "weak": false}, {"id": "his-028", "topic": "年考写作 · 三段如何合成一条论证线", "difficulty": "hard", "type": "short", "stem": "Explain how the three body paragraphs together answer the essay question. (4 marks)", "options": [], "answer": "Body 1 establishes the multilateral, collective-security phase of the 1990s. Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation. Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment. Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline.", "explanation": "论述题高分靠「一条线」而不是三段独立：每段是同一变化过程中的一个阶段。答题要写出段与段之间的转折关系，而非各段内容摘要。", "source": "Term 4 · Yearly Assessment Notification — Body 1 / 2 / 3", "points": [{"t": "Body 1 establishes the multilateral, collective-security phase of the 1990s", "m": 1}, {"t": "Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation", "m": 1}, {"t": "Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment", "m": 1}, {"t": "Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline", "m": 1}], "weak": false}]};
+const KEY = "dsh-quiz-his";
+const MULTI = DATA.slug === "all";
+const app = document.getElementById("app");
+let state = {idx:0, answers:{}, order:null};
+
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (s && s.answers) state = s;
+  } catch(e) {}
+  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
+  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
+  try {
+    const m = location.search.match(/[?&]q=([^&]+)/);
+    if (m) {
+      const qid = decodeURIComponent(m[1]);
+      const qi = DATA.questions.findIndex(x => x.id === qid);
+      const pos = state.order.indexOf(qi);
+      if (pos >= 0) state.idx = pos;
+    }
+  } catch(e) {}
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function renderSetup() {
+  const subs = DATA.subjects || {};
+  const keys = Object.keys(subs);
+  const saved = state.pick || {};
+  const opts = keys.map(k => {
+    const on = saved[k] !== false;
+    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
+      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
+  }).join("");
+  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
+  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
+  app.innerHTML = `<div class="setup">
+    <div class="setup-head">
+      <h2>综合卷 · 全科</h2>
+      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
+    </div>
+
+    <section class="setup-block">
+      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
+      <div class="picks">${opts}</div>
+    </section>
+
+    <section class="setup-block">
+      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
+    </section>
+
+    <div class="setup-foot">
+      <div class="sum">共 <b id="cnt">0</b> 题</div>
+      <button class="btn ghost" id="daily">今日挑战</button>
+      <button class="btn" id="startmix">开始答题 →</button>
+    </div>
+  </div>`;
+  const chosenCount = () => {
+    let c = 0;
+    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
+    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
+  };
+  const calc = () => {
+    let n = 0;
+    app.querySelectorAll(".pick input").forEach(cb => {
+      if (!cb.checked) return;
+      const k = cb.dataset.s, c = subs[k].n;
+      n += per ? Math.min(per, c) : c;
+    });
+    document.getElementById("cnt").textContent = n;
+    const pc = document.getElementById("pickcount");
+    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
+  };
+  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
+    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
+  });
+  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
+    state.per = +b.dataset.n; save(); render();
+  });
+  function seedRnd(str){
+    var h=2166136261;
+    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
+      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
+  }
+  function startDaily(){
+    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    var rnd=seedRnd("daily:"+key);
+    var idxs=[];
+    DAILY.forEach(function(sl){
+      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      idxs=idxs.concat(pool.slice(0,3));
+    });
+    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
+    state.answers={}; state.daily=key; state.rewarded=false; save(); render();
+  }
+  document.getElementById("daily").onclick = startDaily;
+  document.getElementById("startmix").onclick = () => {
+    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
+    if (!chosen.length) { alert("至少选一科"); return; }
+    let idxs = [];
+    chosen.forEach(k => {
+      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      pool.sort(() => Math.random() - 0.5);
+      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
+    });
+    idxs.sort(() => Math.random() - 0.5);
+    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
+    state.answers = {}; save(); render();
+  };
+  calc();
+}
+
+
+function render() {
+  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
+    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
+  }
+  if (MULTI && state.setup && !state.started) return renderSetup();
+  const qs = state.order.map(i => DATA.questions[i]);
+  const q = qs[state.idx];
+  const total = qs.length;
+  const answered = qs.filter(x => state.answers[x.id]).length;
+  const right = qs.filter(x => state.answers[x.id] === "ok").length;
+  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
+  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
+  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
+  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
+  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
+
+  const rec = state.answers[q.id];
+  const chips = `<div class="chips">
+      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
+      <span class="chip">${esc(q.topic)}</span>
+      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
+      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
+      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
+    </div>`;
+
+  let bodyHtml = "";
+  if (q.type === "mcq") {
+    const opts = (q.options || []).map((o, i) => {
+      let cls = "opt", mark = "";
+      if (rec) {
+        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
+        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
+      }
+      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
+        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}</span>${mark}</button>`;
+    }).join("");
+    bodyHtml = `<div class="opts">${opts}</div>`;
+  } else {
+    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
+    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    const checked = (rec && rec.checked) ? rec.checked : [];
+    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
+    const hasNum = /-?\d/.test(bareAns);
+    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
+      <div class="actions">
+        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
+        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
+      </div>`;
+    if (rec) {
+      bodyHtml += `<div class="panel">
+        <div class="panel-h">自评 · 勾选你写到的得分点</div>
+        <div class="pts">${pts.map((p,i)=>`
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
+        <div class="actions">
+          <button class="btn ghost" id="allpt">全部勾上</button>
+          <button class="btn ghost" id="nonept">全部取消</button>
+        </div>
+        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
+      </div>`;
+    }
+  }
+
+  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
+      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
+      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
+
+  const last = state.idx >= total - 1;
+  app.innerHTML = `<div class="card">${chips}<div class="stem">${esc(q.stem)}</div>
+      ${bodyHtml}${expHtml}</div>
+      <div class="actionbar">
+        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>← 上一题</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="finish">看成绩</button>
+        <button class="btn" id="next" ${last ? "disabled" : ""}>下一题 →</button>
+      </div>`;
+
+  if (q.type === "mcq") {
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const i = +b.dataset.i;
+      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
+      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
+      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
+      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
+      save(); render();
+    }));
+  } else {
+    const ta = document.getElementById("ta");
+    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
+    document.getElementById("reveal").onclick = () => {
+      const c = cur();
+      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
+      save(); render();
+    };
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
+      const c = cur(); const i = +cb.dataset.i;
+      const set = new Set(c.checked || []);
+      if (cb.checked) set.add(i); else set.delete(i);
+      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
+      const full = pts.every((_,i)=>set.has(i));
+      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
+      reviewMark(q.subj || DATA.slug, q.id, full);
+      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      save(); render();
+    }));
+    const nc = document.getElementById("numcheck");
+    if (nc) nc.onclick = () => {
+      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
+      const last = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
+      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
+    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
+  }
+  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
+  const nx = document.getElementById("next");
+  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
+  document.getElementById("finish").onclick = showResult;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function showResult() {
+  const qs = state.order.map(i => DATA.questions[i]);
+  if (!state.rewarded && qs.length) {
+    state.rewarded = true; save();
+    if (state.daily) {
+      try {
+        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
+        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
+        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
+        var DKEY = "dsh-daily-v1";
+        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
+        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
+          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
+          localStorage.setItem(DKEY, JSON.stringify(drec));
+        }
+      } catch(e) {}
+    }
+    const answered = qs.filter(x => state.answers[x.id]).length;
+    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
+    if (window.openChest && answered >= 3) openChest();
+  }
+  const rec = id => state.answers[id] || null;
+  const mcq = qs.filter(x => x.type === "mcq");
+  const shorts = qs.filter(x => x.type === "short");
+  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
+  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
+  const todo = qs.filter(x => !rec(x.id));
+  let earnedM = 0, totalM = 0, partM = 0;
+  const weak = [];
+  shorts.forEach(x => {
+    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
+    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const r = rec(x.id);
+    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    totalM += tot;
+    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
+  });
+  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
+  const needRedo = [...wrong, ...weak];
+  const wrongIds = needRedo.map(x => x.id);
+  app.innerHTML = `<div class="card done">
+      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
+      <div class="stats">
+        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
+        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
+        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
+        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
+      </div>
+      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
+      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
+      <div class="actions">
+        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
+        <button class="btn ghost" id="again">整套重做</button>
+        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
+      </div></div>`;
+  const redo = document.getElementById("redo");
+  if (redo) redo.onclick = () => {
+    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
+    wrongIds.forEach(id => delete state.answers[id]);
+    state.idx = 0; save(); render();
+  };
+  document.getElementById("again").onclick = () => {
+    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+    save(); render();
+  };
+}
+
+document.getElementById("grid").onclick = openNav;
+document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
+document.getElementById("nav").addEventListener("click", e => {
+  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
+});
+try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
+catch(e) { document.body.insertAdjacentHTML("afterbegin",
+  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
+
+document.getElementById("exam").onclick = startExam;
+if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
+
+document.getElementById("restart").onclick = () => {
+  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  save(); render();
+};
+
+document.addEventListener("keydown", e => {
+  if (MULTI && state.setup && !state.started) {
+    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
+    return;
+  }
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
+  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
+  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
+  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
+  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
+    else showResult();
+    return;
+  }
+  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
+  if (!q || q.type !== "mcq") return;
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= (q.options || []).length) {
+    if (!state.answers[q.id]) {
+      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
+      save(); render();
+    }
+  }
+});
+
+const REVIEW_KEY = "dsh-review-v1";
+const GAPS = [1, 3, 7];
+function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
+function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
+function reviewMark(slug, qid, correct){
+  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
+  if (correct) {
+    const it = db[id];
+    if (!it) return;
+    const st = (it.stage || 0) + 1;
+    if (st >= GAPS.length) delete db[id];
+    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
+  } else {
+    const old = db[id] || {};
+    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
+  }
+  reviewSave(db);
+}
+function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
+
+const LOG_KEY = "dsh-log-v1";
+function logAnswer(slug, qid, ok, diff, ty){
+  try {
+    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
+    if (arr.length > 3000) arr = arr.slice(-3000);
+    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
+  } catch(e) {}
+}
+function navState(qi){
+  const q = DATA.questions[qi], a = state.answers[q.id];
+  if (!a) return "";
+  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
+  const pts = q.points || [{m:1}], c = (a.checked || []).length;
+  if (c >= pts.length) return "ok";
+  if (c > 0) return "part";
+  return "";
+}
+function openNav(){
+  const grid = document.getElementById("navgrid");
+  grid.innerHTML = state.order.map((qi, pos) =>
+    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
+  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
+    state.idx = +b.dataset.pos; save();
+    document.getElementById("nav").classList.remove("on"); render();
+  });
+  document.getElementById("nav").classList.add("on");
+}
+
+let timerId = null;
+function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+function tickClock(){
+  const el = document.getElementById("clock");
+  if (!state.deadline) { if (el) el.style.display = "none"; return; }
+  const left = state.deadline - Date.now();
+  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
+            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
+  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
+}
+function startExam(){
+  const def = DATA.examMin || 60;
+  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
+  if (v === null) return;
+  const mins = parseInt(v, 10);
+  if (!mins || mins <= 0) return;
+  state.deadline = Date.now() + mins*60000; save();
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(tickClock, 1000);
+  tickClock();
+}
+
+
+load(); render();
+</script>
+<script>
+(function(){
+  var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
+  var COIN_KEY="dsh-coins-v1", INV_KEY="dsh-inv-v1", BUFF_KEY="dsh-buffs-v1";
+  var LEVELS=[0,60,150,280,450,680,980,1360,1820,2360,3000,3750,4600,5560,6650,7880,9250,10800,12500,14400];
+  function db(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{"xp":0,"combo":0,"best":0}'); }catch(e){ return {xp:0,combo:0,best:0}; } }
+  function save(g){ try{ localStorage.setItem(KEY,JSON.stringify(g)); }catch(e){} }
+  function bdb(){ try{ return JSON.parse(localStorage.getItem(BKEY)||'{}'); }catch(e){ return {}; } }
+  function bsave(b){ try{ localStorage.setItem(BKEY,JSON.stringify(b)); }catch(e){} }
+  function log(){ try{ return JSON.parse(localStorage.getItem('dsh-log-v1')||'[]'); }catch(e){ return []; } }
+  function levelOf(xp){ var l=1; for(var i=0;i<LEVELS.length;i++){ if(xp>=LEVELS[i]) l=i+1; } return l; }
+  function nextAt(xp){ var l=levelOf(xp); return LEVELS[l]!==undefined?LEVELS[l]:null; }
+
+  /* ---------- 金币 / 库存 / 增益 ---------- */
+  function readCoins(){ var o={n:0,earned:0,dust:0}; try{ o=JSON.parse(localStorage.getItem(COIN_KEY)||'null')||o; }catch(e){} if(o.dust===undefined)o.dust=0; return o; }
+  function saveCoins(o){ try{ localStorage.setItem(COIN_KEY,JSON.stringify(o)); }catch(e){} }
+  function addCoins(n){ var c=readCoins(); c.n=(c.n||0)+n; c.earned=(c.earned||0)+Math.max(0,n); saveCoins(c); }
+  function addDust(n){ var c=readCoins(); c.dust=(c.dust||0)+n; saveCoins(c); }
+
+  /* 音效：WebAudio 现场合成，不依赖音频文件 */
+  var SFX_ON = (function(){ try{ return localStorage.getItem("dsh-sfx")!=="0"; }catch(e){ return true; } })();
+  var AC=null;
+  function beep(freq, dur, type, vol){
+    if(!SFX_ON) return;
+    try{
+      AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+      var o=AC.createOscillator(), g=AC.createGain();
+      o.type=type||"sine"; o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001, AC.currentTime);
+      g.gain.exponentialRampToValueAtTime(vol||0.06, AC.currentTime+0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime+(dur||0.12));
+      o.connect(g); g.connect(AC.destination);
+      o.start(); o.stop(AC.currentTime+(dur||0.12)+0.02);
+    }catch(e){}
+  }
+  function levelUpSound(){ [523,659,784,1046].forEach(function(f,i){ setTimeout(function(){ beep(f,0.16,"triangle",0.07); }, i*90); }); }
+  function toggleSfx(){ SFX_ON=!SFX_ON; try{ localStorage.setItem("dsh-sfx", SFX_ON?"1":"0"); }catch(e){} return SFX_ON; }
+  function readInv(){
+    var d={owned:[],equipped:{theme:"",title:""},uses:{}};
+    try{ var o=JSON.parse(localStorage.getItem(INV_KEY)||'null'); if(o){ d.owned=o.owned||[]; d.equipped=o.equipped||{theme:"",title:""}; d.uses=o.uses||{}; } }catch(e){}
+    return d;
+  }
+  function saveInv(d){ try{ localStorage.setItem(INV_KEY,JSON.stringify(d)); }catch(e){} }
+  function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
+  function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
+
+  var THEMES={
+    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
+    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
+    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
+    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+  };
+  function applyTheme(){
+    var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
+    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
+    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+  }
+  function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
+
+  var SHOP=[
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+  ];
+
+  function buy(id){
+    var item=null; SHOP.forEach(function(x){ if(x.id===id) item=x; });
+    if(!item) return {ok:false,msg:"没有这件商品"};
+    var c=readCoins(), inv=readInv();
+    if(item.t!=="use" && inv.owned.indexOf(id)>=0) return {ok:false,msg:"已经拥有了"};
+    var isDust = item.cur==="dust";
+    var bal = isDust ? (c.dust||0) : (c.n||0);
+    if(bal < item.p) return {ok:false,msg:(isDust?"星尘":"金币")+"不够，还差 "+(item.p-bal)};
+    if(isDust){ c.dust=(c.dust||0)-item.p; } else { c.n=(c.n||0)-item.p; }
+    saveCoins(c);
+    if(item.t==="use"){ inv.uses[id]=(inv.uses[id]||0)+1; }
+    else { inv.owned.push(id); }
+    saveInv(inv);
+    if(item.t==="theme"){ inv.equipped.theme=item.v; saveInv(inv); applyTheme(); }
+    if(item.t==="title"){ inv.equipped.title=item.v; saveInv(inv); }
+    if(item.t==="buff"){ var b=readBuffs(); b.xp2Until=Date.now()+30*60000; saveBuffs(b); }
+    return {ok:true,msg:"已购买："+item.n};
+  }
+  function equipTheme(v){ var inv=readInv(); inv.equipped.theme=v||""; saveInv(inv); applyTheme(); }
+  function equipTitle(v){ var inv=readInv(); inv.equipped.title=v||""; saveInv(inv); }
+
+  /* ---------- 提示 ---------- */
+  function toast(txt, ok){
+    var el=document.createElement('div');
+    el.className='xp-toast'+(ok?' ok':'');
+    el.textContent=txt;
+    document.body.appendChild(el);
+    setTimeout(function(){ el.classList.add('up'); }, 20);
+    setTimeout(function(){ el.remove(); }, 1500);
+  }
+
+  var BADGES=[
+    {id:'first',  n:'第一题',   d:'完成第一道题',        i:'🌱'},
+    {id:'combo5', n:'连对 5',   d:'一次连对 5 题',       i:'🔥'},
+    {id:'combo10',n:'连对 10',  d:'一次连对 10 题',      i:'⚡'},
+    {id:'daily',  n:'今日达标', d:'一天做满 30 题',      i:'✅'},
+    {id:'streak3',n:'三天不断', d:'连续 3 天做题',       i:'📅'},
+    {id:'streak7',n:'一周',     d:'连续 7 天做题',       i:'🏆'},
+    {id:'subject',n:'一科通关', d:'某科全部做完',        i:'🎯'},
+    {id:'review', n:'错题清零', d:'错题本清空',          i:'🧹'}
+  ];
+
+  function unlock(id){
+    var b=bdb(); if(b[id]) return false;
+    b[id]=Date.now(); bsave(b);
+    addCoins(20);
+    var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
+    if(meta) toast('🏅 解锁：'+meta.n+' · +20 币', true);
+    return true;
+  }
+
+  function todayCount(){
+    var d0=new Date(); d0.setHours(0,0,0,0);
+    return log().filter(function(x){ return x.t>=d0.getTime(); }).length;
+  }
+  function streakDays(){
+    var days={}, d0=new Date(); d0.setHours(0,0,0,0), t0=d0.getTime();
+    log().forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0); days[d.getTime()]=1; });
+    var gaps=shieldCount(), n=0, c=t0, used=0;
+    while(true){
+      if(days[c]){ n++; c-=864e5; continue; }
+      if(c===t0){ c-=864e5; continue; }
+      if(used<gaps){ used++; c-=864e5; continue; }
+      break;
+    }
+    return n;
+  }
+
+  function checkBadges(){
+    var g=db(), L=log();
+    if(L.length>=1) unlock('first');
+    if((g.best||0)>=5) unlock('combo5');
+    if((g.best||0)>=10) unlock('combo10');
+    if(todayCount()>=GOAL) unlock('daily');
+    if(streakDays()>=3) unlock('streak3');
+    if(streakDays()>=7) unlock('streak7');
+    try{
+      var rv=JSON.parse(localStorage.getItem('dsh-review-v1')||'{}');
+      if(L.length>10 && Object.keys(rv).length===0) unlock('review');
+    }catch(e){}
+    try{
+      var cards=document.querySelectorAll('[data-slug][data-total]');
+      for(var i=0;i<cards.length;i++){
+        var c=cards[i], sl=c.dataset.slug, tot=+c.dataset.total;
+        var st=JSON.parse(localStorage.getItem('dsh-quiz-'+sl)||'null');
+        if(st && st.answers && tot && Object.keys(st.answers).length>=tot){ unlock('subject'); break; }
+      }
+    }catch(e){}
+  }
+
+  function awardXP(base, ok){
+    var g=db();
+    if(ok){ g.combo=(g.combo||0)+1; } else { g.combo=0; }
+    var mult = ok ? Math.min(2, 1 + 0.1*Math.max(0, (g.combo||1)-1)) : 1;
+    var buffs=readBuffs(), dbl = buffs.xp2Until && Date.now()<buffs.xp2Until ? 2 : 1;
+    var gain = ok ? Math.round(base*mult*dbl) : Math.max(1, Math.round(base*0.2));
+    var before=levelOf(g.xp||0);
+    g.xp=(g.xp||0)+gain;
+    g.best=Math.max(g.best||0, g.combo||0);
+    save(g);
+    var coin = Math.max(1, Math.round(gain*0.5));
+    var crit = ok && Math.random()<0.12;
+    if(crit) coin*=2;
+    addCoins(coin);
+    if(ok) beep(crit?1180:660, 0.1, "sine", crit?0.08:0.05); else beep(180,0.14,"sawtooth",0.05);
+    toast('+'+gain+' XP · +'+coin+' 币'+(crit?' 暴击!':'')+(ok&&g.combo>1?' · 连对 '+g.combo:'')+(dbl>1?' · ×2':''), ok);
+    var after=levelOf(g.xp);
+    if(after>before){ setTimeout(function(){ toast('🎉 升到 Lv.'+after, true); levelUpSound(); }, 450); }
+    checkBadges();
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+
+  /* 答题计分：难度加权 + 重复递减（对标论文里盛大的“反刷”规则） */
+  var SEEN_KEY="dsh-seen-v1";
+  function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
+  function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+  function awardForQ(id, diff, type, ok){
+    var base = type==='short' ? ({easy:12,medium:16,hard:22}[diff]||16)
+                              : ({easy:8, medium:10,hard:14}[diff]||10);
+    var S=seen(), e=S[id]||{n:0,right:false,sealed:false}, mul=1, note="";
+    if(e.right && ok){
+      if(e.sealed || e.n>=3){ mul=0; note="已掌握，不再加分"; }
+      else { mul=0.3; note="重做已会的题，经验 ×0.3"; }
+    } else if(e.right && !ok){
+      mul=1; note="";
+    } else if(!e.right && ok && e.n>0){
+      mul=1; note="纠错 + 全额";
+    }
+    e.n=(e.n||0)+1;
+    if(ok){ e.right=true; if(e.n>=3 && mul===0) e.sealed=true; }
+    S[id]=e; saveSeen(S);
+    if(mul===0){ toast(note+" · 去刷没掌握的题", false); return; }
+    var gain = Math.round(base*mul);
+    if(note) toast(note, true);
+    awardXP(gain, ok);
+  }
+  /* ---- 每日挑战任务（对应“挑战”要素） ---- */
+  var QKEY="dsh-quest-v1";
+  var QTEMPL=[
+    {id:"q_ans12", n:"今天做满 12 题", tip:"数量", type:"count", target:12, r:{coin:40}},
+    {id:"q_ans20", n:"今天做满 20 题", tip:"数量", type:"count", target:20, r:{coin:60}},
+    {id:"q_combo5", n:"一次连对 5 题", tip:"连击", type:"combo", target:5, r:{coin:50}},
+    {id:"q_combo8", n:"一次连对 8 题", tip:"连击", type:"combo", target:8, r:{coin:70}},
+    {id:"q_hard3", n:"做对 3 道「较难」题", tip:"攻坚", type:"hard", target:3, r:{dust:1}},
+    {id:"q_acc80", n:"正确率 80%（至少 10 题）", tip:"精准", type:"acc", target:80, r:{coin:60}},
+    {id:"q_short3", n:"完成 3 道简答自评", tip:"写作", type:"short", target:3, r:{coin:45}},
+    {id:"q_daily", n:"完成今日挑战", tip:"每日", type:"daily", target:1, r:{dust:2}}
+  ];
+  function qseed(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; }; }
+  function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function todayLog(){ var d0=new Date(); d0.setHours(0,0,0,0); return log().filter(function(x){ return x.t>=d0.getTime(); }); }
+  function quests(){
+    var Q=null;
+    try{ Q=JSON.parse(localStorage.getItem(QKEY)||"null"); }catch(e){}
+    if(!Q || Q.date!==todayKey()){
+      var rnd=qseed("q:"+todayKey()), pool=QTEMPL.slice();
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      Q={date:todayKey(), list:pool.slice(0,3).map(function(x){return x.id;}), claimed:[]};
+      try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    }
+    return Q;
+  }
+  function questProgress(){
+    var L=todayLog(), n=L.length;
+    var okCnt=L.filter(function(x){return x.ok;}).length;
+    var maxCombo=0, cur=0;
+    L.slice().sort(function(a,b){return a.t-b.t;}).forEach(function(x){ if(x.ok){ cur++; maxCombo=Math.max(maxCombo,cur);} else cur=0; });
+    var hard=L.filter(function(x){ return x.ok && x.d==="hard"; }).length;
+    var short=L.filter(function(x){ return x.ty==="short"; }).length;
+    var acc = n>=10 ? Math.round(okCnt/n*100) : 0;
+    var dailyDone = 0;
+    try{ var dr=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); if(dr.date===todayKey()) dailyDone=1; }catch(e){}
+    return {count:n, combo:maxCombo, hard:hard, short:short, acc:acc, daily:dailyDone};
+  }
+  function questValue(q, p){ return p[q.type] || 0; }
+  window.quests=quests; window.questProgress=questProgress; window.questValue=questValue; window.QTEMPL=QTEMPL;
+
+  var CHEST_KEY="dsh-chest-v1";
+  function openChest(){
+    var roll=Math.random(), msg="", dust=0, coin=0;
+    if(roll<0.10){ dust=3; msg="💎 稀有宝箱：星尘 ×3"; addDust(3); }
+    else if(roll<0.45){ coin=Math.round(30+Math.random()*40); msg="🎁 宝箱：金币 +"+coin; addCoins(coin); }
+    else { dust=1; msg="🎁 宝箱：星尘 ×1"; addDust(1); }
+    try{ var c=JSON.parse(localStorage.getItem(CHEST_KEY)||'{"n":0}'); c.n=(c.n||0)+1; localStorage.setItem(CHEST_KEY,JSON.stringify(c)); }catch(e){}
+    setTimeout(function(){ toast(msg, true); beep(880,0.18,"triangle",0.07); }, 700);
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+  window.openChest=openChest;
+
+  function claimQuest(id){
+    var Q=quests(), meta=null;
+    QTEMPL.forEach(function(x){ if(x.id===id) meta=x; });
+    if(!meta) return {ok:false,msg:"任务不存在"};
+    if(Q.claimed.indexOf(id)>=0) return {ok:false,msg:"已经领过了"};
+    var p=questProgress();
+    if(questValue(meta,p) < meta.target) return {ok:false,msg:"还没完成"};
+    Q.claimed.push(id);
+    try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    if(meta.r.coin) addCoins(meta.r.coin);
+    if(meta.r.dust) addDust(meta.r.dust);
+    toast("✅ 任务完成："+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
+    beep(1046,0.16,"triangle",0.07);
+    if(window.__refreshProfile) window.__refreshProfile();
+    return {ok:true,msg:"已领取"};
+  }
+  window.claimQuest=claimQuest;
+  window.awardForQ=awardForQ;
+  window.awardXP=awardXP; window.checkBadges=checkBadges;
+  window.GAME={db:db,levelOf:levelOf,BADGES:BADGES,bdb:bdb,todayCount:todayCount,streakDays:streakDays,
+    GOAL:GOAL,coins:readCoins,inv:readInv,buffs:readBuffs,SHOP:SHOP,buy:buy,equipTheme:equipTheme,
+    equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
+    shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
+
+  function renderQuests(host){
+    if(!host) return;
+    var Q=quests(), p=questProgress();
+    var rows=Q.list.map(function(id){
+      var m=null; QTEMPL.forEach(function(x){ if(x.id===id) m=x; });
+      var v=Math.min(questValue(m,p), m.target), pct=Math.round(v/m.target*100);
+      var done=v>=m.target, claimed=Q.claimed.indexOf(id)>=0;
+      var btn = claimed ? '<span class="qdone">已领取</span>'
+              : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
+                      : '<span class="qnum">'+v+'/'+m.target+'</span>');
+      return '<div class="qrow'+(done?' done':'')+'"><span class="qtip">'+m.tip+'</span>'+
+        '<span class="qname">'+m.n+'</span>'+
+        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+btn+'</div>';
+    }).join("");
+    host.innerHTML='<h2 class="gh">今日任务 <span class="gz">每天 0 点刷新 · 3 个随机</span></h2><div class="qlist">'+rows+'</div>';
+  }
+  window.__renderQuests=renderQuests;
+
+  /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
+  var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
+  function apibase(){ try{ return (localStorage.getItem(AKEY)||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
+  function loadBoard(){
+    var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
+    fetch(apibase()+"/board?day="+encodeURIComponent(todayKey()))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok || !d.list) return;
+        if(!d.list.length){ box.innerHTML='<div class="mutedsmall">云端还没有今天的成绩，做一轮然后点「☁ 提交」</div>'; return; }
+        var me=nick()||"我";
+        box.innerHTML=d.list.map(function(x,i){
+          return '<div class="rrow'+(x.name===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+                 '<span class="rname">'+x.name+(x.name===me?'（我）':'')+'</span>'+
+                 '<span class="rp">'+x.pct+'%</span></div>';
+        }).join("");
+      })
+      .catch(function(){});
+  }
+  function pushScore(){
+    if(!apibase()) return {ok:false,msg:"还没设置服务器地址"};
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok) loadBoard(); })
+      .catch(function(){});
+    return {ok:true,msg:"已提交"};
+  }
+  window.loadBoard=loadBoard; window.pushScore=pushScore; window.apibase=apibase; window.setApi=setApi;
+  function b64e(str){ try{ return btoa(unescape(encodeURIComponent(str))).replace(/=+$/,"").replace(/\+/g,"-").replace(/\//g,"_"); }catch(e){ return ""; } }
+  function b64d(str){ try{ return decodeURIComponent(escape(atob(str.replace(/-/g,"+").replace(/_/g,"/")))); }catch(e){ return ""; } }
+  function nick(){ try{ return localStorage.getItem(NKEY)||""; }catch(e){ return ""; } }
+  function setNick(v){ try{ localStorage.setItem(NKEY, v); }catch(e){} }
+  function friends(){ try{ return JSON.parse(localStorage.getItem(FKEY)||"[]"); }catch(e){ return []; } }
+  function saveFriends(a){ try{ localStorage.setItem(FKEY, JSON.stringify(a.slice(0,60))); }catch(e){} }
+
+  function myCode(){
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    var g=db();
+    return {ok:true, code:b64e(JSON.stringify({v:1,d:rec.date,p:rec.best,n:rec.answer||21,
+      name:(nick()||"我"), xp:g.xp||0}))};
+  }
+  function addCode(str){
+    var raw=b64d((str||"").trim());
+    if(!raw) return {ok:false,msg:"码不对"};
+    var o; try{ o=JSON.parse(raw); }catch(e){ return {ok:false,msg:"码不对"}; }
+    if(!o || o.v!==1 || !o.d || o.p===undefined) return {ok:false,msg:"码不对"};
+    var list=friends();
+    list=list.filter(function(x){ return !(x.d===o.d && x.name===o.name); });
+    list.push({d:o.d, p:o.p, n:o.n||0, name:String(o.name||"同学").slice(0,12), xp:o.xp||0, t:Date.now()});
+    saveFriends(list);
+    return {ok:true,msg:"已加入 "+String(o.name||"同学").slice(0,12)+" 的 "+o.p+"%"};
+  }
+  window.myCode=myCode; window.addCode=addCode; window.nick=nick; window.setNick=setNick;
+
+  function renderBoard(host){
+    if(!host) return;
+    var g=db(), c=readCoins(), L=log();
+    var days={}, dayOk={};
+    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
+      var k=d.getTime();
+      days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
+    var dayList=Object.keys(days).map(function(k){
+      var d=new Date(+k);
+      return {ts:+k, d:(d.getMonth()+1)+"-"+d.getDate(), n:days[k], ok:dayOk[k],
+              pct:Math.round(dayOk[k]/days[k]*100)};
+    }).sort(function(a,b){ return b.ts-a.ts; }).slice(0,7);
+    var myRec={}; try{ myRec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    var rows=[];
+    if(myRec.date===todayKey()) rows.push({name:nick()||"我", p:myRec.best||0, me:true});
+    friends().filter(function(x){ return x.d===todayKey(); }).forEach(function(x){
+      rows.push({name:x.name, p:x.p, me:false});
+    });
+    rows.sort(function(a,b){ return b.p-a.p; });
+    var rankHtml = rows.length ? ('<div class="rank" id="rankbox">'+rows.map(function(r,i){
+      return '<div class="rrow'+(r.me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
+        '<span class="rp">'+r.p+'%</span></div>';
+    }).join("")+'</div>') : '<div class="rank" id="rankbox"><div class="mutedsmall">还没人交榜。做完「今日挑战」，复制战绩码发给同学互换。</div></div>';
+
+    host.innerHTML='<h2 class="gh">今日好友榜 <span class="gz">'+todayKey()+' · 靠战绩码互通，不用服务器</span></h2>'+
+      rankHtml +
+      '<div class="codebar"><button class="btn2" id="mecode">复制我的战绩码</button>'+
+      '<input id="friendcode" placeholder="粘贴同学的战绩码">'+
+      '<button class="btn2" id="addcode">加入</button>'+
+      (apibase()
+        ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>'
+        : '<button class="btn2" id="cfgapi">⚙ 设置服务器地址</button>')+'</div>'+
+      '<h2 class="gh" style="margin-top:22px">纪录榜 <span class="gz">本地 · 跟自己比</span></h2>'+
+      '<div class="board">'+
+        '<div class="brow"><span>总经验</span><b>'+g.xp+'</b></div>'+
+        '<div class="brow"><span>最高连对</span><b>'+(g.best||0)+'</b></div>'+
+        '<div class="brow"><span>累计作答</span><b>'+L.length+'</b></div>'+
+        '<div class="brow"><span>金币 / 星尘</span><b>'+(c.n||0)+' / '+(c.dust||0)+'</b></div>'+
+      '</div>'+
+      '<div class="days">'+dayList.map(function(x){
+        return '<div class="day"><em>'+x.pct+'%</em><i style="height:'+Math.max(4,Math.round(x.pct*0.5))+'px"></i>'+
+               '<span>'+x.d+'</span></div>';
+      }).join("")+'</div>';
+  }
+  window.__renderBoard=renderBoard;
+
+  function renderProfile(){
+    var host=document.getElementById('profile');
+    if(!host) return;
+    var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
+    var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
+    var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
+    var seenAll=seen(), fixed=0, mastered=0;
+    Object.keys(seenAll).forEach(function(k){ var e=seenAll[k]; if(e.right && e.n>1) fixed++; if(e.right && e.sealed) mastered++; });
+    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var badges=BADGES.map(function(x){
+      var got=b[x.id];
+      return '<div class="badge'+(got?' on':'')+'" title="'+x.d+'"><span class="bi">'+x.i+'</span>'+
+             '<span class="bn">'+x.n+'</span></div>';
+    }).join('');
+    host.innerHTML=
+      '<div class="prof-main">'+
+        '<div class="lv"><span class="lvnum">'+lv+'</span><span class="lvlab">等级</span></div>'+
+        '<div class="prof-body">'+
+          '<div class="prof-line"><b>'+xp+' XP</b>'+title+(nx?('<span class="muted">距 Lv.'+(lv+1)+' 还差 '+(nx-xp)+'</span>'):'<span class="muted">满级</span>')+'</div>'+
+          '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+          '<div class="prof-meta">今日 <b>'+tc+'</b>/'+GOAL+' 题 · 连续 <b>'+st+'</b> 天 · 连对纪录 <b>'+(g.best||0)+'</b>'+
+            ' · 金币 <b>'+(c.n||0)+'</b></div>'+
+          '<div class="prof-note">纠错 <b>'+fixed+'</b> 题 · 已掌握 <b>'+mastered+'</b> 题（做满 3 次不再计分）</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="badges">'+badges+'</div>'+
+      '<div class="prof-tools"><button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效开':'🔇 音效关')+'</button></div>'+
+      '<div class="prof-note dim">这套分数只认「答对的题」。读材料、琢磨思路、改答案、想通一个概念——这些没被计分，但它们才是真正在学的东西。</div>';
+  }
+  function renderAll(){
+    renderProfile();
+    setTimeout(loadBoard, 0);
+    renderQuests(document.getElementById("quests"));
+    renderBoard(document.getElementById("board"));
+  }
+  window.__refreshProfile=renderAll;
+  document.addEventListener("click", function(ev){
+    var s = ev.target.closest && ev.target.closest("#sfxbtn");
+    if(s){ var on = toggleSfx(); s.textContent = on ? "🔊 音效开" : "🔇 音效关"; return; }
+    var q = ev.target.closest && ev.target.closest("[data-claim]");
+    if(q){ claimQuest(q.getAttribute("data-claim")); renderAll(); return; }
+    if(ev.target.closest && ev.target.closest("#mecode")){
+      if(!nick()){ var nm=prompt("给自己起个名字（显示在好友榜）",""); if(nm) setNick(nm.slice(0,12)); }
+      var r=myCode();
+      if(!r.ok){ toast(r.msg,false); return; }
+      var ta=document.createElement("textarea"); ta.value=r.code;
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); toast("战绩码已复制，发给同学吧", true); }
+      catch(e){ toast("复制失败，手动选中："+r.code.slice(0,20)+"…", false); }
+      ta.remove();
+      return;
+    }
+    if(ev.target.closest && ev.target.closest("#cfgapi")){
+      var cur=apibase();
+      var v=prompt("填入 Cloudflare Worker 地址（留空则清除）", cur);
+      if(v===null) return;
+      setApi(v);
+      toast(v.trim()?"已保存，正在拉取云端榜…":"已清除服务器地址", true);
+      renderAll(); return;
+    }
+    if(ev.target.closest && ev.target.closest("#pushscore")){
+      var r2=pushScore(); toast(r2.msg, r2.ok); return;
+    }
+    if(ev.target.closest && ev.target.closest("#addcode")){
+      var inp=document.getElementById("friendcode");
+      var res=addCode(inp?inp.value:"");
+      toast(res.msg, res.ok); renderAll(); return;
+    }
+  });
+  applyTheme();
+  if(document.readyState!=='loading') renderAll(); else document.addEventListener('DOMContentLoaded', renderAll);
+})();
+</script>
+</body>
+</html>

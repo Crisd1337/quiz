@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>科学 · 10 年级 · 复习测验</title>
+<style>
+:root{
+  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
+  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+}
+@media (prefers-color-scheme: light) {
+  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
+ backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
+.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
+.bar .meta{color:var(--dim);font-size:13px}
+.spacer{flex:1}
+.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
+ font-size:12px;color:var(--dim)}
+.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
+.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
+.chip.easy{color:#2fbf71;border-color:#2fbf7144}
+.chip.medium{color:#f5a623;border-color:#f5a62344}
+.chip.hard{color:#ff5f56;border-color:#ff5f5644}
+.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
+ background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
+ padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+.opt:disabled{cursor:default}
+.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
+ display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
+.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
+.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
+.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
+textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
+ border-radius:11px;padding:12px;font:inherit;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
+ border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.exp.show{display:block}
+.exp b{color:var(--accent)}
+.src{margin-top:8px;color:var(--dim);font-size:12px}
+.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
+ font:inherit;font-weight:600;cursor:pointer}
+button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+button.btn:disabled{opacity:.45;cursor:default}
+.done h2{margin:0 0 6px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
+.stat b{display:block;font-size:24px;line-height:1.2}
+.stat span{color:var(--dim);font-size:12px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.wronglist li{margin:4px 0}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
+kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+
+.chip.warn{border-color:#f5a62366;color:#f5a623}
+.muted{color:var(--dim);font-size:13px}
+.pts{display:grid;gap:8px;margin-top:12px}
+.pt{display:flex;gap:10px;align-items:flex-start;background:var(--card2);border:1px solid var(--line);
+ border-radius:10px;padding:10px 12px;cursor:pointer;font-size:14.5px}
+.pt.on{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--card2))}
+.pt input{margin-top:3px;width:16px;height:16px;flex:0 0 16px;accent-color:var(--ok)}
+.pt span{flex:1;min-width:0}
+.pt em{color:var(--dim);font-style:normal;font-size:12px;white-space:nowrap}
+.mine{margin-top:14px;background:var(--card2);border-radius:10px;padding:10px 12px;font-size:14px}
+.mine div{margin-top:6px;white-space:pre-wrap;color:var(--dim)}
+.fullans{margin-top:10px;font-size:14px}
+.fullans summary{cursor:pointer;color:var(--accent)}
+.fullans div{margin-top:8px;white-space:pre-wrap;color:var(--dim)}
+.setup{max-width:760px;margin:0 auto}
+.setup-head{margin:4px 0 20px}
+.setup-head h2{margin:0 0 6px;font-size:22px}
+.setup-head p{margin:0;font-size:13.5px;line-height:1.6}
+.setup-block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.setup-label{font-size:13px;color:var(--dim);margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.pick{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);
+ border-radius:10px;padding:11px 12px;cursor:pointer;font-size:14px;min-width:0}
+.pick input{width:16px;height:16px;flex:0 0 16px;accent-color:var(--accent)}
+.pick .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pick em{color:var(--dim);font-style:normal;font-size:12px;flex:0 0 auto}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
+ padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
+.setup-foot .sum{color:var(--dim);font-size:14px}
+.setup-foot .sum b{color:var(--fg);font-size:18px}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;padding:24px}
+.nav-overlay.on{display:block}
+.nav-box{max-width:720px;margin:6vh auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.nav-head{display:flex;gap:10px;align-items:center;margin-bottom:12px;font-size:14px;flex-wrap:wrap}
+.nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px;max-height:56vh;overflow:auto}
+.nav-grid button{padding:9px 0;border-radius:9px;border:1px solid var(--line);background:var(--card2);
+ color:var(--fg);font:inherit;font-size:13px;cursor:pointer}
+.nav-grid button.ok{border-color:var(--ok);color:var(--ok)}
+.nav-grid button.bad{border-color:var(--bad);color:var(--bad)}
+.nav-grid button.part{border-color:var(--warn);color:var(--warn)}
+html,body{max-width:100%;overflow-x:hidden}
+main{display:flex;flex-direction:column}
+.card{flex:0 0 auto}
+.chips{opacity:.92}
+.chip{font-size:11px;padding:2px 8px}
+.stem{font-size:19px;line-height:1.62;font-weight:500;margin:12px 0 20px}
+.opts{gap:12px}
+.opt{padding:14px 16px;font-size:15.5px;position:relative;border-left-width:3px}
+.opt .txt{flex:1;min-width:0}
+.opt .mk{margin-left:8px;font-weight:700}
+.opt.correct{border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad)}
+.actionbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:10px;align-items:center;
+ padding:10px max(16px,calc((100vw - 860px)/2)) calc(10px + env(safe-area-inset-bottom));
+ background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.actionbar .spacer{flex:1}
+main{padding-bottom:104px!important}
+footer{padding-bottom:96px}
+.sfxbtn{background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:8px;
+ padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
+.prof-tools{margin-top:10px}
+.xp-toast{position:fixed;right:18px;bottom:92px;z-index:60;background:var(--card);border:1px solid var(--line);
+ color:var(--dim);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;
+ opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none}
+.xp-toast.ok{border-color:var(--ok);color:var(--ok)}
+.xp-toast.up{opacity:1;transform:translateY(0)}
+.profile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 22px}
+.prof-main{display:flex;gap:16px;align-items:center}
+.lv{width:64px;height:64px;border-radius:18px;background:color-mix(in srgb,var(--accent) 16%,var(--card2));
+ display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 64px}
+.lvnum{font-size:24px;font-weight:700;color:var(--accent);line-height:1}
+.lvlab{font-size:10px;color:var(--dim);margin-top:2px}
+.prof-body{flex:1;min-width:0}
+.prof-line{display:flex;gap:10px;align-items:baseline;font-size:14px}
+.prof-line b{font-size:17px}
+.xpbar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin:8px 0 6px}
+.xpbar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.prof-meta{font-size:12px;color:var(--dim)}
+.prof-meta b{color:var(--fg)}
+.badges{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}
+.badge{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center;opacity:.45}
+.badge.on{opacity:1;border-color:color-mix(in srgb,var(--warn) 55%,var(--line))}
+.badge .bi{display:block;font-size:18px;line-height:1.3}
+.badge .bn{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:720px){ .badges{grid-template-columns:repeat(4,1fr)} }
+.panel{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:16px}
+.panel-h{font-size:12px;color:var(--dim);margin-bottom:10px}
+body{display:flex;flex-direction:column;min-height:100vh}
+main{flex:1 0 auto}
+footer{margin-top:auto}
+main,.card,.setup{max-width:100%}
+.opt,.pt,.pick,.mine,.exp{min-width:0}
+.stem,.opt span,.pt span{overflow-wrap:anywhere}
+.actions{flex-wrap:wrap}
+footer{padding:22px 14px 30px;line-height:1.8}
+
+@media (max-width:720px){
+  #scorepill{display:none}
+  .bar a.pill{display:none}
+  .bar{flex-wrap:wrap;row-gap:8px}
+  .bar h1{flex:1 1 100%;font-size:16px;margin:0}
+  .bar .spacer{display:none}
+  #restart{display:none}
+  #grid,#exam{padding:6px 10px!important;font-size:12px!important}
+  .progress{margin-top:6px}
+}
+@media (max-width:560px){
+  .bar{gap:8px}
+  .bar h1{font-size:17px;line-height:1.3}
+  .bar .meta{display:none}
+  .pill{padding:3px 9px;font-size:11px}
+  main{padding:12px 10px 84px}
+  .card{padding:14px;border-radius:12px}
+  .chips{gap:6px;margin-bottom:10px}
+  .chip{font-size:11px;padding:1px 7px}
+  .stem{font-size:15.5px;line-height:1.6;margin:2px 0 14px}
+  .opt{padding:12px;font-size:15px;line-height:1.5;gap:10px}
+  .opt .k{flex:0 0 22px;height:22px;font-size:11px}
+  .actions{gap:8px;margin-top:14px}
+  .actions .btn{padding:10px 12px;font-size:14px}
+  .stem{font-size:17px;margin:10px 0 16px}
+  .actionbar #prev,.actionbar #next{flex:1 1 0}
+  .actionbar #finish{flex:0 0 auto}
+  textarea{font-size:15px}
+  .picks{grid-template-columns:1fr}
+  .setup-head h2{font-size:20px}
+  .setup-block{padding:14px}
+  .seg{gap:6px}
+  .seg button{padding:12px 0;font-size:13px}
+  .setup-foot{flex-direction:column;align-items:stretch;gap:10px}
+  .setup-foot .sum{text-align:center}
+  .setup-foot .btn{width:100%;padding:12px 0;font-size:15px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stat{min-width:0;padding:10px 12px}
+  .stat b{font-size:18px}
+  footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>科学 · 10 年级</h1>
+    <span class="meta">10SCI 26 · 45 题</span>
+    <span class="spacer"></span>
+    <span class="pill" id="counter">0 / 45</span>
+    <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
+    <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
+    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">📋 题号</button>
+    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">⏱ 考试模式</button>
+    <span class="pill" id="clock" style="display:none"></span>
+    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+  </div>
+  <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
+</header>
+<main id="app"></main>
+<div id="nav" class="nav-overlay"><div class="nav-box">
+  <div class="nav-head"><b>题号</b><span class="muted">绿=对 红=错 橙=半对 灰=未做</span><button class="btn ghost" id="navclose" style="margin-left:auto;padding:4px 10px">关闭</button></div>
+  <div class="nav-grid" id="navgrid"></div>
+</div></div>
+<footer>键盘：<kbd>1</kbd>–<kbd>4</kbd> 选择 · <kbd>←</kbd><kbd>→</kbd> 切题 · <kbd>G</kbd> 题号 · <kbd>Enter</kbd> 下一题 · <kbd>S</kbd> 看成绩 · 进度自动保存在本机浏览器</footer>
+<script>
+const DATA = {"slug": "sci", "title": "科学 · 10 年级", "examMin": 80, "questions": [{"id": "sci-001", "topic": "电磁学 · 单位与符号", "difficulty": "easy", "type": "mcq", "stem": "Which row correctly matches each quantity with its unit and symbol?", "options": ["Current – amperes (A); voltage – volts (V); resistance – ohms (Ω)", "Current – amperes (A); voltage – ohms (Ω); resistance – volts (V)", "Current – ohms (Ω); voltage – volts (V); resistance – amperes (A)", "Current – volts (V); voltage – amperes (A); resistance – ohms (Ω)"], "explanation": "电流单位安培 A，电压单位伏特 V，电阻单位欧姆 Ω。在 V=IR 里 I 是电流、V 是电压、R 是电阻，符号不能互换。", "source": "Term 4 · Yearly Examination（Section 1）+ 2020 Year 10 Yearly Examination Answers（Part C Q6 单位表）", "answer": 0, "weak": false}, {"id": "sci-002", "topic": "电磁学 · 串联电路", "difficulty": "easy", "type": "mcq", "stem": "Which statement about a series circuit is correct?", "options": ["The voltage across each component equals the supply voltage.", "The current is the same at every point in the circuit.", "There is more than one path for the current to follow.", "The total resistance is smaller than the smallest resistance in the circuit."], "explanation": "串联只有一条通路，所以电流处处相同；电压由各元件分掉。只有并联才是各支路电压等于电源电压、总电阻更小。", "source": "Electromagnetism.pdf（Series vs Parallel Circuits）", "answer": 1, "weak": false}, {"id": "sci-003", "topic": "电磁学 · 并联电路", "difficulty": "medium", "type": "mcq", "stem": "Two identical globes are connected in parallel to a battery. One globe burns out. What happens to the other globe?", "options": ["It glows more brightly than before.", "It goes out at the same time as the other one.", "It glows with the same brightness as before.", "It glows less brightly than before."], "explanation": "并联时每条支路都单独接在电源两端，电压都等于电源电压；一条支路断了，另一条支路的电压和电流不变，亮度不变。", "source": "2020 Year 10 Yearly Examination Answers（Part C Q3 并联灯泡烧坏）", "answer": 2, "weak": false}, {"id": "sci-004", "topic": "电磁学 · 短路故障", "difficulty": "hard", "type": "mcq", "stem": "Two identical globes are connected in series with a battery. A wire is accidentally connected straight across globe 1, so that current can bypass it. What is the effect?", "options": ["Nothing changes, because current must pass through every component in a series circuit.", "Globe 1 stays bright and globe 2 goes out.", "Both globes go out, because the circuit is now broken.", "Globe 1 goes out and globe 2 becomes brighter than before."], "explanation": "导线把 1 号灯短路，电流走电阻几乎为零的导线，1 号灯不亮；回路总电阻下降、电流增大，2 号灯更亮。短路≠断路。", "source": "Electromagnetism.pdf（Series circuit 单一通路 / 电阻与电流关系）+ 课程标准补充（短路）", "answer": 3, "weak": true}, {"id": "sci-005", "topic": "电磁学 · 静电与电流", "difficulty": "easy", "type": "short", "stem": "Distinguish between static electricity and current electricity. (2 marks)", "options": [], "answer": "• Static electricity is the build-up of charge on an object, caused by the separation and accumulation of charged particles (e.g. rubbing a plastic comb through hair); the charges do not flow.\n• Current electricity is the flow of charged particles (usually electrons) through a conductor such as copper.", "explanation": "静电是电荷在物体上积聚、不流动；电流是电荷（通常是电子）在导体中持续流动。", "source": "Electromagnetism Revision - Circuits（Lesson 1 Activity 2：What is Electricity?）", "points": [{"t": "Static electricity is the build-up of charge on an object, caused by the separation and accumulation of charged particles (e.g. rubbing a plastic comb through hair); the charges do not flow.", "m": 1}, {"t": "Current electricity is the flow of charged particles (usually electrons) through a conductor such as copper.", "m": 1}], "weak": false}, {"id": "sci-006", "topic": "电磁学 · 欧姆定律", "difficulty": "easy", "type": "short", "stem": "State Ohm's law, including the equation and the unit of each quantity. (2 marks)", "options": [], "answer": "• Ohm's law: the voltage (potential difference) across a conductor equals the current through it multiplied by its resistance, V = IR.\n• Units: volts (V) for voltage, amperes (A) for current, ohms (Ω) for resistance.", "explanation": "欧姆定律 V=IR；单位 V、A、Ω。电流的符号是 I，不要和电压 V 混。", "source": "Electromagnetism Revision - Ohm's Law（Lesson 2 Activity 2）+ STUDENT 7. Electromagnetism 2022.docx（Practical 2）", "points": [{"t": "Ohm's law: the voltage (potential difference) across a conductor equals the current through it multiplied by its resistance, V = IR.", "m": 1}, {"t": "Units: volts (V) for voltage, amperes (A) for current, ohms (Ω) for resistance.", "m": 1}], "weak": false}, {"id": "sci-007", "topic": "电磁学 · 电阻", "difficulty": "easy", "type": "short", "stem": "Define resistance and state two factors that increase the resistance of a metal wire. (2 marks)", "options": [], "answer": "• Resistance is a measure of how much a material opposes (reduces) the flow of electric current through it.\n• Resistance increases as the wire becomes longer and as the wire becomes thinner (smaller cross-sectional area); heating the wire also increases its resistance.", "explanation": "电阻表示材料对电流的阻碍程度；导线越长、越细（横截面积越小）电阻越大，温度升高电阻也增大。", "source": "Electromagnetism Revision - Ohm's Law（Lesson 1 Activity 4 Resistance）", "points": [{"t": "Resistance is a measure of how much a material opposes (reduces) the flow of electric current through it.", "m": 1}, {"t": "Resistance increases as the wire becomes longer and as the wire becomes thinner (smaller cross-sectional area); heating the wire also increases its resistance.", "m": 1}], "weak": false}, {"id": "sci-008", "topic": "电磁学 · 电表连接", "difficulty": "easy", "type": "short", "stem": "Name the instrument used to measure current and the instrument used to measure voltage, and state how each one is connected. (2 marks)", "options": [], "answer": "• Current is measured with an ammeter, which is connected in series with the component.\n• Voltage (potential difference) is measured with a voltmeter, which is connected in parallel across the component.", "explanation": "电流表串联、电压表并联。名称、测量对象、连接方式三样都要写全才拿满分。", "source": "STUDENT 7. Electromagnetism 2022.docx（Practical 1）+ Electromagnetism.pdf（Knowledge 2）", "points": [{"t": "Current is measured with an ammeter, which is connected in series with the component.", "m": 1}, {"t": "Voltage (potential difference) is measured with a voltmeter, which is connected in parallel across the component.", "m": 1}], "weak": false}, {"id": "sci-009", "topic": "电磁学 · 电表位置原理", "difficulty": "medium", "type": "short", "stem": "Explain why an ammeter must be connected in series and a voltmeter in parallel with a light bulb. (3 marks)", "options": [], "answer": "• Components in series carry the same current, so an ammeter in series measures the current that actually flows through the bulb.\n• Components in parallel have the same potential difference across them, so a voltmeter in parallel measures the voltage across the bulb.\n• A voltmeter has a very high resistance, so if it were placed in series it would reduce the current in the circuit and change the quantity being measured.", "explanation": "串联元件电流相同，所以电流表要串；并联元件电压相同，所以电压表要并。电压表内阻很大，串进去会改变电路电流。", "source": "Electromagnetism.pdf（Explain the difference between the positioning of the ammeter and the voltmeter）", "points": [{"t": "Components in series carry the same current, so an ammeter in series measures the current that actually flows through the bulb.", "m": 1}, {"t": "Components in parallel have the same potential difference across them, so a voltmeter in parallel measures the voltage across the bulb.", "m": 1}, {"t": "A voltmeter has a very high resistance, so if it were placed in series it would reduce the current in the circuit and change the quantity being measured.", "m": 1}], "weak": false}, {"id": "sci-010", "topic": "电磁学 · 欧姆定律计算", "difficulty": "medium", "type": "short", "stem": "A rheostat has a maximum resistance of 10.5 Ω. A power pack delivers 12 V to the rheostat. Calculate the current through the device, showing your working. (2 marks)", "options": [], "answer": "• I = V ÷ R = 12 V ÷ 10.5 Ω\n• = 1.14 A (accept about 1.1 A)", "explanation": "I=V/R=12÷10.5=1.14 A。先写公式再代数，单位不要漏。", "source": "Electromagnetism Revision - Ohm's Law（Activity 3, Q2）", "points": [{"t": "I = V ÷ R = 12 V ÷ 10.5 Ω", "m": 1}, {"t": "= 1.14 A (accept about 1.1 A)", "m": 1}], "weak": false}, {"id": "sci-011", "topic": "电磁学 · 欧姆定律变形", "difficulty": "medium", "type": "short", "stem": "A television tube passes a current of 0.25 A and is labelled 240 V. Calculate the resistance of the tube. (2 marks)", "options": [], "answer": "• R = V ÷ I = 240 V ÷ 0.25 A\n• = 960 Ω", "explanation": "R=V/I=240÷0.25=960 Ω。求电阻要先变形为 R=V/I，别直接相减。", "source": "Electromagnetism Revision - Ohm's Law（Activity 3, Q3）", "points": [{"t": "R = V ÷ I = 240 V ÷ 0.25 A", "m": 1}, {"t": "= 960 Ω", "m": 1}], "weak": false}, {"id": "sci-012", "topic": "电磁学 · 电路保护计算", "difficulty": "medium", "type": "short", "stem": "A power pack delivers 12 V and its circuit breaker triggers when the current reaches 5 A. Calculate the lowest possible circuit resistance before the breaker triggers, and state what happens if the resistance drops below this value. (3 marks)", "options": [], "answer": "• R = V ÷ I = 12 V ÷ 5 A = 2.4 Ω\n• If the resistance falls below 2.4 Ω, the current rises above 5 A.\n• The circuit breaker then trips (opens the circuit) and cuts off the current, protecting the equipment.", "explanation": "R=12/5=2.4 Ω。电阻一旦低于 2.4 Ω，电流就超过 5 A，断路器跳闸切断电路——这就是它的保护作用。", "source": "Electromagnetism Revision - Ohm's Law（Activity 3, Q4）", "points": [{"t": "R = V ÷ I = 12 V ÷ 5 A = 2.4 Ω", "m": 1}, {"t": "If the resistance falls below 2.4 Ω, the current rises above 5 A.", "m": 1}, {"t": "The circuit breaker then trips (opens the circuit) and cuts off the current, protecting the equipment.", "m": 1}], "weak": false}, {"id": "sci-013", "topic": "电磁学 · 串并联对比", "difficulty": "easy", "type": "short", "stem": "Compare series and parallel circuits in terms of (a) the number of paths, (b) the current, (c) the voltage across each component, and (d) which arrangement has the larger total resistance. (4 marks)", "options": [], "answer": "• (a) Series has only one path for the current; parallel has two or more paths.\n• (b) In series the current is the same at every point; in parallel the current splits between the branches, so the total current is larger.\n• (c) In series the supply voltage is shared between the components; in parallel each branch has the full supply voltage across it.\n• (d) For the same resistors, the series arrangement has the larger total resistance, because the current must pass through every resistor one after another; in parallel the extra paths lower the total resistance.", "explanation": "串联：一条路、电流处处相同、电压被分掉、总电阻更大；并联：多条路、电流分流、各支路电压=电源电压、总电阻更小。", "source": "Electromagnetism.pdf（Series vs Parallel Circuits / Parallel Circuit）", "points": [{"t": "(a) Series has only one path for the current; parallel has two or more paths.", "m": 1}, {"t": "(b) In series the current is the same at every point; in parallel the current splits between the branches, so the total current is larger.", "m": 1}, {"t": "(c) In series the supply voltage is shared between the components; in parallel each branch has the full supply voltage across it.", "m": 1}, {"t": "(d) For the same resistors, the series arrangement has the larger total resistance, because the current must pass through every resistor one after another; in parallel the extra paths lower the total resistance.", "m": 1}], "weak": false}, {"id": "sci-014", "topic": "电磁学 · 并联的优点", "difficulty": "medium", "type": "short", "stem": "State two advantages of wiring lights in parallel in a house, and explain why houses are wired this way. (3 marks)", "options": [], "answer": "• Each light gets the full supply voltage, so it glows at its normal brightness.\n• If one globe fails the others keep working, because each branch is a separate path.\n• Each light can be switched on or off independently — the same reason the classroom light switches are wired in parallel.", "explanation": "并联各支路电压都等于电源电压、一个坏了不影响其他、还能单独开关——所以家庭和教室照明都用并联。", "source": "Electromagnetism.pdf（Benefits of parallel circuits）+ Electromagnetism Revision - Circuits（Lesson 3 Q5）", "points": [{"t": "Each light gets the full supply voltage, so it glows at its normal brightness.", "m": 1}, {"t": "If one globe fails the others keep working, because each branch is a separate path.", "m": 1}, {"t": "Each light can be switched on or off independently — the same reason the classroom light switches are wired in parallel.", "m": 1}], "weak": false}, {"id": "sci-015", "topic": "电磁学 · 电动机原理", "difficulty": "medium", "type": "short", "stem": "Explain how the coil of a simple DC motor is made to rotate when the switch is closed. (3 marks)", "options": [], "answer": "• Current flows through the coil, creating a magnetic field around the current-carrying wire (Oersted's discovery).\n• This field interacts with the field of the permanent magnet, producing a force (torque) on the coil, so the coil turns.\n• The commutator and brushes reverse the current every half turn, so the coil keeps rotating in the same direction.", "explanation": "通电线圈产生磁场，与永久磁铁磁场相互作用产生力矩使线圈转动；换向器每半圈换向，保证持续同向旋转。", "source": "Term 3 Electromagnetism Week 10 Answers（Activity 3 · 电机转动原理）", "points": [{"t": "Current flows through the coil, creating a magnetic field around the current-carrying wire (Oersted's discovery).", "m": 1}, {"t": "This field interacts with the field of the permanent magnet, producing a force (torque) on the coil, so the coil turns.", "m": 1}, {"t": "The commutator and brushes reverse the current every half turn, so the coil keeps rotating in the same direction.", "m": 1}], "weak": false}, {"id": "sci-016", "topic": "电磁学 · 电磁感应", "difficulty": "medium", "type": "short", "stem": "A bar magnet is pushed into a coil of wire connected to a galvanometer, and the needle deflects. (a) Name the process that produces this current. (b) State two changes that would make the induced current larger. (3 marks)", "options": [], "answer": "• (a) Electromagnetic induction — a changing magnetic field induces a current in a conductor (Faraday's law).\n• (b) Any two of: push the magnet in faster, use a stronger magnet, use more turns of wire, or use a coil with a larger area.", "explanation": "磁铁与线圈相对运动→磁场变化→感应电流（法拉第电磁感应）。更快、更强磁铁、更多匝数、更大面积都能增大感应电流。", "source": "Term 4 Electromagnetism Week 1 Answers（Faraday 电磁感应 / Activity 5 结论）", "points": [{"t": "(a) Electromagnetic induction — a changing magnetic field induces a current in a conductor (Faraday's law).", "m": 1}, {"t": "(b) Any two of: push the magnet in faster, use a stronger magnet, use more turns of wire, or use a coil with a larger area.", "m": 1}], "weak": false}, {"id": "sci-017", "topic": "电磁学 · 数据读取与梯度", "difficulty": "hard", "type": "short", "stem": "The table shows the voltage across, and the current through, a wire and a light bulb.\n\nVoltage (V): 0 | 2 | 4 | 6 | 8 | 10 | 12\nCurrent in wire (A): 0 | 0.8 | 2.1 | 2.9 | 4.2 | 5.3 | 6.1\nCurrent in light bulb (A): 0 | 0.9 | 1.9 | 2.8 | 3.1 | 3.3 | 3.6\n\n(a) Describe the trend shown by each conductor. (b) Calculate the gradient of the wire and state what it represents. (4 marks)", "options": [], "answer": "• (a) For both conductors the current increases as the voltage increases.\n• The wire is a straight line through the origin (proportional), so its resistance is constant — it is ohmic.\n• The light bulb curves: the current rises more and more slowly as voltage increases, so its resistance is increasing — it is non-ohmic.\n• (b) gradient = ΔV/ΔI = (12 − 2) V ÷ (6.1 − 0.8) A ≈ 1.9 Ω, which represents the resistance of the wire, because R = V/I.", "explanation": "两列电流都随电压增大；导线是过原点的直线（欧姆元件，电阻恒定），灯泡是曲线（非欧姆，电阻随温度升高）。梯度 ΔV/ΔI≈1.9 Ω 就是导线电阻。", "source": "Electromagnetism.pdf（Voltage/Current 数据表）+ Electromagnetism Revision - Ohm's Law（Lesson 3, Q1、Q5）", "points": [{"t": "(a) For both conductors the current increases as the voltage increases.", "m": 1}, {"t": "The wire is a straight line through the origin (proportional), so its resistance is constant — it is ohmic.", "m": 1}, {"t": "The light bulb curves: the current rises more and more slowly as voltage increases, so its resistance is increasing — it is non-ohmic.", "m": 1}, {"t": "(b) gradient = ΔV/ΔI = (12 − 2) V ÷ (6.1 − 0.8) A ≈ 1.9 Ω, which represents the resistance of the wire, because R = V/I.", "m": 1}], "weak": false}, {"id": "sci-018", "topic": "电磁学 · 非欧姆元件", "difficulty": "hard", "type": "short", "stem": "Explain why a light bulb gives a non-ohmic response while a metal wire approximately obeys Ohm's law. (3 marks)", "options": [], "answer": "• As the current increases, the tungsten filament heats up.\n• The atoms in the hot filament vibrate more, so electrons collide with them more often and it becomes harder for charge to flow — resistance rises as the bulb gets hotter, so current is no longer proportional to voltage.\n• The wire stays at almost constant temperature, so its resistance stays constant and V is proportional to I.", "explanation": "灯丝通电后升温，原子振动加剧、电子碰撞增多，电阻随温度升高而增大，所以 V–I 图是曲线；导线温度几乎不变，电阻恒定，近似欧姆。", "source": "Electromagnetism.pdf（Practical 2 Response：non-ohmic resistor）+ Electromagnetism Revision - Ohm's Law（Lesson 3, Q6）", "points": [{"t": "As the current increases, the tungsten filament heats up.", "m": 1}, {"t": "The atoms in the hot filament vibrate more, so electrons collide with them more often and it becomes harder for charge to flow — resistance rises as the bulb gets hotter, so current is no longer proportional to voltage.", "m": 1}, {"t": "The wire stays at almost constant temperature, so its resistance stays constant and V is proportional to I.", "m": 1}], "weak": false}, {"id": "sci-019", "topic": "进化 · 达尔文的证据", "difficulty": "easy", "type": "mcq", "stem": "Darwin collected 13 species of finch on the Galapagos Islands. Which feature differed most clearly between the specimens?", "options": ["Beak size and shape", "Wing length and shape", "Number of legs on each bird", "Body colour and pattern"], "explanation": "13 种雀鸟体型羽色相近，但喙的大小和形状不同，对应不同岛屿的不同食物来源，是自然选择的经典证据。", "source": "Year 10 - Evolution.pptx（Galapagos finches）", "answer": 0, "weak": false}, {"id": "sci-020", "topic": "进化 · 拉马克与达尔文", "difficulty": "easy", "type": "mcq", "stem": "How did Lamarck explain the long necks of giraffes?", "options": ["Long necks appeared suddenly because of a mutation in a single generation.", "Giraffes stretched their necks to reach high leaves and passed the longer necks on to their offspring.", "Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring.", "Giraffe necks grew longer because the climate changed."], "explanation": "拉马克主张「用进废退＋获得性性状可遗传」：伸长脖子并把这一改变传给后代。「Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring.」 才是达尔文自然选择的解释。", "source": "Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）", "answer": 1, "weak": false}, {"id": "sci-021", "topic": "进化 · 选择压力", "difficulty": "hard", "type": "mcq", "stem": "In parts of Australia where cane toads live, the average head size of red-bellied black snakes has become smaller. Which explanation is consistent with natural selection?", "options": ["Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring.", "The toads release a chemical that directly shrinks the heads of the snakes they meet.", "Snakes with larger heads could swallow the bigger, more toxic toads and died, so smaller-headed snakes survived and reproduced.", "Head size is not heritable, so this change cannot be evolution by natural selection."], "explanation": "蔗蟾是选择压力：头大的蛇吞下大蟾、摄入更多毒素而死亡（被淘汰），头小或不愿吃蟾的个体存活繁殖。「Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring.」 是拉马克式错误说法。", "source": "Term 4 - Evolution - Week 3 Answers（Cane toads / red-bellied black snake）", "answer": 2, "weak": false}, {"id": "sci-022", "topic": "进化 · 选择压力定义", "difficulty": "easy", "type": "short", "stem": "Define the term 'selection pressure' and give two examples of selection pressures. (2 marks)", "options": [], "answer": "• A selection pressure is an external agent that affects an organism's ability to survive and reproduce in a given environment.\n• Examples: predators, climate and temperature, food and water supply, disease, or competition for mates and resources.", "explanation": "选择压力＝影响生物能否在特定环境存活繁殖的外部因素，如捕食者、气候、食物水源、疾病、竞争。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part A · Selection pressures / B1）", "points": [{"t": "A selection pressure is an external agent that affects an organism's ability to survive and reproduce in a given environment.", "m": 1}, {"t": "Examples: predators, climate and temperature, food and water supply, disease, or competition for mates and resources.", "m": 1}], "weak": false}, {"id": "sci-023", "topic": "进化 · 自然选择的步骤", "difficulty": "medium", "type": "short", "stem": "The steps of natural selection are listed out of order: reproduction and inheritance; increased prevalence in the gene pool; survival of the fittest; variation in a population; selection pressure. Number them 1–5 in the correct order and write one sentence explaining step 3. (5 marks)", "options": [], "answer": "• 1 Variation in a population — individuals differ in their inherited traits.\n• 2 Selection pressure — an external agent such as a predator or a change in climate acts on the population.\n• 3 Survival of the fittest — individuals whose traits suit the environment are more likely to survive.\n• 4 Reproduction and inheritance — survivors breed and pass the helpful alleles on to their offspring.\n• 5 Increased prevalence in the gene pool — over many generations the helpful trait becomes more common in the population.", "explanation": "顺序：变异→选择压力→适者生存→繁殖与遗传→基因库中比例上升。第 3 步的含义是「性状更适合环境的个体更容易存活」。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B2）", "points": [{"t": "1 Variation in a population — individuals differ in their inherited traits.", "m": 1}, {"t": "2 Selection pressure — an external agent such as a predator or a change in climate acts on the population.", "m": 1}, {"t": "3 Survival of the fittest — individuals whose traits suit the environment are more likely to survive.", "m": 1}, {"t": "4 Reproduction and inheritance — survivors breed and pass the helpful alleles on to their offspring.", "m": 1}, {"t": "5 Increased prevalence in the gene pool — over many generations the helpful trait becomes more common in the population.", "m": 1}], "weak": false}, {"id": "sci-024", "topic": "进化 · 变异的来源", "difficulty": "easy", "type": "short", "stem": "Where does the variation in a population originally come from? (1 mark)", "options": [], "answer": "• Mutations — random changes in the DNA (genes or chromosomes) that are inherited and create new alleles; sexual reproduction also shuffles existing alleles into new combinations.", "explanation": "变异的根本来源是基因突变（产生新等位基因），有性生殖再把等位基因重新组合。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B3）+ Year 10 - Evolution.pptx（Mutations）", "points": [{"t": "• Mutations — random changes in the DNA (genes or chromosomes) that are inherited and create new alleles", "m": 1}, {"t": "sexual reproduction also shuffles existing alleles into new combinations", "m": 1}], "weak": false}, {"id": "sci-025", "topic": "进化 · 达尔文的观察与推论", "difficulty": "easy", "type": "short", "stem": "Darwin made a set of observations and used them to make inferences. Outline two of his observations and the inference he drew from them. (4 marks)", "options": [], "answer": "• Observation: individuals in a species vary, and much of that variation is heritable.\n• Observation: organisms produce far more offspring than can survive, while resources are limited.\n• Inference: there is a struggle for existence, and the individuals best suited to their environment survive and reproduce.\n• Over time populations adapt to their environment, and this can lead to new species.", "explanation": "达尔文的观察：个体有可遗传的变异；后代数量超过资源能承载的量。推论：存在生存斗争，最适应环境的个体存活繁殖，种群逐渐适应环境甚至形成新种。", "source": "Year 10 - Evolution.pptx（The Theory of Evolution）", "points": [{"t": "Observation: individuals in a species vary, and much of that variation is heritable.", "m": 1}, {"t": "Observation: organisms produce far more offspring than can survive, while resources are limited.", "m": 1}, {"t": "Inference: there is a struggle for existence, and the individuals best suited to their environment survive and reproduce.", "m": 1}, {"t": "Over time populations adapt to their environment, and this can lead to new species.", "m": 1}], "weak": false}, {"id": "sci-026", "topic": "进化 · 拉马克与达尔文对比", "difficulty": "medium", "type": "short", "stem": "Explain how Lamarck's explanation of evolution differs from Darwin's. (3 marks)", "options": [], "answer": "• Lamarck proposed use and disuse plus the inheritance of acquired characteristics: an organism changes during its life by using a feature more, then passes that change to its offspring (e.g. a giraffe stretching its neck).\n• Darwin proposed natural selection: variation already exists in the population, and individuals with inherited traits suited to the environment survive and reproduce more, so those traits become more common.\n• Lamarck's mechanism has no role for genes, and acquired changes are not inherited.", "explanation": "拉马克靠「用进废退＋获得性性状遗传」，达尔文靠种群中已有的变异＋自然选择。关键差别：只有可遗传的变异才能传递给下一代。", "source": "Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）+ Year 10 - Evolution.pptx", "points": [{"t": "Lamarck proposed use and disuse plus the inheritance of acquired characteristics: an organism changes during its life by using a feature more, then passes that change to its offspring (e.g. a giraffe stretching its neck).", "m": 1}, {"t": "Darwin proposed natural selection: variation already exists in the population, and individuals with inherited traits suited to the environment survive and reproduce more, so those traits become more common.", "m": 1}, {"t": "Lamarck's mechanism has no role for genes, and acquired changes are not inherited.", "m": 1}], "weak": false}, {"id": "sci-027", "topic": "进化 · 工业黑化", "difficulty": "medium", "type": "short", "stem": "Explain, using natural selection, why the dark (melanic) form of the peppered moth became common in industrial towns in the 1800s. (4 marks)", "options": [], "answer": "• Soot pollution killed the lichens and blackened the tree trunks.\n• The pale peppered form then stood out against the dark bark and was eaten by birds, so it was selected against.\n• The dark melanic form was better camouflaged and survived to breed, passing its alleles to the next generation.\n• Over many generations the dark form became more common, i.e. the population evolved as the environment changed.", "explanation": "煤烟把树干熏黑→浅色蛾失去保护被鸟捕食→黑色型隐蔽存活并繁殖→多代后比例上升。这是自然选择方向随环境改变的例子。", "source": "Term 4 - Evolution - Week 2（Case Study: Peppered Moth）", "points": [{"t": "Soot pollution killed the lichens and blackened the tree trunks.", "m": 1}, {"t": "The pale peppered form then stood out against the dark bark and was eaten by birds, so it was selected against.", "m": 1}, {"t": "The dark melanic form was better camouflaged and survived to breed, passing its alleles to the next generation.", "m": 1}, {"t": "Over many generations the dark form became more common, i.e. the population evolved as the environment changed.", "m": 1}], "weak": false}, {"id": "sci-028", "topic": "进化 · 现存物种的证据", "difficulty": "medium", "type": "short", "stem": "Name three types of evidence from living species that support the theory of evolution, and explain what one of them shows. (3 marks)", "options": [], "answer": "• Comparative anatomy (e.g. the same bone arrangement in the forelimbs of vertebrates — homologous structures).\n• Comparative embryology (closely related species have similar embryos at early stages).\n• Biochemical / DNA evidence (the closer the DNA base sequence of two species, the more closely related they are).\n• Vestigial structures (structures that once had a function but are now functionless) also indicate common ancestry.", "explanation": "现存生物的证据包括比较解剖学（同源结构）、比较胚胎学、生化/DNA 证据，以及痕迹器官；它们都指向共同祖先。", "source": "Year 10 - Evolution.pptx（Evidence for Evolution – Living Species）", "points": [{"t": "Comparative anatomy (e.g. the same bone arrangement in the forelimbs of vertebrates — homologous structures).", "m": 1}, {"t": "Comparative embryology (closely related species have similar embryos at early stages).", "m": 1}, {"t": "Biochemical / DNA evidence (the closer the DNA base sequence of two species, the more closely related they are).", "m": 1}, {"t": "Vestigial structures (structures that once had a function but are now functionless) also indicate common ancestry.", "m": 1}], "weak": false}, {"id": "sci-029", "topic": "进化 · 化石测年", "difficulty": "medium", "type": "short", "stem": "Describe the difference between relative dating and absolute dating of fossils, and give one problem with relative dating. (3 marks)", "options": [], "answer": "• Relative dating uses the order of the rock layers: lower layers were laid down first, so fossils in lower layers are older — it gives the order of age, not an actual age.\n• Absolute dating measures how much radioactive carbon is left in a sample to calculate when the organism died.\n• Problem with relative dating: plate movement, folding or faulting can overturn or shift layers, so the layer order no longer shows the true sequence of ages.", "explanation": "相对测年只看岩层上下顺序（只给先后，不给具体年代），绝对测年靠放射性碳剩余量算出死亡年代。相对测年的问题是板块运动、褶皱、断层会让岩层翻转错位。", "source": "Year 10 - Evolution.pptx（Techniques used to date fossils）", "points": [{"t": "Relative dating uses the order of the rock layers: lower layers were laid down first, so fossils in lower layers are older — it gives the order of age, not an actual age.", "m": 1}, {"t": "Absolute dating measures how much radioactive carbon is left in a sample to calculate when the organism died.", "m": 1}, {"t": "Problem with relative dating: plate movement, folding or faulting can overturn or shift layers, so the layer order no longer shows the true sequence of ages.", "m": 1}], "weak": false}, {"id": "sci-030", "topic": "进化 · 华莱士线", "difficulty": "easy", "type": "short", "stem": "What does Wallace's Line show, and what is the most likely explanation for it? (3 marks)", "options": [], "answer": "• It marks the boundary between the fauna of Asia (for example tigers and elephants, which are placental mammals) and the fauna of Australia (marsupials and monotremes).\n• It runs through Bali and Borneo, north through Lombok and Sulawesi, then east of the Philippines.\n• It is approximately the collision zone between the Asian and Australian continental plates, so the two regions were isolated from each other and their species evolved separately.", "explanation": "华莱士线是亚洲动物区系（胎盘哺乳类）与澳洲动物区系（有袋类/单孔类）的分界，大致对应亚欧板块与澳洲板块的碰撞带——地理隔离导致两边独立演化。", "source": "Year 10 - Evolution.pptx（Wallace's Line）", "points": [{"t": "It marks the boundary between the fauna of Asia (for example tigers and elephants, which are placental mammals) and the fauna of Australia (marsupials and monotremes).", "m": 1}, {"t": "It runs through Bali and Borneo, north through Lombok and Sulawesi, then east of the Philippines.", "m": 1}, {"t": "It is approximately the collision zone between the Asian and Australian continental plates, so the two regions were isolated from each other and their species evolved separately.", "m": 1}], "weak": false}, {"id": "sci-031", "topic": "进化 · 生命起源实验", "difficulty": "easy", "type": "short", "stem": "Describe what the Urey–Miller experiment demonstrated and state one limitation of the experiment. (3 marks)", "options": [], "answer": "• Miller heated water and a mixture of gases representing the early ocean and atmosphere, and passed electric sparks through them to simulate lightning.\n• After a week he found a range of amino acids, the building blocks of proteins.\n• It showed that organic molecules can form spontaneously from inorganic ingredients, but it does not prove how life actually began (and the early atmosphere may not have had the composition he assumed).", "explanation": "米勒用电火花模拟闪电，在模拟原始海洋与大气的混合气体中得到多种氨基酸——说明无机物可以自发形成有机分子；但这不能证明生命如何起源。", "source": "Year 10 - Evolution.pptx（Urey-Miller experiment）", "points": [{"t": "Miller heated water and a mixture of gases representing the early ocean and atmosphere, and passed electric sparks through them to simulate lightning.", "m": 1}, {"t": "After a week he found a range of amino acids, the building blocks of proteins.", "m": 1}, {"t": "It showed that organic molecules can form spontaneously from inorganic ingredients, but it does not prove how life actually began (and the early atmosphere may not have had the composition he assumed).", "m": 1}], "weak": false}, {"id": "sci-032", "topic": "进化 · 蜥蜴情景分析", "difficulty": "hard", "type": "short", "stem": "Stimulus 1 – Desert lizards: In a desert region a population of lizards varies in skin colour; some are light brown, some dark brown. Before a predatory bird arrived in the 1990s both forms were common. Since then the light-coloured lizards, which blend into the sand, have become more common, while dark lizards remain common in areas without the bird. Using the steps of natural selection, explain why the light-coloured trait has become more prevalent. (4 marks)", "options": [], "answer": "• Variation: the population already contained inherited variation in colour — both light and dark brown lizards.\n• Selection pressure: the predatory bird, which hunts visually during the day.\n• Survival of the fittest: light lizards are camouflaged against the sand and are less likely to be seen and eaten, while dark lizards stand out and are removed.\n• Reproduction and inheritance: the surviving light lizards breed and pass the light-colour alleles to their offspring, so over generations light lizards become more common in the gene pool.", "explanation": "按五步走：原有变异（浅/深）→选择压力（白天靠视觉捕食的鸟）→浅色更隐蔽而存活、深色被吃→浅色繁殖并遗传→多代后浅色比例上升。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 1 / C1）", "points": [{"t": "Variation: the population already contained inherited variation in colour — both light and dark brown lizards.", "m": 1}, {"t": "Selection pressure: the predatory bird, which hunts visually during the day.", "m": 1}, {"t": "Survival of the fittest: light lizards are camouflaged against the sand and are less likely to be seen and eaten, while dark lizards stand out and are removed.", "m": 1}, {"t": "Reproduction and inheritance: the surviving light lizards breed and pass the light-colour alleles to their offspring, so over generations light lizards become more common in the gene pool.", "m": 1}], "weak": false}, {"id": "sci-033", "topic": "进化 · 孔雀鱼情景分析", "difficulty": "hard", "type": "short", "stem": "Stimulus 3 – Guppies: A river population of guppies varies in body colour, from bright to dull. Where predators are common, dull guppies are harder to see and survive better. In predator-free stretches, bright males attract more mates and reproduce more successfully. Over time dull guppies dominate predator-rich areas and bright guppies dominate predator-free areas. Explain why the two areas ended up with different dominant forms. (5 marks)", "options": [], "answer": "• Variation: the population contains inherited variation in colour, from bright to dull.\n• The selection pressure is different in each area — predation in one, mate choice in the other.\n• In predator-rich water the dull fish are camouflaged and survive to breed, so dull alleles are selected for and increase.\n• In predator-free water the bright males attract more mates and leave more offspring, so bright alleles are selected for and increase.\n• Different selection pressures push the same species in opposite directions, so the dominant form differs between the two areas.", "explanation": "同一物种在两个区域面对不同选择压力：有捕食者时「隐蔽」被选择，无捕食者时「吸引配偶」被选择，方向相反，所以优势型不同。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 3 / C3）", "points": [{"t": "Variation: the population contains inherited variation in colour, from bright to dull.", "m": 1}, {"t": "The selection pressure is different in each area — predation in one, mate choice in the other.", "m": 1}, {"t": "In predator-rich water the dull fish are camouflaged and survive to breed, so dull alleles are selected for and increase.", "m": 1}, {"t": "In predator-free water the bright males attract more mates and leave more offspring, so bright alleles are selected for and increase.", "m": 1}, {"t": "Different selection pressures push the same species in opposite directions, so the dominant form differs between the two areas.", "m": 1}], "weak": false}, {"id": "sci-034", "topic": "进化 · 乳糖耐受综合应用", "difficulty": "hard", "type": "short", "stem": "Lactose is the sugar in milk and lactase is the enzyme that digests it. In most mammals, lactase production falls after infancy, which causes lactose intolerance in adults. A mutation allows some people to keep producing lactase throughout adult life. Lactose intolerance is present in only about 5% of Europeans but about 97% of the Australian Indigenous population. Use Darwin's theory of natural selection to suggest why these proportions differ. (6 marks)", "options": [], "answer": "• The ability to keep producing lactase is an inherited mutation, so there is heritable variation in the trait.\n• In populations with a long history of dairying, adults who could digest milk had an extra reliable food source, especially when other food was scarce.\n• Those individuals were more likely to survive and reproduce, so they passed the lactase-persistence allele to their offspring.\n• Over many generations the allele became common, so lactose intolerance is now rare in those populations (about 5%).\n• In populations without dairy herding, digesting milk gave no survival advantage, so the mutation was not selected for and lactose intolerance stayed common (about 97%).\n• This is natural selection acting on existing heritable variation — not the inheritance of a trait acquired during life.", "explanation": "有乳制品饲养史的人群中，成年后能消化乳糖＝多一个可靠食物来源→更易存活繁殖→乳糖酶持续表达的等位基因频率升高；无畜牧传统的人群没有这个选择优势，所以乳糖不耐仍占多数。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part D · Apply your knowledge / D1）", "points": [{"t": "The ability to keep producing lactase is an inherited mutation, so there is heritable variation in the trait.", "m": 1}, {"t": "In populations with a long history of dairying, adults who could digest milk had an extra reliable food source, especially when other food was scarce.", "m": 1}, {"t": "Those individuals were more likely to survive and reproduce, so they passed the lactase-persistence allele to their offspring.", "m": 1}, {"t": "Over many generations the allele became common, so lactose intolerance is now rare in those populations (about 5%).", "m": 1}, {"t": "In populations without dairy herding, digesting milk gave no survival advantage, so the mutation was not selected for and lactose intolerance stayed common (about 97%).", "m": 1}, {"t": "This is natural selection acting on existing heritable variation — not the inheritance of a trait acquired during life.", "m": 1}], "weak": false}, {"id": "sci-035", "topic": "技能 · 数据制图", "difficulty": "easy", "type": "mcq", "stem": "The CUTLAS checklist is used to mark a line graph. Which list gives the six things a good line graph must have?", "options": ["Crosses, Variables, Title, Legend, Axes, Slope", "Calculations, Units, Title, Line, Average, Summary", "Colour, Units, Table, Labels, Arrows, Scale", "Crosses, Units, Title, Line, Axes, Scale"], "explanation": "CUTLAS＝Crosses（用叉画点）、Units（两轴带单位）、Title（含两个变量）、Line（平滑趋势线，不是连点）、Axes（标注且自变量在 x 轴）、Scale（占满约 80%）。", "source": "Stage 5 Graphing-1.docx（CUTLAS checklist）", "answer": 3, "weak": false}, {"id": "sci-036", "topic": "技能 · 变量识别", "difficulty": "easy", "type": "mcq", "stem": "A student investigates how the length of a wire affects its resistance. Which is the dependent variable?", "options": ["The resistance of the wire", "The length of the wire", "The temperature of the room", "The type of wire used"], "explanation": "自变量是实验者主动改变的（导线长度），因变量是被测量的结果（电阻），其余保持不变的是控制变量。", "source": "Identifying Variables.docx（独立 / 依赖 / 控制变量定义）", "answer": 0, "weak": false}, {"id": "sci-037", "topic": "技能 · 误差与可靠性", "difficulty": "medium", "type": "mcq", "stem": "A student repeats a measurement five times and gets almost identical results, but the thermometer used always reads 2 °C too high. Which statement best describes the results?", "options": ["They are both invalid and unreliable.", "They are reliable but not accurate.", "They are both accurate and reliable.", "They are accurate but not reliable."], "explanation": "重复多次结果一致＝可靠（reliable）；温度计恒定偏高属于系统误差，因此不准确（accurate 指接近真值）。可靠不等于准确。", "source": "Half Yearly Revision.pdf（Reliability / Accuracy / systematic error）", "answer": 1, "weak": false}, {"id": "sci-038", "topic": "技能 · 实验设计", "difficulty": "easy", "type": "short", "stem": "A student investigates whether the surface area of calcium carbonate affects the rate at which it reacts with hydrochloric acid. Identify the independent variable, the dependent variable and two controlled variables. (3 marks)", "options": [], "answer": "• Independent variable: the surface area (particle size) of the calcium carbonate.\n• Dependent variable: the rate of the reaction, e.g. the volume of gas collected per minute.\n• Controlled variables (any two): the concentration and volume of hydrochloric acid, the mass of calcium carbonate used, the temperature, or the same beaker.", "explanation": "自变量＝碳酸钙表面积；因变量＝反应速率（如每分钟气体体积）；控制变量＝酸浓度与体积、碳酸钙质量、温度等。", "source": "Identifying Variables.docx + Term 3 Reactive Chemistry Week 7（surface area investigation）", "points": [{"t": "Independent variable: the surface area (particle size) of the calcium carbonate.", "m": 1}, {"t": "Dependent variable: the rate of the reaction, e.g. the volume of gas collected per minute.", "m": 1}, {"t": "Controlled variables (any two): the concentration and volume of hydrochloric acid, the mass of calcium carbonate used, the temperature, or the same beaker.", "m": 1}], "weak": false}, {"id": "sci-039", "topic": "技能 · 数据制表", "difficulty": "easy", "type": "short", "stem": "State two rules you must follow when tabulating experimental data. (2 marks)", "options": [], "answer": "• Put the independent variable in the leftmost column, and label every column with the quantity and its unit in the heading (units appear only in the heading, not in every cell).\n• Use a closed table with a value in every cell, with as many rows and columns as the data require, and put each measurement in the correct column.", "explanation": "表格最左列放自变量，列标题写「物理量（单位）」，单位只写在标题里；每个格子都要有数值，表格要封口。", "source": "How to Tabulate Data.docx", "points": [{"t": "Put the independent variable in the leftmost column, and label every column with the quantity and its unit in the heading (units appear only in the heading, not in every cell).", "m": 1}, {"t": "Use a closed table with a value in every cell, with as many rows and columns as the data require, and put each measurement in the correct column.", "m": 1}], "weak": false}, {"id": "sci-040", "topic": "技能 · 图表类型选择", "difficulty": "medium", "type": "short", "stem": "Explain when a column graph should be used instead of a line graph. (2 marks)", "options": [], "answer": "• A column graph is used when the variable on the x-axis is a set of categories being compared (for example months, states, colours or subcontinents).\n• A line graph is used when both variables are continuous numerical data, so that trends and patterns can be seen and a line of best fit drawn.", "explanation": "x 轴是分类（月份、州、颜色、国家）用柱状图；两个变量都是连续数值、要看趋势时用折线图。", "source": "How to draw a column graph.docx + Stage 5 Graphing-1.docx", "points": [{"t": "A column graph is used when the variable on the x-axis is a set of categories being compared (for example months, states, colours or subcontinents).", "m": 1}, {"t": "A line graph is used when both variables are continuous numerical data, so that trends and patterns can be seen and a line of best fit drawn.", "m": 1}], "weak": false}, {"id": "sci-041", "topic": "技能 · 误差类型", "difficulty": "medium", "type": "short", "stem": "Describe the difference between a random error and a systematic error, and state how each can be reduced. (3 marks)", "options": [], "answer": "• Random errors are unpredictable fluctuations in either direction caused by the limitations of the measuring device or by the experimenter (e.g. reaction time); they are reduced by repeating the measurement and averaging.\n• Systematic errors are reproducible inaccuracies that are always in the same direction, caused by an inaccuracy in the system itself (e.g. a poorly calibrated thermometer reading 2 °C too high); they are reduced by calibrating and maintaining the equipment and taking careful readings.", "explanation": "随机误差方向不定（如反应时间），靠多次重复取平均减小；系统误差方向固定（仪器校准偏差），要靠校准仪器、规范读数减小。", "source": "Half Yearly Revision.pdf（Validity – Errors）", "points": [{"t": "Random errors are unpredictable fluctuations in either direction caused by the limitations of the measuring device or by the experimenter (e.g. reaction time); they are reduced by repeating the measurement and averaging.", "m": 1}, {"t": "Systematic errors are reproducible inaccuracies that are always in the same direction, caused by an inaccuracy in the system itself (e.g. a poorly calibrated thermometer reading 2 °C too high); they are reduced by calibrating and maintaining the equipment and taking careful readings.", "m": 1}], "weak": false}, {"id": "sci-042", "topic": "技能 · 效度与信度", "difficulty": "medium", "type": "short", "stem": "Distinguish between the validity and the reliability of an investigation. (2 marks)", "options": [], "answer": "• Validity is the extent to which the investigation actually tests what it claims to test — a fair test with one independent variable and everything else controlled.\n• Reliability is the extent to which repeated measurements taken under identical conditions give similar results, so an investigation is reliable when it has been repeated many times.", "explanation": "效度（validity）＝是否测到了想测的东西（单一变量、控制公平）；信度（reliability）＝重复测量结果是否一致。", "source": "Half Yearly Revision.pdf（Validity / Reliability）", "points": [{"t": "Validity is the extent to which the investigation actually tests what it claims to test — a fair test with one independent variable and everything else controlled.", "m": 1}, {"t": "Reliability is the extent to which repeated measurements taken under identical conditions give similar results, so an investigation is reliable when it has been repeated many times.", "m": 1}], "weak": false}, {"id": "sci-043", "topic": "技能 · 数据趋势与碱基配对", "difficulty": "hard", "type": "short", "stem": "The table gives the percentage of adenine and guanine in the DNA of five species.\n\nSpecies: A | B | C | D | E\n% Adenine: 38 | 26 | 8 | 20 | 33\n% Guanine: 12 | 22 | 40 | 32 | 18\n\n(a) Describe the trend shown in the table. (b) Explain the trend using the base-pairing rule. (c) Predict the percentage of thymine when adenine is 20%. (4 marks)", "options": [], "answer": "• (a) As the percentage of adenine increases, the percentage of guanine decreases — roughly %A + %G ≈ 50, so the two are inversely related.\n• (b) Adenine always pairs with thymine and guanine always pairs with cytosine, so %A = %T and %G = %C; because the four bases add to 100%, 2(%A) + 2(%G) = 100, i.e. %A + %G = 50.\n• (c) Thymine would be 20%.", "explanation": "A 增大则 G 减小，因为 A=T、G=C 且四种碱基合计 100%，所以 A+G=50；A=20% 时 T 也是 20%（物种 D 的数据正好验证）。", "source": "2020 Year 10 Yearly Examination Answers（Part E Q1–Q3 DNA 碱基数据分析）", "points": [{"t": "(a) As the percentage of adenine increases, the percentage of guanine decreases — roughly %A + %G ≈ 50, so the two are inversely related.", "m": 1}, {"t": "(b) Adenine always pairs with thymine and guanine always pairs with cytosine, so %A = %T and %G = %C; because the four bases add to 100%, 2(%A) + 2(%G) = 100, i.e. %A + %G = 50.", "m": 1}, {"t": "(c) Thymine would be 20%.", "m": 1}], "weak": false}, {"id": "sci-044", "topic": "技能 · 求梯度与斜率含义", "difficulty": "hard", "type": "short", "stem": "A graph of voltage (y-axis) against current (x-axis) for a resistor is a straight line of best fit passing through (0, 0) and (10 A, 5 V). Calculate the gradient of the line and hence state the resistance of the resistor. Show your working. (3 marks)", "options": [], "answer": "• gradient = rise ÷ run = (5 − 0) V ÷ (10 − 0) A = 0.5\n• Because R = V ÷ I, the gradient equals the resistance, so the resistance is 0.5 Ω.", "explanation": "梯度＝ΔV/ΔI＝5/10＝0.5；由 R=V/I 可知斜率就是电阻，所以电阻是 0.5 Ω（斜率单位 V/A 即 Ω）。", "source": "2020 Year 10 Yearly Examination Answers（Part E Q7：由梯度求电阻）", "points": [{"t": "gradient = rise ÷ run = (5 − 0) V ÷ (10 − 0) A = 0.5", "m": 1}, {"t": "Because R = V ÷ I, the gradient equals the resistance, so the resistance is 0.5 Ω.", "m": 1}], "weak": false}, {"id": "sci-045", "topic": "技能 · 插值读数", "difficulty": "medium", "type": "short", "stem": "The table shows the force acting on a passenger at different decelerations.\n\nDeceleration (m/s²): 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14\nForce (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040\n\n(a) Estimate the force on the passenger when the deceleration is 5 m/s². (b) Describe the relationship between deceleration and force. (3 marks)", "options": [], "answer": "• (a) 5 m/s² is halfway between 4 m/s² (305 N) and 6 m/s² (448 N), so the force is about (305 + 448) ÷ 2 ≈ 376 N (accept 370–380 N).\n• (b) The relationship is linear: the force increases by a constant amount (about 74 N) for every extra 1 m/s² of deceleration.", "explanation": "5 m/s² 位于 4 与 6 之间，插值得 (305+448)/2≈376 N；两者是线性关系，每增加 1 m/s² 力约增加 74 N（梯度 960/13≈74）。", "source": "Half Yearly Revision.pdf（Deceleration–Force 数据表）", "points": [{"t": "(a) 5 m/s² is halfway between 4 m/s² (305 N) and 6 m/s² (448 N), so the force is about (305 + 448) ÷ 2 ≈ 376 N (accept 370–380 N).", "m": 1}, {"t": "(b) The relationship is linear: the force increases by a constant amount (about 74 N) for every extra 1 m/s² of deceleration.", "m": 1}], "weak": false}]};
+const KEY = "dsh-quiz-sci";
+const MULTI = DATA.slug === "all";
+const app = document.getElementById("app");
+let state = {idx:0, answers:{}, order:null};
+
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (s && s.answers) state = s;
+  } catch(e) {}
+  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
+  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
+  try {
+    const m = location.search.match(/[?&]q=([^&]+)/);
+    if (m) {
+      const qid = decodeURIComponent(m[1]);
+      const qi = DATA.questions.findIndex(x => x.id === qid);
+      const pos = state.order.indexOf(qi);
+      if (pos >= 0) state.idx = pos;
+    }
+  } catch(e) {}
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function renderSetup() {
+  const subs = DATA.subjects || {};
+  const keys = Object.keys(subs);
+  const saved = state.pick || {};
+  const opts = keys.map(k => {
+    const on = saved[k] !== false;
+    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
+      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
+  }).join("");
+  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
+  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
+  app.innerHTML = `<div class="setup">
+    <div class="setup-head">
+      <h2>综合卷 · 全科</h2>
+      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
+    </div>
+
+    <section class="setup-block">
+      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
+      <div class="picks">${opts}</div>
+    </section>
+
+    <section class="setup-block">
+      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
+    </section>
+
+    <div class="setup-foot">
+      <div class="sum">共 <b id="cnt">0</b> 题</div>
+      <button class="btn ghost" id="daily">今日挑战</button>
+      <button class="btn" id="startmix">开始答题 →</button>
+    </div>
+  </div>`;
+  const chosenCount = () => {
+    let c = 0;
+    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
+    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
+  };
+  const calc = () => {
+    let n = 0;
+    app.querySelectorAll(".pick input").forEach(cb => {
+      if (!cb.checked) return;
+      const k = cb.dataset.s, c = subs[k].n;
+      n += per ? Math.min(per, c) : c;
+    });
+    document.getElementById("cnt").textContent = n;
+    const pc = document.getElementById("pickcount");
+    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
+  };
+  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
+    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
+  });
+  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
+    state.per = +b.dataset.n; save(); render();
+  });
+  function seedRnd(str){
+    var h=2166136261;
+    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
+      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
+  }
+  function startDaily(){
+    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    var rnd=seedRnd("daily:"+key);
+    var idxs=[];
+    DAILY.forEach(function(sl){
+      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      idxs=idxs.concat(pool.slice(0,3));
+    });
+    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
+    state.answers={}; state.daily=key; state.rewarded=false; save(); render();
+  }
+  document.getElementById("daily").onclick = startDaily;
+  document.getElementById("startmix").onclick = () => {
+    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
+    if (!chosen.length) { alert("至少选一科"); return; }
+    let idxs = [];
+    chosen.forEach(k => {
+      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      pool.sort(() => Math.random() - 0.5);
+      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
+    });
+    idxs.sort(() => Math.random() - 0.5);
+    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
+    state.answers = {}; save(); render();
+  };
+  calc();
+}
+
+
+function render() {
+  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
+    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
+  }
+  if (MULTI && state.setup && !state.started) return renderSetup();
+  const qs = state.order.map(i => DATA.questions[i]);
+  const q = qs[state.idx];
+  const total = qs.length;
+  const answered = qs.filter(x => state.answers[x.id]).length;
+  const right = qs.filter(x => state.answers[x.id] === "ok").length;
+  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
+  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
+  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
+  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
+  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
+
+  const rec = state.answers[q.id];
+  const chips = `<div class="chips">
+      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
+      <span class="chip">${esc(q.topic)}</span>
+      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
+      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
+      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
+    </div>`;
+
+  let bodyHtml = "";
+  if (q.type === "mcq") {
+    const opts = (q.options || []).map((o, i) => {
+      let cls = "opt", mark = "";
+      if (rec) {
+        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
+        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
+      }
+      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
+        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}</span>${mark}</button>`;
+    }).join("");
+    bodyHtml = `<div class="opts">${opts}</div>`;
+  } else {
+    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
+    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    const checked = (rec && rec.checked) ? rec.checked : [];
+    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
+    const hasNum = /-?\d/.test(bareAns);
+    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
+      <div class="actions">
+        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
+        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
+      </div>`;
+    if (rec) {
+      bodyHtml += `<div class="panel">
+        <div class="panel-h">自评 · 勾选你写到的得分点</div>
+        <div class="pts">${pts.map((p,i)=>`
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
+        <div class="actions">
+          <button class="btn ghost" id="allpt">全部勾上</button>
+          <button class="btn ghost" id="nonept">全部取消</button>
+        </div>
+        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
+      </div>`;
+    }
+  }
+
+  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
+      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
+      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
+
+  const last = state.idx >= total - 1;
+  app.innerHTML = `<div class="card">${chips}<div class="stem">${esc(q.stem)}</div>
+      ${bodyHtml}${expHtml}</div>
+      <div class="actionbar">
+        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>← 上一题</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="finish">看成绩</button>
+        <button class="btn" id="next" ${last ? "disabled" : ""}>下一题 →</button>
+      </div>`;
+
+  if (q.type === "mcq") {
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const i = +b.dataset.i;
+      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
+      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
+      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
+      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
+      save(); render();
+    }));
+  } else {
+    const ta = document.getElementById("ta");
+    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
+    document.getElementById("reveal").onclick = () => {
+      const c = cur();
+      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
+      save(); render();
+    };
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
+      const c = cur(); const i = +cb.dataset.i;
+      const set = new Set(c.checked || []);
+      if (cb.checked) set.add(i); else set.delete(i);
+      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
+      const full = pts.every((_,i)=>set.has(i));
+      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
+      reviewMark(q.subj || DATA.slug, q.id, full);
+      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      save(); render();
+    }));
+    const nc = document.getElementById("numcheck");
+    if (nc) nc.onclick = () => {
+      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
+      const last = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
+      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
+    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
+  }
+  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
+  const nx = document.getElementById("next");
+  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
+  document.getElementById("finish").onclick = showResult;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function showResult() {
+  const qs = state.order.map(i => DATA.questions[i]);
+  if (!state.rewarded && qs.length) {
+    state.rewarded = true; save();
+    if (state.daily) {
+      try {
+        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
+        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
+        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
+        var DKEY = "dsh-daily-v1";
+        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
+        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
+          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
+          localStorage.setItem(DKEY, JSON.stringify(drec));
+        }
+      } catch(e) {}
+    }
+    const answered = qs.filter(x => state.answers[x.id]).length;
+    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
+    if (window.openChest && answered >= 3) openChest();
+  }
+  const rec = id => state.answers[id] || null;
+  const mcq = qs.filter(x => x.type === "mcq");
+  const shorts = qs.filter(x => x.type === "short");
+  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
+  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
+  const todo = qs.filter(x => !rec(x.id));
+  let earnedM = 0, totalM = 0, partM = 0;
+  const weak = [];
+  shorts.forEach(x => {
+    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
+    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const r = rec(x.id);
+    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    totalM += tot;
+    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
+  });
+  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
+  const needRedo = [...wrong, ...weak];
+  const wrongIds = needRedo.map(x => x.id);
+  app.innerHTML = `<div class="card done">
+      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
+      <div class="stats">
+        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
+        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
+        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
+        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
+      </div>
+      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
+      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
+      <div class="actions">
+        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
+        <button class="btn ghost" id="again">整套重做</button>
+        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
+      </div></div>`;
+  const redo = document.getElementById("redo");
+  if (redo) redo.onclick = () => {
+    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
+    wrongIds.forEach(id => delete state.answers[id]);
+    state.idx = 0; save(); render();
+  };
+  document.getElementById("again").onclick = () => {
+    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+    save(); render();
+  };
+}
+
+document.getElementById("grid").onclick = openNav;
+document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
+document.getElementById("nav").addEventListener("click", e => {
+  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
+});
+try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
+catch(e) { document.body.insertAdjacentHTML("afterbegin",
+  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
+
+document.getElementById("exam").onclick = startExam;
+if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
+
+document.getElementById("restart").onclick = () => {
+  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  save(); render();
+};
+
+document.addEventListener("keydown", e => {
+  if (MULTI && state.setup && !state.started) {
+    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
+    return;
+  }
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
+  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
+  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
+  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
+  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
+    else showResult();
+    return;
+  }
+  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
+  if (!q || q.type !== "mcq") return;
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= (q.options || []).length) {
+    if (!state.answers[q.id]) {
+      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
+      save(); render();
+    }
+  }
+});
+
+const REVIEW_KEY = "dsh-review-v1";
+const GAPS = [1, 3, 7];
+function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
+function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
+function reviewMark(slug, qid, correct){
+  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
+  if (correct) {
+    const it = db[id];
+    if (!it) return;
+    const st = (it.stage || 0) + 1;
+    if (st >= GAPS.length) delete db[id];
+    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
+  } else {
+    const old = db[id] || {};
+    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
+  }
+  reviewSave(db);
+}
+function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
+
+const LOG_KEY = "dsh-log-v1";
+function logAnswer(slug, qid, ok, diff, ty){
+  try {
+    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
+    if (arr.length > 3000) arr = arr.slice(-3000);
+    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
+  } catch(e) {}
+}
+function navState(qi){
+  const q = DATA.questions[qi], a = state.answers[q.id];
+  if (!a) return "";
+  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
+  const pts = q.points || [{m:1}], c = (a.checked || []).length;
+  if (c >= pts.length) return "ok";
+  if (c > 0) return "part";
+  return "";
+}
+function openNav(){
+  const grid = document.getElementById("navgrid");
+  grid.innerHTML = state.order.map((qi, pos) =>
+    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
+  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
+    state.idx = +b.dataset.pos; save();
+    document.getElementById("nav").classList.remove("on"); render();
+  });
+  document.getElementById("nav").classList.add("on");
+}
+
+let timerId = null;
+function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+function tickClock(){
+  const el = document.getElementById("clock");
+  if (!state.deadline) { if (el) el.style.display = "none"; return; }
+  const left = state.deadline - Date.now();
+  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
+            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
+  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
+}
+function startExam(){
+  const def = DATA.examMin || 60;
+  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
+  if (v === null) return;
+  const mins = parseInt(v, 10);
+  if (!mins || mins <= 0) return;
+  state.deadline = Date.now() + mins*60000; save();
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(tickClock, 1000);
+  tickClock();
+}
+
+
+load(); render();
+</script>
+<script>
+(function(){
+  var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
+  var COIN_KEY="dsh-coins-v1", INV_KEY="dsh-inv-v1", BUFF_KEY="dsh-buffs-v1";
+  var LEVELS=[0,60,150,280,450,680,980,1360,1820,2360,3000,3750,4600,5560,6650,7880,9250,10800,12500,14400];
+  function db(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{"xp":0,"combo":0,"best":0}'); }catch(e){ return {xp:0,combo:0,best:0}; } }
+  function save(g){ try{ localStorage.setItem(KEY,JSON.stringify(g)); }catch(e){} }
+  function bdb(){ try{ return JSON.parse(localStorage.getItem(BKEY)||'{}'); }catch(e){ return {}; } }
+  function bsave(b){ try{ localStorage.setItem(BKEY,JSON.stringify(b)); }catch(e){} }
+  function log(){ try{ return JSON.parse(localStorage.getItem('dsh-log-v1')||'[]'); }catch(e){ return []; } }
+  function levelOf(xp){ var l=1; for(var i=0;i<LEVELS.length;i++){ if(xp>=LEVELS[i]) l=i+1; } return l; }
+  function nextAt(xp){ var l=levelOf(xp); return LEVELS[l]!==undefined?LEVELS[l]:null; }
+
+  /* ---------- 金币 / 库存 / 增益 ---------- */
+  function readCoins(){ var o={n:0,earned:0,dust:0}; try{ o=JSON.parse(localStorage.getItem(COIN_KEY)||'null')||o; }catch(e){} if(o.dust===undefined)o.dust=0; return o; }
+  function saveCoins(o){ try{ localStorage.setItem(COIN_KEY,JSON.stringify(o)); }catch(e){} }
+  function addCoins(n){ var c=readCoins(); c.n=(c.n||0)+n; c.earned=(c.earned||0)+Math.max(0,n); saveCoins(c); }
+  function addDust(n){ var c=readCoins(); c.dust=(c.dust||0)+n; saveCoins(c); }
+
+  /* 音效：WebAudio 现场合成，不依赖音频文件 */
+  var SFX_ON = (function(){ try{ return localStorage.getItem("dsh-sfx")!=="0"; }catch(e){ return true; } })();
+  var AC=null;
+  function beep(freq, dur, type, vol){
+    if(!SFX_ON) return;
+    try{
+      AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+      var o=AC.createOscillator(), g=AC.createGain();
+      o.type=type||"sine"; o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001, AC.currentTime);
+      g.gain.exponentialRampToValueAtTime(vol||0.06, AC.currentTime+0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime+(dur||0.12));
+      o.connect(g); g.connect(AC.destination);
+      o.start(); o.stop(AC.currentTime+(dur||0.12)+0.02);
+    }catch(e){}
+  }
+  function levelUpSound(){ [523,659,784,1046].forEach(function(f,i){ setTimeout(function(){ beep(f,0.16,"triangle",0.07); }, i*90); }); }
+  function toggleSfx(){ SFX_ON=!SFX_ON; try{ localStorage.setItem("dsh-sfx", SFX_ON?"1":"0"); }catch(e){} return SFX_ON; }
+  function readInv(){
+    var d={owned:[],equipped:{theme:"",title:""},uses:{}};
+    try{ var o=JSON.parse(localStorage.getItem(INV_KEY)||'null'); if(o){ d.owned=o.owned||[]; d.equipped=o.equipped||{theme:"",title:""}; d.uses=o.uses||{}; } }catch(e){}
+    return d;
+  }
+  function saveInv(d){ try{ localStorage.setItem(INV_KEY,JSON.stringify(d)); }catch(e){} }
+  function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
+  function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
+
+  var THEMES={
+    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
+    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
+    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
+    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+  };
+  function applyTheme(){
+    var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
+    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
+    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+  }
+  function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
+
+  var SHOP=[
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+  ];
+
+  function buy(id){
+    var item=null; SHOP.forEach(function(x){ if(x.id===id) item=x; });
+    if(!item) return {ok:false,msg:"没有这件商品"};
+    var c=readCoins(), inv=readInv();
+    if(item.t!=="use" && inv.owned.indexOf(id)>=0) return {ok:false,msg:"已经拥有了"};
+    var isDust = item.cur==="dust";
+    var bal = isDust ? (c.dust||0) : (c.n||0);
+    if(bal < item.p) return {ok:false,msg:(isDust?"星尘":"金币")+"不够，还差 "+(item.p-bal)};
+    if(isDust){ c.dust=(c.dust||0)-item.p; } else { c.n=(c.n||0)-item.p; }
+    saveCoins(c);
+    if(item.t==="use"){ inv.uses[id]=(inv.uses[id]||0)+1; }
+    else { inv.owned.push(id); }
+    saveInv(inv);
+    if(item.t==="theme"){ inv.equipped.theme=item.v; saveInv(inv); applyTheme(); }
+    if(item.t==="title"){ inv.equipped.title=item.v; saveInv(inv); }
+    if(item.t==="buff"){ var b=readBuffs(); b.xp2Until=Date.now()+30*60000; saveBuffs(b); }
+    return {ok:true,msg:"已购买："+item.n};
+  }
+  function equipTheme(v){ var inv=readInv(); inv.equipped.theme=v||""; saveInv(inv); applyTheme(); }
+  function equipTitle(v){ var inv=readInv(); inv.equipped.title=v||""; saveInv(inv); }
+
+  /* ---------- 提示 ---------- */
+  function toast(txt, ok){
+    var el=document.createElement('div');
+    el.className='xp-toast'+(ok?' ok':'');
+    el.textContent=txt;
+    document.body.appendChild(el);
+    setTimeout(function(){ el.classList.add('up'); }, 20);
+    setTimeout(function(){ el.remove(); }, 1500);
+  }
+
+  var BADGES=[
+    {id:'first',  n:'第一题',   d:'完成第一道题',        i:'🌱'},
+    {id:'combo5', n:'连对 5',   d:'一次连对 5 题',       i:'🔥'},
+    {id:'combo10',n:'连对 10',  d:'一次连对 10 题',      i:'⚡'},
+    {id:'daily',  n:'今日达标', d:'一天做满 30 题',      i:'✅'},
+    {id:'streak3',n:'三天不断', d:'连续 3 天做题',       i:'📅'},
+    {id:'streak7',n:'一周',     d:'连续 7 天做题',       i:'🏆'},
+    {id:'subject',n:'一科通关', d:'某科全部做完',        i:'🎯'},
+    {id:'review', n:'错题清零', d:'错题本清空',          i:'🧹'}
+  ];
+
+  function unlock(id){
+    var b=bdb(); if(b[id]) return false;
+    b[id]=Date.now(); bsave(b);
+    addCoins(20);
+    var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
+    if(meta) toast('🏅 解锁：'+meta.n+' · +20 币', true);
+    return true;
+  }
+
+  function todayCount(){
+    var d0=new Date(); d0.setHours(0,0,0,0);
+    return log().filter(function(x){ return x.t>=d0.getTime(); }).length;
+  }
+  function streakDays(){
+    var days={}, d0=new Date(); d0.setHours(0,0,0,0), t0=d0.getTime();
+    log().forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0); days[d.getTime()]=1; });
+    var gaps=shieldCount(), n=0, c=t0, used=0;
+    while(true){
+      if(days[c]){ n++; c-=864e5; continue; }
+      if(c===t0){ c-=864e5; continue; }
+      if(used<gaps){ used++; c-=864e5; continue; }
+      break;
+    }
+    return n;
+  }
+
+  function checkBadges(){
+    var g=db(), L=log();
+    if(L.length>=1) unlock('first');
+    if((g.best||0)>=5) unlock('combo5');
+    if((g.best||0)>=10) unlock('combo10');
+    if(todayCount()>=GOAL) unlock('daily');
+    if(streakDays()>=3) unlock('streak3');
+    if(streakDays()>=7) unlock('streak7');
+    try{
+      var rv=JSON.parse(localStorage.getItem('dsh-review-v1')||'{}');
+      if(L.length>10 && Object.keys(rv).length===0) unlock('review');
+    }catch(e){}
+    try{
+      var cards=document.querySelectorAll('[data-slug][data-total]');
+      for(var i=0;i<cards.length;i++){
+        var c=cards[i], sl=c.dataset.slug, tot=+c.dataset.total;
+        var st=JSON.parse(localStorage.getItem('dsh-quiz-'+sl)||'null');
+        if(st && st.answers && tot && Object.keys(st.answers).length>=tot){ unlock('subject'); break; }
+      }
+    }catch(e){}
+  }
+
+  function awardXP(base, ok){
+    var g=db();
+    if(ok){ g.combo=(g.combo||0)+1; } else { g.combo=0; }
+    var mult = ok ? Math.min(2, 1 + 0.1*Math.max(0, (g.combo||1)-1)) : 1;
+    var buffs=readBuffs(), dbl = buffs.xp2Until && Date.now()<buffs.xp2Until ? 2 : 1;
+    var gain = ok ? Math.round(base*mult*dbl) : Math.max(1, Math.round(base*0.2));
+    var before=levelOf(g.xp||0);
+    g.xp=(g.xp||0)+gain;
+    g.best=Math.max(g.best||0, g.combo||0);
+    save(g);
+    var coin = Math.max(1, Math.round(gain*0.5));
+    var crit = ok && Math.random()<0.12;
+    if(crit) coin*=2;
+    addCoins(coin);
+    if(ok) beep(crit?1180:660, 0.1, "sine", crit?0.08:0.05); else beep(180,0.14,"sawtooth",0.05);
+    toast('+'+gain+' XP · +'+coin+' 币'+(crit?' 暴击!':'')+(ok&&g.combo>1?' · 连对 '+g.combo:'')+(dbl>1?' · ×2':''), ok);
+    var after=levelOf(g.xp);
+    if(after>before){ setTimeout(function(){ toast('🎉 升到 Lv.'+after, true); levelUpSound(); }, 450); }
+    checkBadges();
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+
+  /* 答题计分：难度加权 + 重复递减（对标论文里盛大的“反刷”规则） */
+  var SEEN_KEY="dsh-seen-v1";
+  function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
+  function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+  function awardForQ(id, diff, type, ok){
+    var base = type==='short' ? ({easy:12,medium:16,hard:22}[diff]||16)
+                              : ({easy:8, medium:10,hard:14}[diff]||10);
+    var S=seen(), e=S[id]||{n:0,right:false,sealed:false}, mul=1, note="";
+    if(e.right && ok){
+      if(e.sealed || e.n>=3){ mul=0; note="已掌握，不再加分"; }
+      else { mul=0.3; note="重做已会的题，经验 ×0.3"; }
+    } else if(e.right && !ok){
+      mul=1; note="";
+    } else if(!e.right && ok && e.n>0){
+      mul=1; note="纠错 + 全额";
+    }
+    e.n=(e.n||0)+1;
+    if(ok){ e.right=true; if(e.n>=3 && mul===0) e.sealed=true; }
+    S[id]=e; saveSeen(S);
+    if(mul===0){ toast(note+" · 去刷没掌握的题", false); return; }
+    var gain = Math.round(base*mul);
+    if(note) toast(note, true);
+    awardXP(gain, ok);
+  }
+  /* ---- 每日挑战任务（对应“挑战”要素） ---- */
+  var QKEY="dsh-quest-v1";
+  var QTEMPL=[
+    {id:"q_ans12", n:"今天做满 12 题", tip:"数量", type:"count", target:12, r:{coin:40}},
+    {id:"q_ans20", n:"今天做满 20 题", tip:"数量", type:"count", target:20, r:{coin:60}},
+    {id:"q_combo5", n:"一次连对 5 题", tip:"连击", type:"combo", target:5, r:{coin:50}},
+    {id:"q_combo8", n:"一次连对 8 题", tip:"连击", type:"combo", target:8, r:{coin:70}},
+    {id:"q_hard3", n:"做对 3 道「较难」题", tip:"攻坚", type:"hard", target:3, r:{dust:1}},
+    {id:"q_acc80", n:"正确率 80%（至少 10 题）", tip:"精准", type:"acc", target:80, r:{coin:60}},
+    {id:"q_short3", n:"完成 3 道简答自评", tip:"写作", type:"short", target:3, r:{coin:45}},
+    {id:"q_daily", n:"完成今日挑战", tip:"每日", type:"daily", target:1, r:{dust:2}}
+  ];
+  function qseed(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; }; }
+  function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function todayLog(){ var d0=new Date(); d0.setHours(0,0,0,0); return log().filter(function(x){ return x.t>=d0.getTime(); }); }
+  function quests(){
+    var Q=null;
+    try{ Q=JSON.parse(localStorage.getItem(QKEY)||"null"); }catch(e){}
+    if(!Q || Q.date!==todayKey()){
+      var rnd=qseed("q:"+todayKey()), pool=QTEMPL.slice();
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      Q={date:todayKey(), list:pool.slice(0,3).map(function(x){return x.id;}), claimed:[]};
+      try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    }
+    return Q;
+  }
+  function questProgress(){
+    var L=todayLog(), n=L.length;
+    var okCnt=L.filter(function(x){return x.ok;}).length;
+    var maxCombo=0, cur=0;
+    L.slice().sort(function(a,b){return a.t-b.t;}).forEach(function(x){ if(x.ok){ cur++; maxCombo=Math.max(maxCombo,cur);} else cur=0; });
+    var hard=L.filter(function(x){ return x.ok && x.d==="hard"; }).length;
+    var short=L.filter(function(x){ return x.ty==="short"; }).length;
+    var acc = n>=10 ? Math.round(okCnt/n*100) : 0;
+    var dailyDone = 0;
+    try{ var dr=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); if(dr.date===todayKey()) dailyDone=1; }catch(e){}
+    return {count:n, combo:maxCombo, hard:hard, short:short, acc:acc, daily:dailyDone};
+  }
+  function questValue(q, p){ return p[q.type] || 0; }
+  window.quests=quests; window.questProgress=questProgress; window.questValue=questValue; window.QTEMPL=QTEMPL;
+
+  var CHEST_KEY="dsh-chest-v1";
+  function openChest(){
+    var roll=Math.random(), msg="", dust=0, coin=0;
+    if(roll<0.10){ dust=3; msg="💎 稀有宝箱：星尘 ×3"; addDust(3); }
+    else if(roll<0.45){ coin=Math.round(30+Math.random()*40); msg="🎁 宝箱：金币 +"+coin; addCoins(coin); }
+    else { dust=1; msg="🎁 宝箱：星尘 ×1"; addDust(1); }
+    try{ var c=JSON.parse(localStorage.getItem(CHEST_KEY)||'{"n":0}'); c.n=(c.n||0)+1; localStorage.setItem(CHEST_KEY,JSON.stringify(c)); }catch(e){}
+    setTimeout(function(){ toast(msg, true); beep(880,0.18,"triangle",0.07); }, 700);
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+  window.openChest=openChest;
+
+  function claimQuest(id){
+    var Q=quests(), meta=null;
+    QTEMPL.forEach(function(x){ if(x.id===id) meta=x; });
+    if(!meta) return {ok:false,msg:"任务不存在"};
+    if(Q.claimed.indexOf(id)>=0) return {ok:false,msg:"已经领过了"};
+    var p=questProgress();
+    if(questValue(meta,p) < meta.target) return {ok:false,msg:"还没完成"};
+    Q.claimed.push(id);
+    try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    if(meta.r.coin) addCoins(meta.r.coin);
+    if(meta.r.dust) addDust(meta.r.dust);
+    toast("✅ 任务完成："+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
+    beep(1046,0.16,"triangle",0.07);
+    if(window.__refreshProfile) window.__refreshProfile();
+    return {ok:true,msg:"已领取"};
+  }
+  window.claimQuest=claimQuest;
+  window.awardForQ=awardForQ;
+  window.awardXP=awardXP; window.checkBadges=checkBadges;
+  window.GAME={db:db,levelOf:levelOf,BADGES:BADGES,bdb:bdb,todayCount:todayCount,streakDays:streakDays,
+    GOAL:GOAL,coins:readCoins,inv:readInv,buffs:readBuffs,SHOP:SHOP,buy:buy,equipTheme:equipTheme,
+    equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
+    shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
+
+  function renderQuests(host){
+    if(!host) return;
+    var Q=quests(), p=questProgress();
+    var rows=Q.list.map(function(id){
+      var m=null; QTEMPL.forEach(function(x){ if(x.id===id) m=x; });
+      var v=Math.min(questValue(m,p), m.target), pct=Math.round(v/m.target*100);
+      var done=v>=m.target, claimed=Q.claimed.indexOf(id)>=0;
+      var btn = claimed ? '<span class="qdone">已领取</span>'
+              : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
+                      : '<span class="qnum">'+v+'/'+m.target+'</span>');
+      return '<div class="qrow'+(done?' done':'')+'"><span class="qtip">'+m.tip+'</span>'+
+        '<span class="qname">'+m.n+'</span>'+
+        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+btn+'</div>';
+    }).join("");
+    host.innerHTML='<h2 class="gh">今日任务 <span class="gz">每天 0 点刷新 · 3 个随机</span></h2><div class="qlist">'+rows+'</div>';
+  }
+  window.__renderQuests=renderQuests;
+
+  /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
+  var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
+  function apibase(){ try{ return (localStorage.getItem(AKEY)||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
+  function loadBoard(){
+    var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
+    fetch(apibase()+"/board?day="+encodeURIComponent(todayKey()))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok || !d.list) return;
+        if(!d.list.length){ box.innerHTML='<div class="mutedsmall">云端还没有今天的成绩，做一轮然后点「☁ 提交」</div>'; return; }
+        var me=nick()||"我";
+        box.innerHTML=d.list.map(function(x,i){
+          return '<div class="rrow'+(x.name===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+                 '<span class="rname">'+x.name+(x.name===me?'（我）':'')+'</span>'+
+                 '<span class="rp">'+x.pct+'%</span></div>';
+        }).join("");
+      })
+      .catch(function(){});
+  }
+  function pushScore(){
+    if(!apibase()) return {ok:false,msg:"还没设置服务器地址"};
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok) loadBoard(); })
+      .catch(function(){});
+    return {ok:true,msg:"已提交"};
+  }
+  window.loadBoard=loadBoard; window.pushScore=pushScore; window.apibase=apibase; window.setApi=setApi;
+  function b64e(str){ try{ return btoa(unescape(encodeURIComponent(str))).replace(/=+$/,"").replace(/\+/g,"-").replace(/\//g,"_"); }catch(e){ return ""; } }
+  function b64d(str){ try{ return decodeURIComponent(escape(atob(str.replace(/-/g,"+").replace(/_/g,"/")))); }catch(e){ return ""; } }
+  function nick(){ try{ return localStorage.getItem(NKEY)||""; }catch(e){ return ""; } }
+  function setNick(v){ try{ localStorage.setItem(NKEY, v); }catch(e){} }
+  function friends(){ try{ return JSON.parse(localStorage.getItem(FKEY)||"[]"); }catch(e){ return []; } }
+  function saveFriends(a){ try{ localStorage.setItem(FKEY, JSON.stringify(a.slice(0,60))); }catch(e){} }
+
+  function myCode(){
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    var g=db();
+    return {ok:true, code:b64e(JSON.stringify({v:1,d:rec.date,p:rec.best,n:rec.answer||21,
+      name:(nick()||"我"), xp:g.xp||0}))};
+  }
+  function addCode(str){
+    var raw=b64d((str||"").trim());
+    if(!raw) return {ok:false,msg:"码不对"};
+    var o; try{ o=JSON.parse(raw); }catch(e){ return {ok:false,msg:"码不对"}; }
+    if(!o || o.v!==1 || !o.d || o.p===undefined) return {ok:false,msg:"码不对"};
+    var list=friends();
+    list=list.filter(function(x){ return !(x.d===o.d && x.name===o.name); });
+    list.push({d:o.d, p:o.p, n:o.n||0, name:String(o.name||"同学").slice(0,12), xp:o.xp||0, t:Date.now()});
+    saveFriends(list);
+    return {ok:true,msg:"已加入 "+String(o.name||"同学").slice(0,12)+" 的 "+o.p+"%"};
+  }
+  window.myCode=myCode; window.addCode=addCode; window.nick=nick; window.setNick=setNick;
+
+  function renderBoard(host){
+    if(!host) return;
+    var g=db(), c=readCoins(), L=log();
+    var days={}, dayOk={};
+    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
+      var k=d.getTime();
+      days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
+    var dayList=Object.keys(days).map(function(k){
+      var d=new Date(+k);
+      return {ts:+k, d:(d.getMonth()+1)+"-"+d.getDate(), n:days[k], ok:dayOk[k],
+              pct:Math.round(dayOk[k]/days[k]*100)};
+    }).sort(function(a,b){ return b.ts-a.ts; }).slice(0,7);
+    var myRec={}; try{ myRec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    var rows=[];
+    if(myRec.date===todayKey()) rows.push({name:nick()||"我", p:myRec.best||0, me:true});
+    friends().filter(function(x){ return x.d===todayKey(); }).forEach(function(x){
+      rows.push({name:x.name, p:x.p, me:false});
+    });
+    rows.sort(function(a,b){ return b.p-a.p; });
+    var rankHtml = rows.length ? ('<div class="rank" id="rankbox">'+rows.map(function(r,i){
+      return '<div class="rrow'+(r.me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
+        '<span class="rp">'+r.p+'%</span></div>';
+    }).join("")+'</div>') : '<div class="rank" id="rankbox"><div class="mutedsmall">还没人交榜。做完「今日挑战」，复制战绩码发给同学互换。</div></div>';
+
+    host.innerHTML='<h2 class="gh">今日好友榜 <span class="gz">'+todayKey()+' · 靠战绩码互通，不用服务器</span></h2>'+
+      rankHtml +
+      '<div class="codebar"><button class="btn2" id="mecode">复制我的战绩码</button>'+
+      '<input id="friendcode" placeholder="粘贴同学的战绩码">'+
+      '<button class="btn2" id="addcode">加入</button>'+
+      (apibase()
+        ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>'
+        : '<button class="btn2" id="cfgapi">⚙ 设置服务器地址</button>')+'</div>'+
+      '<h2 class="gh" style="margin-top:22px">纪录榜 <span class="gz">本地 · 跟自己比</span></h2>'+
+      '<div class="board">'+
+        '<div class="brow"><span>总经验</span><b>'+g.xp+'</b></div>'+
+        '<div class="brow"><span>最高连对</span><b>'+(g.best||0)+'</b></div>'+
+        '<div class="brow"><span>累计作答</span><b>'+L.length+'</b></div>'+
+        '<div class="brow"><span>金币 / 星尘</span><b>'+(c.n||0)+' / '+(c.dust||0)+'</b></div>'+
+      '</div>'+
+      '<div class="days">'+dayList.map(function(x){
+        return '<div class="day"><em>'+x.pct+'%</em><i style="height:'+Math.max(4,Math.round(x.pct*0.5))+'px"></i>'+
+               '<span>'+x.d+'</span></div>';
+      }).join("")+'</div>';
+  }
+  window.__renderBoard=renderBoard;
+
+  function renderProfile(){
+    var host=document.getElementById('profile');
+    if(!host) return;
+    var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
+    var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
+    var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
+    var seenAll=seen(), fixed=0, mastered=0;
+    Object.keys(seenAll).forEach(function(k){ var e=seenAll[k]; if(e.right && e.n>1) fixed++; if(e.right && e.sealed) mastered++; });
+    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var badges=BADGES.map(function(x){
+      var got=b[x.id];
+      return '<div class="badge'+(got?' on':'')+'" title="'+x.d+'"><span class="bi">'+x.i+'</span>'+
+             '<span class="bn">'+x.n+'</span></div>';
+    }).join('');
+    host.innerHTML=
+      '<div class="prof-main">'+
+        '<div class="lv"><span class="lvnum">'+lv+'</span><span class="lvlab">等级</span></div>'+
+        '<div class="prof-body">'+
+          '<div class="prof-line"><b>'+xp+' XP</b>'+title+(nx?('<span class="muted">距 Lv.'+(lv+1)+' 还差 '+(nx-xp)+'</span>'):'<span class="muted">满级</span>')+'</div>'+
+          '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+          '<div class="prof-meta">今日 <b>'+tc+'</b>/'+GOAL+' 题 · 连续 <b>'+st+'</b> 天 · 连对纪录 <b>'+(g.best||0)+'</b>'+
+            ' · 金币 <b>'+(c.n||0)+'</b></div>'+
+          '<div class="prof-note">纠错 <b>'+fixed+'</b> 题 · 已掌握 <b>'+mastered+'</b> 题（做满 3 次不再计分）</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="badges">'+badges+'</div>'+
+      '<div class="prof-tools"><button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效开':'🔇 音效关')+'</button></div>'+
+      '<div class="prof-note dim">这套分数只认「答对的题」。读材料、琢磨思路、改答案、想通一个概念——这些没被计分，但它们才是真正在学的东西。</div>';
+  }
+  function renderAll(){
+    renderProfile();
+    setTimeout(loadBoard, 0);
+    renderQuests(document.getElementById("quests"));
+    renderBoard(document.getElementById("board"));
+  }
+  window.__refreshProfile=renderAll;
+  document.addEventListener("click", function(ev){
+    var s = ev.target.closest && ev.target.closest("#sfxbtn");
+    if(s){ var on = toggleSfx(); s.textContent = on ? "🔊 音效开" : "🔇 音效关"; return; }
+    var q = ev.target.closest && ev.target.closest("[data-claim]");
+    if(q){ claimQuest(q.getAttribute("data-claim")); renderAll(); return; }
+    if(ev.target.closest && ev.target.closest("#mecode")){
+      if(!nick()){ var nm=prompt("给自己起个名字（显示在好友榜）",""); if(nm) setNick(nm.slice(0,12)); }
+      var r=myCode();
+      if(!r.ok){ toast(r.msg,false); return; }
+      var ta=document.createElement("textarea"); ta.value=r.code;
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); toast("战绩码已复制，发给同学吧", true); }
+      catch(e){ toast("复制失败，手动选中："+r.code.slice(0,20)+"…", false); }
+      ta.remove();
+      return;
+    }
+    if(ev.target.closest && ev.target.closest("#cfgapi")){
+      var cur=apibase();
+      var v=prompt("填入 Cloudflare Worker 地址（留空则清除）", cur);
+      if(v===null) return;
+      setApi(v);
+      toast(v.trim()?"已保存，正在拉取云端榜…":"已清除服务器地址", true);
+      renderAll(); return;
+    }
+    if(ev.target.closest && ev.target.closest("#pushscore")){
+      var r2=pushScore(); toast(r2.msg, r2.ok); return;
+    }
+    if(ev.target.closest && ev.target.closest("#addcode")){
+      var inp=document.getElementById("friendcode");
+      var res=addCode(inp?inp.value:"");
+      toast(res.msg, res.ok); renderAll(); return;
+    }
+  });
+  applyTheme();
+  if(document.readyState!=='loading') renderAll(); else document.addEventListener('DOMContentLoaded', renderAll);
+})();
+</script>
+</body>
+</html>
