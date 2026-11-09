@@ -131,6 +131,21 @@ footer{padding-bottom:96px}
 .sfxbtn{background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:8px;
  padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
 .prof-tools{margin-top:10px}
+/* 提交防呆遮罩 */
+.submit-mask{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;
+ background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(3px);
+ opacity:0;pointer-events:none;transition:.2s;cursor:wait}
+.submit-mask.on{opacity:1;pointer-events:auto}
+.submit-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 34px;
+ text-align:center;min-width:260px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.spinner{width:26px;height:26px;margin:0 auto 14px;border:2px solid var(--line2);
+ border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.submit-txt{font-size:13.5px;color:var(--dim);letter-spacing:.02em;min-height:20px}
+.submit-txt b{color:var(--fg);font-weight:600}
+/* 题目排版：更长行高，缓解密集阅读 */
+.stem{font-size:16.5px;line-height:1.78}
+.opt .txt{line-height:1.7}
 .lb-fab{position:fixed;right:16px;bottom:84px;z-index:30;display:none;align-items:center;gap:6px;
  background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:12.5px;
  color:var(--fg);cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.35)}
@@ -164,7 +179,19 @@ footer{padding-bottom:96px}
 .lb-row{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px solid var(--line);font-size:13.5px}
 .lb-row .rk{width:22px;color:var(--dim);font-variant-numeric:tabular-nums}
 .lb-row.me{color:var(--accent);font-weight:600}
-.lb-self{position:sticky;bottom:0;margin-top:10px;padding:11px 8px;display:flex;gap:12px;align-items:center;
+.lb-count{font-size:11.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.lb-refresh{display:none;margin:0 0 12px;padding:9px 14px;border-radius:10px;text-align:center;
+ font-size:12.5px;color:var(--fg);background:color-mix(in srgb,var(--accent) 16%,var(--card));
+ border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line));cursor:pointer}
+.lb-refresh.on{display:block}
+.lb-near{margin:4px 0 10px;padding:4px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.near-h{font-size:11px;color:var(--dim);letter-spacing:.06em;padding:6px 4px 2px}
+.lb-time{font-size:11px;color:var(--dim);margin-left:8px;font-variant-numeric:tabular-nums}
+.lb-row.fresh{animation:freshGlow 1.6s ease-out}
+@keyframes freshGlow{0%{box-shadow:inset 0 0 14px color-mix(in srgb,var(--accent) 55%,transparent)}
+ 100%{box-shadow:inset 0 0 0 transparent}}
+.pod .pl{font-size:10.5px;color:var(--dim);letter-spacing:.1em;margin-bottom:4px}
+.lb-self{border-top:2px solid var(--accent)!important;margin-top:10px;padding:11px 8px;display:flex;gap:12px;align-items:center;
  font-size:13.5px;font-weight:600;background:color-mix(in srgb,var(--accent) 13%,var(--bg));
  border-top:1px solid var(--line);border-radius:0 0 6px 6px}
 .xp-toast{position:fixed;right:18px;bottom:92px;z-index:60;background:var(--card);border:1px solid var(--line);
@@ -255,23 +282,26 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 14</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
-    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">📋 题号</button>
-    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">⏱ 考试模式</button>
+    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
+    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
     <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
   </div>
   <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
 </header>
 <main id="app"></main>
+<div id="submitMask" class="submit-mask"><div class="submit-card">
+  <div class="spinner"></div><div class="submit-txt" id="submitTxt">正在上传试卷…</div></div></div>
 <div id="lbFab" class="lb-fab"></div>
 <div id="lbOverlay" class="lb-overlay"><div class="lb-sheet">
-  <div class="lb-head"><b>今日榜单</b><span class="muted" id="lbDay"></span>
+  <div class="lb-head"><b>今日榜单</b><span class="muted" id="lbDay"></span><span class="lb-count" id="lbCount"></span>
     <span style="flex:1"></span><button class="btn ghost" id="lbClose" style="padding:4px 10px;font-size:12px">关闭</button></div>
   <div class="lb-tabs">
     <button data-sort="pct" class="on">正确率</button>
     <button data-sort="score">答对题数</button>
     <button data-sort="speed">用时</button>
   </div>
+  <div class="lb-refresh" id="lbRefresh"></div>
   <div id="lbBody"></div>
 </div></div>
 <div id="nav" class="nav-overlay"><div class="nav-box">
@@ -582,7 +612,7 @@ function showResult() {
       ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
       <div class="actions">
         ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
-        <button class="btn ghost" id="showlb">🏆 查看今日榜单</button>
+        <button class="btn ghost" id="showlb">查看今日榜单</button>
         <button class="btn ghost" id="again">整套重做</button>
         <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
       </div></div>`;
@@ -826,15 +856,25 @@ load(); render();
     setTimeout(function(){ el.remove(); }, 1500);
   }
 
+  var BADGE_SVG={
+    first:'<svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h11l-2 4 2 4H6"/></svg>',
+    combo5:'<svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>',
+    combo10:'<svg viewBox="0 0 24 24"><path d="M10 2 4 12h5l-1 6 7-9H11z"/><path d="M18 11l-3 5h3l-1 5 4-6h-3z"/></svg>',
+    daily:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>',
+    streak3:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+    streak7:'<svg viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 5H4v2a3 3 0 0 0 3 3M17 5h3v2a3 3 0 0 1-3 3"/><path d="M12 14v4M9 21h6"/></svg>',
+    subject:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>',
+    review:'<svg viewBox="0 0 24 24"><path d="M4 6h16M9 6V4h6v2M6 6l1 14h10l1-14"/></svg>'
+  };
   var BADGES=[
-    {id:'first',  n:'第一题',   d:'完成第一道题',        i:'🌱'},
-    {id:'combo5', n:'连对 5',   d:'一次连对 5 题',       i:'🔥'},
-    {id:'combo10',n:'连对 10',  d:'一次连对 10 题',      i:'⚡'},
-    {id:'daily',  n:'今日达标', d:'一天做满 30 题',      i:'✅'},
-    {id:'streak3',n:'三天不断', d:'连续 3 天做题',       i:'📅'},
-    {id:'streak7',n:'一周',     d:'连续 7 天做题',       i:'🏆'},
-    {id:'subject',n:'一科通关', d:'某科全部做完',        i:'🎯'},
-    {id:'review', n:'错题清零', d:'错题本清空',          i:'🧹'}
+    {id:'first',  n:'第一题',   d:'完成第一道题'},
+    {id:'combo5', n:'连对 5',   d:'一次连对 5 题'},
+    {id:'combo10',n:'连对 10',  d:'一次连对 10 题'},
+    {id:'daily',  n:'今日达标', d:'一天做满 30 题'},
+    {id:'streak3',n:'三天不断', d:'连续 3 天做题'},
+    {id:'streak7',n:'一周',     d:'连续 7 天做题'},
+    {id:'subject',n:'一科通关', d:'某科全部做完'},
+    {id:'review', n:'错题清零', d:'错题本清空'}
   ];
 
   function unlock(id){
@@ -842,7 +882,7 @@ load(); render();
     b[id]=Date.now(); bsave(b);
     addCoins(20);
     var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
-    if(meta) toast('🏅 解锁：'+meta.n+' · +20 币', true);
+    if(meta) toast('解锁成就 · '+meta.n+' · +20 币', true);
     return true;
   }
 
@@ -900,7 +940,7 @@ load(); render();
     if(crit) coin*=2;
     addCoins(coin);
     if(ok) beep(crit?1180:660, 0.1, "sine", crit?0.08:0.05); else beep(180,0.14,"sawtooth",0.05);
-    toast('+'+gain+' XP · +'+coin+' 币'+(crit?' 暴击!':'')+(ok&&g.combo>1?' · 连对 '+g.combo:'')+(dbl>1?' · ×2':''), ok);
+    toast('+'+gain+' XP · +'+coin+' 币'+(crit?' · 暴击':"")+(ok&&g.combo>1?' · 连对 '+g.combo:'')+(dbl>1?' · ×2':''), ok);
     var after=levelOf(g.xp);
     if(after>before){ setTimeout(function(){ toast('🎉 升到 Lv.'+after, true); levelUpSound(); }, 450); }
     checkBadges();
@@ -934,14 +974,24 @@ load(); render();
       .catch(function(){});
   }
 
+  function lbNearRange(){
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    if(idx<3) return null;
+    return [Math.max(0,idx-2), Math.min(LB.list.length-1, idx+2)];
+  }
+
   function lbRowsHtml(){
     var me=nick()||"我";
     var start = LB.list.length>3 ? 3 : 0;
+    var near = lbNearRange();
     return LB.list.slice(start).map(function(x,i){
+      if(near && (i+start)>=near[0] && (i+start)<=near[1]) return "";
       var mine = x.name===me;
       return '<div class="lb-row'+(mine?' me':'')+'" data-k="'+x.name+'">'+
         '<span class="rk">'+(i+start+1)+'</span>'+
-        '<span class="rname">'+x.name+(mine?'（我）':'')+'</span>'+
+        '<span class="rname">'+x.name+(mine?'（我）':'')+
+          (x.ms>0?'<span class="lb-time">'+fmtMs(x.ms)+'</span>':'')+'</span>'+
         '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
     }).join("") || '<div class="mutedsmall">今天还没有人上榜</div>';
   }
@@ -953,7 +1003,7 @@ load(); render();
     return '<div class="podium">'+order.map(function(idx){
       var x=top[idx]; if(!x) return '<div></div>';
       var place=idx+1, cls="p"+place;
-      return '<div class="pod '+cls+'"><div class="av">'+place+'</div>'+
+      return '<div class="pod '+cls+'"><div class="pl">第'+["一","二","三"][idx]+'名</div><div class="av">'+place+'</div>'+
         '<div class="nm">'+x.name+(x.name===me?' ·我':'')+'</div>'+
         '<div class="sc">'+lbMetric(x,LB.sort)+'</div></div>';
     }).join("")+'</div>';
@@ -968,12 +1018,58 @@ load(); render();
       '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
   }
 
+  var LB_FREEZE=false, LB_PENDING=0, LB_SCROLL_T=null, LB_PREV=null;
+  var LB_COUNT_SHOWN=0, LB_COUNT_REAL=0, LB_COUNT_T=null;
+
+  function lbNeighborsHtml(){
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    var r=lbNearRange();
+    if(!r) return "";
+    var a=r[0], b=r[1], out=[];
+    for(var k=a;k<=b;k++){
+      var x=LB.list[k], mine=(k===idx);
+      out.push('<div class="lb-row'+(mine?' me':'')+'" data-k="'+x.name+'">'+
+        '<span class="rk">'+(k+1)+'</span>'+
+        '<span class="rname">'+x.name+(mine?'（我）':'')+
+          (x.ms>0?'<span class="lb-time">'+fmtMs(x.ms)+'</span>':'')+'</span>'+
+        '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>');
+    }
+    return '<div class="lb-near"><div class="near-h">你附近 · 再对一道题就能超过</div>'+out.join("")+'</div>';
+  }
+
+  function lbCountAnim(real){
+    LB_COUNT_REAL=real;
+    if(!LB_COUNT_SHOWN) LB_COUNT_SHOWN=real;
+    if(LB_COUNT_T) clearInterval(LB_COUNT_T);
+    LB_COUNT_T=setInterval(function(){
+      if(LB_COUNT_SHOWN < LB_COUNT_REAL) LB_COUNT_SHOWN++;
+      else if(LB_COUNT_SHOWN < LB_COUNT_REAL+2 && Math.random()<0.35) LB_COUNT_SHOWN++;
+      var el=document.getElementById("lbCount");
+      if(el) el.textContent="已交卷 "+LB_COUNT_SHOWN+" 人";
+    }, 2200);
+    var el=document.getElementById("lbCount");
+    if(el) el.textContent="已交卷 "+LB_COUNT_SHOWN+" 人";
+  }
+
   function lbRender(){
     var box=document.getElementById("lbBody"); if(!box) return;
+    lbCountAnim(LB.list.length);
+    if(LB_FREEZE){ LB_PENDING++; var p=document.getElementById("lbRefresh");
+      if(p){ p.textContent="有 "+LB_PENDING+" 条新动态 · 点击刷新榜单"; p.classList.add("on"); }
+      return; }
     var before={};
     box.querySelectorAll(".lb-row").forEach(function(el){ before[el.dataset.k]=el.getBoundingClientRect().top; });
-    box.innerHTML = lbPodiumHtml() +
+    box.innerHTML = lbPodiumHtml() + lbNeighborsHtml() +
       '<div class="lb-list" id="lbList">'+lbRowsHtml()+'</div>' + lbSelfHtml();
+    // 新进榜高亮
+    var names={}; LB.list.forEach(function(x){ names[x.name]=1; });
+    if(LB_PREV){
+      box.querySelectorAll(".lb-row").forEach(function(el){
+        if(!LB_PREV[el.dataset.k]) el.classList.add("fresh");
+      });
+    }
+    LB_PREV=names;
     box.querySelectorAll(".lb-row").forEach(function(el){
       var old=before[el.dataset.k]; if(old===undefined) return;
       var now=el.getBoundingClientRect().top, dy=old-now;
@@ -1004,14 +1100,22 @@ load(); render();
     if(!el || !apibase()) return;
     var me=nick()||"我", idx=-1;
     LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
-    if(idx>=0) el.innerHTML='🏆 第 <b>'+(idx+1)+'</b> 名';
-    else if(LB.list.length) el.innerHTML='🏆 最高 <b>'+LB.list[0].pct+'%</b>';
-    else el.innerHTML='🏆 今日榜';
+    if(idx>=0) el.innerHTML='第 <b>'+(idx+1)+'</b> 名';
+    else if(LB.list.length) el.innerHTML='最高 <b>'+LB.list[0].pct+'%</b>';
+    else el.innerHTML='今日榜';
   }
 
-  // 交卷时上传耗时
+  var SUBMITING=false;
+  function submitText(txt){ var el=document.getElementById("submitTxt"); if(el) el.innerHTML=txt; }
+  function showMask(){ var m=document.getElementById("submitMask"); if(m) m.classList.add("on"); SUBMITING=true; }
+  function hideMask(){ var m=document.getElementById("submitMask"); if(m) m.classList.remove("on"); SUBMITING=false; }
+
+  // 交卷时上传耗时（带情绪缓冲遮罩）
   function lbSubmit(ms){
     if(!apibase()) return;
+    showMask();
+    submitText("正在加密上传试卷…");
+    setTimeout(function(){ if(SUBMITING) submitText("正在实时计算排名…"); }, 900);
     var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
     if(rec.date!==todayKey()) return;
     fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
@@ -1019,7 +1123,8 @@ load(); render();
         ms:ms||0, day:rec.date})})
       .then(function(r){ return r.json(); })
       .then(function(d){ if(d&&d.ok){ LB.list=d.list||LB.list; lbRender(); lbFab(); } })
-      .catch(function(){});
+      .catch(function(){})
+      .then(function(){ setTimeout(hideMask, 350); });
   }
   window.lbSubmit=lbSubmit;
 
@@ -1038,6 +1143,19 @@ load(); render();
       };
     });
     var dd=document.getElementById("lbDay"); if(dd) dd.textContent=todayKey();
+    var sheet=document.querySelector(".lb-sheet");
+    if(sheet) sheet.addEventListener("scroll", function(){
+      if(sheet.scrollTop>4){
+        LB_FREEZE=true;
+        if(LB_SCROLL_T) clearTimeout(LB_SCROLL_T);
+        LB_SCROLL_T=setTimeout(function(){ LB_FREEZE=false;
+          var p=document.getElementById("lbRefresh");
+          if(p && LB_PENDING){ p.textContent="有 "+LB_PENDING+" 条新动态 · 点击刷新榜单"; p.classList.add("on"); }
+        }, 900);
+      }
+    });
+    var rf=document.getElementById("lbRefresh");
+    if(rf) rf.onclick=function(){ LB_FREEZE=false; LB_PENDING=0; rf.classList.remove("on"); LB.at=0; lbFetch(lbRender); };
     lbFetch(function(){ lbRender(); lbFab(); });
     setInterval(function(){ lbFetch(function(){ lbFab(); if(LB.open) lbRender(); }); }, 8000);
   }
@@ -1127,7 +1245,7 @@ load(); render();
     try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
     if(meta.r.coin) addCoins(meta.r.coin);
     if(meta.r.dust) addDust(meta.r.dust);
-    toast("✅ 任务完成："+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
+    toast("任务完成 · "+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
     beep(1046,0.16,"triangle",0.07);
     if(window.__refreshProfile) window.__refreshProfile();
     return {ok:true,msg:"已领取"};
@@ -1259,7 +1377,7 @@ load(); render();
       '<div class="codebar"><button class="btn2" id="mecode">复制我的战绩码</button>'+
       '<input id="friendcode" placeholder="粘贴同学的战绩码">'+
       '<button class="btn2" id="addcode">加入</button>'+
-      (apibase() ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>' : '')+'</div>';
+      (apibase() ? '<button class="btn2" id="pushscore">提交到服务器</button>' : '')+'</div>';
   }
   window.__renderBoard=renderBoard;
 
@@ -1272,7 +1390,8 @@ load(); render();
     var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
     var dd = examDays();
     var badgeHtml = BADGES.map(function(x){
-      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+x.i+'</span>';
+      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+             (BADGE_SVG[x.id]||"")+'</span>';
     }).join("");
     host.innerHTML =
       '<div class="hero-top">'+
@@ -1289,7 +1408,7 @@ load(); render();
         '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
         '<span>金币 <b>'+(c.n||0)+'</b></span>'+
         '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
-        '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效':'🔇 静音')+'</button>'+
+        '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
       '</div>'+
       '<div class="badges">'+badgeHtml+'</div>';
   }
@@ -1302,7 +1421,7 @@ load(); render();
   window.__refreshProfile=renderAll;
   document.addEventListener("click", function(ev){
     var s = ev.target.closest && ev.target.closest("#sfxbtn");
-    if(s){ var on = toggleSfx(); s.textContent = on ? "🔊 音效开" : "🔇 音效关"; return; }
+    if(s){ var on = toggleSfx(); s.textContent = on ? "音效 开" : "音效 关"; return; }
     var q = ev.target.closest && ev.target.closest("[data-claim]");
     if(q){ claimQuest(q.getAttribute("data-claim")); renderAll(); return; }
     if(ev.target.closest && ev.target.closest("#mecode")){
