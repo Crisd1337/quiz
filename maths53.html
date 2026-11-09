@@ -1019,7 +1019,6 @@ load(); render();
   }
 
   var LB_FREEZE=false, LB_PENDING=0, LB_SCROLL_T=null, LB_PREV=null;
-  var LB_COUNT_SHOWN=0, LB_COUNT_REAL=0, LB_COUNT_T=null;
 
   function lbNeighborsHtml(){
     var me=nick()||"我", idx=-1;
@@ -1039,17 +1038,8 @@ load(); render();
   }
 
   function lbCountAnim(real){
-    LB_COUNT_REAL=real;
-    if(!LB_COUNT_SHOWN) LB_COUNT_SHOWN=real;
-    if(LB_COUNT_T) clearInterval(LB_COUNT_T);
-    LB_COUNT_T=setInterval(function(){
-      if(LB_COUNT_SHOWN < LB_COUNT_REAL) LB_COUNT_SHOWN++;
-      else if(LB_COUNT_SHOWN < LB_COUNT_REAL+2 && Math.random()<0.35) LB_COUNT_SHOWN++;
-      var el=document.getElementById("lbCount");
-      if(el) el.textContent="已交卷 "+LB_COUNT_SHOWN+" 人";
-    }, 2200);
     var el=document.getElementById("lbCount");
-    if(el) el.textContent="已交卷 "+LB_COUNT_SHOWN+" 人";
+    if(el) el.textContent = "已交卷 " + real + " 人";
   }
 
   function lbRender(){
