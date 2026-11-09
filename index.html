@@ -782,7 +782,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-h
 
   /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
   var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
-  function apibase(){ try{ return (localStorage.getItem(AKEY)||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
+  function apibase(){ try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; } }
   function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
   function loadBoard(){
     var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
