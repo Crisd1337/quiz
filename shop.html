@@ -59,6 +59,7 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:34px 0 0;line-h
 <footer>金币与装扮存在本机浏览器；导出备份会一起带走</footer>
 </div>
 <script>
+
 (function(){
   var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
   var COIN_KEY="dsh-coins-v1", INV_KEY="dsh-inv-v1", BUFF_KEY="dsh-buffs-v1";
@@ -346,21 +347,27 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:34px 0 0;line-h
     equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
     shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
 
+  function examDays(){
+    var d=new Date("2026-11-16T00:00:00"), now=new Date(); now.setHours(0,0,0,0);
+    var n=Math.round((d-now)/864e5);
+    return (n>=0 && n<=120) ? n : null;
+  }
+
   function renderQuests(host){
     if(!host) return;
     var Q=quests(), p=questProgress();
-    var rows=Q.list.map(function(id){
+    host.innerHTML = Q.list.map(function(id){
       var m=null; QTEMPL.forEach(function(x){ if(x.id===id) m=x; });
       var v=Math.min(questValue(m,p), m.target), pct=Math.round(v/m.target*100);
       var done=v>=m.target, claimed=Q.claimed.indexOf(id)>=0;
-      var btn = claimed ? '<span class="qdone">已领取</span>'
-              : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
-                      : '<span class="qnum">'+v+'/'+m.target+'</span>');
-      return '<div class="qrow'+(done?' done':'')+'"><span class="qtip">'+m.tip+'</span>'+
+      var right = claimed ? '<span class="qdone">已领取</span>'
+                : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
+                        : '<span class="qnum">'+v+'/'+m.target+'</span>');
+      return '<div class="qrow'+(done?' done':'')+'">'+
+        '<span class="qtip">'+m.tip+'</span>'+
         '<span class="qname">'+m.n+'</span>'+
-        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+btn+'</div>';
+        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+right+'</div>';
     }).join("");
-    host.innerHTML='<h2 class="gh">今日任务 <span class="gz">每天 0 点刷新 · 3 个随机</span></h2><div class="qlist">'+rows+'</div>';
   }
   window.__renderQuests=renderQuests;
 
@@ -374,8 +381,7 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:34px 0 0;line-h
     fetch(apibase()+"/board?day="+encodeURIComponent(todayKey()))
       .then(function(r){ return r.json(); })
       .then(function(d){
-        if(!d || !d.ok || !d.list) return;
-        if(!d.list.length){ box.innerHTML='<div class="mutedsmall">云端还没有今天的成绩，做一轮然后点「☁ 提交」</div>'; return; }
+        if(!d || !d.ok || !d.list || !d.list.length) return;
         var me=nick()||"我";
         box.innerHTML=d.list.map(function(x,i){
           return '<div class="rrow'+(x.name===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
@@ -426,16 +432,10 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:34px 0 0;line-h
 
   function renderBoard(host){
     if(!host) return;
-    var g=db(), c=readCoins(), L=log();
-    var days={}, dayOk={};
-    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
-      var k=d.getTime();
-      days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
-    var dayList=Object.keys(days).map(function(k){
-      var d=new Date(+k);
-      return {ts:+k, d:(d.getMonth()+1)+"-"+d.getDate(), n:days[k], ok:dayOk[k],
-              pct:Math.round(dayOk[k]/days[k]*100)};
-    }).sort(function(a,b){ return b.ts-a.ts; }).slice(0,7);
+    var g=db(), L=log();
+    var day=document.getElementById("boardday");
+    if(day) day.textContent = todayKey();
+
     var myRec={}; try{ myRec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
     var rows=[];
     if(myRec.date===todayKey()) rows.push({name:nick()||"我", p:myRec.best||0, me:true});
@@ -443,62 +443,62 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:34px 0 0;line-h
       rows.push({name:x.name, p:x.p, me:false});
     });
     rows.sort(function(a,b){ return b.p-a.p; });
-    var rankHtml = rows.length ? ('<div class="rank" id="rankbox">'+rows.map(function(r,i){
-      return '<div class="rrow'+(r.me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
-        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
-        '<span class="rp">'+r.p+'%</span></div>';
-    }).join("")+'</div>') : '<div class="rank" id="rankbox"><div class="mutedsmall">还没人交榜。做完「今日挑战」，复制战绩码发给同学互换。</div></div>';
 
-    host.innerHTML='<h2 class="gh">今日好友榜 <span class="gz">'+todayKey()+' · 靠战绩码互通，不用服务器</span></h2>'+
-      rankHtml +
+    var list = rows.length ? rows.map(function(r,i){
+      return '<div class="rankrow'+(r.me?' me':'')+'"><span class="rk">'+(i+1)+'</span>'+
+        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
+        '<span class="rpct">'+r.p+'%</span></div>';
+    }).join("") : '<div class="mutedsmall">今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。</div>';
+
+    var days={}, dayOk={};
+    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
+      var k=d.getTime(); days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
+    var last7=Object.keys(days).map(function(k){
+      return {ts:+k, pct:Math.round(dayOk[k]/days[k]*100)}; })
+      .sort(function(a,b){ return b.ts-a.ts; }).slice(0,7).reverse();
+    var spark = last7.length>1 ? ('<div class="spark">'+last7.map(function(x){
+        return '<i style="height:'+Math.max(3,Math.round(x.pct*0.3))+'px" title="'+x.pct+'%"></i>';
+      }).join("")+'<span class="sparklab">近 7 天正确率</span></div>') : "";
+
+    host.innerHTML =
+      '<div class="ranklist" id="rankbox">'+list+'</div>'+
+      spark +
       '<div class="codebar"><button class="btn2" id="mecode">复制我的战绩码</button>'+
       '<input id="friendcode" placeholder="粘贴同学的战绩码">'+
       '<button class="btn2" id="addcode">加入</button>'+
-      (apibase()
-        ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>'
-        : '<button class="btn2" id="cfgapi">⚙ 设置服务器地址</button>')+'</div>'+
-      '<h2 class="gh" style="margin-top:22px">纪录榜 <span class="gz">本地 · 跟自己比</span></h2>'+
-      '<div class="board">'+
-        '<div class="brow"><span>总经验</span><b>'+g.xp+'</b></div>'+
-        '<div class="brow"><span>最高连对</span><b>'+(g.best||0)+'</b></div>'+
-        '<div class="brow"><span>累计作答</span><b>'+L.length+'</b></div>'+
-        '<div class="brow"><span>金币 / 星尘</span><b>'+(c.n||0)+' / '+(c.dust||0)+'</b></div>'+
-      '</div>'+
-      '<div class="days">'+dayList.map(function(x){
-        return '<div class="day"><em>'+x.pct+'%</em><i style="height:'+Math.max(4,Math.round(x.pct*0.5))+'px"></i>'+
-               '<span>'+x.d+'</span></div>';
-      }).join("")+'</div>';
+      (apibase() ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>' : '')+'</div>';
   }
   window.__renderBoard=renderBoard;
 
   function renderProfile(){
-    var host=document.getElementById('profile');
+    var host=document.getElementById("profile");
     if(!host) return;
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var seenAll=seen(), fixed=0, mastered=0;
-    Object.keys(seenAll).forEach(function(k){ var e=seenAll[k]; if(e.right && e.n>1) fixed++; if(e.right && e.sealed) mastered++; });
     var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
-    var badges=BADGES.map(function(x){
-      var got=b[x.id];
-      return '<div class="badge'+(got?' on':'')+'" title="'+x.d+'"><span class="bi">'+x.i+'</span>'+
-             '<span class="bn">'+x.n+'</span></div>';
-    }).join('');
-    host.innerHTML=
-      '<div class="prof-main">'+
-        '<div class="lv"><span class="lvnum">'+lv+'</span><span class="lvlab">等级</span></div>'+
-        '<div class="prof-body">'+
-          '<div class="prof-line"><b>'+xp+' XP</b>'+title+(nx?('<span class="muted">距 Lv.'+(lv+1)+' 还差 '+(nx-xp)+'</span>'):'<span class="muted">满级</span>')+'</div>'+
-          '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-          '<div class="prof-meta">今日 <b>'+tc+'</b>/'+GOAL+' 题 · 连续 <b>'+st+'</b> 天 · 连对纪录 <b>'+(g.best||0)+'</b>'+
-            ' · 金币 <b>'+(c.n||0)+'</b></div>'+
-          '<div class="prof-note">纠错 <b>'+fixed+'</b> 题 · 已掌握 <b>'+mastered+'</b> 题（做满 3 次不再计分）</div>'+
-        '</div>'+
+    var dd = examDays();
+    var badgeHtml = BADGES.map(function(x){
+      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+x.i+'</span>';
+    }).join("");
+    host.innerHTML =
+      '<div class="hero-top">'+
+        '<span class="lvp">Lv.'+lv+'</span>'+
+        '<span class="xpv">'+xp+'</span>'+
+        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
+        title+'<span class="grow"></span>'+
+        (dd!==null?'<span class="cd">距 Science 年考 <b>'+dd+'</b> 天</span>':'')+
       '</div>'+
-      '<div class="badges">'+badges+'</div>'+
-      '<div class="prof-tools"><button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效开':'🔇 音效关')+'</button></div>'+
-      '<div class="prof-note dim">这套分数只认「答对的题」。读材料、琢磨思路、改答案、想通一个概念——这些没被计分，但它们才是真正在学的东西。</div>';
+      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="metaline">'+
+        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
+        '<span>连续 <b>'+st+'</b> 天</span>'+
+        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
+        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
+        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+        '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效':'🔇 静音')+'</button>'+
+      '</div>'+
+      '<div class="badges">'+badgeHtml+'</div>';
   }
   function renderAll(){
     renderProfile();
@@ -543,6 +543,7 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:34px 0 0;line-h
   applyTheme();
   if(document.readyState!=='loading') renderAll(); else document.addEventListener('DOMContentLoaded', renderAll);
 })();
+
 </script>
 <script>
 (function(){

@@ -3,454 +3,367 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Canvas 复习测验</title>
 <style>
-:root{--bg:#0e1014;--card:#161a20;--card2:#1d222a;--fg:#e9edf3;--dim:#98a3b3;--line:#272d38;
- --accent:#5b8cff;--ok:#2fbf71;--bad:#ff5f56;--warn:#f5a623}
-@media (prefers-color-scheme: light){:root{--bg:#f5f6f8;--card:#fff;--card2:#eef1f5;--fg:#1b1f26;
- --dim:#5f6b7a;--line:#dfe4ea;--accent:#2f6bff;--ok:#1f9d5a;--bad:#d93b30;--warn:#b26a00}}
+:root{--bg:#0b0d10;--panel:#12151a;--panel2:#171b22;--fg:#e9eef5;--dim:#8b95a6;--line:#222831;
+ --line2:#2b323d;--accent:#5b8cff;--ok:#3ecf8e;--bad:#ff6b6b;--warn:#e8b04b}
+@media (prefers-color-scheme: light){:root{--bg:#f7f8fa;--panel:#fff;--panel2:#f1f3f7;--fg:#161a20;
+ --dim:#5c6775;--line:#e5e8ee;--line2:#d8dde6;--accent:#2f6bff;--ok:#1f9d5a;--bad:#d93b30;--warn:#a86a12}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);
- font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
-.wrap{max-width:920px;margin:0 auto;padding:44px 20px 90px}
-h1{font-size:26px;margin:0 0 8px;letter-spacing:.2px}
-.lead{color:var(--dim);margin:0 0 24px;font-size:14.5px}
+ font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;
+ -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:56px 24px 100px}
 
-.profile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 22px}
-.prof-main{display:flex;gap:16px;align-items:center}
-.lv{width:64px;height:64px;border-radius:18px;background:color-mix(in srgb,var(--accent) 16%,var(--card2));
- display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 64px}
-.lvnum{font-size:24px;font-weight:700;color:var(--accent);line-height:1}
-.lvlab{font-size:10px;color:var(--dim);margin-top:2px}
-.prof-body{flex:1;min-width:0}
-.prof-line{display:flex;gap:10px;align-items:baseline;font-size:14px}
-.prof-line b{font-size:17px}
-.xpbar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin:8px 0 6px}
-.xpbar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
-.prof-meta{font-size:12px;color:var(--dim)}
-.prof-meta b{color:var(--fg)}
-.sfxbtn{background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:8px;
- padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
-.prof-tools{margin-top:10px}
-.prof-note{font-size:12px;color:var(--dim);margin-top:8px;line-height:1.6}
-.prof-note b{color:var(--accent)}
-.ptitle{font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid color-mix(in srgb,var(--warn) 60%,var(--line));
- color:var(--warn);margin-left:2px}
-.badges{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}
-.badge{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 4px;
- text-align:center;opacity:.42}
-.badge.on{opacity:1;border-color:color-mix(in srgb,var(--warn) 55%,var(--line))}
-.badge .bi{display:block;font-size:18px;line-height:1.3}
-.badge .bn{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.xp-toast{position:fixed;right:18px;bottom:24px;z-index:60;background:var(--card);border:1px solid var(--line);
- color:var(--dim);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;
- transform:translateY(8px);transition:.25s;pointer-events:none}
-.xp-toast.ok{border-color:var(--ok);color:var(--ok)}
-.xp-toast.up{opacity:1;transform:translateY(0)}
-@media (max-width:720px){.badges{grid-template-columns:repeat(4,1fr)}}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 26px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 18px;min-width:118px}
-.stat b{display:block;font-size:22px;line-height:1.15;font-variant-numeric:tabular-nums}
-.stat span{color:var(--dim);font-size:12px}
+/* ── 顶部 ── */
+.head{display:flex;align-items:flex-end;gap:14px;margin-bottom:6px}
+h1{font-size:24px;letter-spacing:-.01em;margin:0;font-weight:650}
+.head .sub{color:var(--dim);font-size:13px;margin-bottom:3px}
 
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 26px}
-.dbest{font-size:12px;color:var(--ok);font-weight:500}
-.qbox,.bbox{margin:0 0 24px}
-.qlist{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 4px}
-.qrow{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);font-size:13.5px}
+/* ── 等级条 ── */
+.hero{margin:24px 0 0}
+.hero-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.lvp{font-size:12px;font-weight:650;letter-spacing:.04em;color:var(--accent);
+ background:color-mix(in srgb,var(--accent) 14%,transparent);border-radius:6px;padding:2px 8px}
+.xpv{font-size:19px;font-weight:650;font-variant-numeric:tabular-nums}
+.hero-top .grow{flex:1}
+.ptitle{font-size:11px;color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);
+ border-radius:999px;padding:1px 8px}
+.cd{font-size:12.5px;color:var(--dim)}
+.cd b{color:var(--warn);font-size:14px}
+.xpbar{height:4px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.xpbar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.metaline{margin-top:9px;font-size:12.5px;color:var(--dim);display:flex;gap:14px;flex-wrap:wrap}
+.metaline b{color:var(--fg);font-weight:600}
+
+/* ── 徽章：一排小点，不占盒子 ── */
+.badges{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.badge{width:26px;height:26px;border-radius:8px;background:var(--panel);border:1px solid var(--line);
+ display:flex;align-items:center;justify-content:center;font-size:13px;opacity:.35;filter:grayscale(1)}
+.badge.on{opacity:1;filter:none;border-color:color-mix(in srgb,var(--warn) 40%,var(--line))}
+.sfxbtn{background:none;border:0;color:var(--dim);font:inherit;font-size:11.5px;
+ cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+
+/* ── 主操作 ── */
+.cta{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;margin:30px 0 8px}
+.big{grid-column:1;display:flex;flex-direction:column;justify-content:center;gap:1px;
+ background:var(--accent);color:#fff;border-radius:12px;padding:14px 18px;text-decoration:none}
+.big b{font-size:15.5px;font-weight:650}
+.big span{font-size:12px;opacity:.85}
+.sm{display:flex;align-items:center;justify-content:center;padding:0 18px;border-radius:12px;
+ background:var(--panel);border:1px solid var(--line);color:var(--fg);text-decoration:none;font-size:13.5px;white-space:nowrap}
+.sm:hover{border-color:var(--line2);background:var(--panel2)}
+.big:hover{filter:brightness(1.05)}
+
+/* ── 分节标题 ── */
+.sh{display:flex;align-items:baseline;gap:10px;margin:38px 0 12px}
+.sh h2{font-size:13px;font-weight:600;color:var(--fg);margin:0}
+.sh span{font-size:11.5px;color:var(--dim)}
+.sh .grow{flex:1}
+.sh a{font-size:12px;color:var(--dim);text-decoration:none}
+.sh a:hover{color:var(--accent)}
+
+/* ── 任务 ── */
+.qrow{display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1px solid var(--line);font-size:13.5px}
 .qrow:last-child{border-bottom:0}
 .qrow.done .qname{color:var(--dim);text-decoration:line-through}
-.qtip{font-size:11px;padding:1px 7px;border-radius:999px;background:var(--card2);color:var(--dim);flex:0 0 auto}
+.qtip{font-size:10.5px;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:0 6px;flex:0 0 auto}
 .qname{flex:1;min-width:0}
-.qbar{flex:0 0 90px;height:6px;background:var(--card2);border-radius:99px;overflow:hidden}
+.qbar{flex:0 0 80px;height:3px;background:var(--panel2);border-radius:99px;overflow:hidden}
 .qbar i{display:block;height:100%;background:var(--accent);border-radius:99px}
 .qnum{font-size:12px;color:var(--dim);flex:0 0 auto;font-variant-numeric:tabular-nums}
-.qbtn{background:var(--ok);border:0;color:#fff;border-radius:8px;padding:5px 12px;font:inherit;font-size:12px;cursor:pointer}
-.qdone{font-size:12px;color:var(--dim);flex:0 0 auto}
-.rank{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.rrow{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px}
-.rrow:last-child{border-bottom:0}
-.rrow.me{background:color-mix(in srgb,var(--accent) 12%,transparent)}
-.rn{width:20px;color:var(--dim);text-align:center;font-variant-numeric:tabular-nums}
-.rrow:nth-child(1) .rn{color:var(--warn);font-weight:700}
+.qbtn{background:transparent;border:1px solid var(--ok);color:var(--ok);border-radius:7px;
+ padding:3px 11px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.qbtn:hover{background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.qdone{font-size:11.5px;color:var(--dim)}
+
+/* ── 榜单 ── */
+.rankrow{display:flex;align-items:center;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:13.5px}
+.rankrow:last-child{border-bottom:0}
+.rankrow.me{color:var(--accent)}
+.rk{width:18px;color:var(--dim);font-size:12px;font-variant-numeric:tabular-nums;flex:0 0 18px}
+.rankrow:nth-child(1) .rk{color:var(--warn);font-weight:700}
 .rname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.rp{font-weight:600;color:var(--ok)}
-.codebar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.codebar input{flex:1;min-width:180px;background:var(--card);border:1px solid var(--line);border-radius:10px;
- padding:8px 12px;color:var(--fg);font:inherit;font-size:13px;outline:none}
-.btn2{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
- padding:8px 14px;font:inherit;font-size:13px;cursor:pointer}
-.mutedsmall{color:var(--dim);font-size:12.5px;padding:14px 4px}
-.board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.brow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12px;color:var(--dim)}
-.brow b{display:block;font-size:18px;color:var(--fg);margin-top:2px}
-.days{display:flex;gap:10px;align-items:flex-end;margin-top:12px;padding:0 2px;min-height:64px}
-.day{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;
- font-size:10px;color:var(--dim);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 0}
-.day i{display:block;width:70%;background:color-mix(in srgb,var(--accent) 60%,transparent);border-radius:4px}
-.day em{font-style:normal;font-size:10px;color:var(--fg)}
-@media (max-width:640px){.board{grid-template-columns:repeat(2,1fr)}}
-.countdown{margin:0 0 18px;font-size:13.5px;color:var(--dim)}
-.countdown b{color:var(--warn);font-size:16px;margin:0 3px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;font-size:14.5px;
- font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--fg);background:var(--card)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn:hover{filter:brightness(1.06)}
+.rpct{font-variant-numeric:tabular-nums;font-weight:600}
+.codebar{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;align-items:center}
+.codebar input{flex:1;min-width:170px;background:var(--panel);border:1px solid var(--line);border-radius:9px;
+ padding:7px 11px;color:var(--fg);font:inherit;font-size:12.5px;outline:none}
+.codebar input:focus{border-color:var(--line2)}
+.btn2{background:var(--panel);border:1px solid var(--line);color:var(--fg);border-radius:9px;
+ padding:7px 13px;font:inherit;font-size:12.5px;cursor:pointer}
+.btn2:hover{background:var(--panel2)}
+.mutedsmall{color:var(--dim);font-size:12.5px;padding:12px 2px}
+.spark{display:flex;align-items:flex-end;gap:5px;height:44px;margin:14px 2px 0}
+.spark i{width:16px;background:color-mix(in srgb,var(--accent) 55%,transparent);border-radius:3px 3px 0 0}
+.sparklab{align-self:flex-end;font-size:11px;color:var(--dim);margin-left:8px;padding-bottom:1px}
 
-.search{display:flex;gap:10px;align-items:center;margin:0 0 22px}
-.search input{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;
- padding:11px 14px;color:var(--fg);font:inherit;font-size:14px;outline:none}
-.search input:focus{border-color:var(--accent)}
+/* ── 搜索 ── */
+.search{margin:0 0 6px}
+.search input{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;
+ padding:10px 14px;color:var(--fg);font:inherit;font-size:13.5px;outline:none}
+.search input:focus{border-color:var(--line2)}
+.search input::placeholder{color:var(--dim)}
 
-.group{margin:0 0 30px}
-.gh{font-size:14px;color:var(--dim);font-weight:600;margin:0 0 12px;display:flex;gap:10px;align-items:center}
-.gz{font-size:12px;font-weight:400;opacity:.8}
-.grid{display:grid;gap:14px}
+/* ── 课程行 ── */
+.group{margin:0 0 8px}
+.gh{font-size:12px;color:var(--dim);margin:0 0 4px;display:flex;gap:8px;align-items:baseline}
+.gh em{font-style:normal;font-size:11px;opacity:.7}
+.row{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid var(--line);
+ text-decoration:none;color:inherit}
+.row:hover{background:var(--panel);border-radius:8px;padding-left:10px;padding-right:10px}
+.row:hover .rgo{color:var(--accent);transform:translateX(2px)}
+.ricon{font-size:17px;width:22px;text-align:center;flex:0 0 22px;opacity:.9}
+.rmain{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.rtitle{font-size:14.5px;font-weight:550;display:flex;gap:8px;align-items:center}
+.rtitle em{font-style:normal;font-size:10.5px;color:var(--dim);border:1px solid var(--line);
+ border-radius:4px;padding:0 5px;font-weight:400}
+.rscope{font-size:12px;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnums{font-size:12.5px;color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+.rnums b{color:var(--fg);font-weight:600}
+.rnums .dot{margin:0 5px;opacity:.4}
+.rprog{font-size:12px;color:var(--dim);white-space:nowrap;flex:0 0 auto;font-variant-numeric:tabular-nums}
+.rgo{color:var(--line2);font-size:15px;transition:.15s;flex:0 0 auto}
+.row.hide{display:none}
 
-.card{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
- border-radius:16px;padding:16px 18px;text-decoration:none;color:inherit;transition:.16s}
-.card:hover{border-color:var(--accent);transform:translateY(-1px)}
-.ico{font-size:26px;line-height:1.2;width:34px;text-align:center;flex:0 0 34px}
-.body{flex:1;min-width:0}
-.line1{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.card h3{margin:0;font-size:16.5px;font-weight:650}
-.tag{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
-.scope{margin:6px 0 0;color:var(--dim);font-size:13px;line-height:1.55}
+footer{color:var(--dim);font-size:11.5px;text-align:center;padding:48px 0 0;line-height:1.9}
+footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:11px}
 
-.nums{display:flex;gap:10px;align-items:baseline;margin:11px 0 0;flex-wrap:wrap}
-.nums .n{font-variant-numeric:tabular-nums}
-.nums .n b{font-size:19px;color:var(--accent)}
-.nums .n i{font-style:normal;color:var(--dim);font-size:12px;margin-left:2px}
-.nums .nb{font-size:12px;color:var(--dim);background:var(--card2);border-radius:8px;padding:2px 8px}
-
-.progrow{display:flex;gap:12px;align-items:center;margin:12px 0 0}
-.progrow .pbar{flex:0 0 120px;height:5px;background:var(--card2);border-radius:99px;overflow:hidden;display:none}
-.progrow .pbar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px}
-.progtxt{flex:0 1 auto;min-width:0;font-size:12px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
-.go{color:var(--dim);font-size:13px;white-space:nowrap;align-self:center}
-.card.empty-result{display:none}
-footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-height:1.9}
-
-@media (max-width:640px){
-  .wrap{padding:28px 14px 70px}
-  h1{font-size:22px}
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .stat{min-width:0;padding:10px 12px}
-  .stat b{font-size:18px}
-  .cta .btn{flex:1 1 auto;justify-content:center}
-  .card{padding:14px 15px;gap:12px}
-  .ico{width:26px;flex:0 0 26px;font-size:22px}
-  .card h3{font-size:15px}
-  .scope{font-size:12.5px}
-  .go{display:none}
+@media (max-width:680px){
+  .wrap{padding:32px 16px 80px}
+  h1{font-size:21px}
+  .cta{grid-template-columns:1fr 1fr;gap:8px}
+  .big{grid-column:1/-1}
+  .sm{padding:11px 8px}
+  .rnums{display:none}
+  .row{gap:10px}
+  .rprog{display:none}
+  .sh{margin-top:30px}
 }
 </style></head><body><div class="wrap">
-<h1>Canvas 复习测验</h1>
-<p class="lead">共 16 门 · 411 题 · 基于你 Canvas 课程的真实材料</p>
-<div id="profile" class="profile"></div>
-<div class="stats" id="tstats"></div>
-<div id="countdown" class="countdown"></div>
-<div class="cta">
-  <a class="btn primary" href="all.html">🎓 综合卷 · 全科</a>
-  <a class="btn" href="all.html#daily" id="dailyBtn">🎯 今日挑战 <span id="dailyBest" class="dbest"></span></a>
-  <a class="btn" href="review.html">📕 错题本</a>
-  <a class="btn" href="shop.html">🛒 商城</a>
+
+<div class="head">
+  <h1>Canvas 复习测验</h1>
+  <span class="sub">16 科 · 411 题</span>
 </div>
-<div id="quests" class="qbox"></div>
-<div id="board" class="bbox"></div>
-<div class="search"><input id="q" type="search" placeholder="搜索课程、单元或代码（如 电磁学 / King Lear / 10SCI）" autocomplete="off"></div>
+
+<div id="profile" class="hero"></div>
+<div id="countdown" class="hero" style="display:none"></div>
+
+<div class="cta">
+  <a class="big" href="all.html"><b>综合卷 · 全科</b><span>从 16 科抽题混做，411 题可选</span></a>
+  <a class="sm" href="all.html#daily">🎯 今日挑战</a>
+  <a class="sm" href="review.html">📕 错题本</a>
+  <a class="sm" href="shop.html">🛒 商城</a>
+</div>
+
+<div class="sh"><h2>今日任务</h2><span>每天 0 点刷新</span></div>
+<div id="quests"></div>
+
+<div class="sh"><h2>今日好友榜</h2><span id="boardday"></span><span class="grow"></span>
+  <a href="#" id="cfgapi">服务器设置</a></div>
+<div id="board"></div>
+
+<div class="sh"><h2>课程</h2><span>16 门 · 年考优先</span></div>
+<div class="search"><input id="q" type="search" placeholder="搜索课程、单元或代码（电磁学 / King Lear / 10SCI）" autocomplete="off"></div>
 <section class="group" data-group><h2 class="gh">年考重点<span class="gz">7 门</span></h2><div class="grid">
-      <a class="card" href="sci.html" data-slug="sci" data-total="45" data-search="科学 · 10 年级 年考版 电磁学 / 进化 / 技能 10sci 26 sci">
-        <div class="ico">🔬</div>
-        <div class="body">
-          <div class="line1"><h3>科学 · 10 年级</h3><span class="tag">年考版</span></div>
-          <p class="scope">电磁学 / 进化 / 技能</p>
-          <div class="nums">
-            <span class="n"><b>45</b><i>题</i></span>
-            <span class="nb">10 选择</span>
-            <span class="nb">35 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="sci">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="sci.html" data-slug="sci" data-total="45" data-search="科学 · 10 年级 年考版 电磁学 / 进化 / 技能 10sci 26 sci">
+        <span class="ricon">🔬</span>
+        <span class="rmain">
+          <span class="rtitle">科学 · 10 年级<em>年考版</em></span>
+          <span class="rscope">电磁学 / 进化 / 技能</span>
+        </span>
+        <span class="rnums"><b>45</b> 题<span class="dot">·</span>10 选择<span class="dot">·</span>35 简答</span>
+        <span class="rprog" data-prog="sci">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="eng.html" data-slug="eng" data-total="30" data-search="英语 · 10 年级 年考版 king lear 短答 + 比较论文 10eng 26 eng">
-        <div class="ico">📖</div>
-        <div class="body">
-          <div class="line1"><h3>英语 · 10 年级</h3><span class="tag">年考版</span></div>
-          <p class="scope">King Lear 短答 + 比较论文</p>
-          <div class="nums">
-            <span class="n"><b>30</b><i>题</i></span>
-            <span class="nb">10 选择</span>
-            <span class="nb">20 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="eng">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="eng.html" data-slug="eng" data-total="30" data-search="英语 · 10 年级 年考版 king lear 短答 + 比较论文 10eng 26 eng">
+        <span class="ricon">📖</span>
+        <span class="rmain">
+          <span class="rtitle">英语 · 10 年级<em>年考版</em></span>
+          <span class="rscope">King Lear 短答 + 比较论文</span>
+        </span>
+        <span class="rnums"><b>30</b> 题<span class="dot">·</span>10 选择<span class="dot">·</span>20 简答</span>
+        <span class="rprog" data-prog="eng">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="his.html" data-slug="his" data-total="28" data-search="历史 · 10 年级 年考版 术语选择 + 1991–2019 美国外交 10his 26 his">
-        <div class="ico">🏛</div>
-        <div class="body">
-          <div class="line1"><h3>历史 · 10 年级</h3><span class="tag">年考版</span></div>
-          <p class="scope">术语选择 + 1991–2019 美国外交</p>
-          <div class="nums">
-            <span class="n"><b>28</b><i>题</i></span>
-            <span class="nb">10 选择</span>
-            <span class="nb">18 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="his">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="his.html" data-slug="his" data-total="28" data-search="历史 · 10 年级 年考版 术语选择 + 1991–2019 美国外交 10his 26 his">
+        <span class="ricon">🏛</span>
+        <span class="rmain">
+          <span class="rtitle">历史 · 10 年级<em>年考版</em></span>
+          <span class="rscope">术语选择 + 1991–2019 美国外交</span>
+        </span>
+        <span class="rnums"><b>28</b> 题<span class="dot">·</span>10 选择<span class="dot">·</span>18 简答</span>
+        <span class="rprog" data-prog="his">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="geo.html" data-slug="geo" data-total="26" data-search="地理 · 10 年级 年考版 海岸单元（collaroy / 印度河） 10geo 26 geo">
-        <div class="ico">🌏</div>
-        <div class="body">
-          <div class="line1"><h3>地理 · 10 年级</h3><span class="tag">年考版</span></div>
-          <p class="scope">海岸单元（Collaroy / 印度河）</p>
-          <div class="nums">
-            <span class="n"><b>26</b><i>题</i></span>
-            <span class="nb">10 选择</span>
-            <span class="nb">16 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="geo">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="geo.html" data-slug="geo" data-total="26" data-search="地理 · 10 年级 年考版 海岸单元（collaroy / 印度河） 10geo 26 geo">
+        <span class="ricon">🌏</span>
+        <span class="rmain">
+          <span class="rtitle">地理 · 10 年级<em>年考版</em></span>
+          <span class="rscope">海岸单元（Collaroy / 印度河）</span>
+        </span>
+        <span class="rnums"><b>26</b> 题<span class="dot">·</span>10 选择<span class="dot">·</span>16 简答</span>
+        <span class="rprog" data-prog="geo">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="pdh.html" data-slug="pdh" data-total="30" data-search="pdhpe · 10 年级 年考版 道路安全 / 急救 / 心理健康 10pdh 26 pdh">
-        <div class="ico">🏃</div>
-        <div class="body">
-          <div class="line1"><h3>PDHPE · 10 年级</h3><span class="tag">年考版</span></div>
-          <p class="scope">道路安全 / 急救 / 心理健康</p>
-          <div class="nums">
-            <span class="n"><b>30</b><i>题</i></span>
-            <span class="nb">12 选择</span>
-            <span class="nb">18 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="pdh">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="pdh.html" data-slug="pdh" data-total="30" data-search="pdhpe · 10 年级 年考版 道路安全 / 急救 / 心理健康 10pdh 26 pdh">
+        <span class="ricon">🏃</span>
+        <span class="rmain">
+          <span class="rtitle">PDHPE · 10 年级<em>年考版</em></span>
+          <span class="rscope">道路安全 / 急救 / 心理健康</span>
+        </span>
+        <span class="rnums"><b>30</b> 题<span class="dot">·</span>12 选择<span class="dot">·</span>18 简答</span>
+        <span class="rprog" data-prog="pdh">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="matp.html" data-slug="matp" data-total="43" data-search="数学 p · 10 年级 年考版 金融 / 代数 / 坐标几何 / 统计 10matp 26 matp">
-        <div class="ico">📐</div>
-        <div class="body">
-          <div class="line1"><h3>数学 P · 10 年级</h3><span class="tag">年考版</span></div>
-          <p class="scope">金融 / 代数 / 坐标几何 / 统计</p>
-          <div class="nums">
-            <span class="n"><b>43</b><i>题</i></span>
-            <span class="nb">29 选择</span>
-            <span class="nb">14 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="matp">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="matp.html" data-slug="matp" data-total="43" data-search="数学 p · 10 年级 年考版 金融 / 代数 / 坐标几何 / 统计 10matp 26 matp">
+        <span class="ricon">📐</span>
+        <span class="rmain">
+          <span class="rtitle">数学 P · 10 年级<em>年考版</em></span>
+          <span class="rscope">金融 / 代数 / 坐标几何 / 统计</span>
+        </span>
+        <span class="rnums"><b>43</b> 题<span class="dot">·</span>29 选择<span class="dot">·</span>14 简答</span>
+        <span class="rprog" data-prog="matp">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="maths53.html" data-slug="maths53" data-total="43" data-search="数学 5.3 · 10 年级 年考版 根式 / 指数 / 对数 / 三角 / 概率 5.3 maths maths53">
-        <div class="ico">➗</div>
-        <div class="body">
-          <div class="line1"><h3>数学 5.3 · 10 年级</h3><span class="tag">年考版</span></div>
-          <p class="scope">根式 / 指数 / 对数 / 三角 / 概率</p>
-          <div class="nums">
-            <span class="n"><b>43</b><i>题</i></span>
-            <span class="nb">30 选择</span>
-            <span class="nb">13 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="maths53">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="maths53.html" data-slug="maths53" data-total="43" data-search="数学 5.3 · 10 年级 年考版 根式 / 指数 / 对数 / 三角 / 概率 5.3 maths maths53">
+        <span class="ricon">➗</span>
+        <span class="rmain">
+          <span class="rtitle">数学 5.3 · 10 年级<em>年考版</em></span>
+          <span class="rscope">根式 / 指数 / 对数 / 三角 / 概率</span>
+        </span>
+        <span class="rnums"><b>43</b> 题<span class="dot">·</span>30 选择<span class="dot">·</span>13 简答</span>
+        <span class="rprog" data-prog="maths53">未开始</span>
+        <span class="rgo">→</span>
       </a></div></section><section class="group" data-group><h2 class="gh">非年考内容（有余力再看）<span class="gz">4 门</span></h2><div class="grid">
-      <a class="card" href="sciother.html" data-slug="sciother" data-total="33" data-search="科学 · 非年考 term 1–3 地球能量 / 遗传 / 运动 / 化学 / 气候 10sci 26 sciother">
-        <div class="ico">🧪</div>
-        <div class="body">
-          <div class="line1"><h3>科学 · 非年考</h3><span class="tag">Term 1–3</span></div>
-          <p class="scope">地球能量 / 遗传 / 运动 / 化学 / 气候</p>
-          <div class="nums">
-            <span class="n"><b>33</b><i>题</i></span>
-            <span class="nb">25 选择</span>
-            <span class="nb">8 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="sciother">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="sciother.html" data-slug="sciother" data-total="33" data-search="科学 · 非年考 term 1–3 地球能量 / 遗传 / 运动 / 化学 / 气候 10sci 26 sciother">
+        <span class="ricon">🧪</span>
+        <span class="rmain">
+          <span class="rtitle">科学 · 非年考<em>Term 1–3</em></span>
+          <span class="rscope">地球能量 / 遗传 / 运动 / 化学 / 气候</span>
+        </span>
+        <span class="rnums"><b>33</b> 题<span class="dot">·</span>25 选择<span class="dot">·</span>8 简答</span>
+        <span class="rprog" data-prog="sciother">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="hisother.html" data-slug="hisother" data-total="15" data-search="历史 · 非年考 term 1–3 holocaust / 冷战 / 民权 10his 26 hisother">
-        <div class="ico">📜</div>
-        <div class="body">
-          <div class="line1"><h3>历史 · 非年考</h3><span class="tag">Term 1–3</span></div>
-          <p class="scope">Holocaust / 冷战 / 民权</p>
-          <div class="nums">
-            <span class="n"><b>15</b><i>题</i></span>
-            <span class="nb">9 选择</span>
-            <span class="nb">6 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="hisother">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="hisother.html" data-slug="hisother" data-total="15" data-search="历史 · 非年考 term 1–3 holocaust / 冷战 / 民权 10his 26 hisother">
+        <span class="ricon">📜</span>
+        <span class="rmain">
+          <span class="rtitle">历史 · 非年考<em>Term 1–3</em></span>
+          <span class="rscope">Holocaust / 冷战 / 民权</span>
+        </span>
+        <span class="rnums"><b>15</b> 题<span class="dot">·</span>9 选择<span class="dot">·</span>6 简答</span>
+        <span class="rprog" data-prog="hisother">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="geoother.html" data-slug="geoother" data-total="14" data-search="地理 · 非年考 term 1–2、4 福祉 / 原住民 / 气候变化 10geo 26 geoother">
-        <div class="ico">🗺</div>
-        <div class="body">
-          <div class="line1"><h3>地理 · 非年考</h3><span class="tag">Term 1–2、4</span></div>
-          <p class="scope">福祉 / 原住民 / 气候变化</p>
-          <div class="nums">
-            <span class="n"><b>14</b><i>题</i></span>
-            <span class="nb">10 选择</span>
-            <span class="nb">4 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="geoother">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="geoother.html" data-slug="geoother" data-total="14" data-search="地理 · 非年考 term 1–2、4 福祉 / 原住民 / 气候变化 10geo 26 geoother">
+        <span class="ricon">🗺</span>
+        <span class="rmain">
+          <span class="rtitle">地理 · 非年考<em>Term 1–2、4</em></span>
+          <span class="rscope">福祉 / 原住民 / 气候变化</span>
+        </span>
+        <span class="rnums"><b>14</b> 题<span class="dot">·</span>10 选择<span class="dot">·</span>4 简答</span>
+        <span class="rprog" data-prog="geoother">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="engother.html" data-slug="engother" data-total="14" data-search="英语 · 非年考 term 1–3 战争单元 / 诗歌 / 阅读卷 10eng 26 engother">
-        <div class="ico">📘</div>
-        <div class="body">
-          <div class="line1"><h3>英语 · 非年考</h3><span class="tag">Term 1–3</span></div>
-          <p class="scope">战争单元 / 诗歌 / 阅读卷</p>
-          <div class="nums">
-            <span class="n"><b>14</b><i>题</i></span>
-            <span class="nb">11 选择</span>
-            <span class="nb">3 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="engother">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="engother.html" data-slug="engother" data-total="14" data-search="英语 · 非年考 term 1–3 战争单元 / 诗歌 / 阅读卷 10eng 26 engother">
+        <span class="ricon">📘</span>
+        <span class="rmain">
+          <span class="rtitle">英语 · 非年考<em>Term 1–3</em></span>
+          <span class="rscope">战争单元 / 诗歌 / 阅读卷</span>
+        </span>
+        <span class="rnums"><b>14</b> 题<span class="dot">·</span>11 选择<span class="dot">·</span>3 简答</span>
+        <span class="rprog" data-prog="engother">未开始</span>
+        <span class="rgo">→</span>
       </a></div></section><section class="group" data-group><h2 class="gh">其他科目<span class="gz">5 门</span></h2><div class="grid">
-      <a class="card" href="ftn.html" data-slug="ftn" data-total="25" data-search="食品科技 · 10 年级 学科 食品安全 / 食物不平等 / 特殊需求 10ftn 26 ftn">
-        <div class="ico">🍳</div>
-        <div class="body">
-          <div class="line1"><h3>食品科技 · 10 年级</h3><span class="tag">学科</span></div>
-          <p class="scope">食品安全 / 食物不平等 / 特殊需求</p>
-          <div class="nums">
-            <span class="n"><b>25</b><i>题</i></span>
-            <span class="nb">18 选择</span>
-            <span class="nb">7 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="ftn">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="ftn.html" data-slug="ftn" data-total="25" data-search="食品科技 · 10 年级 学科 食品安全 / 食物不平等 / 特殊需求 10ftn 26 ftn">
+        <span class="ricon">🍳</span>
+        <span class="rmain">
+          <span class="rtitle">食品科技 · 10 年级<em>学科</em></span>
+          <span class="rscope">食品安全 / 食物不平等 / 特殊需求</span>
+        </span>
+        <span class="rnums"><b>25</b> 题<span class="dot">·</span>18 选择<span class="dot">·</span>7 简答</span>
+        <span class="rprog" data-prog="ftn">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="car.html" data-slug="car" data-total="20" data-search="生涯规划 · 10 年级 学科 就业路径 / 求职 / atar / usi·tfn 10car 26 car">
-        <div class="ico">🧭</div>
-        <div class="body">
-          <div class="line1"><h3>生涯规划 · 10 年级</h3><span class="tag">学科</span></div>
-          <p class="scope">就业路径 / 求职 / ATAR / USI·TFN</p>
-          <div class="nums">
-            <span class="n"><b>20</b><i>题</i></span>
-            <span class="nb">16 选择</span>
-            <span class="nb">4 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="car">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="car.html" data-slug="car" data-total="20" data-search="生涯规划 · 10 年级 学科 就业路径 / 求职 / atar / usi·tfn 10car 26 car">
+        <span class="ricon">🧭</span>
+        <span class="rmain">
+          <span class="rtitle">生涯规划 · 10 年级<em>学科</em></span>
+          <span class="rscope">就业路径 / 求职 / ATAR / USI·TFN</span>
+        </span>
+        <span class="rnums"><b>20</b> 题<span class="dot">·</span>16 选择<span class="dot">·</span>4 简答</span>
+        <span class="rprog" data-prog="car">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="sport.html" data-slug="sport" data-total="15" data-search="体育 · 10 年级 学科 规则 / 赛事 / 训练常识 sport 26 sport">
-        <div class="ico">🏅</div>
-        <div class="body">
-          <div class="line1"><h3>体育 · 10 年级</h3><span class="tag">学科</span></div>
-          <p class="scope">规则 / 赛事 / 训练常识</p>
-          <div class="nums">
-            <span class="n"><b>15</b><i>题</i></span>
-            <span class="nb">12 选择</span>
-            <span class="nb">3 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="sport">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="sport.html" data-slug="sport" data-total="15" data-search="体育 · 10 年级 学科 规则 / 赛事 / 训练常识 sport 26 sport">
+        <span class="ricon">🏅</span>
+        <span class="rmain">
+          <span class="rtitle">体育 · 10 年级<em>学科</em></span>
+          <span class="rscope">规则 / 赛事 / 训练常识</span>
+        </span>
+        <span class="rnums"><b>15</b> 题<span class="dot">·</span>12 选择<span class="dot">·</span>3 简答</span>
+        <span class="rprog" data-prog="sport">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="out.html" data-slug="out" data-total="15" data-search="户外教育 · 10 年级 学科 环境意识 / leave no trace 10out 26 out">
-        <div class="ico">🏕</div>
-        <div class="body">
-          <div class="line1"><h3>户外教育 · 10 年级</h3><span class="tag">学科</span></div>
-          <p class="scope">环境意识 / Leave No Trace</p>
-          <div class="nums">
-            <span class="n"><b>15</b><i>题</i></span>
-            <span class="nb">11 选择</span>
-            <span class="nb">4 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="out">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="out.html" data-slug="out" data-total="15" data-search="户外教育 · 10 年级 学科 环境意识 / leave no trace 10out 26 out">
+        <span class="ricon">🏕</span>
+        <span class="rmain">
+          <span class="rtitle">户外教育 · 10 年级<em>学科</em></span>
+          <span class="rscope">环境意识 / Leave No Trace</span>
+        </span>
+        <span class="rnums"><b>15</b> 题<span class="dot">·</span>11 选择<span class="dot">·</span>4 简答</span>
+        <span class="rprog" data-prog="out">未开始</span>
+        <span class="rgo">→</span>
       </a>
-      <a class="card" href="cw.html" data-slug="cw" data-total="15" data-search="心理与福祉 辅导 焦虑 / 抑郁 / 求助渠道 cw 26 cw">
-        <div class="ico">💬</div>
-        <div class="body">
-          <div class="line1"><h3>心理与福祉</h3><span class="tag">辅导</span></div>
-          <p class="scope">焦虑 / 抑郁 / 求助渠道</p>
-          <div class="nums">
-            <span class="n"><b>15</b><i>题</i></span>
-            <span class="nb">12 选择</span>
-            <span class="nb">3 简答</span>
-          </div>
-          <div class="progrow"><span class="progtxt" data-prog="cw">未开始</span><span class="pbar"><i></i></span></div>
-        </div>
-        <div class="go">开始 →</div>
+      <a class="row" href="cw.html" data-slug="cw" data-total="15" data-search="心理与福祉 辅导 焦虑 / 抑郁 / 求助渠道 cw 26 cw">
+        <span class="ricon">💬</span>
+        <span class="rmain">
+          <span class="rtitle">心理与福祉<em>辅导</em></span>
+          <span class="rscope">焦虑 / 抑郁 / 求助渠道</span>
+        </span>
+        <span class="rnums"><b>15</b> 题<span class="dot">·</span>12 选择<span class="dot">·</span>3 简答</span>
+        <span class="rprog" data-prog="cw">未开始</span>
+        <span class="rgo">→</span>
       </a></div></section>
-<div id="noresult" style="display:none;color:var(--dim);padding:30px 0;text-align:center">没有匹配的课程</div>
-<footer>进度存在本机浏览器里，关掉再打开能接着做<br>
-<span style="opacity:.75">「📁 原始资料」指向 <code>../Canvas复习资料/</code>，需要与 <code>quiz</code> 文件夹放在同一层；只解压测验包时该链接会失效，不影响做题。</span></footer>
+<div id="noresult" class="mutedsmall" style="display:none">没有匹配的课程</div>
+
+<footer>进度存在本机浏览器里，换设备需导出备份<br>
+<span style="opacity:.7">「原始资料」链接指向 <code>../Canvas复习资料/</code>，未一起上传时失效，不影响做题</span></footer>
 </div>
 <script>
 (function(){
   var done=0, started=0;
   document.querySelectorAll('[data-slug]').forEach(function(card){
-    var slug=card.dataset.slug, txt=card.querySelector('[data-prog]'), bar=card.querySelector('.pbar i');
+    var slug=card.dataset.slug, txt=card.querySelector('[data-prog]');
     var s=null;
     try { s=JSON.parse(localStorage.getItem('dsh-quiz-'+slug)||'null'); } catch(e) {}
     if(!s||!s.order||!s.answers) return;
     var total=s.order.length, ans=s.answers, ids=Object.keys(ans);
-    var right=0, wrong=0, sc=0;
+    var right=0, wrong=0;
     ids.forEach(function(id){
       var a=ans[id];
       if(a&&a.ok==='ok') right++;
       else if(a&&a.ok==='bad') wrong++;
-      if(a&&a.checked&&a.checked.length) sc++;
     });
     var n=ids.length;
     if(n===0) return;
     started++;
     if(n>=total) done++;
-    if(bar) { bar.style.width=Math.round(n/total*100)+'%'; bar.parentNode.style.display='block'; }
-    if(txt) txt.textContent=n+'/'+total+' · ✓'+right+' ✗'+wrong+(sc?' · 简答 '+sc:'');
+    if(txt) txt.textContent = n+'/'+total+' · ✓'+right+' ✗'+wrong;
   });
-  (function(){
-    var el=document.getElementById('countdown');
-    if(el){
-      var EXAMS=[["Science 年考","2026-11-16"]];
-      var now=new Date(); now.setHours(0,0,0,0);
-      var out=[];
-      EXAMS.forEach(function(e){
-        var d=new Date(e[1]+"T00:00:00");
-        var days=Math.round((d-now)/864e5);
-        if(days>=0 && days<=60) out.push(e[0]+' <b>'+days+'</b> 天');
-      });
-      el.innerHTML = out.length
-        ? ('📅 '+out.join(' · ')+'　<span style="opacity:.7">（其他科目日期 Canvas 上没写，问老师）</span>')
-        : '';
-    }
-    var best=document.getElementById('dailyBest');
-    if(best){
-      try{
-        var rec=JSON.parse(localStorage.getItem('dsh-daily-v1')||'{}');
-        var d=new Date(), k=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-        if(rec.date===k && rec.best!==undefined) best.textContent='· 今日最佳 '+rec.best+'%';
-        else best.textContent='· 21 题';
-      }catch(e){ best.textContent='· 21 题'; }
-    }
-  })();
-  var head=document.querySelector('.lead');
-  if(head&&started) head.innerHTML += ' <b>· 已开始 '+started+' 门，完成 '+done+' 门</b>';
 
   var box=document.getElementById('q');
-  var cards=[].slice.call(document.querySelectorAll('[data-slug]'));
+  var rows=[].slice.call(document.querySelectorAll('[data-slug]'));
   var groups=[].slice.call(document.querySelectorAll('[data-group]'));
   var none=document.getElementById('noresult');
   if(box) box.addEventListener('input', function(){
-    var q=box.value.trim().toLowerCase();
-    var shown=0;
-    cards.forEach(function(c){
+    var q=box.value.trim().toLowerCase(), shown=0;
+    rows.forEach(function(c){
       var hit=!q||c.dataset.search.indexOf(q)>=0;
-      c.classList.toggle('empty-result', !hit);
+      c.classList.toggle('hide', !hit);
       if(hit) shown++;
     });
     groups.forEach(function(g){
-      var vis=g.querySelectorAll('[data-slug]:not(.empty-result)').length;
+      var vis=g.querySelectorAll('[data-slug]:not(.hide)').length;
       g.style.display = vis ? '' : 'none';
     });
     if(none) none.style.display = shown ? 'none' : '';
@@ -475,6 +388,7 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-h
 })();
 </script>
 <script>
+
 (function(){
   var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
   var COIN_KEY="dsh-coins-v1", INV_KEY="dsh-inv-v1", BUFF_KEY="dsh-buffs-v1";
@@ -762,21 +676,27 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-h
     equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
     shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
 
+  function examDays(){
+    var d=new Date("2026-11-16T00:00:00"), now=new Date(); now.setHours(0,0,0,0);
+    var n=Math.round((d-now)/864e5);
+    return (n>=0 && n<=120) ? n : null;
+  }
+
   function renderQuests(host){
     if(!host) return;
     var Q=quests(), p=questProgress();
-    var rows=Q.list.map(function(id){
+    host.innerHTML = Q.list.map(function(id){
       var m=null; QTEMPL.forEach(function(x){ if(x.id===id) m=x; });
       var v=Math.min(questValue(m,p), m.target), pct=Math.round(v/m.target*100);
       var done=v>=m.target, claimed=Q.claimed.indexOf(id)>=0;
-      var btn = claimed ? '<span class="qdone">已领取</span>'
-              : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
-                      : '<span class="qnum">'+v+'/'+m.target+'</span>');
-      return '<div class="qrow'+(done?' done':'')+'"><span class="qtip">'+m.tip+'</span>'+
+      var right = claimed ? '<span class="qdone">已领取</span>'
+                : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
+                        : '<span class="qnum">'+v+'/'+m.target+'</span>');
+      return '<div class="qrow'+(done?' done':'')+'">'+
+        '<span class="qtip">'+m.tip+'</span>'+
         '<span class="qname">'+m.n+'</span>'+
-        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+btn+'</div>';
+        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+right+'</div>';
     }).join("");
-    host.innerHTML='<h2 class="gh">今日任务 <span class="gz">每天 0 点刷新 · 3 个随机</span></h2><div class="qlist">'+rows+'</div>';
   }
   window.__renderQuests=renderQuests;
 
@@ -790,8 +710,7 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-h
     fetch(apibase()+"/board?day="+encodeURIComponent(todayKey()))
       .then(function(r){ return r.json(); })
       .then(function(d){
-        if(!d || !d.ok || !d.list) return;
-        if(!d.list.length){ box.innerHTML='<div class="mutedsmall">云端还没有今天的成绩，做一轮然后点「☁ 提交」</div>'; return; }
+        if(!d || !d.ok || !d.list || !d.list.length) return;
         var me=nick()||"我";
         box.innerHTML=d.list.map(function(x,i){
           return '<div class="rrow'+(x.name===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
@@ -842,16 +761,10 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-h
 
   function renderBoard(host){
     if(!host) return;
-    var g=db(), c=readCoins(), L=log();
-    var days={}, dayOk={};
-    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
-      var k=d.getTime();
-      days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
-    var dayList=Object.keys(days).map(function(k){
-      var d=new Date(+k);
-      return {ts:+k, d:(d.getMonth()+1)+"-"+d.getDate(), n:days[k], ok:dayOk[k],
-              pct:Math.round(dayOk[k]/days[k]*100)};
-    }).sort(function(a,b){ return b.ts-a.ts; }).slice(0,7);
+    var g=db(), L=log();
+    var day=document.getElementById("boardday");
+    if(day) day.textContent = todayKey();
+
     var myRec={}; try{ myRec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
     var rows=[];
     if(myRec.date===todayKey()) rows.push({name:nick()||"我", p:myRec.best||0, me:true});
@@ -859,62 +772,62 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-h
       rows.push({name:x.name, p:x.p, me:false});
     });
     rows.sort(function(a,b){ return b.p-a.p; });
-    var rankHtml = rows.length ? ('<div class="rank" id="rankbox">'+rows.map(function(r,i){
-      return '<div class="rrow'+(r.me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
-        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
-        '<span class="rp">'+r.p+'%</span></div>';
-    }).join("")+'</div>') : '<div class="rank" id="rankbox"><div class="mutedsmall">还没人交榜。做完「今日挑战」，复制战绩码发给同学互换。</div></div>';
 
-    host.innerHTML='<h2 class="gh">今日好友榜 <span class="gz">'+todayKey()+' · 靠战绩码互通，不用服务器</span></h2>'+
-      rankHtml +
+    var list = rows.length ? rows.map(function(r,i){
+      return '<div class="rankrow'+(r.me?' me':'')+'"><span class="rk">'+(i+1)+'</span>'+
+        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
+        '<span class="rpct">'+r.p+'%</span></div>';
+    }).join("") : '<div class="mutedsmall">今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。</div>';
+
+    var days={}, dayOk={};
+    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
+      var k=d.getTime(); days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
+    var last7=Object.keys(days).map(function(k){
+      return {ts:+k, pct:Math.round(dayOk[k]/days[k]*100)}; })
+      .sort(function(a,b){ return b.ts-a.ts; }).slice(0,7).reverse();
+    var spark = last7.length>1 ? ('<div class="spark">'+last7.map(function(x){
+        return '<i style="height:'+Math.max(3,Math.round(x.pct*0.3))+'px" title="'+x.pct+'%"></i>';
+      }).join("")+'<span class="sparklab">近 7 天正确率</span></div>') : "";
+
+    host.innerHTML =
+      '<div class="ranklist" id="rankbox">'+list+'</div>'+
+      spark +
       '<div class="codebar"><button class="btn2" id="mecode">复制我的战绩码</button>'+
       '<input id="friendcode" placeholder="粘贴同学的战绩码">'+
       '<button class="btn2" id="addcode">加入</button>'+
-      (apibase()
-        ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>'
-        : '<button class="btn2" id="cfgapi">⚙ 设置服务器地址</button>')+'</div>'+
-      '<h2 class="gh" style="margin-top:22px">纪录榜 <span class="gz">本地 · 跟自己比</span></h2>'+
-      '<div class="board">'+
-        '<div class="brow"><span>总经验</span><b>'+g.xp+'</b></div>'+
-        '<div class="brow"><span>最高连对</span><b>'+(g.best||0)+'</b></div>'+
-        '<div class="brow"><span>累计作答</span><b>'+L.length+'</b></div>'+
-        '<div class="brow"><span>金币 / 星尘</span><b>'+(c.n||0)+' / '+(c.dust||0)+'</b></div>'+
-      '</div>'+
-      '<div class="days">'+dayList.map(function(x){
-        return '<div class="day"><em>'+x.pct+'%</em><i style="height:'+Math.max(4,Math.round(x.pct*0.5))+'px"></i>'+
-               '<span>'+x.d+'</span></div>';
-      }).join("")+'</div>';
+      (apibase() ? '<button class="btn2" id="pushscore">☁ 提交到服务器</button>' : '')+'</div>';
   }
   window.__renderBoard=renderBoard;
 
   function renderProfile(){
-    var host=document.getElementById('profile');
+    var host=document.getElementById("profile");
     if(!host) return;
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var seenAll=seen(), fixed=0, mastered=0;
-    Object.keys(seenAll).forEach(function(k){ var e=seenAll[k]; if(e.right && e.n>1) fixed++; if(e.right && e.sealed) mastered++; });
     var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
-    var badges=BADGES.map(function(x){
-      var got=b[x.id];
-      return '<div class="badge'+(got?' on':'')+'" title="'+x.d+'"><span class="bi">'+x.i+'</span>'+
-             '<span class="bn">'+x.n+'</span></div>';
-    }).join('');
-    host.innerHTML=
-      '<div class="prof-main">'+
-        '<div class="lv"><span class="lvnum">'+lv+'</span><span class="lvlab">等级</span></div>'+
-        '<div class="prof-body">'+
-          '<div class="prof-line"><b>'+xp+' XP</b>'+title+(nx?('<span class="muted">距 Lv.'+(lv+1)+' 还差 '+(nx-xp)+'</span>'):'<span class="muted">满级</span>')+'</div>'+
-          '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-          '<div class="prof-meta">今日 <b>'+tc+'</b>/'+GOAL+' 题 · 连续 <b>'+st+'</b> 天 · 连对纪录 <b>'+(g.best||0)+'</b>'+
-            ' · 金币 <b>'+(c.n||0)+'</b></div>'+
-          '<div class="prof-note">纠错 <b>'+fixed+'</b> 题 · 已掌握 <b>'+mastered+'</b> 题（做满 3 次不再计分）</div>'+
-        '</div>'+
+    var dd = examDays();
+    var badgeHtml = BADGES.map(function(x){
+      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+x.i+'</span>';
+    }).join("");
+    host.innerHTML =
+      '<div class="hero-top">'+
+        '<span class="lvp">Lv.'+lv+'</span>'+
+        '<span class="xpv">'+xp+'</span>'+
+        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
+        title+'<span class="grow"></span>'+
+        (dd!==null?'<span class="cd">距 Science 年考 <b>'+dd+'</b> 天</span>':'')+
       '</div>'+
-      '<div class="badges">'+badges+'</div>'+
-      '<div class="prof-tools"><button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效开':'🔇 音效关')+'</button></div>'+
-      '<div class="prof-note dim">这套分数只认「答对的题」。读材料、琢磨思路、改答案、想通一个概念——这些没被计分，但它们才是真正在学的东西。</div>';
+      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="metaline">'+
+        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
+        '<span>连续 <b>'+st+'</b> 天</span>'+
+        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
+        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
+        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+        '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'🔊 音效':'🔇 静音')+'</button>'+
+      '</div>'+
+      '<div class="badges">'+badgeHtml+'</div>';
   }
   function renderAll(){
     renderProfile();
@@ -959,5 +872,6 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:36px 0 0;line-h
   applyTheme();
   if(document.readyState!=='loading') renderAll(); else document.addEventListener('DOMContentLoaded', renderAll);
 })();
+
 </script>
 </body></html>
