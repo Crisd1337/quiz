@@ -194,6 +194,17 @@ footer{padding-bottom:96px}
 .lb-self{border-top:2px solid var(--accent)!important;margin-top:10px;padding:11px 8px;display:flex;gap:12px;align-items:center;
  font-size:13.5px;font-weight:600;background:color-mix(in srgb,var(--accent) 13%,var(--bg));
  border-top:1px solid var(--line);border-radius:0 0 6px 6px}
+.lang-btn{position:fixed;left:16px;bottom:84px;z-index:35;display:flex;align-items:center;gap:6px;
+ background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;
+ font-size:12px;color:var(--dim);cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.lang-btn:hover{color:var(--fg)}
+.lang-btn b{color:var(--accent);font-weight:600}
+.tr{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
+ font-size:15px;line-height:1.75;color:var(--dim);font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.stem.zh .tr{border-top:0;padding-top:0;margin-top:0;color:var(--fg);font-size:16px}
+.stem.zh .orig{display:block;font-size:13px;color:var(--dim);margin-bottom:8px;line-height:1.6}
+.otr{display:block;margin-top:4px;font-size:13.5px;color:var(--dim);
+ font-family:"PingFang SC","Microsoft YaHei",sans-serif}
 .xp-toast{position:fixed;right:18px;bottom:92px;z-index:60;background:var(--card);border:1px solid var(--line);
  color:var(--dim);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;
  opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none}
@@ -292,6 +303,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
 <main id="app"></main>
 <div id="submitMask" class="submit-mask"><div class="submit-card">
   <div class="spinner"></div><div class="submit-txt" id="submitTxt">正在上传试卷…</div></div></div>
+<button class="lang-btn" id="langBtn">语言 <b id="langNow">EN</b></button>
 <div id="lbFab" class="lb-fab"></div>
 <div id="lbOverlay" class="lb-overlay"><div class="lb-sheet">
   <div class="lb-head"><b>今日榜单</b><span class="muted" id="lbDay"></span><span class="lb-count" id="lbCount"></span>
@@ -431,6 +443,32 @@ function renderSetup() {
 }
 
 
+/* ===== 语言切换 ===== */
+function LANG(){ try{ return localStorage.getItem("dsh-lang") || "en"; }catch(e){ return "en"; } }
+function setLANG(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} }
+var UI_TEXT = {
+  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
+        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
+  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
+        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
+};
+function T(k){
+  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
+  return d[k] || UI_TEXT.en[k] || k;
+}
+function applyChrome(){
+  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
+  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
+  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
+  var l=LANG();
+  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
+}
+function cycleLang(){
+  var order=["en","zh","both"], i=order.indexOf(LANG());
+  setLANG(order[(i+1)%3] || "en");
+  applyChrome(); render();
+}
+
 function render() {
   if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
     state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
@@ -438,6 +476,7 @@ function render() {
   if (MULTI && state.setup && !state.started) return renderSetup();
   const qs = state.order.map(i => DATA.questions[i]);
   const q = qs[state.idx];
+  const L = LANG(), ZH = (q && q.zh) || null;
   const total = qs.length;
   const answered = qs.filter(x => state.answers[x.id]).length;
   const right = qs.filter(x => state.answers[x.id] === "ok").length;
@@ -464,8 +503,10 @@ function render() {
         if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
         else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
       }
+      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
+      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
       return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
-        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}</span>${mark}</button>`;
+        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
     }).join("");
     bodyHtml = `<div class="opts">${opts}</div>`;
   } else {
@@ -500,13 +541,21 @@ function render() {
       <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
 
   const last = state.idx >= total - 1;
-  app.innerHTML = `<div class="card">${chips}<div class="stem">${esc(q.stem)}</div>
+  let stemHtml;
+  if (L === "zh" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
+  } else if (L === "both" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
+  } else {
+    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
+  }
+  app.innerHTML = `<div class="card">${chips}${stemHtml}
       ${bodyHtml}${expHtml}</div>
       <div class="actionbar">
-        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>← 上一题</button>
+        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
         <span class="spacer"></span>
-        <button class="btn ghost" id="finish">看成绩</button>
-        <button class="btn" id="next" ${last ? "disabled" : ""}>下一题 →</button>
+        <button class="btn ghost" id="finish">${T("finish")}</button>
+        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
       </div>`;
 
   if (q.type === "mcq") {
@@ -612,8 +661,8 @@ function showResult() {
       ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
       <div class="actions">
         ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
-        <button class="btn ghost" id="showlb">查看今日榜单</button>
-        <button class="btn ghost" id="again">整套重做</button>
+        <button class="btn ghost" id="showlb">${T("lb")}</button>
+        <button class="btn ghost" id="again">${T("again")}</button>
         <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
       </div></div>`;
   const redo = document.getElementById("redo");
@@ -642,6 +691,9 @@ catch(e) { document.body.insertAdjacentHTML("afterbegin",
 document.getElementById("exam").onclick = startExam;
 if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
 
+var _langBtn = document.getElementById("langBtn");
+if (_langBtn) _langBtn.onclick = cycleLang;
+applyChrome();
 document.getElementById("restart").onclick = () => {
   if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
   state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
