@@ -620,6 +620,52 @@ footer{padding:22px 14px 30px;line-height:1.8}
   footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
 }
 
+/* ── AI 判分结果面板 ───────────────────────────────────── */
+.aires{border-color:color-mix(in srgb,var(--accent) 26%,var(--border))}
+.ai-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:10px}
+.ai-score{font-family:var(--font-mono);font-size:15px;font-weight:500;letter-spacing:-.02em;
+  line-height:1;color:var(--foreground)}
+.ai-score b{font-size:28px;font-weight:500}
+.ai-score em{font-style:normal;font-size:13px;color:var(--muted);margin-left:1px}
+.ai-conf{font-size:10.5px;border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:1px 7px;color:var(--muted);white-space:nowrap}
+.ai-conf.high{color:var(--success);border-color:color-mix(in srgb,var(--success) 45%,var(--border))}
+.ai-conf.mid{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--border))}
+.ai-conf.low{color:var(--error);border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+.ai-flag{font-size:10.5px;color:var(--error);white-space:nowrap;
+  border:1px solid color-mix(in srgb,var(--error) 45%,var(--border));
+  border-radius:var(--r-sm);padding:1px 7px}
+.ai-meta{font-size:10.5px;color:var(--muted)}
+.ai-fb{font-size:12.5px;line-height:1.65;color:var(--foreground);background:var(--surface-secondary);
+  border-radius:var(--r-sm);padding:9px 11px;margin-bottom:10px}
+.critlist{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.cres{display:grid;grid-template-columns:15px minmax(0,1fr) auto;gap:8px;
+  padding:7px 0;border-top:1px solid var(--border);font-size:12.5px;align-items:start}
+.cres:first-child{border-top:0}
+.cmk{font-size:12px;line-height:1.55;text-align:center;color:var(--muted)}
+.cres.full .cmk{color:var(--success)}
+.cres.part .cmk{color:var(--warning)}
+.cres.none .cmk{color:var(--error)}
+.cbody{min-width:0}
+.ct{display:block;line-height:1.55}
+.cres.none .ct{color:var(--muted)}
+.cr{display:block;color:var(--muted);font-size:11px;margin-top:2px;line-height:1.5}
+.csc{font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.cres.full .csc{color:var(--success)}
+.ai-foot{margin-top:9px;font-size:10.5px;color:var(--muted)}
+.ai-note{margin-top:10px;font-size:11.5px;color:var(--muted);
+  border-left:2px solid var(--border-strong);padding-left:9px}
+.scorepill{border-color:color-mix(in srgb,var(--accent) 38%,var(--border));color:var(--foreground)}
+.scorepill.low{border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+details.manual{padding:0}
+details.manual>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  padding:12px 14px;font-size:12px;color:var(--muted);user-select:none}
+details.manual>summary::-webkit-details-marker{display:none}
+details.manual>summary::before{content:"+";font-family:var(--font-mono);font-size:11px;width:11px}
+details.manual[open]>summary::before{content:"−"}
+details.manual>summary:hover{color:var(--foreground)}
+details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
+
 </style>
 </head>
 <body>
@@ -1440,7 +1486,13 @@ footer{padding:22px 14px 30px;line-height:1.8}
   /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
   var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
   var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
-  function apibase(){ try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function apibase(){
+    try{
+      var m = location.search.match(/[?&]api=([^&]*)/);
+      if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+    }catch(e){}
+    try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; }
+  }
   function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
   function loadBoard(){
     var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
@@ -1683,7 +1735,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
 })();
 </script>
 <script>
-const DATA = {"slug": "out", "title": "户外教育 · 10 年级", "examMin": 45, "questions": [{"id": "out-001", "topic": "环境意识 · 生物多样性", "difficulty": "easy", "type": "mcq", "stem": "How is biodiversity defined in this unit?", "options": ["The variety of living organisms present", "The total number of species in a habitat", "The number of endangered species", "The non-living parts of that habitat"], "answer": 0, "explanation": "课程对 biodiversity 的定义就是“variety of living organisms”（生物种类的多样性）。它不等于某个栖息地的动物数量，也不等于非生物环境。", "source": "Study Guide · Lesson 1 Introduction to Environmental Awareness", "weak": false}, {"id": "out-002", "topic": "生态系统 · 生物与非生物因素", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is an ABIOTIC factor in an ecosystem?", "options": ["Bacteria living in soil", "Sunlight and soil moisture", "Kangaroos grazing on grass", "Fungi breaking down leaves"], "answer": 1, "explanation": "abiotic 指非生物因素：阳光、水、土壤、温度等；biotic 指活的生物。真菌和细菌虽然肉眼不明显，但它们是活的，属于 biotic，这是最常见的失分点。", "source": "Study Guide · Lesson 2 Ecosystems and Interactions", "weak": false}, {"id": "out-003", "topic": "生态系统 · 定义", "difficulty": "easy", "type": "mcq", "stem": "Which definition of an ecosystem matches the course?", "options": ["A group of animals of the same species in an area", "All the plants that grow in a particular region", "A community of living and non-living things interacting", "The physical features of a landscape, such as soil and rain"], "answer": 2, "explanation": "ecosystem 的关键词是“生物＋非生物＋相互作用”。只讲植物、只讲动物、或只讲非生物环境，都只是生态系统的一部分。", "source": "Study Guide · Lesson 2 Ecosystems and Interactions", "weak": false}, {"id": "out-004", "topic": "人类影响 · 短期与长期", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is an example of a LONG-TERM human impact on ecosystems?", "options": ["Littering a campsite with food packaging and cans", "Dropping a plastic bag into a creek during a picnic", "A bushwalker crushing vegetation by leaving the marked track", "Climate change gradually reducing biodiversity over decades"], "answer": 3, "explanation": "短期影响是立即发生的（乱丢垃圾、踩踏植被）；长期影响是随时间逐渐累积的，例如气候变化。长期影响往往更难逆转，因为栖息地可能被永久破坏。", "source": "Study Guide · Lesson 3 Human Impact on the Environment", "weak": false}, {"id": "out-005", "topic": "Leave No Trace · 七项原则", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is one of the seven Leave No Trace principles taught in this unit?", "options": ["Travel and camp on durable surfaces", "Build a fire ring at each campsite", "Leave marked tracks to find quiet spots", "Feed wildlife so they stay calm near people"], "answer": 0, "explanation": "“在耐踩踏的地表上行走和扎营（travel and camp on durable surfaces）”是七大原则之一。另外三个选项恰好都是典型的高影响行为：新建火圈、投喂野生动物、离开步道。", "source": "Study Guide · Lesson 5 Leave No Trace", "weak": false}, {"id": "out-006", "topic": "原住民视角 · Connection to Country", "difficulty": "easy", "type": "mcq", "stem": "What does 'Connection to Country' mean for Aboriginal and Torres Strait Islander peoples?", "options": ["A legal title to land that allows selling its natural resources", "A spiritual and cultural relationship with land and waterways", "An agreement with government to manage national parks", "A seasonal camp used for hunting and fishing only"], "answer": 1, "explanation": "Connection to Country 是精神性、文化性与环境性的关系，Country 包含土地、水道、动植物，也包含文化身份。关键观念是：Country 不是“被拥有的东西”，而是“要去照护和保护的对象”。", "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land", "weak": false}, {"id": "out-007", "topic": "原住民视角 · 文化燃烧", "difficulty": "medium", "type": "mcq", "stem": "Which description of cultural burning matches the lesson?", "options": ["Burning at random times with no planning or control at all", "Large, high-intensity fires lit in summer to clear all vegetation", "Small, low-intensity controlled fires that safely reduce fuel loads", "Burning only after a wildfire has already started, to stop it spreading"], "answer": 2, "explanation": "文化燃烧是“小型、低强度、在特定时间有计划地控制燃烧”，目的是降低可燃物载量（fuel load）。它的好处是减少大火风险、促进植物再生、支持生物多样性——不是无控制放火，也不是等火灾发生才烧。", "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Cultural Burning", "weak": false}, {"id": "out-008", "topic": "Leave No Trace · 耐踩踏地表", "difficulty": "medium", "type": "mcq", "stem": "Why does Leave No Trace advise walking and camping on durable surfaces?", "options": ["It increases the chance of seeing wildlife up close", "It makes finding the way back much easier", "It keeps hikers' boots and tents cleaner", "It protects vegetation and reduces soil erosion"], "answer": 3, "explanation": "Response Guide 的示范答案说得很明确：走耐用地表“保护植被、减少踩踏造成的土壤侵蚀”。踩出来的小径会越踩越宽，最后变成冲沟，这是露营区最常见的长期损伤。", "source": "Study Guide · Lesson 5 Leave No Trace · Response Guide", "weak": false}, {"id": "out-009", "topic": "可持续实践 · 露营高影响行为", "difficulty": "medium", "type": "mcq", "stem": "Which camper behaviour is a HIGH-IMPACT practice?", "options": ["Cutting branches from live trees for a campfire", "Camping in an already established campsite", "Using a fuel stove instead of lighting a fire", "Carrying all your own rubbish out in a sealed bag"], "answer": 0, "explanation": "砍活树枝生火会直接破坏植被与栖息地，还提高灌木火风险，是典型的高影响行为。用燃料炉、用既有营位、把垃圾全部带走，都是低影响做法。", "source": "Study Guide · Lesson 4 Sustainable Practices and Camping Impact", "weak": false}, {"id": "out-010", "topic": "生态系统 · 相互依存", "difficulty": "medium", "type": "mcq", "stem": "In the Yellowstone example used in the unit, removing wolves caused elk numbers to rise and damage plant life, and reintroducing them gradually restored balance. What does this best demonstrate?", "options": ["Predators are harmful to ecosystems and should be removed", "Ecosystems are interconnected, so removing one part affects the rest", "Only abiotic factors can change the balance of an ecosystem", "Plant life always recovers on its own, whatever happens to animals"], "answer": 1, "explanation": "这个案例说明生态系统的相互依存性：抽掉一个环节（顶级捕食者），食物链下游会连锁反应。课程里用来回答“为什么不干脆把鲨鱼都除掉”的正是这个逻辑。", "source": "Study Guide · Lesson 2 Ecosystems and Interactions · Response Guide", "weak": false}, {"id": "out-011", "topic": "原住民视角 · 淡水溪流案例", "difficulty": "hard", "type": "mcq", "stem": "The Freshwater Creek case study compares an Indigenous significant site with the effects of Western urbanisation. Which statement BEST describes the difference?", "options": ["Indigenous management had little effect because the local clans did not use the wetlands", "Both approaches treated the wetlands mainly as a drinking water source", "Indigenous use kept the wetlands alive; urbanisation drained and piped them away", "Indigenous management drained the wetlands, while urbanisation restored them as parkland"], "answer": 2, "explanation": "案例对比的是：对 Gayamaygal 与 Garigal 族群而言，这里是饮用水、捕鱼与扎营的重要场所，具有极高精神价值；而城市化把它排干、填平，最后变成混凝土雨水暗渠，如今只以“海边排水口”的形式存在。", "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Freshwater Creek Case Study", "weak": false}, {"id": "out-012", "topic": "生态系统 · 生物与非生物互动", "difficulty": "medium", "type": "short", "stem": "Explain how biotic and abiotic factors interact within an ecosystem. Use TWO examples in your response.", "options": [], "answer": "Biotic and abiotic factors interact to keep ecosystems healthy. Plants depend on abiotic factors such as sunlight, water and soil to grow, while animals depend on those plants for food and shelter. If an abiotic factor changes — for example rainfall falling during a drought — plant growth declines, which then reduces food for herbivores and, in turn, for predators further up the food chain.", "explanation": "要写出“非生物→生物→食物链下游”的因果链。例一可用植物依赖阳光水土；例二可用干旱导致植物减少、草食动物再受影响。只列因素不写互动关系拿不到分。", "source": "Study Guide · Lesson 2 · Response Guide（4 分题 PEEL 范例）", "points": [{"t": "Biotic and abiotic factors interact to keep ecosystems healthy", "m": 1}, {"t": "Plants depend on abiotic factors such as sunlight, water and soil to grow, while animals depend on those plants for food and shelter", "m": 1}, {"t": "If an abiotic factor changes — for example rainfall falling during a drought — plant growth declines, which then reduces food for herbivores and, in turn, for predators further up the food chain", "m": 1}], "weak": false}, {"id": "out-013", "topic": "人类影响 · 短期与长期对比", "difficulty": "medium", "type": "short", "stem": "Explain the difference between short-term and long-term human impacts on ecosystems, and give one example of each.", "options": [], "answer": "Short-term impacts occur immediately, while long-term impacts develop gradually over time. Littering a natural area is a short-term impact because it pollutes waterways and harms wildlife straight away. Climate change is a long-term impact because it slowly raises temperatures and reduces biodiversity over many years, and it is much harder to reverse.", "explanation": "区别要落在“立即发生 vs 逐渐累积”和“是否容易逆转”。各举一例，再点出长期影响更难修复（栖息地可能永久破坏、食物链被打断）。", "source": "Study Guide · Lesson 3 · Response Guide（4 分题 PEEL 范例）", "points": [{"t": "Short-term impacts occur immediately, while long-term impacts develop gradually over time", "m": 1}, {"t": "Littering a natural area is a short-term impact because it pollutes waterways and harms wildlife straight away", "m": 1}, {"t": "Climate change is a long-term impact because it slowly raises temperatures and reduces biodiversity over many years, and it is much harder to reverse", "m": 1}], "weak": false}, {"id": "out-014", "topic": "Leave No Trace · 原则的作用", "difficulty": "hard", "type": "short", "stem": "Explain why Leave No Trace principles are important in protecting outdoor environments. Refer to at least TWO principles in your response.", "options": [], "answer": "Leave No Trace principles reduce the human impact of recreation so that natural areas stay healthy and can be enjoyed by future visitors. Disposing of waste properly reduces pollution and stops wildlife being harmed or attracted to human food. Travelling and camping on durable surfaces protects vegetation and reduces soil erosion caused by foot traffic. Respecting wildlife also matters, because feeding animals changes their behaviour, makes them dependent on humans and disrupts ecosystem balance.", "explanation": "材料要求至少点到两项原则并解释“如何保护生态系统”。可用的组合：妥善处理垃圾、走耐用地表、尊重野生动物、减少营火影响、提前计划与准备。只背原则名称不解释作用会失分。", "source": "Study Guide · Lesson 5 Leave No Trace + Response Guide / Practice Questions（5 分题）", "points": [{"t": "Leave No Trace principles reduce the human impact of recreation so that natural areas stay healthy and can be enjoyed by future visitors", "m": 1}, {"t": "Disposing of waste properly reduces pollution and stops wildlife being harmed or attracted to human food", "m": 1}, {"t": "Travelling and camping on durable surfaces protects vegetation and reduces soil erosion caused by foot traffic", "m": 1}, {"t": "Respecting wildlife also matters, because feeding animals changes their behaviour, makes them dependent on humans and disrupts ecosystem balance", "m": 1}], "weak": false}, {"id": "out-015", "topic": "原住民视角 · 照护 Country 的评价", "difficulty": "hard", "type": "short", "stem": "Evaluate how Aboriginal and Torres Strait Islander peoples' approaches to caring for Country contribute to the protection of ecosystems AND communities.", "options": [], "answer": "Caring for Country supports ecosystems through practices such as cultural burning, which uses small, low-intensity controlled fires to reduce fuel loads, lower the risk of large bushfires, encourage plant regrowth and support biodiversity, and through seasonal resource use that takes only what is needed. These practices also support communities: healthy Country provides clean water, habitats and food, while continued connection to Country strengthens cultural identity and community wellbeing. Overall, this long-term custodial approach is more sustainable than treating land purely as a resource, although neither perspective is entirely right or wrong.", "explanation": "评价题要有“生态＋社区”两面，再加总体判断。要点：文化燃烧降低可燃物、促进再生；季节性取用体现可持续；健康的环境反过来提供水、食物与栖息地，并强化文化身份。最后要给出评价性结论（long-term care 更可持续）。", "source": "Study Guide · Lesson 6 · Response Guide + Practice Questions（10 分题）", "points": [{"t": "Caring for Country supports ecosystems through practices such as cultural burning, which uses small, low-intensity controlled fires to reduce fuel loads, lower the risk of large bushfires, encourage plant regrowth and support biodiversity, and through seasonal resource use that takes only what is needed", "m": 1}, {"t": "These practices also support communities: healthy Country provides clean water, habitats and food, while continued connection to Country strengthens cultural identity and community wellbeing", "m": 1}, {"t": "Overall, this long-term custodial approach is more sustainable than treating land purely as a resource, although neither perspective is entirely right or wrong", "m": 1}], "weak": false}]};
+const DATA = {"slug": "out", "title": "户外教育 · 10 年级", "examMin": 45, "questions": [{"id": "out-001", "topic": "环境意识 · 生物多样性", "difficulty": "easy", "type": "mcq", "stem": "How is biodiversity defined in this unit?", "options": ["The variety of living organisms present", "The total number of species in a habitat", "The number of endangered species", "The non-living parts of that habitat"], "answer": 0, "explanation": "课程对 biodiversity 的定义就是“variety of living organisms”（生物种类的多样性）。它不等于某个栖息地的动物数量，也不等于非生物环境。", "source": "Study Guide · Lesson 1 Introduction to Environmental Awareness", "weak": false}, {"id": "out-002", "topic": "生态系统 · 生物与非生物因素", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is an ABIOTIC factor in an ecosystem?", "options": ["Bacteria living in soil", "Sunlight and soil moisture", "Kangaroos grazing on grass", "Fungi breaking down leaves"], "answer": 1, "explanation": "abiotic 指非生物因素：阳光、水、土壤、温度等；biotic 指活的生物。真菌和细菌虽然肉眼不明显，但它们是活的，属于 biotic，这是最常见的失分点。", "source": "Study Guide · Lesson 2 Ecosystems and Interactions", "weak": false}, {"id": "out-003", "topic": "生态系统 · 定义", "difficulty": "easy", "type": "mcq", "stem": "Which definition of an ecosystem matches the course?", "options": ["A group of animals of the same species in an area", "All the plants that grow in a particular region", "A community of living and non-living things interacting", "The physical features of a landscape, such as soil and rain"], "answer": 2, "explanation": "ecosystem 的关键词是“生物＋非生物＋相互作用”。只讲植物、只讲动物、或只讲非生物环境，都只是生态系统的一部分。", "source": "Study Guide · Lesson 2 Ecosystems and Interactions", "weak": false}, {"id": "out-004", "topic": "人类影响 · 短期与长期", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is an example of a LONG-TERM human impact on ecosystems?", "options": ["Littering a campsite with food packaging and cans", "Dropping a plastic bag into a creek during a picnic", "A bushwalker crushing vegetation by leaving the marked track", "Climate change gradually reducing biodiversity over decades"], "answer": 3, "explanation": "短期影响是立即发生的（乱丢垃圾、踩踏植被）；长期影响是随时间逐渐累积的，例如气候变化。长期影响往往更难逆转，因为栖息地可能被永久破坏。", "source": "Study Guide · Lesson 3 Human Impact on the Environment", "weak": false}, {"id": "out-005", "topic": "Leave No Trace · 七项原则", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is one of the seven Leave No Trace principles taught in this unit?", "options": ["Travel and camp on durable surfaces", "Build a fire ring at each campsite", "Leave marked tracks to find quiet spots", "Feed wildlife so they stay calm near people"], "answer": 0, "explanation": "“在耐踩踏的地表上行走和扎营（travel and camp on durable surfaces）”是七大原则之一。另外三个选项恰好都是典型的高影响行为：新建火圈、投喂野生动物、离开步道。", "source": "Study Guide · Lesson 5 Leave No Trace", "weak": false}, {"id": "out-006", "topic": "原住民视角 · Connection to Country", "difficulty": "easy", "type": "mcq", "stem": "What does 'Connection to Country' mean for Aboriginal and Torres Strait Islander peoples?", "options": ["A legal title to land that allows selling its natural resources", "A spiritual and cultural relationship with land and waterways", "An agreement with government to manage national parks", "A seasonal camp used for hunting and fishing only"], "answer": 1, "explanation": "Connection to Country 是精神性、文化性与环境性的关系，Country 包含土地、水道、动植物，也包含文化身份。关键观念是：Country 不是“被拥有的东西”，而是“要去照护和保护的对象”。", "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land", "weak": false}, {"id": "out-007", "topic": "原住民视角 · 文化燃烧", "difficulty": "medium", "type": "mcq", "stem": "Which description of cultural burning matches the lesson?", "options": ["Burning at random times with no planning or control at all", "Large, high-intensity fires lit in summer to clear all vegetation", "Small, low-intensity controlled fires that safely reduce fuel loads", "Burning only after a wildfire has already started, to stop it spreading"], "answer": 2, "explanation": "文化燃烧是“小型、低强度、在特定时间有计划地控制燃烧”，目的是降低可燃物载量（fuel load）。它的好处是减少大火风险、促进植物再生、支持生物多样性——不是无控制放火，也不是等火灾发生才烧。", "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Cultural Burning", "weak": false}, {"id": "out-008", "topic": "Leave No Trace · 耐踩踏地表", "difficulty": "medium", "type": "mcq", "stem": "Why does Leave No Trace advise walking and camping on durable surfaces?", "options": ["It increases the chance of seeing wildlife up close", "It makes finding the way back much easier", "It keeps hikers' boots and tents cleaner", "It protects vegetation and reduces soil erosion"], "answer": 3, "explanation": "Response Guide 的示范答案说得很明确：走耐用地表“保护植被、减少踩踏造成的土壤侵蚀”。踩出来的小径会越踩越宽，最后变成冲沟，这是露营区最常见的长期损伤。", "source": "Study Guide · Lesson 5 Leave No Trace · Response Guide", "weak": false}, {"id": "out-009", "topic": "可持续实践 · 露营高影响行为", "difficulty": "medium", "type": "mcq", "stem": "Which camper behaviour is a HIGH-IMPACT practice?", "options": ["Cutting branches from live trees for a campfire", "Camping in an already established campsite", "Using a fuel stove instead of lighting a fire", "Carrying all your own rubbish out in a sealed bag"], "answer": 0, "explanation": "砍活树枝生火会直接破坏植被与栖息地，还提高灌木火风险，是典型的高影响行为。用燃料炉、用既有营位、把垃圾全部带走，都是低影响做法。", "source": "Study Guide · Lesson 4 Sustainable Practices and Camping Impact", "weak": false}, {"id": "out-010", "topic": "生态系统 · 相互依存", "difficulty": "medium", "type": "mcq", "stem": "In the Yellowstone example used in the unit, removing wolves caused elk numbers to rise and damage plant life, and reintroducing them gradually restored balance. What does this best demonstrate?", "options": ["Predators are harmful to ecosystems and should be removed", "Ecosystems are interconnected, so removing one part affects the rest", "Only abiotic factors can change the balance of an ecosystem", "Plant life always recovers on its own, whatever happens to animals"], "answer": 1, "explanation": "这个案例说明生态系统的相互依存性：抽掉一个环节（顶级捕食者），食物链下游会连锁反应。课程里用来回答“为什么不干脆把鲨鱼都除掉”的正是这个逻辑。", "source": "Study Guide · Lesson 2 Ecosystems and Interactions · Response Guide", "weak": false}, {"id": "out-011", "topic": "原住民视角 · 淡水溪流案例", "difficulty": "hard", "type": "mcq", "stem": "The Freshwater Creek case study compares an Indigenous significant site with the effects of Western urbanisation. Which statement BEST describes the difference?", "options": ["Indigenous management had little effect because the local clans did not use the wetlands", "Both approaches treated the wetlands mainly as a drinking water source", "Indigenous use kept the wetlands alive; urbanisation drained and piped them away", "Indigenous management drained the wetlands, while urbanisation restored them as parkland"], "answer": 2, "explanation": "案例对比的是：对 Gayamaygal 与 Garigal 族群而言，这里是饮用水、捕鱼与扎营的重要场所，具有极高精神价值；而城市化把它排干、填平，最后变成混凝土雨水暗渠，如今只以“海边排水口”的形式存在。", "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Freshwater Creek Case Study", "weak": false}, {"id": "out-012", "topic": "生态系统 · 生物与非生物互动", "difficulty": "medium", "type": "short", "stem": "Explain how biotic and abiotic factors interact within an ecosystem. Use TWO examples in your response.", "options": [], "answer": "Biotic and abiotic factors interact to keep ecosystems healthy. Plants depend on abiotic factors such as sunlight, water and soil to grow, while animals depend on those plants for food and shelter. If an abiotic factor changes — for example rainfall falling during a drought — plant growth declines, which then reduces food for herbivores and, in turn, for predators further up the food chain.", "explanation": "要写出“非生物→生物→食物链下游”的因果链。例一可用植物依赖阳光水土；例二可用干旱导致植物减少、草食动物再受影响。只列因素不写互动关系拿不到分。", "source": "Study Guide · Lesson 2 · Response Guide（4 分题 PEEL 范例）", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that plants depend on abiotic factors such as sunlight, water and soil to grow", "m": 1}, {"id": "c2", "t": "Explains that animals depend on those plants for food and shelter", "m": 1}, {"id": "c3", "t": "Gives a second example: a change in an abiotic factor, such as rainfall falling during a drought, reduces plant growth", "m": 1}, {"id": "c4", "t": "Traces the causal chain: fewer plants means less food for herbivores and, in turn, for predators further up the food chain", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that plants depend on abiotic factors such as sunlight, water and soil to grow", "m": 1}, {"id": "c2", "t": "Explains that animals depend on those plants for food and shelter", "m": 1}, {"id": "c3", "t": "Gives a second example: a change in an abiotic factor, such as rainfall falling during a drought, reduces plant growth", "m": 1}, {"id": "c4", "t": "Traces the causal chain: fewer plants means less food for herbivores and, in turn, for predators further up the food chain", "m": 1}], "weak": false}, {"id": "out-013", "topic": "人类影响 · 短期与长期对比", "difficulty": "medium", "type": "short", "stem": "Explain the difference between short-term and long-term human impacts on ecosystems, and give one example of each.", "options": [], "answer": "Short-term impacts occur immediately, while long-term impacts develop gradually over time. Littering a natural area is a short-term impact because it pollutes waterways and harms wildlife straight away. Climate change is a long-term impact because it slowly raises temperatures and reduces biodiversity over many years, and it is much harder to reverse.", "explanation": "区别要落在“立即发生 vs 逐渐累积”和“是否容易逆转”。各举一例，再点出长期影响更难修复（栖息地可能永久破坏、食物链被打断）。", "source": "Study Guide · Lesson 3 · Response Guide（4 分题 PEEL 范例）", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that short-term impacts occur immediately", "m": 1}, {"id": "c2", "t": "Explains that long-term impacts develop gradually over time and are much harder to reverse", "m": 1}, {"id": "c3", "t": "Gives one valid short-term example, such as littering polluting waterways and harming wildlife straight away", "m": 1}, {"id": "c4", "t": "Gives one valid long-term example, such as climate change slowly raising temperatures and reducing biodiversity over many years", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that short-term impacts occur immediately", "m": 1}, {"id": "c2", "t": "Explains that long-term impacts develop gradually over time and are much harder to reverse", "m": 1}, {"id": "c3", "t": "Gives one valid short-term example, such as littering polluting waterways and harming wildlife straight away", "m": 1}, {"id": "c4", "t": "Gives one valid long-term example, such as climate change slowly raising temperatures and reducing biodiversity over many years", "m": 1}], "weak": false}, {"id": "out-014", "topic": "Leave No Trace · 原则的作用", "difficulty": "hard", "type": "short", "stem": "Explain why Leave No Trace principles are important in protecting outdoor environments. Refer to at least TWO principles in your response.", "options": [], "answer": "Leave No Trace principles reduce the human impact of recreation so that natural areas stay healthy and can be enjoyed by future visitors. Disposing of waste properly reduces pollution and stops wildlife being harmed or attracted to human food. Travelling and camping on durable surfaces protects vegetation and reduces soil erosion caused by foot traffic. Respecting wildlife also matters, because feeding animals changes their behaviour, makes them dependent on humans and disrupts ecosystem balance.", "explanation": "材料要求至少点到两项原则并解释“如何保护生态系统”。可用的组合：妥善处理垃圾、走耐用地表、尊重野生动物、减少营火影响、提前计划与准备。只背原则名称不解释作用会失分。", "source": "Study Guide · Lesson 5 Leave No Trace + Response Guide / Practice Questions（5 分题）", "marks": 3, "criteria": [{"id": "c1", "t": "Explains the general purpose: Leave No Trace reduces the human impact of recreation so natural areas stay healthy for future visitors", "m": 1}, {"id": "c2", "t": "Refers to one principle and explains its effect, e.g. disposing of waste properly reduces pollution and stops wildlife being harmed or attracted to human food", "m": 1}, {"id": "c3", "t": "Refers to a second principle and explains its effect, e.g. camping on durable surfaces protects vegetation and reduces soil erosion", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains the general purpose: Leave No Trace reduces the human impact of recreation so natural areas stay healthy for future visitors", "m": 1}, {"id": "c2", "t": "Refers to one principle and explains its effect, e.g. disposing of waste properly reduces pollution and stops wildlife being harmed or attracted to human food", "m": 1}, {"id": "c3", "t": "Refers to a second principle and explains its effect, e.g. camping on durable surfaces protects vegetation and reduces soil erosion", "m": 1}], "weak": false}, {"id": "out-015", "topic": "原住民视角 · 照护 Country 的评价", "difficulty": "hard", "type": "short", "stem": "Evaluate how Aboriginal and Torres Strait Islander peoples' approaches to caring for Country contribute to the protection of ecosystems AND communities.", "options": [], "answer": "Caring for Country supports ecosystems through practices such as cultural burning, which uses small, low-intensity controlled fires to reduce fuel loads, lower the risk of large bushfires, encourage plant regrowth and support biodiversity, and through seasonal resource use that takes only what is needed. These practices also support communities: healthy Country provides clean water, habitats and food, while continued connection to Country strengthens cultural identity and community wellbeing. Overall, this long-term custodial approach is more sustainable than treating land purely as a resource, although neither perspective is entirely right or wrong.", "explanation": "评价题要有“生态＋社区”两面，再加总体判断。要点：文化燃烧降低可燃物、促进再生；季节性取用体现可持续；健康的环境反过来提供水、食物与栖息地，并强化文化身份。最后要给出评价性结论（long-term care 更可持续）。", "source": "Study Guide · Lesson 6 · Response Guide + Practice Questions（10 分题）", "marks": 4, "criteria": [{"id": "c1", "t": "Explains how cultural burning supports ecosystems: small, low-intensity controlled fires reduce fuel loads and lower the risk of large bushfires", "m": 1}, {"id": "c2", "t": "Explains that these practices encourage plant regrowth and support biodiversity, and that seasonal resource use takes only what is needed", "m": 1}, {"id": "c3", "t": "Explains how caring for Country supports communities: healthy Country provides clean water, habitats and food, and connection to Country strengthens cultural identity and wellbeing", "m": 1}, {"id": "c4", "t": "Reaches an evaluative judgement that this long-term custodial approach is more sustainable than treating land purely as a resource", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains how cultural burning supports ecosystems: small, low-intensity controlled fires reduce fuel loads and lower the risk of large bushfires", "m": 1}, {"id": "c2", "t": "Explains that these practices encourage plant regrowth and support biodiversity, and that seasonal resource use takes only what is needed", "m": 1}, {"id": "c3", "t": "Explains how caring for Country supports communities: healthy Country provides clean water, habitats and food, and connection to Country strengthens cultural identity and wellbeing", "m": 1}, {"id": "c4", "t": "Reaches an evaluative judgement that this long-term custodial approach is more sustainable than treating land purely as a resource", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-out";
 const MULTI = DATA.slug === "all";
 const FKEY = "dsh-filter";
@@ -1698,7 +1750,13 @@ function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
 const AI_ENGINE = {};
-function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function localAI(){
+  try{
+    var m = location.search.match(/[?&]localai=([^&]*)/);
+    if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+  }catch(e){}
+  try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; }
+}
 function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
@@ -1933,10 +1991,16 @@ function render() {
     }).join("");
     bodyHtml = `<div class="opts">${opts}</div>`;
   } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    /* ── 简答题：评分标准（criteria）驱动，提交后自动 AI 判分 ── */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : (q.points && q.points.length ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
     const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const aiRec = (rec && rec.ai && Array.isArray(rec.ai.results)) ? rec.ai : null;
+    const manualEarned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const earned = (rec && rec.override) ? manualEarned : (aiRec ? aiRec.score : manualEarned);
     const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
     const hasNum = /-?\d/.test(bareAns);
     let slots = (rec && Array.isArray(rec.slots)) ? rec.slots.slice() : [];
@@ -1944,45 +2008,97 @@ function render() {
     while (slots.length < pts.length) slots.push("");
     const many = pts.length >= 2;
     const hinted = HINTED[q.id];
-    const hintFor = (i) => hinted ? pts[i].t.split(/\s+/).slice(0,4).join(" ") + " …" : "写这一点的内容（英文）";
+    const hintFor = (i) => hinted
+      ? String(pts[i].t || "").split(/\s+/).slice(0,4).join(" ") + " …"
+      : "写这一点的内容（英文）";
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const taHtml = many
       ? `<div class="slots" id="slots">${pts.map((p,i)=>`
           <div class="slot"><span class="sn">${i+1}</span>
             <textarea data-slot="${i}" rows="2" placeholder="${esc(hintFor(i))}">${esc(slots[i]||"")}</textarea>
           </div>`).join("")}</div>`
       : `<textarea id="ta" data-slot="0" rows="4" placeholder="${esc(hintFor(0))}">${esc(slots[0]||"")}</textarea>`;
+
+    const submitLabel = aiRec ? "重新判分" : (canAuto ? "提交并自动判分" : "对照得分点");
     bodyHtml = taHtml + `
       <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        <button class="btn" id="submitq">${submitLabel}</button>
+        <button class="btn ghost" id="manualtoggle">手动校正</button>
         <button class="btn ghost" id="hint">${hinted ? "藏起提示" : "给点提示"}</button>
         ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        <span class="muted" id="slotsum" style="align-self:center">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      const autoRes = pts.map((p,i)=>{
-        const mine = (rec.slots && rec.slots[i]) ? rec.slots[i] : (rec.text || "");
-        return autoScore(p.t, mine);
-      });
-      const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点
-          <span class="autotag">系统预判 ${autoHit} / ${pts.length} 点</span>
-          <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
-          ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
-          ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
-          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
+        <span class="muted" id="slotsum">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
+        ${aiRec
+          ? `<span class="pill scorepill${aiRec.needsReview ? " low" : ""}">已得 <b>${aiRec.score}</b> / ${totalMarks} 分</span>`
+          : `<span class="muted">满分 ${totalMarks} 分 · ${pts.length} 条评分标准</span>`}
+      </div>
+      ${!enginesAvail() ? `<div class="ai-note">未配置判分服务器，先用自评；到「引擎」里填地址即可自动判分。</div>` : ""}`;
+
+    /* ── AI 判分结果面板 ── */
+    if (aiRec) {
+      const byId = {};
+      aiRec.results.forEach(function(r){ byId[r.id] = r; });
+      const rows = pts.map(function(p,i){
+        const r = byId[critId(p,i)] || {awarded:0, max:(p.m||1), reason:"未评估"};
+        const mx = Math.max(1, r.max || p.m || 1);
+        const got = Math.max(0, Math.min(mx, r.awarded || 0));
+        const cls = got >= mx ? "full" : (got > 0 ? "part" : "none");
+        const mk = got >= mx ? "✓" : (got > 0 ? "◐" : "✗");
+        return `<li class="cres ${cls}"><span class="cmk">${mk}</span>` +
+          `<span class="cbody"><span class="ct">${esc(p.t)}</span>` +
+          (r.reason ? `<span class="cr">${esc(r.reason)}</span>` : "") + `</span>` +
+          `<span class="csc">${got}/${mx}</span></li>`;
+      }).join("");
+      const conf = typeof aiRec.confidence === "number" ? aiRec.confidence : 0.5;
+      const confPct = Math.round(conf * 100);
+      const when = aiRec.at ? new Date(aiRec.at) : null;
+      const whenTxt = when ? (("0"+when.getHours()).slice(-2)+":"+("0"+when.getMinutes()).slice(-2)) : "";
+      bodyHtml += `<div class="panel aires">
+        <div class="ai-head">
+          <span class="ai-score"><b>${aiRec.score}</b><em>/${totalMarks}</em></span>
+          <span class="ai-conf ${conf < 0.6 ? "low" : (conf < 0.85 ? "mid" : "high")}">置信度 ${confPct}%</span>
+          ${aiRec.needsReview ? '<span class="ai-flag">需要复核</span>' : ""}
+          <span class="grow"></span>
+          <span class="ai-meta">${esc(aiRec.engine === "local" ? "本地引擎" : "AI 判分")}${whenTxt ? " · " + whenTxt : ""}</span>
         </div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
-            return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>
+        ${aiRec.feedback ? `<div class="ai-fb">${esc(aiRec.feedback)}</div>` : ""}
+        <ul class="critlist">${rows}</ul>
+        <div class="ai-foot">分数按评分标准逐条给出，由服务器校验求和${aiRec.model ? " · " + esc(String(aiRec.model).replace(/^@cf\//,"")) : ""}</div>
       </div>`;
     }
+
+    /* ── 手动校正（可选覆盖，默认收起）── */
+    const autoRes = pts.map(function(p,i){
+      const mine = (rec && rec.slots && rec.slots[i]) ? rec.slots[i] : ((rec && rec.text) || "");
+      return autoScore(p.t, mine);
+    });
+    const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
+    bodyHtml += `<details class="panel manual"${aiRec ? "" : " open"} id="manualbox">
+      <summary class="panel-h">手动校正 · 自己勾选写到的得分点
+        <span class="autotag">关键词预判 ${autoHit} / ${pts.length}（仅供参考，不作分数）</span>
+      </summary>
+      <div class="pts">${pts.map(function(p,i){
+        const ai = aiRec ? aiRec.results.filter(function(r){ return r.id === critId(p,i); })[0] : null;
+        const hint = ai
+          ? '<span class="auto ' + (ai.awarded > 0 ? "ok" : "no") + '">AI: ' + ai.awarded + "/" + (ai.max||p.m||1)
+            + (ai.reason ? " — " + esc(ai.reason) : "") + "</span>"
+          : '<span class="auto ' + (autoRes[i].hit ? "ok" : "no") + '">'
+            + (autoRes[i].hit ? "关键词：大概率写到" : "关键词：可能没写到")
+            + "（" + autoRes[i].matched + "/" + autoRes[i].total + " 个关键词"
+            + (autoRes[i].missing.length ? "，缺 " + esc(autoRes[i].missing.join(", ")) : "") + "）</span>";
+        return '<label class="pt ' + (checked.indexOf(i)>=0 ? "on" : "") + '">'
+          + '<input type="checkbox" data-i="' + i + '"' + (checked.indexOf(i)>=0 ? " checked" : "") + '>'
+          + "<span>" + esc(p.t) + hint + "</span><em>" + (p.m||1) + " 分</em></label>";
+      }).join("")}</div>
+      <div class="actions">
+        <button class="btn ghost" id="allpt">全部勾上</button>
+        <button class="btn ghost" id="nonept">全部取消</button>
+        <button class="btn ghost" id="applyauto">按关键词判断勾选</button>
+        <button class="btn ghost" id="aiconf" title="判分服务器地址">引擎</button>
+      </div>
+    </details>`;
+    bodyHtml += `<div class="mine"><b>你写的：</b><div>${esc(((rec && rec.text) || "").trim() || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>`;
+
   }
 
   const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
@@ -2018,110 +2134,247 @@ function render() {
       save(); render();
     }));
   } else {
+    /* 第二段 else 与上面的渲染块作用域不同，这里重新绑定共享变量 */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : ((q.points && q.points.length) ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
+    const many = pts.length >= 2;
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
     const slotEls = () => Array.from(app.querySelectorAll("[data-slot]"));
     const readSlots = () => slotEls().map(el => el.value || "");
     const joinSlots = (arr) => arr.map(s => (s||"").trim()).filter(Boolean).join(String.fromCharCode(10,10));
+    const put = (patch) => {
+      const c = cur();
+      const arr = readSlots();
+      state.answers[q.id] = Object.assign({chosen:-1}, c, {slots:arr, text:joinSlots(arr)}, patch);
+      save();
+    };
     const updateSum = () => {
       const el = document.getElementById("slotsum");
       if (!el) return;
       const filled = readSlots().filter(s => s.trim()).length;
       el.textContent = filled + " / " + pts.length + " 点已写";
-      el.style.color = filled >= pts.length ? "var(--ok)" : "var(--dim)";
+      el.style.color = filled >= pts.length ? "var(--success)" : "var(--muted)";
     };
     let _saveT = null;
     if (many) {
       slotEls().forEach(el => el.addEventListener("input", () => {
-        const c = cur();
-        const arr = readSlots();
-        state.answers[q.id] = Object.assign({}, c, {chosen:-1, slots:arr, text:joinSlots(arr)});
         updateSum();
-        clearTimeout(_saveT); _saveT = setTimeout(save, 400);
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
       }));
       updateSum();
+    } else {
+      const only = slotEls()[0];
+      if (only) only.addEventListener("input", () => {
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
+      });
     }
-    document.getElementById("reveal").onclick = () => {
+
+    /* 手动校正（可选覆盖） */
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
       const c = cur();
-      const arr = readSlots();
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    const hb = document.getElementById("hint");
-    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
-    if (many) app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
+      const i = +cb.dataset.i;
       const set = new Set(c.checked || []);
       if (cb.checked) set.add(i); else set.delete(i);
       const arr = c.slots || [c.text || ""];
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,j)=>set.has(j));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      const arr2 = set.size ? Array.from(set).sort((a,b)=>a-b) : [];
+      const manScore = pts.reduce((a,p,j)=>a + (arr2.indexOf(j)>=0 ? (p.m||1) : 0), 0);
+      const full = manScore >= totalMarks;
+      state.answers[q.id] = Object.assign({}, c, {
+        chosen:-1, slots:arr, text:joinSlots(arr), checked:arr2,
+        override:true, manScore:manScore,
+        ok: full ? "ok" : (manScore > 0 ? "part" : "bad")
+      });
+      if (!c.gradedAt) {
+        reviewMark(q.subj || DATA.slug, q.id, full);
+        logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      }
       save(); render();
     }));
+
+    const hb = document.getElementById("hint");
+    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
+
     const nc = document.getElementById("numcheck");
     if (nc) nc.onclick = () => {
       const typed = joinSlots(readSlots());
       const u = numsOf(typed), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      if (!res) return;
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--muted)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--muted)"; return; }
+      const lastN = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-lastN) <= Math.max(Math.abs(v)*0.01, 0.005));
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+      res.style.color = hit ? "var(--success)" : "var(--error)";
+    };
+
+    const mt = document.getElementById("manualtoggle");
+    if (mt) mt.onclick = () => {
+      const mb = document.getElementById("manualbox");
+      if (!mb) return;
+      mb.open = !mb.open;
+      if (mb.open) mb.scrollIntoView({behavior:"smooth", block:"center"});
     };
     const ac = document.getElementById("aiconf");
     if (ac) ac.onclick = () => {
-      const cur = localAI();
-      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      const curLoc = localAI();
+      const v = prompt("判分服务器地址（云端留空就用默认；本机/局域网可填 http://127.0.0.1:8787）", apibase());
       if (v === null) return;
-      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+      try { localStorage.setItem("dsh-api", v.trim().replace(/\/$/, "")); } catch(e) {}
+      toast(v.trim() ? "判分服务器已保存" : "已清空，将使用默认服务器", true);
+      render();
     };
-    const ai = document.getElementById("aigrade");
-    if (ai) ai.onclick = () => {
-      const arr = readSlots(), answer = joinSlots(arr);
-      if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
-      ai.disabled = true; ai.textContent = "AI 判分中…";
-      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+    const aa = document.getElementById("applyauto");
+    if (aa) aa.onclick = () => {
+      const arr = readSlots();
+      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || joinSlots(arr)).hit ? i : -1).filter(i=>i>=0);
+      put({checked:hits, override:true,
+           manScore: pts.reduce((a,p,j)=>a + (hits.indexOf(j)>=0 ? (p.m||1) : 0), 0), ok:"ok"});
+      render();
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { put({checked:pts.map((_,i)=>i), override:true, manScore:totalMarks, ok:"ok"}); render(); };
+    if (none) none.onclick = () => { put({checked:[], override:true, manScore:0, ok:"bad"}); render(); };
+
+    /* ── 提交 / 重新判分 ── */
+    const GRADING = window.__GRADING || (window.__GRADING = {});
+    const submitBtn = document.getElementById("submitq");
+    if (submitBtn) submitBtn.onclick = async function(){
+      const answer = joinSlots(readSlots());
+      const c0 = cur();
+      if (!answer.trim()) { toast("先写点答案再提交", false); return; }
+      if (!canAuto) {
+        put({override:true, ok:"ok"});
+        const mb = document.getElementById("manualbox");
+        if (mb) { mb.open = true; mb.scrollIntoView({behavior:"smooth", block:"center"}); }
+        return;
+      }
+      if (GRADING[q.id]) return;
+      if (c0.ai && !c0.override && c0.text === answer) {
+        toast("这一版已经判过了，改动后才会重新判分", false);
+        return;
+      }
+      GRADING[q.id] = true;
+      submitBtn.disabled = true;
+      const oldTxt = submitBtn.textContent;
+      submitBtn.textContent = "判分中…";
+      const payload = JSON.stringify({
+        stem: q.stem,
+        max_marks: totalMarks,
+        reference: q.answer || "",
+        criteria: pts.map(function(p,i){ return {id:critId(p,i), t:p.t, m:(p.m||1)}; }),
+        answer: answer,
+        subject: DATA.slug || "",
+        topic: q.topic || ""
+      });
       const engines = [];
       if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
       const loc = localAI();
       if (loc) engines.push({n:"local", u: loc + "/grade"});
-      (async function(){
-        let lastErr = "no engine";
-        for (const en of engines) {
-          try {
-            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
-            const d = await r.json();
-            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
-            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+      let lastErr = "no engine";
+      for (const en of engines) {
+        try {
+          const r = await fetch(en.u, {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: payload
+          });
+          const d = await r.json();
+          if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+          const res = Array.isArray(d.results) ? d.results : [];
+          if (!res.length) throw new Error("no criterion results");
+          const sum = res.reduce(function(a,x){ return a + (Number(x.awarded_marks) || 0); }, 0);
+          const rawScore = (typeof d.score === "number") ? d.score : sum;
+          const score = Math.max(0, Math.min(totalMarks, Math.round(rawScore)));
+          const conf = (typeof d.confidence === "number")
+            ? Math.max(0, Math.min(1, d.confidence)) : 0.5;
+          const isLegacy = res.some(function(x){ return x && x.awarded_marks === undefined && x.i !== undefined; });
+          if (isLegacy) {
+            const normL = pts.map(function(p,i){
+              const r = res.filter(function(x){ return Number(x.i) === i; })[0] || {};
+              const mx = p.m || 1;
+              return {id:critId(p,i), awarded: r.covered ? mx : 0, max:mx,
+                      covered:!!r.covered, reason:String(r.reason || "")};
+            });
+            const scL = normL.reduce(function(a,x){ return a + x.awarded; }, 0);
+            const aiL = {score:scL, max:totalMarks, results:normL,
+              feedback:"（旧版判分接口，只能整点给分，建议更新服务器）",
+              confidence:0.7, needsReview:false, model:String(d.model||"v1"),
+              engine:en.n, at:Date.now()};
+            const wasL = !!c0.gradedAt;
+            state.answers[q.id] = Object.assign({}, c0, {
+              chosen:-1, slots:readSlots(), text:answer, ai:aiL,
+              gradedAt:aiL.at, gradeModel:aiL.model, gradeEngine:en.n,
+              checked:normL.map(function(x,i){ return x.awarded>0?i:-1; }).filter(function(i){ return i>=0; }),
+              override:false,
+              ok: scL >= totalMarks ? "ok" : (scL > 0 ? "part" : "bad")
+            });
+            save();
+            if (!wasL) {
+              reviewMark(q.subj || DATA.slug, q.id, scL >= totalMarks);
+              logAnswer(q.subj || DATA.slug, q.id, scL >= totalMarks, q.difficulty, "short");
+            }
+            GRADING[q.id] = false;
+            render();
             return;
-          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+          }
+          const norm = res.map(function(x,i){
+            const mx = Math.max(1, Math.round(Number(x.maximum_marks) || 1));
+            return {
+              id: String(x.criterion_id || ("c" + (i+1))),
+              awarded: Math.max(0, Math.min(mx, Math.round(Number(x.awarded_marks) || 0))),
+              max: mx,
+              covered: !!x.covered,
+              reason: String(x.reason || "").slice(0, 240)
+            };
+          });
+          const ai = {
+            score: score, max: totalMarks, results: norm,
+            feedback: String(d.feedback || "").slice(0, 500),
+            confidence: conf,
+            needsReview: conf < 0.6,
+            model: String(d.model || ""),
+            engine: en.n,
+            at: Date.now()
+          };
+          const wasGraded = !!c0.gradedAt;
+          const gotIdx = pts.map(function(p,i){ return i; }).filter(function(i){
+            const id = critId(pts[i], i);
+            const hit = norm.filter(function(x){ return x.id === id; })[0];
+            return hit && hit.awarded > 0;
+          });
+          state.answers[q.id] = Object.assign({}, c0, {
+            chosen:-1, slots:readSlots(), text:answer,
+            ai:ai, gradedAt:ai.at, gradeModel:ai.model, gradeEngine:en.n,
+            checked:gotIdx, override:false,
+            ok: score >= totalMarks ? "ok" : (score > 0 ? "part" : "bad")
+          });
+          save();
+          if (!wasGraded) {
+            reviewMark(q.subj || DATA.slug, q.id, score >= totalMarks);
+            logAnswer(q.subj || DATA.slug, q.id, score >= totalMarks, q.difficulty, "short");
+            if (score >= totalMarks && window.awardForQ) awardForQ(q.id, q.difficulty, "short", true);
+          }
+          GRADING[q.id] = false;
+          render();
+          return;
+        } catch (e) {
+          lastErr = en.n + ": " + ((e && e.message) || e);
         }
-        ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
-      })();
+      }
+      GRADING[q.id] = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldTxt;
+      toast("判分服务不可用（" + lastErr + "），已切到手动校正", false);
+      const mb2 = document.getElementById("manualbox");
+      if (mb2) mb2.open = true;
     };
-    const ap2 = document.getElementById("applyai");
-    if (ap2) ap2.onclick = () => {
-      const c = cur(); const arr = c.slots || [c.text || ""];
-      const res = AI_RES[q.id] || [];
-      const hits = res.map(r => r.covered ? r.i : -1).filter(i => i >= 0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const aa = document.getElementById("applyauto");
-    if (aa) aa.onclick = () => {
-      const c = cur();
-      const arr = c.slots || [c.text || ""];
-      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || "").hit ? i : -1).filter(i=>i>=0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:[],ok:"ok"}; save(); render(); };
   }
   document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
   const nx = document.getElementById("next");
@@ -2162,10 +2415,16 @@ function showResult() {
   let earnedM = 0, totalM = 0, partM = 0;
   const weak = [];
   shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const pts = (x.criteria && x.criteria.length) ? x.criteria
+              : ((x.points && x.points.length) ? x.points : [{m:1}]);
+    const tot = (typeof x.marks === "number" && x.marks > 0)
+      ? x.marks : pts.reduce((a,p)=>a+(p.m||1),0);
     const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const manGot = (r && r.checked)
+      ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const got = (r && r.override)
+      ? (typeof r.manScore === "number" ? r.manScore : manGot)
+      : ((r && r.ai && typeof r.ai.score === "number") ? r.ai.score : manGot);
     totalM += tot;
     if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
   });

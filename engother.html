@@ -620,6 +620,52 @@ footer{padding:22px 14px 30px;line-height:1.8}
   footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
 }
 
+/* ── AI 判分结果面板 ───────────────────────────────────── */
+.aires{border-color:color-mix(in srgb,var(--accent) 26%,var(--border))}
+.ai-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:10px}
+.ai-score{font-family:var(--font-mono);font-size:15px;font-weight:500;letter-spacing:-.02em;
+  line-height:1;color:var(--foreground)}
+.ai-score b{font-size:28px;font-weight:500}
+.ai-score em{font-style:normal;font-size:13px;color:var(--muted);margin-left:1px}
+.ai-conf{font-size:10.5px;border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:1px 7px;color:var(--muted);white-space:nowrap}
+.ai-conf.high{color:var(--success);border-color:color-mix(in srgb,var(--success) 45%,var(--border))}
+.ai-conf.mid{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--border))}
+.ai-conf.low{color:var(--error);border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+.ai-flag{font-size:10.5px;color:var(--error);white-space:nowrap;
+  border:1px solid color-mix(in srgb,var(--error) 45%,var(--border));
+  border-radius:var(--r-sm);padding:1px 7px}
+.ai-meta{font-size:10.5px;color:var(--muted)}
+.ai-fb{font-size:12.5px;line-height:1.65;color:var(--foreground);background:var(--surface-secondary);
+  border-radius:var(--r-sm);padding:9px 11px;margin-bottom:10px}
+.critlist{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.cres{display:grid;grid-template-columns:15px minmax(0,1fr) auto;gap:8px;
+  padding:7px 0;border-top:1px solid var(--border);font-size:12.5px;align-items:start}
+.cres:first-child{border-top:0}
+.cmk{font-size:12px;line-height:1.55;text-align:center;color:var(--muted)}
+.cres.full .cmk{color:var(--success)}
+.cres.part .cmk{color:var(--warning)}
+.cres.none .cmk{color:var(--error)}
+.cbody{min-width:0}
+.ct{display:block;line-height:1.55}
+.cres.none .ct{color:var(--muted)}
+.cr{display:block;color:var(--muted);font-size:11px;margin-top:2px;line-height:1.5}
+.csc{font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.cres.full .csc{color:var(--success)}
+.ai-foot{margin-top:9px;font-size:10.5px;color:var(--muted)}
+.ai-note{margin-top:10px;font-size:11.5px;color:var(--muted);
+  border-left:2px solid var(--border-strong);padding-left:9px}
+.scorepill{border-color:color-mix(in srgb,var(--accent) 38%,var(--border));color:var(--foreground)}
+.scorepill.low{border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+details.manual{padding:0}
+details.manual>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  padding:12px 14px;font-size:12px;color:var(--muted);user-select:none}
+details.manual>summary::-webkit-details-marker{display:none}
+details.manual>summary::before{content:"+";font-family:var(--font-mono);font-size:11px;width:11px}
+details.manual[open]>summary::before{content:"−"}
+details.manual>summary:hover{color:var(--foreground)}
+details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
+
 </style>
 </head>
 <body>
@@ -1440,7 +1486,13 @@ footer{padding:22px 14px 30px;line-height:1.8}
   /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
   var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
   var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
-  function apibase(){ try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function apibase(){
+    try{
+      var m = location.search.match(/[?&]api=([^&]*)/);
+      if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+    }catch(e){}
+    try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; }
+  }
   function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
   function loadBoard(){
     var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
@@ -1683,7 +1735,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
 })();
 </script>
 <script>
-const DATA = {"slug": "engother", "title": "英语 · 非年考", "examMin": 60, "questions": [{"id": "engother-001", "topic": "核心概念 · 偏见", "difficulty": "easy", "type": "mcq", "stem": "Which term from the unit glossary means 'a preconceived opinion that is not based on reason or actual experience'?", "options": ["Prejudice", "Justice", "Ethics", "Empathy"], "answer": 0, "explanation": "这是 Term 3 词汇表中 prejudice 的原定义：先入为主、无理性或经验依据的看法。empathy 是共情，justice 是公平，ethics 是道德原则体系。", "source": "Term 3 · Justice, Ethics and Morality — Key Definitions glossary (10ENGA)", "weak": false}, {"id": "engother-002", "topic": "核心概念 · 共情", "difficulty": "easy", "type": "mcq", "stem": "According to the unit's key definitions, which statement best defines 'empathy'?", "options": ["Treating every individual in an equitable and fair way", "Understanding and sharing the feelings of another person", "A system of moral principles that guides behaviour", "The belief that one's own race is superior to another"], "answer": 1, "explanation": "empathy 在词汇表中定义为“理解并分享他人感受”。第二项是 ethics，第三项是 justice，第四项是 racism，同在一张词汇表里，要逐条区分。", "source": "Term 3 · JEM Key Definitions (10ENGA / LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-003", "topic": "核心概念 · 战争悲悯（pathos）", "difficulty": "easy", "type": "mcq", "stem": "The Term 1 unit defines 'the pathos of war' as:", "options": ["The historical timeline of the Western Front from 1914 to 1918", "The patriotic pride soldiers feel when they enlist", "The deep emotional suffering and human tragedy caused by conflict", "The strategic and political causes of a particular battle"], "answer": 2, "explanation": "材料原文把 pathos of war 定义为冲突带来的深层情感痛苦与人的悲剧（grief、loss、devastation），强调的不是战略、政治或爱国情绪。", "source": "Term 1 · Pathos of War — All Quiet on the Western Front, introductory definition (10ENGR)", "weak": false}, {"id": "engother-004", "topic": "战争单元 · 身份与青春", "difficulty": "medium", "type": "mcq", "stem": "Read the extract: 'Young men of iron. Young? None of us is more than twenty. But young? Young men? That was a long time ago. We are old now.'\nWhat does this extract most strongly suggest about the soldiers?", "options": ["That they are physically the oldest soldiers in the whole regiment", "That they are proud of being described as 'young men of iron'", "That they have genuinely forgotten how old they actually are", "That the war has aged them psychologically, so they no longer feel young"], "answer": 3, "explanation": "连续的设问与 'We are old now' 构成悖论：实际不到二十岁，心却被战争耗尽。战争摧毁的是心理上的青春，不是年龄；答题要抓住“反问＋对比”这两处手法。", "source": "Term 2 · AQWF essay extract — 'the impact of war on a soldier's identity' (Glover 10ENGY)", "weak": false}, {"id": "engother-005", "topic": "战争单元 · 反问修辞", "difficulty": "medium", "type": "mcq", "stem": "Read the extract: 'Like an emptying tube, after a couple of minutes he collapses. What good is it to him now that he was such a good mathematician at school?'\nThe rhetorical question mainly works to:", "options": ["Emphasise how pointless his education now seems", "Praise Leer's achievements at school before he dies", "Suggest that Leer had never been a good student", "Blame Leer himself for the injury that kills him"], "answer": 0, "explanation": "反问句把“数学好”与“正在死去”并置，答案显然是“毫无用处”，从而放大战争的荒诞与生命的浪费，这是 pathos 的典型写法。", "source": "Term 2 · AQWF essay extract — Leer's death passage (Glover 10ENGY)", "weak": false}, {"id": "engother-006", "topic": "战争单元 · 传统战争观", "difficulty": "medium", "type": "mcq", "stem": "An essay question asks: 'How does Remarque refute traditional notions of war?' What does 'traditional notions of war' refer to?", "options": ["Ideas about the causes of the Treaty of Versailles", "Ideas of honour, glory, duty and patriotic heroism", "Ideas about how novels should be structured", "Ideas about trench construction and military logistics"], "answer": 1, "explanation": "traditional notions of war 指社会对战争的浪漫化想象——荣誉、光荣、责任、英雄主义；Remarque 用血肉、恐惧与无意义的死亡反驳的正是这一整套叙事。", "source": "Term 1 · AQWF additional practice questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-007", "topic": "战争单元 · 去浪漫化手法", "difficulty": "medium", "type": "short", "stem": "Explain how Remarque challenges traditional, romanticised ideas about war in All Quiet on the Western Front. Refer to at least one technique. (4 marks)", "options": [], "answer": "1 mark — he replaces heroic language with clinical bodily detail (rats, dysentery, amputations, the sounds of dying men).\n1 mark — first-person narration through Paul makes the damage personal rather than statistical.\n1 mark — the ironic gap between the schoolmaster's patriotic speeches and the soldiers' reality undermines the rhetoric of honour and duty.\n1 mark — the effect is to make the reader experience war as physical and psychological damage rather than as glory.", "explanation": "四点：身体/疾病/尸体的具体细节 → 第一人称让损失个人化 → 学校爱国演讲与现实的反讽 → 读者体验落在“伤害”而非“光荣”。答题时至少要点名一种手法（意象、反讽、叙述视角）。", "source": "Term 1 · The Pathos of War — 'Romanticism of War' lesson and AQWF novel study (LEEDER 10ENGB)", "points": [{"t": "he replaces heroic language with clinical bodily detail (rats, dysentery, amputations, the sounds of dying men).", "m": 1}, {"t": "first-person narration through Paul makes the damage personal rather than statistical.", "m": 1}, {"t": "the ironic gap between the schoolmaster's patriotic speeches and the soldiers' reality undermines the rhetoric of honour and duty.", "m": 1}, {"t": "the effect is to make the reader experience war as physical and psychological damage rather than as glory.", "m": 1}], "weak": false}, {"id": "engother-008", "topic": "诗歌单元 · 弗罗斯特作品", "difficulty": "easy", "type": "mcq", "stem": "Which Robert Frost poem studied in Term 2 is built around a speaker choosing between two paths in a wood?", "options": ["'Mending Wall'", "'Birches'", "'The Road Not Taken'", "'Stopping by Woods on a Snowy Evening'"], "answer": 2, "explanation": "The Road Not Taken 的核心情境就是林中岔路与选择；Mending Wall 讲邻居修墙，Birches 讲童年荡树，Stopping by Woods 讲雪夜驻足。", "source": "Term 2 · Robert Frost Poetry — The Road Not Taken, poem and questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-009", "topic": "诗歌单元 · Mending Wall 主题", "difficulty": "medium", "type": "mcq", "stem": "Which Frost poem studied in Term 2 is built around two neighbours repairing a stone wall between their properties?", "options": ["'Birches'", "'The Road Not Taken'", "'Stopping by Woods on a Snowy Evening'", "'Mending Wall'"], "answer": 3, "explanation": "Mending Wall 的核心情境就是每年春天两家人一同修补石墙，并借墙讨论边界、传统与「Good fences make good neighbours」这句老话。", "source": "Term 2 · Robert Frost Poetry — Mending Wall, poem and questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-010", "topic": "诗歌单元 · 责任与诱惑", "difficulty": "easy", "type": "mcq", "stem": "The exam study materials say an imaginative response may draw on 'the central idea of obligation and responsibility' from 'Stopping by Woods on a Snowy Evening'. Which situation best matches that idea?", "options": ["A traveller lingers in beautiful woods but remembers his promises", "A speaker boasting that he took the difficult path", "A child swinging on birch trees and dreaming of escape", "Two neighbours arguing about who owns the strip of land between them"], "answer": 0, "explanation": "材料原文点明这首诗的核心是 obligation and responsibility：雪夜景色迷人，但旅人想到“还有诺言要守”，必须继续赶路。Birches 对应童年与逃离，Mending Wall 对应邻里边界，The Road Not Taken 对应选择。", "source": "Year 10 English 2026 — YEAR 10 EXAM STUDY MATERIALS (Frost imaginative prompts)", "weak": false}, {"id": "engother-011", "topic": "诗歌单元 · 创造性仿写", "difficulty": "hard", "type": "short", "stem": "A question asks you to write an imaginative piece 'dealing with solitude and reflection', using a character from the world of Frost's poetry. Explain how you would develop setting, character and structure without simply retelling the poem. (5 marks)", "options": [], "answer": "1 mark — borrow the situation, not the plot: keep the isolated setting (a snow-filled wood, a stone wall at dusk) but invent a new persona.\n1 mark — give the character a specific voice and a memory that explains their solitude.\n1 mark — use one recurring image and controlled sentence length to create the reflective tone.\n1 mark — organise the piece with a flashback that turns the reflection into a decision or a changed understanding.\n1 mark — end on that change rather than on a summary of Frost's lines, so the piece is a new story rather than a retelling.", "explanation": "材料要求“用弗罗斯特诗歌的语言特征、惯例与主题进行创作”，不是复述。五点：借情境不借情节 → 给人物的声音与记忆 → 单一意象＋句式控节奏 → 用 flashback 形成转折 → 收在“转变”而不是概述原诗。", "source": "Term 2 · Frost imaginative task — 'construct an imaginative piece that deals with solitude and reflection' (Glover 10ENGY)", "points": [{"t": "borrow the situation, not the plot: keep the isolated setting (a snow-filled wood, a stone wall at dusk) but invent a new persona.", "m": 1}, {"t": "give the character a specific voice and a memory that explains their solitude.", "m": 1}, {"t": "use one recurring image and controlled sentence length to create the reflective tone.", "m": 1}, {"t": "organise the piece with a flashback that turns the reflection into a decision or a changed understanding.", "m": 1}, {"t": "end on that change rather than on a summary of Frost's lines, so the piece is a new story rather than a retelling.", "m": 1}], "weak": false}, {"id": "engother-012", "topic": "阅读卷 · 文本类型", "difficulty": "easy", "type": "mcq", "stem": "In the Term 3 Reading Section (15 marks), which set of texts are you asked to analyse?", "options": ["Australian newspaper editorials and film reviews", "Historical images, protest poetry and speech extracts", "Shakespearean soliloquies and Romantic poetry", "Novel chapters and wartime diary entries"], "answer": 1, "explanation": "材料明确列出三类文本：历史图像、抗议与民权诗歌、民权人物演讲节选。三类文本的分析术语不同，备考时各要练一篇。", "source": "Term 3 · Reading Section (15 marks) — task outline (10ENGA)", "weak": false}, {"id": "engother-013", "topic": "阅读卷 · 诗歌态度", "difficulty": "medium", "type": "mcq", "stem": "'Still I Rise' is studied in the Term 3 Reading Section. Which attitude does the speaker most clearly represent?", "options": ["Indifference towards history, politics and the struggle for change", "Nostalgia for a lost childhood home and the songs of the past", "Defiant pride and a refusal to be diminished by oppression", "Resigned acceptance of injustice and a longing for silence"], "answer": 2, "explanation": "这首诗以反复的 'I rise' 表现反抗与尊严，属于材料所说的 representations of injustice, discrimination and resistance 中的 resistance（抵抗），而非认命或怀旧。", "source": "Term 3 · 'Still I Rise' poem and questions (10ENGL TERM THREE HOMEPAGE)", "weak": false}, {"id": "engother-014", "topic": "阅读卷 · 抗议诗手法", "difficulty": "hard", "type": "short", "stem": "Explain how repetition and direct address help a protest poem construct resistance. (4 marks)", "options": [], "answer": "1 mark — repetition of an assertive phrase works like a refrain, turning a private feeling into a public chant.\n1 mark — the repeated assertion makes the speaker's defiance sound unstoppable, which is itself an argument against oppression.\n1 mark — direct address ('you') pulls the reader or the oppressor into the poem, so the audience cannot remain neutral.\n1 mark — combined with a rising tone, the poem turns testimony into a demand for recognition.", "explanation": "四点：反复＝副歌化、把私人情绪变成公共口号 → 语气显得“压不住” → 直接称呼把读者/压迫者拉进场 → 见证转成要求。分析要写“对读者产生什么效果”，不能只数修辞格。", "source": "Term 3 · Poem Techniques — 'Still I Rise' / 'Caged Bird' / 'They Took Me from My Mother' reading practice", "points": [{"t": "repetition of an assertive phrase works like a refrain, turning a private feeling into a public chant.", "m": 1}, {"t": "the repeated assertion makes the speaker's defiance sound unstoppable, which is itself an argument against oppression.", "m": 1}, {"t": "direct address ('you') pulls the reader or the oppressor into the poem, so the audience cannot remain neutral.", "m": 1}, {"t": "combined with a rising tone, the poem turns testimony into a demand for recognition.", "m": 1}], "weak": false}]};
+const DATA = {"slug": "engother", "title": "英语 · 非年考", "examMin": 60, "questions": [{"id": "engother-001", "topic": "核心概念 · 偏见", "difficulty": "easy", "type": "mcq", "stem": "Which term from the unit glossary means 'a preconceived opinion that is not based on reason or actual experience'?", "options": ["Prejudice", "Justice", "Ethics", "Empathy"], "answer": 0, "explanation": "这是 Term 3 词汇表中 prejudice 的原定义：先入为主、无理性或经验依据的看法。empathy 是共情，justice 是公平，ethics 是道德原则体系。", "source": "Term 3 · Justice, Ethics and Morality — Key Definitions glossary (10ENGA)", "weak": false}, {"id": "engother-002", "topic": "核心概念 · 共情", "difficulty": "easy", "type": "mcq", "stem": "According to the unit's key definitions, which statement best defines 'empathy'?", "options": ["Treating every individual in an equitable and fair way", "Understanding and sharing the feelings of another person", "A system of moral principles that guides behaviour", "The belief that one's own race is superior to another"], "answer": 1, "explanation": "empathy 在词汇表中定义为“理解并分享他人感受”。第二项是 ethics，第三项是 justice，第四项是 racism，同在一张词汇表里，要逐条区分。", "source": "Term 3 · JEM Key Definitions (10ENGA / LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-003", "topic": "核心概念 · 战争悲悯（pathos）", "difficulty": "easy", "type": "mcq", "stem": "The Term 1 unit defines 'the pathos of war' as:", "options": ["The historical timeline of the Western Front from 1914 to 1918", "The patriotic pride soldiers feel when they enlist", "The deep emotional suffering and human tragedy caused by conflict", "The strategic and political causes of a particular battle"], "answer": 2, "explanation": "材料原文把 pathos of war 定义为冲突带来的深层情感痛苦与人的悲剧（grief、loss、devastation），强调的不是战略、政治或爱国情绪。", "source": "Term 1 · Pathos of War — All Quiet on the Western Front, introductory definition (10ENGR)", "weak": false}, {"id": "engother-004", "topic": "战争单元 · 身份与青春", "difficulty": "medium", "type": "mcq", "stem": "Read the extract: 'Young men of iron. Young? None of us is more than twenty. But young? Young men? That was a long time ago. We are old now.'\nWhat does this extract most strongly suggest about the soldiers?", "options": ["That they are physically the oldest soldiers in the whole regiment", "That they are proud of being described as 'young men of iron'", "That they have genuinely forgotten how old they actually are", "That the war has aged them psychologically, so they no longer feel young"], "answer": 3, "explanation": "连续的设问与 'We are old now' 构成悖论：实际不到二十岁，心却被战争耗尽。战争摧毁的是心理上的青春，不是年龄；答题要抓住“反问＋对比”这两处手法。", "source": "Term 2 · AQWF essay extract — 'the impact of war on a soldier's identity' (Glover 10ENGY)", "weak": false}, {"id": "engother-005", "topic": "战争单元 · 反问修辞", "difficulty": "medium", "type": "mcq", "stem": "Read the extract: 'Like an emptying tube, after a couple of minutes he collapses. What good is it to him now that he was such a good mathematician at school?'\nThe rhetorical question mainly works to:", "options": ["Emphasise how pointless his education now seems", "Praise Leer's achievements at school before he dies", "Suggest that Leer had never been a good student", "Blame Leer himself for the injury that kills him"], "answer": 0, "explanation": "反问句把“数学好”与“正在死去”并置，答案显然是“毫无用处”，从而放大战争的荒诞与生命的浪费，这是 pathos 的典型写法。", "source": "Term 2 · AQWF essay extract — Leer's death passage (Glover 10ENGY)", "weak": false}, {"id": "engother-006", "topic": "战争单元 · 传统战争观", "difficulty": "medium", "type": "mcq", "stem": "An essay question asks: 'How does Remarque refute traditional notions of war?' What does 'traditional notions of war' refer to?", "options": ["Ideas about the causes of the Treaty of Versailles", "Ideas of honour, glory, duty and patriotic heroism", "Ideas about how novels should be structured", "Ideas about trench construction and military logistics"], "answer": 1, "explanation": "traditional notions of war 指社会对战争的浪漫化想象——荣誉、光荣、责任、英雄主义；Remarque 用血肉、恐惧与无意义的死亡反驳的正是这一整套叙事。", "source": "Term 1 · AQWF additional practice questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-007", "topic": "战争单元 · 去浪漫化手法", "difficulty": "medium", "type": "short", "stem": "Explain how Remarque challenges traditional, romanticised ideas about war in All Quiet on the Western Front. Refer to at least one technique. (4 marks)", "options": [], "answer": "1 mark — he replaces heroic language with clinical bodily detail (rats, dysentery, amputations, the sounds of dying men).\n1 mark — first-person narration through Paul makes the damage personal rather than statistical.\n1 mark — the ironic gap between the schoolmaster's patriotic speeches and the soldiers' reality undermines the rhetoric of honour and duty.\n1 mark — the effect is to make the reader experience war as physical and psychological damage rather than as glory.", "explanation": "四点：身体/疾病/尸体的具体细节 → 第一人称让损失个人化 → 学校爱国演讲与现实的反讽 → 读者体验落在“伤害”而非“光荣”。答题时至少要点名一种手法（意象、反讽、叙述视角）。", "source": "Term 1 · The Pathos of War — 'Romanticism of War' lesson and AQWF novel study (LEEDER 10ENGB)", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that Remarque replaces heroic language with clinical bodily detail such as rats, dysentery, amputations and the sounds of dying men", "m": 1}, {"id": "c2", "t": "Explains that first-person narration through Paul makes the damage personal rather than statistical", "m": 1}, {"id": "c3", "t": "Explains the ironic gap between the schoolmaster's patriotic speeches and the soldiers' reality, which undermines the rhetoric of honour and duty", "m": 1}, {"id": "c4", "t": "Explains the effect on the reader: war is experienced as physical and psychological damage rather than glory", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that Remarque replaces heroic language with clinical bodily detail such as rats, dysentery, amputations and the sounds of dying men", "m": 1}, {"id": "c2", "t": "Explains that first-person narration through Paul makes the damage personal rather than statistical", "m": 1}, {"id": "c3", "t": "Explains the ironic gap between the schoolmaster's patriotic speeches and the soldiers' reality, which undermines the rhetoric of honour and duty", "m": 1}, {"id": "c4", "t": "Explains the effect on the reader: war is experienced as physical and psychological damage rather than glory", "m": 1}], "weak": false}, {"id": "engother-008", "topic": "诗歌单元 · 弗罗斯特作品", "difficulty": "easy", "type": "mcq", "stem": "Which Robert Frost poem studied in Term 2 is built around a speaker choosing between two paths in a wood?", "options": ["'Mending Wall'", "'Birches'", "'The Road Not Taken'", "'Stopping by Woods on a Snowy Evening'"], "answer": 2, "explanation": "The Road Not Taken 的核心情境就是林中岔路与选择；Mending Wall 讲邻居修墙，Birches 讲童年荡树，Stopping by Woods 讲雪夜驻足。", "source": "Term 2 · Robert Frost Poetry — The Road Not Taken, poem and questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-009", "topic": "诗歌单元 · Mending Wall 主题", "difficulty": "medium", "type": "mcq", "stem": "Which Frost poem studied in Term 2 is built around two neighbours repairing a stone wall between their properties?", "options": ["'Birches'", "'The Road Not Taken'", "'Stopping by Woods on a Snowy Evening'", "'Mending Wall'"], "answer": 3, "explanation": "Mending Wall 的核心情境就是每年春天两家人一同修补石墙，并借墙讨论边界、传统与「Good fences make good neighbours」这句老话。", "source": "Term 2 · Robert Frost Poetry — Mending Wall, poem and questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-010", "topic": "诗歌单元 · 责任与诱惑", "difficulty": "easy", "type": "mcq", "stem": "The exam study materials say an imaginative response may draw on 'the central idea of obligation and responsibility' from 'Stopping by Woods on a Snowy Evening'. Which situation best matches that idea?", "options": ["A traveller lingers in beautiful woods but remembers his promises", "A speaker boasting that he took the difficult path", "A child swinging on birch trees and dreaming of escape", "Two neighbours arguing about who owns the strip of land between them"], "answer": 0, "explanation": "材料原文点明这首诗的核心是 obligation and responsibility：雪夜景色迷人，但旅人想到“还有诺言要守”，必须继续赶路。Birches 对应童年与逃离，Mending Wall 对应邻里边界，The Road Not Taken 对应选择。", "source": "Year 10 English 2026 — YEAR 10 EXAM STUDY MATERIALS (Frost imaginative prompts)", "weak": false}, {"id": "engother-011", "topic": "诗歌单元 · 创造性仿写", "difficulty": "hard", "type": "short", "stem": "A question asks you to write an imaginative piece 'dealing with solitude and reflection', using a character from the world of Frost's poetry. Explain how you would develop setting, character and structure without simply retelling the poem. (5 marks)", "options": [], "answer": "1 mark — borrow the situation, not the plot: keep the isolated setting (a snow-filled wood, a stone wall at dusk) but invent a new persona.\n1 mark — give the character a specific voice and a memory that explains their solitude.\n1 mark — use one recurring image and controlled sentence length to create the reflective tone.\n1 mark — organise the piece with a flashback that turns the reflection into a decision or a changed understanding.\n1 mark — end on that change rather than on a summary of Frost's lines, so the piece is a new story rather than a retelling.", "explanation": "材料要求“用弗罗斯特诗歌的语言特征、惯例与主题进行创作”，不是复述。五点：借情境不借情节 → 给人物的声音与记忆 → 单一意象＋句式控节奏 → 用 flashback 形成转折 → 收在“转变”而不是概述原诗。", "source": "Term 2 · Frost imaginative task — 'construct an imaginative piece that deals with solitude and reflection' (Glover 10ENGY)", "marks": 5, "criteria": [{"id": "c1", "t": "Borrows the situation rather than the plot, keeping an isolated Frost setting such as a snow-filled wood or a stone wall at dusk but inventing a new persona", "m": 1}, {"id": "c2", "t": "Gives the character a specific voice and a memory that explains their solitude", "m": 1}, {"id": "c3", "t": "Uses one recurring image and controlled sentence length to create the reflective tone", "m": 1}, {"id": "c4", "t": "Organises the piece with a flashback that turns the reflection into a decision or a changed understanding", "m": 1}, {"id": "c5", "t": "Ends on that change rather than a summary of Frost's lines, so the piece is a new story rather than a retelling", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Borrows the situation rather than the plot, keeping an isolated Frost setting such as a snow-filled wood or a stone wall at dusk but inventing a new persona", "m": 1}, {"id": "c2", "t": "Gives the character a specific voice and a memory that explains their solitude", "m": 1}, {"id": "c3", "t": "Uses one recurring image and controlled sentence length to create the reflective tone", "m": 1}, {"id": "c4", "t": "Organises the piece with a flashback that turns the reflection into a decision or a changed understanding", "m": 1}, {"id": "c5", "t": "Ends on that change rather than a summary of Frost's lines, so the piece is a new story rather than a retelling", "m": 1}], "weak": false}, {"id": "engother-012", "topic": "阅读卷 · 文本类型", "difficulty": "easy", "type": "mcq", "stem": "In the Term 3 Reading Section (15 marks), which set of texts are you asked to analyse?", "options": ["Australian newspaper editorials and film reviews", "Historical images, protest poetry and speech extracts", "Shakespearean soliloquies and Romantic poetry", "Novel chapters and wartime diary entries"], "answer": 1, "explanation": "材料明确列出三类文本：历史图像、抗议与民权诗歌、民权人物演讲节选。三类文本的分析术语不同，备考时各要练一篇。", "source": "Term 3 · Reading Section (15 marks) — task outline (10ENGA)", "weak": false}, {"id": "engother-013", "topic": "阅读卷 · 诗歌态度", "difficulty": "medium", "type": "mcq", "stem": "'Still I Rise' is studied in the Term 3 Reading Section. Which attitude does the speaker most clearly represent?", "options": ["Indifference towards history, politics and the struggle for change", "Nostalgia for a lost childhood home and the songs of the past", "Defiant pride and a refusal to be diminished by oppression", "Resigned acceptance of injustice and a longing for silence"], "answer": 2, "explanation": "这首诗以反复的 'I rise' 表现反抗与尊严，属于材料所说的 representations of injustice, discrimination and resistance 中的 resistance（抵抗），而非认命或怀旧。", "source": "Term 3 · 'Still I Rise' poem and questions (10ENGL TERM THREE HOMEPAGE)", "weak": false}, {"id": "engother-014", "topic": "阅读卷 · 抗议诗手法", "difficulty": "hard", "type": "short", "stem": "Explain how repetition and direct address help a protest poem construct resistance. (4 marks)", "options": [], "answer": "1 mark — repetition of an assertive phrase works like a refrain, turning a private feeling into a public chant.\n1 mark — the repeated assertion makes the speaker's defiance sound unstoppable, which is itself an argument against oppression.\n1 mark — direct address ('you') pulls the reader or the oppressor into the poem, so the audience cannot remain neutral.\n1 mark — combined with a rising tone, the poem turns testimony into a demand for recognition.", "explanation": "四点：反复＝副歌化、把私人情绪变成公共口号 → 语气显得“压不住” → 直接称呼把读者/压迫者拉进场 → 见证转成要求。分析要写“对读者产生什么效果”，不能只数修辞格。", "source": "Term 3 · Poem Techniques — 'Still I Rise' / 'Caged Bird' / 'They Took Me from My Mother' reading practice", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that repetition of an assertive phrase works like a refrain, turning a private feeling into a public chant", "m": 1}, {"id": "c2", "t": "Explains that the repeated assertion makes the speaker's defiance sound unstoppable, which is itself an argument against oppression", "m": 1}, {"id": "c3", "t": "Explains that direct address pulls the reader or the oppressor into the poem, so the audience cannot remain neutral", "m": 1}, {"id": "c4", "t": "Explains that, combined with a rising tone, the poem turns testimony into a demand for recognition", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that repetition of an assertive phrase works like a refrain, turning a private feeling into a public chant", "m": 1}, {"id": "c2", "t": "Explains that the repeated assertion makes the speaker's defiance sound unstoppable, which is itself an argument against oppression", "m": 1}, {"id": "c3", "t": "Explains that direct address pulls the reader or the oppressor into the poem, so the audience cannot remain neutral", "m": 1}, {"id": "c4", "t": "Explains that, combined with a rising tone, the poem turns testimony into a demand for recognition", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-engother";
 const MULTI = DATA.slug === "all";
 const FKEY = "dsh-filter";
@@ -1698,7 +1750,13 @@ function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
 const AI_ENGINE = {};
-function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function localAI(){
+  try{
+    var m = location.search.match(/[?&]localai=([^&]*)/);
+    if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+  }catch(e){}
+  try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; }
+}
 function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
@@ -1933,10 +1991,16 @@ function render() {
     }).join("");
     bodyHtml = `<div class="opts">${opts}</div>`;
   } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    /* ── 简答题：评分标准（criteria）驱动，提交后自动 AI 判分 ── */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : (q.points && q.points.length ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
     const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const aiRec = (rec && rec.ai && Array.isArray(rec.ai.results)) ? rec.ai : null;
+    const manualEarned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const earned = (rec && rec.override) ? manualEarned : (aiRec ? aiRec.score : manualEarned);
     const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
     const hasNum = /-?\d/.test(bareAns);
     let slots = (rec && Array.isArray(rec.slots)) ? rec.slots.slice() : [];
@@ -1944,45 +2008,97 @@ function render() {
     while (slots.length < pts.length) slots.push("");
     const many = pts.length >= 2;
     const hinted = HINTED[q.id];
-    const hintFor = (i) => hinted ? pts[i].t.split(/\s+/).slice(0,4).join(" ") + " …" : "写这一点的内容（英文）";
+    const hintFor = (i) => hinted
+      ? String(pts[i].t || "").split(/\s+/).slice(0,4).join(" ") + " …"
+      : "写这一点的内容（英文）";
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const taHtml = many
       ? `<div class="slots" id="slots">${pts.map((p,i)=>`
           <div class="slot"><span class="sn">${i+1}</span>
             <textarea data-slot="${i}" rows="2" placeholder="${esc(hintFor(i))}">${esc(slots[i]||"")}</textarea>
           </div>`).join("")}</div>`
       : `<textarea id="ta" data-slot="0" rows="4" placeholder="${esc(hintFor(0))}">${esc(slots[0]||"")}</textarea>`;
+
+    const submitLabel = aiRec ? "重新判分" : (canAuto ? "提交并自动判分" : "对照得分点");
     bodyHtml = taHtml + `
       <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        <button class="btn" id="submitq">${submitLabel}</button>
+        <button class="btn ghost" id="manualtoggle">手动校正</button>
         <button class="btn ghost" id="hint">${hinted ? "藏起提示" : "给点提示"}</button>
         ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        <span class="muted" id="slotsum" style="align-self:center">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      const autoRes = pts.map((p,i)=>{
-        const mine = (rec.slots && rec.slots[i]) ? rec.slots[i] : (rec.text || "");
-        return autoScore(p.t, mine);
-      });
-      const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点
-          <span class="autotag">系统预判 ${autoHit} / ${pts.length} 点</span>
-          <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
-          ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
-          ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
-          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
+        <span class="muted" id="slotsum">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
+        ${aiRec
+          ? `<span class="pill scorepill${aiRec.needsReview ? " low" : ""}">已得 <b>${aiRec.score}</b> / ${totalMarks} 分</span>`
+          : `<span class="muted">满分 ${totalMarks} 分 · ${pts.length} 条评分标准</span>`}
+      </div>
+      ${!enginesAvail() ? `<div class="ai-note">未配置判分服务器，先用自评；到「引擎」里填地址即可自动判分。</div>` : ""}`;
+
+    /* ── AI 判分结果面板 ── */
+    if (aiRec) {
+      const byId = {};
+      aiRec.results.forEach(function(r){ byId[r.id] = r; });
+      const rows = pts.map(function(p,i){
+        const r = byId[critId(p,i)] || {awarded:0, max:(p.m||1), reason:"未评估"};
+        const mx = Math.max(1, r.max || p.m || 1);
+        const got = Math.max(0, Math.min(mx, r.awarded || 0));
+        const cls = got >= mx ? "full" : (got > 0 ? "part" : "none");
+        const mk = got >= mx ? "✓" : (got > 0 ? "◐" : "✗");
+        return `<li class="cres ${cls}"><span class="cmk">${mk}</span>` +
+          `<span class="cbody"><span class="ct">${esc(p.t)}</span>` +
+          (r.reason ? `<span class="cr">${esc(r.reason)}</span>` : "") + `</span>` +
+          `<span class="csc">${got}/${mx}</span></li>`;
+      }).join("");
+      const conf = typeof aiRec.confidence === "number" ? aiRec.confidence : 0.5;
+      const confPct = Math.round(conf * 100);
+      const when = aiRec.at ? new Date(aiRec.at) : null;
+      const whenTxt = when ? (("0"+when.getHours()).slice(-2)+":"+("0"+when.getMinutes()).slice(-2)) : "";
+      bodyHtml += `<div class="panel aires">
+        <div class="ai-head">
+          <span class="ai-score"><b>${aiRec.score}</b><em>/${totalMarks}</em></span>
+          <span class="ai-conf ${conf < 0.6 ? "low" : (conf < 0.85 ? "mid" : "high")}">置信度 ${confPct}%</span>
+          ${aiRec.needsReview ? '<span class="ai-flag">需要复核</span>' : ""}
+          <span class="grow"></span>
+          <span class="ai-meta">${esc(aiRec.engine === "local" ? "本地引擎" : "AI 判分")}${whenTxt ? " · " + whenTxt : ""}</span>
         </div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
-            return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>
+        ${aiRec.feedback ? `<div class="ai-fb">${esc(aiRec.feedback)}</div>` : ""}
+        <ul class="critlist">${rows}</ul>
+        <div class="ai-foot">分数按评分标准逐条给出，由服务器校验求和${aiRec.model ? " · " + esc(String(aiRec.model).replace(/^@cf\//,"")) : ""}</div>
       </div>`;
     }
+
+    /* ── 手动校正（可选覆盖，默认收起）── */
+    const autoRes = pts.map(function(p,i){
+      const mine = (rec && rec.slots && rec.slots[i]) ? rec.slots[i] : ((rec && rec.text) || "");
+      return autoScore(p.t, mine);
+    });
+    const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
+    bodyHtml += `<details class="panel manual"${aiRec ? "" : " open"} id="manualbox">
+      <summary class="panel-h">手动校正 · 自己勾选写到的得分点
+        <span class="autotag">关键词预判 ${autoHit} / ${pts.length}（仅供参考，不作分数）</span>
+      </summary>
+      <div class="pts">${pts.map(function(p,i){
+        const ai = aiRec ? aiRec.results.filter(function(r){ return r.id === critId(p,i); })[0] : null;
+        const hint = ai
+          ? '<span class="auto ' + (ai.awarded > 0 ? "ok" : "no") + '">AI: ' + ai.awarded + "/" + (ai.max||p.m||1)
+            + (ai.reason ? " — " + esc(ai.reason) : "") + "</span>"
+          : '<span class="auto ' + (autoRes[i].hit ? "ok" : "no") + '">'
+            + (autoRes[i].hit ? "关键词：大概率写到" : "关键词：可能没写到")
+            + "（" + autoRes[i].matched + "/" + autoRes[i].total + " 个关键词"
+            + (autoRes[i].missing.length ? "，缺 " + esc(autoRes[i].missing.join(", ")) : "") + "）</span>";
+        return '<label class="pt ' + (checked.indexOf(i)>=0 ? "on" : "") + '">'
+          + '<input type="checkbox" data-i="' + i + '"' + (checked.indexOf(i)>=0 ? " checked" : "") + '>'
+          + "<span>" + esc(p.t) + hint + "</span><em>" + (p.m||1) + " 分</em></label>";
+      }).join("")}</div>
+      <div class="actions">
+        <button class="btn ghost" id="allpt">全部勾上</button>
+        <button class="btn ghost" id="nonept">全部取消</button>
+        <button class="btn ghost" id="applyauto">按关键词判断勾选</button>
+        <button class="btn ghost" id="aiconf" title="判分服务器地址">引擎</button>
+      </div>
+    </details>`;
+    bodyHtml += `<div class="mine"><b>你写的：</b><div>${esc(((rec && rec.text) || "").trim() || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>`;
+
   }
 
   const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
@@ -2018,110 +2134,247 @@ function render() {
       save(); render();
     }));
   } else {
+    /* 第二段 else 与上面的渲染块作用域不同，这里重新绑定共享变量 */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : ((q.points && q.points.length) ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
+    const many = pts.length >= 2;
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
     const slotEls = () => Array.from(app.querySelectorAll("[data-slot]"));
     const readSlots = () => slotEls().map(el => el.value || "");
     const joinSlots = (arr) => arr.map(s => (s||"").trim()).filter(Boolean).join(String.fromCharCode(10,10));
+    const put = (patch) => {
+      const c = cur();
+      const arr = readSlots();
+      state.answers[q.id] = Object.assign({chosen:-1}, c, {slots:arr, text:joinSlots(arr)}, patch);
+      save();
+    };
     const updateSum = () => {
       const el = document.getElementById("slotsum");
       if (!el) return;
       const filled = readSlots().filter(s => s.trim()).length;
       el.textContent = filled + " / " + pts.length + " 点已写";
-      el.style.color = filled >= pts.length ? "var(--ok)" : "var(--dim)";
+      el.style.color = filled >= pts.length ? "var(--success)" : "var(--muted)";
     };
     let _saveT = null;
     if (many) {
       slotEls().forEach(el => el.addEventListener("input", () => {
-        const c = cur();
-        const arr = readSlots();
-        state.answers[q.id] = Object.assign({}, c, {chosen:-1, slots:arr, text:joinSlots(arr)});
         updateSum();
-        clearTimeout(_saveT); _saveT = setTimeout(save, 400);
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
       }));
       updateSum();
+    } else {
+      const only = slotEls()[0];
+      if (only) only.addEventListener("input", () => {
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
+      });
     }
-    document.getElementById("reveal").onclick = () => {
+
+    /* 手动校正（可选覆盖） */
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
       const c = cur();
-      const arr = readSlots();
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    const hb = document.getElementById("hint");
-    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
-    if (many) app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
+      const i = +cb.dataset.i;
       const set = new Set(c.checked || []);
       if (cb.checked) set.add(i); else set.delete(i);
       const arr = c.slots || [c.text || ""];
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,j)=>set.has(j));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      const arr2 = set.size ? Array.from(set).sort((a,b)=>a-b) : [];
+      const manScore = pts.reduce((a,p,j)=>a + (arr2.indexOf(j)>=0 ? (p.m||1) : 0), 0);
+      const full = manScore >= totalMarks;
+      state.answers[q.id] = Object.assign({}, c, {
+        chosen:-1, slots:arr, text:joinSlots(arr), checked:arr2,
+        override:true, manScore:manScore,
+        ok: full ? "ok" : (manScore > 0 ? "part" : "bad")
+      });
+      if (!c.gradedAt) {
+        reviewMark(q.subj || DATA.slug, q.id, full);
+        logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      }
       save(); render();
     }));
+
+    const hb = document.getElementById("hint");
+    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
+
     const nc = document.getElementById("numcheck");
     if (nc) nc.onclick = () => {
       const typed = joinSlots(readSlots());
       const u = numsOf(typed), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      if (!res) return;
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--muted)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--muted)"; return; }
+      const lastN = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-lastN) <= Math.max(Math.abs(v)*0.01, 0.005));
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+      res.style.color = hit ? "var(--success)" : "var(--error)";
+    };
+
+    const mt = document.getElementById("manualtoggle");
+    if (mt) mt.onclick = () => {
+      const mb = document.getElementById("manualbox");
+      if (!mb) return;
+      mb.open = !mb.open;
+      if (mb.open) mb.scrollIntoView({behavior:"smooth", block:"center"});
     };
     const ac = document.getElementById("aiconf");
     if (ac) ac.onclick = () => {
-      const cur = localAI();
-      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      const curLoc = localAI();
+      const v = prompt("判分服务器地址（云端留空就用默认；本机/局域网可填 http://127.0.0.1:8787）", apibase());
       if (v === null) return;
-      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+      try { localStorage.setItem("dsh-api", v.trim().replace(/\/$/, "")); } catch(e) {}
+      toast(v.trim() ? "判分服务器已保存" : "已清空，将使用默认服务器", true);
+      render();
     };
-    const ai = document.getElementById("aigrade");
-    if (ai) ai.onclick = () => {
-      const arr = readSlots(), answer = joinSlots(arr);
-      if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
-      ai.disabled = true; ai.textContent = "AI 判分中…";
-      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+    const aa = document.getElementById("applyauto");
+    if (aa) aa.onclick = () => {
+      const arr = readSlots();
+      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || joinSlots(arr)).hit ? i : -1).filter(i=>i>=0);
+      put({checked:hits, override:true,
+           manScore: pts.reduce((a,p,j)=>a + (hits.indexOf(j)>=0 ? (p.m||1) : 0), 0), ok:"ok"});
+      render();
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { put({checked:pts.map((_,i)=>i), override:true, manScore:totalMarks, ok:"ok"}); render(); };
+    if (none) none.onclick = () => { put({checked:[], override:true, manScore:0, ok:"bad"}); render(); };
+
+    /* ── 提交 / 重新判分 ── */
+    const GRADING = window.__GRADING || (window.__GRADING = {});
+    const submitBtn = document.getElementById("submitq");
+    if (submitBtn) submitBtn.onclick = async function(){
+      const answer = joinSlots(readSlots());
+      const c0 = cur();
+      if (!answer.trim()) { toast("先写点答案再提交", false); return; }
+      if (!canAuto) {
+        put({override:true, ok:"ok"});
+        const mb = document.getElementById("manualbox");
+        if (mb) { mb.open = true; mb.scrollIntoView({behavior:"smooth", block:"center"}); }
+        return;
+      }
+      if (GRADING[q.id]) return;
+      if (c0.ai && !c0.override && c0.text === answer) {
+        toast("这一版已经判过了，改动后才会重新判分", false);
+        return;
+      }
+      GRADING[q.id] = true;
+      submitBtn.disabled = true;
+      const oldTxt = submitBtn.textContent;
+      submitBtn.textContent = "判分中…";
+      const payload = JSON.stringify({
+        stem: q.stem,
+        max_marks: totalMarks,
+        reference: q.answer || "",
+        criteria: pts.map(function(p,i){ return {id:critId(p,i), t:p.t, m:(p.m||1)}; }),
+        answer: answer,
+        subject: DATA.slug || "",
+        topic: q.topic || ""
+      });
       const engines = [];
       if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
       const loc = localAI();
       if (loc) engines.push({n:"local", u: loc + "/grade"});
-      (async function(){
-        let lastErr = "no engine";
-        for (const en of engines) {
-          try {
-            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
-            const d = await r.json();
-            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
-            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+      let lastErr = "no engine";
+      for (const en of engines) {
+        try {
+          const r = await fetch(en.u, {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: payload
+          });
+          const d = await r.json();
+          if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+          const res = Array.isArray(d.results) ? d.results : [];
+          if (!res.length) throw new Error("no criterion results");
+          const sum = res.reduce(function(a,x){ return a + (Number(x.awarded_marks) || 0); }, 0);
+          const rawScore = (typeof d.score === "number") ? d.score : sum;
+          const score = Math.max(0, Math.min(totalMarks, Math.round(rawScore)));
+          const conf = (typeof d.confidence === "number")
+            ? Math.max(0, Math.min(1, d.confidence)) : 0.5;
+          const isLegacy = res.some(function(x){ return x && x.awarded_marks === undefined && x.i !== undefined; });
+          if (isLegacy) {
+            const normL = pts.map(function(p,i){
+              const r = res.filter(function(x){ return Number(x.i) === i; })[0] || {};
+              const mx = p.m || 1;
+              return {id:critId(p,i), awarded: r.covered ? mx : 0, max:mx,
+                      covered:!!r.covered, reason:String(r.reason || "")};
+            });
+            const scL = normL.reduce(function(a,x){ return a + x.awarded; }, 0);
+            const aiL = {score:scL, max:totalMarks, results:normL,
+              feedback:"（旧版判分接口，只能整点给分，建议更新服务器）",
+              confidence:0.7, needsReview:false, model:String(d.model||"v1"),
+              engine:en.n, at:Date.now()};
+            const wasL = !!c0.gradedAt;
+            state.answers[q.id] = Object.assign({}, c0, {
+              chosen:-1, slots:readSlots(), text:answer, ai:aiL,
+              gradedAt:aiL.at, gradeModel:aiL.model, gradeEngine:en.n,
+              checked:normL.map(function(x,i){ return x.awarded>0?i:-1; }).filter(function(i){ return i>=0; }),
+              override:false,
+              ok: scL >= totalMarks ? "ok" : (scL > 0 ? "part" : "bad")
+            });
+            save();
+            if (!wasL) {
+              reviewMark(q.subj || DATA.slug, q.id, scL >= totalMarks);
+              logAnswer(q.subj || DATA.slug, q.id, scL >= totalMarks, q.difficulty, "short");
+            }
+            GRADING[q.id] = false;
+            render();
             return;
-          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+          }
+          const norm = res.map(function(x,i){
+            const mx = Math.max(1, Math.round(Number(x.maximum_marks) || 1));
+            return {
+              id: String(x.criterion_id || ("c" + (i+1))),
+              awarded: Math.max(0, Math.min(mx, Math.round(Number(x.awarded_marks) || 0))),
+              max: mx,
+              covered: !!x.covered,
+              reason: String(x.reason || "").slice(0, 240)
+            };
+          });
+          const ai = {
+            score: score, max: totalMarks, results: norm,
+            feedback: String(d.feedback || "").slice(0, 500),
+            confidence: conf,
+            needsReview: conf < 0.6,
+            model: String(d.model || ""),
+            engine: en.n,
+            at: Date.now()
+          };
+          const wasGraded = !!c0.gradedAt;
+          const gotIdx = pts.map(function(p,i){ return i; }).filter(function(i){
+            const id = critId(pts[i], i);
+            const hit = norm.filter(function(x){ return x.id === id; })[0];
+            return hit && hit.awarded > 0;
+          });
+          state.answers[q.id] = Object.assign({}, c0, {
+            chosen:-1, slots:readSlots(), text:answer,
+            ai:ai, gradedAt:ai.at, gradeModel:ai.model, gradeEngine:en.n,
+            checked:gotIdx, override:false,
+            ok: score >= totalMarks ? "ok" : (score > 0 ? "part" : "bad")
+          });
+          save();
+          if (!wasGraded) {
+            reviewMark(q.subj || DATA.slug, q.id, score >= totalMarks);
+            logAnswer(q.subj || DATA.slug, q.id, score >= totalMarks, q.difficulty, "short");
+            if (score >= totalMarks && window.awardForQ) awardForQ(q.id, q.difficulty, "short", true);
+          }
+          GRADING[q.id] = false;
+          render();
+          return;
+        } catch (e) {
+          lastErr = en.n + ": " + ((e && e.message) || e);
         }
-        ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
-      })();
+      }
+      GRADING[q.id] = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldTxt;
+      toast("判分服务不可用（" + lastErr + "），已切到手动校正", false);
+      const mb2 = document.getElementById("manualbox");
+      if (mb2) mb2.open = true;
     };
-    const ap2 = document.getElementById("applyai");
-    if (ap2) ap2.onclick = () => {
-      const c = cur(); const arr = c.slots || [c.text || ""];
-      const res = AI_RES[q.id] || [];
-      const hits = res.map(r => r.covered ? r.i : -1).filter(i => i >= 0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const aa = document.getElementById("applyauto");
-    if (aa) aa.onclick = () => {
-      const c = cur();
-      const arr = c.slots || [c.text || ""];
-      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || "").hit ? i : -1).filter(i=>i>=0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:[],ok:"ok"}; save(); render(); };
   }
   document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
   const nx = document.getElementById("next");
@@ -2162,10 +2415,16 @@ function showResult() {
   let earnedM = 0, totalM = 0, partM = 0;
   const weak = [];
   shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const pts = (x.criteria && x.criteria.length) ? x.criteria
+              : ((x.points && x.points.length) ? x.points : [{m:1}]);
+    const tot = (typeof x.marks === "number" && x.marks > 0)
+      ? x.marks : pts.reduce((a,p)=>a+(p.m||1),0);
     const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const manGot = (r && r.checked)
+      ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const got = (r && r.override)
+      ? (typeof r.manScore === "number" ? r.manScore : manGot)
+      : ((r && r.ai && typeof r.ai.score === "number") ? r.ai.score : manGot);
     totalM += tot;
     if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
   });

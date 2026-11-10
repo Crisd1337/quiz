@@ -620,6 +620,52 @@ footer{padding:22px 14px 30px;line-height:1.8}
   footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
 }
 
+/* ── AI 判分结果面板 ───────────────────────────────────── */
+.aires{border-color:color-mix(in srgb,var(--accent) 26%,var(--border))}
+.ai-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:10px}
+.ai-score{font-family:var(--font-mono);font-size:15px;font-weight:500;letter-spacing:-.02em;
+  line-height:1;color:var(--foreground)}
+.ai-score b{font-size:28px;font-weight:500}
+.ai-score em{font-style:normal;font-size:13px;color:var(--muted);margin-left:1px}
+.ai-conf{font-size:10.5px;border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:1px 7px;color:var(--muted);white-space:nowrap}
+.ai-conf.high{color:var(--success);border-color:color-mix(in srgb,var(--success) 45%,var(--border))}
+.ai-conf.mid{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--border))}
+.ai-conf.low{color:var(--error);border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+.ai-flag{font-size:10.5px;color:var(--error);white-space:nowrap;
+  border:1px solid color-mix(in srgb,var(--error) 45%,var(--border));
+  border-radius:var(--r-sm);padding:1px 7px}
+.ai-meta{font-size:10.5px;color:var(--muted)}
+.ai-fb{font-size:12.5px;line-height:1.65;color:var(--foreground);background:var(--surface-secondary);
+  border-radius:var(--r-sm);padding:9px 11px;margin-bottom:10px}
+.critlist{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.cres{display:grid;grid-template-columns:15px minmax(0,1fr) auto;gap:8px;
+  padding:7px 0;border-top:1px solid var(--border);font-size:12.5px;align-items:start}
+.cres:first-child{border-top:0}
+.cmk{font-size:12px;line-height:1.55;text-align:center;color:var(--muted)}
+.cres.full .cmk{color:var(--success)}
+.cres.part .cmk{color:var(--warning)}
+.cres.none .cmk{color:var(--error)}
+.cbody{min-width:0}
+.ct{display:block;line-height:1.55}
+.cres.none .ct{color:var(--muted)}
+.cr{display:block;color:var(--muted);font-size:11px;margin-top:2px;line-height:1.5}
+.csc{font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.cres.full .csc{color:var(--success)}
+.ai-foot{margin-top:9px;font-size:10.5px;color:var(--muted)}
+.ai-note{margin-top:10px;font-size:11.5px;color:var(--muted);
+  border-left:2px solid var(--border-strong);padding-left:9px}
+.scorepill{border-color:color-mix(in srgb,var(--accent) 38%,var(--border));color:var(--foreground)}
+.scorepill.low{border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+details.manual{padding:0}
+details.manual>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  padding:12px 14px;font-size:12px;color:var(--muted);user-select:none}
+details.manual>summary::-webkit-details-marker{display:none}
+details.manual>summary::before{content:"+";font-family:var(--font-mono);font-size:11px;width:11px}
+details.manual[open]>summary::before{content:"−"}
+details.manual>summary:hover{color:var(--foreground)}
+details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
+
 </style>
 </head>
 <body>
@@ -1440,7 +1486,13 @@ footer{padding:22px 14px 30px;line-height:1.8}
   /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
   var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
   var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
-  function apibase(){ try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function apibase(){
+    try{
+      var m = location.search.match(/[?&]api=([^&]*)/);
+      if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+    }catch(e){}
+    try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; }
+  }
   function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
   function loadBoard(){
     var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
@@ -1683,7 +1735,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
 })();
 </script>
 <script>
-const DATA = {"slug": "cw", "title": "心理与福祉", "examMin": 45, "questions": [{"id": "cw-001", "topic": "求助渠道 · 紧急情况", "difficulty": "easy", "type": "mcq", "stem": "You are walking home with a friend when they collapse and stop breathing. Which number should you call?", "options": ["000 (ambulance, police or fire)", "1800 011 511 (Mental Health Line)", "13 11 14 (Lifeline)", "1800 55 1800 (Kids Helpline)"], "answer": 0, "explanation": "000 是澳洲的紧急电话，救护车、警察、消防都是这个号。有人处于即时危险时必须打 000；其余三个都是心理支持与倾听热线，处理不了需要救护车的现场。", "source": "Urgent Help（Call 000 — ambulance, police or fire services）", "weak": false}, {"id": "cw-002", "topic": "求助渠道 · 24 小时热线", "difficulty": "easy", "type": "mcq", "stem": "It is 11 pm on a Sunday and you feel overwhelmed and want to talk to someone right now. Which service offers free, confidential crisis support at any hour?", "options": ["Your year advisor by email", "Lifeline on 13 11 14", "SSO Sara at school", "The counsellor's office"], "answer": 1, "explanation": "Lifeline 13 11 14 提供 24/7 的免费保密危机支持。校内的辅导员、SSO 和 Year Advisor 只在上班日的工作时间可用，所以半夜应先打热线。", "source": "Urgent Help（Lifeline — 13 11 14, available 24/7）· Support people at school", "weak": false}, {"id": "cw-003", "topic": "健康 · 睡眠时长", "difficulty": "easy", "type": "mcq", "stem": "According to the Sleep page, how much sleep is recommended for someone aged 14 to 17?", "options": ["11–13 hours", "6–7 hours", "8–10 hours", "7–8 hours"], "answer": 2, "explanation": "14–17 岁的建议量是 8–10 小时；7–11 小时属于「可能可以」的区间，少于 7 小时或超过 11 小时都属于不建议。睡眠不足会直接影响记忆、专注力和情绪。", "source": "Sleep（Recommended sleep 表格：14–17 years — 8–10 hours）", "weak": false}, {"id": "cw-004", "topic": "心理健康 · 抑郁的判据", "difficulty": "easy", "type": "mcq", "stem": "The Depression page describes clinical depression as significant low mood lasting longer than which period and starting to get in the way of everyday life?", "options": ["one year", "three months", "24 hours", "two weeks"], "answer": 3, "explanation": "关键判据是「持续超过两周」且已经影响日常生活。一天或几天的低落属于正常情绪波动，不等于抑郁症；而且材料强调只有医疗专业人员才能下诊断。", "source": "Depression（lasting longer than two weeks and start to get in the way of your everyday life）", "weak": false}, {"id": "cw-005", "topic": "情绪管理 · 箱式呼吸", "difficulty": "easy", "type": "mcq", "stem": "The Anxiety page describes box breathing as a technique for slowing your breathing and calming your body. What is the pattern?", "options": ["Inhale 4 – hold 4 – exhale 4 – hold 4", "Inhale 10 – hold 10 – exhale 10", "Inhale 4 – hold 7 – exhale 8", "Inhale 2 – exhale 2, repeated quickly"], "answer": 0, "explanation": "箱式呼吸四个阶段各 4 秒，像走完一个正方形的四条边，重复至少 4 次。4-7-8 是同一页上的另一种技术，专门用于睡前脑子停不下来的时候，两者不要混。", "source": "Anxiety（Breathing techniques：Box breathing 与 The 4-7-8 technique）", "weak": false}, {"id": "cw-006", "topic": "心理健康 · 自伤的正确理解", "difficulty": "easy", "type": "mcq", "stem": "Which statement about self-harm matches what the Self Harm page says?", "options": ["It is simply attention seeking behaviour and should be ignored by everyone.", "It is usually a way of coping with intense feelings, not attention seeking.", "It will stop on its own, so professional help is not needed for it.", "It always means the person wants to die and has already planned how to."], "answer": 1, "explanation": "材料明确写 self harm is not \"attention seeking\"：它通常是应对强烈情绪和压力的方式，也不等于有自杀念头。但它会带来长期的身心伤害，必须寻求专业帮助。", "source": "Self Harm（self harm is not \"attention seeking\"；reasons people self harm）", "weak": false}, {"id": "cw-007", "topic": "情绪管理 · 愤怒的冰山", "difficulty": "medium", "type": "mcq", "stem": "The Anger page uses the idea of an 'iceberg' to explain anger. What does the metaphor mean?", "options": ["Anger cannot really be managed, so it should be suppressed at all times.", "Anger is always a sign of an anxiety disorder or another mental illness.", "Anger is the visible emotion, often hiding embarrassment, sadness or jealousy.", "Anger only comes from external events, such as a traffic jam, never our own thoughts."], "answer": 2, "explanation": "冰山比喻的关键是：愤怒浮在水面之上，底下压着尴尬、挫败、难过、嫉妒等其他情绪。先找出真正被触发的情绪，才谈得上处理；材料也明确说压抑愤怒不是办法，学会管理才是。", "source": "Anger（Why am I angry? — anger iceberg；external and internal events）", "weak": false}, {"id": "cw-008", "topic": "心理健康 · 如何支持朋友", "difficulty": "medium", "type": "mcq", "stem": "A friend tells you they think they have depression. Which response would the Depression page say is NOT helpful?", "options": ["\"What can I do to help?\"", "\"What's been on your mind recently?\"", "\"How have you been going lately? You seem a little down.\"", "\"Just cheer up and snap out of it.\""], "answer": 3, "explanation": "材料专门点名：不能对朋友说 cheer up、snap out of it、get over it，这会否定对方的感受。开放式提问、主动倾听、问「我能帮什么」才是有效回应。", "source": "Depression（Take their feelings seriously — cannot just \"cheer up\"、\"snap out of it\"）", "weak": false}, {"id": "cw-009", "topic": "求助渠道 · 预约学校辅导员", "difficulty": "medium", "type": "mcq", "stem": "You want to see a school counsellor. Which of these is a way the Support People at School page says you can arrange an appointment?", "options": ["Fill in a referral form, a referral slip, or message a counsellor on Canvas.", "Ask a friend to book the appointment with the school counsellor on your behalf.", "Ask your doctor to write a referral letter before a counsellor will see you.", "Wait for a teacher to notice that you are struggling and refer you themselves."], "answer": 0, "explanation": "学校给了三条路：填 School Counsellor Referral Form、到 G201 对面辅导室填推荐条、或通过 Canvas 直接给辅导员发消息。见学校辅导员不需要医生转介（需要转介的是部分校外服务）。", "source": "Support people at school（To organise an appointment with a school counsellor）", "weak": false}, {"id": "cw-010", "topic": "压力与应对 · 番茄工作法", "difficulty": "medium", "type": "mcq", "stem": "The Study Tips and Tricks page recommends the Pomodoro technique for breaking up study sessions. What does it involve?", "options": ["Study only in the hour before an exam.", "Work in 25-minute blocks with short breaks in between.", "Study for three hours straight, then take a whole day off.", "Study for 5 minutes and rest for 55 minutes."], "answer": 1, "explanation": "番茄工作法是 25 分钟一段、中间短休。材料还补了一条硬规则：不管用什么节奏，都不要连续超过一小时不休息，因为拖太久效率反而下降。", "source": "Study tips and tricks（Take breaks；Pomodoro technique — 25-minute intervals）", "weak": false}, {"id": "cw-011", "topic": "尊重与安全 · 不健康关系信号", "difficulty": "medium", "type": "mcq", "stem": "Which of these is listed on the Relationships page as a sign of an unhealthy relationship?", "options": ["Encouraging each other's hobbies, friendships and time apart", "Talking calmly through disagreements and respecting each other's view", "Checking your partner's phone and demanding to know where they are", "Being open and honest about your thoughts and feelings in the relationship"], "answer": 2, "explanation": "查手机、盘问行踪属于 controlling behaviour 加上 lack of trust，是材料列出的典型红旗。健康关系的四个要素是尊重、沟通、信任和支持。", "source": "Relationships（Signs of an Unhealthy Relationship / What Makes a Healthy Relationship?）", "weak": false}, {"id": "cw-012", "topic": "尊重与安全 · 性别与身份术语", "difficulty": "medium", "type": "mcq", "stem": "On the Identity and Gender page, which term refers to a person's biological characteristics, such as chromosomes and reproductive organs?", "options": ["Cisgender", "Gender", "Sexuality", "Sex"], "answer": 3, "explanation": "Sex 是生理性别（染色体、生殖器官等）；Gender 是认同与表达（男性、女性、非二元、性别流动、无性别等）；Sexuality 是被谁吸引（性取向）。Cisgender 指性别认同与出生指定性别一致。", "source": "Identity and Gender（GENDER / SEX / SEXUALITY 对照表及 Key Terms）", "weak": false}, {"id": "cw-013", "topic": "心理健康 · 酒精与其他药物的信号", "difficulty": "hard", "type": "short", "stem": "A friend has stopped coming to footy training, is sleeping badly, has frequent mood swings and drinks on weekends 'to relax'. Name three signs of substance misuse listed on the Alcohol and Other Drugs page and describe one thing you could do to help.", "options": [], "answer": "Signs include becoming disengaged from activities he used to enjoy, significant behaviour or mood changes, relying on alcohol to relax, and changes in eating and sleeping habits. I would raise it with him calmly and suggest he talks to SSO Sara, who can refer him to a youth drug and alcohol service.", "explanation": "材料把「脱离原本喜欢的活动」「情绪突变」「靠酒放松」「作息饮食紊乱」「耐受性上升」都列为 substance misuse 的信号；校内的第一站是 SSO Sara，可转介 DAYSS、SDECC 这类青少年戒治服务。", "source": "Alcohol and Other Drugs（Signs of substance misuse or addiction；Where to go for support）", "points": [{"t": "Signs include becoming disengaged from activities he used to enjoy, significant behaviour or mood changes, relying on alcohol to relax, and changes in eating and sleeping habits", "m": 1}, {"t": "I would raise it with him calmly and suggest he talks to SSO Sara, who can refer him to a youth drug and alcohol service", "m": 1}], "weak": false}, {"id": "cw-014", "topic": "心理健康 · 保密与安全优先", "difficulty": "hard", "type": "short", "stem": "A friend tells you in confidence that they have been hurting themselves and asks you to keep it secret. Describe what the Wellbeing Hub material advises you to do.", "options": [], "answer": "Encourage them to speak to a parent, a school counsellor or SSO Sara, and offer to go with them. If they cannot seek help themselves, ask their permission to tell an adult you trust — but if they refuse and you are still seriously concerned, tell a trusted adult anyway, and call 000 if they are injured or in immediate danger.", "explanation": "安全优先于保密承诺。材料明确写：若对方不愿求助而你仍然非常担心，就应该去告诉值得信任的成年人；一旦已经受伤或有即时危险，立刻打 000。", "source": "Depression（Help them find support）· Self Harm（Who can help?）· Urgent Help（call 000）", "points": [{"t": "Encourage them to speak to a parent, a school counsellor or SSO Sara, and offer to go with them", "m": 1}, {"t": "If they cannot seek help themselves, ask their permission to tell an adult you trust — but if they refuse and you are still seriously concerned, tell a trusted adult anyway, and call 000 if they are injured or in immediate danger", "m": 1}], "weak": false}, {"id": "cw-015", "topic": "压力与应对 · 备考减压策略", "difficulty": "hard", "type": "short", "stem": "Exams are two weeks away. Describe two strategies suggested in the Wellbeing Hub for managing stress, and explain why each one helps.", "options": [], "answer": "Box breathing (inhale 4, hold 4, exhale 4, hold 4, repeated at least four times) slows your breathing and calms your body's stress response. Planning a study timetable and studying a little every day spreads the workload and avoids last-minute cramming, which is itself a major source of stress.", "explanation": "呼吸法处理「当下」的身体反应，时间管理处理「来源」，两者配合才有效。材料还提醒：连续学习超过一小时不休息，效率会下降，反而更焦虑。", "source": "Anxiety（Box breathing；progressive muscle relaxation）· Study tips and tricks（Plan your time / Study every day / Take breaks）", "points": [{"t": "Box breathing (inhale 4, hold 4, exhale 4, hold 4, repeated at least four times) slows your breathing and calms your body's stress response", "m": 1}, {"t": "Planning a study timetable and studying a little every day spreads the workload and avoids last-minute cramming, which is itself a major source of stress", "m": 1}], "weak": false}]};
+const DATA = {"slug": "cw", "title": "心理与福祉", "examMin": 45, "questions": [{"id": "cw-001", "topic": "求助渠道 · 紧急情况", "difficulty": "easy", "type": "mcq", "stem": "You are walking home with a friend when they collapse and stop breathing. Which number should you call?", "options": ["000 (ambulance, police or fire)", "1800 011 511 (Mental Health Line)", "13 11 14 (Lifeline)", "1800 55 1800 (Kids Helpline)"], "answer": 0, "explanation": "000 是澳洲的紧急电话，救护车、警察、消防都是这个号。有人处于即时危险时必须打 000；其余三个都是心理支持与倾听热线，处理不了需要救护车的现场。", "source": "Urgent Help（Call 000 — ambulance, police or fire services）", "weak": false}, {"id": "cw-002", "topic": "求助渠道 · 24 小时热线", "difficulty": "easy", "type": "mcq", "stem": "It is 11 pm on a Sunday and you feel overwhelmed and want to talk to someone right now. Which service offers free, confidential crisis support at any hour?", "options": ["Your year advisor by email", "Lifeline on 13 11 14", "SSO Sara at school", "The counsellor's office"], "answer": 1, "explanation": "Lifeline 13 11 14 提供 24/7 的免费保密危机支持。校内的辅导员、SSO 和 Year Advisor 只在上班日的工作时间可用，所以半夜应先打热线。", "source": "Urgent Help（Lifeline — 13 11 14, available 24/7）· Support people at school", "weak": false}, {"id": "cw-003", "topic": "健康 · 睡眠时长", "difficulty": "easy", "type": "mcq", "stem": "According to the Sleep page, how much sleep is recommended for someone aged 14 to 17?", "options": ["11–13 hours", "6–7 hours", "8–10 hours", "7–8 hours"], "answer": 2, "explanation": "14–17 岁的建议量是 8–10 小时；7–11 小时属于「可能可以」的区间，少于 7 小时或超过 11 小时都属于不建议。睡眠不足会直接影响记忆、专注力和情绪。", "source": "Sleep（Recommended sleep 表格：14–17 years — 8–10 hours）", "weak": false}, {"id": "cw-004", "topic": "心理健康 · 抑郁的判据", "difficulty": "easy", "type": "mcq", "stem": "The Depression page describes clinical depression as significant low mood lasting longer than which period and starting to get in the way of everyday life?", "options": ["one year", "three months", "24 hours", "two weeks"], "answer": 3, "explanation": "关键判据是「持续超过两周」且已经影响日常生活。一天或几天的低落属于正常情绪波动，不等于抑郁症；而且材料强调只有医疗专业人员才能下诊断。", "source": "Depression（lasting longer than two weeks and start to get in the way of your everyday life）", "weak": false}, {"id": "cw-005", "topic": "情绪管理 · 箱式呼吸", "difficulty": "easy", "type": "mcq", "stem": "The Anxiety page describes box breathing as a technique for slowing your breathing and calming your body. What is the pattern?", "options": ["Inhale 4 – hold 4 – exhale 4 – hold 4", "Inhale 10 – hold 10 – exhale 10", "Inhale 4 – hold 7 – exhale 8", "Inhale 2 – exhale 2, repeated quickly"], "answer": 0, "explanation": "箱式呼吸四个阶段各 4 秒，像走完一个正方形的四条边，重复至少 4 次。4-7-8 是同一页上的另一种技术，专门用于睡前脑子停不下来的时候，两者不要混。", "source": "Anxiety（Breathing techniques：Box breathing 与 The 4-7-8 technique）", "weak": false}, {"id": "cw-006", "topic": "心理健康 · 自伤的正确理解", "difficulty": "easy", "type": "mcq", "stem": "Which statement about self-harm matches what the Self Harm page says?", "options": ["It is simply attention seeking behaviour and should be ignored by everyone.", "It is usually a way of coping with intense feelings, not attention seeking.", "It will stop on its own, so professional help is not needed for it.", "It always means the person wants to die and has already planned how to."], "answer": 1, "explanation": "材料明确写 self harm is not \"attention seeking\"：它通常是应对强烈情绪和压力的方式，也不等于有自杀念头。但它会带来长期的身心伤害，必须寻求专业帮助。", "source": "Self Harm（self harm is not \"attention seeking\"；reasons people self harm）", "weak": false}, {"id": "cw-007", "topic": "情绪管理 · 愤怒的冰山", "difficulty": "medium", "type": "mcq", "stem": "The Anger page uses the idea of an 'iceberg' to explain anger. What does the metaphor mean?", "options": ["Anger cannot really be managed, so it should be suppressed at all times.", "Anger is always a sign of an anxiety disorder or another mental illness.", "Anger is the visible emotion, often hiding embarrassment, sadness or jealousy.", "Anger only comes from external events, such as a traffic jam, never our own thoughts."], "answer": 2, "explanation": "冰山比喻的关键是：愤怒浮在水面之上，底下压着尴尬、挫败、难过、嫉妒等其他情绪。先找出真正被触发的情绪，才谈得上处理；材料也明确说压抑愤怒不是办法，学会管理才是。", "source": "Anger（Why am I angry? — anger iceberg；external and internal events）", "weak": false}, {"id": "cw-008", "topic": "心理健康 · 如何支持朋友", "difficulty": "medium", "type": "mcq", "stem": "A friend tells you they think they have depression. Which response would the Depression page say is NOT helpful?", "options": ["\"What can I do to help?\"", "\"What's been on your mind recently?\"", "\"How have you been going lately? You seem a little down.\"", "\"Just cheer up and snap out of it.\""], "answer": 3, "explanation": "材料专门点名：不能对朋友说 cheer up、snap out of it、get over it，这会否定对方的感受。开放式提问、主动倾听、问「我能帮什么」才是有效回应。", "source": "Depression（Take their feelings seriously — cannot just \"cheer up\"、\"snap out of it\"）", "weak": false}, {"id": "cw-009", "topic": "求助渠道 · 预约学校辅导员", "difficulty": "medium", "type": "mcq", "stem": "You want to see a school counsellor. Which of these is a way the Support People at School page says you can arrange an appointment?", "options": ["Fill in a referral form, a referral slip, or message a counsellor on Canvas.", "Ask a friend to book the appointment with the school counsellor on your behalf.", "Ask your doctor to write a referral letter before a counsellor will see you.", "Wait for a teacher to notice that you are struggling and refer you themselves."], "answer": 0, "explanation": "学校给了三条路：填 School Counsellor Referral Form、到 G201 对面辅导室填推荐条、或通过 Canvas 直接给辅导员发消息。见学校辅导员不需要医生转介（需要转介的是部分校外服务）。", "source": "Support people at school（To organise an appointment with a school counsellor）", "weak": false}, {"id": "cw-010", "topic": "压力与应对 · 番茄工作法", "difficulty": "medium", "type": "mcq", "stem": "The Study Tips and Tricks page recommends the Pomodoro technique for breaking up study sessions. What does it involve?", "options": ["Study only in the hour before an exam.", "Work in 25-minute blocks with short breaks in between.", "Study for three hours straight, then take a whole day off.", "Study for 5 minutes and rest for 55 minutes."], "answer": 1, "explanation": "番茄工作法是 25 分钟一段、中间短休。材料还补了一条硬规则：不管用什么节奏，都不要连续超过一小时不休息，因为拖太久效率反而下降。", "source": "Study tips and tricks（Take breaks；Pomodoro technique — 25-minute intervals）", "weak": false}, {"id": "cw-011", "topic": "尊重与安全 · 不健康关系信号", "difficulty": "medium", "type": "mcq", "stem": "Which of these is listed on the Relationships page as a sign of an unhealthy relationship?", "options": ["Encouraging each other's hobbies, friendships and time apart", "Talking calmly through disagreements and respecting each other's view", "Checking your partner's phone and demanding to know where they are", "Being open and honest about your thoughts and feelings in the relationship"], "answer": 2, "explanation": "查手机、盘问行踪属于 controlling behaviour 加上 lack of trust，是材料列出的典型红旗。健康关系的四个要素是尊重、沟通、信任和支持。", "source": "Relationships（Signs of an Unhealthy Relationship / What Makes a Healthy Relationship?）", "weak": false}, {"id": "cw-012", "topic": "尊重与安全 · 性别与身份术语", "difficulty": "medium", "type": "mcq", "stem": "On the Identity and Gender page, which term refers to a person's biological characteristics, such as chromosomes and reproductive organs?", "options": ["Cisgender", "Gender", "Sexuality", "Sex"], "answer": 3, "explanation": "Sex 是生理性别（染色体、生殖器官等）；Gender 是认同与表达（男性、女性、非二元、性别流动、无性别等）；Sexuality 是被谁吸引（性取向）。Cisgender 指性别认同与出生指定性别一致。", "source": "Identity and Gender（GENDER / SEX / SEXUALITY 对照表及 Key Terms）", "weak": false}, {"id": "cw-013", "topic": "心理健康 · 酒精与其他药物的信号", "difficulty": "hard", "type": "short", "stem": "A friend has stopped coming to footy training, is sleeping badly, has frequent mood swings and drinks on weekends 'to relax'. Name three signs of substance misuse listed on the Alcohol and Other Drugs page and describe one thing you could do to help.", "options": [], "answer": "Signs include becoming disengaged from activities he used to enjoy, significant behaviour or mood changes, relying on alcohol to relax, and changes in eating and sleeping habits. I would raise it with him calmly and suggest he talks to SSO Sara, who can refer him to a youth drug and alcohol service.", "explanation": "材料把「脱离原本喜欢的活动」「情绪突变」「靠酒放松」「作息饮食紊乱」「耐受性上升」都列为 substance misuse 的信号；校内的第一站是 SSO Sara，可转介 DAYSS、SDECC 这类青少年戒治服务。", "source": "Alcohol and Other Drugs（Signs of substance misuse or addiction；Where to go for support）", "marks": 4, "criteria": [{"id": "c1", "t": "Names one listed sign of substance misuse, such as becoming disengaged from activities he used to enjoy", "m": 1}, {"id": "c2", "t": "Names a second listed sign, such as significant behaviour or mood changes", "m": 1}, {"id": "c3", "t": "Names a third listed sign, such as relying on alcohol to relax or changes in eating and sleeping habits", "m": 1}, {"id": "c4", "t": "Describes a helpful action: raising it with him calmly and suggesting he talks to SSO Sara, who can refer him to a youth drug and alcohol service", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Names one listed sign of substance misuse, such as becoming disengaged from activities he used to enjoy", "m": 1}, {"id": "c2", "t": "Names a second listed sign, such as significant behaviour or mood changes", "m": 1}, {"id": "c3", "t": "Names a third listed sign, such as relying on alcohol to relax or changes in eating and sleeping habits", "m": 1}, {"id": "c4", "t": "Describes a helpful action: raising it with him calmly and suggesting he talks to SSO Sara, who can refer him to a youth drug and alcohol service", "m": 1}], "weak": false}, {"id": "cw-014", "topic": "心理健康 · 保密与安全优先", "difficulty": "hard", "type": "short", "stem": "A friend tells you in confidence that they have been hurting themselves and asks you to keep it secret. Describe what the Wellbeing Hub material advises you to do.", "options": [], "answer": "Encourage them to speak to a parent, a school counsellor or SSO Sara, and offer to go with them. If they cannot seek help themselves, ask their permission to tell an adult you trust — but if they refuse and you are still seriously concerned, tell a trusted adult anyway, and call 000 if they are injured or in immediate danger.", "explanation": "安全优先于保密承诺。材料明确写：若对方不愿求助而你仍然非常担心，就应该去告诉值得信任的成年人；一旦已经受伤或有即时危险，立刻打 000。", "source": "Depression（Help them find support）· Self Harm（Who can help?）· Urgent Help（call 000）", "marks": 4, "criteria": [{"id": "c1", "t": "Advises encouraging the friend to speak to a parent, the school counsellor or SSO Sara, and offering to go with them", "m": 1}, {"id": "c2", "t": "Advises asking their permission to tell an adult you trust if they cannot seek help themselves", "m": 1}, {"id": "c3", "t": "States that if they refuse and you are still seriously concerned you should tell a trusted adult anyway, because safety comes before the promise of secrecy", "m": 1}, {"id": "c4", "t": "States that you should call 000 if they are injured or in immediate danger", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Advises encouraging the friend to speak to a parent, the school counsellor or SSO Sara, and offering to go with them", "m": 1}, {"id": "c2", "t": "Advises asking their permission to tell an adult you trust if they cannot seek help themselves", "m": 1}, {"id": "c3", "t": "States that if they refuse and you are still seriously concerned you should tell a trusted adult anyway, because safety comes before the promise of secrecy", "m": 1}, {"id": "c4", "t": "States that you should call 000 if they are injured or in immediate danger", "m": 1}], "weak": false}, {"id": "cw-015", "topic": "压力与应对 · 备考减压策略", "difficulty": "hard", "type": "short", "stem": "Exams are two weeks away. Describe two strategies suggested in the Wellbeing Hub for managing stress, and explain why each one helps.", "options": [], "answer": "Box breathing (inhale 4, hold 4, exhale 4, hold 4, repeated at least four times) slows your breathing and calms your body's stress response. Planning a study timetable and studying a little every day spreads the workload and avoids last-minute cramming, which is itself a major source of stress.", "explanation": "呼吸法处理「当下」的身体反应，时间管理处理「来源」，两者配合才有效。材料还提醒：连续学习超过一小时不休息，效率会下降，反而更焦虑。", "source": "Anxiety（Box breathing；progressive muscle relaxation）· Study tips and tricks（Plan your time / Study every day / Take breaks）", "marks": 4, "criteria": [{"id": "c1", "t": "Describes box breathing as a strategy: inhale 4, hold 4, exhale 4, hold 4, repeated at least four times", "m": 1}, {"id": "c2", "t": "Explains that box breathing slows your breathing and calms the body's stress response", "m": 1}, {"id": "c3", "t": "Describes planning a study timetable and studying a little every day as the second strategy", "m": 1}, {"id": "c4", "t": "Explains that this spreads the workload and avoids last-minute cramming, which is itself a major source of stress", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Describes box breathing as a strategy: inhale 4, hold 4, exhale 4, hold 4, repeated at least four times", "m": 1}, {"id": "c2", "t": "Explains that box breathing slows your breathing and calms the body's stress response", "m": 1}, {"id": "c3", "t": "Describes planning a study timetable and studying a little every day as the second strategy", "m": 1}, {"id": "c4", "t": "Explains that this spreads the workload and avoids last-minute cramming, which is itself a major source of stress", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-cw";
 const MULTI = DATA.slug === "all";
 const FKEY = "dsh-filter";
@@ -1698,7 +1750,13 @@ function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
 const AI_ENGINE = {};
-function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function localAI(){
+  try{
+    var m = location.search.match(/[?&]localai=([^&]*)/);
+    if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+  }catch(e){}
+  try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; }
+}
 function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
@@ -1933,10 +1991,16 @@ function render() {
     }).join("");
     bodyHtml = `<div class="opts">${opts}</div>`;
   } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    /* ── 简答题：评分标准（criteria）驱动，提交后自动 AI 判分 ── */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : (q.points && q.points.length ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
     const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const aiRec = (rec && rec.ai && Array.isArray(rec.ai.results)) ? rec.ai : null;
+    const manualEarned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const earned = (rec && rec.override) ? manualEarned : (aiRec ? aiRec.score : manualEarned);
     const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
     const hasNum = /-?\d/.test(bareAns);
     let slots = (rec && Array.isArray(rec.slots)) ? rec.slots.slice() : [];
@@ -1944,45 +2008,97 @@ function render() {
     while (slots.length < pts.length) slots.push("");
     const many = pts.length >= 2;
     const hinted = HINTED[q.id];
-    const hintFor = (i) => hinted ? pts[i].t.split(/\s+/).slice(0,4).join(" ") + " …" : "写这一点的内容（英文）";
+    const hintFor = (i) => hinted
+      ? String(pts[i].t || "").split(/\s+/).slice(0,4).join(" ") + " …"
+      : "写这一点的内容（英文）";
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const taHtml = many
       ? `<div class="slots" id="slots">${pts.map((p,i)=>`
           <div class="slot"><span class="sn">${i+1}</span>
             <textarea data-slot="${i}" rows="2" placeholder="${esc(hintFor(i))}">${esc(slots[i]||"")}</textarea>
           </div>`).join("")}</div>`
       : `<textarea id="ta" data-slot="0" rows="4" placeholder="${esc(hintFor(0))}">${esc(slots[0]||"")}</textarea>`;
+
+    const submitLabel = aiRec ? "重新判分" : (canAuto ? "提交并自动判分" : "对照得分点");
     bodyHtml = taHtml + `
       <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        <button class="btn" id="submitq">${submitLabel}</button>
+        <button class="btn ghost" id="manualtoggle">手动校正</button>
         <button class="btn ghost" id="hint">${hinted ? "藏起提示" : "给点提示"}</button>
         ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        <span class="muted" id="slotsum" style="align-self:center">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      const autoRes = pts.map((p,i)=>{
-        const mine = (rec.slots && rec.slots[i]) ? rec.slots[i] : (rec.text || "");
-        return autoScore(p.t, mine);
-      });
-      const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点
-          <span class="autotag">系统预判 ${autoHit} / ${pts.length} 点</span>
-          <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
-          ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
-          ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
-          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
+        <span class="muted" id="slotsum">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
+        ${aiRec
+          ? `<span class="pill scorepill${aiRec.needsReview ? " low" : ""}">已得 <b>${aiRec.score}</b> / ${totalMarks} 分</span>`
+          : `<span class="muted">满分 ${totalMarks} 分 · ${pts.length} 条评分标准</span>`}
+      </div>
+      ${!enginesAvail() ? `<div class="ai-note">未配置判分服务器，先用自评；到「引擎」里填地址即可自动判分。</div>` : ""}`;
+
+    /* ── AI 判分结果面板 ── */
+    if (aiRec) {
+      const byId = {};
+      aiRec.results.forEach(function(r){ byId[r.id] = r; });
+      const rows = pts.map(function(p,i){
+        const r = byId[critId(p,i)] || {awarded:0, max:(p.m||1), reason:"未评估"};
+        const mx = Math.max(1, r.max || p.m || 1);
+        const got = Math.max(0, Math.min(mx, r.awarded || 0));
+        const cls = got >= mx ? "full" : (got > 0 ? "part" : "none");
+        const mk = got >= mx ? "✓" : (got > 0 ? "◐" : "✗");
+        return `<li class="cres ${cls}"><span class="cmk">${mk}</span>` +
+          `<span class="cbody"><span class="ct">${esc(p.t)}</span>` +
+          (r.reason ? `<span class="cr">${esc(r.reason)}</span>` : "") + `</span>` +
+          `<span class="csc">${got}/${mx}</span></li>`;
+      }).join("");
+      const conf = typeof aiRec.confidence === "number" ? aiRec.confidence : 0.5;
+      const confPct = Math.round(conf * 100);
+      const when = aiRec.at ? new Date(aiRec.at) : null;
+      const whenTxt = when ? (("0"+when.getHours()).slice(-2)+":"+("0"+when.getMinutes()).slice(-2)) : "";
+      bodyHtml += `<div class="panel aires">
+        <div class="ai-head">
+          <span class="ai-score"><b>${aiRec.score}</b><em>/${totalMarks}</em></span>
+          <span class="ai-conf ${conf < 0.6 ? "low" : (conf < 0.85 ? "mid" : "high")}">置信度 ${confPct}%</span>
+          ${aiRec.needsReview ? '<span class="ai-flag">需要复核</span>' : ""}
+          <span class="grow"></span>
+          <span class="ai-meta">${esc(aiRec.engine === "local" ? "本地引擎" : "AI 判分")}${whenTxt ? " · " + whenTxt : ""}</span>
         </div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
-            return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>
+        ${aiRec.feedback ? `<div class="ai-fb">${esc(aiRec.feedback)}</div>` : ""}
+        <ul class="critlist">${rows}</ul>
+        <div class="ai-foot">分数按评分标准逐条给出，由服务器校验求和${aiRec.model ? " · " + esc(String(aiRec.model).replace(/^@cf\//,"")) : ""}</div>
       </div>`;
     }
+
+    /* ── 手动校正（可选覆盖，默认收起）── */
+    const autoRes = pts.map(function(p,i){
+      const mine = (rec && rec.slots && rec.slots[i]) ? rec.slots[i] : ((rec && rec.text) || "");
+      return autoScore(p.t, mine);
+    });
+    const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
+    bodyHtml += `<details class="panel manual"${aiRec ? "" : " open"} id="manualbox">
+      <summary class="panel-h">手动校正 · 自己勾选写到的得分点
+        <span class="autotag">关键词预判 ${autoHit} / ${pts.length}（仅供参考，不作分数）</span>
+      </summary>
+      <div class="pts">${pts.map(function(p,i){
+        const ai = aiRec ? aiRec.results.filter(function(r){ return r.id === critId(p,i); })[0] : null;
+        const hint = ai
+          ? '<span class="auto ' + (ai.awarded > 0 ? "ok" : "no") + '">AI: ' + ai.awarded + "/" + (ai.max||p.m||1)
+            + (ai.reason ? " — " + esc(ai.reason) : "") + "</span>"
+          : '<span class="auto ' + (autoRes[i].hit ? "ok" : "no") + '">'
+            + (autoRes[i].hit ? "关键词：大概率写到" : "关键词：可能没写到")
+            + "（" + autoRes[i].matched + "/" + autoRes[i].total + " 个关键词"
+            + (autoRes[i].missing.length ? "，缺 " + esc(autoRes[i].missing.join(", ")) : "") + "）</span>";
+        return '<label class="pt ' + (checked.indexOf(i)>=0 ? "on" : "") + '">'
+          + '<input type="checkbox" data-i="' + i + '"' + (checked.indexOf(i)>=0 ? " checked" : "") + '>'
+          + "<span>" + esc(p.t) + hint + "</span><em>" + (p.m||1) + " 分</em></label>";
+      }).join("")}</div>
+      <div class="actions">
+        <button class="btn ghost" id="allpt">全部勾上</button>
+        <button class="btn ghost" id="nonept">全部取消</button>
+        <button class="btn ghost" id="applyauto">按关键词判断勾选</button>
+        <button class="btn ghost" id="aiconf" title="判分服务器地址">引擎</button>
+      </div>
+    </details>`;
+    bodyHtml += `<div class="mine"><b>你写的：</b><div>${esc(((rec && rec.text) || "").trim() || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>`;
+
   }
 
   const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
@@ -2018,110 +2134,247 @@ function render() {
       save(); render();
     }));
   } else {
+    /* 第二段 else 与上面的渲染块作用域不同，这里重新绑定共享变量 */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : ((q.points && q.points.length) ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
+    const many = pts.length >= 2;
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
     const slotEls = () => Array.from(app.querySelectorAll("[data-slot]"));
     const readSlots = () => slotEls().map(el => el.value || "");
     const joinSlots = (arr) => arr.map(s => (s||"").trim()).filter(Boolean).join(String.fromCharCode(10,10));
+    const put = (patch) => {
+      const c = cur();
+      const arr = readSlots();
+      state.answers[q.id] = Object.assign({chosen:-1}, c, {slots:arr, text:joinSlots(arr)}, patch);
+      save();
+    };
     const updateSum = () => {
       const el = document.getElementById("slotsum");
       if (!el) return;
       const filled = readSlots().filter(s => s.trim()).length;
       el.textContent = filled + " / " + pts.length + " 点已写";
-      el.style.color = filled >= pts.length ? "var(--ok)" : "var(--dim)";
+      el.style.color = filled >= pts.length ? "var(--success)" : "var(--muted)";
     };
     let _saveT = null;
     if (many) {
       slotEls().forEach(el => el.addEventListener("input", () => {
-        const c = cur();
-        const arr = readSlots();
-        state.answers[q.id] = Object.assign({}, c, {chosen:-1, slots:arr, text:joinSlots(arr)});
         updateSum();
-        clearTimeout(_saveT); _saveT = setTimeout(save, 400);
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
       }));
       updateSum();
+    } else {
+      const only = slotEls()[0];
+      if (only) only.addEventListener("input", () => {
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
+      });
     }
-    document.getElementById("reveal").onclick = () => {
+
+    /* 手动校正（可选覆盖） */
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
       const c = cur();
-      const arr = readSlots();
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    const hb = document.getElementById("hint");
-    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
-    if (many) app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
+      const i = +cb.dataset.i;
       const set = new Set(c.checked || []);
       if (cb.checked) set.add(i); else set.delete(i);
       const arr = c.slots || [c.text || ""];
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,j)=>set.has(j));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      const arr2 = set.size ? Array.from(set).sort((a,b)=>a-b) : [];
+      const manScore = pts.reduce((a,p,j)=>a + (arr2.indexOf(j)>=0 ? (p.m||1) : 0), 0);
+      const full = manScore >= totalMarks;
+      state.answers[q.id] = Object.assign({}, c, {
+        chosen:-1, slots:arr, text:joinSlots(arr), checked:arr2,
+        override:true, manScore:manScore,
+        ok: full ? "ok" : (manScore > 0 ? "part" : "bad")
+      });
+      if (!c.gradedAt) {
+        reviewMark(q.subj || DATA.slug, q.id, full);
+        logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      }
       save(); render();
     }));
+
+    const hb = document.getElementById("hint");
+    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
+
     const nc = document.getElementById("numcheck");
     if (nc) nc.onclick = () => {
       const typed = joinSlots(readSlots());
       const u = numsOf(typed), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      if (!res) return;
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--muted)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--muted)"; return; }
+      const lastN = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-lastN) <= Math.max(Math.abs(v)*0.01, 0.005));
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+      res.style.color = hit ? "var(--success)" : "var(--error)";
+    };
+
+    const mt = document.getElementById("manualtoggle");
+    if (mt) mt.onclick = () => {
+      const mb = document.getElementById("manualbox");
+      if (!mb) return;
+      mb.open = !mb.open;
+      if (mb.open) mb.scrollIntoView({behavior:"smooth", block:"center"});
     };
     const ac = document.getElementById("aiconf");
     if (ac) ac.onclick = () => {
-      const cur = localAI();
-      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      const curLoc = localAI();
+      const v = prompt("判分服务器地址（云端留空就用默认；本机/局域网可填 http://127.0.0.1:8787）", apibase());
       if (v === null) return;
-      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+      try { localStorage.setItem("dsh-api", v.trim().replace(/\/$/, "")); } catch(e) {}
+      toast(v.trim() ? "判分服务器已保存" : "已清空，将使用默认服务器", true);
+      render();
     };
-    const ai = document.getElementById("aigrade");
-    if (ai) ai.onclick = () => {
-      const arr = readSlots(), answer = joinSlots(arr);
-      if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
-      ai.disabled = true; ai.textContent = "AI 判分中…";
-      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+    const aa = document.getElementById("applyauto");
+    if (aa) aa.onclick = () => {
+      const arr = readSlots();
+      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || joinSlots(arr)).hit ? i : -1).filter(i=>i>=0);
+      put({checked:hits, override:true,
+           manScore: pts.reduce((a,p,j)=>a + (hits.indexOf(j)>=0 ? (p.m||1) : 0), 0), ok:"ok"});
+      render();
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { put({checked:pts.map((_,i)=>i), override:true, manScore:totalMarks, ok:"ok"}); render(); };
+    if (none) none.onclick = () => { put({checked:[], override:true, manScore:0, ok:"bad"}); render(); };
+
+    /* ── 提交 / 重新判分 ── */
+    const GRADING = window.__GRADING || (window.__GRADING = {});
+    const submitBtn = document.getElementById("submitq");
+    if (submitBtn) submitBtn.onclick = async function(){
+      const answer = joinSlots(readSlots());
+      const c0 = cur();
+      if (!answer.trim()) { toast("先写点答案再提交", false); return; }
+      if (!canAuto) {
+        put({override:true, ok:"ok"});
+        const mb = document.getElementById("manualbox");
+        if (mb) { mb.open = true; mb.scrollIntoView({behavior:"smooth", block:"center"}); }
+        return;
+      }
+      if (GRADING[q.id]) return;
+      if (c0.ai && !c0.override && c0.text === answer) {
+        toast("这一版已经判过了，改动后才会重新判分", false);
+        return;
+      }
+      GRADING[q.id] = true;
+      submitBtn.disabled = true;
+      const oldTxt = submitBtn.textContent;
+      submitBtn.textContent = "判分中…";
+      const payload = JSON.stringify({
+        stem: q.stem,
+        max_marks: totalMarks,
+        reference: q.answer || "",
+        criteria: pts.map(function(p,i){ return {id:critId(p,i), t:p.t, m:(p.m||1)}; }),
+        answer: answer,
+        subject: DATA.slug || "",
+        topic: q.topic || ""
+      });
       const engines = [];
       if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
       const loc = localAI();
       if (loc) engines.push({n:"local", u: loc + "/grade"});
-      (async function(){
-        let lastErr = "no engine";
-        for (const en of engines) {
-          try {
-            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
-            const d = await r.json();
-            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
-            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+      let lastErr = "no engine";
+      for (const en of engines) {
+        try {
+          const r = await fetch(en.u, {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: payload
+          });
+          const d = await r.json();
+          if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+          const res = Array.isArray(d.results) ? d.results : [];
+          if (!res.length) throw new Error("no criterion results");
+          const sum = res.reduce(function(a,x){ return a + (Number(x.awarded_marks) || 0); }, 0);
+          const rawScore = (typeof d.score === "number") ? d.score : sum;
+          const score = Math.max(0, Math.min(totalMarks, Math.round(rawScore)));
+          const conf = (typeof d.confidence === "number")
+            ? Math.max(0, Math.min(1, d.confidence)) : 0.5;
+          const isLegacy = res.some(function(x){ return x && x.awarded_marks === undefined && x.i !== undefined; });
+          if (isLegacy) {
+            const normL = pts.map(function(p,i){
+              const r = res.filter(function(x){ return Number(x.i) === i; })[0] || {};
+              const mx = p.m || 1;
+              return {id:critId(p,i), awarded: r.covered ? mx : 0, max:mx,
+                      covered:!!r.covered, reason:String(r.reason || "")};
+            });
+            const scL = normL.reduce(function(a,x){ return a + x.awarded; }, 0);
+            const aiL = {score:scL, max:totalMarks, results:normL,
+              feedback:"（旧版判分接口，只能整点给分，建议更新服务器）",
+              confidence:0.7, needsReview:false, model:String(d.model||"v1"),
+              engine:en.n, at:Date.now()};
+            const wasL = !!c0.gradedAt;
+            state.answers[q.id] = Object.assign({}, c0, {
+              chosen:-1, slots:readSlots(), text:answer, ai:aiL,
+              gradedAt:aiL.at, gradeModel:aiL.model, gradeEngine:en.n,
+              checked:normL.map(function(x,i){ return x.awarded>0?i:-1; }).filter(function(i){ return i>=0; }),
+              override:false,
+              ok: scL >= totalMarks ? "ok" : (scL > 0 ? "part" : "bad")
+            });
+            save();
+            if (!wasL) {
+              reviewMark(q.subj || DATA.slug, q.id, scL >= totalMarks);
+              logAnswer(q.subj || DATA.slug, q.id, scL >= totalMarks, q.difficulty, "short");
+            }
+            GRADING[q.id] = false;
+            render();
             return;
-          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+          }
+          const norm = res.map(function(x,i){
+            const mx = Math.max(1, Math.round(Number(x.maximum_marks) || 1));
+            return {
+              id: String(x.criterion_id || ("c" + (i+1))),
+              awarded: Math.max(0, Math.min(mx, Math.round(Number(x.awarded_marks) || 0))),
+              max: mx,
+              covered: !!x.covered,
+              reason: String(x.reason || "").slice(0, 240)
+            };
+          });
+          const ai = {
+            score: score, max: totalMarks, results: norm,
+            feedback: String(d.feedback || "").slice(0, 500),
+            confidence: conf,
+            needsReview: conf < 0.6,
+            model: String(d.model || ""),
+            engine: en.n,
+            at: Date.now()
+          };
+          const wasGraded = !!c0.gradedAt;
+          const gotIdx = pts.map(function(p,i){ return i; }).filter(function(i){
+            const id = critId(pts[i], i);
+            const hit = norm.filter(function(x){ return x.id === id; })[0];
+            return hit && hit.awarded > 0;
+          });
+          state.answers[q.id] = Object.assign({}, c0, {
+            chosen:-1, slots:readSlots(), text:answer,
+            ai:ai, gradedAt:ai.at, gradeModel:ai.model, gradeEngine:en.n,
+            checked:gotIdx, override:false,
+            ok: score >= totalMarks ? "ok" : (score > 0 ? "part" : "bad")
+          });
+          save();
+          if (!wasGraded) {
+            reviewMark(q.subj || DATA.slug, q.id, score >= totalMarks);
+            logAnswer(q.subj || DATA.slug, q.id, score >= totalMarks, q.difficulty, "short");
+            if (score >= totalMarks && window.awardForQ) awardForQ(q.id, q.difficulty, "short", true);
+          }
+          GRADING[q.id] = false;
+          render();
+          return;
+        } catch (e) {
+          lastErr = en.n + ": " + ((e && e.message) || e);
         }
-        ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
-      })();
+      }
+      GRADING[q.id] = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldTxt;
+      toast("判分服务不可用（" + lastErr + "），已切到手动校正", false);
+      const mb2 = document.getElementById("manualbox");
+      if (mb2) mb2.open = true;
     };
-    const ap2 = document.getElementById("applyai");
-    if (ap2) ap2.onclick = () => {
-      const c = cur(); const arr = c.slots || [c.text || ""];
-      const res = AI_RES[q.id] || [];
-      const hits = res.map(r => r.covered ? r.i : -1).filter(i => i >= 0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const aa = document.getElementById("applyauto");
-    if (aa) aa.onclick = () => {
-      const c = cur();
-      const arr = c.slots || [c.text || ""];
-      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || "").hit ? i : -1).filter(i=>i>=0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:[],ok:"ok"}; save(); render(); };
   }
   document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
   const nx = document.getElementById("next");
@@ -2162,10 +2415,16 @@ function showResult() {
   let earnedM = 0, totalM = 0, partM = 0;
   const weak = [];
   shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const pts = (x.criteria && x.criteria.length) ? x.criteria
+              : ((x.points && x.points.length) ? x.points : [{m:1}]);
+    const tot = (typeof x.marks === "number" && x.marks > 0)
+      ? x.marks : pts.reduce((a,p)=>a+(p.m||1),0);
     const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const manGot = (r && r.checked)
+      ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const got = (r && r.override)
+      ? (typeof r.manScore === "number" ? r.manScore : manGot)
+      : ((r && r.ai && typeof r.ai.score === "number") ? r.ai.score : manGot);
     totalM += tot;
     if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
   });

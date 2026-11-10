@@ -1,497 +1,644 @@
 {
-  "code": "10SCI 26",
-  "slug": "sci-other",
-  "title": "Science · 非年考内容（Term 1–3）",
-  "title_zh": "科学 · 非年考内容（Term 1–3）",
-  "exam_focus": "Year 10 年考不涉及的 Term 1–3 模块复习：地球能量、遗传、运动、反应化学、核反应、气候科学、有机化学。",
-  "questions": [
+ "code": "10SCI 26",
+ "slug": "sci-other",
+ "title": "Science · 非年考内容（Term 1–3）",
+ "title_zh": "科学 · 非年考内容（Term 1–3）",
+ "exam_focus": "Year 10 年考不涉及的 Term 1–3 模块复习：地球能量、遗传、运动、反应化学、核反应、气候科学、有机化学。",
+ "questions": [
+  {
+   "id": "sciother-001",
+   "topic": "地球能量 · 太阳辐射",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which two types of solar radiation reach the surface of the Earth and act as the main driving force for Earth's processes?",
+   "options": [
+    "Visible light and X-rays",
+    "Microwaves and X-rays",
+    "Microwaves and infrared",
+    "Visible light and infrared"
+   ],
+   "answer": 3,
+   "explanation": "到达地表并驱动地球过程的主要是可见光和红外线：可见光提供光合作用的能量，红外线加热水圈驱动水循环。X 射线和微波绝大部分被大气吸收，到不了地表。",
+   "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 Earth · Solar radiation）"
+  },
+  {
+   "id": "sciother-002",
+   "topic": "地球能量 · 地球圈层",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which of Earth's four spheres is described as the outer part of the Earth, consisting of the crust and upper mantle and about 100 km thick?",
+   "options": [
+    "Lithosphere",
+    "Atmosphere",
+    "Biosphere",
+    "Hydrosphere"
+   ],
+   "answer": 0,
+   "explanation": "岩石圈（lithosphere）＝地壳＋上地幔，约 100 km 厚。大气圈是气体层，生物圈是生物生存的范围，水圈是地表固态/液态/气态的水。",
+   "source": "Term 1 · Earth's Energy – Revision Booklet（Topic 6 Earth · Terminology）"
+  },
+  {
+   "id": "sciother-003",
+   "topic": "地球能量 · 反照率反馈",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Arctic sea ice melts and exposes the dark ocean underneath. Which statement best explains the effect on global temperature?",
+   "options": [
+    "Albedo increases, so more radiation is reflected and the temperature falls.",
+    "Albedo decreases, so more solar radiation is absorbed and the temperature rises further.",
+    "Albedo stays the same because water and ice reflect the same amount of radiation.",
+    "Albedo decreases, so more radiation is reflected back to space and the temperature falls."
+   ],
+   "answer": 1,
+   "explanation": "反照率（albedo）介于 0 到 1，越白越反光。冰融化后露出深色海水，反照率下降，吸收更多太阳辐射，温度升高又加速融冰，形成正反馈。",
+   "source": "Term 1 · Earth's Energy – STUDENT 5. Earth.docx（Practical 2 Albedo Effect）"
+  },
+  {
+   "id": "sciother-004",
+   "topic": "地球能量 · 水循环",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Explain how solar radiation drives the water cycle.",
+   "options": [],
+   "answer": "Infrared radiation from the Sun warms the hydrosphere, so liquid water evaporates into water vapour. The vapour rises and cools, condenses into clouds, and eventually falls back to the surface as precipitation such as rain, hail or snow.",
+   "explanation": "水循环的能量来自太阳红外辐射加热水圈：蒸发→上升冷却凝结→降水，把水送回海洋、湖泊与河流。",
+   "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 · The Water Cycle）",
+   "marks": 3,
+   "criteria": [
     {
-      "id": "sciother-001",
-      "topic": "地球能量 · 太阳辐射",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which two types of solar radiation reach the surface of the Earth and act as the main driving force for Earth's processes?",
-      "options": [
-        "Visible light and X-rays",
-        "Microwaves and X-rays",
-        "Microwaves and infrared",
-        "Visible light and infrared"
-      ],
-      "answer": 3,
-      "explanation": "到达地表并驱动地球过程的主要是可见光和红外线：可见光提供光合作用的能量，红外线加热水圈驱动水循环。X 射线和微波绝大部分被大气吸收，到不了地表。",
-      "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 Earth · Solar radiation）"
+     "id": "c1",
+     "t": "States that infrared radiation from the Sun warms the hydrosphere, so liquid water evaporates into water vapour",
+     "m": 1
     },
     {
-      "id": "sciother-002",
-      "topic": "地球能量 · 地球圈层",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which of Earth's four spheres is described as the outer part of the Earth, consisting of the crust and upper mantle and about 100 km thick?",
-      "options": [
-        "Lithosphere",
-        "Atmosphere",
-        "Biosphere",
-        "Hydrosphere"
-      ],
-      "answer": 0,
-      "explanation": "岩石圈（lithosphere）＝地壳＋上地幔，约 100 km 厚。大气圈是气体层，生物圈是生物生存的范围，水圈是地表固态/液态/气态的水。",
-      "source": "Term 1 · Earth's Energy – Revision Booklet（Topic 6 Earth · Terminology）"
+     "id": "c2",
+     "t": "States that the vapour rises and cools and condenses into clouds",
+     "m": 1
     },
     {
-      "id": "sciother-003",
-      "topic": "地球能量 · 反照率反馈",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Arctic sea ice melts and exposes the dark ocean underneath. Which statement best explains the effect on global temperature?",
-      "options": [
-        "Albedo increases, so more radiation is reflected and the temperature falls.",
-        "Albedo decreases, so more solar radiation is absorbed and the temperature rises further.",
-        "Albedo stays the same because water and ice reflect the same amount of radiation.",
-        "Albedo decreases, so more radiation is reflected back to space and the temperature falls."
-      ],
-      "answer": 1,
-      "explanation": "反照率（albedo）介于 0 到 1，越白越反光。冰融化后露出深色海水，反照率下降，吸收更多太阳辐射，温度升高又加速融冰，形成正反馈。",
-      "source": "Term 1 · Earth's Energy – STUDENT 5. Earth.docx（Practical 2 Albedo Effect）"
-    },
-    {
-      "id": "sciother-004",
-      "topic": "地球能量 · 水循环",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "Explain how solar radiation drives the water cycle.",
-      "options": [],
-      "answer": "Infrared radiation from the Sun warms the hydrosphere, so liquid water evaporates into water vapour. The vapour rises and cools, condenses into clouds, and eventually falls back to the surface as precipitation such as rain, hail or snow.",
-      "explanation": "水循环的能量来自太阳红外辐射加热水圈：蒸发→上升冷却凝结→降水，把水送回海洋、湖泊与河流。",
-      "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 · The Water Cycle）"
-    },
-    {
-      "id": "sciother-005",
-      "topic": "遗传 · 基因的定义",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which statement best defines a gene?",
-      "options": [
-        "A whole chromosome containing many genes",
-        "A section of DNA that codes for a protein",
-        "An inherited disease passed on to offspring",
-        "A compound that stores energy in all cells"
-      ],
-      "answer": 1,
-      "explanation": "基因是 DNA 上编码一种蛋白质的一段。染色体是 DNA 的组织形式（人体 23 对），DNA 本身由核苷酸组成，三者不是同一层级。",
-      "source": "Term 1 · Genetics – Revision Booklet（Topic 8 Genetics · Terminology）"
-    },
-    {
-      "id": "sciother-006",
-      "topic": "遗传 · 碱基互补配对",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "A section of DNA has the base sequence AGT TAC CTG. What is the sequence of the complementary DNA strand?",
-      "options": [
-        "AGT TAC CTG",
-        "UCA AUG GGC",
-        "TCA ATG GAC",
-        "AGU UAC CUG"
-      ],
-      "answer": 2,
-      "explanation": "DNA 互补配对是 A–T、G–C，所以 AGT→TCA、TAC→ATG、CTG→GAC。含 U 的选项是 mRNA 序列，不是互补 DNA 链。",
-      "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q3）"
-    },
-    {
-      "id": "sciother-007",
-      "topic": "遗传 · 碱基比例计算",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "In a sample of DNA, 30% of the bases are adenine. What percentage of the bases is guanine?",
-      "options": [
-        "10%",
-        "20%",
-        "30%",
-        "40%"
-      ],
-      "answer": 1,
-      "explanation": "由 A=T 得 T 也占 30%，两者共 60%，剩下的 40% 由 G 与 C 平分，所以 G=20%。直接把 30% 选上（以为 G=A）是最常见的错误。",
-      "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q4）+ 碱基配对规则"
-    },
-    {
-      "id": "sciother-008",
-      "topic": "遗传 · 有丝分裂与减数分裂",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "Distinguish between mitosis and meiosis in terms of the number of daughter cells produced and the chromosome number in each daughter cell.",
-      "options": [],
-      "answer": "Mitosis produces two genetically identical diploid daughter cells and is used for growth and repair of body cells. Meiosis produces four genetically different haploid gametes, each with half the chromosome number of the parent cell.",
-      "explanation": "有丝分裂：2 个二倍体子细胞，用于生长与修复；减数分裂：4 个单倍体配子，用于有性生殖（23+23=46 恢复二倍体）。",
-      "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 2 · Compare mitosis and meiosis）"
-    },
-    {
-      "id": "sciother-009",
-      "topic": "遗传 · 基因突变（移码）",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "One extra base is inserted into the middle of a gene. Which statement best describes the likely effect on the protein produced?",
-      "options": [
-        "Only the codon containing the extra base is affected; the rest of the protein is normal.",
-        "The reading frame shifts, so every codon after that point may code for a different amino acid.",
-        "There is no effect because the genetic code is degenerate.",
-        "The DNA double helix can no longer be replicated."
-      ],
-      "answer": 1,
-      "explanation": "密码子按三个碱基一组读取，插入 1 个碱基会使其后所有密码子错位（frameshift），蛋白序列通常大幅改变。只有插入 3 的倍数个碱基才只影响一个氨基酸。",
-      "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 3 · Frameshift - Insertion）"
-    },
-    {
-      "id": "sciother-010",
-      "topic": "遗传 · 孟德尔遗传比例",
-      "difficulty": "hard",
-      "type": "mcq",
-      "stem": "Two heterozygous tall pea plants (Tt) are crossed, and tall (T) is dominant over short (t). What fraction of the tall offspring is expected to be heterozygous?",
-      "options": [
-        "1/2",
-        "1/3",
-        "2/3",
-        "3/4"
-      ],
-      "answer": 2,
-      "explanation": "Tt×Tt→1TT:2Tt:1tt，高:矮=3:1。题目问的是高茎子代内部的比例，分母只数高茎（3 份），其中杂合 Tt 占 2/3，所以不是 1/2，也不是 3/4。",
-      "source": "Term 1 · Genetics – Half Yearly Revision.pdf（Punnett Squares：基因型与表现型比例）"
-    },
-    {
-      "id": "sciother-011",
-      "topic": "运动 · 平均速度",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "A cyclist travels 300 m in 20 s. What is the cyclist's average speed?",
-      "options": [
-        "15 m/s",
-        "0.067 m/s",
-        "60 m/s",
-        "320 m/s"
-      ],
-      "answer": 0,
-      "explanation": "v=d/t=300 m÷20 s=15 m/s。0.067 m/s 是把公式倒过来（20÷300）的错误，320 m/s 是把两个数字相加。",
-      "source": "Term 1 · Motion – Speed and Velocity Problem Solving Jan 10（v = d/t）"
-    },
-    {
-      "id": "sciother-012",
-      "topic": "运动 · 标量与矢量",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which of the following is a vector quantity?",
-      "options": [
-        "Distance",
-        "Speed",
-        "Time",
-        "Displacement"
-      ],
-      "answer": 3,
-      "explanation": "位移有大小也有方向，是矢量；距离、速率、时间只有大小，是标量。速度（velocity）和力也是矢量。",
-      "source": "Term 1 · Motion – Half Yearly Revision.pdf（Scalar vs Vector）"
-    },
-    {
-      "id": "sciother-013",
-      "topic": "运动 · 加速度公式",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "A motorcycle travelling at 25 m/s accelerates at 7.0 m/s² for 6.0 s. What is its final speed?",
-      "options": [
-        "42 m/s",
-        "56 m/s",
-        "175 m/s",
-        "67 m/s"
-      ],
-      "answer": 3,
-      "explanation": "v_f=v_i+at=25+7.0×6.0=25+42=67 m/s。42 m/s 只是速度的增加量，忘记加上初速度；175 m/s 是 25×7，用错了运算。",
-      "source": "Term 1 · Motion – Acceleration Problems (Practice)（第 10 题）"
-    },
-    {
-      "id": "sciother-014",
-      "topic": "运动 · 运动图像",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "On a velocity–time graph, what does the gradient (slope) of the line represent?",
-      "options": [
-        "The distance travelled",
-        "The average speed",
-        "The net force",
-        "The acceleration"
-      ],
-      "answer": 3,
-      "explanation": "v–t 图的斜率＝Δv/Δt＝加速度；线下的面积才代表位移。这是本题最常见的混淆点（面积 vs 斜率）。",
-      "source": "Term 1 · Motion – SG 1.1 Study Guide（velocity–time graph）"
-    },
-    {
-      "id": "sciother-015",
-      "topic": "运动 · 牛顿第二定律",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "A 1200 kg car travelling at 20 m/s brakes and comes to rest in 5.0 s. Calculate (a) its acceleration and (b) the net force acting on it.",
-      "options": [],
-      "answer": "a = (v_f − v_i)/t = (0 − 20)/5.0 = −4.0 m/s², so the car decelerates at 4.0 m/s². F = ma = 1200 × (−4.0) = −4800 N, that is, a net force of 4800 N opposite to the car's motion.",
-      "explanation": "先用加速度公式（末速减初速除以时间，负号表示减速），再代入 F=ma。合力 4800 N，方向与运动方向相反。",
-      "source": "Term 1 · Motion – Half Yearly Revision.pdf（DESA：average acceleration 与 F = ma）"
-    },
-    {
-      "id": "sciother-016",
-      "topic": "化学 · 酸与金属反应",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Magnesium is added to hydrochloric acid and a gas is produced that gives a 'pop' when a lit splint is held to it. Which gas is this?",
-      "options": [
-        "Oxygen",
-        "Carbon dioxide",
-        "Hydrogen",
-        "Chlorine"
-      ],
-      "answer": 2,
-      "explanation": "酸＋金属→盐＋氢气，氢气用点燃的木条检验会发出爆鸣声（pop test）。若是酸＋碳酸盐，产生的气体是 CO2，要用石灰水检验。",
-      "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 5 Answers（Acid-Metal Reaction）"
-    },
-    {
-      "id": "sciother-017",
-      "topic": "化学 · 中和反应",
-      "difficulty": "easy",
-      "type": "short",
-      "stem": "Sodium hydroxide solution is added to hydrochloric acid. Name the type of reaction and write the word equation.",
-      "options": [],
-      "answer": "This is a neutralisation reaction. The word equation is: hydrochloric acid + sodium hydroxide → sodium chloride + water.",
-      "explanation": "酸＋碱→盐＋水，即中和反应。盐的金属部分来自碱（Na⁺），非金属部分来自酸（Cl⁻），所以生成氯化钠。",
-      "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Neutralisation Reaction）"
-    },
-    {
-      "id": "sciother-018",
-      "topic": "化学 · 碰撞理论",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Using collision theory, why does raising the temperature increase the rate of a chemical reaction?",
-      "options": [
-        "Particles gain kinetic energy, so more collisions succeed.",
-        "The particles get larger, so they collide more often.",
-        "The activation energy of the reaction is lowered.",
-        "The concentration of the reacting particles increases."
-      ],
-      "answer": 0,
-      "explanation": "碰撞理论要求粒子以足够的力和正确的方向相撞。升温提高平均动能，碰撞更频繁、超过活化能的有效碰撞比例更高，所以速率增大；降低活化能是催化剂的作用。",
-      "source": "Term 2 · Reactive Chemistry – 2020 Year 10 Yearly Examination Answers（Part A Q7 碰撞理论）"
-    },
-    {
-      "id": "sciother-019",
-      "topic": "化学 · 酸与碳酸盐",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "Copper carbonate is added to nitric acid. Write the word equation, name the salt formed, and describe how you would test for the gas produced.",
-      "options": [],
-      "answer": "copper carbonate + nitric acid → copper nitrate + water + carbon dioxide. The salt formed is copper nitrate. Bubble the gas through limewater; if the limewater turns milky (chalky white), the gas is carbon dioxide.",
-      "explanation": "酸＋碳酸盐→盐＋水＋二氧化碳；盐名后半来自酸（硝酸→硝酸盐），所以是 copper nitrate。CO2 用石灰水变浑浊检验，注意不是用点燃的木条。",
-      "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（balanced equations / acid-carbonate）"
-    },
-    {
-      "id": "sciother-020",
-      "topic": "化学 · 化学方程式配平",
-      "difficulty": "hard",
-      "type": "mcq",
-      "stem": "Which set of coefficients correctly balances this equation: __Al + __HCl → __AlCl₃ + __H₂ ?",
-      "options": [
-        "1, 3, 1, 3",
-        "2, 6, 2, 3",
-        "2, 3, 2, 3",
-        "3, 6, 2, 3"
-      ],
-      "answer": 1,
-      "explanation": "2Al+6HCl→2AlCl₃+3H₂：左边 Al 2、H 6、Cl 6；右边 Al 2、Cl 2×3=6、H 3×2=6，两边原子数相等。配平只能改前面的系数，不能改下标。",
-      "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Balanced Equations part 2）"
-    },
-    {
-      "id": "sciother-021",
-      "topic": "核反应 · 同位素",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Carbon-12 and carbon-14 are both atoms of carbon. How do the two atoms differ?",
-      "options": [
-        "The number of protons",
-        "The number of electrons in a neutral atom",
-        "The number of electron shells",
-        "The number of neutrons"
-      ],
-      "answer": 3,
-      "explanation": "同位素指质子数相同、中子数不同的同种元素原子。碳-12 有 6 个中子，碳-14 有 8 个中子；中性原子电子数相同，都是 6 个。",
-      "source": "Term 2 · Nuclear Reactions – atomic_models_interactive_v2.html（Isotopes）"
-    },
-    {
-      "id": "sciother-022",
-      "topic": "核反应 · 恒星核聚变",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "In the core of a main sequence star such as the Sun, hydrogen nuclei are combined to form helium, releasing large amounts of energy. What is this process called?",
-      "options": [
-        "Chemical combustion of hydrogen in oxygen",
-        "Nuclear fission of uranium",
-        "Radioactive decay of carbon",
-        "Nuclear fusion"
-      ],
-      "answer": 3,
-      "explanation": "太阳核心约 1500 万 °C，氢核聚变成氦核并释放巨大能量，这正是太阳辐射的来源。它属于核反应，不是化学燃烧（化学燃烧不改变原子核）。",
-      "source": "Term 2 · Nuclear Reactions – The Universe 2020.pptx（Main Sequence Star）+ Revision Booklet Topic 6（solar radiation 定义）"
-    },
-    {
-      "id": "sciother-023",
-      "topic": "核反应 · 放射性测年",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "Explain how scientists use radioactive carbon (carbon-14) in the remains of a once-living organism to work out when it died.",
-      "options": [],
-      "answer": "While an organism is alive it continuously takes in small amounts of radioactive carbon dioxide from the air. When it dies the intake stops, so the radioactive carbon slowly decays into the non-radioactive form. Measuring how much radioactive carbon is left in the remains therefore shows how long ago the organism died.",
-      "explanation": "活着时不断摄入放射性碳；死亡后摄入停止，放射性碳按固定速率衰变。测剩余比例即可推算死亡时间（绝对测年）。",
-      "source": "Term 2 · Nuclear Reactions – Year 10 - Evolution.pptx（Techniques used to date fossils · Absolute dating）"
-    },
-    {
-      "id": "sciother-024",
-      "topic": "气候 · 温室效应",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which statement correctly distinguishes the enhanced greenhouse effect from the natural greenhouse effect?",
-      "options": [
-        "The natural greenhouse effect is caused by human activity, while the enhanced effect is caused by volcanic eruptions.",
-        "The enhanced greenhouse effect only occurs when the ozone layer is destroyed.",
-        "The enhanced greenhouse effect is the additional warming caused by human activities releasing abnormally high amounts of greenhouse gases.",
-        "The natural greenhouse effect stops all infrared radiation from leaving the atmosphere."
-      ],
-      "answer": 2,
-      "explanation": "自然温室效应是大气温室气体吸收红外辐射、使地球温度相对稳定；增强温室效应是人类活动额外排放温室气体造成的附加升温。臭氧层空洞是另一个问题，不能混为一谈。",
-      "source": "Term 3 · Climate Science – Term 3 Earth Week 1 Answers（natural vs enhanced greenhouse effect）"
-    },
-    {
-      "id": "sciother-025",
-      "topic": "气候 · 温室气体识别",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which gas is a colourless, odourless, incombustible greenhouse gas formed during respiration, combustion and the breakdown of dead organic material?",
-      "options": [
-        "Carbon dioxide",
-        "Nitrogen",
-        "Argon",
-        "Methane"
-      ],
-      "answer": 0,
-      "explanation": "题眼是 incombustible（不可燃）：甲烷可燃，氮气和氩气既不是题述来源的产物也不是主要温室气体，所以是二氧化碳。",
-      "source": "Term 3 · Climate Science – 2020 Year 10 Yearly Examination Answers（Part B Q2）"
-    },
-    {
-      "id": "sciother-026",
-      "topic": "气候 · 减缓与适应策略",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Which of the following is an example of an adaptation strategy rather than a mitigation strategy?",
-      "options": [
-        "Building wind farms to generate electricity without coal",
-        "Installing solar panels on the roofs of houses",
-        "Painting roofs white to mimic the albedo effect",
-        "Capturing and storing carbon dioxide from power stations"
-      ],
-      "answer": 2,
-      "explanation": "减缓（mitigation）针对减排、稳定大气温室气体浓度（风能、太阳能、碳封存）；适应（adaptation）针对已经发生的影响、降低社会脆弱性，例如把屋顶刷白提高反照率。",
-      "source": "Term 3 · Climate Science – Revision Booklet（Topic 6 · Mitigation / Adaptation strategies）"
-    },
-    {
-      "id": "sciother-027",
-      "topic": "气候 · 海洋酸化",
-      "difficulty": "hard",
-      "type": "mcq",
-      "stem": "Extra carbon dioxide dissolves in seawater and forms carbonic acid, which releases hydrogen ions. Why does this harm shellfish?",
-      "options": [
-        "The hydrogen ions compete with the shells for carbonate ions, so shellfish cannot build their shells.",
-        "The hydrogen ions dissolve the calcium carbonate shells by raising the pH of the water.",
-        "The extra carbon dioxide warms the water so the shellfish cannot respire.",
-        "The carbonic acid removes calcium from the water so shellfish absorb more carbonate."
-      ],
-      "answer": 0,
-      "explanation": "碳酸根是造壳原料，多出的 H⁺ 会与碳酸根结合成碳酸氢根，等于和贝壳“抢”碳酸根，壳体难以生成。另外酸化的方向是 pH 降低，不是升高。",
-      "source": "Term 3 · Climate Science – Term 3 Earth Week 2 Answers（Ocean Acidification）"
-    },
-    {
-      "id": "sciother-028",
-      "topic": "气候 · 冻土正反馈",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "Large areas of Arctic permafrost are thawing. Explain why this is described as a positive feedback that makes global warming worse.",
-      "options": [],
-      "answer": "Frozen soils store large amounts of organic carbon and methane. When the permafrost thaws, microbes break this material down and release carbon dioxide and methane, which are both greenhouse gases. These extra gases trap more heat, which thaws even more permafrost, so the warming reinforces itself.",
-      "explanation": "链条是：冻土解冻→微生物分解→释放 CO2 和甲烷→温室效应增强→升温→更多冻土解冻。输出反过来加强输入，所以是正反馈。",
-      "source": "Term 3 · Climate Science – SCNSW10CH00393.pdf（Global systems · permafrost）+ Revision Booklet（冻土甲烷）"
-    },
-    {
-      "id": "sciother-029",
-      "topic": "有机化学 · 碳链命名",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which name is correct for a straight-chain alkane containing six carbon atoms?",
-      "options": [
-        "Pentane",
-        "Hexane",
-        "Hexene",
-        "Heptane"
-      ],
-      "answer": 1,
-      "explanation": "前缀 hex- 表示 6 个碳，烷烃词尾是 -ane，所以是 hexane。hexene 虽然也是 6 个碳但含双键属烯烃，heptane 是 7 个碳。",
-      "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 3 Naming Organic Compounds）"
-    },
-    {
-      "id": "sciother-030",
-      "topic": "有机化学 · 同系物通式",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which of the following is the general formula of the alkanes?",
-      "options": [
-        "CnH2n",
-        "CnH2n−2",
-        "CnH2n+2",
-        "CnH2n+1OH"
-      ],
-      "answer": 2,
-      "explanation": "烷烃通式 CnH2n+2（例如 n=5 时 C5H12）；烯烃 CnH2n，炔烃 CnH2n−2，最后一个是醇类（含 −OH 官能团）。",
-      "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part C Q6）"
-    },
-    {
-      "id": "sciother-031",
-      "topic": "有机化学 · 分馏",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "Explain how fractional distillation separates crude oil into fractions, and why the smaller molecules are collected near the top of the column.",
-      "options": [],
-      "answer": "Crude oil is heated so that most of it vaporises, and the vapours rise up the fractionating column, which is hot at the bottom and cooler at the top. Each fraction condenses at the level where the temperature falls below its boiling point. Smaller molecules have lower boiling points, so they rise further and are collected near the top.",
-      "explanation": "分馏利用沸点差：塔内温度自下而上降低，各组分在温度低于自身沸点的高度冷凝。小分子沸点低→升得更高→塔顶（LPG、汽油），大分子留在塔底（沥青）。",
-      "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 2 Fractional Distillation）"
-    },
-    {
-      "id": "sciother-032",
-      "topic": "有机化学 · 支链命名",
-      "difficulty": "hard",
-      "type": "mcq",
-      "stem": "What is the correct IUPAC name of the compound CH₃–CH(CH₃)–CH₂–CH₃?",
-      "options": [
-        "2-methylbutane",
-        "3-methylbutane",
-        "2-methylpropane",
-        "3-methylpentane"
-      ],
-      "answer": 0,
-      "explanation": "最长碳链为 4 个碳（butane），甲基支链接在 2 号碳上；编号必须从靠近支链的一端开始以使位号最小，所以是 2-methylbutane。3-methylbutane 是同一分子从另一端编号的错误命名。",
-      "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part G Q12）"
-    },
-    {
-      "id": "sciother-033",
-      "topic": "有机化学 · 分子式判断",
-      "difficulty": "hard",
-      "type": "mcq",
-      "stem": "A hydrocarbon has the molecular formula C₅H₁₀. Could it be an alkane?",
-      "options": [
-        "No, because alkanes follow CnH2n+2, which for five carbons is C₅H₁₂ and not C₅H₁₀.",
-        "Yes, because it contains only carbon and hydrogen.",
-        "Yes, because any compound with five carbon atoms always has ten hydrogen atoms.",
-        "No, because it does not contain enough hydrogen to be a hydrocarbon at all."
-      ],
-      "answer": 0,
-      "explanation": "把 n=5 代入烷烃通式 CnH2n+2 得 C5H12；C5H10 少两个氢，符合 CnH2n，属于烯烃（或环烷烃），不可能是直链烷烃。",
-      "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part N Q32）"
+     "id": "c3",
+     "t": "States that the water returns to the surface as precipitation such as rain, hail or snow",
+     "m": 1
     }
-  ]
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "sciother-005",
+   "topic": "遗传 · 基因的定义",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which statement best defines a gene?",
+   "options": [
+    "A whole chromosome containing many genes",
+    "A section of DNA that codes for a protein",
+    "An inherited disease passed on to offspring",
+    "A compound that stores energy in all cells"
+   ],
+   "answer": 1,
+   "explanation": "基因是 DNA 上编码一种蛋白质的一段。染色体是 DNA 的组织形式（人体 23 对），DNA 本身由核苷酸组成，三者不是同一层级。",
+   "source": "Term 1 · Genetics – Revision Booklet（Topic 8 Genetics · Terminology）"
+  },
+  {
+   "id": "sciother-006",
+   "topic": "遗传 · 碱基互补配对",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "A section of DNA has the base sequence AGT TAC CTG. What is the sequence of the complementary DNA strand?",
+   "options": [
+    "AGT TAC CTG",
+    "UCA AUG GGC",
+    "TCA ATG GAC",
+    "AGU UAC CUG"
+   ],
+   "answer": 2,
+   "explanation": "DNA 互补配对是 A–T、G–C，所以 AGT→TCA、TAC→ATG、CTG→GAC。含 U 的选项是 mRNA 序列，不是互补 DNA 链。",
+   "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q3）"
+  },
+  {
+   "id": "sciother-007",
+   "topic": "遗传 · 碱基比例计算",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "In a sample of DNA, 30% of the bases are adenine. What percentage of the bases is guanine?",
+   "options": [
+    "10%",
+    "20%",
+    "30%",
+    "40%"
+   ],
+   "answer": 1,
+   "explanation": "由 A=T 得 T 也占 30%，两者共 60%，剩下的 40% 由 G 与 C 平分，所以 G=20%。直接把 30% 选上（以为 G=A）是最常见的错误。",
+   "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q4）+ 碱基配对规则"
+  },
+  {
+   "id": "sciother-008",
+   "topic": "遗传 · 有丝分裂与减数分裂",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Distinguish between mitosis and meiosis in terms of the number of daughter cells produced and the chromosome number in each daughter cell.",
+   "options": [],
+   "answer": "Mitosis produces two genetically identical diploid daughter cells and is used for growth and repair of body cells. Meiosis produces four genetically different haploid gametes, each with half the chromosome number of the parent cell.",
+   "explanation": "有丝分裂：2 个二倍体子细胞，用于生长与修复；减数分裂：4 个单倍体配子，用于有性生殖（23+23=46 恢复二倍体）。",
+   "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 2 · Compare mitosis and meiosis）",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States that mitosis produces two genetically identical diploid daughter cells",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States that meiosis produces four genetically different haploid gametes, each with half the chromosome number of the parent cell",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Relates the difference to purpose: mitosis for growth and repair of body cells, meiosis for sexual reproduction",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "sciother-009",
+   "topic": "遗传 · 基因突变（移码）",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "One extra base is inserted into the middle of a gene. Which statement best describes the likely effect on the protein produced?",
+   "options": [
+    "Only the codon containing the extra base is affected; the rest of the protein is normal.",
+    "The reading frame shifts, so every codon after that point may code for a different amino acid.",
+    "There is no effect because the genetic code is degenerate.",
+    "The DNA double helix can no longer be replicated."
+   ],
+   "answer": 1,
+   "explanation": "密码子按三个碱基一组读取，插入 1 个碱基会使其后所有密码子错位（frameshift），蛋白序列通常大幅改变。只有插入 3 的倍数个碱基才只影响一个氨基酸。",
+   "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 3 · Frameshift - Insertion）"
+  },
+  {
+   "id": "sciother-010",
+   "topic": "遗传 · 孟德尔遗传比例",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "Two heterozygous tall pea plants (Tt) are crossed, and tall (T) is dominant over short (t). What fraction of the tall offspring is expected to be heterozygous?",
+   "options": [
+    "1/2",
+    "1/3",
+    "2/3",
+    "3/4"
+   ],
+   "answer": 2,
+   "explanation": "Tt×Tt→1TT:2Tt:1tt，高:矮=3:1。题目问的是高茎子代内部的比例，分母只数高茎（3 份），其中杂合 Tt 占 2/3，所以不是 1/2，也不是 3/4。",
+   "source": "Term 1 · Genetics – Half Yearly Revision.pdf（Punnett Squares：基因型与表现型比例）"
+  },
+  {
+   "id": "sciother-011",
+   "topic": "运动 · 平均速度",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "A cyclist travels 300 m in 20 s. What is the cyclist's average speed?",
+   "options": [
+    "15 m/s",
+    "0.067 m/s",
+    "60 m/s",
+    "320 m/s"
+   ],
+   "answer": 0,
+   "explanation": "v=d/t=300 m÷20 s=15 m/s。0.067 m/s 是把公式倒过来（20÷300）的错误，320 m/s 是把两个数字相加。",
+   "source": "Term 1 · Motion – Speed and Velocity Problem Solving Jan 10（v = d/t）"
+  },
+  {
+   "id": "sciother-012",
+   "topic": "运动 · 标量与矢量",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which of the following is a vector quantity?",
+   "options": [
+    "Distance",
+    "Speed",
+    "Time",
+    "Displacement"
+   ],
+   "answer": 3,
+   "explanation": "位移有大小也有方向，是矢量；距离、速率、时间只有大小，是标量。速度（velocity）和力也是矢量。",
+   "source": "Term 1 · Motion – Half Yearly Revision.pdf（Scalar vs Vector）"
+  },
+  {
+   "id": "sciother-013",
+   "topic": "运动 · 加速度公式",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "A motorcycle travelling at 25 m/s accelerates at 7.0 m/s² for 6.0 s. What is its final speed?",
+   "options": [
+    "42 m/s",
+    "56 m/s",
+    "175 m/s",
+    "67 m/s"
+   ],
+   "answer": 3,
+   "explanation": "v_f=v_i+at=25+7.0×6.0=25+42=67 m/s。42 m/s 只是速度的增加量，忘记加上初速度；175 m/s 是 25×7，用错了运算。",
+   "source": "Term 1 · Motion – Acceleration Problems (Practice)（第 10 题）"
+  },
+  {
+   "id": "sciother-014",
+   "topic": "运动 · 运动图像",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "On a velocity–time graph, what does the gradient (slope) of the line represent?",
+   "options": [
+    "The distance travelled",
+    "The average speed",
+    "The net force",
+    "The acceleration"
+   ],
+   "answer": 3,
+   "explanation": "v–t 图的斜率＝Δv/Δt＝加速度；线下的面积才代表位移。这是本题最常见的混淆点（面积 vs 斜率）。",
+   "source": "Term 1 · Motion – SG 1.1 Study Guide（velocity–time graph）"
+  },
+  {
+   "id": "sciother-015",
+   "topic": "运动 · 牛顿第二定律",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "A 1200 kg car travelling at 20 m/s brakes and comes to rest in 5.0 s. Calculate (a) its acceleration and (b) the net force acting on it.",
+   "options": [],
+   "answer": "a = (v_f − v_i)/t = (0 − 20)/5.0 = −4.0 m/s², so the car decelerates at 4.0 m/s². F = ma = 1200 × (−4.0) = −4800 N, that is, a net force of 4800 N opposite to the car's motion.",
+   "explanation": "先用加速度公式（末速减初速除以时间，负号表示减速），再代入 F=ma。合力 4800 N，方向与运动方向相反。",
+   "source": "Term 1 · Motion – Half Yearly Revision.pdf（DESA：average acceleration 与 F = ma）",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Calculates the acceleration as a = (0 - 20)/5.0 = -4.0 m/s2, i.e. the car decelerates at 4.0 m/s2",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Calculates the net force with F = ma, giving 4800 N acting opposite to the car's motion",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "sciother-016",
+   "topic": "化学 · 酸与金属反应",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Magnesium is added to hydrochloric acid and a gas is produced that gives a 'pop' when a lit splint is held to it. Which gas is this?",
+   "options": [
+    "Oxygen",
+    "Carbon dioxide",
+    "Hydrogen",
+    "Chlorine"
+   ],
+   "answer": 2,
+   "explanation": "酸＋金属→盐＋氢气，氢气用点燃的木条检验会发出爆鸣声（pop test）。若是酸＋碳酸盐，产生的气体是 CO2，要用石灰水检验。",
+   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 5 Answers（Acid-Metal Reaction）"
+  },
+  {
+   "id": "sciother-017",
+   "topic": "化学 · 中和反应",
+   "difficulty": "easy",
+   "type": "short",
+   "stem": "Sodium hydroxide solution is added to hydrochloric acid. Name the type of reaction and write the word equation.",
+   "options": [],
+   "answer": "This is a neutralisation reaction. The word equation is: hydrochloric acid + sodium hydroxide → sodium chloride + water.",
+   "explanation": "酸＋碱→盐＋水，即中和反应。盐的金属部分来自碱（Na⁺），非金属部分来自酸（Cl⁻），所以生成氯化钠。",
+   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Neutralisation Reaction）",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Names the reaction as a neutralisation reaction",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Writes the word equation: hydrochloric acid + sodium hydroxide -> sodium chloride + water",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "sciother-018",
+   "topic": "化学 · 碰撞理论",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Using collision theory, why does raising the temperature increase the rate of a chemical reaction?",
+   "options": [
+    "Particles gain kinetic energy, so more collisions succeed.",
+    "The particles get larger, so they collide more often.",
+    "The activation energy of the reaction is lowered.",
+    "The concentration of the reacting particles increases."
+   ],
+   "answer": 0,
+   "explanation": "碰撞理论要求粒子以足够的力和正确的方向相撞。升温提高平均动能，碰撞更频繁、超过活化能的有效碰撞比例更高，所以速率增大；降低活化能是催化剂的作用。",
+   "source": "Term 2 · Reactive Chemistry – 2020 Year 10 Yearly Examination Answers（Part A Q7 碰撞理论）"
+  },
+  {
+   "id": "sciother-019",
+   "topic": "化学 · 酸与碳酸盐",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Copper carbonate is added to nitric acid. Write the word equation, name the salt formed, and describe how you would test for the gas produced.",
+   "options": [],
+   "answer": "copper carbonate + nitric acid → copper nitrate + water + carbon dioxide. The salt formed is copper nitrate. Bubble the gas through limewater; if the limewater turns milky (chalky white), the gas is carbon dioxide.",
+   "explanation": "酸＋碳酸盐→盐＋水＋二氧化碳；盐名后半来自酸（硝酸→硝酸盐），所以是 copper nitrate。CO2 用石灰水变浑浊检验，注意不是用点燃的木条。",
+   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（balanced equations / acid-carbonate）",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Writes the word equation: copper carbonate + nitric acid -> copper nitrate + water + carbon dioxide",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Names the salt formed as copper nitrate",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Describes testing the gas by bubbling it through limewater, which turns milky if the gas is carbon dioxide",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "sciother-020",
+   "topic": "化学 · 化学方程式配平",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "Which set of coefficients correctly balances this equation: __Al + __HCl → __AlCl₃ + __H₂ ?",
+   "options": [
+    "1, 3, 1, 3",
+    "2, 6, 2, 3",
+    "2, 3, 2, 3",
+    "3, 6, 2, 3"
+   ],
+   "answer": 1,
+   "explanation": "2Al+6HCl→2AlCl₃+3H₂：左边 Al 2、H 6、Cl 6；右边 Al 2、Cl 2×3=6、H 3×2=6，两边原子数相等。配平只能改前面的系数，不能改下标。",
+   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Balanced Equations part 2）"
+  },
+  {
+   "id": "sciother-021",
+   "topic": "核反应 · 同位素",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Carbon-12 and carbon-14 are both atoms of carbon. How do the two atoms differ?",
+   "options": [
+    "The number of protons",
+    "The number of electrons in a neutral atom",
+    "The number of electron shells",
+    "The number of neutrons"
+   ],
+   "answer": 3,
+   "explanation": "同位素指质子数相同、中子数不同的同种元素原子。碳-12 有 6 个中子，碳-14 有 8 个中子；中性原子电子数相同，都是 6 个。",
+   "source": "Term 2 · Nuclear Reactions – atomic_models_interactive_v2.html（Isotopes）"
+  },
+  {
+   "id": "sciother-022",
+   "topic": "核反应 · 恒星核聚变",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "In the core of a main sequence star such as the Sun, hydrogen nuclei are combined to form helium, releasing large amounts of energy. What is this process called?",
+   "options": [
+    "Chemical combustion of hydrogen in oxygen",
+    "Nuclear fission of uranium",
+    "Radioactive decay of carbon",
+    "Nuclear fusion"
+   ],
+   "answer": 3,
+   "explanation": "太阳核心约 1500 万 °C，氢核聚变成氦核并释放巨大能量，这正是太阳辐射的来源。它属于核反应，不是化学燃烧（化学燃烧不改变原子核）。",
+   "source": "Term 2 · Nuclear Reactions – The Universe 2020.pptx（Main Sequence Star）+ Revision Booklet Topic 6（solar radiation 定义）"
+  },
+  {
+   "id": "sciother-023",
+   "topic": "核反应 · 放射性测年",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Explain how scientists use radioactive carbon (carbon-14) in the remains of a once-living organism to work out when it died.",
+   "options": [],
+   "answer": "While an organism is alive it continuously takes in small amounts of radioactive carbon dioxide from the air. When it dies the intake stops, so the radioactive carbon slowly decays into the non-radioactive form. Measuring how much radioactive carbon is left in the remains therefore shows how long ago the organism died.",
+   "explanation": "活着时不断摄入放射性碳；死亡后摄入停止，放射性碳按固定速率衰变。测剩余比例即可推算死亡时间（绝对测年）。",
+   "source": "Term 2 · Nuclear Reactions – Year 10 - Evolution.pptx（Techniques used to date fossils · Absolute dating）",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains that a living organism continuously takes in small amounts of radioactive carbon from the air",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that the intake stops at death, so the radioactive carbon slowly decays into the non-radioactive form at a fixed rate",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that measuring how much radioactive carbon is left in the remains shows how long ago the organism died",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "sciother-024",
+   "topic": "气候 · 温室效应",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which statement correctly distinguishes the enhanced greenhouse effect from the natural greenhouse effect?",
+   "options": [
+    "The natural greenhouse effect is caused by human activity, while the enhanced effect is caused by volcanic eruptions.",
+    "The enhanced greenhouse effect only occurs when the ozone layer is destroyed.",
+    "The enhanced greenhouse effect is the additional warming caused by human activities releasing abnormally high amounts of greenhouse gases.",
+    "The natural greenhouse effect stops all infrared radiation from leaving the atmosphere."
+   ],
+   "answer": 2,
+   "explanation": "自然温室效应是大气温室气体吸收红外辐射、使地球温度相对稳定；增强温室效应是人类活动额外排放温室气体造成的附加升温。臭氧层空洞是另一个问题，不能混为一谈。",
+   "source": "Term 3 · Climate Science – Term 3 Earth Week 1 Answers（natural vs enhanced greenhouse effect）"
+  },
+  {
+   "id": "sciother-025",
+   "topic": "气候 · 温室气体识别",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which gas is a colourless, odourless, incombustible greenhouse gas formed during respiration, combustion and the breakdown of dead organic material?",
+   "options": [
+    "Carbon dioxide",
+    "Nitrogen",
+    "Argon",
+    "Methane"
+   ],
+   "answer": 0,
+   "explanation": "题眼是 incombustible（不可燃）：甲烷可燃，氮气和氩气既不是题述来源的产物也不是主要温室气体，所以是二氧化碳。",
+   "source": "Term 3 · Climate Science – 2020 Year 10 Yearly Examination Answers（Part B Q2）"
+  },
+  {
+   "id": "sciother-026",
+   "topic": "气候 · 减缓与适应策略",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Which of the following is an example of an adaptation strategy rather than a mitigation strategy?",
+   "options": [
+    "Building wind farms to generate electricity without coal",
+    "Installing solar panels on the roofs of houses",
+    "Painting roofs white to mimic the albedo effect",
+    "Capturing and storing carbon dioxide from power stations"
+   ],
+   "answer": 2,
+   "explanation": "减缓（mitigation）针对减排、稳定大气温室气体浓度（风能、太阳能、碳封存）；适应（adaptation）针对已经发生的影响、降低社会脆弱性，例如把屋顶刷白提高反照率。",
+   "source": "Term 3 · Climate Science – Revision Booklet（Topic 6 · Mitigation / Adaptation strategies）"
+  },
+  {
+   "id": "sciother-027",
+   "topic": "气候 · 海洋酸化",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "Extra carbon dioxide dissolves in seawater and forms carbonic acid, which releases hydrogen ions. Why does this harm shellfish?",
+   "options": [
+    "The hydrogen ions compete with the shells for carbonate ions, so shellfish cannot build their shells.",
+    "The hydrogen ions dissolve the calcium carbonate shells by raising the pH of the water.",
+    "The extra carbon dioxide warms the water so the shellfish cannot respire.",
+    "The carbonic acid removes calcium from the water so shellfish absorb more carbonate."
+   ],
+   "answer": 0,
+   "explanation": "碳酸根是造壳原料，多出的 H⁺ 会与碳酸根结合成碳酸氢根，等于和贝壳“抢”碳酸根，壳体难以生成。另外酸化的方向是 pH 降低，不是升高。",
+   "source": "Term 3 · Climate Science – Term 3 Earth Week 2 Answers（Ocean Acidification）"
+  },
+  {
+   "id": "sciother-028",
+   "topic": "气候 · 冻土正反馈",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "Large areas of Arctic permafrost are thawing. Explain why this is described as a positive feedback that makes global warming worse.",
+   "options": [],
+   "answer": "Frozen soils store large amounts of organic carbon and methane. When the permafrost thaws, microbes break this material down and release carbon dioxide and methane, which are both greenhouse gases. These extra gases trap more heat, which thaws even more permafrost, so the warming reinforces itself.",
+   "explanation": "链条是：冻土解冻→微生物分解→释放 CO2 和甲烷→温室效应增强→升温→更多冻土解冻。输出反过来加强输入，所以是正反馈。",
+   "source": "Term 3 · Climate Science – SCNSW10CH00393.pdf（Global systems · permafrost）+ Revision Booklet（冻土甲烷）",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains that frozen permafrost soils store large amounts of organic carbon and methane",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that when the permafrost thaws, microbes break this material down and release carbon dioxide and methane, which are greenhouse gases",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains the loop: the extra gases trap more heat, which thaws even more permafrost, so the warming reinforces itself",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "sciother-029",
+   "topic": "有机化学 · 碳链命名",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which name is correct for a straight-chain alkane containing six carbon atoms?",
+   "options": [
+    "Pentane",
+    "Hexane",
+    "Hexene",
+    "Heptane"
+   ],
+   "answer": 1,
+   "explanation": "前缀 hex- 表示 6 个碳，烷烃词尾是 -ane，所以是 hexane。hexene 虽然也是 6 个碳但含双键属烯烃，heptane 是 7 个碳。",
+   "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 3 Naming Organic Compounds）"
+  },
+  {
+   "id": "sciother-030",
+   "topic": "有机化学 · 同系物通式",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which of the following is the general formula of the alkanes?",
+   "options": [
+    "CnH2n",
+    "CnH2n−2",
+    "CnH2n+2",
+    "CnH2n+1OH"
+   ],
+   "answer": 2,
+   "explanation": "烷烃通式 CnH2n+2（例如 n=5 时 C5H12）；烯烃 CnH2n，炔烃 CnH2n−2，最后一个是醇类（含 −OH 官能团）。",
+   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part C Q6）"
+  },
+  {
+   "id": "sciother-031",
+   "topic": "有机化学 · 分馏",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Explain how fractional distillation separates crude oil into fractions, and why the smaller molecules are collected near the top of the column.",
+   "options": [],
+   "answer": "Crude oil is heated so that most of it vaporises, and the vapours rise up the fractionating column, which is hot at the bottom and cooler at the top. Each fraction condenses at the level where the temperature falls below its boiling point. Smaller molecules have lower boiling points, so they rise further and are collected near the top.",
+   "explanation": "分馏利用沸点差：塔内温度自下而上降低，各组分在温度低于自身沸点的高度冷凝。小分子沸点低→升得更高→塔顶（LPG、汽油），大分子留在塔底（沥青）。",
+   "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 2 Fractional Distillation）",
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains that crude oil is heated so most of it vaporises and the vapours rise up the column, which is hot at the bottom and cooler at the top",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that each fraction condenses at the level where the temperature falls below its boiling point",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that smaller molecules have lower boiling points, so they rise further up the column",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Concludes that the smaller molecules are therefore collected near the top of the column",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "sciother-032",
+   "topic": "有机化学 · 支链命名",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "What is the correct IUPAC name of the compound CH₃–CH(CH₃)–CH₂–CH₃?",
+   "options": [
+    "2-methylbutane",
+    "3-methylbutane",
+    "2-methylpropane",
+    "3-methylpentane"
+   ],
+   "answer": 0,
+   "explanation": "最长碳链为 4 个碳（butane），甲基支链接在 2 号碳上；编号必须从靠近支链的一端开始以使位号最小，所以是 2-methylbutane。3-methylbutane 是同一分子从另一端编号的错误命名。",
+   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part G Q12）"
+  },
+  {
+   "id": "sciother-033",
+   "topic": "有机化学 · 分子式判断",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "A hydrocarbon has the molecular formula C₅H₁₀. Could it be an alkane?",
+   "options": [
+    "No, because alkanes follow CnH2n+2, which for five carbons is C₅H₁₂ and not C₅H₁₀.",
+    "Yes, because it contains only carbon and hydrogen.",
+    "Yes, because any compound with five carbon atoms always has ten hydrogen atoms.",
+    "No, because it does not contain enough hydrogen to be a hydrocarbon at all."
+   ],
+   "answer": 0,
+   "explanation": "把 n=5 代入烷烃通式 CnH2n+2 得 C5H12；C5H10 少两个氢，符合 CnH2n，属于烯烃（或环烷烃），不可能是直链烷烃。",
+   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part N Q32）"
+  }
+ ]
 }

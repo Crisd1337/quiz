@@ -620,6 +620,52 @@ footer{padding:22px 14px 30px;line-height:1.8}
   footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
 }
 
+/* ── AI 判分结果面板 ───────────────────────────────────── */
+.aires{border-color:color-mix(in srgb,var(--accent) 26%,var(--border))}
+.ai-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:10px}
+.ai-score{font-family:var(--font-mono);font-size:15px;font-weight:500;letter-spacing:-.02em;
+  line-height:1;color:var(--foreground)}
+.ai-score b{font-size:28px;font-weight:500}
+.ai-score em{font-style:normal;font-size:13px;color:var(--muted);margin-left:1px}
+.ai-conf{font-size:10.5px;border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:1px 7px;color:var(--muted);white-space:nowrap}
+.ai-conf.high{color:var(--success);border-color:color-mix(in srgb,var(--success) 45%,var(--border))}
+.ai-conf.mid{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--border))}
+.ai-conf.low{color:var(--error);border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+.ai-flag{font-size:10.5px;color:var(--error);white-space:nowrap;
+  border:1px solid color-mix(in srgb,var(--error) 45%,var(--border));
+  border-radius:var(--r-sm);padding:1px 7px}
+.ai-meta{font-size:10.5px;color:var(--muted)}
+.ai-fb{font-size:12.5px;line-height:1.65;color:var(--foreground);background:var(--surface-secondary);
+  border-radius:var(--r-sm);padding:9px 11px;margin-bottom:10px}
+.critlist{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.cres{display:grid;grid-template-columns:15px minmax(0,1fr) auto;gap:8px;
+  padding:7px 0;border-top:1px solid var(--border);font-size:12.5px;align-items:start}
+.cres:first-child{border-top:0}
+.cmk{font-size:12px;line-height:1.55;text-align:center;color:var(--muted)}
+.cres.full .cmk{color:var(--success)}
+.cres.part .cmk{color:var(--warning)}
+.cres.none .cmk{color:var(--error)}
+.cbody{min-width:0}
+.ct{display:block;line-height:1.55}
+.cres.none .ct{color:var(--muted)}
+.cr{display:block;color:var(--muted);font-size:11px;margin-top:2px;line-height:1.5}
+.csc{font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.cres.full .csc{color:var(--success)}
+.ai-foot{margin-top:9px;font-size:10.5px;color:var(--muted)}
+.ai-note{margin-top:10px;font-size:11.5px;color:var(--muted);
+  border-left:2px solid var(--border-strong);padding-left:9px}
+.scorepill{border-color:color-mix(in srgb,var(--accent) 38%,var(--border));color:var(--foreground)}
+.scorepill.low{border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+details.manual{padding:0}
+details.manual>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  padding:12px 14px;font-size:12px;color:var(--muted);user-select:none}
+details.manual>summary::-webkit-details-marker{display:none}
+details.manual>summary::before{content:"+";font-family:var(--font-mono);font-size:11px;width:11px}
+details.manual[open]>summary::before{content:"−"}
+details.manual>summary:hover{color:var(--foreground)}
+details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
+
 </style>
 </head>
 <body>
@@ -1440,7 +1486,13 @@ footer{padding:22px 14px 30px;line-height:1.8}
   /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
   var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
   var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
-  function apibase(){ try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function apibase(){
+    try{
+      var m = location.search.match(/[?&]api=([^&]*)/);
+      if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+    }catch(e){}
+    try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; }
+  }
   function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
   function loadBoard(){
     var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
@@ -1683,7 +1735,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
 })();
 </script>
 <script>
-const DATA = {"slug": "ftn", "title": "食品科技 · 10 年级", "examMin": 60, "questions": [{"id": "ftn-001", "topic": "食品安全 · 危险温区", "difficulty": "easy", "type": "mcq", "stem": "What is the temperature range of the food safety 'danger zone'?", "options": ["5°C to 60°C", "0°C to 5°C", "60°C to 100°C", "-18°C to 4°C"], "answer": 0, "explanation": "危险温区是 5°C–60°C，这个区间里有害细菌繁殖最快。0°C 以下只是抑制生长，并不等于杀菌。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone", "weak": false}, {"id": "ftn-002", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "easy", "type": "mcq", "stem": "Under the 2-hour / 4-hour rule, what must happen to potentially hazardous food that has been in the danger zone for more than 4 hours?", "options": ["It can be returned to the fridge and used again the next day", "It must be thrown away because bacteria levels are too high", "It can be frozen and kept for up to one week", "It can be reheated to 100°C and then served"], "answer": 1, "explanation": "超过 4 小时细菌数量已高到可能引发食物中毒，必须丢弃，不能靠回锅或冷冻补救。很多同学会误以为重新加热就安全。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-003", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "medium", "type": "mcq", "stem": "A tray of cooked chicken has been sitting at room temperature for 3 hours. Under the 2-hour / 4-hour rule, which action is correct?", "options": ["Reheat it, then freeze it for the following week", "Return it to the fridge and use it later", "Eat it now, but do not return it to the fridge", "Throw the chicken away immediately"], "answer": 2, "explanation": "超过 2 小时、不足 4 小时的食物仍可食用，但不能放回冰箱（否则只是把细菌一起冷藏）。只有 2 小时以内的食物才能冷藏。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-004", "topic": "食品安全 · 冷藏温度", "difficulty": "easy", "type": "mcq", "stem": "To keep perishable food out of the danger zone, foods such as ham and salami should be stored at:", "options": ["8°C or below", "About 22°C", "About 60°C", "4°C or below"], "answer": 3, "explanation": "冷藏需控制在 4°C 或以下，才能让细菌繁殖速度降到很低。8°C、22°C 都高于安全冷藏温度，挡不住细菌增殖。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone（Industry Example）", "weak": false}, {"id": "ftn-005", "topic": "厨房运作 · Mise en place", "difficulty": "easy", "type": "mcq", "stem": "In a commercial kitchen, 'mise en place' refers to:", "options": ["Preparing ingredients and equipment before cooking", "Cleaning down kitchen benches at the end of service", "Plating the finished dish neatly for service", "Ordering stock and checking supplier deliveries"], "answer": 0, "explanation": "mise en place 是「备料到位」，包括切好洋葱、量好调料、预热烤箱等。缺了这一步会直接造成 poor workflow。", "source": "Term 1 · Assumed Knowledge Quiz 6: Mise en place；Structured Responses (Sample Answers).pdf — Poor Workflow", "weak": false}, {"id": "ftn-006", "topic": "食物公平 · 定义", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines food inequity?", "options": ["People choose not to eat certain foods for religious reasons", "Some groups have limited access to affordable, safe food while others do not", "Restaurants charge different prices for the same meal", "Everyone in a country has equal access to safe, nutritious food"], "answer": 1, "explanation": "food inequity 强调「可获得性不平等」，是有的人吃不到足量、安全、有营养的食物。不要和宗教饮食禁忌或个人选择混为一谈。", "source": "Term 1 · Food Inequity Assignment (Part 1 – Define)", "weak": false}, {"id": "ftn-007", "topic": "食物公平 · 受影响人群", "difficulty": "easy", "type": "mcq", "stem": "According to the Term 1 unit, which group is identified as likely to experience food inequity in developed and developing countries?", "options": ["Professional athletes on high incomes", "Full-time university students living on campus", "People on low incomes or who are unemployed", "Food critics who review restaurants"], "answer": 2, "explanation": "低收入或失业人群是课程列出的典型群体。同类的还有偏远地区居民、女性与儿童、老年人、慢性病患者、残障人士、原住民与无家可归者。", "source": "Term 1 · Food Inequity Assignment（Introduction 受影响人群列表）", "weak": false}, {"id": "ftn-008", "topic": "食物公平 · 慈善机构", "difficulty": "medium", "type": "mcq", "stem": "Which Australian organisation was listed in the Term 1 assignment as a charity that rescues surplus food and redistributes it to people experiencing food insecurity?", "options": ["Woolworths", "Fair Work Australia", "MasterChef Australia", "OzHarvest"], "answer": 3, "explanation": "OzHarvest 是澳洲典型的食物救援慈善机构，把商家剩余的食材收集后分发给有需要的人。Woolworths 是超市企业，Fair Work 是职场监管机构，都不是慈善机构。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity list)（机构职能为课程标准知识补充）", "weak": true}, {"id": "ftn-009", "topic": "食物趋势 · Snackification", "difficulty": "easy", "type": "mcq", "stem": "The food trend known as 'snackification' refers to:", "options": ["Replacing main meals with more frequent, smaller snacks", "Selling snacks only through supermarkets", "Eating only two large meals a day and no snacks in between", "Removing all snacks from your daily diet"], "answer": 0, "explanation": "snackification 指「正餐零食化」，人们用更多小份量、便携的进食场合取代传统三餐。它和「少吃零食」正好相反。", "source": "Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends", "weak": false}, {"id": "ftn-010", "topic": "食物趋势 · 丑果蔬", "difficulty": "medium", "type": "mcq", "stem": "Supermarkets selling 'ugly' fruit and vegetables is a trend that mainly aims to:", "options": ["Charge a higher price for imperfect-looking produce", "Reduce food waste by selling produce rejected as ugly", "Replace fresh produce with canned produce", "Encourage farmers to grow fewer vegetables"], "answer": 1, "explanation": "这类趋势针对的是「长相不合格但完全可食用」的蔬果，目的是减少农场端和零售端的食物浪费。核心卖点是减废，而不是涨价。", "source": "Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets", "weak": false}, {"id": "ftn-011", "topic": "食物趋势 · 明星厨师", "difficulty": "medium", "type": "mcq", "stem": "How do celebrity chefs most directly influence food trends?", "options": ["By writing the national dietary guidelines used in all schools", "By inspecting restaurants for food safety compliance", "By popularising ingredients and dishes through media exposure", "By setting the official price of restaurant meals"], "answer": 2, "explanation": "明星厨师通过电视节目、社交媒体和食谱把某些食材或做法带火，形成流行趋势。他们并不制定价格、膳食指南或做卫生检查。", "source": "Term 2 · Food Trends: Quiz 2 Celebrity Chef", "weak": false}, {"id": "ftn-012", "topic": "特定需求 · 乳糜泻", "difficulty": "easy", "type": "mcq", "stem": "A person with coeliac disease must avoid:", "options": ["All nuts, seeds and peanut products", "All dairy products, such as milk", "All foods containing added sugar", "Gluten, found in wheat, barley and rye"], "answer": 3, "explanation": "乳糜泻是对麸质（gluten）的自身免疫反应，必须终身严格无麸质饮食。它属于免疫反应，不是普通「面粉过敏」。", "source": "Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease", "weak": false}, {"id": "ftn-013", "topic": "特定需求 · 血糖生成指数", "difficulty": "medium", "type": "mcq", "stem": "A food with a low glycaemic index (GI) is best described as one that:", "options": ["Is digested slowly and raises blood glucose gradually", "Contains no carbohydrate or sugar at all", "Must be avoided by everyone with diabetes at all times", "Raises blood glucose quickly and sharply"], "answer": 0, "explanation": "低 GI 食物消化吸收慢，血糖上升平缓，饱腹感也更持久。高 GI 才是快速冲高血糖。低 GI 不等于零碳水，也不是所有糖尿病患者都要完全回避。", "source": "Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index", "weak": false}, {"id": "ftn-014", "topic": "特定需求 · 过敏与不耐受", "difficulty": "medium", "type": "mcq", "stem": "Which statement correctly distinguishes a food allergy from a food intolerance?", "options": ["An allergy can be removed by cooking the food thoroughly", "An allergy involves the immune system, while an intolerance does not", "An intolerance is always more dangerous than an allergy", "They are two names for exactly the same reaction"], "answer": 1, "explanation": "食物过敏由免疫系统介导，可能引发呼吸困难等严重反应；不耐受多是消化酶不足，症状以肠胃不适为主。两者机制不同，不能互换使用。", "source": "Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances", "weak": false}, {"id": "ftn-015", "topic": "特定需求 · 骨质疏松", "difficulty": "easy", "type": "mcq", "stem": "Which two nutrients are most important for reducing the risk of osteoporosis?", "options": ["Protein and vitamin B12", "Iron and vitamin C", "Calcium and vitamin D", "Sodium and potassium"], "answer": 2, "explanation": "钙是骨骼的主要矿物质，维生素 D 帮助钙吸收，两者缺一都会增加骨质疏松风险。只补钙不补维生素 D 吸收效率会打折扣。", "source": "Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis", "weak": false}, {"id": "ftn-016", "topic": "特定需求 · 缺铁性贫血", "difficulty": "medium", "type": "mcq", "stem": "Iron-deficiency anaemia is best managed by including more of which foods in the diet?", "options": ["Refined white flour products such as white bread", "Foods high in calcium, such as milk and cheese", "Foods high in vitamin C only, such as citrus fruit and juice", "Iron-rich foods such as red meat, legumes and leafy greens"], "answer": 3, "explanation": "缺铁性贫血的饮食重点是补铁，红肉、豆类和深绿叶菜都是常见来源。维生素 C 能促进铁吸收，但它本身不是铁的来源。", "source": "Term 3 · Food for Specific Needs: Quiz 8A Anaemia", "weak": false}, {"id": "ftn-017", "topic": "特殊场合 · 农历新年", "difficulty": "easy", "type": "mcq", "stem": "In Chinese New Year celebrations, long noodles are served because they symbolise:", "options": ["Longevity and a long life", "The end of the harvest season", "Good luck in school examinations", "Wealth in the form of gold coins"], "answer": 0, "explanation": "长寿面象征长寿，讲究不断开、不剪断。金元宝形状的饺子才和财富相关，两样不要混。", "source": "Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year", "weak": false}, {"id": "ftn-018", "topic": "特殊场合 · 亡灵节", "difficulty": "medium", "type": "mcq", "stem": "Día de los Muertos (Day of the Dead) is a celebration in which families:", "options": ["Fast for three days to mourn deceased relatives at home", "Build ofrendas with food to honour deceased relatives", "Give children cakes with a hidden coin inside", "Throw a decorated birthday cake into the sea"], "answer": 1, "explanation": "亡灵节是墨西哥 11 月初的纪念活动，家人搭建 ofrenda 祭坛，摆放逝者生前喜爱的食物与物品。它的基调是纪念与团聚，不是哀悼性禁食。", "source": "Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos", "weak": false}, {"id": "ftn-019", "topic": "厨房运作 · Poor workflow", "difficulty": "hard", "type": "short", "stem": "Discuss how poor workflow can impact a chef working in a commercial kitchen. In your answer, identify one cause of poor workflow and one way it could be improved.", "options": [], "answer": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.", "explanation": "结构化简答要按 Is–Affects–Caused by–Improved by–Example 五步写：先定义，再说影响、成因、改进方式，最后补一个行业例子。只写「很乱」拿不到分。", "source": "Structured Responses (Sample Answers).pdf — Poor Workflow", "points": [{"t": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food", "m": 1}, {"t": "it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team", "m": 1}], "weak": false}, {"id": "ftn-020", "topic": "食物公平 · 发达国家中的不公平", "difficulty": "hard", "type": "short", "stem": "Food inequity also exists in developed countries such as Australia. Identify two groups affected and explain one factor that makes it hard for them to access nutritious food.", "options": [], "answer": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.", "explanation": "答案要「两个群体 + 一个原因」。常见失分是只列群体不解释原因；能被接受的典型原因是价格、交通距离、住宿条件（无厨房）或健康限制。", "source": "Term 1 · Food Inequity Assignment（Introduction 与 Part 1）", "points": [{"t": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people", "m": 1}, {"t": "One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach", "m": 1}], "weak": false}, {"id": "ftn-021", "topic": "食物公平 · 慈善机构的作用与局限", "difficulty": "hard", "type": "short", "stem": "Explain how charities such as OzHarvest or Foodbank reduce food inequity, and outline one limitation of relying on charities to solve food insecurity.", "options": [], "answer": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.", "explanation": "拿分点有两层：先说慈善机构怎么「救急」（收集余粮、再分配），再指出结构性问题无法靠捐赠解决。只说「他们帮助穷人」不够深入。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity research)＋Part 4（未来策略）", "points": [{"t": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food", "m": 1}, {"t": "A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs", "m": 1}], "weak": false}, {"id": "ftn-022", "topic": "食物趋势 · 社交媒体", "difficulty": "hard", "type": "short", "stem": "Explain how social media drives food trends such as the #foodie movement and snackification, and identify one risk this creates for consumers.", "options": [], "answer": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.", "explanation": "要写出「传播机制」（视觉内容、hashtag、网红）和「风险」（误导性营养信息、份量与健康问题）。只描述现象不解释机制容易被扣分。", "source": "Term 2 · Food Trends: Quiz 6 #foodie；Quiz 4 Snackification and other Food Trends", "points": [{"t": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products", "m": 1}, {"t": "One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition", "m": 1}], "weak": false}, {"id": "ftn-023", "topic": "特定需求 · 运动员能量需求", "difficulty": "medium", "type": "short", "stem": "Explain why a professional NRL player has different daily energy and nutrient requirements from a sedentary office worker.", "options": [], "answer": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.", "explanation": "答案要落到「能量消耗差异 → 碳水/蛋白/水分需求差异」。只写「运动员吃得多」没有解释营养素的分配，属于低分答案。", "source": "Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players；Quiz 7 Diet of an Olympic Athlete", "points": [{"t": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses", "m": 1}, {"t": "A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat", "m": 1}], "weak": false}, {"id": "ftn-024", "topic": "特殊场合 · 用食物庆祝的原因", "difficulty": "medium", "type": "short", "stem": "Give two reasons why families and communities celebrate with particular foods, and support each reason with one example.", "options": [], "answer": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.", "explanation": "两个理由要区分开：一个是「社交团聚」，一个是「文化/宗教象征」，并各配一个例子。只举例子不说明理由会丢分。", "source": "Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food", "points": [{"t": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas", "m": 1}, {"t": "Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year", "m": 1}], "weak": false}, {"id": "ftn-025", "topic": "食品安全 · 个人卫生", "difficulty": "hard", "type": "short", "stem": "Explain why personal hygiene is the responsibility of every food handler. Give two examples of poor personal hygiene that could contaminate food.", "options": [], "answer": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.", "explanation": "要点是「个体行为会导致整批食物污染」以及具体错误做法（洗手、生病上岗、对着食物咳嗽）。Food Handler Basics 模块 2 就是这一块。", "source": "Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)", "points": [{"t": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible", "m": 1}, {"t": "Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro", "m": 1}], "weak": false}]};
+const DATA = {"slug": "ftn", "title": "食品科技 · 10 年级", "examMin": 60, "questions": [{"id": "ftn-001", "topic": "食品安全 · 危险温区", "difficulty": "easy", "type": "mcq", "stem": "What is the temperature range of the food safety 'danger zone'?", "options": ["5°C to 60°C", "0°C to 5°C", "60°C to 100°C", "-18°C to 4°C"], "answer": 0, "explanation": "危险温区是 5°C–60°C，这个区间里有害细菌繁殖最快。0°C 以下只是抑制生长，并不等于杀菌。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone", "weak": false}, {"id": "ftn-002", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "easy", "type": "mcq", "stem": "Under the 2-hour / 4-hour rule, what must happen to potentially hazardous food that has been in the danger zone for more than 4 hours?", "options": ["It can be returned to the fridge and used again the next day", "It must be thrown away because bacteria levels are too high", "It can be frozen and kept for up to one week", "It can be reheated to 100°C and then served"], "answer": 1, "explanation": "超过 4 小时细菌数量已高到可能引发食物中毒，必须丢弃，不能靠回锅或冷冻补救。很多同学会误以为重新加热就安全。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-003", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "medium", "type": "mcq", "stem": "A tray of cooked chicken has been sitting at room temperature for 3 hours. Under the 2-hour / 4-hour rule, which action is correct?", "options": ["Reheat it, then freeze it for the following week", "Return it to the fridge and use it later", "Eat it now, but do not return it to the fridge", "Throw the chicken away immediately"], "answer": 2, "explanation": "超过 2 小时、不足 4 小时的食物仍可食用，但不能放回冰箱（否则只是把细菌一起冷藏）。只有 2 小时以内的食物才能冷藏。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-004", "topic": "食品安全 · 冷藏温度", "difficulty": "easy", "type": "mcq", "stem": "To keep perishable food out of the danger zone, foods such as ham and salami should be stored at:", "options": ["8°C or below", "About 22°C", "About 60°C", "4°C or below"], "answer": 3, "explanation": "冷藏需控制在 4°C 或以下，才能让细菌繁殖速度降到很低。8°C、22°C 都高于安全冷藏温度，挡不住细菌增殖。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone（Industry Example）", "weak": false}, {"id": "ftn-005", "topic": "厨房运作 · Mise en place", "difficulty": "easy", "type": "mcq", "stem": "In a commercial kitchen, 'mise en place' refers to:", "options": ["Preparing ingredients and equipment before cooking", "Cleaning down kitchen benches at the end of service", "Plating the finished dish neatly for service", "Ordering stock and checking supplier deliveries"], "answer": 0, "explanation": "mise en place 是「备料到位」，包括切好洋葱、量好调料、预热烤箱等。缺了这一步会直接造成 poor workflow。", "source": "Term 1 · Assumed Knowledge Quiz 6: Mise en place；Structured Responses (Sample Answers).pdf — Poor Workflow", "weak": false}, {"id": "ftn-006", "topic": "食物公平 · 定义", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines food inequity?", "options": ["People choose not to eat certain foods for religious reasons", "Some groups have limited access to affordable, safe food while others do not", "Restaurants charge different prices for the same meal", "Everyone in a country has equal access to safe, nutritious food"], "answer": 1, "explanation": "food inequity 强调「可获得性不平等」，是有的人吃不到足量、安全、有营养的食物。不要和宗教饮食禁忌或个人选择混为一谈。", "source": "Term 1 · Food Inequity Assignment (Part 1 – Define)", "weak": false}, {"id": "ftn-007", "topic": "食物公平 · 受影响人群", "difficulty": "easy", "type": "mcq", "stem": "According to the Term 1 unit, which group is identified as likely to experience food inequity in developed and developing countries?", "options": ["Professional athletes on high incomes", "Full-time university students living on campus", "People on low incomes or who are unemployed", "Food critics who review restaurants"], "answer": 2, "explanation": "低收入或失业人群是课程列出的典型群体。同类的还有偏远地区居民、女性与儿童、老年人、慢性病患者、残障人士、原住民与无家可归者。", "source": "Term 1 · Food Inequity Assignment（Introduction 受影响人群列表）", "weak": false}, {"id": "ftn-008", "topic": "食物公平 · 慈善机构", "difficulty": "medium", "type": "mcq", "stem": "Which Australian organisation was listed in the Term 1 assignment as a charity that rescues surplus food and redistributes it to people experiencing food insecurity?", "options": ["Woolworths", "Fair Work Australia", "MasterChef Australia", "OzHarvest"], "answer": 3, "explanation": "OzHarvest 是澳洲典型的食物救援慈善机构，把商家剩余的食材收集后分发给有需要的人。Woolworths 是超市企业，Fair Work 是职场监管机构，都不是慈善机构。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity list)（机构职能为课程标准知识补充）", "weak": true}, {"id": "ftn-009", "topic": "食物趋势 · Snackification", "difficulty": "easy", "type": "mcq", "stem": "The food trend known as 'snackification' refers to:", "options": ["Replacing main meals with more frequent, smaller snacks", "Selling snacks only through supermarkets", "Eating only two large meals a day and no snacks in between", "Removing all snacks from your daily diet"], "answer": 0, "explanation": "snackification 指「正餐零食化」，人们用更多小份量、便携的进食场合取代传统三餐。它和「少吃零食」正好相反。", "source": "Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends", "weak": false}, {"id": "ftn-010", "topic": "食物趋势 · 丑果蔬", "difficulty": "medium", "type": "mcq", "stem": "Supermarkets selling 'ugly' fruit and vegetables is a trend that mainly aims to:", "options": ["Charge a higher price for imperfect-looking produce", "Reduce food waste by selling produce rejected as ugly", "Replace fresh produce with canned produce", "Encourage farmers to grow fewer vegetables"], "answer": 1, "explanation": "这类趋势针对的是「长相不合格但完全可食用」的蔬果，目的是减少农场端和零售端的食物浪费。核心卖点是减废，而不是涨价。", "source": "Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets", "weak": false}, {"id": "ftn-011", "topic": "食物趋势 · 明星厨师", "difficulty": "medium", "type": "mcq", "stem": "How do celebrity chefs most directly influence food trends?", "options": ["By writing the national dietary guidelines used in all schools", "By inspecting restaurants for food safety compliance", "By popularising ingredients and dishes through media exposure", "By setting the official price of restaurant meals"], "answer": 2, "explanation": "明星厨师通过电视节目、社交媒体和食谱把某些食材或做法带火，形成流行趋势。他们并不制定价格、膳食指南或做卫生检查。", "source": "Term 2 · Food Trends: Quiz 2 Celebrity Chef", "weak": false}, {"id": "ftn-012", "topic": "特定需求 · 乳糜泻", "difficulty": "easy", "type": "mcq", "stem": "A person with coeliac disease must avoid:", "options": ["All nuts, seeds and peanut products", "All dairy products, such as milk", "All foods containing added sugar", "Gluten, found in wheat, barley and rye"], "answer": 3, "explanation": "乳糜泻是对麸质（gluten）的自身免疫反应，必须终身严格无麸质饮食。它属于免疫反应，不是普通「面粉过敏」。", "source": "Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease", "weak": false}, {"id": "ftn-013", "topic": "特定需求 · 血糖生成指数", "difficulty": "medium", "type": "mcq", "stem": "A food with a low glycaemic index (GI) is best described as one that:", "options": ["Is digested slowly and raises blood glucose gradually", "Contains no carbohydrate or sugar at all", "Must be avoided by everyone with diabetes at all times", "Raises blood glucose quickly and sharply"], "answer": 0, "explanation": "低 GI 食物消化吸收慢，血糖上升平缓，饱腹感也更持久。高 GI 才是快速冲高血糖。低 GI 不等于零碳水，也不是所有糖尿病患者都要完全回避。", "source": "Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index", "weak": false}, {"id": "ftn-014", "topic": "特定需求 · 过敏与不耐受", "difficulty": "medium", "type": "mcq", "stem": "Which statement correctly distinguishes a food allergy from a food intolerance?", "options": ["An allergy can be removed by cooking the food thoroughly", "An allergy involves the immune system, while an intolerance does not", "An intolerance is always more dangerous than an allergy", "They are two names for exactly the same reaction"], "answer": 1, "explanation": "食物过敏由免疫系统介导，可能引发呼吸困难等严重反应；不耐受多是消化酶不足，症状以肠胃不适为主。两者机制不同，不能互换使用。", "source": "Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances", "weak": false}, {"id": "ftn-015", "topic": "特定需求 · 骨质疏松", "difficulty": "easy", "type": "mcq", "stem": "Which two nutrients are most important for reducing the risk of osteoporosis?", "options": ["Protein and vitamin B12", "Iron and vitamin C", "Calcium and vitamin D", "Sodium and potassium"], "answer": 2, "explanation": "钙是骨骼的主要矿物质，维生素 D 帮助钙吸收，两者缺一都会增加骨质疏松风险。只补钙不补维生素 D 吸收效率会打折扣。", "source": "Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis", "weak": false}, {"id": "ftn-016", "topic": "特定需求 · 缺铁性贫血", "difficulty": "medium", "type": "mcq", "stem": "Iron-deficiency anaemia is best managed by including more of which foods in the diet?", "options": ["Refined white flour products such as white bread", "Foods high in calcium, such as milk and cheese", "Foods high in vitamin C only, such as citrus fruit and juice", "Iron-rich foods such as red meat, legumes and leafy greens"], "answer": 3, "explanation": "缺铁性贫血的饮食重点是补铁，红肉、豆类和深绿叶菜都是常见来源。维生素 C 能促进铁吸收，但它本身不是铁的来源。", "source": "Term 3 · Food for Specific Needs: Quiz 8A Anaemia", "weak": false}, {"id": "ftn-017", "topic": "特殊场合 · 农历新年", "difficulty": "easy", "type": "mcq", "stem": "In Chinese New Year celebrations, long noodles are served because they symbolise:", "options": ["Longevity and a long life", "The end of the harvest season", "Good luck in school examinations", "Wealth in the form of gold coins"], "answer": 0, "explanation": "长寿面象征长寿，讲究不断开、不剪断。金元宝形状的饺子才和财富相关，两样不要混。", "source": "Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year", "weak": false}, {"id": "ftn-018", "topic": "特殊场合 · 亡灵节", "difficulty": "medium", "type": "mcq", "stem": "Día de los Muertos (Day of the Dead) is a celebration in which families:", "options": ["Fast for three days to mourn deceased relatives at home", "Build ofrendas with food to honour deceased relatives", "Give children cakes with a hidden coin inside", "Throw a decorated birthday cake into the sea"], "answer": 1, "explanation": "亡灵节是墨西哥 11 月初的纪念活动，家人搭建 ofrenda 祭坛，摆放逝者生前喜爱的食物与物品。它的基调是纪念与团聚，不是哀悼性禁食。", "source": "Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos", "weak": false}, {"id": "ftn-019", "topic": "厨房运作 · Poor workflow", "difficulty": "hard", "type": "short", "stem": "Discuss how poor workflow can impact a chef working in a commercial kitchen. In your answer, identify one cause of poor workflow and one way it could be improved.", "options": [], "answer": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.", "explanation": "结构化简答要按 Is–Affects–Caused by–Improved by–Example 五步写：先定义，再说影响、成因、改进方式，最后补一个行业例子。只写「很乱」拿不到分。", "source": "Structured Responses (Sample Answers).pdf — Poor Workflow", "marks": 4, "criteria": [{"id": "c1", "t": "Defines poor workflow as a chef being unorganised in the commercial kitchen", "m": 1}, {"id": "c2", "t": "Explains the impact: it reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food", "m": 1}, {"id": "c3", "t": "Identifies one cause, such as not completing mise en place or not following the recipe in a logical order", "m": 1}, {"id": "c4", "t": "Identifies one improvement, such as preparing ingredients in advance or communicating clearly with the team", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Defines poor workflow as a chef being unorganised in the commercial kitchen", "m": 1}, {"id": "c2", "t": "Explains the impact: it reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food", "m": 1}, {"id": "c3", "t": "Identifies one cause, such as not completing mise en place or not following the recipe in a logical order", "m": 1}, {"id": "c4", "t": "Identifies one improvement, such as preparing ingredients in advance or communicating clearly with the team", "m": 1}], "weak": false}, {"id": "ftn-020", "topic": "食物公平 · 发达国家中的不公平", "difficulty": "hard", "type": "short", "stem": "Food inequity also exists in developed countries such as Australia. Identify two groups affected and explain one factor that makes it hard for them to access nutritious food.", "options": [], "answer": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.", "explanation": "答案要「两个群体 + 一个原因」。常见失分是只列群体不解释原因；能被接受的典型原因是价格、交通距离、住宿条件（无厨房）或健康限制。", "source": "Term 1 · Food Inequity Assignment（Introduction 与 Part 1）", "marks": 3, "criteria": [{"id": "c1", "t": "Identifies one group affected in Australia, such as people on low incomes, rural and isolated people, the elderly or homeless people", "m": 1}, {"id": "c2", "t": "Identifies a second, different group affected, such as Aboriginal and Torres Strait Islander people or people with disabilities", "m": 1}, {"id": "c3", "t": "Explains one factor, such as the cost of fresh food combined with limited transport making nutritious food physically and financially hard to reach", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Identifies one group affected in Australia, such as people on low incomes, rural and isolated people, the elderly or homeless people", "m": 1}, {"id": "c2", "t": "Identifies a second, different group affected, such as Aboriginal and Torres Strait Islander people or people with disabilities", "m": 1}, {"id": "c3", "t": "Explains one factor, such as the cost of fresh food combined with limited transport making nutritious food physically and financially hard to reach", "m": 1}], "weak": false}, {"id": "ftn-021", "topic": "食物公平 · 慈善机构的作用与局限", "difficulty": "hard", "type": "short", "stem": "Explain how charities such as OzHarvest or Foodbank reduce food inequity, and outline one limitation of relying on charities to solve food insecurity.", "options": [], "answer": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.", "explanation": "拿分点有两层：先说慈善机构怎么「救急」（收集余粮、再分配），再指出结构性问题无法靠捐赠解决。只说「他们帮助穷人」不够深入。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity research)＋Part 4（未来策略）", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that charities collect surplus or donated food and redistribute it", "m": 1}, {"id": "c2", "t": "Explains that they provide it free or at low cost to people who cannot afford enough nutritious food", "m": 1}, {"id": "c3", "t": "Outlines a limitation: supply is unpredictable and depends on donations", "m": 1}, {"id": "c4", "t": "Explains that this treats the symptom rather than the underlying causes, such as low income and high housing costs", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that charities collect surplus or donated food and redistribute it", "m": 1}, {"id": "c2", "t": "Explains that they provide it free or at low cost to people who cannot afford enough nutritious food", "m": 1}, {"id": "c3", "t": "Outlines a limitation: supply is unpredictable and depends on donations", "m": 1}, {"id": "c4", "t": "Explains that this treats the symptom rather than the underlying causes, such as low income and high housing costs", "m": 1}], "weak": false}, {"id": "ftn-022", "topic": "食物趋势 · 社交媒体", "difficulty": "hard", "type": "short", "stem": "Explain how social media drives food trends such as the #foodie movement and snackification, and identify one risk this creates for consumers.", "options": [], "answer": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.", "explanation": "要写出「传播机制」（视觉内容、hashtag、网红）和「风险」（误导性营养信息、份量与健康问题）。只描述现象不解释机制容易被扣分。", "source": "Term 2 · Food Trends: Quiz 6 #foodie；Quiz 4 Snackification and other Food Trends", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that social media spreads visually appealing food content quickly", "m": 1}, {"id": "c2", "t": "Explains that dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products", "m": 1}, {"id": "c3", "t": "Identifies one risk: consumers may copy unhealthy or unverified food advice", "m": 1}, {"id": "c4", "t": "Identifies a second risk: consumers may choose foods for appearance rather than nutrition", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that social media spreads visually appealing food content quickly", "m": 1}, {"id": "c2", "t": "Explains that dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products", "m": 1}, {"id": "c3", "t": "Identifies one risk: consumers may copy unhealthy or unverified food advice", "m": 1}, {"id": "c4", "t": "Identifies a second risk: consumers may choose foods for appearance rather than nutrition", "m": 1}], "weak": false}, {"id": "ftn-023", "topic": "特定需求 · 运动员能量需求", "difficulty": "medium", "type": "short", "stem": "Explain why a professional NRL player has different daily energy and nutrient requirements from a sedentary office worker.", "options": [], "answer": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.", "explanation": "答案要落到「能量消耗差异 → 碳水/蛋白/水分需求差异」。只写「运动员吃得多」没有解释营养素的分配，属于低分答案。", "source": "Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players；Quiz 7 Diet of an Olympic Athlete", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that the NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules", "m": 1}, {"id": "c2", "t": "Explains that he needs more carbohydrate to refuel his muscles", "m": 1}, {"id": "c3", "t": "Explains that he needs extra protein for muscle repair, plus fluid and electrolytes to replace sweat losses", "m": 1}, {"id": "c4", "t": "Explains the contrast: the sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that the NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules", "m": 1}, {"id": "c2", "t": "Explains that he needs more carbohydrate to refuel his muscles", "m": 1}, {"id": "c3", "t": "Explains that he needs extra protein for muscle repair, plus fluid and electrolytes to replace sweat losses", "m": 1}, {"id": "c4", "t": "Explains the contrast: the sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat", "m": 1}], "weak": false}, {"id": "ftn-024", "topic": "特殊场合 · 用食物庆祝的原因", "difficulty": "medium", "type": "short", "stem": "Give two reasons why families and communities celebrate with particular foods, and support each reason with one example.", "options": [], "answer": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.", "explanation": "两个理由要区分开：一个是「社交团聚」，一个是「文化/宗教象征」，并各配一个例子。只举例子不说明理由会丢分。", "source": "Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food", "marks": 4, "criteria": [{"id": "c1", "t": "Gives one reason: food marks significant events and brings people together", "m": 1}, {"id": "c2", "t": "Supports it with one relevant example, such as a birthday cake at a birthday party or a shared feast at Christmas", "m": 1}, {"id": "c3", "t": "Gives a second, different reason: particular foods carry cultural or religious meaning and are used to pass on traditions", "m": 1}, {"id": "c4", "t": "Supports it with one relevant example, such as long noodles symbolising longevity at Chinese New Year", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Gives one reason: food marks significant events and brings people together", "m": 1}, {"id": "c2", "t": "Supports it with one relevant example, such as a birthday cake at a birthday party or a shared feast at Christmas", "m": 1}, {"id": "c3", "t": "Gives a second, different reason: particular foods carry cultural or religious meaning and are used to pass on traditions", "m": 1}, {"id": "c4", "t": "Supports it with one relevant example, such as long noodles symbolising longevity at Chinese New Year", "m": 1}], "weak": false}, {"id": "ftn-025", "topic": "食品安全 · 个人卫生", "difficulty": "hard", "type": "short", "stem": "Explain why personal hygiene is the responsibility of every food handler. Give two examples of poor personal hygiene that could contaminate food.", "options": [], "answer": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.", "explanation": "要点是「个体行为会导致整批食物污染」以及具体错误做法（洗手、生病上岗、对着食物咳嗽）。Food Handler Basics 模块 2 就是这一块。", "source": "Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that every food handler can pass bacteria or viruses from their body to food", "m": 1}, {"id": "c2", "t": "Explains that outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible", "m": 1}, {"id": "c3", "t": "Gives one example of poor hygiene, such as not washing hands after using the toilet or handling raw meat", "m": 1}, {"id": "c4", "t": "Gives a second example, such as coughing or sneezing over food or working while sick with gastro", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that every food handler can pass bacteria or viruses from their body to food", "m": 1}, {"id": "c2", "t": "Explains that outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible", "m": 1}, {"id": "c3", "t": "Gives one example of poor hygiene, such as not washing hands after using the toilet or handling raw meat", "m": 1}, {"id": "c4", "t": "Gives a second example, such as coughing or sneezing over food or working while sick with gastro", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-ftn";
 const MULTI = DATA.slug === "all";
 const FKEY = "dsh-filter";
@@ -1698,7 +1750,13 @@ function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
 const AI_ENGINE = {};
-function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function localAI(){
+  try{
+    var m = location.search.match(/[?&]localai=([^&]*)/);
+    if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+  }catch(e){}
+  try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; }
+}
 function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
@@ -1933,10 +1991,16 @@ function render() {
     }).join("");
     bodyHtml = `<div class="opts">${opts}</div>`;
   } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    /* ── 简答题：评分标准（criteria）驱动，提交后自动 AI 判分 ── */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : (q.points && q.points.length ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
     const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const aiRec = (rec && rec.ai && Array.isArray(rec.ai.results)) ? rec.ai : null;
+    const manualEarned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const earned = (rec && rec.override) ? manualEarned : (aiRec ? aiRec.score : manualEarned);
     const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
     const hasNum = /-?\d/.test(bareAns);
     let slots = (rec && Array.isArray(rec.slots)) ? rec.slots.slice() : [];
@@ -1944,45 +2008,97 @@ function render() {
     while (slots.length < pts.length) slots.push("");
     const many = pts.length >= 2;
     const hinted = HINTED[q.id];
-    const hintFor = (i) => hinted ? pts[i].t.split(/\s+/).slice(0,4).join(" ") + " …" : "写这一点的内容（英文）";
+    const hintFor = (i) => hinted
+      ? String(pts[i].t || "").split(/\s+/).slice(0,4).join(" ") + " …"
+      : "写这一点的内容（英文）";
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const taHtml = many
       ? `<div class="slots" id="slots">${pts.map((p,i)=>`
           <div class="slot"><span class="sn">${i+1}</span>
             <textarea data-slot="${i}" rows="2" placeholder="${esc(hintFor(i))}">${esc(slots[i]||"")}</textarea>
           </div>`).join("")}</div>`
       : `<textarea id="ta" data-slot="0" rows="4" placeholder="${esc(hintFor(0))}">${esc(slots[0]||"")}</textarea>`;
+
+    const submitLabel = aiRec ? "重新判分" : (canAuto ? "提交并自动判分" : "对照得分点");
     bodyHtml = taHtml + `
       <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        <button class="btn" id="submitq">${submitLabel}</button>
+        <button class="btn ghost" id="manualtoggle">手动校正</button>
         <button class="btn ghost" id="hint">${hinted ? "藏起提示" : "给点提示"}</button>
         ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        <span class="muted" id="slotsum" style="align-self:center">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      const autoRes = pts.map((p,i)=>{
-        const mine = (rec.slots && rec.slots[i]) ? rec.slots[i] : (rec.text || "");
-        return autoScore(p.t, mine);
-      });
-      const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点
-          <span class="autotag">系统预判 ${autoHit} / ${pts.length} 点</span>
-          <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
-          ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
-          ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
-          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
+        <span class="muted" id="slotsum">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
+        ${aiRec
+          ? `<span class="pill scorepill${aiRec.needsReview ? " low" : ""}">已得 <b>${aiRec.score}</b> / ${totalMarks} 分</span>`
+          : `<span class="muted">满分 ${totalMarks} 分 · ${pts.length} 条评分标准</span>`}
+      </div>
+      ${!enginesAvail() ? `<div class="ai-note">未配置判分服务器，先用自评；到「引擎」里填地址即可自动判分。</div>` : ""}`;
+
+    /* ── AI 判分结果面板 ── */
+    if (aiRec) {
+      const byId = {};
+      aiRec.results.forEach(function(r){ byId[r.id] = r; });
+      const rows = pts.map(function(p,i){
+        const r = byId[critId(p,i)] || {awarded:0, max:(p.m||1), reason:"未评估"};
+        const mx = Math.max(1, r.max || p.m || 1);
+        const got = Math.max(0, Math.min(mx, r.awarded || 0));
+        const cls = got >= mx ? "full" : (got > 0 ? "part" : "none");
+        const mk = got >= mx ? "✓" : (got > 0 ? "◐" : "✗");
+        return `<li class="cres ${cls}"><span class="cmk">${mk}</span>` +
+          `<span class="cbody"><span class="ct">${esc(p.t)}</span>` +
+          (r.reason ? `<span class="cr">${esc(r.reason)}</span>` : "") + `</span>` +
+          `<span class="csc">${got}/${mx}</span></li>`;
+      }).join("");
+      const conf = typeof aiRec.confidence === "number" ? aiRec.confidence : 0.5;
+      const confPct = Math.round(conf * 100);
+      const when = aiRec.at ? new Date(aiRec.at) : null;
+      const whenTxt = when ? (("0"+when.getHours()).slice(-2)+":"+("0"+when.getMinutes()).slice(-2)) : "";
+      bodyHtml += `<div class="panel aires">
+        <div class="ai-head">
+          <span class="ai-score"><b>${aiRec.score}</b><em>/${totalMarks}</em></span>
+          <span class="ai-conf ${conf < 0.6 ? "low" : (conf < 0.85 ? "mid" : "high")}">置信度 ${confPct}%</span>
+          ${aiRec.needsReview ? '<span class="ai-flag">需要复核</span>' : ""}
+          <span class="grow"></span>
+          <span class="ai-meta">${esc(aiRec.engine === "local" ? "本地引擎" : "AI 判分")}${whenTxt ? " · " + whenTxt : ""}</span>
         </div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
-            return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>
+        ${aiRec.feedback ? `<div class="ai-fb">${esc(aiRec.feedback)}</div>` : ""}
+        <ul class="critlist">${rows}</ul>
+        <div class="ai-foot">分数按评分标准逐条给出，由服务器校验求和${aiRec.model ? " · " + esc(String(aiRec.model).replace(/^@cf\//,"")) : ""}</div>
       </div>`;
     }
+
+    /* ── 手动校正（可选覆盖，默认收起）── */
+    const autoRes = pts.map(function(p,i){
+      const mine = (rec && rec.slots && rec.slots[i]) ? rec.slots[i] : ((rec && rec.text) || "");
+      return autoScore(p.t, mine);
+    });
+    const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
+    bodyHtml += `<details class="panel manual"${aiRec ? "" : " open"} id="manualbox">
+      <summary class="panel-h">手动校正 · 自己勾选写到的得分点
+        <span class="autotag">关键词预判 ${autoHit} / ${pts.length}（仅供参考，不作分数）</span>
+      </summary>
+      <div class="pts">${pts.map(function(p,i){
+        const ai = aiRec ? aiRec.results.filter(function(r){ return r.id === critId(p,i); })[0] : null;
+        const hint = ai
+          ? '<span class="auto ' + (ai.awarded > 0 ? "ok" : "no") + '">AI: ' + ai.awarded + "/" + (ai.max||p.m||1)
+            + (ai.reason ? " — " + esc(ai.reason) : "") + "</span>"
+          : '<span class="auto ' + (autoRes[i].hit ? "ok" : "no") + '">'
+            + (autoRes[i].hit ? "关键词：大概率写到" : "关键词：可能没写到")
+            + "（" + autoRes[i].matched + "/" + autoRes[i].total + " 个关键词"
+            + (autoRes[i].missing.length ? "，缺 " + esc(autoRes[i].missing.join(", ")) : "") + "）</span>";
+        return '<label class="pt ' + (checked.indexOf(i)>=0 ? "on" : "") + '">'
+          + '<input type="checkbox" data-i="' + i + '"' + (checked.indexOf(i)>=0 ? " checked" : "") + '>'
+          + "<span>" + esc(p.t) + hint + "</span><em>" + (p.m||1) + " 分</em></label>";
+      }).join("")}</div>
+      <div class="actions">
+        <button class="btn ghost" id="allpt">全部勾上</button>
+        <button class="btn ghost" id="nonept">全部取消</button>
+        <button class="btn ghost" id="applyauto">按关键词判断勾选</button>
+        <button class="btn ghost" id="aiconf" title="判分服务器地址">引擎</button>
+      </div>
+    </details>`;
+    bodyHtml += `<div class="mine"><b>你写的：</b><div>${esc(((rec && rec.text) || "").trim() || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>`;
+
   }
 
   const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
@@ -2018,110 +2134,247 @@ function render() {
       save(); render();
     }));
   } else {
+    /* 第二段 else 与上面的渲染块作用域不同，这里重新绑定共享变量 */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : ((q.points && q.points.length) ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
+    const many = pts.length >= 2;
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
     const slotEls = () => Array.from(app.querySelectorAll("[data-slot]"));
     const readSlots = () => slotEls().map(el => el.value || "");
     const joinSlots = (arr) => arr.map(s => (s||"").trim()).filter(Boolean).join(String.fromCharCode(10,10));
+    const put = (patch) => {
+      const c = cur();
+      const arr = readSlots();
+      state.answers[q.id] = Object.assign({chosen:-1}, c, {slots:arr, text:joinSlots(arr)}, patch);
+      save();
+    };
     const updateSum = () => {
       const el = document.getElementById("slotsum");
       if (!el) return;
       const filled = readSlots().filter(s => s.trim()).length;
       el.textContent = filled + " / " + pts.length + " 点已写";
-      el.style.color = filled >= pts.length ? "var(--ok)" : "var(--dim)";
+      el.style.color = filled >= pts.length ? "var(--success)" : "var(--muted)";
     };
     let _saveT = null;
     if (many) {
       slotEls().forEach(el => el.addEventListener("input", () => {
-        const c = cur();
-        const arr = readSlots();
-        state.answers[q.id] = Object.assign({}, c, {chosen:-1, slots:arr, text:joinSlots(arr)});
         updateSum();
-        clearTimeout(_saveT); _saveT = setTimeout(save, 400);
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
       }));
       updateSum();
+    } else {
+      const only = slotEls()[0];
+      if (only) only.addEventListener("input", () => {
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
+      });
     }
-    document.getElementById("reveal").onclick = () => {
+
+    /* 手动校正（可选覆盖） */
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
       const c = cur();
-      const arr = readSlots();
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    const hb = document.getElementById("hint");
-    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
-    if (many) app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
+      const i = +cb.dataset.i;
       const set = new Set(c.checked || []);
       if (cb.checked) set.add(i); else set.delete(i);
       const arr = c.slots || [c.text || ""];
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,j)=>set.has(j));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      const arr2 = set.size ? Array.from(set).sort((a,b)=>a-b) : [];
+      const manScore = pts.reduce((a,p,j)=>a + (arr2.indexOf(j)>=0 ? (p.m||1) : 0), 0);
+      const full = manScore >= totalMarks;
+      state.answers[q.id] = Object.assign({}, c, {
+        chosen:-1, slots:arr, text:joinSlots(arr), checked:arr2,
+        override:true, manScore:manScore,
+        ok: full ? "ok" : (manScore > 0 ? "part" : "bad")
+      });
+      if (!c.gradedAt) {
+        reviewMark(q.subj || DATA.slug, q.id, full);
+        logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      }
       save(); render();
     }));
+
+    const hb = document.getElementById("hint");
+    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
+
     const nc = document.getElementById("numcheck");
     if (nc) nc.onclick = () => {
       const typed = joinSlots(readSlots());
       const u = numsOf(typed), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      if (!res) return;
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--muted)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--muted)"; return; }
+      const lastN = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-lastN) <= Math.max(Math.abs(v)*0.01, 0.005));
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+      res.style.color = hit ? "var(--success)" : "var(--error)";
+    };
+
+    const mt = document.getElementById("manualtoggle");
+    if (mt) mt.onclick = () => {
+      const mb = document.getElementById("manualbox");
+      if (!mb) return;
+      mb.open = !mb.open;
+      if (mb.open) mb.scrollIntoView({behavior:"smooth", block:"center"});
     };
     const ac = document.getElementById("aiconf");
     if (ac) ac.onclick = () => {
-      const cur = localAI();
-      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      const curLoc = localAI();
+      const v = prompt("判分服务器地址（云端留空就用默认；本机/局域网可填 http://127.0.0.1:8787）", apibase());
       if (v === null) return;
-      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+      try { localStorage.setItem("dsh-api", v.trim().replace(/\/$/, "")); } catch(e) {}
+      toast(v.trim() ? "判分服务器已保存" : "已清空，将使用默认服务器", true);
+      render();
     };
-    const ai = document.getElementById("aigrade");
-    if (ai) ai.onclick = () => {
-      const arr = readSlots(), answer = joinSlots(arr);
-      if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
-      ai.disabled = true; ai.textContent = "AI 判分中…";
-      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+    const aa = document.getElementById("applyauto");
+    if (aa) aa.onclick = () => {
+      const arr = readSlots();
+      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || joinSlots(arr)).hit ? i : -1).filter(i=>i>=0);
+      put({checked:hits, override:true,
+           manScore: pts.reduce((a,p,j)=>a + (hits.indexOf(j)>=0 ? (p.m||1) : 0), 0), ok:"ok"});
+      render();
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { put({checked:pts.map((_,i)=>i), override:true, manScore:totalMarks, ok:"ok"}); render(); };
+    if (none) none.onclick = () => { put({checked:[], override:true, manScore:0, ok:"bad"}); render(); };
+
+    /* ── 提交 / 重新判分 ── */
+    const GRADING = window.__GRADING || (window.__GRADING = {});
+    const submitBtn = document.getElementById("submitq");
+    if (submitBtn) submitBtn.onclick = async function(){
+      const answer = joinSlots(readSlots());
+      const c0 = cur();
+      if (!answer.trim()) { toast("先写点答案再提交", false); return; }
+      if (!canAuto) {
+        put({override:true, ok:"ok"});
+        const mb = document.getElementById("manualbox");
+        if (mb) { mb.open = true; mb.scrollIntoView({behavior:"smooth", block:"center"}); }
+        return;
+      }
+      if (GRADING[q.id]) return;
+      if (c0.ai && !c0.override && c0.text === answer) {
+        toast("这一版已经判过了，改动后才会重新判分", false);
+        return;
+      }
+      GRADING[q.id] = true;
+      submitBtn.disabled = true;
+      const oldTxt = submitBtn.textContent;
+      submitBtn.textContent = "判分中…";
+      const payload = JSON.stringify({
+        stem: q.stem,
+        max_marks: totalMarks,
+        reference: q.answer || "",
+        criteria: pts.map(function(p,i){ return {id:critId(p,i), t:p.t, m:(p.m||1)}; }),
+        answer: answer,
+        subject: DATA.slug || "",
+        topic: q.topic || ""
+      });
       const engines = [];
       if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
       const loc = localAI();
       if (loc) engines.push({n:"local", u: loc + "/grade"});
-      (async function(){
-        let lastErr = "no engine";
-        for (const en of engines) {
-          try {
-            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
-            const d = await r.json();
-            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
-            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+      let lastErr = "no engine";
+      for (const en of engines) {
+        try {
+          const r = await fetch(en.u, {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: payload
+          });
+          const d = await r.json();
+          if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+          const res = Array.isArray(d.results) ? d.results : [];
+          if (!res.length) throw new Error("no criterion results");
+          const sum = res.reduce(function(a,x){ return a + (Number(x.awarded_marks) || 0); }, 0);
+          const rawScore = (typeof d.score === "number") ? d.score : sum;
+          const score = Math.max(0, Math.min(totalMarks, Math.round(rawScore)));
+          const conf = (typeof d.confidence === "number")
+            ? Math.max(0, Math.min(1, d.confidence)) : 0.5;
+          const isLegacy = res.some(function(x){ return x && x.awarded_marks === undefined && x.i !== undefined; });
+          if (isLegacy) {
+            const normL = pts.map(function(p,i){
+              const r = res.filter(function(x){ return Number(x.i) === i; })[0] || {};
+              const mx = p.m || 1;
+              return {id:critId(p,i), awarded: r.covered ? mx : 0, max:mx,
+                      covered:!!r.covered, reason:String(r.reason || "")};
+            });
+            const scL = normL.reduce(function(a,x){ return a + x.awarded; }, 0);
+            const aiL = {score:scL, max:totalMarks, results:normL,
+              feedback:"（旧版判分接口，只能整点给分，建议更新服务器）",
+              confidence:0.7, needsReview:false, model:String(d.model||"v1"),
+              engine:en.n, at:Date.now()};
+            const wasL = !!c0.gradedAt;
+            state.answers[q.id] = Object.assign({}, c0, {
+              chosen:-1, slots:readSlots(), text:answer, ai:aiL,
+              gradedAt:aiL.at, gradeModel:aiL.model, gradeEngine:en.n,
+              checked:normL.map(function(x,i){ return x.awarded>0?i:-1; }).filter(function(i){ return i>=0; }),
+              override:false,
+              ok: scL >= totalMarks ? "ok" : (scL > 0 ? "part" : "bad")
+            });
+            save();
+            if (!wasL) {
+              reviewMark(q.subj || DATA.slug, q.id, scL >= totalMarks);
+              logAnswer(q.subj || DATA.slug, q.id, scL >= totalMarks, q.difficulty, "short");
+            }
+            GRADING[q.id] = false;
+            render();
             return;
-          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+          }
+          const norm = res.map(function(x,i){
+            const mx = Math.max(1, Math.round(Number(x.maximum_marks) || 1));
+            return {
+              id: String(x.criterion_id || ("c" + (i+1))),
+              awarded: Math.max(0, Math.min(mx, Math.round(Number(x.awarded_marks) || 0))),
+              max: mx,
+              covered: !!x.covered,
+              reason: String(x.reason || "").slice(0, 240)
+            };
+          });
+          const ai = {
+            score: score, max: totalMarks, results: norm,
+            feedback: String(d.feedback || "").slice(0, 500),
+            confidence: conf,
+            needsReview: conf < 0.6,
+            model: String(d.model || ""),
+            engine: en.n,
+            at: Date.now()
+          };
+          const wasGraded = !!c0.gradedAt;
+          const gotIdx = pts.map(function(p,i){ return i; }).filter(function(i){
+            const id = critId(pts[i], i);
+            const hit = norm.filter(function(x){ return x.id === id; })[0];
+            return hit && hit.awarded > 0;
+          });
+          state.answers[q.id] = Object.assign({}, c0, {
+            chosen:-1, slots:readSlots(), text:answer,
+            ai:ai, gradedAt:ai.at, gradeModel:ai.model, gradeEngine:en.n,
+            checked:gotIdx, override:false,
+            ok: score >= totalMarks ? "ok" : (score > 0 ? "part" : "bad")
+          });
+          save();
+          if (!wasGraded) {
+            reviewMark(q.subj || DATA.slug, q.id, score >= totalMarks);
+            logAnswer(q.subj || DATA.slug, q.id, score >= totalMarks, q.difficulty, "short");
+            if (score >= totalMarks && window.awardForQ) awardForQ(q.id, q.difficulty, "short", true);
+          }
+          GRADING[q.id] = false;
+          render();
+          return;
+        } catch (e) {
+          lastErr = en.n + ": " + ((e && e.message) || e);
         }
-        ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
-      })();
+      }
+      GRADING[q.id] = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldTxt;
+      toast("判分服务不可用（" + lastErr + "），已切到手动校正", false);
+      const mb2 = document.getElementById("manualbox");
+      if (mb2) mb2.open = true;
     };
-    const ap2 = document.getElementById("applyai");
-    if (ap2) ap2.onclick = () => {
-      const c = cur(); const arr = c.slots || [c.text || ""];
-      const res = AI_RES[q.id] || [];
-      const hits = res.map(r => r.covered ? r.i : -1).filter(i => i >= 0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const aa = document.getElementById("applyauto");
-    if (aa) aa.onclick = () => {
-      const c = cur();
-      const arr = c.slots || [c.text || ""];
-      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || "").hit ? i : -1).filter(i=>i>=0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:[],ok:"ok"}; save(); render(); };
   }
   document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
   const nx = document.getElementById("next");
@@ -2162,10 +2415,16 @@ function showResult() {
   let earnedM = 0, totalM = 0, partM = 0;
   const weak = [];
   shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const pts = (x.criteria && x.criteria.length) ? x.criteria
+              : ((x.points && x.points.length) ? x.points : [{m:1}]);
+    const tot = (typeof x.marks === "number" && x.marks > 0)
+      ? x.marks : pts.reduce((a,p)=>a+(p.m||1),0);
     const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const manGot = (r && r.checked)
+      ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const got = (r && r.override)
+      ? (typeof r.manScore === "number" ? r.manScore : manGot)
+      : ((r && r.ai && typeof r.ai.score === "number") ? r.ai.score : manGot);
     totalM += tot;
     if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
   });

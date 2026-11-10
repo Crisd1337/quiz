@@ -256,7 +256,31 @@
     }
    ],
    "id": "geo-015",
-   "options": []
+   "options": [],
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States that short-wave solar radiation passes through the atmosphere and is absorbed by the Earth's surface",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States that the warmed surface re-emits the energy as longer-wave infrared radiation",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that greenhouse gases absorb the outgoing infrared radiation and re-radiate it in all directions, including back towards the surface",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Concludes that the trapped energy raises the average surface temperature, so Earth is warmer than it would be without the atmosphere",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "A Changing Global Climate · 自然 vs 增强（简答）",
@@ -281,7 +305,26 @@
     }
    ],
    "id": "geo-016",
-   "options": []
+   "options": [],
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Defines the natural greenhouse effect as naturally occurring greenhouse gases trapping outgoing infrared and keeping the average surface temperature near 15C",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Identifies the enhanced greenhouse effect as the extra warming from human activities that raise greenhouse gas concentrations (fossil fuels, agriculture and livestock, deforestation)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that the mechanism is identical and the difference is the greater quantity of greenhouse gases, and therefore the extra trapped energy",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "A Changing Global Climate · 海平面上升（简答）",
@@ -306,7 +349,31 @@
     }
    ],
    "id": "geo-017",
-   "options": []
+   "options": [],
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains thermal expansion: warming seawater expands and takes up more volume",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that melting land-based ice (glaciers, Greenland, Antarctica) adds water to the ocean",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Describes one valid coastal impact, such as erosion and shoreline retreat, inundation of low-lying land and infrastructure, or greater storm-surge damage",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Describes a second, different coastal impact, such as saltwater intrusion into estuaries and groundwater, or loss of beaches and wetlands",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "A Changing Global Climate · 海洋酸化（简答）",
@@ -331,7 +398,31 @@
     }
    ],
    "id": "geo-018",
-   "options": []
+   "options": [],
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains that the ocean absorbs human CO2, which forms carbonic acid and releases hydrogen ions that lower the pH of seawater",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that the extra hydrogen ions combine with carbonate ions, so less carbonate is available to organisms",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that corals, shellfish and plankton need carbonate to build calcium carbonate shells and skeletons, so growth slows and shells can dissolve",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Explains the consequence for marine life: reef structures and food webs are weakened",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "A Changing Global Climate · 珊瑚白化（简答）",
@@ -360,7 +451,31 @@
     }
    ],
    "id": "geo-019",
-   "options": []
+   "options": [],
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains that corals live in symbiosis with zooxanthellae, which give them their colour and supply most of their energy",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that heat stress causes the coral to expel the zooxanthellae, so the tissue becomes transparent and the white skeleton shows",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States that recovery requires the stress to end quickly and the water quality to be suitable",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "States that prolonged stress means the coral starves and dies, with recovery then taking a decade or more",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "A Changing Global Climate · 天气图判读（简答）",
@@ -385,7 +500,26 @@
     }
    ],
    "id": "geo-020",
-   "options": []
+   "options": [],
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Predicts that ahead of the front it is warm and humid with increasing cloud and falling pressure, driven by moist north-westerly winds",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Predicts that as the cold front crosses there is a narrow band of heavy rain and thunderstorms, a sharp temperature drop and a wind shift, followed by a rapid rise in pressure",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Predicts that behind the front it becomes cooler and drier with clearing skies and settled weather as the high moves in",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "A Changing Global Climate · FLICC 反驳（简答）",
@@ -410,7 +544,26 @@
     }
    ],
    "id": "geo-021",
-   "options": []
+   "options": [],
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Identifies cherry-picking (or oversimplification) in the claim that climate has always changed",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Identifies conspiracy theory in the claim that scientists are only saying this to get more funding",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives an evidence-based rebuttal, e.g. natural factors alone cannot reproduce the observed warming and the stratospheric cooling with tropospheric warming is the greenhouse gas fingerprint",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "A Changing Global Climate · 缓解 vs 适应（简答）",
@@ -435,7 +588,31 @@
     }
    ],
    "id": "geo-022",
-   "options": []
+   "options": [],
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Defines mitigation as reducing the causes of climate change by cutting emissions or increasing carbon sinks",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Defines adaptation as reducing vulnerability to the effects of climate change that cannot be avoided",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives one valid Australian example of mitigation, such as large-scale solar and wind generation or protecting and restoring coastal wetlands as a carbon sink",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Gives one valid Australian example of adaptation, such as sea walls and dune restoration at Collaroy-Narrabeen or planning retreat zones",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "geo-023",
@@ -494,7 +671,26 @@
    "options": [],
    "answer": "Tightly packed isobars mean a steep pressure gradient and therefore strong winds, which generate large waves and a storm surge that raises water levels at the shore. The cold front adds intense rainfall and runoff, so the combination of higher water and bigger waves produced a major storm cut and foredune erosion.",
    "explanation": "机制链：密集等压线→强风→大浪＋风暴增水；冷锋→暴雨。三者叠加正好赶上涨潮，才造成破坏性侵蚀。只写「风很大」拿不到满分。",
-   "source": "Term 3 · Lesson 2.2 Understanding East Coast Lows"
+   "source": "Term 3 · Lesson 2.2 Understanding East Coast Lows",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains that tightly packed isobars mean a steep pressure gradient and therefore strong winds",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that the strong winds generate large waves and a storm surge that raise water levels at the shore",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that the cold front adds intense rainfall and runoff, so the combination of higher water and bigger waves produced a major storm cut and foredune erosion",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "geo-027",
@@ -505,7 +701,26 @@
    "options": [],
    "answer": "(a) Prevention — it removes the exposure before damage can occur. (b) Mitigation — it reduces the impact of wave energy on assets that already exist. (c) Preparedness — it plans the response for when an event happens.",
    "explanation": "判断依据是「作用于变化之前／之中／之后」：预防在源头避免暴露，缓解降低既有资产的受损程度，准备安排事件发生时的应对。",
-   "source": "Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems"
+   "source": "Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Classifies the zoning strategy as prevention and explains that it removes the exposure before damage can occur",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Classifies the seawall as mitigation and explains that it reduces the impact of wave energy on assets that already exist",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Classifies the evacuation plan as preparedness and explains that it plans the response for when an event happens",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "geo-028",
@@ -516,7 +731,36 @@
    "options": [],
    "answer": "The protection argument is valid in the short term: the wall prevents wave attack on the houses immediately behind it. The criticism is also valid: a vertical wall reflects wave energy, removes sediment from the beach budget and can increase erosion at the ends of the wall, so the beach in front narrows and the problem shifts along the coast. The decision therefore trades protection of private assets against the loss of public beach.",
    "explanation": "评估题要「两边都成立＋说明代价」：短期保护有效，但过程代价（反射、输沙收支改变、侵蚀转移）真实存在。只站一边不给高分。",
-   "source": "Term 3 · Lesson 3.3 The Controversial Seawall（stakeholder perspectives）"
+   "source": "Term 3 · Lesson 3.3 The Controversial Seawall（stakeholder perspectives）",
+   "marks": 5,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains the protection argument: the wall prevents wave attack on the houses immediately behind it, so it is valid in the short term",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that a vertical wall reflects wave energy back onto the beach",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that the wall removes sediment from the beach budget, so the beach in front narrows",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Explains that erosion can increase at the ends of the wall, so the problem shifts along the coast",
+     "m": 1
+    },
+    {
+     "id": "c5",
+     "t": "Reaches an evaluative judgement that the decision trades protection of private assets against the loss of public beach",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   }
  ]
 }

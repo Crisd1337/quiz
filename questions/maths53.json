@@ -62,7 +62,21 @@
       "options": [],
       "answer": "Multiply by the conjugate (√5 + 1): 4(√5 + 1)/((√5)² − 1²) = 4(√5 + 1)/4 = √5 + 1.",
       "explanation": "分母含根式相加/减时，要乘共轭 (√5+1)；乘完后分母是 5−1=4，正好与分子约成 1，答案 √5+1（≈3.24）。",
-      "source": "Chapter 1 Surds · 1.06 Rationalising the denominator, binomial denominators (Ex 1.06)"
+      "source": "Chapter 1 Surds · 1.06 Rationalising the denominator, binomial denominators (Ex 1.06)",
+      "marks": 2,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Multiplies the numerator and denominator by the conjugate (√5 + 1)",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Simplifies to √5 + 1, since the denominator (√5)² − 1² = 4 cancels with the 4 in the numerator",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-005",
@@ -105,7 +119,26 @@
       "options": [],
       "answer": "(x + 3)/(x + 4), where x ≠ 3 and x ≠ −4.",
       "explanation": "分子是平方差 (x−3)(x+3)，分母分解为 (x+4)(x−3)，约去 (x−3) 得 (x+3)/(x+4)。约掉的因式对应的 x 值必须排除：x≠3、x≠−4。",
-      "source": "Chapter 5 Products and factors · 5.11 Factorising algebraic fractions (Ex 5.11)"
+      "source": "Chapter 5 Products and factors · 5.11 Factorising algebraic fractions (Ex 5.11)",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Factorises the numerator and denominator: (x − 3)(x + 3) over (x + 4)(x − 3)",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Cancels (x − 3) to give (x + 3)/(x + 4)",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "States the restrictions x ≠ 3 and x ≠ −4",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-008",
@@ -148,7 +181,26 @@
       "options": [],
       "answer": "4x⁴/y²  (8^(2/3) = 4, (x⁶)^(2/3) = x⁴, (y⁻³)^(2/3) = y⁻² = 1/y²)",
       "explanation": "把 2/3 分别乘到每个指数上：8^(2/3)=4，x^(6×2/3)=x⁴，y^(−3×2/3)=y⁻²，再用负指数法则写成 4x⁴/y²。",
-      "source": "Chapter 5 Indices · 5.02 Fractional indices / 5.04 Multiplying and dividing algebraic fractions"
+      "source": "Chapter 5 Indices · 5.02 Fractional indices / 5.04 Multiplying and dividing algebraic fractions",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Evaluates the coefficient: 8^(2/3) = 4",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Applies the index law to the x term: (x⁶)^(2/3) = x⁴",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Simplifies the y term to y⁻² and writes the answer with a positive index as 4x⁴/y²",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-011",
@@ -207,7 +259,26 @@
       "options": [],
       "answer": "x = 4 (the solution x = −2 is rejected, because the logarithm of a negative number is undefined).",
       "explanation": "合并左边：log₂[x(x−2)] = 3，即 x²−2x = 8，解得 x = 4 或 x = −2。必须检验定义域：x>0 且 x−2>0，所以只剩 x = 4。",
-      "source": "Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations (Ex 7.11)"
+      "source": "Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations (Ex 7.11)",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Combines the logarithms and converts: log₂[x(x − 2)] = 3, so x² − 2x = 8",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Solves the quadratic to get x = 4 or x = −2",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Rejects x = −2 because the logarithm of a negative number is undefined (the domain requires x > 2)",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-015",
@@ -250,7 +321,26 @@
       "options": [],
       "answer": "x ≈ 1.27 or x ≈ −2.77  (x = (−3 ± √65)/4)",
       "explanation": "a=2、b=3、c=−7，判别式 b²−4ac = 9+56 = 65，所以 x = (−3 ± √65)/4 ≈ (−3 ± 8.0623)/4，得 1.2656 与 −2.7656，取两位小数为 1.27 与 −2.77。",
-      "source": "Chapter 11 Quadratic equations and the parabola · 11.03 The quadratic formula (Ex 11.03)"
+      "source": "Chapter 11 Quadratic equations and the parabola · 11.03 The quadratic formula (Ex 11.03)",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Identifies a = 2, b = 3, c = −7 and the discriminant b² − 4ac = 65",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Substitutes into the formula to get x = (−3 ± √65)/4 (≈ (−3 ± 8.06)/4)",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Gives both roots correct to two decimal places: x ≈ 1.27 and x ≈ −2.77",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-018",
@@ -261,7 +351,26 @@
       "options": [],
       "answer": "x = 1, x = −1, x = 2 or x = −2",
       "explanation": "令 u = x²，方程化为 u²−5u+4=0，即 (u−1)(u−4)=0，u=1 或 4。再解 x²=1 与 x²=4，得四个解 x=±1、±2；不要只写 x=1 和 2。",
-      "source": "Chapter 11 Quadratic equations and the parabola · 11.05 Higher-order quadratic equations (Ex 11.05)"
+      "source": "Chapter 11 Quadratic equations and the parabola · 11.05 Higher-order quadratic equations (Ex 11.05)",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Uses the substitution u = x² to obtain u² − 5u + 4 = 0 and factorises it to (u − 1)(u − 4) = 0",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Finds u = 1 or u = 4",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Gives all four solutions: x = 1, −1, 2, −2",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-019",
@@ -320,7 +429,26 @@
       "options": [],
       "answer": "x + 3y − 7 = 0",
       "explanation": "先求斜率 m = (1−3)/(4−(−2)) = −2/6 = −1/3；用点斜式 y−3 = −(1/3)(x+2)，两边乘 3 得 3y−9 = −x−2，整理为 x+3y−7 = 0。代回两点可检验。",
-      "source": "Coordinate Geometry · 3.05 The general form ax + by + c = 0 / 3.07 Finding the equation of a line (p.81–86)"
+      "source": "Coordinate Geometry · 3.05 The general form ax + by + c = 0 / 3.07 Finding the equation of a line (p.81–86)",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Calculates the gradient as m = (1 − 3)/(4 − (−2)) = −1/3",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Substitutes one point into y − y₁ = m(x − x₁), e.g. y − 3 = −1/3(x + 2)",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Rearranges to the general form x + 3y − 7 = 0",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-023",
@@ -363,7 +491,26 @@
       "options": [],
       "answer": "A pie costs $3.50 and a drink costs $2.00.",
       "explanation": "设派为 p、饮料为 d：3p+2d=14.50，2p+5d=17.00。第一式乘 5、第二式乘 2 得 15p+10d=72.50 与 4p+10d=34.00，相减得 11p=38.50，p=3.50，代回得 d=2.00。",
-      "source": "Chapter 10 Simultaneous equations · 10.04 Problems involving simultaneous equations (Ex 10.04)"
+      "source": "Chapter 10 Simultaneous equations · 10.04 Problems involving simultaneous equations (Ex 10.04)",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Sets up the simultaneous equations 3p + 2d = 14.50 and 2p + 5d = 17.00",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Eliminates one variable and finds p = $3.50",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Substitutes back to find d = $2.00",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-026",
@@ -422,7 +569,21 @@
       "options": [],
       "answer": "k = −12; the asymptotes are x = 0 (the y-axis) and y = 0 (the x-axis).",
       "explanation": "代入得 −3 = k/4，所以 k = −12，即 y = −12/x。x 不能为 0、y 也永远不为 0，因此两条渐近线分别是 x = 0 与 y = 0。",
-      "source": "Chapter 8 Graphing curves · 8.11 The hyperbola y = k/x (Ex 8.11)"
+      "source": "Chapter 8 Graphing curves · 8.11 The hyperbola y = k/x (Ex 8.11)",
+      "marks": 2,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Substitutes (4, −3) into y = k/x to get k = −12",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "States the asymptotes as x = 0 (the y-axis) and y = 0 (the x-axis)",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-030",
@@ -449,7 +610,21 @@
       "options": [],
       "answer": "Domain: x ≥ 4; range: y ≥ 0.",
       "explanation": "根号内必须非负，所以 x−4 ≥ 0，定义域 x ≥ 4；算术平方根的结果不会是负数，因此值域 y ≥ 0。注意值域是 y 的范围，不是 x 的范围。",
-      "source": "Chapter 14 Functions · 14.02 The domain and range of a function (p.540)"
+      "source": "Chapter 14 Functions · 14.02 The domain and range of a function (p.540)",
+      "marks": 2,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "States the domain as x ≥ 4, because the expression under the square root must not be negative",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "States the range as y ≥ 0",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-032",
@@ -508,7 +683,26 @@
       "options": [],
       "answer": "∠B ≈ 53.5° or ∠B ≈ 126.5°, because sin B = b sin A / a = 15 sin40°/12 ≈ 0.8035 and the sine rule can produce an acute and an obtuse solution (the ambiguous case).",
       "explanation": "由正弦定理 sinB = 15×sin40°/12 ≈ 0.8035，得 B ≈ 53.5°；因为 sin(180°−θ)=sinθ，B 也可能是 180°−53.5° = 126.5°。需检验两解是否都能与 40° 组成三角形；题目只给两边一角（SSA），所以出现模糊情况。",
-      "source": "Non-right Angled Trigonometry · 9.08 Sine rule for angles (Ex 9.08)"
+      "source": "Non-right Angled Trigonometry · 9.08 Sine rule for angles (Ex 9.08)",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Uses the sine rule to get sin B = 15 sin 40° / 12 ≈ 0.8035 and B ≈ 53.5°",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Finds the second solution B ≈ 126.5° using sin(180° − θ) = sin θ",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Explains that the information given is SSA (two sides and a non-included angle), so the ambiguous case allows two possible triangles",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-036",
@@ -615,7 +809,26 @@
       "options": [],
       "answer": "8/15  (2 × 6/10 × 4/9 = 48/90 = 8/15 ≈ 0.533)",
       "explanation": "树状图有两条合格路径：白→黑 (6/10 × 4/9 = 24/90) 和黑→白 (4/10 × 6/9 = 24/90)，相加得 48/90 = 8/15。注意第二条分支的分母也要变成 9（不放回），且\"恰好一个黑\"两条路径都要算，只算一条会漏一半。",
-      "source": "Chapter 12 Probability · 12.04 Tree diagrams / 12.05 Selecting with and without replacement"
+      "source": "Chapter 12 Probability · 12.04 Tree diagrams / 12.05 Selecting with and without replacement",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Identifies both valid paths: white then black, and black then white",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Calculates each path probability with a changed denominator for the second draw (6/10 × 4/9 = 24/90)",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Adds the two paths to give 48/90 = 8/15",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     },
     {
       "id": "maths53-043",
@@ -626,7 +839,26 @@
       "options": [],
       "answer": "(a) 18/45 = 2/5 = 0.4   (b) 80 − (45 + 30 − 18) = 23, so P(neither) = 23/80 = 0.2875 ≈ 0.29",
       "explanation": "(a) 条件概率的分母是\"已知养狗\"的 45 人，交集 18 人，故 18/45 = 2/5（≈0.4）。(b) 先求并集 45 + 30 − 18 = 57 人，再 80 − 57 = 23 人两者都没有，概率 23/80 ≈ 0.29；别把 18 在并集里重复加。",
-      "source": "Chapter 12 Probability · 12.02 Venn diagrams / 12.07 Conditional probability"
+      "source": "Chapter 12 Probability · 12.02 Venn diagrams / 12.07 Conditional probability",
+      "marks": 3,
+      "criteria": [
+        {
+          "id": "c1",
+          "t": "Finds the conditional probability as 18/45 = 2/5 (using 45, not 80, as the denominator)",
+          "m": 1
+        },
+        {
+          "id": "c2",
+          "t": "Finds the number who own at least one animal: 45 + 30 − 18 = 57",
+          "m": 1
+        },
+        {
+          "id": "c3",
+          "t": "Gives P(neither animal) = (80 − 57)/80 = 23/80 ≈ 0.29",
+          "m": 1
+        }
+      ],
+      "auto_grade": true
     }
   ]
 }

@@ -92,7 +92,21 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part A · Selection pressures / B1）",
    "zh": {
     "stem": "定义「选择压力」，并给出两个选择压力的例子。（2 分）"
-   }
+   },
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Defines a selection pressure as an external agent or environmental factor that affects an organism's ability to survive and reproduce in a given environment",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Gives two valid examples of selection pressures, e.g. predators, climate and temperature, food or water supply, disease, competition for mates or resources (any two)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-005",
@@ -106,7 +120,36 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B2）",
    "zh": {
     "stem": "下列自然选择的步骤顺序被打乱：繁殖与遗传；在基因库中比例上升；适者生存；变异……请把它们排成正确顺序。（分值见题）"
-   }
+   },
+   "marks": 5,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Places 'variation in a population' as step 1",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Places 'selection pressure' as step 2",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Places 'survival of the fittest' as step 3",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Places 'reproduction and inheritance' as step 4 and 'increased prevalence in the gene pool' as step 5",
+     "m": 1
+    },
+    {
+     "id": "c5",
+     "t": "Explains step 3: individuals whose inherited traits suit the environment are more likely to survive (and so reproduce)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-006",
@@ -120,7 +163,16 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B3）+ Year 10 - Evolution.pptx（Mutations）",
    "zh": {
     "stem": "种群中的变异最初来自哪里？（1 分）"
-   }
+   },
+   "marks": 1,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States that variation originally comes from mutation — random changes in DNA that produce new alleles (accept: sexual reproduction reshuffles existing alleles)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-007",
@@ -134,7 +186,31 @@
    "source": "Year 10 - Evolution.pptx（The Theory of Evolution）",
    "zh": {
     "stem": "达尔文提出了一系列观察并据此作出推论。概述其中两项观察以及由它们得出的推论。（4 分）"
-   }
+   },
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Outlines one observation: individuals in a species vary, and much of that variation is heritable",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Outlines a second observation: organisms produce far more offspring than can survive while resources are limited",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States the inference: there is a struggle for existence, and the individuals best suited to their environment survive and reproduce",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Adds that over time the population becomes adapted to its environment, which can lead to new species",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-008",
@@ -148,7 +224,26 @@
    "source": "Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）+ Year 10 - Evolution.pptx",
    "zh": {
     "stem": "说明拉马克对进化的解释与达尔文有何不同。（3 分）"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Outlines Lamarck's mechanism: use and disuse plus inheritance of acquired characteristics, so a change made during an organism's life is passed to its offspring (e.g. a giraffe stretching its neck)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Outlines Darwin's mechanism: variation already exists, and individuals with inherited traits suited to the environment survive and reproduce more, so those traits become more common",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Identifies the key difference: Lamarck's mechanism has no role for genes and acquired changes are not inherited, so only heritable variation can be passed on",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-009",
@@ -162,7 +257,31 @@
    "source": "Term 4 - Evolution - Week 2（Case Study: Peppered Moth）",
    "zh": {
     "stem": "用自然选择解释：为什么 1800 年代工业城镇中桦尺蛾的深色（黑化）型变得常见。（4 分）"
-   }
+   },
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Describes the environmental change: soot pollution killed the lichens and blackened the tree trunks",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that the pale form stood out against the dark bark and was eaten by birds, so it was selected against",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that the dark (melanic) form was better camouflaged, survived to breed and passed its alleles to the next generation",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Concludes that over many generations the dark form became more common as the population evolved with the changed environment",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-010",
@@ -176,7 +295,26 @@
    "source": "Year 10 - Evolution.pptx（Evidence for Evolution – Living Species）",
    "zh": {
     "stem": "举出三种来自现存物种、支持进化论的证据，并说明其中一种证据说明了什么。（3 分）"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Names at least two types of evidence from living species (comparative anatomy, comparative embryology, biochemical or DNA evidence)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Names a third valid type of evidence, e.g. vestigial structures (or gives a specific example such as homologous forelimb bones)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains what one type shows, e.g. homologous structures indicate common ancestry / similar early embryos indicate relatedness / closer DNA base sequences indicate a closer relationship",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-011",
@@ -190,7 +328,26 @@
    "source": "Year 10 - Evolution.pptx（Techniques used to date fossils）",
    "zh": {
     "stem": "描述化石的相对测年与绝对测年的区别，并指出相对测年的一个问题。（3 分）"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Describes relative dating: the order of rock layers shows which fossil is older (lower layers were laid down first), so it gives the order of age rather than an actual age",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Describes absolute dating: measures how much radioactive carbon is left in a sample to calculate when the organism died",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives one problem with relative dating: plate movement, folding or faulting can overturn or shift layers, so the layer order no longer shows the true sequence of ages",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-012",
@@ -204,7 +361,26 @@
    "source": "Year 10 - Evolution.pptx（Wallace's Line）",
    "zh": {
     "stem": "华莱士线说明了什么？最可能的解释是什么？（3 分）"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States that the line marks the boundary between the Asian fauna (placental mammals such as tigers and elephants) and the Australian fauna (marsupials and monotremes)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Describes where the line runs: through Bali and Borneo, north through Lombok and Sulawesi, then east of the Philippines",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains it as approximately the collision zone between the Asian and Australian plates, so the two regions were isolated and their species evolved separately",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-013",
@@ -218,7 +394,26 @@
    "source": "Year 10 - Evolution.pptx（Urey-Miller experiment）",
    "zh": {
     "stem": "描述米勒–尤里实验证明了什么，并指出该实验的一个局限。（3 分）"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Describes the procedure: heated water and a gas mixture representing the early ocean and atmosphere, and passed electric sparks through them to simulate lightning",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States the result: a range of amino acids (the building blocks of proteins) formed, showing organic molecules can form spontaneously from inorganic ingredients",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States one limitation: it does not prove how life actually began, and the early atmosphere may not have had the composition he assumed",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-014",
@@ -232,7 +427,31 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 1 / C1）",
    "zh": {
     "stem": "【材料 1 · 沙漠蜥蜴】某沙漠地区的蜥蜴肤色有浅棕与深棕两种。在捕食性鸟类出现之前……（按要求作答）"
-   }
+   },
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Identifies the variation: the population already contained inherited variation in colour (light and dark brown lizards)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Identifies the selection pressure: the predatory bird, which hunts visually during the day",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains survival of the fittest: light lizards are camouflaged against the sand and less likely to be eaten, while dark lizards stand out and are removed",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Explains reproduction and inheritance: the surviving light lizards breed and pass the light-colour alleles to their offspring, so light lizards become more common over generations",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-015",
@@ -246,7 +465,36 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 3 / C3）",
    "zh": {
     "stem": "【材料 3 · 孔雀鱼】某河流中的孔雀鱼体色从鲜艳到暗淡不等。在有较多捕食者的水域，暗淡的个体更不易被发现……（按要求作答）"
-   }
+   },
+   "marks": 5,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Identifies the variation: the population contains inherited variation in colour, from bright to dull",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States that the selection pressure is different in each area — predation in one, mate choice in the other",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that in predator-rich water the dull fish are camouflaged and survive to breed, so dull alleles increase",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Explains that in predator-free water bright males attract more mates and leave more offspring, so bright alleles increase",
+     "m": 1
+    },
+    {
+     "id": "c5",
+     "t": "Concludes that different selection pressures push the same species in opposite directions, so the dominant form differs between the two areas",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-016",
@@ -260,7 +508,41 @@
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part D · Apply your knowledge / D1）",
    "zh": {
     "stem": "【综合】乳糖是牛奶中的糖，乳糖酶是分解它的酶。多数哺乳动物在幼年后乳糖酶产量下降，从而出现乳糖不耐受……（按要求作答）"
-   }
+   },
+   "marks": 6,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Identifies that keeping lactase production into adulthood is an inherited mutation, so there is heritable variation in the trait",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains the advantage in dairying populations: adults who could digest milk had an extra reliable food source, especially when other food was scarce",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that those individuals were more likely to survive and reproduce and passed the lactase-persistence allele to their offspring",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Explains that over many generations the allele became common, so lactose intolerance is now rare in those populations (about 5%)",
+     "m": 1
+    },
+    {
+     "id": "c5",
+     "t": "Explains that without dairy herding digesting milk gave no survival advantage, so the mutation was not selected for and lactose intolerance stayed common (about 97%)",
+     "m": 1
+    },
+    {
+     "id": "c6",
+     "t": "States that this is natural selection acting on existing heritable variation, not the inheritance of a trait acquired during life",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-017",
@@ -349,7 +631,26 @@
    "source": "Identifying Variables.docx + Term 3 Reactive Chemistry Week 7（surface area investigation）",
    "zh": {
     "stem": "某学生研究碳酸钙的表面积是否影响它与盐酸反应的速率。请指出自变量、因变量和至少两个控制变量。"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Identifies the independent variable as the surface area (particle size) of the calcium carbonate",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Identifies the dependent variable as the rate of reaction, e.g. the volume of gas collected per minute",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives two controlled variables, e.g. the concentration and volume of hydrochloric acid, the mass of calcium carbonate, the temperature, the same beaker (any two)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-021",
@@ -363,7 +664,21 @@
    "source": "How to Tabulate Data.docx",
    "zh": {
     "stem": "列出实验数据制表时必须遵守的两条规则。（2 分）"
-   }
+   },
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States that the independent variable goes in the leftmost column and each heading gives the quantity with its unit (units in the heading only, not in every cell)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States that the table must be closed with a value in every cell, with each measurement in the correct column and as many rows and columns as the data require",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-022",
@@ -377,7 +692,21 @@
    "source": "How to draw a column graph.docx + Stage 5 Graphing-1.docx",
    "zh": {
     "stem": "说明什么时候应该用柱状图而不是折线图。（2 分）"
-   }
+   },
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains that a column graph is used when the x-axis variable is a set of categories being compared (e.g. months, states, colours, subcontinents)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Contrasts it with a line graph, which is used when both variables are continuous numerical data so that trends can be seen and a line of best fit drawn",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-023",
@@ -391,7 +720,26 @@
    "source": "Half Yearly Revision.pdf（Validity – Errors）",
    "zh": {
     "stem": "描述随机误差与系统误差的区别，并说明各自如何减小。（3 分）"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Describes random error: unpredictable fluctuations in either direction caused by the limitations of the measuring device or by the experimenter (e.g. reaction time)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Describes systematic error: a reproducible inaccuracy always in the same direction, caused by the system itself (e.g. a poorly calibrated thermometer reading 2 °C too high)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States how each is reduced: random errors by repeating and averaging, systematic errors by calibrating and maintaining the equipment and taking careful readings",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-024",
@@ -405,7 +753,21 @@
    "source": "Half Yearly Revision.pdf（Validity / Reliability）",
    "zh": {
     "stem": "区分一项研究的效度（validity）与信度（reliability）。（2 分）"
-   }
+   },
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Defines validity as the extent to which the investigation actually tests what it claims to test (a fair test with one independent variable and everything else controlled)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Defines reliability as the extent to which repeated measurements under identical conditions give similar results, so it requires the investigation to be repeated",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-025",
@@ -419,7 +781,31 @@
    "source": "2020 Year 10 Yearly Examination Answers（Part E Q1–Q3 DNA 碱基数据分析）",
    "zh": {
     "stem": "下表给出五个物种 DNA 中腺嘌呤与鸟嘌呤的百分比。物种 A–E 的腺嘌呤为 38/26/8/20/33，鸟嘌呤为 12/2……（按碱基配对规律作答）"
-   }
+   },
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "(a) Describes the trend: as the percentage of adenine increases, the percentage of guanine decreases (roughly %A + %G ≈ 50), so they are inversely related",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "(b) States the base-pairing rule: adenine pairs with thymine and guanine with cytosine, so %A = %T and %G = %C",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "(b) Explains why %A + %G ≈ 50: because the four bases add to 100%, 2(%A) + 2(%G) = 100",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "(c) Predicts that the percentage of thymine is 20%",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-026",
@@ -433,7 +819,26 @@
    "source": "2020 Year 10 Yearly Examination Answers（Part E Q7：由梯度求电阻）",
    "zh": {
     "stem": "某电阻的电压（y 轴）对电流（x 轴）图像是一条过 (0,0) 与 (10 A, 5 V) 的最佳拟合直线。计算斜率并说明它代表什么。"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Calculates the gradient as rise ÷ run = (5 − 0) V ÷ (10 − 0) A = 0.5, showing the working",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States that the gradient equals the resistance because R = V ÷ I",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States the resistance as 0.5 Ω (with the unit)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "sci-027",
@@ -447,7 +852,26 @@
    "source": "Half Yearly Revision.pdf（Deceleration–Force 数据表）",
    "zh": {
     "stem": "下表给出乘客在不同减速度下受到的力。减速度 1/2/4/6/8/10/12/14 m/s² 对应力 80/149/305……（做插值读数）"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "(a) Recognises that 5 m/s² is halfway between 4 m/s² (305 N) and 6 m/s² (448 N)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "(a) Interpolates to about 376 N (accept 370–380 N)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "(b) Describes a linear relationship: the force increases by a constant amount (about 74 N) for every extra 1 m/s² of deceleration",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "有机化学 · 烷烃通式",
@@ -875,7 +1299,26 @@
    "options": [],
    "zh": {
     "stem": "画出乙醇的完整结构式，指出它的官能团，并解释乙醇为什么能溶于水。"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Shows the full structural formula of ethanol with all bonds drawn (CH3–CH2–OH), not just the molecular formula C2H6O",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Identifies the functional group as the hydroxyl (–OH) group",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains solubility by hydrogen bonding between the –OH group and water molecules",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "有机化学 · 证据解释",
@@ -903,7 +1346,26 @@
    "options": [],
    "zh": {
     "stem": "某学生向两种未知无色液体中加入溴水：样品 A 在室温下使溴水褪色，样品 B 不褪色。解释这说明两者各自的成键情况，并各举一个可能的化合物。"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Explains that sample A contains a carbon–carbon double bond (is unsaturated), so bromine adds across the C=C and the colour disappears",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that sample B has only single bonds (is saturated), so it does not react with bromine water at room temperature",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Names a valid compound for each: an alkene for A (e.g. ethene or hexene) and an alkane for B (e.g. ethane or hexane)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "有机化学 · 比较与用途",
@@ -931,7 +1393,26 @@
    "options": [],
    "zh": {
     "stem": "比较烷烃与烯烃的结构和反应性，并解释为什么烯烃被用来制造塑料。"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States that alkanes have only single C–C bonds and are saturated, so they mainly undergo substitution (with UV light) and combustion",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States that alkenes contain a C=C double bond, are unsaturated, and readily undergo addition reactions",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that alkenes join by addition polymerisation to form long-chain polymers such as polyethene or PVC",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "有机化学 · 同系物规律",
@@ -955,7 +1436,21 @@
    "options": [],
    "zh": {
     "stem": "甲醇、乙醇、丙醇属于同一同系物。指出一个随碳链增长而规律变化的性质，并解释原因。"
-   }
+   },
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States one property that changes regularly down the series, e.g. boiling point increases from methanol to propanol",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Explains that a longer carbon chain has more electrons and a larger surface area, so dispersion forces between molecules are stronger and more energy is needed to separate them",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "有机化学 · 实验设计",
@@ -983,7 +1478,26 @@
    "options": [],
    "zh": {
     "stem": "设计一个公平实验比较乙醇与辛烷燃烧的完全程度，指出自变量、因变量和控制变量。"
-   }
+   },
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Identifies the independent variable (the fuel used, ethanol versus octane) and a measurable dependent variable (e.g. amount of soot, flame colour, mass of CO2 or heat released per gram)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Lists controlled variables such as the same mass of fuel, same burner, same distance from flame to surface, same volume and starting temperature of water, same oxygen supply",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains how completeness of combustion is judged, e.g. the least soot and the cleanest blue flame",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   }
  ]
 }

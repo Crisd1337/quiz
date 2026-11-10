@@ -46,7 +46,26 @@
    "options": [],
    "answer": "(a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924. (b) Depreciation = 42,000 − 21,924 = $20,076.",
    "explanation": "减少率折旧是每年乘 0.85，共 4 次，不是 42,000×(1−0.15×4)。用直线法（每年固定减 $6,300）会得 $16,800，那是另一种模型。",
-   "source": "1-07_ Depreciation.pdf · A = P(1 − R)^n（reducing balance）"
+   "source": "1-07_ Depreciation.pdf · A = P(1 − R)^n（reducing balance）",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Substitutes correctly into A = P(1 − R)^n: A = 42,000 × (1 − 0.15)^4 (accept 42,000 × 0.85^4)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Calculates the value after 4 years as $21,924 (correct to the nearest dollar)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Calculates the total depreciation as 42,000 − 21,924 = $20,076",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-004",
@@ -137,7 +156,21 @@
    "options": [],
    "answer": "(a) 3ab(4a − 7b)   (b) (x + 5)(x + 2)",
    "explanation": "(a) 取最大公因式：12 与 21 的 HCF 是 3，字母取公有因子 a、b，得 3ab；括号内 3ab×4a=12a²b、3ab×(−7b)=−21ab²。(b) 找和为 7、积为 10 的两个数，即 5 和 2。",
-   "source": "4-06 Factorising monic quadratics.pdf · 2025 BBHS 10 (5.2) T2 Q14"
+   "source": "4-06 Factorising monic quadratics.pdf · 2025 BBHS 10 (5.2) T2 Q14",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Factorises 12a²b − 21ab² as 3ab(4a − 7b), taking the highest common factor 3ab",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Factorises x² + 7x + 10 as (x + 5)(x + 2)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-010",
@@ -180,7 +213,21 @@
    "options": [],
    "answer": "Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.",
    "explanation": "分母 3 和 4 的最小公倍数是 12。第二项前的负号要乘进括号，变成 +6；若写成 −6 会得到 x = 6，这是最常见的失分点。",
-   "source": "Topic 2 Equations and Inequality.pdf · 6-02 Equations with algebraic fractions"
+   "source": "Topic 2 Equations and Inequality.pdf · 6-02 Equations with algebraic fractions",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Multiplies every term by the common denominator 12 and expands correctly: 4x − 3(x − 2) = 24, giving 4x − 3x + 6 = 24",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Solves the resulting equation to x = 18",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-013",
@@ -207,7 +254,26 @@
    "options": [],
    "answer": "Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.",
    "explanation": "先列两个方程，再消元（第一式×3 减第二式×2 得 5s = 22.50）。只用一个条件无法定出两个价格；代回检验 3×4.50+2×3 = $19.50 正确。",
-   "source": "Topic 2 Simultaneous Equations.pdf · 9-04 Simultaneous equations problems"
+   "source": "Topic 2 Simultaneous Equations.pdf · 9-04 Simultaneous equations problems",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Sets up the two equations 3s + 2d = 19.50 and 2s + 3d = 18.00",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Eliminates one variable and finds s = $4.50 (e.g. 5s = 22.50)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Finds d = $3.00 and states both prices",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-015",
@@ -266,7 +332,26 @@
    "options": [],
    "answer": "The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.",
    "explanation": "垂直直线斜率之积为 −1，所以用 −1/2（不是 −2，也不是 2）；再代入 (4, 1) 求截距得 3。验证：x = 4 时 y = −2 + 3 = 1。",
-   "source": "Topic 1 Coordinate Geometry.pdf · 2-07 Equations of parallel and perpendicular lines"
+   "source": "Topic 1 Coordinate Geometry.pdf · 2-07 Equations of parallel and perpendicular lines",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States that the perpendicular gradient is −1/2 (the negative reciprocal of 2, not −2)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Substitutes (4, 1) and this gradient into y = mx + b (or point–gradient form) to find the intercept b = 3",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives the final equation y = −1/2 x + 3",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-019",
@@ -309,7 +394,21 @@
    "options": [],
    "answer": "Centre (0, 0) and radius 7. The point (5, 5) does not lie on the circle, because 5² + 5² = 50, not 49.",
    "explanation": "x² + y² = r² 的圆心在原点，半径 r = √49 = 7。判断点在不在圆上，只要把坐标代入看左边是否恰好等于 49。",
-   "source": "Topic 1 Graphs.pdf · 7-06 The circle"
+   "source": "Topic 1 Graphs.pdf · 7-06 The circle",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States the centre (0, 0) and the radius 7",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Determines that (5, 5) is not on the circle because 5² + 5² = 50, not 49",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-022",
@@ -368,7 +467,21 @@
    "options": [],
    "answer": "tan 62° = h / 45, so h = 45 × tan 62° ≈ 84.6 m.",
    "explanation": "仰角是从水平线向上量到视线的角，45 m 是与 62° 相邻的边，所以用 tan。误用 sin 会得 39.7 m，是因为把 45 m 当成了斜边。",
-   "source": "Topic 3 Trigonometry.pdf · 8-05 Angles of elevation and depression"
+   "source": "Topic 3 Trigonometry.pdf · 8-05 Angles of elevation and depression",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Sets up tan 62° = h / 45 (chooses tan, treating 45 m as the side adjacent to the angle)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Calculates h = 45 × tan 62° ≈ 84.6 m",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-026",
@@ -379,7 +492,26 @@
    "options": [],
    "answer": "Distance = √(15² + 20²) = 25 km. Bearing = tan⁻¹(20/15) ≈ 53°, measured clockwise from north, so the bearing is 053°.",
    "explanation": "方位角一律从正北顺时针量：位移是「北 15、东 20」，所以角度在正北以东 53°。写成 037° 是把 15 和 20 用反了（tan⁻¹(15/20)）。",
-   "source": "Topic 3 Trigonometry.pdf · 8-06 Bearings / 8-07 Problems involving bearings"
+   "source": "Topic 3 Trigonometry.pdf · 8-06 Bearings / 8-07 Problems involving bearings",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Calculates the distance from the start as √(15² + 20²) = 25 km",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Finds the angle tan⁻¹(20/15) ≈ 53° east of north",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States the bearing as 053° (measured clockwise from north, written as a three-figure bearing)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-027",
@@ -422,7 +554,26 @@
    "options": [],
    "answer": "(a) SA = 2πr² + 2πrh = 50π + 100π = 150π ≈ 471.24 m², so 471 m². (b) Cost = 471 × 12 = $5,652.",
    "explanation": "两个圆面加一个侧面共 150π。只算侧面（100π ≈ 314 m²）会漏掉顶和底；若中间不四舍五入、用 471.24 × 12 得 $5,654.88，也算正确。",
-   "source": "2025 BBHS 10 (5.2) T2 - soln.pdf · Q19 · Topic3 Surface area and Volume.pdf"
+   "source": "2025 BBHS 10 (5.2) T2 - soln.pdf · Q19 · Topic3 Surface area and Volume.pdf",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Uses the correct total surface area formula 2πr² + 2πrh (both circular ends plus the curved surface)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Calculates the surface area as 150π ≈ 471 m² (accept 471.24 m²)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Calculates the cost as 471 × 12 ≈ $5,652 (accept $5,654.88 if the unrounded area is used)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-030",
@@ -465,7 +616,31 @@
    "options": [],
    "answer": "(a) Lowest 12, Q1 = 15.5, median = 18, Q3 = 23.5, highest 30. (b) IQR = 23.5 − 15.5 = 8. (c) Positively skewed, because the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5).",
    "explanation": "13 个数中，中位数取第 7 个；Q1、Q3 分别取上下各 6 个数的中位数。上须 6.5 比下须 3.5 长，说明高分一侧拖尾，所以是正偏。",
-   "source": "Topic 1 Investigating Data.pdf · 5-03 Boxplots · 2025 BBHS 10 (5.2) T2 - soln.pdf Q9"
+   "source": "Topic 1 Investigating Data.pdf · 5-03 Boxplots · 2025 BBHS 10 (5.2) T2 - soln.pdf Q9",
+   "marks": 4,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Writes the five-number summary 12, 15.5, 18, 23.5, 30 (lowest, Q1, median, Q3, highest)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Calculates the interquartile range as 23.5 − 15.5 = 8",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States that the distribution is positively skewed",
+     "m": 1
+    },
+    {
+     "id": "c4",
+     "t": "Justifies the skew: the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-033",
@@ -508,7 +683,21 @@
    "options": [],
    "answer": "P(both red) = 3/8 × 2/7 = 6/56 = 3/28.",
    "explanation": "不放回抽样时第二次的样本空间少了一个球，所以是 3/8 × 2/7。写成 3/8 × 3/8 是把不放回当成放回了，这是最常见的错误。",
-   "source": "Topic 3 Probability.pdf · 10-05 Selecting with and without replacement"
+   "source": "Topic 3 Probability.pdf · 10-05 Selecting with and without replacement",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Multiplies the probabilities for the two draws without replacement: 3/8 × 2/7",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Simplifies to 6/56 = 3/28",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-036",
@@ -567,7 +756,26 @@
    "options": [],
    "answer": "Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547. Ben pays $17,547 + 0.37 × $1 = $17,547.37. Ben pays 37 cents more than Ann.",
    "explanation": "税率档是连续的：32.5c 档顶端的金额 17,547 正好等于 37c 档的基准金额，所以 Ben 只多出的那 1 元按 37c 计税，差额只有 37 分。误以为跨档要把全部收入按 37% 重算，会算出几千元的差距。",
-   "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q4（官方答案：37 cents）"
+   "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q4（官方答案：37 cents）",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Calculates Ann's tax as $3,572 + 0.325 × (80,000 − 37,000) = $17,547",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Calculates Ben's tax as $17,547 + 0.37 × 1 = $17,547.37 (only the $1 above $80,000 is taxed at 37c)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States that Ben pays 37 cents more than Ann",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-040",
@@ -578,7 +786,26 @@
    "options": [],
    "answer": "(a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50. (b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50.",
    "explanation": "净收入公式是 net pay = gross pay − tax − other deductions，税和其他扣除两项都要减。只减税会得 $45,105.50，这是本题最主要的错误。",
-   "source": "1-02_ Income tax.pdf（Net pay = gross pay − tax − other deduction；Example 3）"
+   "source": "1-02_ Income tax.pdf（Net pay = gross pay − tax − other deduction；Example 3）",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Calculates Kim's income tax as $3,572 + 0.325 × (54,300 − 37,000) = $9,194.50",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Subtracts both the tax and the other deductions: 54,300 − 9,194.50 − 960",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives the net pay as $44,145.50",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "id": "matp-041",
@@ -621,7 +848,26 @@
    "options": [],
    "answer": "(a) Mean = 25 ÷ 10 = 2.5 goals. (b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals.",
    "explanation": "先求均值 2.5，再逐个算偏差平方：6.25+2.25+2.25+0.25+0.25+0.25+0.25+0.25+6.25+12.25 = 30.5，除以 n=10 后开方得 1.75。本题按总体标准差（除以 n）计算；若除以 n−1=9 会得 1.84，那是样本标准差的口径。",
-   "source": "2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf · Q7(e) · New Century 10 Standard-Core Textbook.pdf · 5.03"
+   "source": "2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf · Q7(e) · New Century 10 Standard-Core Textbook.pdf · 5.03",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Finds the mean as 25 ÷ 10 = 2.5 goals",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Calculates the sum of squared deviations, Σ(x − 2.5)² = 30.5",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Calculates σ = √(30.5 ÷ 10) ≈ 1.75 goals (correct to two decimal places)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
   },
   {
    "topic": "网络 · 术语",

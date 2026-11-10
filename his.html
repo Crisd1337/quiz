@@ -620,6 +620,52 @@ footer{padding:22px 14px 30px;line-height:1.8}
   footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
 }
 
+/* ── AI 判分结果面板 ───────────────────────────────────── */
+.aires{border-color:color-mix(in srgb,var(--accent) 26%,var(--border))}
+.ai-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:10px}
+.ai-score{font-family:var(--font-mono);font-size:15px;font-weight:500;letter-spacing:-.02em;
+  line-height:1;color:var(--foreground)}
+.ai-score b{font-size:28px;font-weight:500}
+.ai-score em{font-style:normal;font-size:13px;color:var(--muted);margin-left:1px}
+.ai-conf{font-size:10.5px;border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:1px 7px;color:var(--muted);white-space:nowrap}
+.ai-conf.high{color:var(--success);border-color:color-mix(in srgb,var(--success) 45%,var(--border))}
+.ai-conf.mid{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--border))}
+.ai-conf.low{color:var(--error);border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+.ai-flag{font-size:10.5px;color:var(--error);white-space:nowrap;
+  border:1px solid color-mix(in srgb,var(--error) 45%,var(--border));
+  border-radius:var(--r-sm);padding:1px 7px}
+.ai-meta{font-size:10.5px;color:var(--muted)}
+.ai-fb{font-size:12.5px;line-height:1.65;color:var(--foreground);background:var(--surface-secondary);
+  border-radius:var(--r-sm);padding:9px 11px;margin-bottom:10px}
+.critlist{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.cres{display:grid;grid-template-columns:15px minmax(0,1fr) auto;gap:8px;
+  padding:7px 0;border-top:1px solid var(--border);font-size:12.5px;align-items:start}
+.cres:first-child{border-top:0}
+.cmk{font-size:12px;line-height:1.55;text-align:center;color:var(--muted)}
+.cres.full .cmk{color:var(--success)}
+.cres.part .cmk{color:var(--warning)}
+.cres.none .cmk{color:var(--error)}
+.cbody{min-width:0}
+.ct{display:block;line-height:1.55}
+.cres.none .ct{color:var(--muted)}
+.cr{display:block;color:var(--muted);font-size:11px;margin-top:2px;line-height:1.5}
+.csc{font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.cres.full .csc{color:var(--success)}
+.ai-foot{margin-top:9px;font-size:10.5px;color:var(--muted)}
+.ai-note{margin-top:10px;font-size:11.5px;color:var(--muted);
+  border-left:2px solid var(--border-strong);padding-left:9px}
+.scorepill{border-color:color-mix(in srgb,var(--accent) 38%,var(--border));color:var(--foreground)}
+.scorepill.low{border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+details.manual{padding:0}
+details.manual>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  padding:12px 14px;font-size:12px;color:var(--muted);user-select:none}
+details.manual>summary::-webkit-details-marker{display:none}
+details.manual>summary::before{content:"+";font-family:var(--font-mono);font-size:11px;width:11px}
+details.manual[open]>summary::before{content:"−"}
+details.manual>summary:hover{color:var(--foreground)}
+details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
+
 </style>
 </head>
 <body>
@@ -1440,7 +1486,13 @@ footer{padding:22px 14px 30px;line-height:1.8}
   /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
   var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
   var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
-  function apibase(){ try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function apibase(){
+    try{
+      var m = location.search.match(/[?&]api=([^&]*)/);
+      if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+    }catch(e){}
+    try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; }
+  }
   function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
   function loadBoard(){
     var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
@@ -1683,7 +1735,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
 })();
 </script>
 <script>
-const DATA = {"slug": "his", "title": "历史 · 10 年级", "examMin": 60, "questions": [{"id": "his-001", "topic": "年考术语 · 单极格局", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines unipolarity?", "options": ["One state is dominant, with no rival of comparable power", "Power is dispersed among several competing great powers", "Power is shared between two rival blocs that balance each other", "Power rests with whichever state acts first without consulting others"], "answer": 0, "explanation": "单极＝只有一个占绝对优势的力量中心，没有同级对手。两极是冷战的美苏互衡，多极是多方均衡；「Power rests with whichever state acts first without consulting others」 描述的是单边主义的行事方式，不是权力结构。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unipolarity）", "weak": false}, {"id": "his-002", "topic": "年考术语 · 多边行动", "difficulty": "easy", "type": "mcq", "stem": "Which action is the clearest example of multilateral action?", "options": ["One state acting alone without notifying any other government", "A coalition of states acting together under UN Security Council authorisation", "One state threatening to act alone unless its allies fall into line", "Two neighbouring states signing a border and trade agreement"], "answer": 1, "explanation": "multilateral 指多国共同参与、通常经国际机构协调的行动，关键词是「多国＋授权」。「One state acting alone without notifying any other government」 和 「One state threatening to act alone unless its allies fall into line」 是单边；「Two neighbouring states signing a border and trade agreement」 只有两国，属 bilateral，不是 multilateral。", "source": "Term 4 · Yearly Assessment Notification — Section One（Multilateral）", "weak": false}, {"id": "his-003", "topic": "年考术语 · 单边主义", "difficulty": "medium", "type": "mcq", "stem": "A government repeatedly insists it will act alone when allies disagree, even at the cost of isolation. This pattern of behaviour is best described as:", "options": ["Humanitarian intervention — force to protect civilians", "Multilateralism — several states act together", "Unilateralism — the habit of acting alone by choice", "Collective security — allies respond together"], "answer": 2, "explanation": "unilateralism 是一种「偏好／习惯」：明知盟友反对仍倾向自行行动。collective security 强调集体回应侵略，multilateralism 强调多国协调，都与题干相反。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateralism）", "weak": false}, {"id": "his-004", "topic": "年考术语 · 集体安全", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines collective security?", "options": ["A single state decides when and where military force will be used", "Each state builds enough weapons to deter rivals without any allies", "A powerful state intervenes inside another to stop human rights abuses", "States agree that an attack on one member is an attack on all"], "answer": 3, "explanation": "集体安全的核心是「一国受攻＝全体受攻」，成员共同回应（通常经联合国）。「Each state builds enough weapons to deter rivals without any allies」 是自行威慑，「A powerful state intervenes inside another to stop human rights abuses」 是人道干预，「A single state decides when and where military force will be used」 是单边决策。", "source": "Term 4 · Yearly Assessment Notification — Section One（Collective Security）", "weak": false}, {"id": "his-005", "topic": "年考术语 · 集体安全 vs 人道干预", "difficulty": "medium", "type": "mcq", "stem": "Which action is the clearest example of collective security rather than humanitarian intervention?", "options": ["A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait", "US troops landing in Somalia in 1992 to protect food convoys", "US-led forces invading Iraq in 2003 without any explicit UN approval", "NATO aircraft bombing Serbia in 1999 to stop ethnic cleansing"], "answer": 0, "explanation": "海湾战争回应的是「跨国侵略」这一对成员国的攻击，属集体安全的典型。其余三个的动因都是保护平民或推翻政权，属人道干预或先发制人，不是集体安全。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）", "weak": false}, {"id": "his-006", "topic": "年考术语 · 先发制人", "difficulty": "easy", "type": "mcq", "stem": "In the Bush Doctrine, pre-emption means:", "options": ["Intervening to stop a government killing its own citizens", "Striking first at a state or group judged to pose a future threat", "Waiting for an attack, then responding with UN approval", "Working through alliances so no single state decides on war"], "answer": 1, "explanation": "先发制人把动武时点前移到「威胁可能成真」之前，不等待实际攻击发生。这正是 Bush Doctrine 与集体安全、人道干预的关键区别。", "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption）", "weak": false}, {"id": "his-007", "topic": "年考术语 · 先发制人 vs 人道干预", "difficulty": "medium", "type": "mcq", "stem": "Which feature most clearly separates pre-emption from humanitarian intervention?", "options": ["Pre-emption targets only non-state groups; intervention only states", "Pre-emption is always multilateral; intervention is always unilateral in form", "Pre-emption answers a future threat; intervention answers harm under way", "Pre-emption always needs UN authorisation; intervention never does"], "answer": 2, "explanation": "区分点在「威胁的时间性」：先发制人针对尚未发生的威胁，人道干预针对正在发生的大规模伤害。授权方式、参与国数量、目标类型都不是二者的分界。", "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption / Humanitarian Intervention）", "weak": false}, {"id": "his-008", "topic": "年考术语 · 人道干预", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines humanitarian intervention?", "options": ["Defensive action taken after a direct attack on one's own soil", "Military action to seize disputed territory and its natural resources", "Economic sanctions agreed by a regional trade or security organisation", "Military action inside a state, without consent, to stop mass suffering"], "answer": 3, "explanation": "人道干预的三个要件：进入他国、未经该国同意、目的是制止大规模人道灾难。「Economic sanctions agreed by a regional trade or security organisation」 是制裁而非军事干预，「Defensive action taken after a direct attack on one's own soil」 是自卫。", "source": "Term 4 · Yearly Assessment Notification — Section One（Humanitarian Intervention）", "weak": false}, {"id": "his-009", "topic": "年考术语 · 单边与多边辨析", "difficulty": "medium", "type": "mcq", "stem": "In 2003 State A went to war with a small group of allies after failing to win UN Security Council support, while State B sent troops to a UN-authorised mission. Which pairing is correct?", "options": ["A — unilateral action; B — multilateral action", "A — multilateral action; B — unilateral action", "A — collective security; B — humanitarian intervention", "A — humanitarian intervention; B — collective security"], "answer": 0, "explanation": "判准是「是否有广泛授权」：A 只带少数盟友、绕过安理会，属单边；B 参与联合国授权任务，属多边。注意 A 虽有盟友，但「小圈子＋无授权」仍被归为单边行动。", "source": "Term 4 · Yearly Assessment Notification — Body 2（invasion of Iraq）", "weak": false}, {"id": "his-010", "topic": "年考术语 · unilateral 与 unilateralism", "difficulty": "medium", "type": "mcq", "stem": "Why does the course list both 'unilateral' and 'unilateralism' as separate terms?", "options": ["'Unilateralism' describes one action; 'unilateral' a whole doctrine", "'Unilateral' is one action taken alone; 'unilateralism' is the doctrine", "They are synonyms, listed twice for emphasis in the notes", "'Unilateral' describes economic policy; 'unilateralism' military policy"], "answer": 1, "explanation": "unilateral 是形容词，描述「单方采取的一次行动」；unilateralism 是名词，指「倾向单方行动的主义／政策取向」。Section One 考 metalanguage，正是要辨清词性与层级。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateral / Unilateralism）", "weak": false}, {"id": "his-011", "topic": "年考论证 · Body 1 选材", "difficulty": "easy", "type": "short", "stem": "Body 1 of the essay covers the 1990s. Name the two events from the notification's list that you would use, and justify your choice in one sentence. (2 marks)", "options": [], "answer": "The Gulf War (1991) and Somalia (1992–94). Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene.", "explanation": "Body 1 只需两个事件，但要形成「对照」而非并列：一个成功多边、一个暴露局限。选 Gulf War＋Somalia、或 Gulf War＋Kosovo 都可，关键是说明为何这两个能支撑主题句。", "source": "Term 4 · Yearly Assessment Notification — Body 1（possible events）", "points": [{"t": "The Gulf War (1991) and Somalia (1992–94)", "m": 1}, {"t": "Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene", "m": 1}], "weak": false}, {"id": "his-012", "topic": "年考论证 · 海湾战争与多边主义", "difficulty": "easy", "type": "short", "stem": "Explain how the Gulf War of 1991 demonstrates multilateralism. (2 marks)", "options": [], "answer": "The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.", "explanation": "多边主义的两个标志：联合国授权＋多国共同承担。答题要写出「谁授权、多少方参与、为何这算多边」，只写「很多国家参加」不够。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）", "points": [{"t": "The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.", "m": 1}], "weak": false}, {"id": "his-013", "topic": "年考论证 · 海湾战争为何属集体安全", "difficulty": "medium", "type": "short", "stem": "Explain why the Gulf War of 1991 is better described as collective security than as humanitarian intervention. (3 marks)", "options": [], "answer": "The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression. Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention.", "explanation": "关键分界是「触发原因」：集体安全回应国家对国家的侵略，人道干预回应政府对自己人民的伤害。海湾战争是前者，1990 年代后期科索沃才是后者的争议案例。", "source": "Term 4 · Yearly Assessment Notification — Section One + Body 1", "points": [{"t": "The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression", "m": 1}, {"t": "Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention", "m": 1}], "weak": false}, {"id": "his-014", "topic": "年考论证 · 索马里与人道干预的局限", "difficulty": "medium", "type": "short", "stem": "What did the US experience in Somalia (1992–94) reveal about the limits of humanitarian intervention? (3 marks)", "options": [], "answer": "A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal. It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country.", "explanation": "索马里常被用作「干预容易、收尾困难」的反面教材：任务目标从送粮扩到战斗、伤亡引发国内压力、最后撤军。写清这条因果链才能拿满分。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Somalia 1992-94）＋ 课程标准补充", "points": [{"t": "A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal", "m": 1}, {"t": "It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country", "m": 1}], "weak": true}, {"id": "his-015", "topic": "年考论证 · 卢旺达 1994 的干预失败", "difficulty": "medium", "type": "short", "stem": "Why is Rwanda (1994) usually described as a failure of humanitarian intervention? (3 marks)", "options": [], "answer": "The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide. The world stood aside, so the decade's humanitarian language was not matched by action.", "explanation": "答「失败」要有两层：现场力量不足＋大国政治上不愿介入（连 genocide 一词都回避）。这正好与同期科索沃的积极干预形成对照。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Rwanda 1994）＋ 课程标准补充", "points": [{"t": "The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide", "m": 1}, {"t": "The world stood aside, so the decade's humanitarian language was not matched by action", "m": 1}], "weak": true}, {"id": "his-016", "topic": "年考论证 · 科索沃的灰色地带", "difficulty": "hard", "type": "short", "stem": "Why is NATO's 1999 intervention in Kosovo often called a 'grey case' of humanitarian intervention? (4 marks)", "options": [], "answer": "The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate. It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance.", "explanation": "「灰色」＝动机正当但授权缺失：合法性与正当性分离。答题要同时写出两边，只说「救了人」或只说「违法」都拿不到高分。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Kosovo 1999）＋ 课程标准补充", "points": [{"t": "The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate", "m": 1}, {"t": "It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance", "m": 1}], "weak": true}, {"id": "his-017", "topic": "年考写作 · Body 1 主题句", "difficulty": "medium", "type": "short", "stem": "Write a topic sentence for Body 1 (the 1990s) that directly answers the essay question. (2 marks)", "options": [], "answer": "In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.", "explanation": "主题句必须含「时段＋论点」，不能只写「1990 年代有很多事件」。好的主题句还会预告张力（多边领导 vs 局限），为结尾 link 句留接口。", "source": "Term 4 · Yearly Assessment Notification — Body 1（topic sentence row）", "points": [{"t": "In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.", "m": 1}], "weak": false}, {"id": "his-018", "topic": "年考论证 · 九一一的转向", "difficulty": "easy", "type": "short", "stem": "Explain how the 9/11 attacks changed the priorities of US foreign policy. (3 marks)", "options": [], "answer": "They shifted US priorities from managing the post-Cold War order to a global 'war on terror'. The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation.", "explanation": "答题锚点是「优先级转移」：从维持后冷战秩序转向反恐。要写出至少两个具体表现（阿富汗、监控、军费、先发制人），不能只写「变得更 aggressive」。", "source": "Term 4 · Lesson 3.1 9/11 Attacks; Notification — Body 2（Impact of 9/11）", "points": [{"t": "They shifted US priorities from managing the post-Cold War order to a global 'war on terror'", "m": 1}, {"t": "The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation", "m": 1}], "weak": false}, {"id": "his-019", "topic": "年考论证 · Bush Doctrine 的特征", "difficulty": "easy", "type": "short", "stem": "Outline the key features of the Bush Doctrine. (3 marks)", "options": [], "answer": "Pre-emption — striking first against states or groups judged to pose a future threat; a willingness to act unilaterally when multilateral agreement could not be reached; regime change and the promotion of democracy; and the claim that American security required action beyond UN authorisation.", "explanation": "四个特征要能分别举例对应：先发制人（伊拉克）、单边（绕开安理会）、政权更替（推翻萨达姆）、推广民主。只背名字不解释会失分。", "source": "Term 4 · Lesson 3.2 The Bush Doctrine; Notification — Body 2", "points": [{"t": "Pre-emption — striking first against states or groups judged to pose a future threat", "m": 1}, {"t": "a willingness to act unilaterally when multilateral agreement could not be reached", "m": 1}, {"t": "regime change and the promotion of democracy", "m": 1}, {"t": "and the claim that American security required action beyond UN authorisation", "m": 1}], "weak": false}, {"id": "his-020", "topic": "年考论证 · 伊拉克战争为何是单边", "difficulty": "medium", "type": "short", "stem": "Explain why the 2003 invasion of Iraq is often described as unilateral rather than multilateral. (3 marks)", "options": [], "answer": "The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself. Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral.", "explanation": "判准不是「有没有盟友」，而是「有没有广泛授权与共同承担」。美国确有盟友，但小圈子＋无安理会授权，因此在教材分类中被归为单边。", "source": "Term 4 · Lesson 4.2 Iraq; Notification — Body 2（invasion of Iraq）", "points": [{"t": "The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself", "m": 1}, {"t": "Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral", "m": 1}], "weak": false}, {"id": "his-021", "topic": "年考论证 · 1991 与 2003 对照", "difficulty": "hard", "type": "short", "stem": "Contrast the multilateralism of the 1991 Gulf War with the unilateralism of the 2003 invasion of Iraq. (4 marks)", "options": [], "answer": "In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression. In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack.", "explanation": "对照要落在三个可比的维度：授权（有／无）、联盟规模与分担（广泛／小圈子）、目标（恢复现状／改变政权）。三点对齐，分数就稳。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War）＋ Body 2（Iraq）", "points": [{"t": "In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression", "m": 1}, {"t": "In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack", "m": 1}], "weak": false}, {"id": "his-022", "topic": "年考论证 · 中国崛起与单极秩序", "difficulty": "hard", "type": "short", "stem": "Explain how the rise of China challenged unipolarity after 2001. (3 marks)", "options": [], "answer": "China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence. As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific.", "explanation": "单极受到挑战＝出现接近同级的对手。答题要给经济（WTO、体量）＋军事＋制度性倡议三类证据，只说「中国变强了」太空泛。", "source": "Term 4 · Yearly Assessment Notification — Body 3（Rise of China）＋ 课程标准补充", "points": [{"t": "China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence", "m": 1}, {"t": "As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific", "m": 1}], "weak": true}, {"id": "his-023", "topic": "年考论证 · 软实力下降", "difficulty": "easy", "type": "short", "stem": "Explain what a decline in US soft power means, and give one example from the period. (2 marks)", "options": [], "answer": "Soft power is influence gained through attraction — culture, values and institutions — rather than through coercion or payment. The Iraq War and the abuse of prisoners at Abu Ghraib damaged America's international reputation in the 2000s, making other states less willing to cooperate.", "explanation": "软实力＝吸引力（文化、价值、制度），与以军力或金钱施压的硬实力相对。举 2003 年后形象受损的例子最直接。", "source": "Term 4 · Yearly Assessment Notification — Body 3（Decline in US soft power）＋ 课程标准补充", "points": [{"t": "Soft power is influence gained through attraction — culture, values and institutions — rather than through coercion or payment", "m": 1}, {"t": "The Iraq War and the abuse of prisoners at Abu Ghraib damaged America's international reputation in the 2000s, making other states less willing to cooperate", "m": 1}], "weak": true}, {"id": "his-024", "topic": "年考论证 · 保护主义与去全球化", "difficulty": "easy", "type": "short", "stem": "Explain how the rise of protectionism and deglobalisation shaped US foreign policy after 2008. (2 marks)", "options": [], "answer": "The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade. The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation.", "explanation": "保护主义＝用关税与壁垒保护本国产业；去全球化＝削弱贸易与投资的一体化。答题要给具体政策（退出 TPP、对华关税），否则只是复述定义。", "source": "Term 4 · Yearly Assessment Notification — Body 3（protectionism/deglobalisation）＋ 课程标准补充", "points": [{"t": "The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade", "m": 1}, {"t": "The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation", "m": 1}], "weak": true}, {"id": "his-025", "topic": "年考论证 · 单极到多极", "difficulty": "hard", "type": "short", "stem": "Explain the shift from unipolarity towards a more multipolar order between 1991 and 2019. (3 marks)", "options": [], "answer": "In 1991 the United States was the only superpower, with no economic or military peer. By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant.", "explanation": "多极化的证据是「权力分散」：经济体量接近、区域大国自主性上升、制度性替代出现。注意区分「军事仍最强」与「总体权力不再独大」。", "source": "Term 4 · Yearly Assessment Notification — Body 3 ＋ 课程标准补充", "points": [{"t": "In 1991 the United States was the only superpower, with no economic or military peer", "m": 1}, {"t": "By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant", "m": 1}], "weak": true}, {"id": "his-026", "topic": "年考写作 · Body 2 的结构", "difficulty": "medium", "type": "short", "stem": "Explain how you would structure Body 2 (9/11 and Iraq) — which events, and what the link sentence must do. (3 marks)", "options": [], "answer": "Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine. The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force.", "explanation": "Body 2 的写法是「触发→理论→实践」三步。link 句不能只说「所以美国变了」，要指明「相对 Body 1 变了什么」。", "source": "Term 4 · Yearly Assessment Notification — Body 2（events to include）", "points": [{"t": "Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine", "m": 1}, {"t": "The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force", "m": 1}], "weak": false}, {"id": "his-027", "topic": "年考写作 · 论点句", "difficulty": "hard", "type": "short", "stem": "Write a thesis statement that answers: 'Explain the development of US foreign policy between 1991 and 2019.' (3 marks)", "options": [], "answer": "Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.", "explanation": "论点句要能覆盖三段而不只是第一段：多边领导 → 单边先发 → 应对衰落。一句话讲清「变化方向」，就是 thesis。", "source": "Term 4 · Yearly Assessment Notification — Section Two（thesis statement row）", "points": [{"t": "Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.", "m": 1}], "weak": false}, {"id": "his-028", "topic": "年考写作 · 三段如何合成一条论证线", "difficulty": "hard", "type": "short", "stem": "Explain how the three body paragraphs together answer the essay question. (4 marks)", "options": [], "answer": "Body 1 establishes the multilateral, collective-security phase of the 1990s. Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation. Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment. Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline.", "explanation": "论述题高分靠「一条线」而不是三段独立：每段是同一变化过程中的一个阶段。答题要写出段与段之间的转折关系，而非各段内容摘要。", "source": "Term 4 · Yearly Assessment Notification — Body 1 / 2 / 3", "points": [{"t": "Body 1 establishes the multilateral, collective-security phase of the 1990s", "m": 1}, {"t": "Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation", "m": 1}, {"t": "Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment", "m": 1}, {"t": "Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline", "m": 1}], "weak": false}]};
+const DATA = {"slug": "his", "title": "历史 · 10 年级", "examMin": 60, "questions": [{"id": "his-001", "topic": "年考术语 · 单极格局", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines unipolarity?", "options": ["One state is dominant, with no rival of comparable power", "Power is dispersed among several competing great powers", "Power is shared between two rival blocs that balance each other", "Power rests with whichever state acts first without consulting others"], "answer": 0, "explanation": "单极＝只有一个占绝对优势的力量中心，没有同级对手。两极是冷战的美苏互衡，多极是多方均衡；「Power rests with whichever state acts first without consulting others」 描述的是单边主义的行事方式，不是权力结构。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unipolarity）", "weak": false}, {"id": "his-002", "topic": "年考术语 · 多边行动", "difficulty": "easy", "type": "mcq", "stem": "Which action is the clearest example of multilateral action?", "options": ["One state acting alone without notifying any other government", "A coalition of states acting together under UN Security Council authorisation", "One state threatening to act alone unless its allies fall into line", "Two neighbouring states signing a border and trade agreement"], "answer": 1, "explanation": "multilateral 指多国共同参与、通常经国际机构协调的行动，关键词是「多国＋授权」。「One state acting alone without notifying any other government」 和 「One state threatening to act alone unless its allies fall into line」 是单边；「Two neighbouring states signing a border and trade agreement」 只有两国，属 bilateral，不是 multilateral。", "source": "Term 4 · Yearly Assessment Notification — Section One（Multilateral）", "weak": false}, {"id": "his-003", "topic": "年考术语 · 单边主义", "difficulty": "medium", "type": "mcq", "stem": "A government repeatedly insists it will act alone when allies disagree, even at the cost of isolation. This pattern of behaviour is best described as:", "options": ["Humanitarian intervention — force to protect civilians", "Multilateralism — several states act together", "Unilateralism — the habit of acting alone by choice", "Collective security — allies respond together"], "answer": 2, "explanation": "unilateralism 是一种「偏好／习惯」：明知盟友反对仍倾向自行行动。collective security 强调集体回应侵略，multilateralism 强调多国协调，都与题干相反。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateralism）", "weak": false}, {"id": "his-004", "topic": "年考术语 · 集体安全", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines collective security?", "options": ["A single state decides when and where military force will be used", "Each state builds enough weapons to deter rivals without any allies", "A powerful state intervenes inside another to stop human rights abuses", "States agree that an attack on one member is an attack on all"], "answer": 3, "explanation": "集体安全的核心是「一国受攻＝全体受攻」，成员共同回应（通常经联合国）。「Each state builds enough weapons to deter rivals without any allies」 是自行威慑，「A powerful state intervenes inside another to stop human rights abuses」 是人道干预，「A single state decides when and where military force will be used」 是单边决策。", "source": "Term 4 · Yearly Assessment Notification — Section One（Collective Security）", "weak": false}, {"id": "his-005", "topic": "年考术语 · 集体安全 vs 人道干预", "difficulty": "medium", "type": "mcq", "stem": "Which action is the clearest example of collective security rather than humanitarian intervention?", "options": ["A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait", "US troops landing in Somalia in 1992 to protect food convoys", "US-led forces invading Iraq in 2003 without any explicit UN approval", "NATO aircraft bombing Serbia in 1999 to stop ethnic cleansing"], "answer": 0, "explanation": "海湾战争回应的是「跨国侵略」这一对成员国的攻击，属集体安全的典型。其余三个的动因都是保护平民或推翻政权，属人道干预或先发制人，不是集体安全。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）", "weak": false}, {"id": "his-006", "topic": "年考术语 · 先发制人", "difficulty": "easy", "type": "mcq", "stem": "In the Bush Doctrine, pre-emption means:", "options": ["Intervening to stop a government killing its own citizens", "Striking first at a state or group judged to pose a future threat", "Waiting for an attack, then responding with UN approval", "Working through alliances so no single state decides on war"], "answer": 1, "explanation": "先发制人把动武时点前移到「威胁可能成真」之前，不等待实际攻击发生。这正是 Bush Doctrine 与集体安全、人道干预的关键区别。", "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption）", "weak": false}, {"id": "his-007", "topic": "年考术语 · 先发制人 vs 人道干预", "difficulty": "medium", "type": "mcq", "stem": "Which feature most clearly separates pre-emption from humanitarian intervention?", "options": ["Pre-emption targets only non-state groups; intervention only states", "Pre-emption is always multilateral; intervention is always unilateral in form", "Pre-emption answers a future threat; intervention answers harm under way", "Pre-emption always needs UN authorisation; intervention never does"], "answer": 2, "explanation": "区分点在「威胁的时间性」：先发制人针对尚未发生的威胁，人道干预针对正在发生的大规模伤害。授权方式、参与国数量、目标类型都不是二者的分界。", "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption / Humanitarian Intervention）", "weak": false}, {"id": "his-008", "topic": "年考术语 · 人道干预", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines humanitarian intervention?", "options": ["Defensive action taken after a direct attack on one's own soil", "Military action to seize disputed territory and its natural resources", "Economic sanctions agreed by a regional trade or security organisation", "Military action inside a state, without consent, to stop mass suffering"], "answer": 3, "explanation": "人道干预的三个要件：进入他国、未经该国同意、目的是制止大规模人道灾难。「Economic sanctions agreed by a regional trade or security organisation」 是制裁而非军事干预，「Defensive action taken after a direct attack on one's own soil」 是自卫。", "source": "Term 4 · Yearly Assessment Notification — Section One（Humanitarian Intervention）", "weak": false}, {"id": "his-009", "topic": "年考术语 · 单边与多边辨析", "difficulty": "medium", "type": "mcq", "stem": "In 2003 State A went to war with a small group of allies after failing to win UN Security Council support, while State B sent troops to a UN-authorised mission. Which pairing is correct?", "options": ["A — unilateral action; B — multilateral action", "A — multilateral action; B — unilateral action", "A — collective security; B — humanitarian intervention", "A — humanitarian intervention; B — collective security"], "answer": 0, "explanation": "判准是「是否有广泛授权」：A 只带少数盟友、绕过安理会，属单边；B 参与联合国授权任务，属多边。注意 A 虽有盟友，但「小圈子＋无授权」仍被归为单边行动。", "source": "Term 4 · Yearly Assessment Notification — Body 2（invasion of Iraq）", "weak": false}, {"id": "his-010", "topic": "年考术语 · unilateral 与 unilateralism", "difficulty": "medium", "type": "mcq", "stem": "Why does the course list both 'unilateral' and 'unilateralism' as separate terms?", "options": ["'Unilateralism' describes one action; 'unilateral' a whole doctrine", "'Unilateral' is one action taken alone; 'unilateralism' is the doctrine", "They are synonyms, listed twice for emphasis in the notes", "'Unilateral' describes economic policy; 'unilateralism' military policy"], "answer": 1, "explanation": "unilateral 是形容词，描述「单方采取的一次行动」；unilateralism 是名词，指「倾向单方行动的主义／政策取向」。Section One 考 metalanguage，正是要辨清词性与层级。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateral / Unilateralism）", "weak": false}, {"id": "his-011", "topic": "年考论证 · Body 1 选材", "difficulty": "easy", "type": "short", "stem": "Body 1 of the essay covers the 1990s. Name the two events from the notification's list that you would use, and justify your choice in one sentence. (2 marks)", "options": [], "answer": "The Gulf War (1991) and Somalia (1992–94). Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene.", "explanation": "Body 1 只需两个事件，但要形成「对照」而非并列：一个成功多边、一个暴露局限。选 Gulf War＋Somalia、或 Gulf War＋Kosovo 都可，关键是说明为何这两个能支撑主题句。", "source": "Term 4 · Yearly Assessment Notification — Body 1（possible events）", "marks": 2, "criteria": [{"id": "c1", "t": "Names two relevant 1990s events from the notification's list (e.g. the Gulf War 1991 with Somalia 1992-94, or the Gulf War with Kosovo 1999)", "m": 1}, {"id": "c2", "t": "Justifies the choice in one sentence by saying what the pair shows (a broadly multilateral UN-authorised success against a mission that exposed the limits of intervention)", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Names two relevant 1990s events from the notification's list (e.g. the Gulf War 1991 with Somalia 1992-94, or the Gulf War with Kosovo 1999)", "m": 1}, {"id": "c2", "t": "Justifies the choice in one sentence by saying what the pair shows (a broadly multilateral UN-authorised success against a mission that exposed the limits of intervention)", "m": 1}], "weak": false}, {"id": "his-012", "topic": "年考论证 · 海湾战争与多边主义", "difficulty": "easy", "type": "short", "stem": "Explain how the Gulf War of 1991 demonstrates multilateralism. (2 marks)", "options": [], "answer": "The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.", "explanation": "多边主义的两个标志：联合国授权＋多国共同承担。答题要写出「谁授权、多少方参与、为何这算多边」，只写「很多国家参加」不够。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）", "marks": 2, "criteria": [{"id": "c1", "t": "States that the United States led a broad coalition of states acting with United Nations Security Council authorisation against Iraq's invasion of Kuwait", "m": 1}, {"id": "c2", "t": "Explains that the response was therefore collectively authorised, with costs and risks shared rather than carried by one state", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "States that the United States led a broad coalition of states acting with United Nations Security Council authorisation against Iraq's invasion of Kuwait", "m": 1}, {"id": "c2", "t": "Explains that the response was therefore collectively authorised, with costs and risks shared rather than carried by one state", "m": 1}], "weak": false}, {"id": "his-013", "topic": "年考论证 · 海湾战争为何属集体安全", "difficulty": "medium", "type": "short", "stem": "Explain why the Gulf War of 1991 is better described as collective security than as humanitarian intervention. (3 marks)", "options": [], "answer": "The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression. Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention.", "explanation": "关键分界是「触发原因」：集体安全回应国家对国家的侵略，人道干预回应政府对自己人民的伤害。海湾战争是前者，1990 年代后期科索沃才是后者的争议案例。", "source": "Term 4 · Yearly Assessment Notification — Section One + Body 1", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that the war responded to a cross-border act of aggression (Iraq's invasion and annexation of Kuwait) and was authorised collectively against that aggression", "m": 1}, {"id": "c2", "t": "Explains that its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government", "m": 1}, {"id": "c3", "t": "Contrasts this with the trigger that defines humanitarian intervention (a government harming its own people), which is why the war belongs to collective security", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that the war responded to a cross-border act of aggression (Iraq's invasion and annexation of Kuwait) and was authorised collectively against that aggression", "m": 1}, {"id": "c2", "t": "Explains that its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government", "m": 1}, {"id": "c3", "t": "Contrasts this with the trigger that defines humanitarian intervention (a government harming its own people), which is why the war belongs to collective security", "m": 1}], "weak": false}, {"id": "his-014", "topic": "年考论证 · 索马里与人道干预的局限", "difficulty": "medium", "type": "short", "stem": "What did the US experience in Somalia (1992–94) reveal about the limits of humanitarian intervention? (3 marks)", "options": [], "answer": "A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal. It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country.", "explanation": "索马里常被用作「干预容易、收尾困难」的反面教材：任务目标从送粮扩到战斗、伤亡引发国内压力、最后撤军。写清这条因果链才能拿满分。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Somalia 1992-94）＋ 课程标准补充", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that a humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias", "m": 1}, {"id": "c2", "t": "Explains that the deaths of US soldiers in 1993 led to a rapid withdrawal", "m": 1}, {"id": "c3", "t": "Explains the lesson drawn: without clear objectives and local consent, casualties can end an intervention before it stabilises the country", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that a humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias", "m": 1}, {"id": "c2", "t": "Explains that the deaths of US soldiers in 1993 led to a rapid withdrawal", "m": 1}, {"id": "c3", "t": "Explains the lesson drawn: without clear objectives and local consent, casualties can end an intervention before it stabilises the country", "m": 1}], "weak": true}, {"id": "his-015", "topic": "年考论证 · 卢旺达 1994 的干预失败", "difficulty": "medium", "type": "short", "stem": "Why is Rwanda (1994) usually described as a failure of humanitarian intervention? (3 marks)", "options": [], "answer": "The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide. The world stood aside, so the decade's humanitarian language was not matched by action.", "explanation": "答「失败」要有两层：现场力量不足＋大国政治上不愿介入（连 genocide 一词都回避）。这正好与同期科索沃的积极干预形成对照。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Rwanda 1994）＋ 课程标准补充", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that the genocide of Tutsi and moderate Hutu civilians continued while only a small, under-resourced peacekeeping force was on the ground", "m": 1}, {"id": "c2", "t": "Explains that the international community refused to reinforce that force or even to describe the killings as genocide", "m": 1}, {"id": "c3", "t": "Explains that the world stood aside, so the decade's humanitarian language was not matched by action", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that the genocide of Tutsi and moderate Hutu civilians continued while only a small, under-resourced peacekeeping force was on the ground", "m": 1}, {"id": "c2", "t": "Explains that the international community refused to reinforce that force or even to describe the killings as genocide", "m": 1}, {"id": "c3", "t": "Explains that the world stood aside, so the decade's humanitarian language was not matched by action", "m": 1}], "weak": true}, {"id": "his-016", "topic": "年考论证 · 科索沃的灰色地带", "difficulty": "hard", "type": "short", "stem": "Why is NATO's 1999 intervention in Kosovo often called a 'grey case' of humanitarian intervention? (4 marks)", "options": [], "answer": "The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate. It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance.", "explanation": "「灰色」＝动机正当但授权缺失：合法性与正当性分离。答题要同时写出两边，只说「救了人」或只说「违法」都拿不到高分。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Kosovo 1999）＋ 课程标准补充", "marks": 4, "criteria": [{"id": "c1", "t": "Identifies the genuinely humanitarian motive: halting the ethnic cleansing of Kosovar Albanians", "m": 1}, {"id": "c2", "t": "Explains that NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality", "m": 1}, {"id": "c3", "t": "Explains that it was nevertheless widely seen as legitimate", "m": 1}, {"id": "c4", "t": "Concludes that it therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Identifies the genuinely humanitarian motive: halting the ethnic cleansing of Kosovar Albanians", "m": 1}, {"id": "c2", "t": "Explains that NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality", "m": 1}, {"id": "c3", "t": "Explains that it was nevertheless widely seen as legitimate", "m": 1}, {"id": "c4", "t": "Concludes that it therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance", "m": 1}], "weak": true}, {"id": "his-017", "topic": "年考写作 · Body 1 主题句", "difficulty": "medium", "type": "short", "stem": "Write a topic sentence for Body 1 (the 1990s) that directly answers the essay question. (2 marks)", "options": [], "answer": "In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.", "explanation": "主题句必须含「时段＋论点」，不能只写「1990 年代有很多事件」。好的主题句还会预告张力（多边领导 vs 局限），为结尾 link 句留接口。", "source": "Term 4 · Yearly Assessment Notification — Body 1（topic sentence row）", "marks": 2, "criteria": [{"id": "c1", "t": "Names the period (the 1990s) and makes an arguable claim that directly answers the essay question", "m": 1}, {"id": "c2", "t": "Signals the tension the paragraph will develop (multilateral leadership against its limits) instead of merely listing events", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Names the period (the 1990s) and makes an arguable claim that directly answers the essay question", "m": 1}, {"id": "c2", "t": "Signals the tension the paragraph will develop (multilateral leadership against its limits) instead of merely listing events", "m": 1}], "weak": false}, {"id": "his-018", "topic": "年考论证 · 九一一的转向", "difficulty": "easy", "type": "short", "stem": "Explain how the 9/11 attacks changed the priorities of US foreign policy. (3 marks)", "options": [], "answer": "They shifted US priorities from managing the post-Cold War order to a global 'war on terror'. The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation.", "explanation": "答题锚点是「优先级转移」：从维持后冷战秩序转向反恐。要写出至少两个具体表现（阿富汗、监控、军费、先发制人），不能只写「变得更 aggressive」。", "source": "Term 4 · Lesson 3.1 9/11 Attacks; Notification — Body 2（Impact of 9/11）", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that priorities shifted from managing the post-Cold War order to a global 'war on terror'", "m": 1}, {"id": "c2", "t": "Gives specific responses: the invasion of Afghanistan in 2001 and/or expanded surveillance and detention powers", "m": 1}, {"id": "c3", "t": "Explains that much higher defence spending and a willingness to use force pre-emptively, with limited international authorisation, followed", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that priorities shifted from managing the post-Cold War order to a global 'war on terror'", "m": 1}, {"id": "c2", "t": "Gives specific responses: the invasion of Afghanistan in 2001 and/or expanded surveillance and detention powers", "m": 1}, {"id": "c3", "t": "Explains that much higher defence spending and a willingness to use force pre-emptively, with limited international authorisation, followed", "m": 1}], "weak": false}, {"id": "his-019", "topic": "年考论证 · Bush Doctrine 的特征", "difficulty": "easy", "type": "short", "stem": "Outline the key features of the Bush Doctrine. (3 marks)", "options": [], "answer": "Pre-emption — striking first against states or groups judged to pose a future threat; a willingness to act unilaterally when multilateral agreement could not be reached; regime change and the promotion of democracy; and the claim that American security required action beyond UN authorisation.", "explanation": "四个特征要能分别举例对应：先发制人（伊拉克）、单边（绕开安理会）、政权更替（推翻萨达姆）、推广民主。只背名字不解释会失分。", "source": "Term 4 · Lesson 3.2 The Bush Doctrine; Notification — Body 2", "marks": 3, "criteria": [{"id": "c1", "t": "Outlines pre-emption: striking first against states or groups judged to pose a future threat", "m": 1}, {"id": "c2", "t": "Outlines unilateral action: a willingness to act without multilateral agreement and beyond UN authorisation", "m": 1}, {"id": "c3", "t": "Outlines regime change and the promotion of democracy as aims of the doctrine", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Outlines pre-emption: striking first against states or groups judged to pose a future threat", "m": 1}, {"id": "c2", "t": "Outlines unilateral action: a willingness to act without multilateral agreement and beyond UN authorisation", "m": 1}, {"id": "c3", "t": "Outlines regime change and the promotion of democracy as aims of the doctrine", "m": 1}], "weak": false}, {"id": "his-020", "topic": "年考论证 · 伊拉克战争为何是单边", "difficulty": "medium", "type": "short", "stem": "Explain why the 2003 invasion of Iraq is often described as unilateral rather than multilateral. (3 marks)", "options": [], "answer": "The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself. Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral.", "explanation": "判准不是「有没有盟友」，而是「有没有广泛授权与共同承担」。美国确有盟友，但小圈子＋无安理会授权，因此在教材分类中被归为单边。", "source": "Term 4 · Lesson 4.2 Iraq; Notification — Body 2（invasion of Iraq）", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that the United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation", "m": 1}, {"id": "c2", "t": "Explains that the United States supplied most of the troops and funding itself, and that key allies such as France and Germany opposed the war", "m": 1}, {"id": "c3", "t": "Explains that it therefore lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that the United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation", "m": 1}, {"id": "c2", "t": "Explains that the United States supplied most of the troops and funding itself, and that key allies such as France and Germany opposed the war", "m": 1}, {"id": "c3", "t": "Explains that it therefore lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral", "m": 1}], "weak": false}, {"id": "his-021", "topic": "年考论证 · 1991 与 2003 对照", "difficulty": "hard", "type": "short", "stem": "Contrast the multilateralism of the 1991 Gulf War with the unilateralism of the 2003 invasion of Iraq. (4 marks)", "options": [], "answer": "In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression. In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack.", "explanation": "对照要落在三个可比的维度：授权（有／无）、联盟规模与分担（广泛／小圈子）、目标（恢复现状／改变政权）。三点对齐，分数就稳。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War）＋ Body 2（Iraq）", "marks": 4, "criteria": [{"id": "c1", "t": "Contrasts authorisation: 1991 operated through the UN Security Council, while 2003 proceeded after failing to secure explicit Security Council authorisation", "m": 1}, {"id": "c2", "t": "Contrasts the coalition: a large coalition with shared costs in 1991 against a smaller ad hoc coalition dominated by US forces in 2003", "m": 1}, {"id": "c3", "t": "Contrasts the objectives: reversing Iraq's aggression and restoring Kuwait in 1991 against regime change and disarmament in 2003", "m": 1}, {"id": "c4", "t": "Sustains the comparison across these dimensions, explaining what makes one case multilateral and the other unilateral", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Contrasts authorisation: 1991 operated through the UN Security Council, while 2003 proceeded after failing to secure explicit Security Council authorisation", "m": 1}, {"id": "c2", "t": "Contrasts the coalition: a large coalition with shared costs in 1991 against a smaller ad hoc coalition dominated by US forces in 2003", "m": 1}, {"id": "c3", "t": "Contrasts the objectives: reversing Iraq's aggression and restoring Kuwait in 1991 against regime change and disarmament in 2003", "m": 1}, {"id": "c4", "t": "Sustains the comparison across these dimensions, explaining what makes one case multilateral and the other unilateral", "m": 1}], "weak": false}, {"id": "his-022", "topic": "年考论证 · 中国崛起与单极秩序", "difficulty": "hard", "type": "short", "stem": "Explain how the rise of China challenged unipolarity after 2001. (3 marks)", "options": [], "answer": "China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence. As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific.", "explanation": "单极受到挑战＝出现接近同级的对手。答题要给经济（WTO、体量）＋军事＋制度性倡议三类证据，只说「中国变强了」太空泛。", "source": "Term 4 · Yearly Assessment Notification — Body 3（Rise of China）＋ 课程标准补充", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that China's rapid economic growth and its 2001 entry into the World Trade Organization increased its economic weight", "m": 1}, {"id": "c2", "t": "Explains that sustained military modernisation and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank extended its regional and global influence", "m": 1}, {"id": "c3", "t": "Explains the consequence: the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that China's rapid economic growth and its 2001 entry into the World Trade Organization increased its economic weight", "m": 1}, {"id": "c2", "t": "Explains that sustained military modernisation and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank extended its regional and global influence", "m": 1}, {"id": "c3", "t": "Explains the consequence: the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific", "m": 1}], "weak": true}, {"id": "his-023", "topic": "年考论证 · 软实力下降", "difficulty": "easy", "type": "short", "stem": "Explain what a decline in US soft power means, and give one example from the period. (2 marks)", "options": [], "answer": "Soft power is influence gained through attraction — culture, values and institutions — rather than through coercion or payment. The Iraq War and the abuse of prisoners at Abu Ghraib damaged America's international reputation in the 2000s, making other states less willing to cooperate.", "explanation": "软实力＝吸引力（文化、价值、制度），与以军力或金钱施压的硬实力相对。举 2003 年后形象受损的例子最直接。", "source": "Term 4 · Yearly Assessment Notification — Body 3（Decline in US soft power）＋ 课程标准补充", "marks": 2, "criteria": [{"id": "c1", "t": "Defines soft power as influence gained through attraction (culture, values and institutions) rather than through coercion or payment", "m": 1}, {"id": "c2", "t": "Gives one valid example of decline from the period (e.g. the Iraq War or the abuse of prisoners at Abu Ghraib damaging America's international reputation in the 2000s)", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Defines soft power as influence gained through attraction (culture, values and institutions) rather than through coercion or payment", "m": 1}, {"id": "c2", "t": "Gives one valid example of decline from the period (e.g. the Iraq War or the abuse of prisoners at Abu Ghraib damaging America's international reputation in the 2000s)", "m": 1}], "weak": true}, {"id": "his-024", "topic": "年考论证 · 保护主义与去全球化", "difficulty": "easy", "type": "short", "stem": "Explain how the rise of protectionism and deglobalisation shaped US foreign policy after 2008. (2 marks)", "options": [], "answer": "The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade. The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation.", "explanation": "保护主义＝用关税与壁垒保护本国产业；去全球化＝削弱贸易与投资的一体化。答题要给具体政策（退出 TPP、对华关税），否则只是复述定义。", "source": "Term 4 · Yearly Assessment Notification — Body 3（protectionism/deglobalisation）＋ 课程标准补充", "marks": 2, "criteria": [{"id": "c1", "t": "Explains that the global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade", "m": 1}, {"id": "c2", "t": "Gives specific policy evidence: withdrawal from the Trans-Pacific Partnership in 2017 and tariffs on Chinese goods from 2018, making trade a tool of economic pressure", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that the global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade", "m": 1}, {"id": "c2", "t": "Gives specific policy evidence: withdrawal from the Trans-Pacific Partnership in 2017 and tariffs on Chinese goods from 2018, making trade a tool of economic pressure", "m": 1}], "weak": true}, {"id": "his-025", "topic": "年考论证 · 单极到多极", "difficulty": "hard", "type": "short", "stem": "Explain the shift from unipolarity towards a more multipolar order between 1991 and 2019. (3 marks)", "options": [], "answer": "In 1991 the United States was the only superpower, with no economic or military peer. By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant.", "explanation": "多极化的证据是「权力分散」：经济体量接近、区域大国自主性上升、制度性替代出现。注意区分「军事仍最强」与「总体权力不再独大」。", "source": "Term 4 · Yearly Assessment Notification — Body 3 ＋ 课程标准补充", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that in 1991 the United States was the only superpower, with no economic or military peer", "m": 1}, {"id": "c2", "t": "Explains that by 2019 China had become a near-peer economically, while the European Union and Russia asserted independent positions", "m": 1}, {"id": "c3", "t": "Explains that influence was therefore more widely distributed even though the United States remained militarily dominant", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that in 1991 the United States was the only superpower, with no economic or military peer", "m": 1}, {"id": "c2", "t": "Explains that by 2019 China had become a near-peer economically, while the European Union and Russia asserted independent positions", "m": 1}, {"id": "c3", "t": "Explains that influence was therefore more widely distributed even though the United States remained militarily dominant", "m": 1}], "weak": true}, {"id": "his-026", "topic": "年考写作 · Body 2 的结构", "difficulty": "medium", "type": "short", "stem": "Explain how you would structure Body 2 (9/11 and Iraq) — which events, and what the link sentence must do. (3 marks)", "options": [], "answer": "Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine. The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force.", "explanation": "Body 2 的写法是「触发→理论→实践」三步。link 句不能只说「所以美国变了」，要指明「相对 Body 1 变了什么」。", "source": "Term 4 · Yearly Assessment Notification — Body 2（events to include）", "marks": 3, "criteria": [{"id": "c1", "t": "Opens the body with the 9/11 attacks as the trigger", "m": 1}, {"id": "c2", "t": "Explains the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change) and the 2003 invasion of Iraq as its application", "m": 1}, {"id": "c3", "t": "Explains what the link sentence must do: draw out the change from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Opens the body with the 9/11 attacks as the trigger", "m": 1}, {"id": "c2", "t": "Explains the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change) and the 2003 invasion of Iraq as its application", "m": 1}, {"id": "c3", "t": "Explains what the link sentence must do: draw out the change from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force", "m": 1}], "weak": false}, {"id": "his-027", "topic": "年考写作 · 论点句", "difficulty": "hard", "type": "short", "stem": "Write a thesis statement that answers: 'Explain the development of US foreign policy between 1991 and 2019.' (3 marks)", "options": [], "answer": "Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.", "explanation": "论点句要能覆盖三段而不只是第一段：多边领导 → 单边先发 → 应对衰落。一句话讲清「变化方向」，就是 thesis。", "source": "Term 4 · Yearly Assessment Notification — Section Two（thesis statement row）", "marks": 3, "criteria": [{"id": "c1", "t": "Covers the whole period 1991-2019 rather than only one phase", "m": 1}, {"id": "c2", "t": "States a direction of change: from multilateral, UN-authorised leadership as the single superpower to pre-emptive and largely unilateral force after 9/11", "m": 1}, {"id": "c3", "t": "Carries the argument through to the final phase: defending a declining position against a rising China", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Covers the whole period 1991-2019 rather than only one phase", "m": 1}, {"id": "c2", "t": "States a direction of change: from multilateral, UN-authorised leadership as the single superpower to pre-emptive and largely unilateral force after 9/11", "m": 1}, {"id": "c3", "t": "Carries the argument through to the final phase: defending a declining position against a rising China", "m": 1}], "weak": false}, {"id": "his-028", "topic": "年考写作 · 三段如何合成一条论证线", "difficulty": "hard", "type": "short", "stem": "Explain how the three body paragraphs together answer the essay question. (4 marks)", "options": [], "answer": "Body 1 establishes the multilateral, collective-security phase of the 1990s. Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation. Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment. Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline.", "explanation": "论述题高分靠「一条线」而不是三段独立：每段是同一变化过程中的一个阶段。答题要写出段与段之间的转折关系，而非各段内容摘要。", "source": "Term 4 · Yearly Assessment Notification — Body 1 / 2 / 3", "marks": 4, "criteria": [{"id": "c1", "t": "Explains that Body 1 establishes the multilateral, collective-security phase of the 1990s", "m": 1}, {"id": "c2", "t": "Explains that Body 2 covers the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation", "m": 1}, {"id": "c3", "t": "Explains that Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment", "m": 1}, {"id": "c4", "t": "Identifies the single line the three paragraphs trace (multilateral leadership, then unilateral assertiveness, then managed decline) rather than summarising each one separately", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that Body 1 establishes the multilateral, collective-security phase of the 1990s", "m": 1}, {"id": "c2", "t": "Explains that Body 2 covers the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation", "m": 1}, {"id": "c3", "t": "Explains that Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment", "m": 1}, {"id": "c4", "t": "Identifies the single line the three paragraphs trace (multilateral leadership, then unilateral assertiveness, then managed decline) rather than summarising each one separately", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-his";
 const MULTI = DATA.slug === "all";
 const FKEY = "dsh-filter";
@@ -1698,7 +1750,13 @@ function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
 const AI_ENGINE = {};
-function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function localAI(){
+  try{
+    var m = location.search.match(/[?&]localai=([^&]*)/);
+    if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+  }catch(e){}
+  try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; }
+}
 function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
@@ -1933,10 +1991,16 @@ function render() {
     }).join("");
     bodyHtml = `<div class="opts">${opts}</div>`;
   } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    /* ── 简答题：评分标准（criteria）驱动，提交后自动 AI 判分 ── */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : (q.points && q.points.length ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
     const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const aiRec = (rec && rec.ai && Array.isArray(rec.ai.results)) ? rec.ai : null;
+    const manualEarned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const earned = (rec && rec.override) ? manualEarned : (aiRec ? aiRec.score : manualEarned);
     const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
     const hasNum = /-?\d/.test(bareAns);
     let slots = (rec && Array.isArray(rec.slots)) ? rec.slots.slice() : [];
@@ -1944,45 +2008,97 @@ function render() {
     while (slots.length < pts.length) slots.push("");
     const many = pts.length >= 2;
     const hinted = HINTED[q.id];
-    const hintFor = (i) => hinted ? pts[i].t.split(/\s+/).slice(0,4).join(" ") + " …" : "写这一点的内容（英文）";
+    const hintFor = (i) => hinted
+      ? String(pts[i].t || "").split(/\s+/).slice(0,4).join(" ") + " …"
+      : "写这一点的内容（英文）";
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const taHtml = many
       ? `<div class="slots" id="slots">${pts.map((p,i)=>`
           <div class="slot"><span class="sn">${i+1}</span>
             <textarea data-slot="${i}" rows="2" placeholder="${esc(hintFor(i))}">${esc(slots[i]||"")}</textarea>
           </div>`).join("")}</div>`
       : `<textarea id="ta" data-slot="0" rows="4" placeholder="${esc(hintFor(0))}">${esc(slots[0]||"")}</textarea>`;
+
+    const submitLabel = aiRec ? "重新判分" : (canAuto ? "提交并自动判分" : "对照得分点");
     bodyHtml = taHtml + `
       <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        <button class="btn" id="submitq">${submitLabel}</button>
+        <button class="btn ghost" id="manualtoggle">手动校正</button>
         <button class="btn ghost" id="hint">${hinted ? "藏起提示" : "给点提示"}</button>
         ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        <span class="muted" id="slotsum" style="align-self:center">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      const autoRes = pts.map((p,i)=>{
-        const mine = (rec.slots && rec.slots[i]) ? rec.slots[i] : (rec.text || "");
-        return autoScore(p.t, mine);
-      });
-      const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点
-          <span class="autotag">系统预判 ${autoHit} / ${pts.length} 点</span>
-          <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
-          ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
-          ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
-          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
+        <span class="muted" id="slotsum">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
+        ${aiRec
+          ? `<span class="pill scorepill${aiRec.needsReview ? " low" : ""}">已得 <b>${aiRec.score}</b> / ${totalMarks} 分</span>`
+          : `<span class="muted">满分 ${totalMarks} 分 · ${pts.length} 条评分标准</span>`}
+      </div>
+      ${!enginesAvail() ? `<div class="ai-note">未配置判分服务器，先用自评；到「引擎」里填地址即可自动判分。</div>` : ""}`;
+
+    /* ── AI 判分结果面板 ── */
+    if (aiRec) {
+      const byId = {};
+      aiRec.results.forEach(function(r){ byId[r.id] = r; });
+      const rows = pts.map(function(p,i){
+        const r = byId[critId(p,i)] || {awarded:0, max:(p.m||1), reason:"未评估"};
+        const mx = Math.max(1, r.max || p.m || 1);
+        const got = Math.max(0, Math.min(mx, r.awarded || 0));
+        const cls = got >= mx ? "full" : (got > 0 ? "part" : "none");
+        const mk = got >= mx ? "✓" : (got > 0 ? "◐" : "✗");
+        return `<li class="cres ${cls}"><span class="cmk">${mk}</span>` +
+          `<span class="cbody"><span class="ct">${esc(p.t)}</span>` +
+          (r.reason ? `<span class="cr">${esc(r.reason)}</span>` : "") + `</span>` +
+          `<span class="csc">${got}/${mx}</span></li>`;
+      }).join("");
+      const conf = typeof aiRec.confidence === "number" ? aiRec.confidence : 0.5;
+      const confPct = Math.round(conf * 100);
+      const when = aiRec.at ? new Date(aiRec.at) : null;
+      const whenTxt = when ? (("0"+when.getHours()).slice(-2)+":"+("0"+when.getMinutes()).slice(-2)) : "";
+      bodyHtml += `<div class="panel aires">
+        <div class="ai-head">
+          <span class="ai-score"><b>${aiRec.score}</b><em>/${totalMarks}</em></span>
+          <span class="ai-conf ${conf < 0.6 ? "low" : (conf < 0.85 ? "mid" : "high")}">置信度 ${confPct}%</span>
+          ${aiRec.needsReview ? '<span class="ai-flag">需要复核</span>' : ""}
+          <span class="grow"></span>
+          <span class="ai-meta">${esc(aiRec.engine === "local" ? "本地引擎" : "AI 判分")}${whenTxt ? " · " + whenTxt : ""}</span>
         </div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
-            return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>
+        ${aiRec.feedback ? `<div class="ai-fb">${esc(aiRec.feedback)}</div>` : ""}
+        <ul class="critlist">${rows}</ul>
+        <div class="ai-foot">分数按评分标准逐条给出，由服务器校验求和${aiRec.model ? " · " + esc(String(aiRec.model).replace(/^@cf\//,"")) : ""}</div>
       </div>`;
     }
+
+    /* ── 手动校正（可选覆盖，默认收起）── */
+    const autoRes = pts.map(function(p,i){
+      const mine = (rec && rec.slots && rec.slots[i]) ? rec.slots[i] : ((rec && rec.text) || "");
+      return autoScore(p.t, mine);
+    });
+    const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
+    bodyHtml += `<details class="panel manual"${aiRec ? "" : " open"} id="manualbox">
+      <summary class="panel-h">手动校正 · 自己勾选写到的得分点
+        <span class="autotag">关键词预判 ${autoHit} / ${pts.length}（仅供参考，不作分数）</span>
+      </summary>
+      <div class="pts">${pts.map(function(p,i){
+        const ai = aiRec ? aiRec.results.filter(function(r){ return r.id === critId(p,i); })[0] : null;
+        const hint = ai
+          ? '<span class="auto ' + (ai.awarded > 0 ? "ok" : "no") + '">AI: ' + ai.awarded + "/" + (ai.max||p.m||1)
+            + (ai.reason ? " — " + esc(ai.reason) : "") + "</span>"
+          : '<span class="auto ' + (autoRes[i].hit ? "ok" : "no") + '">'
+            + (autoRes[i].hit ? "关键词：大概率写到" : "关键词：可能没写到")
+            + "（" + autoRes[i].matched + "/" + autoRes[i].total + " 个关键词"
+            + (autoRes[i].missing.length ? "，缺 " + esc(autoRes[i].missing.join(", ")) : "") + "）</span>";
+        return '<label class="pt ' + (checked.indexOf(i)>=0 ? "on" : "") + '">'
+          + '<input type="checkbox" data-i="' + i + '"' + (checked.indexOf(i)>=0 ? " checked" : "") + '>'
+          + "<span>" + esc(p.t) + hint + "</span><em>" + (p.m||1) + " 分</em></label>";
+      }).join("")}</div>
+      <div class="actions">
+        <button class="btn ghost" id="allpt">全部勾上</button>
+        <button class="btn ghost" id="nonept">全部取消</button>
+        <button class="btn ghost" id="applyauto">按关键词判断勾选</button>
+        <button class="btn ghost" id="aiconf" title="判分服务器地址">引擎</button>
+      </div>
+    </details>`;
+    bodyHtml += `<div class="mine"><b>你写的：</b><div>${esc(((rec && rec.text) || "").trim() || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>`;
+
   }
 
   const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
@@ -2018,110 +2134,247 @@ function render() {
       save(); render();
     }));
   } else {
+    /* 第二段 else 与上面的渲染块作用域不同，这里重新绑定共享变量 */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : ((q.points && q.points.length) ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
+    const many = pts.length >= 2;
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
     const slotEls = () => Array.from(app.querySelectorAll("[data-slot]"));
     const readSlots = () => slotEls().map(el => el.value || "");
     const joinSlots = (arr) => arr.map(s => (s||"").trim()).filter(Boolean).join(String.fromCharCode(10,10));
+    const put = (patch) => {
+      const c = cur();
+      const arr = readSlots();
+      state.answers[q.id] = Object.assign({chosen:-1}, c, {slots:arr, text:joinSlots(arr)}, patch);
+      save();
+    };
     const updateSum = () => {
       const el = document.getElementById("slotsum");
       if (!el) return;
       const filled = readSlots().filter(s => s.trim()).length;
       el.textContent = filled + " / " + pts.length + " 点已写";
-      el.style.color = filled >= pts.length ? "var(--ok)" : "var(--dim)";
+      el.style.color = filled >= pts.length ? "var(--success)" : "var(--muted)";
     };
     let _saveT = null;
     if (many) {
       slotEls().forEach(el => el.addEventListener("input", () => {
-        const c = cur();
-        const arr = readSlots();
-        state.answers[q.id] = Object.assign({}, c, {chosen:-1, slots:arr, text:joinSlots(arr)});
         updateSum();
-        clearTimeout(_saveT); _saveT = setTimeout(save, 400);
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
       }));
       updateSum();
+    } else {
+      const only = slotEls()[0];
+      if (only) only.addEventListener("input", () => {
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
+      });
     }
-    document.getElementById("reveal").onclick = () => {
+
+    /* 手动校正（可选覆盖） */
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
       const c = cur();
-      const arr = readSlots();
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    const hb = document.getElementById("hint");
-    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
-    if (many) app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
+      const i = +cb.dataset.i;
       const set = new Set(c.checked || []);
       if (cb.checked) set.add(i); else set.delete(i);
       const arr = c.slots || [c.text || ""];
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,j)=>set.has(j));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      const arr2 = set.size ? Array.from(set).sort((a,b)=>a-b) : [];
+      const manScore = pts.reduce((a,p,j)=>a + (arr2.indexOf(j)>=0 ? (p.m||1) : 0), 0);
+      const full = manScore >= totalMarks;
+      state.answers[q.id] = Object.assign({}, c, {
+        chosen:-1, slots:arr, text:joinSlots(arr), checked:arr2,
+        override:true, manScore:manScore,
+        ok: full ? "ok" : (manScore > 0 ? "part" : "bad")
+      });
+      if (!c.gradedAt) {
+        reviewMark(q.subj || DATA.slug, q.id, full);
+        logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      }
       save(); render();
     }));
+
+    const hb = document.getElementById("hint");
+    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
+
     const nc = document.getElementById("numcheck");
     if (nc) nc.onclick = () => {
       const typed = joinSlots(readSlots());
       const u = numsOf(typed), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      if (!res) return;
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--muted)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--muted)"; return; }
+      const lastN = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-lastN) <= Math.max(Math.abs(v)*0.01, 0.005));
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+      res.style.color = hit ? "var(--success)" : "var(--error)";
+    };
+
+    const mt = document.getElementById("manualtoggle");
+    if (mt) mt.onclick = () => {
+      const mb = document.getElementById("manualbox");
+      if (!mb) return;
+      mb.open = !mb.open;
+      if (mb.open) mb.scrollIntoView({behavior:"smooth", block:"center"});
     };
     const ac = document.getElementById("aiconf");
     if (ac) ac.onclick = () => {
-      const cur = localAI();
-      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      const curLoc = localAI();
+      const v = prompt("判分服务器地址（云端留空就用默认；本机/局域网可填 http://127.0.0.1:8787）", apibase());
       if (v === null) return;
-      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+      try { localStorage.setItem("dsh-api", v.trim().replace(/\/$/, "")); } catch(e) {}
+      toast(v.trim() ? "判分服务器已保存" : "已清空，将使用默认服务器", true);
+      render();
     };
-    const ai = document.getElementById("aigrade");
-    if (ai) ai.onclick = () => {
-      const arr = readSlots(), answer = joinSlots(arr);
-      if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
-      ai.disabled = true; ai.textContent = "AI 判分中…";
-      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+    const aa = document.getElementById("applyauto");
+    if (aa) aa.onclick = () => {
+      const arr = readSlots();
+      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || joinSlots(arr)).hit ? i : -1).filter(i=>i>=0);
+      put({checked:hits, override:true,
+           manScore: pts.reduce((a,p,j)=>a + (hits.indexOf(j)>=0 ? (p.m||1) : 0), 0), ok:"ok"});
+      render();
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { put({checked:pts.map((_,i)=>i), override:true, manScore:totalMarks, ok:"ok"}); render(); };
+    if (none) none.onclick = () => { put({checked:[], override:true, manScore:0, ok:"bad"}); render(); };
+
+    /* ── 提交 / 重新判分 ── */
+    const GRADING = window.__GRADING || (window.__GRADING = {});
+    const submitBtn = document.getElementById("submitq");
+    if (submitBtn) submitBtn.onclick = async function(){
+      const answer = joinSlots(readSlots());
+      const c0 = cur();
+      if (!answer.trim()) { toast("先写点答案再提交", false); return; }
+      if (!canAuto) {
+        put({override:true, ok:"ok"});
+        const mb = document.getElementById("manualbox");
+        if (mb) { mb.open = true; mb.scrollIntoView({behavior:"smooth", block:"center"}); }
+        return;
+      }
+      if (GRADING[q.id]) return;
+      if (c0.ai && !c0.override && c0.text === answer) {
+        toast("这一版已经判过了，改动后才会重新判分", false);
+        return;
+      }
+      GRADING[q.id] = true;
+      submitBtn.disabled = true;
+      const oldTxt = submitBtn.textContent;
+      submitBtn.textContent = "判分中…";
+      const payload = JSON.stringify({
+        stem: q.stem,
+        max_marks: totalMarks,
+        reference: q.answer || "",
+        criteria: pts.map(function(p,i){ return {id:critId(p,i), t:p.t, m:(p.m||1)}; }),
+        answer: answer,
+        subject: DATA.slug || "",
+        topic: q.topic || ""
+      });
       const engines = [];
       if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
       const loc = localAI();
       if (loc) engines.push({n:"local", u: loc + "/grade"});
-      (async function(){
-        let lastErr = "no engine";
-        for (const en of engines) {
-          try {
-            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
-            const d = await r.json();
-            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
-            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+      let lastErr = "no engine";
+      for (const en of engines) {
+        try {
+          const r = await fetch(en.u, {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: payload
+          });
+          const d = await r.json();
+          if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+          const res = Array.isArray(d.results) ? d.results : [];
+          if (!res.length) throw new Error("no criterion results");
+          const sum = res.reduce(function(a,x){ return a + (Number(x.awarded_marks) || 0); }, 0);
+          const rawScore = (typeof d.score === "number") ? d.score : sum;
+          const score = Math.max(0, Math.min(totalMarks, Math.round(rawScore)));
+          const conf = (typeof d.confidence === "number")
+            ? Math.max(0, Math.min(1, d.confidence)) : 0.5;
+          const isLegacy = res.some(function(x){ return x && x.awarded_marks === undefined && x.i !== undefined; });
+          if (isLegacy) {
+            const normL = pts.map(function(p,i){
+              const r = res.filter(function(x){ return Number(x.i) === i; })[0] || {};
+              const mx = p.m || 1;
+              return {id:critId(p,i), awarded: r.covered ? mx : 0, max:mx,
+                      covered:!!r.covered, reason:String(r.reason || "")};
+            });
+            const scL = normL.reduce(function(a,x){ return a + x.awarded; }, 0);
+            const aiL = {score:scL, max:totalMarks, results:normL,
+              feedback:"（旧版判分接口，只能整点给分，建议更新服务器）",
+              confidence:0.7, needsReview:false, model:String(d.model||"v1"),
+              engine:en.n, at:Date.now()};
+            const wasL = !!c0.gradedAt;
+            state.answers[q.id] = Object.assign({}, c0, {
+              chosen:-1, slots:readSlots(), text:answer, ai:aiL,
+              gradedAt:aiL.at, gradeModel:aiL.model, gradeEngine:en.n,
+              checked:normL.map(function(x,i){ return x.awarded>0?i:-1; }).filter(function(i){ return i>=0; }),
+              override:false,
+              ok: scL >= totalMarks ? "ok" : (scL > 0 ? "part" : "bad")
+            });
+            save();
+            if (!wasL) {
+              reviewMark(q.subj || DATA.slug, q.id, scL >= totalMarks);
+              logAnswer(q.subj || DATA.slug, q.id, scL >= totalMarks, q.difficulty, "short");
+            }
+            GRADING[q.id] = false;
+            render();
             return;
-          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+          }
+          const norm = res.map(function(x,i){
+            const mx = Math.max(1, Math.round(Number(x.maximum_marks) || 1));
+            return {
+              id: String(x.criterion_id || ("c" + (i+1))),
+              awarded: Math.max(0, Math.min(mx, Math.round(Number(x.awarded_marks) || 0))),
+              max: mx,
+              covered: !!x.covered,
+              reason: String(x.reason || "").slice(0, 240)
+            };
+          });
+          const ai = {
+            score: score, max: totalMarks, results: norm,
+            feedback: String(d.feedback || "").slice(0, 500),
+            confidence: conf,
+            needsReview: conf < 0.6,
+            model: String(d.model || ""),
+            engine: en.n,
+            at: Date.now()
+          };
+          const wasGraded = !!c0.gradedAt;
+          const gotIdx = pts.map(function(p,i){ return i; }).filter(function(i){
+            const id = critId(pts[i], i);
+            const hit = norm.filter(function(x){ return x.id === id; })[0];
+            return hit && hit.awarded > 0;
+          });
+          state.answers[q.id] = Object.assign({}, c0, {
+            chosen:-1, slots:readSlots(), text:answer,
+            ai:ai, gradedAt:ai.at, gradeModel:ai.model, gradeEngine:en.n,
+            checked:gotIdx, override:false,
+            ok: score >= totalMarks ? "ok" : (score > 0 ? "part" : "bad")
+          });
+          save();
+          if (!wasGraded) {
+            reviewMark(q.subj || DATA.slug, q.id, score >= totalMarks);
+            logAnswer(q.subj || DATA.slug, q.id, score >= totalMarks, q.difficulty, "short");
+            if (score >= totalMarks && window.awardForQ) awardForQ(q.id, q.difficulty, "short", true);
+          }
+          GRADING[q.id] = false;
+          render();
+          return;
+        } catch (e) {
+          lastErr = en.n + ": " + ((e && e.message) || e);
         }
-        ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
-      })();
+      }
+      GRADING[q.id] = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldTxt;
+      toast("判分服务不可用（" + lastErr + "），已切到手动校正", false);
+      const mb2 = document.getElementById("manualbox");
+      if (mb2) mb2.open = true;
     };
-    const ap2 = document.getElementById("applyai");
-    if (ap2) ap2.onclick = () => {
-      const c = cur(); const arr = c.slots || [c.text || ""];
-      const res = AI_RES[q.id] || [];
-      const hits = res.map(r => r.covered ? r.i : -1).filter(i => i >= 0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const aa = document.getElementById("applyauto");
-    if (aa) aa.onclick = () => {
-      const c = cur();
-      const arr = c.slots || [c.text || ""];
-      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || "").hit ? i : -1).filter(i=>i>=0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:[],ok:"ok"}; save(); render(); };
   }
   document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
   const nx = document.getElementById("next");
@@ -2162,10 +2415,16 @@ function showResult() {
   let earnedM = 0, totalM = 0, partM = 0;
   const weak = [];
   shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const pts = (x.criteria && x.criteria.length) ? x.criteria
+              : ((x.points && x.points.length) ? x.points : [{m:1}]);
+    const tot = (typeof x.marks === "number" && x.marks > 0)
+      ? x.marks : pts.reduce((a,p)=>a+(p.m||1),0);
     const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const manGot = (r && r.checked)
+      ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const got = (r && r.override)
+      ? (typeof r.manScore === "number" ? r.manScore : manGot)
+      : ((r && r.ai && typeof r.ai.score === "number") ? r.ai.score : manGot);
     totalM += tot;
     if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
   });

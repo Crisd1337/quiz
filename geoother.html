@@ -620,6 +620,52 @@ footer{padding:22px 14px 30px;line-height:1.8}
   footer{font-size:11px;padding:18px 10px 26px;overflow-wrap:anywhere}
 }
 
+/* ── AI 判分结果面板 ───────────────────────────────────── */
+.aires{border-color:color-mix(in srgb,var(--accent) 26%,var(--border))}
+.ai-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:10px}
+.ai-score{font-family:var(--font-mono);font-size:15px;font-weight:500;letter-spacing:-.02em;
+  line-height:1;color:var(--foreground)}
+.ai-score b{font-size:28px;font-weight:500}
+.ai-score em{font-style:normal;font-size:13px;color:var(--muted);margin-left:1px}
+.ai-conf{font-size:10.5px;border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:1px 7px;color:var(--muted);white-space:nowrap}
+.ai-conf.high{color:var(--success);border-color:color-mix(in srgb,var(--success) 45%,var(--border))}
+.ai-conf.mid{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--border))}
+.ai-conf.low{color:var(--error);border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+.ai-flag{font-size:10.5px;color:var(--error);white-space:nowrap;
+  border:1px solid color-mix(in srgb,var(--error) 45%,var(--border));
+  border-radius:var(--r-sm);padding:1px 7px}
+.ai-meta{font-size:10.5px;color:var(--muted)}
+.ai-fb{font-size:12.5px;line-height:1.65;color:var(--foreground);background:var(--surface-secondary);
+  border-radius:var(--r-sm);padding:9px 11px;margin-bottom:10px}
+.critlist{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.cres{display:grid;grid-template-columns:15px minmax(0,1fr) auto;gap:8px;
+  padding:7px 0;border-top:1px solid var(--border);font-size:12.5px;align-items:start}
+.cres:first-child{border-top:0}
+.cmk{font-size:12px;line-height:1.55;text-align:center;color:var(--muted)}
+.cres.full .cmk{color:var(--success)}
+.cres.part .cmk{color:var(--warning)}
+.cres.none .cmk{color:var(--error)}
+.cbody{min-width:0}
+.ct{display:block;line-height:1.55}
+.cres.none .ct{color:var(--muted)}
+.cr{display:block;color:var(--muted);font-size:11px;margin-top:2px;line-height:1.5}
+.csc{font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.cres.full .csc{color:var(--success)}
+.ai-foot{margin-top:9px;font-size:10.5px;color:var(--muted)}
+.ai-note{margin-top:10px;font-size:11.5px;color:var(--muted);
+  border-left:2px solid var(--border-strong);padding-left:9px}
+.scorepill{border-color:color-mix(in srgb,var(--accent) 38%,var(--border));color:var(--foreground)}
+.scorepill.low{border-color:color-mix(in srgb,var(--error) 45%,var(--border))}
+details.manual{padding:0}
+details.manual>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  padding:12px 14px;font-size:12px;color:var(--muted);user-select:none}
+details.manual>summary::-webkit-details-marker{display:none}
+details.manual>summary::before{content:"+";font-family:var(--font-mono);font-size:11px;width:11px}
+details.manual[open]>summary::before{content:"−"}
+details.manual>summary:hover{color:var(--foreground)}
+details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
+
 </style>
 </head>
 <body>
@@ -1440,7 +1486,13 @@ footer{padding:22px 14px 30px;line-height:1.8}
   /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
   var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
   var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
-  function apibase(){ try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function apibase(){
+    try{
+      var m = location.search.match(/[?&]api=([^&]*)/);
+      if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+    }catch(e){}
+    try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; }
+  }
   function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
   function loadBoard(){
     var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
@@ -1683,7 +1735,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
 })();
 </script>
 <script>
-const DATA = {"slug": "geoother", "title": "地理 · 非年考", "examMin": 60, "questions": [{"id": "geoother-001", "topic": "人类福祉 · 国内生产总值", "difficulty": "easy", "type": "mcq", "stem": "Why do geographers use GDP per capita rather than total GDP when comparing the wellbeing of different countries?", "options": ["It divides GDP by population, so countries of different size can be compared", "It measures only the income earned by the very richest people in that country", "It measures the value of unpaid work done inside the household", "It removes the need for any other development measure or index"], "answer": 0, "explanation": "人均 GDP＝GDP÷人口，解决人口大国总量天然偏高的问题。但它仍不反映分配是否公平，也不能取代 HDI 等指标。", "source": "Term 1 · Week 2 Global — Measuring and Mapping Human Wellbeing", "weak": false}, {"id": "geoother-002", "topic": "人类福祉 · 人类发展指数", "difficulty": "easy", "type": "mcq", "stem": "The Human Development Index (HDI) combines which three dimensions?", "options": ["GDP, inflation rate and the unemployment rate", "Health, education and standard of living (GNI per capita)", "Population size, land area and length of coastline", "Life expectancy, birth rate and the death rate"], "answer": 1, "explanation": "HDI 三个维度是健康（预期寿命）、教育（平均与预期受教育年限）、生活水平（人均国民总收入）。它把 GDP 之外的健康与教育纳入，因此比单一经济指标更全面。", "source": "Term 1 · Week 2 Global — Lesson 3: quantitative (GDP) vs qualitative (HDI)", "weak": false}, {"id": "geoother-003", "topic": "人口 · 老龄化数据解读", "difficulty": "medium", "type": "mcq", "stem": "In the population-pyramid lesson students study China's ageing population. The source states that by 2100, 37.8% of China's population is projected to be aged over 60. Which is the most likely implication of this figure?", "options": ["A rising birth rate that will require many new schools and many more teachers", "A population pyramid with a very wide base and a much narrower top", "A smaller workforce supporting a larger elderly group, straining pensions", "A rapidly growing labour force that will raise industrial output sharply"], "answer": 2, "explanation": "老年人口占比接近四成意味着抚养比上升、劳动力相对减少，财政压力集中在医疗与养老。「A population pyramid with a very wide base and a much narrower top」（宽底金字塔）描述的是高出生率的扩张型人口，与老龄化相反。", "source": "Term 1 · Weeks 3–4 Geographic Skills — China's Ageing Population (37.8% over 60 by 2100)", "weak": false}, {"id": "geoother-004", "topic": "福祉差异 · 悉尼社会经济格局", "difficulty": "hard", "type": "short", "stem": "Describe the spatial pattern of advantage and disadvantage in Sydney and explain one factor that produces it.", "options": [], "answer": "Advantage is concentrated in the east, north and harbour-side suburbs, while disadvantage is concentrated in the west and south-west. Higher incomes, employment and better access to services, schools and healthy food cluster in the advantaged areas, while high housing costs push lower-income households further from those opportunities.", "explanation": "答题要点是「格局＋一个成因」：格局（东／北 vs 西／西南）＋成因（收入、房价、服务与就业可达性）。课程 scaffold 正是要求这两部分。", "source": "Term 1 · Weeks 7–8 Local — Sydney's socio-economic divide (East vs West)", "points": [{"t": "Advantage is concentrated in the east, north and harbour-side suburbs, while disadvantage is concentrated in the west and south-west", "m": 1}, {"t": "Higher incomes, employment and better access to services, schools and healthy food cluster in the advantaged areas, while high housing costs push lower-income households further from those opportunities", "m": 1}], "weak": false}, {"id": "geoother-005", "topic": "原住民福祉 · 圆桌量刑", "difficulty": "easy", "type": "mcq", "stem": "Circle sentencing in NSW is best described as:", "options": ["A separate court that hears only cases involving young offenders", "A process that replaces the court entirely with a community tribunal", "A police caution given before any charge is laid against an offender", "A sentencing process where Elders sit with a magistrate after a guilty verdict"], "answer": 3, "explanation": "圆桌量刑发生在有罪判决之后，由长者与社区成员参与量刑讨论，目的是提高文化适应性并降低再犯。它既不取代法院，也不是审判前程序。", "source": "Term 2 · Week 2.3 First Nations Justice — Action (circle sentencing)", "weak": false}, {"id": "geoother-006", "topic": "地理技能 · 三元图", "difficulty": "medium", "type": "mcq", "stem": "On a ternary graph, what do the three axes represent?", "options": ["Three parts of a whole that add to 100%, read off one point", "Three separate time periods shown along a single horizontal line", "Three separate graphs placed side by side on one page", "Three countries compared by their total population"], "answer": 0, "explanation": "三元图表示三个分量构成 100% 的比例关系（如就业结构、土壤成分）。读图时要沿各自的轴向读数，三者相加必须为 100。", "source": "Term 2 · Week 10.1 Ternary Graphs", "weak": false}, {"id": "geoother-007", "topic": "地理技能 · 面积参照与网格参照", "difficulty": "medium", "type": "mcq", "stem": "Which statement correctly distinguishes an area reference (AR) from a grid reference (GR)?", "options": ["An AR gives elevation in metres; a GR gives distance in km", "An AR uses four figures for a square; a GR uses six for a point", "An AR is used on small-scale maps; a GR only on précis maps", "An AR uses six figures for a point; a GR uses four for a grid square"], "answer": 1, "explanation": "AR 四位数字定位一个方格（约 1 km×1 km）；GR 六位数字定位方格内的具体点位（精确到 100 m）。两者位数顺序不要记反。", "source": "Term 1 · Weeks 3–4 Topographic Skills — AR, GR and elevation", "weak": false}, {"id": "geoother-008", "topic": "原住民福祉 · 量刑成效评估", "difficulty": "medium", "type": "short", "stem": "Explain one way circle sentencing could improve outcomes for First Nations people compared with a standard court process.", "options": [], "answer": "It involves Elders and community members in deciding the sentence, so the outcome reflects the offender's community and culture and the offender is held accountable in front of people they know. This can increase respect for the process and reduce reoffending, which matters given the over-representation of Aboriginal people in custody.", "explanation": "要写出「机制→结果」：社区与长者参与→文化安全与问责→更可能被接受、再犯率下降。只写「更公平」拿不到分。", "source": "Term 2 · Weeks 2.3 / 3.1 First Nations Justice — Action & Outcome", "points": [{"t": "It involves Elders and community members in deciding the sentence, so the outcome reflects the offender's community and culture and the offender is held accountable in front of people they know", "m": 1}, {"t": "This can increase respect for the process and reduce reoffending, which matters given the over-representation of Aboriginal people in custody", "m": 1}], "weak": false}, {"id": "geoother-009", "topic": "气候变化 · 选择性引用", "difficulty": "easy", "type": "mcq", "stem": "In the climate misinformation lessons, 'cherry picking' as a science-denial technique means:", "options": ["Choosing only the most reliable long-term dataset available", "Repeating an experiment until the results agree with the theory you hold", "Selecting data that support a position while ignoring contrary data", "Refusing to accept any scientific evidence whatsoever on the topic"], "answer": 2, "explanation": "选择性引用是 FLICC 五种手法之一：只挑对自己有利的数据点，忽略整体趋势。课上的反思问题正是让学生自查有没有这样做过。", "source": "Term 4 · Lessons 1.1–1.2 Climate misinformation (FLICC) / Lesson 2.1", "weak": false}, {"id": "geoother-010", "topic": "气候变化 · 增强温室效应", "difficulty": "medium", "type": "mcq", "stem": "How does the enhanced greenhouse effect differ from the natural greenhouse effect?", "options": ["The enhanced effect is caused by more solar radiation reaching Earth", "Human activity has removed the natural effect, so less heat is trapped", "The natural effect involves only incoming solar radiation, with no re-emission of heat", "Human greenhouse gas emissions trap more infrared radiation, adding to warming"], "answer": 3, "explanation": "自然温室效应本身使地球适宜居住；人类排放的额外温室气体增强了它，使更多红外辐射被吸收并重新辐射回地表。区分两者是常见考点。", "source": "Term 4 · Lesson 2.2 What are the causes of climate change? (Part 1)", "weak": false}, {"id": "geoother-011", "topic": "气候变化 · 珊瑚白化", "difficulty": "easy", "type": "mcq", "stem": "How does rising sea temperature cause coral bleaching?", "options": ["Heat stress makes corals expel their symbiotic algae, losing colour and food", "Warmer water dissolves the corals' calcium carbonate skeleton directly", "Warmer water multiplies the algae living inside corals, making them overgrow faster", "Corals absorb more dissolved carbon dioxide and so grow much faster"], "answer": 0, "explanation": "珊瑚与虫黄藻共生；高温胁迫下珊瑚排出虫黄藻，失去颜色与主要营养来源。若高温持续，珊瑚会死亡，而不只是变白。", "source": "Term 4 · Lesson 3.3 How does sea temperature rise lead to coral bleaching?", "weak": false}, {"id": "geoother-012", "topic": "气候变化 · 全球变暖与气候变化", "difficulty": "easy", "type": "mcq", "stem": "Lesson 2.1 asks students to distinguish between global warming and climate change. Which statement is correct?", "options": ["Global warming refers only to sea temperatures; climate change only to air temperatures", "Global warming is rising average temperature; climate change also covers rainfall and sea level", "The two terms mean exactly the same thing and can be used interchangeably in every case", "Climate change happens naturally, while global warming is a separate process unrelated to it"], "answer": 1, "explanation": "全球变暖是「平均气温上升」这一部分；气候变化范围更广，还包括降水、海平面、冰盖与极端天气的变化。两者相关但不等同。", "source": "Term 4 · Lesson 2.1 EVIDENCE — distinguishing global warming from climate change", "weak": false}, {"id": "geoother-013", "topic": "气候变化 · 海洋酸化", "difficulty": "hard", "type": "short", "stem": "Explain how ocean acidification impacts marine life.", "options": [], "answer": "The ocean absorbs extra carbon dioxide, which forms carbonic acid and lowers the pH of seawater. This reduces the availability of carbonate ions, so organisms such as corals, shellfish and some plankton cannot build or maintain their shells and skeletons, which then affects the wider food chain.", "explanation": "机制链是：CO2 溶入海水→生成碳酸→pH 下降→碳酸根离子减少→钙化生物难以造壳与骨骼→食物链受影响。", "source": "Term 4 · Lesson 4.1 Ocean Acidification & Its Impact on Marine Life", "points": [{"t": "The ocean absorbs extra carbon dioxide, which forms carbonic acid and lowers the pH of seawater", "m": 1}, {"t": "This reduces the availability of carbonate ions, so organisms such as corals, shellfish and some plankton cannot build or maintain their shells and skeletons, which then affects the wider food chain", "m": 1}], "weak": false}, {"id": "geoother-014", "topic": "气候变化 · 海平面上升的案例", "difficulty": "hard", "type": "short", "stem": "Using the Solomon Islands case study, explain two impacts of sea level rise on low-lying Pacific nations.", "options": [], "answer": "First, higher seas and larger storm surges erode beaches and inundate low-lying land, so villages, gardens and fresh-water supplies are lost and communities are forced to relocate. Second, salt water intrudes into soil and groundwater, reducing the land available for growing food and increasing dependence on outside aid.", "explanation": "分两个层面答：环境与土地（侵蚀、淹没、咸水入侵）以及社会经济（被迫搬迁、粮食与水源短缺、依赖援助）。", "source": "Term 4 · Lesson 3.2 Sea level rise — Solomon Islands case study", "points": [{"t": "First, higher seas and larger storm surges erode beaches and inundate low-lying land, so villages, gardens and fresh-water supplies are lost and communities are forced to relocate", "m": 1}, {"t": "Second, salt water intrudes into soil and groundwater, reducing the land available for growing food and increasing dependence on outside aid", "m": 1}], "weak": false}]};
+const DATA = {"slug": "geoother", "title": "地理 · 非年考", "examMin": 60, "questions": [{"id": "geoother-001", "topic": "人类福祉 · 国内生产总值", "difficulty": "easy", "type": "mcq", "stem": "Why do geographers use GDP per capita rather than total GDP when comparing the wellbeing of different countries?", "options": ["It divides GDP by population, so countries of different size can be compared", "It measures only the income earned by the very richest people in that country", "It measures the value of unpaid work done inside the household", "It removes the need for any other development measure or index"], "answer": 0, "explanation": "人均 GDP＝GDP÷人口，解决人口大国总量天然偏高的问题。但它仍不反映分配是否公平，也不能取代 HDI 等指标。", "source": "Term 1 · Week 2 Global — Measuring and Mapping Human Wellbeing", "weak": false}, {"id": "geoother-002", "topic": "人类福祉 · 人类发展指数", "difficulty": "easy", "type": "mcq", "stem": "The Human Development Index (HDI) combines which three dimensions?", "options": ["GDP, inflation rate and the unemployment rate", "Health, education and standard of living (GNI per capita)", "Population size, land area and length of coastline", "Life expectancy, birth rate and the death rate"], "answer": 1, "explanation": "HDI 三个维度是健康（预期寿命）、教育（平均与预期受教育年限）、生活水平（人均国民总收入）。它把 GDP 之外的健康与教育纳入，因此比单一经济指标更全面。", "source": "Term 1 · Week 2 Global — Lesson 3: quantitative (GDP) vs qualitative (HDI)", "weak": false}, {"id": "geoother-003", "topic": "人口 · 老龄化数据解读", "difficulty": "medium", "type": "mcq", "stem": "In the population-pyramid lesson students study China's ageing population. The source states that by 2100, 37.8% of China's population is projected to be aged over 60. Which is the most likely implication of this figure?", "options": ["A rising birth rate that will require many new schools and many more teachers", "A population pyramid with a very wide base and a much narrower top", "A smaller workforce supporting a larger elderly group, straining pensions", "A rapidly growing labour force that will raise industrial output sharply"], "answer": 2, "explanation": "老年人口占比接近四成意味着抚养比上升、劳动力相对减少，财政压力集中在医疗与养老。「A population pyramid with a very wide base and a much narrower top」（宽底金字塔）描述的是高出生率的扩张型人口，与老龄化相反。", "source": "Term 1 · Weeks 3–4 Geographic Skills — China's Ageing Population (37.8% over 60 by 2100)", "weak": false}, {"id": "geoother-004", "topic": "福祉差异 · 悉尼社会经济格局", "difficulty": "hard", "type": "short", "stem": "Describe the spatial pattern of advantage and disadvantage in Sydney and explain one factor that produces it.", "options": [], "answer": "Advantage is concentrated in the east, north and harbour-side suburbs, while disadvantage is concentrated in the west and south-west. Higher incomes, employment and better access to services, schools and healthy food cluster in the advantaged areas, while high housing costs push lower-income households further from those opportunities.", "explanation": "答题要点是「格局＋一个成因」：格局（东／北 vs 西／西南）＋成因（收入、房价、服务与就业可达性）。课程 scaffold 正是要求这两部分。", "source": "Term 1 · Weeks 7–8 Local — Sydney's socio-economic divide (East vs West)", "marks": 3, "criteria": [{"id": "c1", "t": "Describes the pattern of advantage: it is concentrated in the east, north and harbour-side suburbs", "m": 1}, {"id": "c2", "t": "Describes the pattern of disadvantage: it is concentrated in the west and south-west", "m": 1}, {"id": "c3", "t": "Explains one factor producing the pattern, such as high housing costs pushing lower-income households away from areas where income, employment and access to services cluster", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Describes the pattern of advantage: it is concentrated in the east, north and harbour-side suburbs", "m": 1}, {"id": "c2", "t": "Describes the pattern of disadvantage: it is concentrated in the west and south-west", "m": 1}, {"id": "c3", "t": "Explains one factor producing the pattern, such as high housing costs pushing lower-income households away from areas where income, employment and access to services cluster", "m": 1}], "weak": false}, {"id": "geoother-005", "topic": "原住民福祉 · 圆桌量刑", "difficulty": "easy", "type": "mcq", "stem": "Circle sentencing in NSW is best described as:", "options": ["A separate court that hears only cases involving young offenders", "A process that replaces the court entirely with a community tribunal", "A police caution given before any charge is laid against an offender", "A sentencing process where Elders sit with a magistrate after a guilty verdict"], "answer": 3, "explanation": "圆桌量刑发生在有罪判决之后，由长者与社区成员参与量刑讨论，目的是提高文化适应性并降低再犯。它既不取代法院，也不是审判前程序。", "source": "Term 2 · Week 2.3 First Nations Justice — Action (circle sentencing)", "weak": false}, {"id": "geoother-006", "topic": "地理技能 · 三元图", "difficulty": "medium", "type": "mcq", "stem": "On a ternary graph, what do the three axes represent?", "options": ["Three parts of a whole that add to 100%, read off one point", "Three separate time periods shown along a single horizontal line", "Three separate graphs placed side by side on one page", "Three countries compared by their total population"], "answer": 0, "explanation": "三元图表示三个分量构成 100% 的比例关系（如就业结构、土壤成分）。读图时要沿各自的轴向读数，三者相加必须为 100。", "source": "Term 2 · Week 10.1 Ternary Graphs", "weak": false}, {"id": "geoother-007", "topic": "地理技能 · 面积参照与网格参照", "difficulty": "medium", "type": "mcq", "stem": "Which statement correctly distinguishes an area reference (AR) from a grid reference (GR)?", "options": ["An AR gives elevation in metres; a GR gives distance in km", "An AR uses four figures for a square; a GR uses six for a point", "An AR is used on small-scale maps; a GR only on précis maps", "An AR uses six figures for a point; a GR uses four for a grid square"], "answer": 1, "explanation": "AR 四位数字定位一个方格（约 1 km×1 km）；GR 六位数字定位方格内的具体点位（精确到 100 m）。两者位数顺序不要记反。", "source": "Term 1 · Weeks 3–4 Topographic Skills — AR, GR and elevation", "weak": false}, {"id": "geoother-008", "topic": "原住民福祉 · 量刑成效评估", "difficulty": "medium", "type": "short", "stem": "Explain one way circle sentencing could improve outcomes for First Nations people compared with a standard court process.", "options": [], "answer": "It involves Elders and community members in deciding the sentence, so the outcome reflects the offender's community and culture and the offender is held accountable in front of people they know. This can increase respect for the process and reduce reoffending, which matters given the over-representation of Aboriginal people in custody.", "explanation": "要写出「机制→结果」：社区与长者参与→文化安全与问责→更可能被接受、再犯率下降。只写「更公平」拿不到分。", "source": "Term 2 · Weeks 2.3 / 3.1 First Nations Justice — Action & Outcome", "marks": 3, "criteria": [{"id": "c1", "t": "Explains the mechanism: circle sentencing involves Elders and community members in deciding the sentence", "m": 1}, {"id": "c2", "t": "Explains the outcome: the sentence reflects the offender's community and culture and they are held accountable before people they know, which can increase respect for the process and reduce reoffending", "m": 1}, {"id": "c3", "t": "Links this to the over-representation of Aboriginal people in custody, explaining why improved outcomes matter", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains the mechanism: circle sentencing involves Elders and community members in deciding the sentence", "m": 1}, {"id": "c2", "t": "Explains the outcome: the sentence reflects the offender's community and culture and they are held accountable before people they know, which can increase respect for the process and reduce reoffending", "m": 1}, {"id": "c3", "t": "Links this to the over-representation of Aboriginal people in custody, explaining why improved outcomes matter", "m": 1}], "weak": false}, {"id": "geoother-009", "topic": "气候变化 · 选择性引用", "difficulty": "easy", "type": "mcq", "stem": "In the climate misinformation lessons, 'cherry picking' as a science-denial technique means:", "options": ["Choosing only the most reliable long-term dataset available", "Repeating an experiment until the results agree with the theory you hold", "Selecting data that support a position while ignoring contrary data", "Refusing to accept any scientific evidence whatsoever on the topic"], "answer": 2, "explanation": "选择性引用是 FLICC 五种手法之一：只挑对自己有利的数据点，忽略整体趋势。课上的反思问题正是让学生自查有没有这样做过。", "source": "Term 4 · Lessons 1.1–1.2 Climate misinformation (FLICC) / Lesson 2.1", "weak": false}, {"id": "geoother-010", "topic": "气候变化 · 增强温室效应", "difficulty": "medium", "type": "mcq", "stem": "How does the enhanced greenhouse effect differ from the natural greenhouse effect?", "options": ["The enhanced effect is caused by more solar radiation reaching Earth", "Human activity has removed the natural effect, so less heat is trapped", "The natural effect involves only incoming solar radiation, with no re-emission of heat", "Human greenhouse gas emissions trap more infrared radiation, adding to warming"], "answer": 3, "explanation": "自然温室效应本身使地球适宜居住；人类排放的额外温室气体增强了它，使更多红外辐射被吸收并重新辐射回地表。区分两者是常见考点。", "source": "Term 4 · Lesson 2.2 What are the causes of climate change? (Part 1)", "weak": false}, {"id": "geoother-011", "topic": "气候变化 · 珊瑚白化", "difficulty": "easy", "type": "mcq", "stem": "How does rising sea temperature cause coral bleaching?", "options": ["Heat stress makes corals expel their symbiotic algae, losing colour and food", "Warmer water dissolves the corals' calcium carbonate skeleton directly", "Warmer water multiplies the algae living inside corals, making them overgrow faster", "Corals absorb more dissolved carbon dioxide and so grow much faster"], "answer": 0, "explanation": "珊瑚与虫黄藻共生；高温胁迫下珊瑚排出虫黄藻，失去颜色与主要营养来源。若高温持续，珊瑚会死亡，而不只是变白。", "source": "Term 4 · Lesson 3.3 How does sea temperature rise lead to coral bleaching?", "weak": false}, {"id": "geoother-012", "topic": "气候变化 · 全球变暖与气候变化", "difficulty": "easy", "type": "mcq", "stem": "Lesson 2.1 asks students to distinguish between global warming and climate change. Which statement is correct?", "options": ["Global warming refers only to sea temperatures; climate change only to air temperatures", "Global warming is rising average temperature; climate change also covers rainfall and sea level", "The two terms mean exactly the same thing and can be used interchangeably in every case", "Climate change happens naturally, while global warming is a separate process unrelated to it"], "answer": 1, "explanation": "全球变暖是「平均气温上升」这一部分；气候变化范围更广，还包括降水、海平面、冰盖与极端天气的变化。两者相关但不等同。", "source": "Term 4 · Lesson 2.1 EVIDENCE — distinguishing global warming from climate change", "weak": false}, {"id": "geoother-013", "topic": "气候变化 · 海洋酸化", "difficulty": "hard", "type": "short", "stem": "Explain how ocean acidification impacts marine life.", "options": [], "answer": "The ocean absorbs extra carbon dioxide, which forms carbonic acid and lowers the pH of seawater. This reduces the availability of carbonate ions, so organisms such as corals, shellfish and some plankton cannot build or maintain their shells and skeletons, which then affects the wider food chain.", "explanation": "机制链是：CO2 溶入海水→生成碳酸→pH 下降→碳酸根离子减少→钙化生物难以造壳与骨骼→食物链受影响。", "source": "Term 4 · Lesson 4.1 Ocean Acidification & Its Impact on Marine Life", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that the ocean absorbs extra carbon dioxide, which forms carbonic acid and lowers the pH of seawater", "m": 1}, {"id": "c2", "t": "Explains that fewer carbonate ions are available, so corals, shellfish and some plankton cannot build or maintain their shells and skeletons", "m": 1}, {"id": "c3", "t": "Explains that this then affects the wider food chain", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that the ocean absorbs extra carbon dioxide, which forms carbonic acid and lowers the pH of seawater", "m": 1}, {"id": "c2", "t": "Explains that fewer carbonate ions are available, so corals, shellfish and some plankton cannot build or maintain their shells and skeletons", "m": 1}, {"id": "c3", "t": "Explains that this then affects the wider food chain", "m": 1}], "weak": false}, {"id": "geoother-014", "topic": "气候变化 · 海平面上升的案例", "difficulty": "hard", "type": "short", "stem": "Using the Solomon Islands case study, explain two impacts of sea level rise on low-lying Pacific nations.", "options": [], "answer": "First, higher seas and larger storm surges erode beaches and inundate low-lying land, so villages, gardens and fresh-water supplies are lost and communities are forced to relocate. Second, salt water intrudes into soil and groundwater, reducing the land available for growing food and increasing dependence on outside aid.", "explanation": "分两个层面答：环境与土地（侵蚀、淹没、咸水入侵）以及社会经济（被迫搬迁、粮食与水源短缺、依赖援助）。", "source": "Term 4 · Lesson 3.2 Sea level rise — Solomon Islands case study", "marks": 3, "criteria": [{"id": "c1", "t": "Explains that higher seas and larger storm surges erode beaches and inundate low-lying land", "m": 1}, {"id": "c2", "t": "Explains the social consequence: villages, gardens and fresh-water supplies are lost and communities are forced to relocate", "m": 1}, {"id": "c3", "t": "Explains that salt water intrudes into soil and groundwater, reducing land for growing food and increasing dependence on outside aid", "m": 1}], "auto_grade": true, "points": [{"id": "c1", "t": "Explains that higher seas and larger storm surges erode beaches and inundate low-lying land", "m": 1}, {"id": "c2", "t": "Explains the social consequence: villages, gardens and fresh-water supplies are lost and communities are forced to relocate", "m": 1}, {"id": "c3", "t": "Explains that salt water intrudes into soil and groundwater, reducing land for growing food and increasing dependence on outside aid", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-geoother";
 const MULTI = DATA.slug === "all";
 const FKEY = "dsh-filter";
@@ -1698,7 +1750,13 @@ function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
 const AI_ENGINE = {};
-function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function localAI(){
+  try{
+    var m = location.search.match(/[?&]localai=([^&]*)/);
+    if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+  }catch(e){}
+  try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; }
+}
 function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
@@ -1933,10 +1991,16 @@ function render() {
     }).join("");
     bodyHtml = `<div class="opts">${opts}</div>`;
   } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    /* ── 简答题：评分标准（criteria）驱动，提交后自动 AI 判分 ── */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : (q.points && q.points.length ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
     const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const aiRec = (rec && rec.ai && Array.isArray(rec.ai.results)) ? rec.ai : null;
+    const manualEarned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const earned = (rec && rec.override) ? manualEarned : (aiRec ? aiRec.score : manualEarned);
     const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
     const hasNum = /-?\d/.test(bareAns);
     let slots = (rec && Array.isArray(rec.slots)) ? rec.slots.slice() : [];
@@ -1944,45 +2008,97 @@ function render() {
     while (slots.length < pts.length) slots.push("");
     const many = pts.length >= 2;
     const hinted = HINTED[q.id];
-    const hintFor = (i) => hinted ? pts[i].t.split(/\s+/).slice(0,4).join(" ") + " …" : "写这一点的内容（英文）";
+    const hintFor = (i) => hinted
+      ? String(pts[i].t || "").split(/\s+/).slice(0,4).join(" ") + " …"
+      : "写这一点的内容（英文）";
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const taHtml = many
       ? `<div class="slots" id="slots">${pts.map((p,i)=>`
           <div class="slot"><span class="sn">${i+1}</span>
             <textarea data-slot="${i}" rows="2" placeholder="${esc(hintFor(i))}">${esc(slots[i]||"")}</textarea>
           </div>`).join("")}</div>`
       : `<textarea id="ta" data-slot="0" rows="4" placeholder="${esc(hintFor(0))}">${esc(slots[0]||"")}</textarea>`;
+
+    const submitLabel = aiRec ? "重新判分" : (canAuto ? "提交并自动判分" : "对照得分点");
     bodyHtml = taHtml + `
       <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        <button class="btn" id="submitq">${submitLabel}</button>
+        <button class="btn ghost" id="manualtoggle">手动校正</button>
         <button class="btn ghost" id="hint">${hinted ? "藏起提示" : "给点提示"}</button>
         ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        <span class="muted" id="slotsum" style="align-self:center">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      const autoRes = pts.map((p,i)=>{
-        const mine = (rec.slots && rec.slots[i]) ? rec.slots[i] : (rec.text || "");
-        return autoScore(p.t, mine);
-      });
-      const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点
-          <span class="autotag">系统预判 ${autoHit} / ${pts.length} 点</span>
-          <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
-          ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
-          ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
-          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
+        <span class="muted" id="slotsum">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
+        ${aiRec
+          ? `<span class="pill scorepill${aiRec.needsReview ? " low" : ""}">已得 <b>${aiRec.score}</b> / ${totalMarks} 分</span>`
+          : `<span class="muted">满分 ${totalMarks} 分 · ${pts.length} 条评分标准</span>`}
+      </div>
+      ${!enginesAvail() ? `<div class="ai-note">未配置判分服务器，先用自评；到「引擎」里填地址即可自动判分。</div>` : ""}`;
+
+    /* ── AI 判分结果面板 ── */
+    if (aiRec) {
+      const byId = {};
+      aiRec.results.forEach(function(r){ byId[r.id] = r; });
+      const rows = pts.map(function(p,i){
+        const r = byId[critId(p,i)] || {awarded:0, max:(p.m||1), reason:"未评估"};
+        const mx = Math.max(1, r.max || p.m || 1);
+        const got = Math.max(0, Math.min(mx, r.awarded || 0));
+        const cls = got >= mx ? "full" : (got > 0 ? "part" : "none");
+        const mk = got >= mx ? "✓" : (got > 0 ? "◐" : "✗");
+        return `<li class="cres ${cls}"><span class="cmk">${mk}</span>` +
+          `<span class="cbody"><span class="ct">${esc(p.t)}</span>` +
+          (r.reason ? `<span class="cr">${esc(r.reason)}</span>` : "") + `</span>` +
+          `<span class="csc">${got}/${mx}</span></li>`;
+      }).join("");
+      const conf = typeof aiRec.confidence === "number" ? aiRec.confidence : 0.5;
+      const confPct = Math.round(conf * 100);
+      const when = aiRec.at ? new Date(aiRec.at) : null;
+      const whenTxt = when ? (("0"+when.getHours()).slice(-2)+":"+("0"+when.getMinutes()).slice(-2)) : "";
+      bodyHtml += `<div class="panel aires">
+        <div class="ai-head">
+          <span class="ai-score"><b>${aiRec.score}</b><em>/${totalMarks}</em></span>
+          <span class="ai-conf ${conf < 0.6 ? "low" : (conf < 0.85 ? "mid" : "high")}">置信度 ${confPct}%</span>
+          ${aiRec.needsReview ? '<span class="ai-flag">需要复核</span>' : ""}
+          <span class="grow"></span>
+          <span class="ai-meta">${esc(aiRec.engine === "local" ? "本地引擎" : "AI 判分")}${whenTxt ? " · " + whenTxt : ""}</span>
         </div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
-            return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>
+        ${aiRec.feedback ? `<div class="ai-fb">${esc(aiRec.feedback)}</div>` : ""}
+        <ul class="critlist">${rows}</ul>
+        <div class="ai-foot">分数按评分标准逐条给出，由服务器校验求和${aiRec.model ? " · " + esc(String(aiRec.model).replace(/^@cf\//,"")) : ""}</div>
       </div>`;
     }
+
+    /* ── 手动校正（可选覆盖，默认收起）── */
+    const autoRes = pts.map(function(p,i){
+      const mine = (rec && rec.slots && rec.slots[i]) ? rec.slots[i] : ((rec && rec.text) || "");
+      return autoScore(p.t, mine);
+    });
+    const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
+    bodyHtml += `<details class="panel manual"${aiRec ? "" : " open"} id="manualbox">
+      <summary class="panel-h">手动校正 · 自己勾选写到的得分点
+        <span class="autotag">关键词预判 ${autoHit} / ${pts.length}（仅供参考，不作分数）</span>
+      </summary>
+      <div class="pts">${pts.map(function(p,i){
+        const ai = aiRec ? aiRec.results.filter(function(r){ return r.id === critId(p,i); })[0] : null;
+        const hint = ai
+          ? '<span class="auto ' + (ai.awarded > 0 ? "ok" : "no") + '">AI: ' + ai.awarded + "/" + (ai.max||p.m||1)
+            + (ai.reason ? " — " + esc(ai.reason) : "") + "</span>"
+          : '<span class="auto ' + (autoRes[i].hit ? "ok" : "no") + '">'
+            + (autoRes[i].hit ? "关键词：大概率写到" : "关键词：可能没写到")
+            + "（" + autoRes[i].matched + "/" + autoRes[i].total + " 个关键词"
+            + (autoRes[i].missing.length ? "，缺 " + esc(autoRes[i].missing.join(", ")) : "") + "）</span>";
+        return '<label class="pt ' + (checked.indexOf(i)>=0 ? "on" : "") + '">'
+          + '<input type="checkbox" data-i="' + i + '"' + (checked.indexOf(i)>=0 ? " checked" : "") + '>'
+          + "<span>" + esc(p.t) + hint + "</span><em>" + (p.m||1) + " 分</em></label>";
+      }).join("")}</div>
+      <div class="actions">
+        <button class="btn ghost" id="allpt">全部勾上</button>
+        <button class="btn ghost" id="nonept">全部取消</button>
+        <button class="btn ghost" id="applyauto">按关键词判断勾选</button>
+        <button class="btn ghost" id="aiconf" title="判分服务器地址">引擎</button>
+      </div>
+    </details>`;
+    bodyHtml += `<div class="mine"><b>你写的：</b><div>${esc(((rec && rec.text) || "").trim() || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>`;
+
   }
 
   const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
@@ -2018,110 +2134,247 @@ function render() {
       save(); render();
     }));
   } else {
+    /* 第二段 else 与上面的渲染块作用域不同，这里重新绑定共享变量 */
+    const pts = (q.criteria && q.criteria.length) ? q.criteria
+              : ((q.points && q.points.length) ? q.points : [{t:q.answer, m:1}]);
+    const totalMarks = (typeof q.marks === "number" && q.marks > 0)
+      ? q.marks : pts.reduce((a,p)=>a+(p.m||1),0);
+    const critId = (p,i) => (p && p.id) ? p.id : ("c" + (i+1));
+    const many = pts.length >= 2;
+    const enginesAvail = () => !!(apibase() || localAI());
+    const canAuto = q.auto_grade !== false && pts.length > 0 && enginesAvail();
     const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
     const slotEls = () => Array.from(app.querySelectorAll("[data-slot]"));
     const readSlots = () => slotEls().map(el => el.value || "");
     const joinSlots = (arr) => arr.map(s => (s||"").trim()).filter(Boolean).join(String.fromCharCode(10,10));
+    const put = (patch) => {
+      const c = cur();
+      const arr = readSlots();
+      state.answers[q.id] = Object.assign({chosen:-1}, c, {slots:arr, text:joinSlots(arr)}, patch);
+      save();
+    };
     const updateSum = () => {
       const el = document.getElementById("slotsum");
       if (!el) return;
       const filled = readSlots().filter(s => s.trim()).length;
       el.textContent = filled + " / " + pts.length + " 点已写";
-      el.style.color = filled >= pts.length ? "var(--ok)" : "var(--dim)";
+      el.style.color = filled >= pts.length ? "var(--success)" : "var(--muted)";
     };
     let _saveT = null;
     if (many) {
       slotEls().forEach(el => el.addEventListener("input", () => {
-        const c = cur();
-        const arr = readSlots();
-        state.answers[q.id] = Object.assign({}, c, {chosen:-1, slots:arr, text:joinSlots(arr)});
         updateSum();
-        clearTimeout(_saveT); _saveT = setTimeout(save, 400);
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
       }));
       updateSum();
+    } else {
+      const only = slotEls()[0];
+      if (only) only.addEventListener("input", () => {
+        clearTimeout(_saveT);
+        _saveT = setTimeout(() => put({}), 400);
+      });
     }
-    document.getElementById("reveal").onclick = () => {
+
+    /* 手动校正（可选覆盖） */
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
       const c = cur();
-      const arr = readSlots();
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    const hb = document.getElementById("hint");
-    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
-    if (many) app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
+      const i = +cb.dataset.i;
       const set = new Set(c.checked || []);
       if (cb.checked) set.add(i); else set.delete(i);
       const arr = c.slots || [c.text || ""];
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,j)=>set.has(j));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      const arr2 = set.size ? Array.from(set).sort((a,b)=>a-b) : [];
+      const manScore = pts.reduce((a,p,j)=>a + (arr2.indexOf(j)>=0 ? (p.m||1) : 0), 0);
+      const full = manScore >= totalMarks;
+      state.answers[q.id] = Object.assign({}, c, {
+        chosen:-1, slots:arr, text:joinSlots(arr), checked:arr2,
+        override:true, manScore:manScore,
+        ok: full ? "ok" : (manScore > 0 ? "part" : "bad")
+      });
+      if (!c.gradedAt) {
+        reviewMark(q.subj || DATA.slug, q.id, full);
+        logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      }
       save(); render();
     }));
+
+    const hb = document.getElementById("hint");
+    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
+
     const nc = document.getElementById("numcheck");
     if (nc) nc.onclick = () => {
       const typed = joinSlots(readSlots());
       const u = numsOf(typed), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      if (!res) return;
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--muted)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--muted)"; return; }
+      const lastN = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-lastN) <= Math.max(Math.abs(v)*0.01, 0.005));
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+      res.style.color = hit ? "var(--success)" : "var(--error)";
+    };
+
+    const mt = document.getElementById("manualtoggle");
+    if (mt) mt.onclick = () => {
+      const mb = document.getElementById("manualbox");
+      if (!mb) return;
+      mb.open = !mb.open;
+      if (mb.open) mb.scrollIntoView({behavior:"smooth", block:"center"});
     };
     const ac = document.getElementById("aiconf");
     if (ac) ac.onclick = () => {
-      const cur = localAI();
-      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      const curLoc = localAI();
+      const v = prompt("判分服务器地址（云端留空就用默认；本机/局域网可填 http://127.0.0.1:8787）", apibase());
       if (v === null) return;
-      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+      try { localStorage.setItem("dsh-api", v.trim().replace(/\/$/, "")); } catch(e) {}
+      toast(v.trim() ? "判分服务器已保存" : "已清空，将使用默认服务器", true);
+      render();
     };
-    const ai = document.getElementById("aigrade");
-    if (ai) ai.onclick = () => {
-      const arr = readSlots(), answer = joinSlots(arr);
-      if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
-      ai.disabled = true; ai.textContent = "AI 判分中…";
-      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+    const aa = document.getElementById("applyauto");
+    if (aa) aa.onclick = () => {
+      const arr = readSlots();
+      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || joinSlots(arr)).hit ? i : -1).filter(i=>i>=0);
+      put({checked:hits, override:true,
+           manScore: pts.reduce((a,p,j)=>a + (hits.indexOf(j)>=0 ? (p.m||1) : 0), 0), ok:"ok"});
+      render();
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { put({checked:pts.map((_,i)=>i), override:true, manScore:totalMarks, ok:"ok"}); render(); };
+    if (none) none.onclick = () => { put({checked:[], override:true, manScore:0, ok:"bad"}); render(); };
+
+    /* ── 提交 / 重新判分 ── */
+    const GRADING = window.__GRADING || (window.__GRADING = {});
+    const submitBtn = document.getElementById("submitq");
+    if (submitBtn) submitBtn.onclick = async function(){
+      const answer = joinSlots(readSlots());
+      const c0 = cur();
+      if (!answer.trim()) { toast("先写点答案再提交", false); return; }
+      if (!canAuto) {
+        put({override:true, ok:"ok"});
+        const mb = document.getElementById("manualbox");
+        if (mb) { mb.open = true; mb.scrollIntoView({behavior:"smooth", block:"center"}); }
+        return;
+      }
+      if (GRADING[q.id]) return;
+      if (c0.ai && !c0.override && c0.text === answer) {
+        toast("这一版已经判过了，改动后才会重新判分", false);
+        return;
+      }
+      GRADING[q.id] = true;
+      submitBtn.disabled = true;
+      const oldTxt = submitBtn.textContent;
+      submitBtn.textContent = "判分中…";
+      const payload = JSON.stringify({
+        stem: q.stem,
+        max_marks: totalMarks,
+        reference: q.answer || "",
+        criteria: pts.map(function(p,i){ return {id:critId(p,i), t:p.t, m:(p.m||1)}; }),
+        answer: answer,
+        subject: DATA.slug || "",
+        topic: q.topic || ""
+      });
       const engines = [];
       if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
       const loc = localAI();
       if (loc) engines.push({n:"local", u: loc + "/grade"});
-      (async function(){
-        let lastErr = "no engine";
-        for (const en of engines) {
-          try {
-            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
-            const d = await r.json();
-            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
-            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+      let lastErr = "no engine";
+      for (const en of engines) {
+        try {
+          const r = await fetch(en.u, {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: payload
+          });
+          const d = await r.json();
+          if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+          const res = Array.isArray(d.results) ? d.results : [];
+          if (!res.length) throw new Error("no criterion results");
+          const sum = res.reduce(function(a,x){ return a + (Number(x.awarded_marks) || 0); }, 0);
+          const rawScore = (typeof d.score === "number") ? d.score : sum;
+          const score = Math.max(0, Math.min(totalMarks, Math.round(rawScore)));
+          const conf = (typeof d.confidence === "number")
+            ? Math.max(0, Math.min(1, d.confidence)) : 0.5;
+          const isLegacy = res.some(function(x){ return x && x.awarded_marks === undefined && x.i !== undefined; });
+          if (isLegacy) {
+            const normL = pts.map(function(p,i){
+              const r = res.filter(function(x){ return Number(x.i) === i; })[0] || {};
+              const mx = p.m || 1;
+              return {id:critId(p,i), awarded: r.covered ? mx : 0, max:mx,
+                      covered:!!r.covered, reason:String(r.reason || "")};
+            });
+            const scL = normL.reduce(function(a,x){ return a + x.awarded; }, 0);
+            const aiL = {score:scL, max:totalMarks, results:normL,
+              feedback:"（旧版判分接口，只能整点给分，建议更新服务器）",
+              confidence:0.7, needsReview:false, model:String(d.model||"v1"),
+              engine:en.n, at:Date.now()};
+            const wasL = !!c0.gradedAt;
+            state.answers[q.id] = Object.assign({}, c0, {
+              chosen:-1, slots:readSlots(), text:answer, ai:aiL,
+              gradedAt:aiL.at, gradeModel:aiL.model, gradeEngine:en.n,
+              checked:normL.map(function(x,i){ return x.awarded>0?i:-1; }).filter(function(i){ return i>=0; }),
+              override:false,
+              ok: scL >= totalMarks ? "ok" : (scL > 0 ? "part" : "bad")
+            });
+            save();
+            if (!wasL) {
+              reviewMark(q.subj || DATA.slug, q.id, scL >= totalMarks);
+              logAnswer(q.subj || DATA.slug, q.id, scL >= totalMarks, q.difficulty, "short");
+            }
+            GRADING[q.id] = false;
+            render();
             return;
-          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+          }
+          const norm = res.map(function(x,i){
+            const mx = Math.max(1, Math.round(Number(x.maximum_marks) || 1));
+            return {
+              id: String(x.criterion_id || ("c" + (i+1))),
+              awarded: Math.max(0, Math.min(mx, Math.round(Number(x.awarded_marks) || 0))),
+              max: mx,
+              covered: !!x.covered,
+              reason: String(x.reason || "").slice(0, 240)
+            };
+          });
+          const ai = {
+            score: score, max: totalMarks, results: norm,
+            feedback: String(d.feedback || "").slice(0, 500),
+            confidence: conf,
+            needsReview: conf < 0.6,
+            model: String(d.model || ""),
+            engine: en.n,
+            at: Date.now()
+          };
+          const wasGraded = !!c0.gradedAt;
+          const gotIdx = pts.map(function(p,i){ return i; }).filter(function(i){
+            const id = critId(pts[i], i);
+            const hit = norm.filter(function(x){ return x.id === id; })[0];
+            return hit && hit.awarded > 0;
+          });
+          state.answers[q.id] = Object.assign({}, c0, {
+            chosen:-1, slots:readSlots(), text:answer,
+            ai:ai, gradedAt:ai.at, gradeModel:ai.model, gradeEngine:en.n,
+            checked:gotIdx, override:false,
+            ok: score >= totalMarks ? "ok" : (score > 0 ? "part" : "bad")
+          });
+          save();
+          if (!wasGraded) {
+            reviewMark(q.subj || DATA.slug, q.id, score >= totalMarks);
+            logAnswer(q.subj || DATA.slug, q.id, score >= totalMarks, q.difficulty, "short");
+            if (score >= totalMarks && window.awardForQ) awardForQ(q.id, q.difficulty, "short", true);
+          }
+          GRADING[q.id] = false;
+          render();
+          return;
+        } catch (e) {
+          lastErr = en.n + ": " + ((e && e.message) || e);
         }
-        ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
-      })();
+      }
+      GRADING[q.id] = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldTxt;
+      toast("判分服务不可用（" + lastErr + "），已切到手动校正", false);
+      const mb2 = document.getElementById("manualbox");
+      if (mb2) mb2.open = true;
     };
-    const ap2 = document.getElementById("applyai");
-    if (ap2) ap2.onclick = () => {
-      const c = cur(); const arr = c.slots || [c.text || ""];
-      const res = AI_RES[q.id] || [];
-      const hits = res.map(r => r.covered ? r.i : -1).filter(i => i >= 0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const aa = document.getElementById("applyauto");
-    if (aa) aa.onclick = () => {
-      const c = cur();
-      const arr = c.slots || [c.text || ""];
-      const hits = pts.map((p,i)=>autoScore(p.t, arr[i] || "").hit ? i : -1).filter(i=>i>=0);
-      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked:hits, ok:"ok"};
-      save(); render();
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:[],ok:"ok"}; save(); render(); };
   }
   document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
   const nx = document.getElementById("next");
@@ -2162,10 +2415,16 @@ function showResult() {
   let earnedM = 0, totalM = 0, partM = 0;
   const weak = [];
   shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const pts = (x.criteria && x.criteria.length) ? x.criteria
+              : ((x.points && x.points.length) ? x.points : [{m:1}]);
+    const tot = (typeof x.marks === "number" && x.marks > 0)
+      ? x.marks : pts.reduce((a,p)=>a+(p.m||1),0);
     const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const manGot = (r && r.checked)
+      ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    const got = (r && r.override)
+      ? (typeof r.manScore === "number" ? r.manScore : manGot)
+      : ((r && r.ai && typeof r.ai.score === "number") ? r.ai.score : manGot);
     totalM += tot;
     if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
   });
