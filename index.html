@@ -673,6 +673,24 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
     "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
     "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
     "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "🛒 商城":"Shop","← 首页":"← Home",
+    "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
+    "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None",
+    "还原默认主题":"Reset theme","卸下称号":"Remove title",
+    "主题":"Themes","称号":"Titles","实用道具":"Boosts","永久升级":"Upgrades","消耗品":"Consumables",
+    "购买":"Buy","已拥有":"Owned","使用中":"In use","佩戴中":"Equipped","使用":"Use","佩戴":"Equip",
+    "金币与装扮存在本机浏览器；导出备份会一起带走":"Coins and cosmetics are stored in this browser; an exported backup carries them over.",
+    "暖阳主题":"Warm theme","焦糖 + 橙色调":"Caramel and orange","森林主题":"Forest theme","深绿护眼":"Deep green, easy on the eyes",
+    "樱粉主题":"Sakura theme","粉紫夜空":"Pink night sky","鎏金主题":"Gilded theme","限定 · 星尘专属":"Limited · stardust only",
+    "称号 · 卷王":"Title · Grinder","称号 · 一枪一个":"Title · One Shot","称号 · 静默刷题":"Title · Silent Grinder",
+    "挂在等级旁边":"Shown next to your level","卷王":"Grinder","一枪一个":"One Shot","静默刷题":"Silent Grinder",
+    "星尘旅人":"Stardust Wanderer","限定称号 · 星尘专属":"Limited title · stardust only",
+    "双倍经验 30 分钟":"Double XP for 30 minutes","立刻生效":"Takes effect now",
+    "连续保护 ×1":"Streak shield x1","断一天不算断":"One missed day does not break your streak",
+    "连续保护 ×2":"Streak shield x2","再买一次，容错两天":"Buy again for two missed days",
+    "延后券":"Postpone pass","把一道错题推后 1 天，账还在":"Push one mistake back a day - it still counts",
+    "没有这件商品":"No such item","已经拥有了":"Already owned","已购买：":"Purchased: ","不够，还差 ":"Not enough, short by ",
+
     "错题本 · 待复习":"Mistakes · Due for review",
     "按遗忘曲线排期：第一次做错后第 1 天复习，答对推到第 3 天，再对推到第 7 天，全对后自动「毕业」。":"Spaced repetition: review 1 day after a mistake, then 3, then 7. Get it fully right and it graduates.",
     "今天该复习":"Due today","未来 7 天内":"Next 7 days","天后":"days","已掌握（在册）":"Mastered (tracked)",
@@ -766,7 +784,11 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
     [/^(\d+) 选择$/, "$1 MCQ"],
     [/^(\d+) 简答$/, "$1 short"],
     [/^下一场 (.+) · (\d+\/\d+) ·$/, "Next: $1 · $2 ·"],
-    [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"]
+    [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"],
+    [/^(\d+) 币$/, "$1 coins"],
+    [/^(\d+) 星尘$/, "$1 stardust"],
+    [/^· 称号：\s*(.+)$/, "· Title: $1"],
+    [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];
   function applyI18n(){
     if(window.LANG()==="zh") return;
