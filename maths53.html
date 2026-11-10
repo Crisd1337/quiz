@@ -735,6 +735,8 @@ footer{padding:22px 14px 30px;line-height:1.8}
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
     [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];
+  var I18N_SUB = [["大概率写到","likely covered"],["可能没写到","likely missed"],
+    ["关键词","keywords"],["，缺 "," , missing "],["自动","auto"]];
   function applyI18n(){
     if(window.LANG()==="zh") return;
     var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
@@ -742,6 +744,11 @@ footer{padding:22px 14px 30px;line-height:1.8}
     while((n=walker.nextNode())){
       var s=(n.nodeValue||"").trim(); if(!s) continue;
       if(I18N[s]){ n.nodeValue=n.nodeValue.replace(s, I18N[s]); continue; }
+      var nv=n.nodeValue, did=false;
+      for(var si=0; si<I18N_SUB.length; si++){
+        if(nv.indexOf(I18N_SUB[si][0])>=0){ nv=nv.split(I18N_SUB[si][0]).join(I18N_SUB[si][1]); did=true; }
+      }
+      if(did){ n.nodeValue=nv; continue; }
       for(var i=0;i<I18N_PAT.length;i++){
         if(I18N_PAT[i][0].test(s)){ n.nodeValue=n.nodeValue.replace(s, s.replace(I18N_PAT[i][0], I18N_PAT[i][1])); break; }
       }
