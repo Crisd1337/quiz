@@ -1,71 +1,395 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
+(function(){try{
+  var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
+  var s=m||localStorage.getItem("dsh-theme")||"system";
+  var r=document.documentElement;
+  if(s==="light"||s==="dark") r.setAttribute("data-theme",s);
+  r.setAttribute("data-theme-mode",s);
+}catch(e){}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>英语 · 10 年级 · 复习测验</title>
 <style>
+/* ══ design tokens ═══════════════════════════════════════ */
 :root{
-  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
-  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+  --bg: var(--background);
+  --card: var(--surface);
+  --card2: var(--surface-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-secondary);
+  --fg: var(--foreground);
+  --dim: var(--muted);
+  --line: var(--border);
+  --line2: var(--border-strong);
+  --ok: var(--success);
+  --bad: var(--error);
+  --warn: var(--warning);
+  /* 派生色：只覆盖 --accent，其余自动跟着变（商店主题用它）*/
+  --accent-text: color-mix(in srgb, var(--accent) 74%, var(--foreground));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
 }
-@media (prefers-color-scheme: light) {
-  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --background: #09090B;
+    --surface: #111113;
+    --surface-secondary: #18181B;
+    --surface-inset: #1F1F23;
+    --foreground: #FAFAFA;
+    --muted: #A1A1AA;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --accent: #3291FF;
+    --success: #4ADE80;
+    --success-soft: rgba(74,222,128,.12);
+    --error: #F87171;
+    --error-soft: rgba(248,113,113,.12);
+    --warning: #F59E0B;
+    --warning-soft: rgba(245,158,11,.12);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+    --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+    --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+  }
 }
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --background: #09090B;
+  --surface: #111113;
+  --surface-secondary: #18181B;
+  --surface-inset: #1F1F23;
+  --foreground: #FAFAFA;
+  --muted: #A1A1AA;
+  --border: #27272A;
+  --border-strong: #3F3F46;
+  --primary: #FAFAFA;
+  --primary-foreground: #171717;
+  --accent: #3291FF;
+  --success: #4ADE80;
+  --success-soft: rgba(74,222,128,.12);
+  --error: #F87171;
+  --error-soft: rgba(248,113,113,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+  --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+}
+
+/* ══ foundations ═════════════════════════════════════════ */
+:root{
+  /* type */
+  --font-sans:"Geist Variable","Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono:"Geist Mono Variable","Geist Mono",ui-monospace,SFMono-Regular,"SF Mono",
+    Menlo,Consolas,monospace;
+  --text-2xl:28px; --text-xl:20px; --text-lg:17px; --text-md:15px;
+  --text-base:14px; --text-sm:12px; --text-xs:11px;
+  --lh-tight:1.25; --lh-snug:1.45; --lh-base:1.6; --lh-prose:1.75;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s8:32px; --s10:40px; --s12:48px; --s16:64px;
+  /* radius */
+  --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px; --r-full:999px;
+  /* layout */
+  --page-max:1120px;
+  --read-max:760px;
+  --page-x:32px;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --fast:.12s; --norm:.2s;
+}
+
+@font-face{
+  font-family:"Geist Variable";
+  src:url("fonts/geist-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-latin.woff2") format("woff2");
+  font-weight:400 700; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,
+    U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Geist Mono Variable";
+  src:url("fonts/geist-mono-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight:400 600; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,
+    U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:var(--text-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11";
+  font-synthesis-weight:none;
+  transition:background-color var(--norm) var(--ease),color var(--norm) var(--ease);
+}
+body,body *{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:var(--lh-tight);font-weight:600}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl)}
+h3{font-size:var(--text-md)}
+a{color:var(--accent-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+::selection{background:var(--accent-soft);color:var(--foreground)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+hr{border:0;border-top:1px solid var(--border);margin:var(--s6) 0}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em}
+kbd{background:var(--surface-secondary);border:1px solid var(--border);border-bottom-width:2px;
+  border-radius:var(--r-sm);padding:1px 6px;color:var(--muted);font-size:11px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+/* 数字统一等宽，避免跳动 */
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ══ 共享顶栏（首页 / 商城 / 错题本）═════════════════════ */
+.topbar{position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);
+  height:56px;display:flex;align-items:center;gap:var(--s4)}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--foreground);
+  text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:-.01em;flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--primary);
+  color:var(--primary-foreground);display:grid;place-items:center;font-size:11px;
+  font-weight:600;font-family:var(--font-mono);line-height:1}
+.nav{display:flex;align-items:center;gap:1px;min-width:0;overflow:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px;color:var(--muted);padding:5px 9px;border-radius:var(--r-sm);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--fast) var(--ease),background-color var(--fast) var(--ease)}
+.nav a:hover{color:var(--foreground);background:var(--surface-secondary);text-decoration:none}
+.nav a.on{color:var(--foreground);font-weight:500}
+.grow{flex:1}
+@media (max-width:720px){
+  .topbar-in{height:auto;flex-wrap:wrap;gap:8px;padding:9px var(--page-x) 0}
+  .brand .bname{display:none}
+  .topbar .nav{order:10;width:100%;margin:2px calc(-1 * var(--page-x)) 0;
+    padding:0 var(--page-x) 8px;border-top:1px solid var(--border)}
+  .topbar .themectl{margin-left:auto}
+}
+
+/* 分段控件选中态 */
+.seg button.on{border-color:var(--foreground)!important}
+
+/* ══ components ══════════════════════════════════════════ */
+.btn,.btn-ghost,.btn2{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  height:34px;padding:0 14px;border-radius:var(--r-sm);
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),opacity var(--fast) var(--ease);
+  text-decoration:none;
+}
+.btn{
+  background:var(--primary);color:var(--primary-foreground);
+  border-color:var(--primary);
+}
+.btn:hover{opacity:.88;text-decoration:none}
+.btn:active{transform:translateY(.5px)}
+.btn:disabled,.btn[disabled]{background:var(--surface-secondary);color:var(--muted);
+  border-color:var(--border);opacity:1;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost,.btn.ghost,.btn2{
+  background:var(--surface);color:var(--foreground);border-color:var(--border);
+}
+.btn-ghost:hover,.btn.ghost:hover,.btn2:hover{
+  background:var(--surface-secondary);border-color:var(--border-strong);text-decoration:none;
+}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;background:var(--surface)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:var(--r-sm)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent:hover{opacity:.9;color:#fff}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:none;
+}
+.input,input[type="text"],input[type="search"],input[type="number"],textarea,select{
+  font-family:inherit;font-size:var(--text-base);color:var(--foreground);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:8px 11px;outline:none;transition:border-color var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.input:hover,input:hover,textarea:hover,select:hover{border-color:var(--border-strong)}
+.input:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--muted);opacity:.85}
+
+.chip,.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:var(--text-xs);line-height:1.6;font-weight:500;
+  padding:2px 8px;border-radius:var(--r-sm);
+  background:var(--surface-secondary);border:1px solid var(--border);color:var(--muted);
+  white-space:nowrap;
+}
+
+/* 主题切换控件 */
+.themectl{display:inline-flex;align-items:center;gap:2px;padding:2px;
+  background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm)}
+.themectl button{
+  font:inherit;font-size:11.5px;font-weight:500;line-height:1;height:24px;padding:0 9px;
+  border:0;border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease);
+}
+.themectl button:hover{color:var(--foreground)}
+.themectl button.on{background:var(--surface);color:var(--foreground);
+  box-shadow:var(--shadow-sm)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;
+  color:var(--muted);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);height:28px;padding:0 10px;cursor:pointer;
+  transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease)}
+.themebtn:hover{color:var(--foreground);border-color:var(--border-strong)}
+.themebtn b{color:var(--foreground);font-weight:500}
+
+/* 浅色下别让深色主题的重阴影漏过来 */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .submit-card{box-shadow:var(--shadow-lg)}
+  :root:not([data-theme="dark"]) .lb-fab{box-shadow:var(--shadow-md)}
+  :root:not([data-theme="dark"]) .lang-btn{box-shadow:var(--shadow-sm)}
+}
+:root[data-theme="light"] .submit-card{box-shadow:var(--shadow-lg)}
+:root[data-theme="light"] .lb-fab{box-shadow:var(--shadow-md)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:900px){ :root{--page-x:20px} }
+@media (max-width:560px){ :root{--page-x:16px} }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);
- font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
- backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
-.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
-.bar .meta{color:var(--dim);font-size:13px}
+body{margin:0;display:flex;flex-direction:column;min-height:100vh}
+header{position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb,var(--background) 88%,transparent);
+  -webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--border);padding:9px 0 0}
+.bar{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);display:flex;
+  align-items:center;gap:7px;flex-wrap:wrap;min-height:34px}
+.bar h1{font-size:15px;margin:0;font-weight:600;letter-spacing:-.01em}
+.bar .meta{color:var(--muted);font-size:12px}
 .spacer{flex:1}
-.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
- font-size:12px;color:var(--dim)}
-.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
-.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
-main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
-.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
-.chip.easy{color:#2fbf71;border-color:#2fbf7144}
-.chip.medium{color:#f5a623;border-color:#f5a62344}
-.chip.hard{color:#ff5f56;border-color:#ff5f5644}
-.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
-.opts{display:grid;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);
+  background:var(--surface);border-radius:var(--r-sm);padding:3px 8px;font-size:11.5px;
+  color:var(--muted);font-family:var(--font-mono);font-variant-numeric:tabular-nums;
+  white-space:nowrap;text-decoration:none}
+a.pill:hover{border-color:var(--border-strong);color:var(--foreground);text-decoration:none}
+.progress{height:3px;background:var(--surface-secondary);border-radius:99px;overflow:hidden;
+  margin:9px 0 0}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;
+  transition:width .3s var(--ease)}
+main{width:100%;max-width:860px;margin:0 auto;padding:var(--s6) var(--page-x) 96px;flex:1 0 auto}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip.easy{color:var(--success);border-color:color-mix(in srgb,var(--success) 40%,var(--border));
+  background:var(--success-soft)}
+.chip.medium{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 40%,var(--border));
+  background:var(--warning-soft)}
+.chip.hard{color:var(--error);border-color:color-mix(in srgb,var(--error) 40%,var(--border));
+  background:var(--error-soft)}
+.stem{font-size:17px;line-height:1.7;margin:4px 0 16px;white-space:pre-wrap;
+  color:var(--foreground);letter-spacing:-.005em}
+.opts{display:grid;gap:8px}
 .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
- background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
- padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
-.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+  background:var(--surface);border:1px solid var(--border);color:var(--foreground);
+  border-radius:var(--r-sm);padding:12px 14px;font:inherit;font-size:14.5px;line-height:1.6;
+  cursor:pointer;transition:border-color var(--fast) var(--ease),
+  background-color var(--fast) var(--ease)}
+.opt:hover:not(:disabled){border-color:var(--border-strong);background:var(--surface-secondary)}
 .opt:disabled{cursor:default}
-.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
- display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
-.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
-.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
-.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
-.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
-textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
- border-radius:11px;padding:12px;font:inherit;resize:vertical}
-.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
- border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.opt .k{flex:0 0 22px;height:22px;border-radius:4px;background:var(--surface-secondary);
+  border:1px solid var(--border);display:grid;place-items:center;font-size:11px;font-weight:600;
+  color:var(--muted);font-family:var(--font-mono)}
+.opt.correct{border-color:var(--success);background:var(--success-soft)}
+.opt.correct .k{background:var(--success);color:var(--surface);border-color:var(--success)}
+.opt.wrong{border-color:var(--error);background:var(--error-soft)}
+.opt.wrong .k{background:var(--error);color:var(--surface);border-color:var(--error)}
+textarea{width:100%;min-height:96px;background:var(--surface);color:var(--foreground);
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;font:inherit;
+  font-size:14px;line-height:1.65;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:2px solid var(--accent);
+  background:var(--surface-secondary);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-size:13.5px;line-height:1.7;display:none}
 .exp.show{display:block}
-.exp b{color:var(--accent)}
-.src{margin-top:8px;color:var(--dim);font-size:12px}
-.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
- font:inherit;font-weight:600;cursor:pointer}
-button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-button.btn:disabled{opacity:.45;cursor:default}
-.done h2{margin:0 0 6px}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
-.stat b{display:block;font-size:24px;line-height:1.2}
-.stat span{color:var(--dim);font-size:12px}
-.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.exp b{color:var(--accent-text)}
+.src{margin-top:8px;color:var(--muted);font-size:11.5px}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+button.btn{height:34px;padding:0 14px;border-radius:var(--r-sm);border:1px solid var(--primary);
+  background:var(--primary);color:var(--primary-foreground);font:inherit;font-size:13px;
+  font-weight:500;cursor:pointer;transition:opacity var(--fast) var(--ease)}
+button.btn:hover:not(:disabled){opacity:.88}
+button.btn.ghost{background:var(--surface);color:var(--foreground);border-color:var(--border)}
+button.btn.ghost:hover:not(:disabled){background:var(--surface-secondary);
+  border-color:var(--border-strong)}
+button.btn:disabled{opacity:.4;cursor:not-allowed}
+.done h2{margin:0 0 6px;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:16px 0}
+.stat{background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:12px 14px}
+.stat b{display:block;font-size:22px;line-height:1.2;font-family:var(--font-mono);
+  font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:11.5px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
 .wronglist li{margin:4px 0}
-footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
-kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:11.5px;padding:26px 16px 30px;line-height:1.7}
 
 .chip.warn{border-color:#f5a62366;color:#f5a623}
 .muted{color:var(--dim);font-size:13px}
@@ -96,7 +420,8 @@ kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;paddi
 .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
  padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
-.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.seg button.on{border-color:var(--foreground);background:var(--surface);font-weight:600;
+ box-shadow:var(--shadow-sm)}
 .setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
 .setup-foot .sum{color:var(--dim);font-size:14px}
 .setup-foot .sum b{color:var(--fg);font-size:18px}
@@ -250,6 +575,9 @@ main,.card,.setup{max-width:100%}
 .actions{flex-wrap:wrap}
 footer{padding:22px 14px 30px;line-height:1.8}
 
+@media (max-width:1180px){
+  .bar .meta{display:none}
+}
 @media (max-width:720px){
   #scorepill{display:none}
   .bar a.pill{display:none}
@@ -303,11 +631,12 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 36</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
-    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
-    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
-    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
+    <button class="btn ghost btn-sm" id="tfilter">全部</button>
+    <button class="btn ghost btn-sm" id="grid">题号</button>
+    <button class="btn ghost btn-sm" id="exam">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
-    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+    <button class="btn ghost btn-sm" id="restart">重来</button>
+    <span data-theme-ctl="cycle"></span>
   </div>
   <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
 </header>
@@ -379,32 +708,33 @@ footer{padding:22px 14px 30px;line-height:1.8}
   function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
   function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
 
+  /* 主题只改强调色：浅色 / 深色 / 跟随系统由 data-theme 决定，两者互不冲突 */
   var THEMES={
-    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
-    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
-    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
-    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+    gold:  {accent:"#B7791F"},
+    warm:  {accent:"#C2410C"},
+    forest:{accent:"#047857"},
+    sakura:{accent:"#BE185D"}
   };
   function applyTheme(){
     var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
-    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
-    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+    root.style.removeProperty("--accent");
+    if(t && THEMES[t]){ root.style.setProperty("--accent", THEMES[t].accent); }
   }
   function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
 
   var SHOP=[
-    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
-    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
-    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
-    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
-    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
-    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
-    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
-    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
-    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
-    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
-    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
-    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"}
   ];
 
   function buy(id){
@@ -612,7 +942,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
     "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
 
-    "🛒 商城":"Shop","← 首页":"← Home",
+    "商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
     "还原默认主题":"Reset theme","卸下称号":"Remove title",
@@ -1212,31 +1542,50 @@ footer{padding:22px 14px 30px;line-height:1.8}
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var title = inv.equipped && inv.equipped.title
+      ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
     var ne = nextExam();
-    var dd = ne ? ne.days : null;
-    var badgeHtml = BADGES.map(function(x){
-      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+    var owned = BADGES.filter(function(x){ return b[x.id]; });
+    var badgeHtml = owned.map(function(x){
+      return '<span class="badge on" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
     }).join("");
     host.innerHTML =
-      '<div class="hero-top">'+
-        '<span class="lvp">Lv.'+lv+'</span>'+
-        '<span class="xpv">'+xp+'</span>'+
-        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
-        title+'<span class="grow"></span>'+
-        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
+      '<div class="ovc">'+
+        '<span class="ovl">等级'+title+'</span>'+
+        '<span class="ovn">'+lv+'<small>Lv</small></span>'+
+        '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+        '<span class="ovh">'+(nx?'还差 '+(nx-xp)+' XP 升级':'已满级')+' · 共 '+xp+' XP</span>'+
       '</div>'+
-      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-      '<div class="metaline">'+
-        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
-        '<span>连续 <b>'+st+'</b> 天</span>'+
-        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
-        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
-        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+      '<div class="ovc">'+
+        '<span class="ovl">今日</span>'+
+        '<span class="ovn">'+tc+'<small>/'+GOAL+'</small></span>'+
+        '<span class="ovh">连续 '+st+' 天 · 连对 '+(g.best||0)+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已开始</span>'+
+        '<span class="ovn" id="ovStarted">—</span>'+
+        '<span class="ovh">'+(ne?('下一场 '+ne.name+' · '+ne.days+' 天后'):'')+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已做题</span>'+
+        '<span class="ovn" id="ovAnswered">—</span>'+
+        '<span class="ovh" id="ovAcc">还没有作答记录</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">错题</span>'+
+        '<span class="ovn" id="ovMistakes">—</span>'+
+        '<span class="ovh" id="ovDue">今天没有到期</span>'+
+      '</div>'+
+      '<div class="ovbadges">'+
+        '<span class="ovb-lbl">徽章 '+owned.length+'/'+BADGES.length+'</span>'+
+        badgeHtml+
+        (owned.length? '' : '<span class="ovb-hint">做题、连对、连续打卡都会解锁</span>')+
+        '<span class="grow"></span>'+
+        '<span class="coinline">金币 <b>'+(c.n||0)+'</b> · 星尘 <b>'+(c.dust||0)+'</b></span>'+
         '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
-      '</div>'+
-      '<div class="badges">'+badgeHtml+'</div>';
+      '</div>';
+    if(window.__homeStats) window.__homeStats();
   }
   function renderAll(){
     renderProfile();
@@ -1284,6 +1633,54 @@ footer{padding:22px 14px 30px;line-height:1.8}
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+
+/* ── 主题（浅色 / 深色 / 跟随系统）──────────────────────── */
+(function(){
+  var KEY="dsh-theme";
+  function mode(){
+    try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
+    catch(e){return "system";}
+  }
+  var LABEL={light:"浅色",dark:"深色",system:"自动"};
+  function paint(box){
+    var m=mode();
+    if(box.getAttribute("data-theme-ctl")==="cycle"){
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="外观：'+LABEL[m]+
+        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+    }else{
+      box.innerHTML=['light','dark','system'].map(function(k){
+        return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
+      }).join("");
+    }
+  }
+  function apply(m){
+    var r=document.documentElement;
+    if(m==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",m);
+    r.setAttribute("data-theme-mode",m);
+    document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+  }
+  function set(m){
+    try{localStorage.setItem(KEY,m);}catch(e){}
+    apply(m);
+  }
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest ? ev.target.closest("[data-mode],[data-cycle]") : null;
+    if(!b) return;
+    if(b.hasAttribute("data-cycle")){
+      var order=["system","light","dark"], cur=mode();
+      set(order[(order.indexOf(cur)+1)%3]);
+    }else{ set(b.getAttribute("data-mode")); }
+    ev.preventDefault();
+  });
+  try{
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys=function(){ if(mode()==="system") apply("system"); };
+    if(mq.addEventListener) mq.addEventListener("change",onSys);
+    else if(mq.addListener) mq.addListener(onSys);
+  }catch(e){}
+  window.DSH_THEME={set:set,mode:mode};
+  document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+})();
 </script>
 <script>
 const DATA = {"slug": "eng", "title": "英语 · 10 年级", "examMin": 70, "questions": [{"topic": "李尔王 · 剧情", "difficulty": "easy", "type": "mcq", "stem": "How does King Lear decide how to divide his kingdom at the start of the play?", "options": ["By asking each daughter to say how much she loves him", "By drawing lots with his daughters", "By holding a tournament between the dukes", "By giving the largest share to the eldest daughter"], "answer": 0, "explanation": "开场李尔要求三个女儿各自表达对他的爱，按表达分国土。这是全剧的引爆点——把爱变成可计量的表演。", "source": "Yearly Study Guide 2026 · English（5 multiple choice questions based on the events of your play）", "id": "eng-001", "weak": false}, {"topic": "李尔王 · 剧情", "difficulty": "easy", "type": "mcq", "stem": "What word does Cordelia use when asked to declare her love, which triggers Lear's rage?", "options": ["Everything", "Nothing", "Half", "Love"], "answer": 1, "explanation": "Cordelia 回答 \"Nothing\"：她不愿用溢美之词换取国土。Lear 把诚实当作否定，随即剥夺她的继承权。", "source": "Yearly Study Guide 2026 · English", "id": "eng-002", "weak": false}, {"topic": "李尔王 · 剧情", "difficulty": "medium", "type": "mcq", "stem": "Who is the faithful nobleman banished for speaking in defence of Cordelia, and how does he return?", "options": ["Edmund, disguised as a messenger", "Albany, disguised as a knight", "Kent, disguised as the servant Caius", "Gloucester, disguised as Poor Tom"], "answer": 2, "explanation": "Kent 因替 Cordelia 辩护被驱逐，之后装扮成仆役 Caius 继续服侍李尔。Poor Tom 是 Edgar 的伪装，Albany 未伪装。", "source": "Yearly Study Guide 2026 · English", "id": "eng-003", "weak": false}, {"topic": "李尔王 · 剧情", "difficulty": "medium", "type": "mcq", "stem": "How does Goneril and Regan's treatment of Lear change after they gain power?", "options": ["They crown him king of a smaller region", "They exile him to France", "They give him more knights than he had before", "They reduce the number of knights he may keep, eventually refusing them entirely"], "answer": 3, "explanation": "李尔约定保留 100 名骑士，Goneril 先减到 50，Regan 再减到 25（后为 0），并拒绝收留他。剥夺随从是关键羞辱点。", "source": "Yearly Study Guide 2026 · English", "id": "eng-004", "weak": false}, {"topic": "李尔王 · 剧情", "difficulty": "medium", "type": "mcq", "stem": "Edmund plots against Edgar and Gloucester. Which action most directly sets his plan in motion?", "options": ["He tells Edgar that Gloucester wants him dead, then claims Edgar plotted to kill Gloucester", "He forges a letter and calls a tournament", "He reports Edgar to the King", "He openly challenges Edgar to a duel"], "answer": 0, "explanation": "Edmund 伪造信件、诱骗 Edgar 逃跑，再向 Gloucester 报告『Edgar 谋害父亲』，使 Edgar 被通缉，自己成为合法继承人。", "source": "Yearly Study Guide 2026 · English", "id": "eng-005", "weak": false}, {"topic": "李尔王 · 剧情", "difficulty": "hard", "type": "mcq", "stem": "How does the play end for Lear and Cordelia?", "options": ["They rule the kingdom together", "Cordelia is hanged on Edmund's orders and Lear dies of grief with her body", "Lear is killed in battle by Albany", "They flee to France and survive"], "answer": 1, "explanation": "Edmund 下令吊死 Cordelia，李尔赶到时已晚，抱着她的尸体死去。没有恢复秩序的幸福结局，只有 Albany 与 Edgar 收拾残局。", "source": "Yearly Study Guide 2026 · English", "id": "eng-006", "weak": false}, {"id": "eng-007", "topic": "李尔王 · 分国与 Cordelia 的「Nothing」", "difficulty": "easy", "type": "short", "stem": "Section 1 — King Lear, Act 1 Scene 1:\n\nCORDELIA: Nothing, my lord.\nKING LEAR: Nothing!\nCORDELIA: Nothing.\nKING LEAR: Nothing will come of nothing: speak again.\n\n(a) What does Cordelia's reply reveal about her values? (2 marks)\n(b) Explain how Lear's response sets the tragedy in motion. (3 marks)", "options": [], "answer": "(a) 1 mark — Cordelia refuses to flatter or perform love for a reward; she will not compete with her sisters' speeches.\n1 mark — her plain 'Nothing' signals honesty and a measured, private love (she loves 'according to my bond'), not an absence of feeling.\n(b) 1 mark — Lear equates love with public declaration, so silence is read as rejection.\n1 mark — his pun, 'Nothing will come of nothing', shows him thinking in terms of a bargain or debt rather than affection.\n1 mark — he banishes Cordelia (and Kent) and divides the kingdom between Goneril and Regan, handing power to the daughters who will destroy him.", "explanation": "两问是一组因果链：(a) 考 Cordelia 为什么说 Nothing（拒绝把爱当表演，爱是“本分”不是报价）；(b) 要串起三点——把言语当爱、用双关当交易、放逐造成权力真空。只写“他很生气”拿不到第 3 分。", "source": "King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "Cordelia refuses to flatter or perform love for a reward; she will not compete with her sisters' speeches.", "m": 1}, {"t": "her plain 'Nothing' signals honesty and a measured, private love (she loves 'according to my bond'), not an absence of feeling.", "m": 1}, {"t": "Lear equates love with public declaration, so silence is read as rejection.", "m": 1}, {"t": "his pun, 'Nothing will come of nothing', shows him thinking in terms of a bargain or debt rather than affection.", "m": 1}, {"t": "he banishes Cordelia (and Kent) and divides the kingdom between Goneril and Regan, handing power to the daughters who will destroy him.", "m": 1}], "weak": false}, {"id": "eng-008", "topic": "李尔王 · 谄媚的语言（Act 1 Sc 1）", "difficulty": "easy", "type": "short", "stem": "Section 1 — King Lear, Act 1 Scene 1:\n\nGONERIL: Sir, I love you more than words can wield the matter;\nDearer than eye-sight, space, and liberty;\nBeyond what can be valued, rich or rare;\n\n(a) Identify two features of Goneril's language. (2 marks)\n(b) Explain why Shakespeare gives this speech to Goneril rather than to Cordelia. (3 marks)", "options": [], "answer": "(a) 1 mark — hyperbole and unverifiable comparison ('more than words can wield', 'dearer than eyesight, space and liberty').\n1 mark — a catalogue of absolutes: love is measured against everything (sight, space, liberty, wealth) and therefore means nothing specific.\n(b) 1 mark — the contrast with Cordelia's plain 'Nothing' exposes flattery as performance and truth as plain speech.\n1 mark — it positions the audience above Lear: we can hear the inflation before he can (dramatic irony).\n1 mark — it establishes the play's central error: love treated as language to be counted rather than felt.", "explanation": "这题考“语言如何被量化”：Goneril 用夸张和绝对化清单，把爱变成可比较、可报价的东西。(b) 的重点是“对比 + 观众知道得比 Lear 多”，不要只写“她不是真心的”。", "source": "King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "hyperbole and unverifiable comparison ('more than words can wield', 'dearer than eyesight, space and liberty').", "m": 1}, {"t": "a catalogue of absolutes: love is measured against everything (sight, space, liberty, wealth) and therefore means nothing specific.", "m": 1}, {"t": "the contrast with Cordelia's plain 'Nothing' exposes flattery as performance and truth as plain speech.", "m": 1}, {"t": "it positions the audience above Lear: we can hear the inflation before he can (dramatic irony).", "m": 1}, {"t": "it establishes the play's central error: love treated as language to be counted rather than felt.", "m": 1}], "weak": false}, {"id": "eng-009", "topic": "李尔王 · 视觉隐喻与 blindness motif", "difficulty": "easy", "type": "short", "stem": "Section 1 — King Lear, Act 1 Scene 1:\n\nKENT: See better, Lear; and let me still remain\nThe true blank of thine eye.\n\nExplain what Kent's image of sight suggests about Lear's error and about the play's wider concerns. (3 marks)", "options": [], "answer": "1 mark — sight here means judgement or insight, not physical vision: Kent is telling Lear that he is misreading his daughters.\n1 mark — Kent offers to be the 'blank' (the true target/centre) of Lear's eye, that is, the honest perspective Lear refuses.\n1 mark — the image plants the blindness motif that structures the whole play: Gloucester is literally blinded, and Lear only learns to 'see' once he has lost everything.", "explanation": "3 分分别给：sight = 判断力（不是视力）、Kent 自愿当“眼中靶心”的忠心、以及这一隐喻为全剧 blindness motif 埋线（后接 Gloucester 被挖眼、Lear 清醒时已一无所有）。", "source": "King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "sight here means judgement or insight, not physical vision: Kent is telling Lear that he is misreading his daughters.", "m": 1}, {"t": "Kent offers to be the 'blank' (the true target/centre) of Lear's eye, that is, the honest perspective Lear refuses.", "m": 1}, {"t": "the image plants the blindness motif that structures the whole play: Gloucester is literally blinded, and Lear only learns to 'see' once he has lost everything.", "m": 1}], "weak": false}, {"id": "eng-010", "topic": "李尔王 · hamartia（龙的比喻）", "difficulty": "medium", "type": "short", "stem": "Section 1 — King Lear, Act 1 Scene 1:\n\nLEAR: Come not between the dragon and his wrath.\n\nHow does this line help to explain Lear's hamartia? (3 marks)", "options": [], "answer": "1 mark — the dragon is Lear's self-image: power, terror and untouchability, a king who sees himself as beyond challenge.\n1 mark — wrath has replaced judgement: he acts from injured pride rather than reason, and cannot tolerate being contradicted.\n1 mark — because this flaw (not fate) drives the banishments and the division of the kingdom, his downfall follows from character, which is what makes the play a tragedy.", "explanation": "hamartia 不是“倒霉”，而是性格缺陷：他把自己当成不可冒犯的“龙”，愤怒盖过判断，因此放逐与分国都是性格推动的结果——这正是悲剧结构要求的因果。", "source": "King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "the dragon is Lear's self-image: power, terror and untouchability, a king who sees himself as beyond challenge.", "m": 1}, {"t": "wrath has replaced judgement: he acts from injured pride rather than reason, and cannot tolerate being contradicted.", "m": 1}, {"t": "because this flaw (not fate) drives the banishments and the division of the kingdom, his downfall follows from character, which is what makes the play a tragedy.", "m": 1}], "weak": false}, {"id": "eng-011", "topic": "李尔王 · 权力、失去与身份", "difficulty": "medium", "type": "short", "stem": "Section 1 — King Lear, Act 2 Scene 4:\n\nLEAR: I gave you all—\nREGAN: And in good time you gave it.\n\nAnalyse what this exchange reveals about power, loss and identity. (4 marks)", "options": [], "answer": "1 mark — Lear still speaks as the giver: his identity is bound up in what he handed over, so he assumes authority continues after the gift.\n1 mark — Regan's 'in good time' turns the gift into a completed transaction and cancels his claim on gratitude.\n1 mark — the daughters now own the power he thought he kept; the title of king remains but the substance has gone.\n1 mark — the play shows identity collapsing when power is transferred: Lear is reduced to 'a poor old man' and has to rebuild a self from bare humanity.", "explanation": "4 分要覆盖三个概念：权力已转移、身份仍停留在“给予者”、以及作品借此说明“头衔≠实质”。Regan 那句冷冰冰的 'in good time' 是权力关系的转折点。", "source": "King Lear Act 2 Scene 4 (quote: Shakespeare, King Lear 2.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "Lear still speaks as the giver: his identity is bound up in what he handed over, so he assumes authority continues after the gift.", "m": 1}, {"t": "Regan's 'in good time' turns the gift into a completed transaction and cancels his claim on gratitude.", "m": 1}, {"t": "the daughters now own the power he thought he kept; the title of king remains but the substance has gone.", "m": 1}, {"t": "the play shows identity collapsing when power is transferred: Lear is reduced to 'a poor old man' and has to rebuild a self from bare humanity.", "m": 1}], "weak": false}, {"id": "eng-012", "topic": "李尔王 · 「reason not the need」", "difficulty": "medium", "type": "short", "stem": "Section 1 — King Lear, Act 2 Scene 4:\n\nLEAR: O, reason not the need: our basest beggars\nAre in the poorest thing superfluous:\n\nWhat does this speech reveal about Lear's understanding of need? (3 marks)", "options": [], "answer": "1 mark — he argues that bare necessity is not enough for human dignity: even beggars have something 'superfluous' beyond survival.\n1 mark — he is defending his hundred knights as a symbol of status and respect, not as a practical requirement.\n1 mark — the speech shows him reasoning about humanity and hardship, but still from a king's position, so the insight is genuine yet incomplete.", "explanation": "这题的关键是“need 有两层”：生存所需 vs 人的尊严所需。Lear 已经能替乞丐说话（这是进步），但他争夺的仍是排场与体面，说明此处认识尚未完成。", "source": "King Lear Act 2 Scene 4 (quote: Shakespeare, King Lear 2.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "he argues that bare necessity is not enough for human dignity: even beggars have something 'superfluous' beyond survival.", "m": 1}, {"t": "he is defending his hundred knights as a symbol of status and respect, not as a practical requirement.", "m": 1}, {"t": "the speech shows him reasoning about humanity and hardship, but still from a king's position, so the insight is genuine yet incomplete.", "m": 1}], "weak": false}, {"id": "eng-013", "topic": "李尔王 · 暴风雨的象征（Act 3 Sc 2）", "difficulty": "hard", "type": "short", "stem": "Section 1 — King Lear, Act 3 Scene 2:\n\nLEAR: Blow, winds, and crack your cheeks! rage! blow! ...\nI am a man\nMore sinn'd against than sinning.\n\n(a) How does Shakespeare use the storm symbolically in this scene? (3 marks)\n(b) What does 'More sinn'd against than sinning' reveal about Lear's self-knowledge at this point? (3 marks)", "options": [], "answer": "(a) 1 mark — the storm externalises Lear's inner rage and gives his fury a cosmic scale.\n1 mark — it is also indifferent nature: wind and rain do not answer him, which cuts human authority down to size.\n1 mark — by stripping him of shelter and followers it forces him to confront exposed humanity, preparing the 'poor naked wretches' speech.\n(b) 1 mark — he sees himself chiefly as a victim: 'sinn'd against' comes first and carries the weight.\n1 mark — he concedes only a lesser share of blame ('more ... than'), so the self-knowledge is partial, not full confession.\n1 mark — fuller recognition comes later (Act 4, 'they told me I was every thing; 'tis a lie'), so this scene is a middle stage of his moral journey.", "explanation": "(a) 暴风雨有三重功能：外化愤怒、显示自然的冷漠、剥掉权力外壳。(b) 注意 'more ... than' 的让步结构——他承认有错，但把自己主要写成受害者，所以要判“部分自觉”，不能说“他已经完全悔悟”。", "source": "King Lear Act 3 Scene 2 (quote: Shakespeare, King Lear 3.2); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "the storm externalises Lear's inner rage and gives his fury a cosmic scale.", "m": 1}, {"t": "it is also indifferent nature: wind and rain do not answer him, which cuts human authority down to size.", "m": 1}, {"t": "by stripping him of shelter and followers it forces him to confront exposed humanity, preparing the 'poor naked wretches' speech.", "m": 1}, {"t": "he sees himself chiefly as a victim: 'sinn'd against' comes first and carries the weight.", "m": 1}, {"t": "he concedes only a lesser share of blame ('more ... than'), so the self-knowledge is partial, not full confession.", "m": 1}, {"t": "fuller recognition comes later (Act 4, 'they told me I was every thing; 'tis a lie'), so this scene is a middle stage of his moral journey.", "m": 1}], "weak": false}, {"id": "eng-014", "topic": "李尔王 · poor naked wretches（转折点）", "difficulty": "medium", "type": "short", "stem": "Section 1 — King Lear, Act 3 Scene 4:\n\nLEAR: Poor naked wretches, wheresoe'er you are,\nThat bide the pelting of this pitiless storm ...\nO, I have ta'en\nToo little care of this!\n\nExplain why this speech is a turning point in Lear's moral understanding. (4 marks)", "options": [], "answer": "1 mark — for the first time he thinks about other people's suffering instead of listing his own injuries.\n1 mark — he admits neglect as a ruler: 'too little care of this' is a confession of political and moral failure.\n1 mark — the concrete imagery (houseless heads, unfed sides) makes poverty physical rather than abstract, so the audience feels it too.\n1 mark — the insight only arrives after he loses power and shelter, so suffering becomes his teacher; the lesson costs him everything.", "explanation": "4 分：①第一次想到别人的苦 ②承认统治者失责 ③具体意象让贫穷变成可感之物 ④这份觉悟是“失去权力”换来的。答题不要停在第①点，否则只拿 1 分。", "source": "King Lear Act 3 Scene 4 (quote: Shakespeare, King Lear 3.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "for the first time he thinks about other people's suffering instead of listing his own injuries.", "m": 1}, {"t": "he admits neglect as a ruler: 'too little care of this' is a confession of political and moral failure.", "m": 1}, {"t": "the concrete imagery (houseless heads, unfed sides) makes poverty physical rather than abstract, so the audience feels it too.", "m": 1}, {"t": "the insight only arrives after he loses power and shelter, so suffering becomes his teacher; the lesson costs him everything.", "m": 1}], "weak": false}, {"id": "eng-015", "topic": "李尔王 · 「lendings」与身份剥除", "difficulty": "easy", "type": "short", "stem": "Section 1 — King Lear, Act 3 Scene 4:\n\nLEAR: Is man no more than this? Consider him well. ...\nOff, off, you lendings! come unbutton here.\n\nWhat does Lear's stripping off his clothes represent? (3 marks)", "options": [], "answer": "1 mark — 'lendings' treats clothes as borrowed status rather than as part of the self.\n1 mark — stripping tests what a human being is when rank, retinue and clothing are removed.\n1 mark — it dramatises the play's theme of identity: a king discovers he is only 'a poor, bare, forked animal', which is both a loss and a form of truth.", "explanation": "3 分：衣服＝借来的身份、剥衣＝把人还原为“赤裸的人类”、以及这动作同时是失去也是觉悟。能点到 'poor, bare, forked animal' 的悖论更好（不必逐字引）。", "source": "King Lear Act 3 Scene 4 (quote: Shakespeare, King Lear 3.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "'lendings' treats clothes as borrowed status rather than as part of the self.", "m": 1}, {"t": "stripping tests what a human being is when rank, retinue and clothing are removed.", "m": 1}, {"t": "it dramatises the play's theme of identity: a king discovers he is only 'a poor, bare, forked animal', which is both a loss and a form of truth.", "m": 1}], "weak": false}, {"id": "eng-016", "topic": "李尔王 · Gloucester 失明（Act 3 Sc 7）", "difficulty": "hard", "type": "short", "stem": "Section 1 — King Lear, Act 3 Scene 7:\n\nCORNWALL: Out, vile jelly!\nWhere is thy lustre now?\n\n(Gloucester has just been bound to a chair and blinded.)\n\nHow does Shakespeare make Gloucester's blinding more than physical violence? (4 marks)", "options": [], "answer": "1 mark — the language ('vile jelly', 'lustre') turns eyes into objects, so the horror is deliberately grotesque rather than heroic.\n1 mark — it literalises the blindness motif: Gloucester is punished in his eyes for the moral blindness that let Edmund deceive him.\n1 mark — the staging is an abuse of power (a bound guest, a host's authority turned to torture), echoing Lear's abuse of Cordelia and Kent.\n1 mark — the audience is forced to watch what the characters refused to see, so the scene makes sight a moral act for the viewer as well.", "explanation": "这题要说明“字面失明 = 隐喻失明的兑现”：Gloucester 因看不清 Edmund 而失去眼睛；同时暴行是权力滥用，与 Lear 放逐亲人形成平行。最后一点答“观众被迫看见”可拿第 4 分。", "source": "King Lear Act 3 Scene 7 (quote: Shakespeare, King Lear 3.7); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "the language ('vile jelly', 'lustre') turns eyes into objects, so the horror is deliberately grotesque rather than heroic.", "m": 1}, {"t": "it literalises the blindness motif: Gloucester is punished in his eyes for the moral blindness that let Edmund deceive him.", "m": 1}, {"t": "the staging is an abuse of power (a bound guest, a host's authority turned to torture), echoing Lear's abuse of Cordelia and Kent.", "m": 1}, {"t": "the audience is forced to watch what the characters refused to see, so the scene makes sight a moral act for the viewer as well.", "m": 1}], "weak": false}, {"id": "eng-017", "topic": "李尔王 · 「I stumbled when I saw」的反讽", "difficulty": "medium", "type": "short", "stem": "Section 1 — King Lear, Act 4 Scene 1:\n\nGLOUCESTER: I have no way, and therefore want no eyes;\nI stumbled when I saw ...\n\nExplain the irony in Gloucester's lines. (3 marks)", "options": [], "answer": "1 mark — when he had eyes he was morally blind, refusing to see Edmund's treachery and turning against Edgar.\n1 mark — now that he is physically blind he sees his own errors and Edgar's love, so insight arrives after sight is gone.\n1 mark — the paradox 'I stumbled when I saw' states the play's inversion: physical sight and moral vision are opposites, which also describes Lear's journey.", "explanation": "3 分：①有眼时看不见真相 ②失明后才看清 ③点明全剧“视力/洞察”倒置的悖论。答题时最好把 Gloucester 与 Lear 的平行关系带一句，显示整体理解。", "source": "King Lear Act 4 Scene 1 (quote: Shakespeare, King Lear 4.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "when he had eyes he was morally blind, refusing to see Edmund's treachery and turning against Edgar.", "m": 1}, {"t": "now that he is physically blind he sees his own errors and Edgar's love, so insight arrives after sight is gone.", "m": 1}, {"t": "the paradox 'I stumbled when I saw' states the play's inversion: physical sight and moral vision are opposites, which also describes Lear's journey.", "m": 1}], "weak": false}, {"id": "eng-018", "topic": "李尔王 · Edmund 的价值观与戏剧功能", "difficulty": "medium", "type": "short", "stem": "Section 1 — King Lear, Act 1 Scene 2:\n\nEDMUND: Thou, Nature, art my goddess; to thy law\nMy services are bound.\n\n(a) What does Edmund's address to Nature reveal about his values? (2 marks)\n(b) Explain Edmund's dramatic function in the play. (3 marks)", "options": [], "answer": "(a) 1 mark — he rejects the social and legal order (bastardy, custom, inheritance) and claims a 'natural' right instead.\n1 mark — his goddess is appetite and self-interest, so 'Nature' becomes an excuse for predation rather than a moral authority.\n(b) 1 mark — he is the engine of the plot: the forged letter sets Edgar running and destroys Gloucester's trust.\n1 mark — his manipulation exposes other characters' blindness (Gloucester's credulity, Edgar's trust), which doubles Lear's error.\n1 mark — his parallel family plot mirrors Lear's, so the two falls together argue that betrayal is a pattern, not an accident.", "explanation": "(a) Edmund 把“自然”当女神，其实是把私欲合法化。(b) 三条功能：推动情节（伪造信件）、揭出他人的“看不见”、以及用平行情节强化主题。答到“恶的引擎”与“镜像结构”即可满分。", "source": "King Lear Act 1 Scene 2 (quote: Shakespeare, King Lear 1.2); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "he rejects the social and legal order (bastardy, custom, inheritance) and claims a 'natural' right instead.", "m": 1}, {"t": "his goddess is appetite and self-interest, so 'Nature' becomes an excuse for predation rather than a moral authority.", "m": 1}, {"t": "he is the engine of the plot: the forged letter sets Edgar running and destroys Gloucester's trust.", "m": 1}, {"t": "his manipulation exposes other characters' blindness (Gloucester's credulity, Edgar's trust), which doubles Lear's error.", "m": 1}, {"t": "his parallel family plot mirrors Lear's, so the two falls together argue that betrayal is a pattern, not an accident.", "m": 1}], "weak": false}, {"id": "eng-019", "topic": "李尔王 · 伪造信与戏剧反讽", "difficulty": "medium", "type": "short", "stem": "Section 1 — scene description (no quotation):\n\nIn Act 1 Scene 2 Edmund shows his father Gloucester a letter that he has forged in Edgar's handwriting. He then warns Edgar that their father is furious with him and advises him to arm himself and flee.\n\nExplain how Shakespeare creates dramatic irony here and why it matters. (3 marks)", "options": [], "answer": "1 mark — the audience watches Edmund stage both sides of the deception, so we know Edgar is innocent while Gloucester believes the letter.\n1 mark — each character then acts on information the audience knows to be false, so their choices look like self-destruction.\n1 mark — the gap between audience and characters turns the plot into a demonstration of how easily 'sight' (evidence, trust) can be manufactured.", "explanation": "戏剧反讽的判分点：观众看到 Edmund 同时演两场戏 → 人物依据假信息行动 → 由此证明“看见/信任”是可以被伪造的。第 3 分要提升到主题层，不能只复述情节。", "source": "Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage (Act 1 Scenes 1–3 questions and practice extracts)", "points": [{"t": "the audience watches Edmund stage both sides of the deception, so we know Edgar is innocent while Gloucester believes the letter.", "m": 1}, {"t": "each character then acts on information the audience knows to be false, so their choices look like self-destruction.", "m": 1}, {"t": "the gap between audience and characters turns the plot into a demonstration of how easily 'sight' (evidence, trust) can be manufactured.", "m": 1}], "weak": false}, {"id": "eng-020", "topic": "李尔王 · 诸神与人的处境", "difficulty": "hard", "type": "short", "stem": "Section 1 — King Lear, Act 4 Scene 1:\n\nGLOUCESTER: As flies to wanton boys, are we to the gods;\nThey kill us for their sport.\n\nWhat view of the gods and of human agency does this image express, and how does it fit the play's tragic vision? (4 marks)", "options": [], "answer": "1 mark — the gods are 'wanton boys': careless, playful and not just, so divine authority is emptied of moral purpose.\n1 mark — humans are flies: small, disposable and without control over their fate.\n1 mark — the image reverses Gloucester's earlier confidence that the gods are just, and it answers Lear's repeated appeals to the heavens.\n1 mark — the play leaves the question open: the innocent die (Cordelia) while the guilty partly escape, so the ending refuses to console the audience with divine justice.", "explanation": "4 分：①神被写成顽童（不义） ②人是苍蝇（无掌控） ③这与 Gloucester 早先“神是公正的”信念相反，并回应 Lear 对诸神的呼喊 ④结局（Cordelia 之死）让“天理”问题悬空，突出悲剧性。", "source": "King Lear Act 4 Scene 1 (quote: Shakespeare, King Lear 4.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "the gods are 'wanton boys': careless, playful and not just, so divine authority is emptied of moral purpose.", "m": 1}, {"t": "humans are flies: small, disposable and without control over their fate.", "m": 1}, {"t": "the image reverses Gloucester's earlier confidence that the gods are just, and it answers Lear's repeated appeals to the heavens.", "m": 1}, {"t": "the play leaves the question open: the innocent die (Cordelia) while the guilty partly escape, so the ending refuses to console the audience with divine justice.", "m": 1}], "weak": false}, {"id": "eng-021", "topic": "李尔王 · Cordelia 之死与诗性公正", "difficulty": "hard", "type": "short", "stem": "Section 1 — King Lear, Act 5 Scene 3:\n\nLEAR: She's gone for ever!\nI know when one is dead, and when one lives;\nShe's dead as earth. ...\nDo you see this? Look on her, look, her lips,\nLook there, look there!\n\nWhy does Cordelia's death make the ending hard to read as poetic justice? (5 marks)", "options": [], "answer": "1 mark — poetic justice would reward Cordelia's loyalty and punish the guilty in proportion, restoring a moral order.\n1 mark — instead the innocent daughter is hanged on Edmund's order, and the reprieve arrives too late to save her.\n1 mark — Lear's hard-won sight is rewarded only with her corpse: insight and loss arrive at the same moment.\n1 mark — his final 'Look there, look there!' is ambiguous — he may die believing she lives — so the audience is denied a clear consolation.\n1 mark — the deaths of Lear and Cordelia withhold the comfort of a restored order, which is why the ending feels unbearable rather than just.", "explanation": "5 分依次是：诗性公正的定义 → 无辜者被处死且救援太迟 → 觉悟与失去同时发生 → 最后台词含糊、不给安慰 → 秩序未恢复，因此“不公”感是刻意的。答题时务必先给“什么是 poetic justice”，否则后面没有对照标准。", "source": "King Lear Act 5 Scene 3 (quote: Shakespeare, King Lear 5.3); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "poetic justice would reward Cordelia's loyalty and punish the guilty in proportion, restoring a moral order.", "m": 1}, {"t": "instead the innocent daughter is hanged on Edmund's order, and the reprieve arrives too late to save her.", "m": 1}, {"t": "Lear's hard-won sight is rewarded only with her corpse: insight and loss arrive at the same moment.", "m": 1}, {"t": "his final 'Look there, look there!' is ambiguous — he may die believing she lives — so the audience is denied a clear consolation.", "m": 1}, {"t": "the deaths of Lear and Cordelia withhold the comfort of a restored order, which is why the ending feels unbearable rather than just.", "m": 1}], "weak": false}, {"id": "eng-022", "topic": "李尔王 · 「I am not ague-proof」与身份转变", "difficulty": "easy", "type": "short", "stem": "Section 1 — King Lear, Act 4 Scene 6:\n\nLEAR: They told me I was every thing; 'tis a lie, I am not ague-proof.\n\nWhat does this line show about Lear's changed identity? (4 marks)", "options": [], "answer": "1 mark — he recalls being told he was 'everything': flattery had built a false, unlimited self.\n1 mark — 'tis a lie' is an explicit act of self-correction, spoken by the king about his own former image.\n1 mark — 'not ague-proof' means his body is as vulnerable as anyone's, so he now defines himself as a mortal man.\n1 mark — the line therefore shows loss producing a truer identity, not simply destroying one, which is central to the play's ending.", "explanation": "4 分：①曾被谄媚塑造成“无所不能” ②亲口否证 ③以身体脆弱（ague = 疟疾）确认普通人的处境 ④因此“失去”也带来更真实的自我。最后一分是主题层，别漏。", "source": "King Lear Act 4 Scene 6 (quote: Shakespeare, King Lear 4.6); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage", "points": [{"t": "he recalls being told he was 'everything': flattery had built a false, unlimited self.", "m": 1}, {"t": "'tis a lie' is an explicit act of self-correction, spoken by the king about his own former image.", "m": 1}, {"t": "'not ague-proof' means his body is as vulnerable as anyone's, so he now defines himself as a mortal man.", "m": 1}, {"t": "the line therefore shows loss producing a truer identity, not simply destroying one, which is central to the play's ending.", "m": 1}], "weak": false}, {"id": "eng-023", "topic": "比较论文 · thesis 判别", "difficulty": "easy", "type": "mcq", "stem": "Section 2 asks: 'How do Lee and Parker expose systemic racism?' Which thesis best answers the question?", "options": ["Lee's novel is more effective than Parker's film because a novel can explain what characters are thinking, while a film can only show what they do.", "Parker relies on music and camera angles to create meaning, while Lee relies on first-person narration and on dialogue between the characters.", "Both Lee and Parker show racism as a system that shields the guilty, but Lee builds a child's slow awareness while Parker forces the viewer to watch.", "Both texts show that racism is a serious problem in America and that it damages the lives of ordinary people in small towns across the country."], "answer": 2, "explanation": "好 thesis 要同时做到：点两个文本、给一个有争议的论点（racism 是“保护有罪者的制度”）、并预告比较角度（儿童视角 vs 强制观看）。其余选项分别只是泛泛而谈、评优劣、以及罗列手法而没有论点。", "source": "Section 2 · Comparative essay — thesis and introduction (10ENGA unit overview; LEEDER 10ENGB exam outline)", "weak": false}, {"id": "eng-024", "topic": "比较论文 · 主题句功能", "difficulty": "easy", "type": "mcq", "stem": "What is the main job of a topic sentence in a comparative body paragraph?", "options": ["To provide a quotation from each text and explain what happens in that scene", "To summarise the plot of both texts so the reader can follow the argument", "To introduce the paragraph by naming the text and the technique it will discuss", "To state a comparative claim about both texts that answers part of the essay question"], "answer": 3, "explanation": "主题句＝这一段要证明的「比较性论点」，必须同时覆盖两个文本并回应题目。「To introduce the paragraph by naming the text and the technique it will discuss」只是路标，不是论点；「To provide a quotation from each text and explain what happens in that scene」是证据；「To summarise the plot of both texts so the reader can follow the argument」是复述。", "source": "Section 2 · Comparative essay — body paragraph structure (TKAMB BP1/BP2/BP3 scaffolds)", "weak": false}, {"id": "eng-025", "topic": "比较论文 · 写 thesis statement", "difficulty": "medium", "type": "short", "stem": "Write a thesis statement for the question: 'How do Lee and Parker represent the failure of justice?' (4 marks)", "options": [], "answer": "Model answer: 'Lee and Parker both show justice failing because the community closes ranks around its own, yet Lee traces that failure through a child's gradual recognition while Parker makes the viewer complicit in seeing it.'\n1 mark — names both composers/texts.\n1 mark — makes one arguable claim about the failure of justice.\n1 mark — signals the comparative angle (how the two composers differ in method).\n1 mark — uses the question's key term ('failure of justice') rather than drifting into a general statement about racism.", "explanation": "评分看四点：两部作品都点到、有一个可争论的论点、有比较角度、扣住题目的关键词。只写“两个文本都表现了司法不公”没有比较，最多 2 分。", "source": "Section 2 · Comparative essay — thesis writing (LEEDER 10ENGB exam outline: comparative essay, 20 marks)", "points": [{"t": "names both composers/texts.", "m": 1}, {"t": "makes one arguable claim about the failure of justice.", "m": 1}, {"t": "signals the comparative angle (how the two composers differ in method).", "m": 1}, {"t": "uses the question's key term ('failure of justice') rather than drifting into a general statement about racism.", "m": 1}], "weak": false}, {"id": "eng-026", "topic": "比较论文 · 引文整合策略", "difficulty": "medium", "type": "mcq", "stem": "You want to use one line from the supplied extract in a body paragraph. Which approach integrates it most effectively?", "options": ["Quote only the few words that carry the technique, then analyse how they shape meaning in the whole text.", "Paraphrase the extract without quoting, because quotations take up too much of your word count.", "Quote the line, then say that it shows the theme of justice without explaining how the words create that effect.", "Quote the whole extract so the marker can see you have read it, then explain what it means."], "answer": 0, "explanation": "整合＝短引文嵌入自己的句子，并分析措辞如何产生意义，再连回全文与题目。整段抄（0）是复述，只转述（1）失去语言证据，引而不析（3）拿不到分析分。", "source": "Section 2 · Comparative essay — integrating the supplied extract (LEEDER 10ENGB exam outline, 20 marks)", "weak": false}, {"id": "eng-027", "topic": "比较论文 · 节选整合的要求", "difficulty": "medium", "type": "short", "stem": "Section 2 requires you to integrate the extract you are given. Explain what this means in practice, and what you should avoid. (4 marks)", "options": [], "answer": "1 mark — quote selectively: a few words that carry the technique or idea you need.\n1 mark — analyse the wording itself (connotation, syntax, imagery) and link it explicitly to the question.\n1 mark — connect the extract to the rest of the text, so the extract is a starting point rather than the whole evidence.\n1 mark — avoid long quotation, mentioning the extract only in the introduction, or turning the extract into plot summary.", "explanation": "四个得分点：短引 → 析词 → 连全文 → 避免“整段抄/只在开头提一句/当情节复述”。这是 Section 2 最容易丢分的地方，评分标准明确写 integrate the extract。", "source": "Section 2 · Comparative essay — extract integration (LEEDER 10ENGB exam outline)", "points": [{"t": "quote selectively: a few words that carry the technique or idea you need.", "m": 1}, {"t": "analyse the wording itself (connotation, syntax, imagery) and link it explicitly to the question.", "m": 1}, {"t": "connect the extract to the rest of the text, so the extract is a starting point rather than the whole evidence.", "m": 1}, {"t": "avoid long quotation, mentioning the extract only in the introduction, or turning the extract into plot summary.", "m": 1}], "weak": false}, {"id": "eng-028", "topic": "比较论文 · 手法对比（叙述 vs 镜头）", "difficulty": "medium", "type": "mcq", "stem": "Which option states a genuine point of comparison between Lee's novel and Parker's film?", "options": ["Lee uses words to describe things and Parker uses pictures, which means the film is easier to understand.", "Lee controls what Scout notices and when she understands it, while Parker controls what the camera shows and when the viewer sees it.", "Lee's novel is set in the 1930s and Parker's film is set in the 1960s, so the film is more historically accurate than the novel.", "Lee's novel has chapters and a narrator, while Parker's film has scenes and actors who speak dialogue."], "answer": 1, "explanation": "有效的比较要落到「作者如何控制信息与读者的反应」：Lee 用 Scout 的有限视角延迟理解，Parker 用取景与剪辑控制观众何时看见。「Lee's novel has chapters and a narrator, while Parker's film has scenes and actors who speak dialogue.」只是媒介形式差异，不构成比较点；「Lee's novel is set in the 1930s and Parker's film is set in the 1960s, so the film is more historically accurate than the novel.」把时代差异当成“更纪实”，没有依据；「Lee uses words to describe things and Parker uses pictures, which means the film is easier to understand.」是媒介常识加无根据判断。", "source": "Section 2 · Comparative essay — comparing literary and film techniques (10ENGA film study: visual storytelling, cinematography, director's purpose)", "weak": false}, {"id": "eng-029", "topic": "比较论文 · 主题轴「法律失效」", "difficulty": "easy", "type": "mcq", "stem": "Which pair of moments best supports the claim that both texts show the law failing?", "options": ["The novel criticises the town's gossip about Boo Radley, and the film criticises the way the agents speak to local people.", "The novel shows a young child learning about her neighbours, and the film shows two agents slowly learning about a small town.", "Tom Robinson is convicted despite Atticus's defence, and the film's inquiry begins only because local police are implicated.", "Scout narrates the trial from the gallery, and the film's opening shows two water fountains side by side in the street."], "answer": 2, "explanation": "“法律失效”的证据必须直接指向司法/执法：Tom 被判有罪、以及影片中地方执法本身涉案所以只能由联邦介入。其余选项讲的是视角、流言或“学习了解小镇”，都不证明法律失效。", "source": "Section 2 · Comparative essay — theme axis: the law fails (10ENGA unit overview; film study context)", "weak": false}, {"id": "eng-030", "topic": "比较论文 · 主题轴「个体责任」", "difficulty": "easy", "type": "mcq", "stem": "Which claim best fits the theme of individual responsibility in both texts?", "options": ["Both texts place responsibility on the main characters, since the wider community is never shown to be at fault.", "Both texts place responsibility on families, since children learn prejudice at home and not in public.", "Both texts place responsibility on the law alone, since individuals cannot be held accountable for prejudice.", "Both texts place responsibility on individuals who let prejudice pass unchallenged, not only on the law."], "answer": 3, "explanation": "个体责任＝普通人默许偏见也有责任，责任不止在制度。「Both texts place responsibility on the law alone, since individuals cannot be held accountable for prejudice.」把责任全推给法律，与主题相反；「Both texts place responsibility on families, since children learn prejudice at home and not in public.」把范围缩到家庭；「Both texts place responsibility on the main characters, since the wider community is never shown to be at fault.」说社群无责——三者都与两部作品的立场相反。", "source": "Section 2 · Comparative essay — theme axis: individual responsibility (10ENGA unit overview)", "weak": false}, {"id": "eng-031", "topic": "比较论文 · 段落规划", "difficulty": "hard", "type": "short", "stem": "Plan one comparative body paragraph for the question: 'How do Lee and Parker expose systemic racism?' Give a topic sentence, one textual point from each text, and the comparison you would draw. (5 marks)", "options": [], "answer": "1 mark — a topic sentence naming both texts and making a comparative claim (e.g. both expose a town that protects its own).\n1 mark — a specific point from Lee's novel: the trial and the town's hierarchy, with the technique that carries it (Scout's limited narration; the courtroom as a stage).\n1 mark — a specific point from Parker's film: for example the opening water-fountain sequence, with the technique that carries it (mid shot, framing, juxtaposition).\n1 mark — a comparison sentence explaining how the two methods differ in effect (delayed recognition vs immediate visual exposure).\n1 mark — a link back to the question's key term 'systemic', showing what the comparison proves.", "explanation": "5 分：主题句（含两文本与比较论点）→ Lee 的证据+手法 → Parker 的证据+手法 → 比较句（效果差异）→ 扣回“制度性”。注意两边的证据都要带手法，只说情节扣不到分析分。", "source": "Section 2 · Comparative essay — paragraph planning (TKAMB BP scaffolds + film deconstruction lessons)", "points": [{"t": "a topic sentence naming both texts and making a comparative claim (e.g. both expose a town that protects its own).", "m": 1}, {"t": "a specific point from Lee's novel: the trial and the town's hierarchy, with the technique that carries it (Scout's limited narration; the courtroom as a stage).", "m": 1}, {"t": "a specific point from Parker's film: for example the opening water-fountain sequence, with the technique that carries it (mid shot, framing, juxtaposition).", "m": 1}, {"t": "a comparison sentence explaining how the two methods differ in effect (delayed recognition vs immediate visual exposure).", "m": 1}, {"t": "a link back to the question's key term 'systemic', showing what the comparison proves.", "m": 1}], "weak": false}, {"id": "eng-032", "topic": "比较论文 · 结尾回收", "difficulty": "hard", "type": "mcq", "stem": "Which conclusion best completes a comparative essay without simply repeating the introduction?", "options": ["The comparison matters because Lee's slow recognition and Parker's forced witness demand different responses, so empathy must become action.", "In conclusion, both Harper Lee and Alan Parker show that racism is bad, and this is why the two texts are still studied in schools today.", "In conclusion, Lee's novel and Parker's film are both important texts that teach readers and viewers about the dangers of prejudice.", "In conclusion, this essay has discussed characterisation, setting and narrative in To Kill a Mockingbird and Mississippi Burning as I set out."], "answer": 0, "explanation": "结尾要“回收论点并推进”：把比较结果说成对读者/观众的不同道德要求（共情须化为行动），而不是重复论点。其余三项分别是空泛评价、复述结构、以及只重复“反对偏见”的老话。", "source": "Section 2 · Comparative essay — conclusion (LEEDER 10ENGB exam outline: integrate the extract, sustain the argument)", "weak": false}, {"id": "eng-033", "topic": "写作技巧 · 描述 vs 分析", "difficulty": "easy", "type": "mcq", "stem": "Which sentence analyses rather than describes?", "options": ["Parker uses a mid shot in the opening scene, and a mid shot is a camera shot taken from a medium distance.", "The camera holds both fountains side by side, so segregation becomes an ordinary arrangement the viewer absorbs before judging it.", "In the opening scene Parker shows two water fountains, one for white people and one for black people, standing in the street.", "The scene is effective because it shows the audience that segregation really existed in towns in America at that time."], "answer": 1, "explanation": "分析句要有「手法 → 效果 → 对观者的作用」三步：取景把隔离变成“日常安排”，观众先接受再判断。「In the opening scene Parker shows two water fountains, one for white people and one for black people, standing in the street.」只复述内容；「Parker uses a mid shot in the opening scene, and a mid shot is a camera shot taken from a medium distance.」是术语定义；「The scene is effective because it shows the audience that segregation really existed in towns in America at that time.」是空泛断言，没说清怎么产生效果。", "source": "Writing skills · Analytical vs descriptive sentences (Term 3 weeks 8–10: refining analytical writing)", "weak": false}, {"id": "eng-034", "topic": "写作技巧 · 什么叫「使用节选」", "difficulty": "easy", "type": "mcq", "stem": "What does it mean to 'use' the extract supplied with an essay question?", "options": ["Copying the extract into your essay so the marker knows you have read the question.", "Mentioning that the extract exists and then writing about the rest of the text only.", "Quoting a few words from the extract inside your own sentence and analysing their effect.", "Summarising the extract in your own words without discussing its language."], "answer": 2, "explanation": "“使用”＝把节选当证据：短引文嵌入自己的句子、分析措辞效果、再连回题目与全文。整段抄、只在开头提一句、或只转述，都不算 integrate。", "source": "Writing skills · Using the supplied extract (LEEDER 10ENGB exam outline, Section 2 criteria)", "weak": false}, {"id": "eng-035", "topic": "写作技巧 · 写主题句", "difficulty": "medium", "type": "short", "stem": "Write one comparative topic sentence for a paragraph arguing that both texts show communities protecting their own. (3 marks)", "options": [], "answer": "Model answer: 'Both Lee's Maycomb and Parker's Mississippi town close ranks to protect the people who belong, and each composer shows that protection turning into complicity.'\n1 mark — names both texts/communities.\n1 mark — states one comparative claim that answers the question (protection becomes complicity).\n1 mark — signals the comparison of method or effect rather than just listing two facts.", "explanation": "3 分：两部作品都点到、有一个比较性论点（保护→共谋）、并预告比较角度。只写“两边都有社群”是并列而非比较，最多 1 分。", "source": "Writing skills · Topic sentences for comparative paragraphs (TKAMB BP scaffolds)", "points": [{"t": "names both texts/communities.", "m": 1}, {"t": "states one comparative claim that answers the question (protection becomes complicity).", "m": 1}, {"t": "signals the comparison of method or effect rather than just listing two facts.", "m": 1}], "weak": false}, {"id": "eng-036", "topic": "写作技巧 · 比较性主题句", "difficulty": "easy", "type": "mcq", "stem": "Why does a comparative essay need a comparative topic sentence in every body paragraph?", "options": ["Because the examiner only reads the first sentence of each paragraph when marking the essay.", "Because the introduction cannot mention either text and the body must do it instead.", "Because quotations from two texts must appear in the same sentence for the essay to count.", "Because the argument must run across both texts, so every paragraph has to keep both in view."], "answer": 3, "explanation": "比较论文的分数来自“贯穿全文的比较论证”，所以每段主题句都要同时覆盖两个文本并推进论点。其余选项都是关于阅卷或格式的错误说法。", "source": "Writing skills · Comparative topic sentences (LEEDER 10ENGB exam outline: comparative essay, 20 marks)", "weak": false}]};
@@ -1300,6 +1697,9 @@ function TFILTER(){
 function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
+const AI_ENGINE = {};
+function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
   "as at by from it its their they them we you your our not no but if then than so such can could may might " +
@@ -1571,9 +1971,10 @@ function render() {
           <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
           ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
           ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
+          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
         </div>
         <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI: '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
             return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
         <div class="actions">
           <button class="btn ghost" id="allpt">全部勾上</button>
@@ -1670,21 +2071,37 @@ function render() {
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
       res.style.color = hit ? "var(--ok)" : "var(--bad)";
     };
+    const ac = document.getElementById("aiconf");
+    if (ac) ac.onclick = () => {
+      const cur = localAI();
+      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      if (v === null) return;
+      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+    };
     const ai = document.getElementById("aigrade");
     if (ai) ai.onclick = () => {
       const arr = readSlots(), answer = joinSlots(arr);
       if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
       ai.disabled = true; ai.textContent = "AI 判分中…";
-      fetch(apibase() + "/grade", {
-        method: "POST", headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer})
-      }).then(r=>r.json()).then(d => {
-        if (!d || !d.ok) throw new Error((d && d.error) || "failed");
-        AI_RES[q.id] = d.results; save(); render();
-      }).catch(e => {
+      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+      const engines = [];
+      if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
+      const loc = localAI();
+      if (loc) engines.push({n:"local", u: loc + "/grade"});
+      (async function(){
+        let lastErr = "no engine";
+        for (const en of engines) {
+          try {
+            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
+            const d = await r.json();
+            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+            return;
+          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+        }
         ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分失败：" + e.message, false);
-      });
+        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
+      })();
     };
     const ap2 = document.getElementById("applyai");
     if (ap2) ap2.onclick = () => {

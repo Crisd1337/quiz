@@ -1,71 +1,395 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
+(function(){try{
+  var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
+  var s=m||localStorage.getItem("dsh-theme")||"system";
+  var r=document.documentElement;
+  if(s==="light"||s==="dark") r.setAttribute("data-theme",s);
+  r.setAttribute("data-theme-mode",s);
+}catch(e){}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>食品科技 · 10 年级 · 复习测验</title>
 <style>
+/* ══ design tokens ═══════════════════════════════════════ */
 :root{
-  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
-  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+  --bg: var(--background);
+  --card: var(--surface);
+  --card2: var(--surface-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-secondary);
+  --fg: var(--foreground);
+  --dim: var(--muted);
+  --line: var(--border);
+  --line2: var(--border-strong);
+  --ok: var(--success);
+  --bad: var(--error);
+  --warn: var(--warning);
+  /* 派生色：只覆盖 --accent，其余自动跟着变（商店主题用它）*/
+  --accent-text: color-mix(in srgb, var(--accent) 74%, var(--foreground));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
 }
-@media (prefers-color-scheme: light) {
-  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --background: #09090B;
+    --surface: #111113;
+    --surface-secondary: #18181B;
+    --surface-inset: #1F1F23;
+    --foreground: #FAFAFA;
+    --muted: #A1A1AA;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --accent: #3291FF;
+    --success: #4ADE80;
+    --success-soft: rgba(74,222,128,.12);
+    --error: #F87171;
+    --error-soft: rgba(248,113,113,.12);
+    --warning: #F59E0B;
+    --warning-soft: rgba(245,158,11,.12);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+    --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+    --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+  }
 }
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --background: #09090B;
+  --surface: #111113;
+  --surface-secondary: #18181B;
+  --surface-inset: #1F1F23;
+  --foreground: #FAFAFA;
+  --muted: #A1A1AA;
+  --border: #27272A;
+  --border-strong: #3F3F46;
+  --primary: #FAFAFA;
+  --primary-foreground: #171717;
+  --accent: #3291FF;
+  --success: #4ADE80;
+  --success-soft: rgba(74,222,128,.12);
+  --error: #F87171;
+  --error-soft: rgba(248,113,113,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+  --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+}
+
+/* ══ foundations ═════════════════════════════════════════ */
+:root{
+  /* type */
+  --font-sans:"Geist Variable","Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono:"Geist Mono Variable","Geist Mono",ui-monospace,SFMono-Regular,"SF Mono",
+    Menlo,Consolas,monospace;
+  --text-2xl:28px; --text-xl:20px; --text-lg:17px; --text-md:15px;
+  --text-base:14px; --text-sm:12px; --text-xs:11px;
+  --lh-tight:1.25; --lh-snug:1.45; --lh-base:1.6; --lh-prose:1.75;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s8:32px; --s10:40px; --s12:48px; --s16:64px;
+  /* radius */
+  --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px; --r-full:999px;
+  /* layout */
+  --page-max:1120px;
+  --read-max:760px;
+  --page-x:32px;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --fast:.12s; --norm:.2s;
+}
+
+@font-face{
+  font-family:"Geist Variable";
+  src:url("fonts/geist-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-latin.woff2") format("woff2");
+  font-weight:400 700; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,
+    U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Geist Mono Variable";
+  src:url("fonts/geist-mono-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight:400 600; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,
+    U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:var(--text-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11";
+  font-synthesis-weight:none;
+  transition:background-color var(--norm) var(--ease),color var(--norm) var(--ease);
+}
+body,body *{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:var(--lh-tight);font-weight:600}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl)}
+h3{font-size:var(--text-md)}
+a{color:var(--accent-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+::selection{background:var(--accent-soft);color:var(--foreground)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+hr{border:0;border-top:1px solid var(--border);margin:var(--s6) 0}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em}
+kbd{background:var(--surface-secondary);border:1px solid var(--border);border-bottom-width:2px;
+  border-radius:var(--r-sm);padding:1px 6px;color:var(--muted);font-size:11px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+/* 数字统一等宽，避免跳动 */
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ══ 共享顶栏（首页 / 商城 / 错题本）═════════════════════ */
+.topbar{position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);
+  height:56px;display:flex;align-items:center;gap:var(--s4)}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--foreground);
+  text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:-.01em;flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--primary);
+  color:var(--primary-foreground);display:grid;place-items:center;font-size:11px;
+  font-weight:600;font-family:var(--font-mono);line-height:1}
+.nav{display:flex;align-items:center;gap:1px;min-width:0;overflow:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px;color:var(--muted);padding:5px 9px;border-radius:var(--r-sm);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--fast) var(--ease),background-color var(--fast) var(--ease)}
+.nav a:hover{color:var(--foreground);background:var(--surface-secondary);text-decoration:none}
+.nav a.on{color:var(--foreground);font-weight:500}
+.grow{flex:1}
+@media (max-width:720px){
+  .topbar-in{height:auto;flex-wrap:wrap;gap:8px;padding:9px var(--page-x) 0}
+  .brand .bname{display:none}
+  .topbar .nav{order:10;width:100%;margin:2px calc(-1 * var(--page-x)) 0;
+    padding:0 var(--page-x) 8px;border-top:1px solid var(--border)}
+  .topbar .themectl{margin-left:auto}
+}
+
+/* 分段控件选中态 */
+.seg button.on{border-color:var(--foreground)!important}
+
+/* ══ components ══════════════════════════════════════════ */
+.btn,.btn-ghost,.btn2{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  height:34px;padding:0 14px;border-radius:var(--r-sm);
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),opacity var(--fast) var(--ease);
+  text-decoration:none;
+}
+.btn{
+  background:var(--primary);color:var(--primary-foreground);
+  border-color:var(--primary);
+}
+.btn:hover{opacity:.88;text-decoration:none}
+.btn:active{transform:translateY(.5px)}
+.btn:disabled,.btn[disabled]{background:var(--surface-secondary);color:var(--muted);
+  border-color:var(--border);opacity:1;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost,.btn.ghost,.btn2{
+  background:var(--surface);color:var(--foreground);border-color:var(--border);
+}
+.btn-ghost:hover,.btn.ghost:hover,.btn2:hover{
+  background:var(--surface-secondary);border-color:var(--border-strong);text-decoration:none;
+}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;background:var(--surface)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:var(--r-sm)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent:hover{opacity:.9;color:#fff}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:none;
+}
+.input,input[type="text"],input[type="search"],input[type="number"],textarea,select{
+  font-family:inherit;font-size:var(--text-base);color:var(--foreground);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:8px 11px;outline:none;transition:border-color var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.input:hover,input:hover,textarea:hover,select:hover{border-color:var(--border-strong)}
+.input:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--muted);opacity:.85}
+
+.chip,.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:var(--text-xs);line-height:1.6;font-weight:500;
+  padding:2px 8px;border-radius:var(--r-sm);
+  background:var(--surface-secondary);border:1px solid var(--border);color:var(--muted);
+  white-space:nowrap;
+}
+
+/* 主题切换控件 */
+.themectl{display:inline-flex;align-items:center;gap:2px;padding:2px;
+  background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm)}
+.themectl button{
+  font:inherit;font-size:11.5px;font-weight:500;line-height:1;height:24px;padding:0 9px;
+  border:0;border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease);
+}
+.themectl button:hover{color:var(--foreground)}
+.themectl button.on{background:var(--surface);color:var(--foreground);
+  box-shadow:var(--shadow-sm)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;
+  color:var(--muted);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);height:28px;padding:0 10px;cursor:pointer;
+  transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease)}
+.themebtn:hover{color:var(--foreground);border-color:var(--border-strong)}
+.themebtn b{color:var(--foreground);font-weight:500}
+
+/* 浅色下别让深色主题的重阴影漏过来 */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .submit-card{box-shadow:var(--shadow-lg)}
+  :root:not([data-theme="dark"]) .lb-fab{box-shadow:var(--shadow-md)}
+  :root:not([data-theme="dark"]) .lang-btn{box-shadow:var(--shadow-sm)}
+}
+:root[data-theme="light"] .submit-card{box-shadow:var(--shadow-lg)}
+:root[data-theme="light"] .lb-fab{box-shadow:var(--shadow-md)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:900px){ :root{--page-x:20px} }
+@media (max-width:560px){ :root{--page-x:16px} }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);
- font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
- backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
-.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
-.bar .meta{color:var(--dim);font-size:13px}
+body{margin:0;display:flex;flex-direction:column;min-height:100vh}
+header{position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb,var(--background) 88%,transparent);
+  -webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--border);padding:9px 0 0}
+.bar{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);display:flex;
+  align-items:center;gap:7px;flex-wrap:wrap;min-height:34px}
+.bar h1{font-size:15px;margin:0;font-weight:600;letter-spacing:-.01em}
+.bar .meta{color:var(--muted);font-size:12px}
 .spacer{flex:1}
-.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
- font-size:12px;color:var(--dim)}
-.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
-.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
-main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
-.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
-.chip.easy{color:#2fbf71;border-color:#2fbf7144}
-.chip.medium{color:#f5a623;border-color:#f5a62344}
-.chip.hard{color:#ff5f56;border-color:#ff5f5644}
-.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
-.opts{display:grid;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);
+  background:var(--surface);border-radius:var(--r-sm);padding:3px 8px;font-size:11.5px;
+  color:var(--muted);font-family:var(--font-mono);font-variant-numeric:tabular-nums;
+  white-space:nowrap;text-decoration:none}
+a.pill:hover{border-color:var(--border-strong);color:var(--foreground);text-decoration:none}
+.progress{height:3px;background:var(--surface-secondary);border-radius:99px;overflow:hidden;
+  margin:9px 0 0}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;
+  transition:width .3s var(--ease)}
+main{width:100%;max-width:860px;margin:0 auto;padding:var(--s6) var(--page-x) 96px;flex:1 0 auto}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip.easy{color:var(--success);border-color:color-mix(in srgb,var(--success) 40%,var(--border));
+  background:var(--success-soft)}
+.chip.medium{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 40%,var(--border));
+  background:var(--warning-soft)}
+.chip.hard{color:var(--error);border-color:color-mix(in srgb,var(--error) 40%,var(--border));
+  background:var(--error-soft)}
+.stem{font-size:17px;line-height:1.7;margin:4px 0 16px;white-space:pre-wrap;
+  color:var(--foreground);letter-spacing:-.005em}
+.opts{display:grid;gap:8px}
 .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
- background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
- padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
-.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+  background:var(--surface);border:1px solid var(--border);color:var(--foreground);
+  border-radius:var(--r-sm);padding:12px 14px;font:inherit;font-size:14.5px;line-height:1.6;
+  cursor:pointer;transition:border-color var(--fast) var(--ease),
+  background-color var(--fast) var(--ease)}
+.opt:hover:not(:disabled){border-color:var(--border-strong);background:var(--surface-secondary)}
 .opt:disabled{cursor:default}
-.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
- display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
-.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
-.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
-.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
-.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
-textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
- border-radius:11px;padding:12px;font:inherit;resize:vertical}
-.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
- border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.opt .k{flex:0 0 22px;height:22px;border-radius:4px;background:var(--surface-secondary);
+  border:1px solid var(--border);display:grid;place-items:center;font-size:11px;font-weight:600;
+  color:var(--muted);font-family:var(--font-mono)}
+.opt.correct{border-color:var(--success);background:var(--success-soft)}
+.opt.correct .k{background:var(--success);color:var(--surface);border-color:var(--success)}
+.opt.wrong{border-color:var(--error);background:var(--error-soft)}
+.opt.wrong .k{background:var(--error);color:var(--surface);border-color:var(--error)}
+textarea{width:100%;min-height:96px;background:var(--surface);color:var(--foreground);
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;font:inherit;
+  font-size:14px;line-height:1.65;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:2px solid var(--accent);
+  background:var(--surface-secondary);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-size:13.5px;line-height:1.7;display:none}
 .exp.show{display:block}
-.exp b{color:var(--accent)}
-.src{margin-top:8px;color:var(--dim);font-size:12px}
-.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
- font:inherit;font-weight:600;cursor:pointer}
-button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-button.btn:disabled{opacity:.45;cursor:default}
-.done h2{margin:0 0 6px}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
-.stat b{display:block;font-size:24px;line-height:1.2}
-.stat span{color:var(--dim);font-size:12px}
-.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.exp b{color:var(--accent-text)}
+.src{margin-top:8px;color:var(--muted);font-size:11.5px}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+button.btn{height:34px;padding:0 14px;border-radius:var(--r-sm);border:1px solid var(--primary);
+  background:var(--primary);color:var(--primary-foreground);font:inherit;font-size:13px;
+  font-weight:500;cursor:pointer;transition:opacity var(--fast) var(--ease)}
+button.btn:hover:not(:disabled){opacity:.88}
+button.btn.ghost{background:var(--surface);color:var(--foreground);border-color:var(--border)}
+button.btn.ghost:hover:not(:disabled){background:var(--surface-secondary);
+  border-color:var(--border-strong)}
+button.btn:disabled{opacity:.4;cursor:not-allowed}
+.done h2{margin:0 0 6px;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:16px 0}
+.stat{background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:12px 14px}
+.stat b{display:block;font-size:22px;line-height:1.2;font-family:var(--font-mono);
+  font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:11.5px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
 .wronglist li{margin:4px 0}
-footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
-kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:11.5px;padding:26px 16px 30px;line-height:1.7}
 
 .chip.warn{border-color:#f5a62366;color:#f5a623}
 .muted{color:var(--dim);font-size:13px}
@@ -96,7 +420,8 @@ kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;paddi
 .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
  padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
-.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.seg button.on{border-color:var(--foreground);background:var(--surface);font-weight:600;
+ box-shadow:var(--shadow-sm)}
 .setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
 .setup-foot .sum{color:var(--dim);font-size:14px}
 .setup-foot .sum b{color:var(--fg);font-size:18px}
@@ -250,6 +575,9 @@ main,.card,.setup{max-width:100%}
 .actions{flex-wrap:wrap}
 footer{padding:22px 14px 30px;line-height:1.8}
 
+@media (max-width:1180px){
+  .bar .meta{display:none}
+}
 @media (max-width:720px){
   #scorepill{display:none}
   .bar a.pill{display:none}
@@ -303,11 +631,12 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 25</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
-    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
-    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
-    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
+    <button class="btn ghost btn-sm" id="tfilter">全部</button>
+    <button class="btn ghost btn-sm" id="grid">题号</button>
+    <button class="btn ghost btn-sm" id="exam">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
-    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+    <button class="btn ghost btn-sm" id="restart">重来</button>
+    <span data-theme-ctl="cycle"></span>
   </div>
   <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
 </header>
@@ -379,32 +708,33 @@ footer{padding:22px 14px 30px;line-height:1.8}
   function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
   function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
 
+  /* 主题只改强调色：浅色 / 深色 / 跟随系统由 data-theme 决定，两者互不冲突 */
   var THEMES={
-    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
-    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
-    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
-    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+    gold:  {accent:"#B7791F"},
+    warm:  {accent:"#C2410C"},
+    forest:{accent:"#047857"},
+    sakura:{accent:"#BE185D"}
   };
   function applyTheme(){
     var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
-    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
-    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+    root.style.removeProperty("--accent");
+    if(t && THEMES[t]){ root.style.setProperty("--accent", THEMES[t].accent); }
   }
   function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
 
   var SHOP=[
-    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
-    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
-    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
-    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
-    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
-    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
-    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
-    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
-    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
-    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
-    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
-    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"}
   ];
 
   function buy(id){
@@ -612,7 +942,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
     "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
 
-    "🛒 商城":"Shop","← 首页":"← Home",
+    "商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
     "还原默认主题":"Reset theme","卸下称号":"Remove title",
@@ -1212,31 +1542,50 @@ footer{padding:22px 14px 30px;line-height:1.8}
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var title = inv.equipped && inv.equipped.title
+      ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
     var ne = nextExam();
-    var dd = ne ? ne.days : null;
-    var badgeHtml = BADGES.map(function(x){
-      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+    var owned = BADGES.filter(function(x){ return b[x.id]; });
+    var badgeHtml = owned.map(function(x){
+      return '<span class="badge on" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
     }).join("");
     host.innerHTML =
-      '<div class="hero-top">'+
-        '<span class="lvp">Lv.'+lv+'</span>'+
-        '<span class="xpv">'+xp+'</span>'+
-        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
-        title+'<span class="grow"></span>'+
-        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
+      '<div class="ovc">'+
+        '<span class="ovl">等级'+title+'</span>'+
+        '<span class="ovn">'+lv+'<small>Lv</small></span>'+
+        '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+        '<span class="ovh">'+(nx?'还差 '+(nx-xp)+' XP 升级':'已满级')+' · 共 '+xp+' XP</span>'+
       '</div>'+
-      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-      '<div class="metaline">'+
-        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
-        '<span>连续 <b>'+st+'</b> 天</span>'+
-        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
-        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
-        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+      '<div class="ovc">'+
+        '<span class="ovl">今日</span>'+
+        '<span class="ovn">'+tc+'<small>/'+GOAL+'</small></span>'+
+        '<span class="ovh">连续 '+st+' 天 · 连对 '+(g.best||0)+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已开始</span>'+
+        '<span class="ovn" id="ovStarted">—</span>'+
+        '<span class="ovh">'+(ne?('下一场 '+ne.name+' · '+ne.days+' 天后'):'')+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已做题</span>'+
+        '<span class="ovn" id="ovAnswered">—</span>'+
+        '<span class="ovh" id="ovAcc">还没有作答记录</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">错题</span>'+
+        '<span class="ovn" id="ovMistakes">—</span>'+
+        '<span class="ovh" id="ovDue">今天没有到期</span>'+
+      '</div>'+
+      '<div class="ovbadges">'+
+        '<span class="ovb-lbl">徽章 '+owned.length+'/'+BADGES.length+'</span>'+
+        badgeHtml+
+        (owned.length? '' : '<span class="ovb-hint">做题、连对、连续打卡都会解锁</span>')+
+        '<span class="grow"></span>'+
+        '<span class="coinline">金币 <b>'+(c.n||0)+'</b> · 星尘 <b>'+(c.dust||0)+'</b></span>'+
         '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
-      '</div>'+
-      '<div class="badges">'+badgeHtml+'</div>';
+      '</div>';
+    if(window.__homeStats) window.__homeStats();
   }
   function renderAll(){
     renderProfile();
@@ -1284,6 +1633,54 @@ footer{padding:22px 14px 30px;line-height:1.8}
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+
+/* ── 主题（浅色 / 深色 / 跟随系统）──────────────────────── */
+(function(){
+  var KEY="dsh-theme";
+  function mode(){
+    try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
+    catch(e){return "system";}
+  }
+  var LABEL={light:"浅色",dark:"深色",system:"自动"};
+  function paint(box){
+    var m=mode();
+    if(box.getAttribute("data-theme-ctl")==="cycle"){
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="外观：'+LABEL[m]+
+        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+    }else{
+      box.innerHTML=['light','dark','system'].map(function(k){
+        return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
+      }).join("");
+    }
+  }
+  function apply(m){
+    var r=document.documentElement;
+    if(m==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",m);
+    r.setAttribute("data-theme-mode",m);
+    document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+  }
+  function set(m){
+    try{localStorage.setItem(KEY,m);}catch(e){}
+    apply(m);
+  }
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest ? ev.target.closest("[data-mode],[data-cycle]") : null;
+    if(!b) return;
+    if(b.hasAttribute("data-cycle")){
+      var order=["system","light","dark"], cur=mode();
+      set(order[(order.indexOf(cur)+1)%3]);
+    }else{ set(b.getAttribute("data-mode")); }
+    ev.preventDefault();
+  });
+  try{
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys=function(){ if(mode()==="system") apply("system"); };
+    if(mq.addEventListener) mq.addEventListener("change",onSys);
+    else if(mq.addListener) mq.addListener(onSys);
+  }catch(e){}
+  window.DSH_THEME={set:set,mode:mode};
+  document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+})();
 </script>
 <script>
 const DATA = {"slug": "ftn", "title": "食品科技 · 10 年级", "examMin": 60, "questions": [{"id": "ftn-001", "topic": "食品安全 · 危险温区", "difficulty": "easy", "type": "mcq", "stem": "What is the temperature range of the food safety 'danger zone'?", "options": ["5°C to 60°C", "0°C to 5°C", "60°C to 100°C", "-18°C to 4°C"], "answer": 0, "explanation": "危险温区是 5°C–60°C，这个区间里有害细菌繁殖最快。0°C 以下只是抑制生长，并不等于杀菌。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone", "weak": false}, {"id": "ftn-002", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "easy", "type": "mcq", "stem": "Under the 2-hour / 4-hour rule, what must happen to potentially hazardous food that has been in the danger zone for more than 4 hours?", "options": ["It can be returned to the fridge and used again the next day", "It must be thrown away because bacteria levels are too high", "It can be frozen and kept for up to one week", "It can be reheated to 100°C and then served"], "answer": 1, "explanation": "超过 4 小时细菌数量已高到可能引发食物中毒，必须丢弃，不能靠回锅或冷冻补救。很多同学会误以为重新加热就安全。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-003", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "medium", "type": "mcq", "stem": "A tray of cooked chicken has been sitting at room temperature for 3 hours. Under the 2-hour / 4-hour rule, which action is correct?", "options": ["Reheat it, then freeze it for the following week", "Return it to the fridge and use it later", "Eat it now, but do not return it to the fridge", "Throw the chicken away immediately"], "answer": 2, "explanation": "超过 2 小时、不足 4 小时的食物仍可食用，但不能放回冰箱（否则只是把细菌一起冷藏）。只有 2 小时以内的食物才能冷藏。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-004", "topic": "食品安全 · 冷藏温度", "difficulty": "easy", "type": "mcq", "stem": "To keep perishable food out of the danger zone, foods such as ham and salami should be stored at:", "options": ["8°C or below", "About 22°C", "About 60°C", "4°C or below"], "answer": 3, "explanation": "冷藏需控制在 4°C 或以下，才能让细菌繁殖速度降到很低。8°C、22°C 都高于安全冷藏温度，挡不住细菌增殖。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone（Industry Example）", "weak": false}, {"id": "ftn-005", "topic": "厨房运作 · Mise en place", "difficulty": "easy", "type": "mcq", "stem": "In a commercial kitchen, 'mise en place' refers to:", "options": ["Preparing ingredients and equipment before cooking", "Cleaning down kitchen benches at the end of service", "Plating the finished dish neatly for service", "Ordering stock and checking supplier deliveries"], "answer": 0, "explanation": "mise en place 是「备料到位」，包括切好洋葱、量好调料、预热烤箱等。缺了这一步会直接造成 poor workflow。", "source": "Term 1 · Assumed Knowledge Quiz 6: Mise en place；Structured Responses (Sample Answers).pdf — Poor Workflow", "weak": false}, {"id": "ftn-006", "topic": "食物公平 · 定义", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines food inequity?", "options": ["People choose not to eat certain foods for religious reasons", "Some groups have limited access to affordable, safe food while others do not", "Restaurants charge different prices for the same meal", "Everyone in a country has equal access to safe, nutritious food"], "answer": 1, "explanation": "food inequity 强调「可获得性不平等」，是有的人吃不到足量、安全、有营养的食物。不要和宗教饮食禁忌或个人选择混为一谈。", "source": "Term 1 · Food Inequity Assignment (Part 1 – Define)", "weak": false}, {"id": "ftn-007", "topic": "食物公平 · 受影响人群", "difficulty": "easy", "type": "mcq", "stem": "According to the Term 1 unit, which group is identified as likely to experience food inequity in developed and developing countries?", "options": ["Professional athletes on high incomes", "Full-time university students living on campus", "People on low incomes or who are unemployed", "Food critics who review restaurants"], "answer": 2, "explanation": "低收入或失业人群是课程列出的典型群体。同类的还有偏远地区居民、女性与儿童、老年人、慢性病患者、残障人士、原住民与无家可归者。", "source": "Term 1 · Food Inequity Assignment（Introduction 受影响人群列表）", "weak": false}, {"id": "ftn-008", "topic": "食物公平 · 慈善机构", "difficulty": "medium", "type": "mcq", "stem": "Which Australian organisation was listed in the Term 1 assignment as a charity that rescues surplus food and redistributes it to people experiencing food insecurity?", "options": ["Woolworths", "Fair Work Australia", "MasterChef Australia", "OzHarvest"], "answer": 3, "explanation": "OzHarvest 是澳洲典型的食物救援慈善机构，把商家剩余的食材收集后分发给有需要的人。Woolworths 是超市企业，Fair Work 是职场监管机构，都不是慈善机构。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity list)（机构职能为课程标准知识补充）", "weak": true}, {"id": "ftn-009", "topic": "食物趋势 · Snackification", "difficulty": "easy", "type": "mcq", "stem": "The food trend known as 'snackification' refers to:", "options": ["Replacing main meals with more frequent, smaller snacks", "Selling snacks only through supermarkets", "Eating only two large meals a day and no snacks in between", "Removing all snacks from your daily diet"], "answer": 0, "explanation": "snackification 指「正餐零食化」，人们用更多小份量、便携的进食场合取代传统三餐。它和「少吃零食」正好相反。", "source": "Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends", "weak": false}, {"id": "ftn-010", "topic": "食物趋势 · 丑果蔬", "difficulty": "medium", "type": "mcq", "stem": "Supermarkets selling 'ugly' fruit and vegetables is a trend that mainly aims to:", "options": ["Charge a higher price for imperfect-looking produce", "Reduce food waste by selling produce rejected as ugly", "Replace fresh produce with canned produce", "Encourage farmers to grow fewer vegetables"], "answer": 1, "explanation": "这类趋势针对的是「长相不合格但完全可食用」的蔬果，目的是减少农场端和零售端的食物浪费。核心卖点是减废，而不是涨价。", "source": "Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets", "weak": false}, {"id": "ftn-011", "topic": "食物趋势 · 明星厨师", "difficulty": "medium", "type": "mcq", "stem": "How do celebrity chefs most directly influence food trends?", "options": ["By writing the national dietary guidelines used in all schools", "By inspecting restaurants for food safety compliance", "By popularising ingredients and dishes through media exposure", "By setting the official price of restaurant meals"], "answer": 2, "explanation": "明星厨师通过电视节目、社交媒体和食谱把某些食材或做法带火，形成流行趋势。他们并不制定价格、膳食指南或做卫生检查。", "source": "Term 2 · Food Trends: Quiz 2 Celebrity Chef", "weak": false}, {"id": "ftn-012", "topic": "特定需求 · 乳糜泻", "difficulty": "easy", "type": "mcq", "stem": "A person with coeliac disease must avoid:", "options": ["All nuts, seeds and peanut products", "All dairy products, such as milk", "All foods containing added sugar", "Gluten, found in wheat, barley and rye"], "answer": 3, "explanation": "乳糜泻是对麸质（gluten）的自身免疫反应，必须终身严格无麸质饮食。它属于免疫反应，不是普通「面粉过敏」。", "source": "Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease", "weak": false}, {"id": "ftn-013", "topic": "特定需求 · 血糖生成指数", "difficulty": "medium", "type": "mcq", "stem": "A food with a low glycaemic index (GI) is best described as one that:", "options": ["Is digested slowly and raises blood glucose gradually", "Contains no carbohydrate or sugar at all", "Must be avoided by everyone with diabetes at all times", "Raises blood glucose quickly and sharply"], "answer": 0, "explanation": "低 GI 食物消化吸收慢，血糖上升平缓，饱腹感也更持久。高 GI 才是快速冲高血糖。低 GI 不等于零碳水，也不是所有糖尿病患者都要完全回避。", "source": "Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index", "weak": false}, {"id": "ftn-014", "topic": "特定需求 · 过敏与不耐受", "difficulty": "medium", "type": "mcq", "stem": "Which statement correctly distinguishes a food allergy from a food intolerance?", "options": ["An allergy can be removed by cooking the food thoroughly", "An allergy involves the immune system, while an intolerance does not", "An intolerance is always more dangerous than an allergy", "They are two names for exactly the same reaction"], "answer": 1, "explanation": "食物过敏由免疫系统介导，可能引发呼吸困难等严重反应；不耐受多是消化酶不足，症状以肠胃不适为主。两者机制不同，不能互换使用。", "source": "Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances", "weak": false}, {"id": "ftn-015", "topic": "特定需求 · 骨质疏松", "difficulty": "easy", "type": "mcq", "stem": "Which two nutrients are most important for reducing the risk of osteoporosis?", "options": ["Protein and vitamin B12", "Iron and vitamin C", "Calcium and vitamin D", "Sodium and potassium"], "answer": 2, "explanation": "钙是骨骼的主要矿物质，维生素 D 帮助钙吸收，两者缺一都会增加骨质疏松风险。只补钙不补维生素 D 吸收效率会打折扣。", "source": "Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis", "weak": false}, {"id": "ftn-016", "topic": "特定需求 · 缺铁性贫血", "difficulty": "medium", "type": "mcq", "stem": "Iron-deficiency anaemia is best managed by including more of which foods in the diet?", "options": ["Refined white flour products such as white bread", "Foods high in calcium, such as milk and cheese", "Foods high in vitamin C only, such as citrus fruit and juice", "Iron-rich foods such as red meat, legumes and leafy greens"], "answer": 3, "explanation": "缺铁性贫血的饮食重点是补铁，红肉、豆类和深绿叶菜都是常见来源。维生素 C 能促进铁吸收，但它本身不是铁的来源。", "source": "Term 3 · Food for Specific Needs: Quiz 8A Anaemia", "weak": false}, {"id": "ftn-017", "topic": "特殊场合 · 农历新年", "difficulty": "easy", "type": "mcq", "stem": "In Chinese New Year celebrations, long noodles are served because they symbolise:", "options": ["Longevity and a long life", "The end of the harvest season", "Good luck in school examinations", "Wealth in the form of gold coins"], "answer": 0, "explanation": "长寿面象征长寿，讲究不断开、不剪断。金元宝形状的饺子才和财富相关，两样不要混。", "source": "Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year", "weak": false}, {"id": "ftn-018", "topic": "特殊场合 · 亡灵节", "difficulty": "medium", "type": "mcq", "stem": "Día de los Muertos (Day of the Dead) is a celebration in which families:", "options": ["Fast for three days to mourn deceased relatives at home", "Build ofrendas with food to honour deceased relatives", "Give children cakes with a hidden coin inside", "Throw a decorated birthday cake into the sea"], "answer": 1, "explanation": "亡灵节是墨西哥 11 月初的纪念活动，家人搭建 ofrenda 祭坛，摆放逝者生前喜爱的食物与物品。它的基调是纪念与团聚，不是哀悼性禁食。", "source": "Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos", "weak": false}, {"id": "ftn-019", "topic": "厨房运作 · Poor workflow", "difficulty": "hard", "type": "short", "stem": "Discuss how poor workflow can impact a chef working in a commercial kitchen. In your answer, identify one cause of poor workflow and one way it could be improved.", "options": [], "answer": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.", "explanation": "结构化简答要按 Is–Affects–Caused by–Improved by–Example 五步写：先定义，再说影响、成因、改进方式，最后补一个行业例子。只写「很乱」拿不到分。", "source": "Structured Responses (Sample Answers).pdf — Poor Workflow", "points": [{"t": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food", "m": 1}, {"t": "it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team", "m": 1}], "weak": false}, {"id": "ftn-020", "topic": "食物公平 · 发达国家中的不公平", "difficulty": "hard", "type": "short", "stem": "Food inequity also exists in developed countries such as Australia. Identify two groups affected and explain one factor that makes it hard for them to access nutritious food.", "options": [], "answer": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.", "explanation": "答案要「两个群体 + 一个原因」。常见失分是只列群体不解释原因；能被接受的典型原因是价格、交通距离、住宿条件（无厨房）或健康限制。", "source": "Term 1 · Food Inequity Assignment（Introduction 与 Part 1）", "points": [{"t": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people", "m": 1}, {"t": "One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach", "m": 1}], "weak": false}, {"id": "ftn-021", "topic": "食物公平 · 慈善机构的作用与局限", "difficulty": "hard", "type": "short", "stem": "Explain how charities such as OzHarvest or Foodbank reduce food inequity, and outline one limitation of relying on charities to solve food insecurity.", "options": [], "answer": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.", "explanation": "拿分点有两层：先说慈善机构怎么「救急」（收集余粮、再分配），再指出结构性问题无法靠捐赠解决。只说「他们帮助穷人」不够深入。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity research)＋Part 4（未来策略）", "points": [{"t": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food", "m": 1}, {"t": "A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs", "m": 1}], "weak": false}, {"id": "ftn-022", "topic": "食物趋势 · 社交媒体", "difficulty": "hard", "type": "short", "stem": "Explain how social media drives food trends such as the #foodie movement and snackification, and identify one risk this creates for consumers.", "options": [], "answer": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.", "explanation": "要写出「传播机制」（视觉内容、hashtag、网红）和「风险」（误导性营养信息、份量与健康问题）。只描述现象不解释机制容易被扣分。", "source": "Term 2 · Food Trends: Quiz 6 #foodie；Quiz 4 Snackification and other Food Trends", "points": [{"t": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products", "m": 1}, {"t": "One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition", "m": 1}], "weak": false}, {"id": "ftn-023", "topic": "特定需求 · 运动员能量需求", "difficulty": "medium", "type": "short", "stem": "Explain why a professional NRL player has different daily energy and nutrient requirements from a sedentary office worker.", "options": [], "answer": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.", "explanation": "答案要落到「能量消耗差异 → 碳水/蛋白/水分需求差异」。只写「运动员吃得多」没有解释营养素的分配，属于低分答案。", "source": "Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players；Quiz 7 Diet of an Olympic Athlete", "points": [{"t": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses", "m": 1}, {"t": "A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat", "m": 1}], "weak": false}, {"id": "ftn-024", "topic": "特殊场合 · 用食物庆祝的原因", "difficulty": "medium", "type": "short", "stem": "Give two reasons why families and communities celebrate with particular foods, and support each reason with one example.", "options": [], "answer": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.", "explanation": "两个理由要区分开：一个是「社交团聚」，一个是「文化/宗教象征」，并各配一个例子。只举例子不说明理由会丢分。", "source": "Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food", "points": [{"t": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas", "m": 1}, {"t": "Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year", "m": 1}], "weak": false}, {"id": "ftn-025", "topic": "食品安全 · 个人卫生", "difficulty": "hard", "type": "short", "stem": "Explain why personal hygiene is the responsibility of every food handler. Give two examples of poor personal hygiene that could contaminate food.", "options": [], "answer": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.", "explanation": "要点是「个体行为会导致整批食物污染」以及具体错误做法（洗手、生病上岗、对着食物咳嗽）。Food Handler Basics 模块 2 就是这一块。", "source": "Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)", "points": [{"t": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible", "m": 1}, {"t": "Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro", "m": 1}], "weak": false}]};
@@ -1300,6 +1697,9 @@ function TFILTER(){
 function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
+const AI_ENGINE = {};
+function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
   "as at by from it its their they them we you your our not no but if then than so such can could may might " +
@@ -1571,9 +1971,10 @@ function render() {
           <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
           ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
           ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
+          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
         </div>
         <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI: '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
             return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
         <div class="actions">
           <button class="btn ghost" id="allpt">全部勾上</button>
@@ -1670,21 +2071,37 @@ function render() {
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
       res.style.color = hit ? "var(--ok)" : "var(--bad)";
     };
+    const ac = document.getElementById("aiconf");
+    if (ac) ac.onclick = () => {
+      const cur = localAI();
+      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      if (v === null) return;
+      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+    };
     const ai = document.getElementById("aigrade");
     if (ai) ai.onclick = () => {
       const arr = readSlots(), answer = joinSlots(arr);
       if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
       ai.disabled = true; ai.textContent = "AI 判分中…";
-      fetch(apibase() + "/grade", {
-        method: "POST", headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer})
-      }).then(r=>r.json()).then(d => {
-        if (!d || !d.ok) throw new Error((d && d.error) || "failed");
-        AI_RES[q.id] = d.results; save(); render();
-      }).catch(e => {
+      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+      const engines = [];
+      if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
+      const loc = localAI();
+      if (loc) engines.push({n:"local", u: loc + "/grade"});
+      (async function(){
+        let lastErr = "no engine";
+        for (const en of engines) {
+          try {
+            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
+            const d = await r.json();
+            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+            return;
+          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+        }
         ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分失败：" + e.message, false);
-      });
+        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
+      })();
     };
     const ap2 = document.getElementById("applyai");
     if (ap2) ap2.onclick = () => {

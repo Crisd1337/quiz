@@ -1,71 +1,395 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
+(function(){try{
+  var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
+  var s=m||localStorage.getItem("dsh-theme")||"system";
+  var r=document.documentElement;
+  if(s==="light"||s==="dark") r.setAttribute("data-theme",s);
+  r.setAttribute("data-theme-mode",s);
+}catch(e){}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>科学 · 10 年级 · 复习测验</title>
 <style>
+/* ══ design tokens ═══════════════════════════════════════ */
 :root{
-  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
-  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+  --bg: var(--background);
+  --card: var(--surface);
+  --card2: var(--surface-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-secondary);
+  --fg: var(--foreground);
+  --dim: var(--muted);
+  --line: var(--border);
+  --line2: var(--border-strong);
+  --ok: var(--success);
+  --bad: var(--error);
+  --warn: var(--warning);
+  /* 派生色：只覆盖 --accent，其余自动跟着变（商店主题用它）*/
+  --accent-text: color-mix(in srgb, var(--accent) 74%, var(--foreground));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
 }
-@media (prefers-color-scheme: light) {
-  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --background: #09090B;
+    --surface: #111113;
+    --surface-secondary: #18181B;
+    --surface-inset: #1F1F23;
+    --foreground: #FAFAFA;
+    --muted: #A1A1AA;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --accent: #3291FF;
+    --success: #4ADE80;
+    --success-soft: rgba(74,222,128,.12);
+    --error: #F87171;
+    --error-soft: rgba(248,113,113,.12);
+    --warning: #F59E0B;
+    --warning-soft: rgba(245,158,11,.12);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+    --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+    --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+  }
 }
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --background: #09090B;
+  --surface: #111113;
+  --surface-secondary: #18181B;
+  --surface-inset: #1F1F23;
+  --foreground: #FAFAFA;
+  --muted: #A1A1AA;
+  --border: #27272A;
+  --border-strong: #3F3F46;
+  --primary: #FAFAFA;
+  --primary-foreground: #171717;
+  --accent: #3291FF;
+  --success: #4ADE80;
+  --success-soft: rgba(74,222,128,.12);
+  --error: #F87171;
+  --error-soft: rgba(248,113,113,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+  --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+}
+
+/* ══ foundations ═════════════════════════════════════════ */
+:root{
+  /* type */
+  --font-sans:"Geist Variable","Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono:"Geist Mono Variable","Geist Mono",ui-monospace,SFMono-Regular,"SF Mono",
+    Menlo,Consolas,monospace;
+  --text-2xl:28px; --text-xl:20px; --text-lg:17px; --text-md:15px;
+  --text-base:14px; --text-sm:12px; --text-xs:11px;
+  --lh-tight:1.25; --lh-snug:1.45; --lh-base:1.6; --lh-prose:1.75;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s8:32px; --s10:40px; --s12:48px; --s16:64px;
+  /* radius */
+  --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px; --r-full:999px;
+  /* layout */
+  --page-max:1120px;
+  --read-max:760px;
+  --page-x:32px;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --fast:.12s; --norm:.2s;
+}
+
+@font-face{
+  font-family:"Geist Variable";
+  src:url("fonts/geist-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-latin.woff2") format("woff2");
+  font-weight:400 700; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,
+    U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Geist Mono Variable";
+  src:url("fonts/geist-mono-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight:400 600; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,
+    U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:var(--text-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11";
+  font-synthesis-weight:none;
+  transition:background-color var(--norm) var(--ease),color var(--norm) var(--ease);
+}
+body,body *{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:var(--lh-tight);font-weight:600}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl)}
+h3{font-size:var(--text-md)}
+a{color:var(--accent-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+::selection{background:var(--accent-soft);color:var(--foreground)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+hr{border:0;border-top:1px solid var(--border);margin:var(--s6) 0}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em}
+kbd{background:var(--surface-secondary);border:1px solid var(--border);border-bottom-width:2px;
+  border-radius:var(--r-sm);padding:1px 6px;color:var(--muted);font-size:11px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+/* 数字统一等宽，避免跳动 */
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ══ 共享顶栏（首页 / 商城 / 错题本）═════════════════════ */
+.topbar{position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);
+  height:56px;display:flex;align-items:center;gap:var(--s4)}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--foreground);
+  text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:-.01em;flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--primary);
+  color:var(--primary-foreground);display:grid;place-items:center;font-size:11px;
+  font-weight:600;font-family:var(--font-mono);line-height:1}
+.nav{display:flex;align-items:center;gap:1px;min-width:0;overflow:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px;color:var(--muted);padding:5px 9px;border-radius:var(--r-sm);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--fast) var(--ease),background-color var(--fast) var(--ease)}
+.nav a:hover{color:var(--foreground);background:var(--surface-secondary);text-decoration:none}
+.nav a.on{color:var(--foreground);font-weight:500}
+.grow{flex:1}
+@media (max-width:720px){
+  .topbar-in{height:auto;flex-wrap:wrap;gap:8px;padding:9px var(--page-x) 0}
+  .brand .bname{display:none}
+  .topbar .nav{order:10;width:100%;margin:2px calc(-1 * var(--page-x)) 0;
+    padding:0 var(--page-x) 8px;border-top:1px solid var(--border)}
+  .topbar .themectl{margin-left:auto}
+}
+
+/* 分段控件选中态 */
+.seg button.on{border-color:var(--foreground)!important}
+
+/* ══ components ══════════════════════════════════════════ */
+.btn,.btn-ghost,.btn2{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  height:34px;padding:0 14px;border-radius:var(--r-sm);
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),opacity var(--fast) var(--ease);
+  text-decoration:none;
+}
+.btn{
+  background:var(--primary);color:var(--primary-foreground);
+  border-color:var(--primary);
+}
+.btn:hover{opacity:.88;text-decoration:none}
+.btn:active{transform:translateY(.5px)}
+.btn:disabled,.btn[disabled]{background:var(--surface-secondary);color:var(--muted);
+  border-color:var(--border);opacity:1;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost,.btn.ghost,.btn2{
+  background:var(--surface);color:var(--foreground);border-color:var(--border);
+}
+.btn-ghost:hover,.btn.ghost:hover,.btn2:hover{
+  background:var(--surface-secondary);border-color:var(--border-strong);text-decoration:none;
+}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;background:var(--surface)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:var(--r-sm)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent:hover{opacity:.9;color:#fff}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:none;
+}
+.input,input[type="text"],input[type="search"],input[type="number"],textarea,select{
+  font-family:inherit;font-size:var(--text-base);color:var(--foreground);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:8px 11px;outline:none;transition:border-color var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.input:hover,input:hover,textarea:hover,select:hover{border-color:var(--border-strong)}
+.input:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--muted);opacity:.85}
+
+.chip,.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:var(--text-xs);line-height:1.6;font-weight:500;
+  padding:2px 8px;border-radius:var(--r-sm);
+  background:var(--surface-secondary);border:1px solid var(--border);color:var(--muted);
+  white-space:nowrap;
+}
+
+/* 主题切换控件 */
+.themectl{display:inline-flex;align-items:center;gap:2px;padding:2px;
+  background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm)}
+.themectl button{
+  font:inherit;font-size:11.5px;font-weight:500;line-height:1;height:24px;padding:0 9px;
+  border:0;border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease);
+}
+.themectl button:hover{color:var(--foreground)}
+.themectl button.on{background:var(--surface);color:var(--foreground);
+  box-shadow:var(--shadow-sm)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;
+  color:var(--muted);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);height:28px;padding:0 10px;cursor:pointer;
+  transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease)}
+.themebtn:hover{color:var(--foreground);border-color:var(--border-strong)}
+.themebtn b{color:var(--foreground);font-weight:500}
+
+/* 浅色下别让深色主题的重阴影漏过来 */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .submit-card{box-shadow:var(--shadow-lg)}
+  :root:not([data-theme="dark"]) .lb-fab{box-shadow:var(--shadow-md)}
+  :root:not([data-theme="dark"]) .lang-btn{box-shadow:var(--shadow-sm)}
+}
+:root[data-theme="light"] .submit-card{box-shadow:var(--shadow-lg)}
+:root[data-theme="light"] .lb-fab{box-shadow:var(--shadow-md)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:900px){ :root{--page-x:20px} }
+@media (max-width:560px){ :root{--page-x:16px} }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);
- font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
- backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
-.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
-.bar .meta{color:var(--dim);font-size:13px}
+body{margin:0;display:flex;flex-direction:column;min-height:100vh}
+header{position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb,var(--background) 88%,transparent);
+  -webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--border);padding:9px 0 0}
+.bar{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);display:flex;
+  align-items:center;gap:7px;flex-wrap:wrap;min-height:34px}
+.bar h1{font-size:15px;margin:0;font-weight:600;letter-spacing:-.01em}
+.bar .meta{color:var(--muted);font-size:12px}
 .spacer{flex:1}
-.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
- font-size:12px;color:var(--dim)}
-.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
-.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
-main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
-.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
-.chip.easy{color:#2fbf71;border-color:#2fbf7144}
-.chip.medium{color:#f5a623;border-color:#f5a62344}
-.chip.hard{color:#ff5f56;border-color:#ff5f5644}
-.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
-.opts{display:grid;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);
+  background:var(--surface);border-radius:var(--r-sm);padding:3px 8px;font-size:11.5px;
+  color:var(--muted);font-family:var(--font-mono);font-variant-numeric:tabular-nums;
+  white-space:nowrap;text-decoration:none}
+a.pill:hover{border-color:var(--border-strong);color:var(--foreground);text-decoration:none}
+.progress{height:3px;background:var(--surface-secondary);border-radius:99px;overflow:hidden;
+  margin:9px 0 0}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;
+  transition:width .3s var(--ease)}
+main{width:100%;max-width:860px;margin:0 auto;padding:var(--s6) var(--page-x) 96px;flex:1 0 auto}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip.easy{color:var(--success);border-color:color-mix(in srgb,var(--success) 40%,var(--border));
+  background:var(--success-soft)}
+.chip.medium{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 40%,var(--border));
+  background:var(--warning-soft)}
+.chip.hard{color:var(--error);border-color:color-mix(in srgb,var(--error) 40%,var(--border));
+  background:var(--error-soft)}
+.stem{font-size:17px;line-height:1.7;margin:4px 0 16px;white-space:pre-wrap;
+  color:var(--foreground);letter-spacing:-.005em}
+.opts{display:grid;gap:8px}
 .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
- background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
- padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
-.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+  background:var(--surface);border:1px solid var(--border);color:var(--foreground);
+  border-radius:var(--r-sm);padding:12px 14px;font:inherit;font-size:14.5px;line-height:1.6;
+  cursor:pointer;transition:border-color var(--fast) var(--ease),
+  background-color var(--fast) var(--ease)}
+.opt:hover:not(:disabled){border-color:var(--border-strong);background:var(--surface-secondary)}
 .opt:disabled{cursor:default}
-.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
- display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
-.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
-.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
-.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
-.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
-textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
- border-radius:11px;padding:12px;font:inherit;resize:vertical}
-.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
- border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.opt .k{flex:0 0 22px;height:22px;border-radius:4px;background:var(--surface-secondary);
+  border:1px solid var(--border);display:grid;place-items:center;font-size:11px;font-weight:600;
+  color:var(--muted);font-family:var(--font-mono)}
+.opt.correct{border-color:var(--success);background:var(--success-soft)}
+.opt.correct .k{background:var(--success);color:var(--surface);border-color:var(--success)}
+.opt.wrong{border-color:var(--error);background:var(--error-soft)}
+.opt.wrong .k{background:var(--error);color:var(--surface);border-color:var(--error)}
+textarea{width:100%;min-height:96px;background:var(--surface);color:var(--foreground);
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;font:inherit;
+  font-size:14px;line-height:1.65;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:2px solid var(--accent);
+  background:var(--surface-secondary);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-size:13.5px;line-height:1.7;display:none}
 .exp.show{display:block}
-.exp b{color:var(--accent)}
-.src{margin-top:8px;color:var(--dim);font-size:12px}
-.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
- font:inherit;font-weight:600;cursor:pointer}
-button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-button.btn:disabled{opacity:.45;cursor:default}
-.done h2{margin:0 0 6px}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
-.stat b{display:block;font-size:24px;line-height:1.2}
-.stat span{color:var(--dim);font-size:12px}
-.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.exp b{color:var(--accent-text)}
+.src{margin-top:8px;color:var(--muted);font-size:11.5px}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+button.btn{height:34px;padding:0 14px;border-radius:var(--r-sm);border:1px solid var(--primary);
+  background:var(--primary);color:var(--primary-foreground);font:inherit;font-size:13px;
+  font-weight:500;cursor:pointer;transition:opacity var(--fast) var(--ease)}
+button.btn:hover:not(:disabled){opacity:.88}
+button.btn.ghost{background:var(--surface);color:var(--foreground);border-color:var(--border)}
+button.btn.ghost:hover:not(:disabled){background:var(--surface-secondary);
+  border-color:var(--border-strong)}
+button.btn:disabled{opacity:.4;cursor:not-allowed}
+.done h2{margin:0 0 6px;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:16px 0}
+.stat{background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:12px 14px}
+.stat b{display:block;font-size:22px;line-height:1.2;font-family:var(--font-mono);
+  font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:11.5px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
 .wronglist li{margin:4px 0}
-footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
-kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:11.5px;padding:26px 16px 30px;line-height:1.7}
 
 .chip.warn{border-color:#f5a62366;color:#f5a623}
 .muted{color:var(--dim);font-size:13px}
@@ -96,7 +420,8 @@ kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;paddi
 .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
  padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
-.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.seg button.on{border-color:var(--foreground);background:var(--surface);font-weight:600;
+ box-shadow:var(--shadow-sm)}
 .setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
 .setup-foot .sum{color:var(--dim);font-size:14px}
 .setup-foot .sum b{color:var(--fg);font-size:18px}
@@ -250,6 +575,9 @@ main,.card,.setup{max-width:100%}
 .actions{flex-wrap:wrap}
 footer{padding:22px 14px 30px;line-height:1.8}
 
+@media (max-width:1180px){
+  .bar .meta{display:none}
+}
 @media (max-width:720px){
   #scorepill{display:none}
   .bar a.pill{display:none}
@@ -303,11 +631,12 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 48</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
-    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
-    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
-    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
+    <button class="btn ghost btn-sm" id="tfilter">全部</button>
+    <button class="btn ghost btn-sm" id="grid">题号</button>
+    <button class="btn ghost btn-sm" id="exam">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
-    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+    <button class="btn ghost btn-sm" id="restart">重来</button>
+    <span data-theme-ctl="cycle"></span>
   </div>
   <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
 </header>
@@ -379,32 +708,33 @@ footer{padding:22px 14px 30px;line-height:1.8}
   function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
   function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
 
+  /* 主题只改强调色：浅色 / 深色 / 跟随系统由 data-theme 决定，两者互不冲突 */
   var THEMES={
-    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
-    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
-    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
-    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+    gold:  {accent:"#B7791F"},
+    warm:  {accent:"#C2410C"},
+    forest:{accent:"#047857"},
+    sakura:{accent:"#BE185D"}
   };
   function applyTheme(){
     var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
-    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
-    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+    root.style.removeProperty("--accent");
+    if(t && THEMES[t]){ root.style.setProperty("--accent", THEMES[t].accent); }
   }
   function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
 
   var SHOP=[
-    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
-    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
-    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
-    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
-    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
-    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
-    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
-    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
-    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
-    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
-    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
-    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"}
   ];
 
   function buy(id){
@@ -612,7 +942,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
     "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
 
-    "🛒 商城":"Shop","← 首页":"← Home",
+    "商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
     "还原默认主题":"Reset theme","卸下称号":"Remove title",
@@ -1212,31 +1542,50 @@ footer{padding:22px 14px 30px;line-height:1.8}
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var title = inv.equipped && inv.equipped.title
+      ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
     var ne = nextExam();
-    var dd = ne ? ne.days : null;
-    var badgeHtml = BADGES.map(function(x){
-      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+    var owned = BADGES.filter(function(x){ return b[x.id]; });
+    var badgeHtml = owned.map(function(x){
+      return '<span class="badge on" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
     }).join("");
     host.innerHTML =
-      '<div class="hero-top">'+
-        '<span class="lvp">Lv.'+lv+'</span>'+
-        '<span class="xpv">'+xp+'</span>'+
-        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
-        title+'<span class="grow"></span>'+
-        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
+      '<div class="ovc">'+
+        '<span class="ovl">等级'+title+'</span>'+
+        '<span class="ovn">'+lv+'<small>Lv</small></span>'+
+        '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+        '<span class="ovh">'+(nx?'还差 '+(nx-xp)+' XP 升级':'已满级')+' · 共 '+xp+' XP</span>'+
       '</div>'+
-      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-      '<div class="metaline">'+
-        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
-        '<span>连续 <b>'+st+'</b> 天</span>'+
-        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
-        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
-        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+      '<div class="ovc">'+
+        '<span class="ovl">今日</span>'+
+        '<span class="ovn">'+tc+'<small>/'+GOAL+'</small></span>'+
+        '<span class="ovh">连续 '+st+' 天 · 连对 '+(g.best||0)+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已开始</span>'+
+        '<span class="ovn" id="ovStarted">—</span>'+
+        '<span class="ovh">'+(ne?('下一场 '+ne.name+' · '+ne.days+' 天后'):'')+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已做题</span>'+
+        '<span class="ovn" id="ovAnswered">—</span>'+
+        '<span class="ovh" id="ovAcc">还没有作答记录</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">错题</span>'+
+        '<span class="ovn" id="ovMistakes">—</span>'+
+        '<span class="ovh" id="ovDue">今天没有到期</span>'+
+      '</div>'+
+      '<div class="ovbadges">'+
+        '<span class="ovb-lbl">徽章 '+owned.length+'/'+BADGES.length+'</span>'+
+        badgeHtml+
+        (owned.length? '' : '<span class="ovb-hint">做题、连对、连续打卡都会解锁</span>')+
+        '<span class="grow"></span>'+
+        '<span class="coinline">金币 <b>'+(c.n||0)+'</b> · 星尘 <b>'+(c.dust||0)+'</b></span>'+
         '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
-      '</div>'+
-      '<div class="badges">'+badgeHtml+'</div>';
+      '</div>';
+    if(window.__homeStats) window.__homeStats();
   }
   function renderAll(){
     renderProfile();
@@ -1284,6 +1633,54 @@ footer{padding:22px 14px 30px;line-height:1.8}
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+
+/* ── 主题（浅色 / 深色 / 跟随系统）──────────────────────── */
+(function(){
+  var KEY="dsh-theme";
+  function mode(){
+    try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
+    catch(e){return "system";}
+  }
+  var LABEL={light:"浅色",dark:"深色",system:"自动"};
+  function paint(box){
+    var m=mode();
+    if(box.getAttribute("data-theme-ctl")==="cycle"){
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="外观：'+LABEL[m]+
+        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+    }else{
+      box.innerHTML=['light','dark','system'].map(function(k){
+        return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
+      }).join("");
+    }
+  }
+  function apply(m){
+    var r=document.documentElement;
+    if(m==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",m);
+    r.setAttribute("data-theme-mode",m);
+    document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+  }
+  function set(m){
+    try{localStorage.setItem(KEY,m);}catch(e){}
+    apply(m);
+  }
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest ? ev.target.closest("[data-mode],[data-cycle]") : null;
+    if(!b) return;
+    if(b.hasAttribute("data-cycle")){
+      var order=["system","light","dark"], cur=mode();
+      set(order[(order.indexOf(cur)+1)%3]);
+    }else{ set(b.getAttribute("data-mode")); }
+    ev.preventDefault();
+  });
+  try{
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys=function(){ if(mode()==="system") apply("system"); };
+    if(mq.addEventListener) mq.addEventListener("change",onSys);
+    else if(mq.addListener) mq.addListener(onSys);
+  }catch(e){}
+  window.DSH_THEME={set:set,mode:mode};
+  document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+})();
 </script>
 <script>
 const DATA = {"slug": "sci", "title": "科学 · 10 年级", "examMin": 80, "questions": [{"id": "sci-001", "topic": "进化 · 达尔文的证据", "difficulty": "easy", "type": "mcq", "stem": "Darwin collected 13 species of finch on the Galapagos Islands. Which feature differed most clearly between the specimens?", "options": ["Beak size and shape", "Number of legs on each bird", "Wing length and shape", "Body colour and pattern"], "explanation": "13 种雀鸟体型羽色相近，但喙的大小和形状不同，对应不同岛屿的不同食物来源，是自然选择的经典证据。", "source": "Year 10 - Evolution.pptx（Galapagos finches）", "answer": 0, "zh": {"stem": "达尔文在加拉帕戈斯群岛采集了 13 种地雀。这些标本之间差异最明显的是哪个特征？", "options": ["喙的大小与形状", "每只鸟的腿数", "翅膀的长度与形状", "体色与花纹"], "answer": 0}, "weak": false}, {"id": "sci-002", "topic": "进化 · 拉马克与达尔文", "difficulty": "easy", "type": "mcq", "stem": "How did Lamarck explain the long necks of giraffes?", "options": ["Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring.", "Giraffes stretched their necks to reach high leaves and passed the longer necks on to their offspring.", "Long necks appeared suddenly because of a mutation in a single generation.", "Giraffe necks grew longer because the climate changed."], "explanation": "拉马克主张「用进废退＋获得性性状可遗传」：伸长脖子并把这一改变传给后代。「Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring.」 才是达尔文自然选择的解释。", "source": "Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）", "answer": 1, "zh": {"stem": "拉马克如何解释长颈鹿的长脖子？", "options": ["脖子较长的长颈鹿更容易取食，存活下来并把性状传给后代。", "长颈鹿为了够到高处的叶子不断伸长脖子，再把拉长的脖子传给后代。", "长脖子因为一次突变在一代之内突然出现。", "长颈鹿的脖子因气候变化而变长。"], "answer": 1}, "weak": false}, {"id": "sci-003", "topic": "进化 · 选择压力", "difficulty": "hard", "type": "mcq", "stem": "In parts of Australia where cane toads live, the average head size of red-bellied black snakes has become smaller. Which explanation is consistent with natural selection?", "options": ["The toads release a chemical that directly shrinks the heads of the snakes they meet.", "Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring.", "Snakes with larger heads could swallow the bigger, more toxic toads and died, so smaller-headed snakes survived and reproduced.", "Head size is not heritable, so this change cannot be evolution by natural selection."], "explanation": "蔗蟾是选择压力：头大的蛇吞下大蟾、摄入更多毒素而死亡（被淘汰），头小或不愿吃蟾的个体存活繁殖。「Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring.」 是拉马克式错误说法。", "source": "Term 4 - Evolution - Week 3 Answers（Cane toads / red-bellied black snake）", "answer": 2, "zh": {"stem": "在澳洲有甘蔗蟾蜍的地区，红腹黑蛇的平均头部尺寸变小了。哪种解释与自然选择一致？", "options": ["蟾蜍释放化学物质，直接让遇到的蛇头部变小。", "蛇在捕食蟾蜍时把头部缩小，并把变小后的头传给后代。", "头较大的蛇能吞下更大更毒的蟾蜍因而死亡，于是小头个体存活并繁殖。", "头部大小不可遗传，所以这一变化不属于自然选择。"], "answer": 2}, "weak": false}, {"id": "sci-004", "topic": "进化 · 选择压力定义", "difficulty": "easy", "type": "short", "stem": "Define the term 'selection pressure' and give two examples of selection pressures. (2 marks)", "options": [], "answer": "• A selection pressure is an external agent that affects an organism's ability to survive and reproduce in a given environment.\n• Examples: predators, climate and temperature, food and water supply, disease, or competition for mates and resources.", "explanation": "选择压力＝影响生物能否在特定环境存活繁殖的外部因素，如捕食者、气候、食物水源、疾病、竞争。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part A · Selection pressures / B1）", "zh": {"stem": "定义「选择压力」，并给出两个选择压力的例子。（2 分）"}, "points": [{"t": "A selection pressure is an external agent that affects an organism's ability to survive and reproduce in a given environment.", "m": 1}, {"t": "Examples: predators, climate and temperature, food and water supply, disease, or competition for mates and resources.", "m": 1}], "weak": false}, {"id": "sci-005", "topic": "进化 · 自然选择的步骤", "difficulty": "medium", "type": "short", "stem": "The steps of natural selection are listed out of order: reproduction and inheritance; increased prevalence in the gene pool; survival of the fittest; variation in a population; selection pressure. Number them 1–5 in the correct order and write one sentence explaining step 3. (5 marks)", "options": [], "answer": "• 1 Variation in a population — individuals differ in their inherited traits.\n• 2 Selection pressure — an external agent such as a predator or a change in climate acts on the population.\n• 3 Survival of the fittest — individuals whose traits suit the environment are more likely to survive.\n• 4 Reproduction and inheritance — survivors breed and pass the helpful alleles on to their offspring.\n• 5 Increased prevalence in the gene pool — over many generations the helpful trait becomes more common in the population.", "explanation": "顺序：变异→选择压力→适者生存→繁殖与遗传→基因库中比例上升。第 3 步的含义是「性状更适合环境的个体更容易存活」。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B2）", "zh": {"stem": "下列自然选择的步骤顺序被打乱：繁殖与遗传；在基因库中比例上升；适者生存；变异……请把它们排成正确顺序。（分值见题）"}, "points": [{"t": "1 Variation in a population — individuals differ in their inherited traits.", "m": 1}, {"t": "2 Selection pressure — an external agent such as a predator or a change in climate acts on the population.", "m": 1}, {"t": "3 Survival of the fittest — individuals whose traits suit the environment are more likely to survive.", "m": 1}, {"t": "4 Reproduction and inheritance — survivors breed and pass the helpful alleles on to their offspring.", "m": 1}, {"t": "5 Increased prevalence in the gene pool — over many generations the helpful trait becomes more common in the population.", "m": 1}], "weak": false}, {"id": "sci-006", "topic": "进化 · 变异的来源", "difficulty": "easy", "type": "short", "stem": "Where does the variation in a population originally come from? (1 mark)", "options": [], "answer": "• Mutations — random changes in the DNA (genes or chromosomes) that are inherited and create new alleles; sexual reproduction also shuffles existing alleles into new combinations.", "explanation": "变异的根本来源是基因突变（产生新等位基因），有性生殖再把等位基因重新组合。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B3）+ Year 10 - Evolution.pptx（Mutations）", "zh": {"stem": "种群中的变异最初来自哪里？（1 分）"}, "points": [{"t": "• Mutations — random changes in the DNA (genes or chromosomes) that are inherited and create new alleles", "m": 1}, {"t": "sexual reproduction also shuffles existing alleles into new combinations", "m": 1}], "weak": false}, {"id": "sci-007", "topic": "进化 · 达尔文的观察与推论", "difficulty": "easy", "type": "short", "stem": "Darwin made a set of observations and used them to make inferences. Outline two of his observations and the inference he drew from them. (4 marks)", "options": [], "answer": "• Observation: individuals in a species vary, and much of that variation is heritable.\n• Observation: organisms produce far more offspring than can survive, while resources are limited.\n• Inference: there is a struggle for existence, and the individuals best suited to their environment survive and reproduce.\n• Over time populations adapt to their environment, and this can lead to new species.", "explanation": "达尔文的观察：个体有可遗传的变异；后代数量超过资源能承载的量。推论：存在生存斗争，最适应环境的个体存活繁殖，种群逐渐适应环境甚至形成新种。", "source": "Year 10 - Evolution.pptx（The Theory of Evolution）", "zh": {"stem": "达尔文提出了一系列观察并据此作出推论。概述其中两项观察以及由它们得出的推论。（4 分）"}, "points": [{"t": "Observation: individuals in a species vary, and much of that variation is heritable.", "m": 1}, {"t": "Observation: organisms produce far more offspring than can survive, while resources are limited.", "m": 1}, {"t": "Inference: there is a struggle for existence, and the individuals best suited to their environment survive and reproduce.", "m": 1}, {"t": "Over time populations adapt to their environment, and this can lead to new species.", "m": 1}], "weak": false}, {"id": "sci-008", "topic": "进化 · 拉马克与达尔文对比", "difficulty": "medium", "type": "short", "stem": "Explain how Lamarck's explanation of evolution differs from Darwin's. (3 marks)", "options": [], "answer": "• Lamarck proposed use and disuse plus the inheritance of acquired characteristics: an organism changes during its life by using a feature more, then passes that change to its offspring (e.g. a giraffe stretching its neck).\n• Darwin proposed natural selection: variation already exists in the population, and individuals with inherited traits suited to the environment survive and reproduce more, so those traits become more common.\n• Lamarck's mechanism has no role for genes, and acquired changes are not inherited.", "explanation": "拉马克靠「用进废退＋获得性性状遗传」，达尔文靠种群中已有的变异＋自然选择。关键差别：只有可遗传的变异才能传递给下一代。", "source": "Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）+ Year 10 - Evolution.pptx", "zh": {"stem": "说明拉马克对进化的解释与达尔文有何不同。（3 分）"}, "points": [{"t": "Lamarck proposed use and disuse plus the inheritance of acquired characteristics: an organism changes during its life by using a feature more, then passes that change to its offspring (e.g. a giraffe stretching its neck).", "m": 1}, {"t": "Darwin proposed natural selection: variation already exists in the population, and individuals with inherited traits suited to the environment survive and reproduce more, so those traits become more common.", "m": 1}, {"t": "Lamarck's mechanism has no role for genes, and acquired changes are not inherited.", "m": 1}], "weak": false}, {"id": "sci-009", "topic": "进化 · 工业黑化", "difficulty": "medium", "type": "short", "stem": "Explain, using natural selection, why the dark (melanic) form of the peppered moth became common in industrial towns in the 1800s. (4 marks)", "options": [], "answer": "• Soot pollution killed the lichens and blackened the tree trunks.\n• The pale peppered form then stood out against the dark bark and was eaten by birds, so it was selected against.\n• The dark melanic form was better camouflaged and survived to breed, passing its alleles to the next generation.\n• Over many generations the dark form became more common, i.e. the population evolved as the environment changed.", "explanation": "煤烟把树干熏黑→浅色蛾失去保护被鸟捕食→黑色型隐蔽存活并繁殖→多代后比例上升。这是自然选择方向随环境改变的例子。", "source": "Term 4 - Evolution - Week 2（Case Study: Peppered Moth）", "zh": {"stem": "用自然选择解释：为什么 1800 年代工业城镇中桦尺蛾的深色（黑化）型变得常见。（4 分）"}, "points": [{"t": "Soot pollution killed the lichens and blackened the tree trunks.", "m": 1}, {"t": "The pale peppered form then stood out against the dark bark and was eaten by birds, so it was selected against.", "m": 1}, {"t": "The dark melanic form was better camouflaged and survived to breed, passing its alleles to the next generation.", "m": 1}, {"t": "Over many generations the dark form became more common, i.e. the population evolved as the environment changed.", "m": 1}], "weak": false}, {"id": "sci-010", "topic": "进化 · 现存物种的证据", "difficulty": "medium", "type": "short", "stem": "Name three types of evidence from living species that support the theory of evolution, and explain what one of them shows. (3 marks)", "options": [], "answer": "• Comparative anatomy (e.g. the same bone arrangement in the forelimbs of vertebrates — homologous structures).\n• Comparative embryology (closely related species have similar embryos at early stages).\n• Biochemical / DNA evidence (the closer the DNA base sequence of two species, the more closely related they are).\n• Vestigial structures (structures that once had a function but are now functionless) also indicate common ancestry.", "explanation": "现存生物的证据包括比较解剖学（同源结构）、比较胚胎学、生化/DNA 证据，以及痕迹器官；它们都指向共同祖先。", "source": "Year 10 - Evolution.pptx（Evidence for Evolution – Living Species）", "zh": {"stem": "举出三种来自现存物种、支持进化论的证据，并说明其中一种证据说明了什么。（3 分）"}, "points": [{"t": "Comparative anatomy (e.g. the same bone arrangement in the forelimbs of vertebrates — homologous structures).", "m": 1}, {"t": "Comparative embryology (closely related species have similar embryos at early stages).", "m": 1}, {"t": "Biochemical / DNA evidence (the closer the DNA base sequence of two species, the more closely related they are).", "m": 1}, {"t": "Vestigial structures (structures that once had a function but are now functionless) also indicate common ancestry.", "m": 1}], "weak": false}, {"id": "sci-011", "topic": "进化 · 化石测年", "difficulty": "medium", "type": "short", "stem": "Describe the difference between relative dating and absolute dating of fossils, and give one problem with relative dating. (3 marks)", "options": [], "answer": "• Relative dating uses the order of the rock layers: lower layers were laid down first, so fossils in lower layers are older — it gives the order of age, not an actual age.\n• Absolute dating measures how much radioactive carbon is left in a sample to calculate when the organism died.\n• Problem with relative dating: plate movement, folding or faulting can overturn or shift layers, so the layer order no longer shows the true sequence of ages.", "explanation": "相对测年只看岩层上下顺序（只给先后，不给具体年代），绝对测年靠放射性碳剩余量算出死亡年代。相对测年的问题是板块运动、褶皱、断层会让岩层翻转错位。", "source": "Year 10 - Evolution.pptx（Techniques used to date fossils）", "zh": {"stem": "描述化石的相对测年与绝对测年的区别，并指出相对测年的一个问题。（3 分）"}, "points": [{"t": "Relative dating uses the order of the rock layers: lower layers were laid down first, so fossils in lower layers are older — it gives the order of age, not an actual age.", "m": 1}, {"t": "Absolute dating measures how much radioactive carbon is left in a sample to calculate when the organism died.", "m": 1}, {"t": "Problem with relative dating: plate movement, folding or faulting can overturn or shift layers, so the layer order no longer shows the true sequence of ages.", "m": 1}], "weak": false}, {"id": "sci-012", "topic": "进化 · 华莱士线", "difficulty": "easy", "type": "short", "stem": "What does Wallace's Line show, and what is the most likely explanation for it? (3 marks)", "options": [], "answer": "• It marks the boundary between the fauna of Asia (for example tigers and elephants, which are placental mammals) and the fauna of Australia (marsupials and monotremes).\n• It runs through Bali and Borneo, north through Lombok and Sulawesi, then east of the Philippines.\n• It is approximately the collision zone between the Asian and Australian continental plates, so the two regions were isolated from each other and their species evolved separately.", "explanation": "华莱士线是亚洲动物区系（胎盘哺乳类）与澳洲动物区系（有袋类/单孔类）的分界，大致对应亚欧板块与澳洲板块的碰撞带——地理隔离导致两边独立演化。", "source": "Year 10 - Evolution.pptx（Wallace's Line）", "zh": {"stem": "华莱士线说明了什么？最可能的解释是什么？（3 分）"}, "points": [{"t": "It marks the boundary between the fauna of Asia (for example tigers and elephants, which are placental mammals) and the fauna of Australia (marsupials and monotremes).", "m": 1}, {"t": "It runs through Bali and Borneo, north through Lombok and Sulawesi, then east of the Philippines.", "m": 1}, {"t": "It is approximately the collision zone between the Asian and Australian continental plates, so the two regions were isolated from each other and their species evolved separately.", "m": 1}], "weak": false}, {"id": "sci-013", "topic": "进化 · 生命起源实验", "difficulty": "easy", "type": "short", "stem": "Describe what the Urey–Miller experiment demonstrated and state one limitation of the experiment. (3 marks)", "options": [], "answer": "• Miller heated water and a mixture of gases representing the early ocean and atmosphere, and passed electric sparks through them to simulate lightning.\n• After a week he found a range of amino acids, the building blocks of proteins.\n• It showed that organic molecules can form spontaneously from inorganic ingredients, but it does not prove how life actually began (and the early atmosphere may not have had the composition he assumed).", "explanation": "米勒用电火花模拟闪电，在模拟原始海洋与大气的混合气体中得到多种氨基酸——说明无机物可以自发形成有机分子；但这不能证明生命如何起源。", "source": "Year 10 - Evolution.pptx（Urey-Miller experiment）", "zh": {"stem": "描述米勒–尤里实验证明了什么，并指出该实验的一个局限。（3 分）"}, "points": [{"t": "Miller heated water and a mixture of gases representing the early ocean and atmosphere, and passed electric sparks through them to simulate lightning.", "m": 1}, {"t": "After a week he found a range of amino acids, the building blocks of proteins.", "m": 1}, {"t": "It showed that organic molecules can form spontaneously from inorganic ingredients, but it does not prove how life actually began (and the early atmosphere may not have had the composition he assumed).", "m": 1}], "weak": false}, {"id": "sci-014", "topic": "进化 · 蜥蜴情景分析", "difficulty": "hard", "type": "short", "stem": "Stimulus 1 – Desert lizards: In a desert region a population of lizards varies in skin colour; some are light brown, some dark brown. Before a predatory bird arrived in the 1990s both forms were common. Since then the light-coloured lizards, which blend into the sand, have become more common, while dark lizards remain common in areas without the bird. Using the steps of natural selection, explain why the light-coloured trait has become more prevalent. (4 marks)", "options": [], "answer": "• Variation: the population already contained inherited variation in colour — both light and dark brown lizards.\n• Selection pressure: the predatory bird, which hunts visually during the day.\n• Survival of the fittest: light lizards are camouflaged against the sand and are less likely to be seen and eaten, while dark lizards stand out and are removed.\n• Reproduction and inheritance: the surviving light lizards breed and pass the light-colour alleles to their offspring, so over generations light lizards become more common in the gene pool.", "explanation": "按五步走：原有变异（浅/深）→选择压力（白天靠视觉捕食的鸟）→浅色更隐蔽而存活、深色被吃→浅色繁殖并遗传→多代后浅色比例上升。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 1 / C1）", "zh": {"stem": "【材料 1 · 沙漠蜥蜴】某沙漠地区的蜥蜴肤色有浅棕与深棕两种。在捕食性鸟类出现之前……（按要求作答）"}, "points": [{"t": "Variation: the population already contained inherited variation in colour — both light and dark brown lizards.", "m": 1}, {"t": "Selection pressure: the predatory bird, which hunts visually during the day.", "m": 1}, {"t": "Survival of the fittest: light lizards are camouflaged against the sand and are less likely to be seen and eaten, while dark lizards stand out and are removed.", "m": 1}, {"t": "Reproduction and inheritance: the surviving light lizards breed and pass the light-colour alleles to their offspring, so over generations light lizards become more common in the gene pool.", "m": 1}], "weak": false}, {"id": "sci-015", "topic": "进化 · 孔雀鱼情景分析", "difficulty": "hard", "type": "short", "stem": "Stimulus 3 – Guppies: A river population of guppies varies in body colour, from bright to dull. Where predators are common, dull guppies are harder to see and survive better. In predator-free stretches, bright males attract more mates and reproduce more successfully. Over time dull guppies dominate predator-rich areas and bright guppies dominate predator-free areas. Explain why the two areas ended up with different dominant forms. (5 marks)", "options": [], "answer": "• Variation: the population contains inherited variation in colour, from bright to dull.\n• The selection pressure is different in each area — predation in one, mate choice in the other.\n• In predator-rich water the dull fish are camouflaged and survive to breed, so dull alleles are selected for and increase.\n• In predator-free water the bright males attract more mates and leave more offspring, so bright alleles are selected for and increase.\n• Different selection pressures push the same species in opposite directions, so the dominant form differs between the two areas.", "explanation": "同一物种在两个区域面对不同选择压力：有捕食者时「隐蔽」被选择，无捕食者时「吸引配偶」被选择，方向相反，所以优势型不同。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 3 / C3）", "zh": {"stem": "【材料 3 · 孔雀鱼】某河流中的孔雀鱼体色从鲜艳到暗淡不等。在有较多捕食者的水域，暗淡的个体更不易被发现……（按要求作答）"}, "points": [{"t": "Variation: the population contains inherited variation in colour, from bright to dull.", "m": 1}, {"t": "The selection pressure is different in each area — predation in one, mate choice in the other.", "m": 1}, {"t": "In predator-rich water the dull fish are camouflaged and survive to breed, so dull alleles are selected for and increase.", "m": 1}, {"t": "In predator-free water the bright males attract more mates and leave more offspring, so bright alleles are selected for and increase.", "m": 1}, {"t": "Different selection pressures push the same species in opposite directions, so the dominant form differs between the two areas.", "m": 1}], "weak": false}, {"id": "sci-016", "topic": "进化 · 乳糖耐受综合应用", "difficulty": "hard", "type": "short", "stem": "Lactose is the sugar in milk and lactase is the enzyme that digests it. In most mammals, lactase production falls after infancy, which causes lactose intolerance in adults. A mutation allows some people to keep producing lactase throughout adult life. Lactose intolerance is present in only about 5% of Europeans but about 97% of the Australian Indigenous population. Use Darwin's theory of natural selection to suggest why these proportions differ. (6 marks)", "options": [], "answer": "• The ability to keep producing lactase is an inherited mutation, so there is heritable variation in the trait.\n• In populations with a long history of dairying, adults who could digest milk had an extra reliable food source, especially when other food was scarce.\n• Those individuals were more likely to survive and reproduce, so they passed the lactase-persistence allele to their offspring.\n• Over many generations the allele became common, so lactose intolerance is now rare in those populations (about 5%).\n• In populations without dairy herding, digesting milk gave no survival advantage, so the mutation was not selected for and lactose intolerance stayed common (about 97%).\n• This is natural selection acting on existing heritable variation — not the inheritance of a trait acquired during life.", "explanation": "有乳制品饲养史的人群中，成年后能消化乳糖＝多一个可靠食物来源→更易存活繁殖→乳糖酶持续表达的等位基因频率升高；无畜牧传统的人群没有这个选择优势，所以乳糖不耐仍占多数。", "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part D · Apply your knowledge / D1）", "zh": {"stem": "【综合】乳糖是牛奶中的糖，乳糖酶是分解它的酶。多数哺乳动物在幼年后乳糖酶产量下降，从而出现乳糖不耐受……（按要求作答）"}, "points": [{"t": "The ability to keep producing lactase is an inherited mutation, so there is heritable variation in the trait.", "m": 1}, {"t": "In populations with a long history of dairying, adults who could digest milk had an extra reliable food source, especially when other food was scarce.", "m": 1}, {"t": "Those individuals were more likely to survive and reproduce, so they passed the lactase-persistence allele to their offspring.", "m": 1}, {"t": "Over many generations the allele became common, so lactose intolerance is now rare in those populations (about 5%).", "m": 1}, {"t": "In populations without dairy herding, digesting milk gave no survival advantage, so the mutation was not selected for and lactose intolerance stayed common (about 97%).", "m": 1}, {"t": "This is natural selection acting on existing heritable variation — not the inheritance of a trait acquired during life.", "m": 1}], "weak": false}, {"id": "sci-017", "topic": "技能 · 数据制图", "difficulty": "easy", "type": "mcq", "stem": "The CUTLAS checklist is used to mark a line graph. Which list gives the six things a good line graph must have?", "options": ["Calculations, Units, Title, Line, Average, Summary", "Crosses, Variables, Title, Legend, Axes, Slope", "Colour, Units, Table, Labels, Arrows, Scale", "Crosses, Units, Title, Line, Axes, Scale"], "explanation": "CUTLAS＝Crosses（用叉画点）、Units（两轴带单位）、Title（含两个变量）、Line（平滑趋势线，不是连点）、Axes（标注且自变量在 x 轴）、Scale（占满约 80%）。", "source": "Stage 5 Graphing-1.docx（CUTLAS checklist）", "answer": 3, "zh": {"stem": "CUTLAS 清单用于给折线图评分。下列哪一组是合格折线图必须具备的六项？", "options": ["计算、单位、标题、连线、平均值、总结", "十字叉、变量、标题、图例、坐标轴、斜率", "颜色、单位、表格、标签、箭头、刻度", "十字叉、单位、标题、连线、坐标轴、刻度"], "answer": 3}, "weak": false}, {"id": "sci-018", "topic": "技能 · 变量识别", "difficulty": "easy", "type": "mcq", "stem": "A student investigates how the length of a wire affects its resistance. Which is the dependent variable?", "options": ["The resistance of the wire", "The temperature of the room", "The type of wire used", "The length of the wire"], "explanation": "自变量是实验者主动改变的（导线长度），因变量是被测量的结果（电阻），其余保持不变的是控制变量。", "source": "Identifying Variables.docx（独立 / 依赖 / 控制变量定义）", "answer": 0, "zh": {"stem": "某学生研究导线长度如何影响其电阻。哪个是因变量？", "options": ["导线的电阻", "房间的温度", "所用导线的材料", "导线的长度"], "answer": 0}, "weak": false}, {"id": "sci-019", "topic": "技能 · 误差与可靠性", "difficulty": "medium", "type": "mcq", "stem": "A student repeats a measurement five times and gets almost identical results, but the thermometer used always reads 2 °C too high. Which statement best describes the results?", "options": ["They are both accurate and reliable.", "They are reliable but not accurate.", "They are accurate but not reliable.", "They are both invalid and unreliable."], "explanation": "重复多次结果一致＝可靠（reliable）；温度计恒定偏高属于系统误差，因此不准确（accurate 指接近真值）。可靠不等于准确。", "source": "Half Yearly Revision.pdf（Reliability / Accuracy / systematic error）", "answer": 1, "zh": {"stem": "某学生重复测量五次，结果几乎完全相同，但所用温度计读数始终偏高 2 °C。下列哪项描述最准确？", "options": ["既准确又可靠。", "可靠但不准确。", "准确但不可靠。", "既无效又不可靠。"], "answer": 1}, "weak": false}, {"id": "sci-020", "topic": "技能 · 实验设计", "difficulty": "easy", "type": "short", "stem": "A student investigates whether the surface area of calcium carbonate affects the rate at which it reacts with hydrochloric acid. Identify the independent variable, the dependent variable and two controlled variables. (3 marks)", "options": [], "answer": "• Independent variable: the surface area (particle size) of the calcium carbonate.\n• Dependent variable: the rate of the reaction, e.g. the volume of gas collected per minute.\n• Controlled variables (any two): the concentration and volume of hydrochloric acid, the mass of calcium carbonate used, the temperature, or the same beaker.", "explanation": "自变量＝碳酸钙表面积；因变量＝反应速率（如每分钟气体体积）；控制变量＝酸浓度与体积、碳酸钙质量、温度等。", "source": "Identifying Variables.docx + Term 3 Reactive Chemistry Week 7（surface area investigation）", "zh": {"stem": "某学生研究碳酸钙的表面积是否影响它与盐酸反应的速率。请指出自变量、因变量和至少两个控制变量。"}, "points": [{"t": "Independent variable: the surface area (particle size) of the calcium carbonate.", "m": 1}, {"t": "Dependent variable: the rate of the reaction, e.g. the volume of gas collected per minute.", "m": 1}, {"t": "Controlled variables (any two): the concentration and volume of hydrochloric acid, the mass of calcium carbonate used, the temperature, or the same beaker.", "m": 1}], "weak": false}, {"id": "sci-021", "topic": "技能 · 数据制表", "difficulty": "easy", "type": "short", "stem": "State two rules you must follow when tabulating experimental data. (2 marks)", "options": [], "answer": "• Put the independent variable in the leftmost column, and label every column with the quantity and its unit in the heading (units appear only in the heading, not in every cell).\n• Use a closed table with a value in every cell, with as many rows and columns as the data require, and put each measurement in the correct column.", "explanation": "表格最左列放自变量，列标题写「物理量（单位）」，单位只写在标题里；每个格子都要有数值，表格要封口。", "source": "How to Tabulate Data.docx", "zh": {"stem": "列出实验数据制表时必须遵守的两条规则。（2 分）"}, "points": [{"t": "Put the independent variable in the leftmost column, and label every column with the quantity and its unit in the heading (units appear only in the heading, not in every cell).", "m": 1}, {"t": "Use a closed table with a value in every cell, with as many rows and columns as the data require, and put each measurement in the correct column.", "m": 1}], "weak": false}, {"id": "sci-022", "topic": "技能 · 图表类型选择", "difficulty": "medium", "type": "short", "stem": "Explain when a column graph should be used instead of a line graph. (2 marks)", "options": [], "answer": "• A column graph is used when the variable on the x-axis is a set of categories being compared (for example months, states, colours or subcontinents).\n• A line graph is used when both variables are continuous numerical data, so that trends and patterns can be seen and a line of best fit drawn.", "explanation": "x 轴是分类（月份、州、颜色、国家）用柱状图；两个变量都是连续数值、要看趋势时用折线图。", "source": "How to draw a column graph.docx + Stage 5 Graphing-1.docx", "zh": {"stem": "说明什么时候应该用柱状图而不是折线图。（2 分）"}, "points": [{"t": "A column graph is used when the variable on the x-axis is a set of categories being compared (for example months, states, colours or subcontinents).", "m": 1}, {"t": "A line graph is used when both variables are continuous numerical data, so that trends and patterns can be seen and a line of best fit drawn.", "m": 1}], "weak": false}, {"id": "sci-023", "topic": "技能 · 误差类型", "difficulty": "medium", "type": "short", "stem": "Describe the difference between a random error and a systematic error, and state how each can be reduced. (3 marks)", "options": [], "answer": "• Random errors are unpredictable fluctuations in either direction caused by the limitations of the measuring device or by the experimenter (e.g. reaction time); they are reduced by repeating the measurement and averaging.\n• Systematic errors are reproducible inaccuracies that are always in the same direction, caused by an inaccuracy in the system itself (e.g. a poorly calibrated thermometer reading 2 °C too high); they are reduced by calibrating and maintaining the equipment and taking careful readings.", "explanation": "随机误差方向不定（如反应时间），靠多次重复取平均减小；系统误差方向固定（仪器校准偏差），要靠校准仪器、规范读数减小。", "source": "Half Yearly Revision.pdf（Validity – Errors）", "zh": {"stem": "描述随机误差与系统误差的区别，并说明各自如何减小。（3 分）"}, "points": [{"t": "Random errors are unpredictable fluctuations in either direction caused by the limitations of the measuring device or by the experimenter (e.g. reaction time); they are reduced by repeating the measurement and averaging.", "m": 1}, {"t": "Systematic errors are reproducible inaccuracies that are always in the same direction, caused by an inaccuracy in the system itself (e.g. a poorly calibrated thermometer reading 2 °C too high); they are reduced by calibrating and maintaining the equipment and taking careful readings.", "m": 1}], "weak": false}, {"id": "sci-024", "topic": "技能 · 效度与信度", "difficulty": "medium", "type": "short", "stem": "Distinguish between the validity and the reliability of an investigation. (2 marks)", "options": [], "answer": "• Validity is the extent to which the investigation actually tests what it claims to test — a fair test with one independent variable and everything else controlled.\n• Reliability is the extent to which repeated measurements taken under identical conditions give similar results, so an investigation is reliable when it has been repeated many times.", "explanation": "效度（validity）＝是否测到了想测的东西（单一变量、控制公平）；信度（reliability）＝重复测量结果是否一致。", "source": "Half Yearly Revision.pdf（Validity / Reliability）", "zh": {"stem": "区分一项研究的效度（validity）与信度（reliability）。（2 分）"}, "points": [{"t": "Validity is the extent to which the investigation actually tests what it claims to test — a fair test with one independent variable and everything else controlled.", "m": 1}, {"t": "Reliability is the extent to which repeated measurements taken under identical conditions give similar results, so an investigation is reliable when it has been repeated many times.", "m": 1}], "weak": false}, {"id": "sci-025", "topic": "技能 · 数据趋势与碱基配对", "difficulty": "hard", "type": "short", "stem": "The table gives the percentage of adenine and guanine in the DNA of five species.\n\nSpecies: A | B | C | D | E\n% Adenine: 38 | 26 | 8 | 20 | 33\n% Guanine: 12 | 22 | 40 | 32 | 18\n\n(a) Describe the trend shown in the table. (b) Explain the trend using the base-pairing rule. (c) Predict the percentage of thymine when adenine is 20%. (4 marks)", "options": [], "answer": "• (a) As the percentage of adenine increases, the percentage of guanine decreases — roughly %A + %G ≈ 50, so the two are inversely related.\n• (b) Adenine always pairs with thymine and guanine always pairs with cytosine, so %A = %T and %G = %C; because the four bases add to 100%, 2(%A) + 2(%G) = 100, i.e. %A + %G = 50.\n• (c) Thymine would be 20%.", "explanation": "A 增大则 G 减小，因为 A=T、G=C 且四种碱基合计 100%，所以 A+G=50；A=20% 时 T 也是 20%（物种 D 的数据正好验证）。", "source": "2020 Year 10 Yearly Examination Answers（Part E Q1–Q3 DNA 碱基数据分析）", "zh": {"stem": "下表给出五个物种 DNA 中腺嘌呤与鸟嘌呤的百分比。物种 A–E 的腺嘌呤为 38/26/8/20/33，鸟嘌呤为 12/2……（按碱基配对规律作答）"}, "points": [{"t": "(a) As the percentage of adenine increases, the percentage of guanine decreases — roughly %A + %G ≈ 50, so the two are inversely related.", "m": 1}, {"t": "(b) Adenine always pairs with thymine and guanine always pairs with cytosine, so %A = %T and %G = %C; because the four bases add to 100%, 2(%A) + 2(%G) = 100, i.e. %A + %G = 50.", "m": 1}, {"t": "(c) Thymine would be 20%.", "m": 1}], "weak": false}, {"id": "sci-026", "topic": "技能 · 求梯度与斜率含义", "difficulty": "hard", "type": "short", "stem": "A graph of voltage (y-axis) against current (x-axis) for a resistor is a straight line of best fit passing through (0, 0) and (10 A, 5 V). Calculate the gradient of the line and hence state the resistance of the resistor. Show your working. (3 marks)", "options": [], "answer": "• gradient = rise ÷ run = (5 − 0) V ÷ (10 − 0) A = 0.5\n• Because R = V ÷ I, the gradient equals the resistance, so the resistance is 0.5 Ω.", "explanation": "梯度＝ΔV/ΔI＝5/10＝0.5；由 R=V/I 可知斜率就是电阻，所以电阻是 0.5 Ω（斜率单位 V/A 即 Ω）。", "source": "2020 Year 10 Yearly Examination Answers（Part E Q7：由梯度求电阻）", "zh": {"stem": "某电阻的电压（y 轴）对电流（x 轴）图像是一条过 (0,0) 与 (10 A, 5 V) 的最佳拟合直线。计算斜率并说明它代表什么。"}, "points": [{"t": "gradient = rise ÷ run = (5 − 0) V ÷ (10 − 0) A = 0.5", "m": 1}, {"t": "Because R = V ÷ I, the gradient equals the resistance, so the resistance is 0.5 Ω.", "m": 1}], "weak": false}, {"id": "sci-027", "topic": "技能 · 插值读数", "difficulty": "medium", "type": "short", "stem": "The table shows the force acting on a passenger at different decelerations.\n\nDeceleration (m/s²): 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14\nForce (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040\n\n(a) Estimate the force on the passenger when the deceleration is 5 m/s². (b) Describe the relationship between deceleration and force. (3 marks)", "options": [], "answer": "• (a) 5 m/s² is halfway between 4 m/s² (305 N) and 6 m/s² (448 N), so the force is about (305 + 448) ÷ 2 ≈ 376 N (accept 370–380 N).\n• (b) The relationship is linear: the force increases by a constant amount (about 74 N) for every extra 1 m/s² of deceleration.", "explanation": "5 m/s² 位于 4 与 6 之间，插值得 (305+448)/2≈376 N；两者是线性关系，每增加 1 m/s² 力约增加 74 N（梯度 960/13≈74）。", "source": "Half Yearly Revision.pdf（Deceleration–Force 数据表）", "zh": {"stem": "下表给出乘客在不同减速度下受到的力。减速度 1/2/4/6/8/10/12/14 m/s² 对应力 80/149/305……（做插值读数）"}, "points": [{"t": "(a) 5 m/s² is halfway between 4 m/s² (305 N) and 6 m/s² (448 N), so the force is about (305 + 448) ÷ 2 ≈ 376 N (accept 370–380 N).", "m": 1}, {"t": "(b) The relationship is linear: the force increases by a constant amount (about 74 N) for every extra 1 m/s² of deceleration.", "m": 1}], "weak": false}, {"topic": "有机化学 · 烷烃通式", "difficulty": "easy", "type": "mcq", "stem": "Which general formula correctly represents the alkanes?", "options": ["CnH2n", "CnH2n-2", "CnH2n+2", "CnH2n+1OH"], "answer": 2, "explanation": "烷烃是饱和烃，碳碳之间全是单键，通式 CnH2n+2。CnH2n 是烯烃（一个双键），CnH2n+1OH 是醇。", "id": "sci-028", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "哪个通式正确表示烷烃？", "options": ["CnH2n", "CnH2n-2", "CnH2n+2", "CnH2n+1OH"], "answer": 2}, "weak": false}, {"topic": "有机化学 · 命名", "difficulty": "easy", "type": "mcq", "stem": "What is the IUPAC name of the compound CH3–CH2–CH3?", "options": ["Ethane", "Butane", "Methane", "Propane"], "answer": 3, "explanation": "三个碳的烷烃是 propane（丙烷）。methane 1 个碳，ethane 2 个，butane 4 个。", "id": "sci-029", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "化合物 CH3–CH2–CH3 的 IUPAC 名称是什么？", "options": ["乙烷", "丁烷", "甲烷", "丙烷"], "answer": 3}, "weak": false}, {"topic": "有机化学 · 官能团", "difficulty": "medium", "type": "mcq", "stem": "Which functional group is present in ethanol, CH3CH2OH?", "options": ["Hydroxyl group (–OH)", "Carboxyl group (–COOH)", "Ester linkage (–COO–)", "Carbon–carbon double bond (C=C)"], "answer": 0, "explanation": "乙醇的官能团是羟基 –OH，化合物类别为醇。–COOH 是羧酸，C=C 是烯烃，–COO– 是酯。", "id": "sci-030", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "乙醇 CH3CH2OH 中含有哪种官能团？", "options": ["羟基（–OH）", "羧基（–COOH）", "酯键（–COO–）", "碳碳双键（C=C）"], "answer": 0}, "weak": false}, {"topic": "有机化学 · 不饱和烃检验", "difficulty": "medium", "type": "mcq", "stem": "Bromine water is added to a sample. The orange-brown colour disappears. What does this show?", "options": ["The sample is an alkane", "The sample contains an alkene (C=C)", "The sample contains only single bonds", "The sample contains a carboxylic acid"], "answer": 1, "explanation": "溴水褪色是不饱和键的检验：烯烃与 Br2 加成，双键打开，颜色消失。烷烃不发生这个反应，颜色不变。", "id": "sci-031", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "向样品中加入溴水，橙棕色褪去。这说明什么？", "options": ["样品是烷烃", "样品含有烯烃（C=C）", "样品只含单键", "样品含有羧酸"], "answer": 1}, "weak": false}, {"topic": "有机化学 · 同分异构", "difficulty": "hard", "type": "mcq", "stem": "Butane and 2-methylpropane both have the molecular formula C4H10. They are best described as:", "options": ["Polymers", "Isotopes", "Isomers", "Allotropes"], "answer": 2, "explanation": "同分异构体：分子式相同、结构不同。丁烷是直链，2-甲基丙烷是支链。isotope 是同位素（原子），allotrope 是同素异形体（单质），polymer 是聚合物。", "id": "sci-032", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "丁烷与 2-甲基丙烷的分子式都是 C4H10，它们最准确的称呼是：", "options": ["聚合物", "同位素", "同分异构体", "同素异形体"], "answer": 2}, "weak": false}, {"topic": "有机化学 · 燃烧产物", "difficulty": "easy", "type": "mcq", "stem": "A hydrocarbon burns completely in excess oxygen. Which two products are formed?", "options": ["Ethanol and carbon dioxide", "Carbon monoxide and hydrogen", "Carbon and oxygen", "Carbon dioxide and water"], "answer": 3, "explanation": "完全燃烧：烃 + O2 → CO2 + H2O。氧气不足（不完全燃烧）才产生 CO 和碳黑。", "id": "sci-033", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "烃在足量氧气中完全燃烧，生成哪两种产物？", "options": ["乙醇和二氧化碳", "一氧化碳和氢气", "碳和氧气", "二氧化碳和水"], "answer": 3}, "weak": false}, {"topic": "有机化学 · 检验 CO2", "difficulty": "easy", "type": "mcq", "stem": "Which test identifies the gas produced when a hydrocarbon burns completely?", "options": ["It turns limewater milky", "It pops with a lighted splint", "It bleaches damp litmus paper", "It relights a glowing splint"], "answer": 0, "explanation": "CO2 使石灰水变浑浊（生成 CaCO3 沉淀）。带火星木条复燃是氧气，爆鸣声是氢气，漂白湿石蕊是氯气。", "id": "sci-034", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "用什么检验烃完全燃烧所生成的气体？", "options": ["使石灰水变浑浊", "用点燃的木条发出爆鸣声", "使湿润石蕊褪色", "使带火星的木条复燃"], "answer": 0}, "weak": false}, {"topic": "有机化学 · 加成反应", "difficulty": "medium", "type": "mcq", "stem": "Ethene reacts with hydrogen in the presence of a nickel catalyst. The product is:", "options": ["Ethanol", "Ethane", "Ethyl ethanoate", "Ethanoic acid"], "answer": 1, "explanation": "加氢（hydrogenation）：C2H4 + H2 → C2H6，烯烃变烷烃。加的是氢不是水，所以不是乙醇。", "id": "sci-035", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "乙烯在镍催化下与氢气反应，产物是：", "options": ["乙醇", "乙烷", "乙酸乙酯", "乙酸"], "answer": 1}, "weak": false}, {"topic": "有机化学 · 酯化反应", "difficulty": "hard", "type": "mcq", "stem": "Ethanol reacts with ethanoic acid to produce a compound with a sweet smell. This reaction is called:", "options": ["Polymerisation", "Combustion", "Esterification", "Neutralisation"], "answer": 2, "explanation": "醇 + 羧酸 → 酯 + 水，需要浓硫酸催化加热。产物是乙酸乙酯，有果香味，是酯化反应。", "id": "sci-036", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "乙醇与乙酸反应生成一种有香味的化合物，这个反应叫：", "options": ["聚合反应", "燃烧反应", "酯化反应", "中和反应"], "answer": 2}, "weak": false}, {"topic": "有机化学 · 加聚反应", "difficulty": "medium", "type": "mcq", "stem": "Polythene (polyethylene) is made from ethene. Which type of reaction produces it?", "options": ["Substitution", "Condensation", "Fermentation", "Addition polymerisation"], "answer": 3, "explanation": "乙烯分子（含 C=C）彼此加成、双键打开连成长链，叫加成聚合（addition polymerisation），产物是聚乙烯。", "id": "sci-037", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "聚乙烯由乙烯制得。这属于哪类反应？", "options": ["取代", "缩合", "发酵", "加成聚合"], "answer": 3}, "weak": false}, {"topic": "有机化学 · 官能团识别", "difficulty": "medium", "type": "mcq", "stem": "Which of these compounds contains a carboxyl group and will turn blue litmus red?", "options": ["CH3COOH", "C2H4", "CH3OH", "CH3CH3"], "answer": 0, "explanation": "CH3COOH 是乙酸（醋酸），含 –COOH，是弱酸，使蓝色石蕊变红。CH3OH 是醇（中性），CH3CH3 是烷烃，C2H4 是烯烃。", "id": "sci-038", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "下列哪种化合物含羧基、能使蓝色石蕊变红？", "options": ["CH3COOH", "C2H4", "CH3OH", "CH3CH3"], "answer": 0}, "weak": false}, {"topic": "有机化学 · 乙醇用途", "difficulty": "easy", "type": "mcq", "stem": "Ethanol is increasingly used as a fuel because it:", "options": ["Burns without releasing carbon dioxide", "Can be produced by fermentation of plant material and is renewable", "Has a higher energy density than octane", "Does not require oxygen to burn"], "answer": 1, "explanation": "乙醇可由糖类发酵制得，属可再生燃料，常与汽油混合作 E10。它燃烧同样产生 CO2，能量密度也低于汽油。", "id": "sci-039", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "乙醇越来越多被用作燃料，原因是它：", "options": ["燃烧时不产生二氧化碳", "可由植物材料发酵制得，属可再生资源", "能量密度高于辛烷", "燃烧不需要氧气"], "answer": 1}, "weak": false}, {"topic": "有机化学 · 分子式与结构", "difficulty": "medium", "type": "mcq", "stem": "A molecule has the structural formula CH3–CH=CH–CH3. Which statement is correct?", "options": ["It is an alcohol", "It is a saturated compound with no double bonds", "It contains four carbon atoms and one double bond", "It contains a carboxyl group"], "answer": 2, "explanation": "四个碳、一个 C=C，是丁烯（butene），不饱和。有双键说明不是饱和化合物，也没有 –OH 或 –COOH。", "id": "sci-040", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "某分子结构式为 CH3–CH=CH–CH3，下列哪项正确？", "options": ["它是醇", "它是饱和化合物，没有双键", "它含四个碳原子和一个双键", "它含羧基"], "answer": 2}, "weak": false}, {"topic": "有机化学 · 沸点趋势", "difficulty": "hard", "type": "mcq", "stem": "As the carbon chain of a homologous series of alkanes increases, the boiling point:", "options": ["Decreases, because molecules get lighter", "Increases, because the molecules become more polar", "Stays the same", "Increases, because dispersion forces between molecules get stronger"], "answer": 3, "explanation": "同系物中碳链越长，电子云越大、分子间色散力越强，需要更多能量才能分开，所以沸点升高。烷烃是非极性的，不因极性升高。", "id": "sci-041", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "同系物烷烃随碳链增长，沸点会：", "options": ["降低，因为分子变轻", "升高，因为分子极性变大", "保持不变", "升高，因为分子间色散力增强"], "answer": 3}, "weak": false}, {"topic": "有机化学 · 命名练习", "difficulty": "medium", "type": "mcq", "stem": "The compound CH3–CH2–CH2–OH is named:", "options": ["Propan-1-ol", "Propane", "Propanal", "Propanoic acid"], "answer": 0, "explanation": "三个碳 + 羟基 → 丙醇；羟基在链端，写作 propan-1-ol。Propanoic acid 是丙酸，propanal 是丙醛，propane 是烷烃。", "id": "sci-042", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "化合物 CH3–CH2–CH2–OH 命名为：", "options": ["丙-1-醇", "丙烷", "丙醛", "丙酸"], "answer": 0}, "weak": false}, {"topic": "有机化学 · 反应类型", "difficulty": "medium", "type": "mcq", "stem": "Methane reacts with chlorine in the presence of ultraviolet light. This is an example of:", "options": ["Polymerisation", "Substitution", "Addition", "Esterification"], "answer": 1, "explanation": "烷烃在紫外光下与卤素发生取代反应：一个 H 被 Cl 取代，生成 CH3Cl 和 HCl。是取代，不是加成（加成要双键）。", "id": "sci-043", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "zh": {"stem": "甲烷在紫外光下与氯气反应，这属于：", "options": ["聚合", "取代", "加成", "酯化"], "answer": 1}, "weak": false}, {"topic": "有机化学 · 结构式书写", "difficulty": "hard", "type": "short", "stem": "Draw the full structural formula of ethanol and identify its functional group. Then explain why ethanol is soluble in water.", "answer": "CH3–CH2–OH, with every C–H and C–O bond shown (C2H5OH). Functional group: hydroxyl (–OH). Ethanol is soluble because the –OH group forms hydrogen bonds with water molecules.", "explanation": "结构式要画出所有键，不能只写 C2H6O。可溶性来自羟基与水的氢键——碳链只有 2 个碳，疏水部分小，不足以阻止溶解。", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry（绘图 + 解释题）", "points": [{"t": "CH3–CH2–OH, with every C–H and C–O bond shown (C2H5OH)", "m": 1}, {"t": "Functional group: hydroxyl (–OH)", "m": 1}, {"t": "Ethanol is soluble because the –OH group forms hydrogen bonds with water molecules", "m": 1}], "id": "sci-044", "options": [], "zh": {"stem": "画出乙醇的完整结构式，指出它的官能团，并解释乙醇为什么能溶于水。"}, "weak": false}, {"topic": "有机化学 · 证据解释", "difficulty": "hard", "type": "short", "stem": "A student adds bromine water to two unknown colourless liquids. Sample A decolourises the bromine water at room temperature; sample B does not. Explain what this tells you about the bonding in each sample, and name a possible compound for A and for B.", "answer": "Sample A contains a carbon–carbon double bond (unsaturated): bromine adds across the C=C, so the orange colour disappears. Sample B has only single bonds (saturated) and does not react at room temperature. A could be ethene/hexene; B could be hexane/ethane.", "explanation": "这道是典型的「证据 + 解释」题：先给现象对应的化学原因（加成），再分别给出饱和/不饱和的判断，最后各举一例。只写「A 不饱和」拿不到满分。", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "points": [{"t": "Sample A contains a carbon–carbon double bond (unsaturated): bromine adds across the C=C, so the orange colour disappears. Sample B has only single bonds (saturated) and does not react at room temperature. A could be ethene/hexene", "m": 1}, {"t": "B could be hexane/ethane", "m": 1}], "id": "sci-045", "options": [], "zh": {"stem": "某学生向两种未知无色液体中加入溴水：样品 A 在室温下使溴水褪色，样品 B 不褪色。解释这说明两者各自的成键情况，并各举一个可能的化合物。"}, "weak": false}, {"topic": "有机化学 · 比较与用途", "difficulty": "medium", "type": "short", "stem": "Compare the structure and reactivity of an alkane and an alkene, and explain why alkenes are used to make plastics.", "answer": "Alkanes have only single C–C bonds and are saturated, so they mainly undergo substitution (with UV light) and combustion. Alkenes contain a C=C double bond, are unsaturated, and readily undergo addition reactions. Because alkenes can join to each other by addition (addition polymerisation), they form long-chain polymers such as polyethene and PVC.", "explanation": "分值来自三块：结构差异（单键 vs 双键）、反应差异（取代/燃烧 vs 加成）、与塑料的联系（加聚）。缺一块扣一块。", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "points": [{"t": "Alkanes have only single C–C bonds and are saturated, so they mainly undergo substitution (with UV light) and combustion", "m": 1}, {"t": "Alkenes contain a C=C double bond, are unsaturated, and readily undergo addition reactions", "m": 1}, {"t": "Because alkenes can join to each other by addition (addition polymerisation), they form long-chain polymers such as polyethene and PVC", "m": 1}], "id": "sci-046", "options": [], "zh": {"stem": "比较烷烃与烯烃的结构和反应性，并解释为什么烯烃被用来制造塑料。"}, "weak": false}, {"topic": "有机化学 · 同系物规律", "difficulty": "medium", "type": "short", "stem": "Methanol, ethanol and propanol are members of the same homologous series. State one property that changes in a regular way down the series and explain why.", "answer": "Boiling point increases from methanol to propanol. As the carbon chain lengthens, the molecules have more electrons and a larger surface area, so dispersion forces between molecules become stronger and more energy is needed to separate them.", "explanation": "同系物题的套路：先说「指向哪个规律性变化」（沸点升高），再用分子间作用力解释。只说「分子变大」不够，要落到色散力/能量。", "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry", "points": [{"t": "Boiling point increases from methanol to propanol", "m": 1}, {"t": "As the carbon chain lengthens, the molecules have more electrons and a larger surface area, so dispersion forces between molecules become stronger and more energy is needed to separate them", "m": 1}], "id": "sci-047", "options": [], "zh": {"stem": "甲醇、乙醇、丙醇属于同一同系物。指出一个随碳链增长而规律变化的性质，并解释原因。"}, "weak": false}, {"topic": "有机化学 · 实验设计", "difficulty": "hard", "type": "short", "stem": "Describe a fair test to compare how completely ethanol and octane burn. Identify the independent, dependent and controlled variables.", "answer": "Independent variable: the fuel used (ethanol vs octane). Dependent variable: a measure of completeness of combustion, e.g. the amount of soot produced, the colour of the flame, or the mass of CO2/heat released per gram. Controlled: same mass of fuel, same burner, same distance from the flame to the surface, same volume of water heated, same starting temperature, same oxygen supply. Judge completeness by the least soot and the cleanest blue flame.", "explanation": "考纲 Part C 明确列了「Identifying Variables」和「Planning Investigations」。答案必须三项变量齐全，并给出可测量的指标，不能只写「观察火焰」。", "source": "Yearly Study Guide 2026 · Science Part C: Skills（Planning Investigations / Identifying Variables）", "points": [{"t": "Independent variable: the fuel used (ethanol vs octane)", "m": 1}, {"t": "Dependent variable: a measure of completeness of combustion, e.g", "m": 1}, {"t": "the amount of soot produced, the colour of the flame, or the mass of CO2/heat released per gram", "m": 1}, {"t": "Controlled: same mass of fuel, same burner, same distance from the flame to the surface, same volume of water heated, same starting temperature, same oxygen supply", "m": 1}, {"t": "Judge completeness by the least soot and the cleanest blue flame", "m": 1}], "id": "sci-048", "options": [], "zh": {"stem": "设计一个公平实验比较乙醇与辛烷燃烧的完全程度，指出自变量、因变量和控制变量。"}, "weak": false}]};
@@ -1300,6 +1697,9 @@ function TFILTER(){
 function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
+const AI_ENGINE = {};
+function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
   "as at by from it its their they them we you your our not no but if then than so such can could may might " +
@@ -1571,9 +1971,10 @@ function render() {
           <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
           ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
           ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
+          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
         </div>
         <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI: '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
             return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
         <div class="actions">
           <button class="btn ghost" id="allpt">全部勾上</button>
@@ -1670,21 +2071,37 @@ function render() {
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
       res.style.color = hit ? "var(--ok)" : "var(--bad)";
     };
+    const ac = document.getElementById("aiconf");
+    if (ac) ac.onclick = () => {
+      const cur = localAI();
+      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      if (v === null) return;
+      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+    };
     const ai = document.getElementById("aigrade");
     if (ai) ai.onclick = () => {
       const arr = readSlots(), answer = joinSlots(arr);
       if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
       ai.disabled = true; ai.textContent = "AI 判分中…";
-      fetch(apibase() + "/grade", {
-        method: "POST", headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer})
-      }).then(r=>r.json()).then(d => {
-        if (!d || !d.ok) throw new Error((d && d.error) || "failed");
-        AI_RES[q.id] = d.results; save(); render();
-      }).catch(e => {
+      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+      const engines = [];
+      if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
+      const loc = localAI();
+      if (loc) engines.push({n:"local", u: loc + "/grade"});
+      (async function(){
+        let lastErr = "no engine";
+        for (const en of engines) {
+          try {
+            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
+            const d = await r.json();
+            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+            return;
+          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+        }
         ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分失败：" + e.message, false);
-      });
+        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
+      })();
     };
     const ap2 = document.getElementById("applyai");
     if (ap2) ap2.onclick = () => {

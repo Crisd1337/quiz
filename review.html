@@ -1,13 +1,321 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8">
+<html lang="zh-CN"><head>
+<script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
+(function(){try{
+  var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
+  var s=m||localStorage.getItem("dsh-theme")||"system";
+  var r=document.documentElement;
+  if(s==="light"||s==="dark") r.setAttribute("data-theme",s);
+  r.setAttribute("data-theme-mode",s);
+}catch(e){}})();</script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>错题本 · 待复习</title>
 <style>
-:root{--bg:#0f1115;--card:#171a21;--card2:#1e222b;--fg:#e8ecf1;--dim:#9aa4b2;--line:#2a2f3a;--accent:#5b8cff;--ok:#2fbf71;--bad:#ff5f56}}
-@media (prefers-color-scheme: light){:root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec}}
+/* ══ design tokens ═══════════════════════════════════════ */
+:root{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+  --bg: var(--background);
+  --card: var(--surface);
+  --card2: var(--surface-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-secondary);
+  --fg: var(--foreground);
+  --dim: var(--muted);
+  --line: var(--border);
+  --line2: var(--border-strong);
+  --ok: var(--success);
+  --bad: var(--error);
+  --warn: var(--warning);
+  /* 派生色：只覆盖 --accent，其余自动跟着变（商店主题用它）*/
+  --accent-text: color-mix(in srgb, var(--accent) 74%, var(--foreground));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --background: #09090B;
+    --surface: #111113;
+    --surface-secondary: #18181B;
+    --surface-inset: #1F1F23;
+    --foreground: #FAFAFA;
+    --muted: #A1A1AA;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --accent: #3291FF;
+    --success: #4ADE80;
+    --success-soft: rgba(74,222,128,.12);
+    --error: #F87171;
+    --error-soft: rgba(248,113,113,.12);
+    --warning: #F59E0B;
+    --warning-soft: rgba(245,158,11,.12);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+    --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+    --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --background: #09090B;
+  --surface: #111113;
+  --surface-secondary: #18181B;
+  --surface-inset: #1F1F23;
+  --foreground: #FAFAFA;
+  --muted: #A1A1AA;
+  --border: #27272A;
+  --border-strong: #3F3F46;
+  --primary: #FAFAFA;
+  --primary-foreground: #171717;
+  --accent: #3291FF;
+  --success: #4ADE80;
+  --success-soft: rgba(74,222,128,.12);
+  --error: #F87171;
+  --error-soft: rgba(248,113,113,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+  --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+}
+
+/* ══ foundations ═════════════════════════════════════════ */
+:root{
+  /* type */
+  --font-sans:"Geist Variable","Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono:"Geist Mono Variable","Geist Mono",ui-monospace,SFMono-Regular,"SF Mono",
+    Menlo,Consolas,monospace;
+  --text-2xl:28px; --text-xl:20px; --text-lg:17px; --text-md:15px;
+  --text-base:14px; --text-sm:12px; --text-xs:11px;
+  --lh-tight:1.25; --lh-snug:1.45; --lh-base:1.6; --lh-prose:1.75;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s8:32px; --s10:40px; --s12:48px; --s16:64px;
+  /* radius */
+  --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px; --r-full:999px;
+  /* layout */
+  --page-max:1120px;
+  --read-max:760px;
+  --page-x:32px;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --fast:.12s; --norm:.2s;
+}
+
+@font-face{
+  font-family:"Geist Variable";
+  src:url("fonts/geist-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-latin.woff2") format("woff2");
+  font-weight:400 700; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,
+    U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Geist Mono Variable";
+  src:url("fonts/geist-mono-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight:400 600; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,
+    U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:var(--text-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11";
+  font-synthesis-weight:none;
+  transition:background-color var(--norm) var(--ease),color var(--norm) var(--ease);
+}
+body,body *{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:var(--lh-tight);font-weight:600}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl)}
+h3{font-size:var(--text-md)}
+a{color:var(--accent-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+::selection{background:var(--accent-soft);color:var(--foreground)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+hr{border:0;border-top:1px solid var(--border);margin:var(--s6) 0}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em}
+kbd{background:var(--surface-secondary);border:1px solid var(--border);border-bottom-width:2px;
+  border-radius:var(--r-sm);padding:1px 6px;color:var(--muted);font-size:11px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+/* 数字统一等宽，避免跳动 */
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ══ 共享顶栏（首页 / 商城 / 错题本）═════════════════════ */
+.topbar{position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);
+  height:56px;display:flex;align-items:center;gap:var(--s4)}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--foreground);
+  text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:-.01em;flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--primary);
+  color:var(--primary-foreground);display:grid;place-items:center;font-size:11px;
+  font-weight:600;font-family:var(--font-mono);line-height:1}
+.nav{display:flex;align-items:center;gap:1px;min-width:0;overflow:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px;color:var(--muted);padding:5px 9px;border-radius:var(--r-sm);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--fast) var(--ease),background-color var(--fast) var(--ease)}
+.nav a:hover{color:var(--foreground);background:var(--surface-secondary);text-decoration:none}
+.nav a.on{color:var(--foreground);font-weight:500}
+.grow{flex:1}
+@media (max-width:720px){
+  .topbar-in{height:auto;flex-wrap:wrap;gap:8px;padding:9px var(--page-x) 0}
+  .brand .bname{display:none}
+  .topbar .nav{order:10;width:100%;margin:2px calc(-1 * var(--page-x)) 0;
+    padding:0 var(--page-x) 8px;border-top:1px solid var(--border)}
+  .topbar .themectl{margin-left:auto}
+}
+
+/* 分段控件选中态 */
+.seg button.on{border-color:var(--foreground)!important}
+
+/* ══ components ══════════════════════════════════════════ */
+.btn,.btn-ghost,.btn2{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  height:34px;padding:0 14px;border-radius:var(--r-sm);
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),opacity var(--fast) var(--ease);
+  text-decoration:none;
+}
+.btn{
+  background:var(--primary);color:var(--primary-foreground);
+  border-color:var(--primary);
+}
+.btn:hover{opacity:.88;text-decoration:none}
+.btn:active{transform:translateY(.5px)}
+.btn:disabled,.btn[disabled]{background:var(--surface-secondary);color:var(--muted);
+  border-color:var(--border);opacity:1;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost,.btn.ghost,.btn2{
+  background:var(--surface);color:var(--foreground);border-color:var(--border);
+}
+.btn-ghost:hover,.btn.ghost:hover,.btn2:hover{
+  background:var(--surface-secondary);border-color:var(--border-strong);text-decoration:none;
+}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;background:var(--surface)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:var(--r-sm)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent:hover{opacity:.9;color:#fff}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:none;
+}
+.input,input[type="text"],input[type="search"],input[type="number"],textarea,select{
+  font-family:inherit;font-size:var(--text-base);color:var(--foreground);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:8px 11px;outline:none;transition:border-color var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.input:hover,input:hover,textarea:hover,select:hover{border-color:var(--border-strong)}
+.input:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--muted);opacity:.85}
+
+.chip,.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:var(--text-xs);line-height:1.6;font-weight:500;
+  padding:2px 8px;border-radius:var(--r-sm);
+  background:var(--surface-secondary);border:1px solid var(--border);color:var(--muted);
+  white-space:nowrap;
+}
+
+/* 主题切换控件 */
+.themectl{display:inline-flex;align-items:center;gap:2px;padding:2px;
+  background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm)}
+.themectl button{
+  font:inherit;font-size:11.5px;font-weight:500;line-height:1;height:24px;padding:0 9px;
+  border:0;border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease);
+}
+.themectl button:hover{color:var(--foreground)}
+.themectl button.on{background:var(--surface);color:var(--foreground);
+  box-shadow:var(--shadow-sm)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;
+  color:var(--muted);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);height:28px;padding:0 10px;cursor:pointer;
+  transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease)}
+.themebtn:hover{color:var(--foreground);border-color:var(--border-strong)}
+.themebtn b{color:var(--foreground);font-weight:500}
+
+/* 浅色下别让深色主题的重阴影漏过来 */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .submit-card{box-shadow:var(--shadow-lg)}
+  :root:not([data-theme="dark"]) .lb-fab{box-shadow:var(--shadow-md)}
+  :root:not([data-theme="dark"]) .lang-btn{box-shadow:var(--shadow-sm)}
+}
+:root[data-theme="light"] .submit-card{box-shadow:var(--shadow-lg)}
+:root[data-theme="light"] .lb-fab{box-shadow:var(--shadow-md)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:900px){ :root{--page-x:20px} }
+@media (max-width:560px){ :root{--page-x:16px} }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
-.wrap{max-width:860px;margin:0 auto;padding:32px 18px 80px}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--font-sans)}
+.wrap{max-width:var(--page-max);margin:0 auto;padding:var(--s8) var(--page-x) var(--s16)}
 .lang-btn{position:fixed;left:16px;bottom:16px;z-index:35;background:var(--card);border:1px solid var(--line);
  border-radius:999px;padding:7px 14px;font:inherit;font-size:12px;color:var(--dim);cursor:pointer}
 .lang-btn b{color:var(--accent)}
@@ -39,7 +347,8 @@ h1{font-size:24px;margin:0 0 6px}
  padding:8px 14px;font:inherit;cursor:pointer;text-decoration:none}
 .btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
 footer{color:var(--dim);font-size:12px;text-align:center;padding:30px 0 0}
-</style></head><body><div class="wrap">
+</style></head><body>
+<div class="topbar"><div class="topbar-in"><a class="brand" href="index.html"><span class="mark">C</span><span class="bname">Canvas 复习</span></a><nav class="nav"><a href="index.html">总览</a><a href="all.html">综合卷</a><a href="review.html" class="on">错题本</a><a href="shop.html">商城</a></nav><span class="grow"></span><span data-theme-ctl="seg"></span></div></div><div class="wrap">
 <h1>错题本 · 待复习</h1>
 <p class="lead">按遗忘曲线排期：第一次做错后第 1 天复习，答对推到第 3 天，再对推到第 7 天，全对后自动「毕业」。</p>
 <div class="stats">
@@ -251,32 +560,33 @@ if (window.applyI18n) setTimeout(applyI18n, 0);
   function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
   function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
 
+  /* 主题只改强调色：浅色 / 深色 / 跟随系统由 data-theme 决定，两者互不冲突 */
   var THEMES={
-    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
-    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
-    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
-    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+    gold:  {accent:"#B7791F"},
+    warm:  {accent:"#C2410C"},
+    forest:{accent:"#047857"},
+    sakura:{accent:"#BE185D"}
   };
   function applyTheme(){
     var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
-    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
-    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+    root.style.removeProperty("--accent");
+    if(t && THEMES[t]){ root.style.setProperty("--accent", THEMES[t].accent); }
   }
   function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
 
   var SHOP=[
-    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
-    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
-    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
-    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
-    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
-    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
-    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
-    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
-    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
-    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
-    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
-    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"}
   ];
 
   function buy(id){
@@ -484,7 +794,7 @@ if (window.applyI18n) setTimeout(applyI18n, 0);
     "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
     "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
 
-    "🛒 商城":"Shop","← 首页":"← Home",
+    "商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
     "还原默认主题":"Reset theme","卸下称号":"Remove title",
@@ -1084,31 +1394,50 @@ if (window.applyI18n) setTimeout(applyI18n, 0);
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var title = inv.equipped && inv.equipped.title
+      ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
     var ne = nextExam();
-    var dd = ne ? ne.days : null;
-    var badgeHtml = BADGES.map(function(x){
-      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+    var owned = BADGES.filter(function(x){ return b[x.id]; });
+    var badgeHtml = owned.map(function(x){
+      return '<span class="badge on" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
     }).join("");
     host.innerHTML =
-      '<div class="hero-top">'+
-        '<span class="lvp">Lv.'+lv+'</span>'+
-        '<span class="xpv">'+xp+'</span>'+
-        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
-        title+'<span class="grow"></span>'+
-        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
+      '<div class="ovc">'+
+        '<span class="ovl">等级'+title+'</span>'+
+        '<span class="ovn">'+lv+'<small>Lv</small></span>'+
+        '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+        '<span class="ovh">'+(nx?'还差 '+(nx-xp)+' XP 升级':'已满级')+' · 共 '+xp+' XP</span>'+
       '</div>'+
-      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-      '<div class="metaline">'+
-        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
-        '<span>连续 <b>'+st+'</b> 天</span>'+
-        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
-        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
-        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+      '<div class="ovc">'+
+        '<span class="ovl">今日</span>'+
+        '<span class="ovn">'+tc+'<small>/'+GOAL+'</small></span>'+
+        '<span class="ovh">连续 '+st+' 天 · 连对 '+(g.best||0)+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已开始</span>'+
+        '<span class="ovn" id="ovStarted">—</span>'+
+        '<span class="ovh">'+(ne?('下一场 '+ne.name+' · '+ne.days+' 天后'):'')+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已做题</span>'+
+        '<span class="ovn" id="ovAnswered">—</span>'+
+        '<span class="ovh" id="ovAcc">还没有作答记录</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">错题</span>'+
+        '<span class="ovn" id="ovMistakes">—</span>'+
+        '<span class="ovh" id="ovDue">今天没有到期</span>'+
+      '</div>'+
+      '<div class="ovbadges">'+
+        '<span class="ovb-lbl">徽章 '+owned.length+'/'+BADGES.length+'</span>'+
+        badgeHtml+
+        (owned.length? '' : '<span class="ovb-hint">做题、连对、连续打卡都会解锁</span>')+
+        '<span class="grow"></span>'+
+        '<span class="coinline">金币 <b>'+(c.n||0)+'</b> · 星尘 <b>'+(c.dust||0)+'</b></span>'+
         '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
-      '</div>'+
-      '<div class="badges">'+badgeHtml+'</div>';
+      '</div>';
+    if(window.__homeStats) window.__homeStats();
   }
   function renderAll(){
     renderProfile();
@@ -1156,6 +1485,54 @@ if (window.applyI18n) setTimeout(applyI18n, 0);
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+
+/* ── 主题（浅色 / 深色 / 跟随系统）──────────────────────── */
+(function(){
+  var KEY="dsh-theme";
+  function mode(){
+    try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
+    catch(e){return "system";}
+  }
+  var LABEL={light:"浅色",dark:"深色",system:"自动"};
+  function paint(box){
+    var m=mode();
+    if(box.getAttribute("data-theme-ctl")==="cycle"){
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="外观：'+LABEL[m]+
+        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+    }else{
+      box.innerHTML=['light','dark','system'].map(function(k){
+        return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
+      }).join("");
+    }
+  }
+  function apply(m){
+    var r=document.documentElement;
+    if(m==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",m);
+    r.setAttribute("data-theme-mode",m);
+    document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+  }
+  function set(m){
+    try{localStorage.setItem(KEY,m);}catch(e){}
+    apply(m);
+  }
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest ? ev.target.closest("[data-mode],[data-cycle]") : null;
+    if(!b) return;
+    if(b.hasAttribute("data-cycle")){
+      var order=["system","light","dark"], cur=mode();
+      set(order[(order.indexOf(cur)+1)%3]);
+    }else{ set(b.getAttribute("data-mode")); }
+    ev.preventDefault();
+  });
+  try{
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys=function(){ if(mode()==="system") apply("system"); };
+    if(mq.addEventListener) mq.addEventListener("change",onSys);
+    else if(mq.addListener) mq.addListener(onSys);
+  }catch(e){}
+  window.DSH_THEME={set:set,mode:mode};
+  document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+})();
 </script>
 <button class="lang-btn" id="langBtn">Language <b id="langNow">EN</b></button>
 <script>

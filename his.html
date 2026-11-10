@@ -1,71 +1,395 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
+(function(){try{
+  var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
+  var s=m||localStorage.getItem("dsh-theme")||"system";
+  var r=document.documentElement;
+  if(s==="light"||s==="dark") r.setAttribute("data-theme",s);
+  r.setAttribute("data-theme-mode",s);
+}catch(e){}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>历史 · 10 年级 · 复习测验</title>
 <style>
+/* ══ design tokens ═══════════════════════════════════════ */
 :root{
-  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
-  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+  --bg: var(--background);
+  --card: var(--surface);
+  --card2: var(--surface-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-secondary);
+  --fg: var(--foreground);
+  --dim: var(--muted);
+  --line: var(--border);
+  --line2: var(--border-strong);
+  --ok: var(--success);
+  --bad: var(--error);
+  --warn: var(--warning);
+  /* 派生色：只覆盖 --accent，其余自动跟着变（商店主题用它）*/
+  --accent-text: color-mix(in srgb, var(--accent) 74%, var(--foreground));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
 }
-@media (prefers-color-scheme: light) {
-  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --background: #09090B;
+    --surface: #111113;
+    --surface-secondary: #18181B;
+    --surface-inset: #1F1F23;
+    --foreground: #FAFAFA;
+    --muted: #A1A1AA;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --accent: #3291FF;
+    --success: #4ADE80;
+    --success-soft: rgba(74,222,128,.12);
+    --error: #F87171;
+    --error-soft: rgba(248,113,113,.12);
+    --warning: #F59E0B;
+    --warning-soft: rgba(245,158,11,.12);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+    --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+    --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+  }
 }
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --background: #09090B;
+  --surface: #111113;
+  --surface-secondary: #18181B;
+  --surface-inset: #1F1F23;
+  --foreground: #FAFAFA;
+  --muted: #A1A1AA;
+  --border: #27272A;
+  --border-strong: #3F3F46;
+  --primary: #FAFAFA;
+  --primary-foreground: #171717;
+  --accent: #3291FF;
+  --success: #4ADE80;
+  --success-soft: rgba(74,222,128,.12);
+  --error: #F87171;
+  --error-soft: rgba(248,113,113,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+  --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+}
+
+/* ══ foundations ═════════════════════════════════════════ */
+:root{
+  /* type */
+  --font-sans:"Geist Variable","Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono:"Geist Mono Variable","Geist Mono",ui-monospace,SFMono-Regular,"SF Mono",
+    Menlo,Consolas,monospace;
+  --text-2xl:28px; --text-xl:20px; --text-lg:17px; --text-md:15px;
+  --text-base:14px; --text-sm:12px; --text-xs:11px;
+  --lh-tight:1.25; --lh-snug:1.45; --lh-base:1.6; --lh-prose:1.75;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s8:32px; --s10:40px; --s12:48px; --s16:64px;
+  /* radius */
+  --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px; --r-full:999px;
+  /* layout */
+  --page-max:1120px;
+  --read-max:760px;
+  --page-x:32px;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --fast:.12s; --norm:.2s;
+}
+
+@font-face{
+  font-family:"Geist Variable";
+  src:url("fonts/geist-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-latin.woff2") format("woff2");
+  font-weight:400 700; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,
+    U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Geist Mono Variable";
+  src:url("fonts/geist-mono-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight:400 600; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,
+    U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:var(--text-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11";
+  font-synthesis-weight:none;
+  transition:background-color var(--norm) var(--ease),color var(--norm) var(--ease);
+}
+body,body *{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:var(--lh-tight);font-weight:600}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl)}
+h3{font-size:var(--text-md)}
+a{color:var(--accent-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+::selection{background:var(--accent-soft);color:var(--foreground)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+hr{border:0;border-top:1px solid var(--border);margin:var(--s6) 0}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em}
+kbd{background:var(--surface-secondary);border:1px solid var(--border);border-bottom-width:2px;
+  border-radius:var(--r-sm);padding:1px 6px;color:var(--muted);font-size:11px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+/* 数字统一等宽，避免跳动 */
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ══ 共享顶栏（首页 / 商城 / 错题本）═════════════════════ */
+.topbar{position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);
+  height:56px;display:flex;align-items:center;gap:var(--s4)}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--foreground);
+  text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:-.01em;flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--primary);
+  color:var(--primary-foreground);display:grid;place-items:center;font-size:11px;
+  font-weight:600;font-family:var(--font-mono);line-height:1}
+.nav{display:flex;align-items:center;gap:1px;min-width:0;overflow:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px;color:var(--muted);padding:5px 9px;border-radius:var(--r-sm);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--fast) var(--ease),background-color var(--fast) var(--ease)}
+.nav a:hover{color:var(--foreground);background:var(--surface-secondary);text-decoration:none}
+.nav a.on{color:var(--foreground);font-weight:500}
+.grow{flex:1}
+@media (max-width:720px){
+  .topbar-in{height:auto;flex-wrap:wrap;gap:8px;padding:9px var(--page-x) 0}
+  .brand .bname{display:none}
+  .topbar .nav{order:10;width:100%;margin:2px calc(-1 * var(--page-x)) 0;
+    padding:0 var(--page-x) 8px;border-top:1px solid var(--border)}
+  .topbar .themectl{margin-left:auto}
+}
+
+/* 分段控件选中态 */
+.seg button.on{border-color:var(--foreground)!important}
+
+/* ══ components ══════════════════════════════════════════ */
+.btn,.btn-ghost,.btn2{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  height:34px;padding:0 14px;border-radius:var(--r-sm);
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),opacity var(--fast) var(--ease);
+  text-decoration:none;
+}
+.btn{
+  background:var(--primary);color:var(--primary-foreground);
+  border-color:var(--primary);
+}
+.btn:hover{opacity:.88;text-decoration:none}
+.btn:active{transform:translateY(.5px)}
+.btn:disabled,.btn[disabled]{background:var(--surface-secondary);color:var(--muted);
+  border-color:var(--border);opacity:1;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost,.btn.ghost,.btn2{
+  background:var(--surface);color:var(--foreground);border-color:var(--border);
+}
+.btn-ghost:hover,.btn.ghost:hover,.btn2:hover{
+  background:var(--surface-secondary);border-color:var(--border-strong);text-decoration:none;
+}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;background:var(--surface)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:var(--r-sm)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent:hover{opacity:.9;color:#fff}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:none;
+}
+.input,input[type="text"],input[type="search"],input[type="number"],textarea,select{
+  font-family:inherit;font-size:var(--text-base);color:var(--foreground);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:8px 11px;outline:none;transition:border-color var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.input:hover,input:hover,textarea:hover,select:hover{border-color:var(--border-strong)}
+.input:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--muted);opacity:.85}
+
+.chip,.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:var(--text-xs);line-height:1.6;font-weight:500;
+  padding:2px 8px;border-radius:var(--r-sm);
+  background:var(--surface-secondary);border:1px solid var(--border);color:var(--muted);
+  white-space:nowrap;
+}
+
+/* 主题切换控件 */
+.themectl{display:inline-flex;align-items:center;gap:2px;padding:2px;
+  background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm)}
+.themectl button{
+  font:inherit;font-size:11.5px;font-weight:500;line-height:1;height:24px;padding:0 9px;
+  border:0;border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease);
+}
+.themectl button:hover{color:var(--foreground)}
+.themectl button.on{background:var(--surface);color:var(--foreground);
+  box-shadow:var(--shadow-sm)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;
+  color:var(--muted);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);height:28px;padding:0 10px;cursor:pointer;
+  transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease)}
+.themebtn:hover{color:var(--foreground);border-color:var(--border-strong)}
+.themebtn b{color:var(--foreground);font-weight:500}
+
+/* 浅色下别让深色主题的重阴影漏过来 */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .submit-card{box-shadow:var(--shadow-lg)}
+  :root:not([data-theme="dark"]) .lb-fab{box-shadow:var(--shadow-md)}
+  :root:not([data-theme="dark"]) .lang-btn{box-shadow:var(--shadow-sm)}
+}
+:root[data-theme="light"] .submit-card{box-shadow:var(--shadow-lg)}
+:root[data-theme="light"] .lb-fab{box-shadow:var(--shadow-md)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:900px){ :root{--page-x:20px} }
+@media (max-width:560px){ :root{--page-x:16px} }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);
- font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
- backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
-.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
-.bar .meta{color:var(--dim);font-size:13px}
+body{margin:0;display:flex;flex-direction:column;min-height:100vh}
+header{position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb,var(--background) 88%,transparent);
+  -webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--border);padding:9px 0 0}
+.bar{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);display:flex;
+  align-items:center;gap:7px;flex-wrap:wrap;min-height:34px}
+.bar h1{font-size:15px;margin:0;font-weight:600;letter-spacing:-.01em}
+.bar .meta{color:var(--muted);font-size:12px}
 .spacer{flex:1}
-.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
- font-size:12px;color:var(--dim)}
-.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
-.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
-main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
-.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
-.chip.easy{color:#2fbf71;border-color:#2fbf7144}
-.chip.medium{color:#f5a623;border-color:#f5a62344}
-.chip.hard{color:#ff5f56;border-color:#ff5f5644}
-.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
-.opts{display:grid;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);
+  background:var(--surface);border-radius:var(--r-sm);padding:3px 8px;font-size:11.5px;
+  color:var(--muted);font-family:var(--font-mono);font-variant-numeric:tabular-nums;
+  white-space:nowrap;text-decoration:none}
+a.pill:hover{border-color:var(--border-strong);color:var(--foreground);text-decoration:none}
+.progress{height:3px;background:var(--surface-secondary);border-radius:99px;overflow:hidden;
+  margin:9px 0 0}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;
+  transition:width .3s var(--ease)}
+main{width:100%;max-width:860px;margin:0 auto;padding:var(--s6) var(--page-x) 96px;flex:1 0 auto}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip.easy{color:var(--success);border-color:color-mix(in srgb,var(--success) 40%,var(--border));
+  background:var(--success-soft)}
+.chip.medium{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 40%,var(--border));
+  background:var(--warning-soft)}
+.chip.hard{color:var(--error);border-color:color-mix(in srgb,var(--error) 40%,var(--border));
+  background:var(--error-soft)}
+.stem{font-size:17px;line-height:1.7;margin:4px 0 16px;white-space:pre-wrap;
+  color:var(--foreground);letter-spacing:-.005em}
+.opts{display:grid;gap:8px}
 .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
- background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
- padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
-.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+  background:var(--surface);border:1px solid var(--border);color:var(--foreground);
+  border-radius:var(--r-sm);padding:12px 14px;font:inherit;font-size:14.5px;line-height:1.6;
+  cursor:pointer;transition:border-color var(--fast) var(--ease),
+  background-color var(--fast) var(--ease)}
+.opt:hover:not(:disabled){border-color:var(--border-strong);background:var(--surface-secondary)}
 .opt:disabled{cursor:default}
-.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
- display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
-.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
-.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
-.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
-.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
-textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
- border-radius:11px;padding:12px;font:inherit;resize:vertical}
-.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
- border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.opt .k{flex:0 0 22px;height:22px;border-radius:4px;background:var(--surface-secondary);
+  border:1px solid var(--border);display:grid;place-items:center;font-size:11px;font-weight:600;
+  color:var(--muted);font-family:var(--font-mono)}
+.opt.correct{border-color:var(--success);background:var(--success-soft)}
+.opt.correct .k{background:var(--success);color:var(--surface);border-color:var(--success)}
+.opt.wrong{border-color:var(--error);background:var(--error-soft)}
+.opt.wrong .k{background:var(--error);color:var(--surface);border-color:var(--error)}
+textarea{width:100%;min-height:96px;background:var(--surface);color:var(--foreground);
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;font:inherit;
+  font-size:14px;line-height:1.65;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:2px solid var(--accent);
+  background:var(--surface-secondary);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-size:13.5px;line-height:1.7;display:none}
 .exp.show{display:block}
-.exp b{color:var(--accent)}
-.src{margin-top:8px;color:var(--dim);font-size:12px}
-.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
- font:inherit;font-weight:600;cursor:pointer}
-button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-button.btn:disabled{opacity:.45;cursor:default}
-.done h2{margin:0 0 6px}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
-.stat b{display:block;font-size:24px;line-height:1.2}
-.stat span{color:var(--dim);font-size:12px}
-.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.exp b{color:var(--accent-text)}
+.src{margin-top:8px;color:var(--muted);font-size:11.5px}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+button.btn{height:34px;padding:0 14px;border-radius:var(--r-sm);border:1px solid var(--primary);
+  background:var(--primary);color:var(--primary-foreground);font:inherit;font-size:13px;
+  font-weight:500;cursor:pointer;transition:opacity var(--fast) var(--ease)}
+button.btn:hover:not(:disabled){opacity:.88}
+button.btn.ghost{background:var(--surface);color:var(--foreground);border-color:var(--border)}
+button.btn.ghost:hover:not(:disabled){background:var(--surface-secondary);
+  border-color:var(--border-strong)}
+button.btn:disabled{opacity:.4;cursor:not-allowed}
+.done h2{margin:0 0 6px;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:16px 0}
+.stat{background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:12px 14px}
+.stat b{display:block;font-size:22px;line-height:1.2;font-family:var(--font-mono);
+  font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:11.5px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
 .wronglist li{margin:4px 0}
-footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
-kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:11.5px;padding:26px 16px 30px;line-height:1.7}
 
 .chip.warn{border-color:#f5a62366;color:#f5a623}
 .muted{color:var(--dim);font-size:13px}
@@ -96,7 +420,8 @@ kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;paddi
 .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
  padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
-.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.seg button.on{border-color:var(--foreground);background:var(--surface);font-weight:600;
+ box-shadow:var(--shadow-sm)}
 .setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
 .setup-foot .sum{color:var(--dim);font-size:14px}
 .setup-foot .sum b{color:var(--fg);font-size:18px}
@@ -250,6 +575,9 @@ main,.card,.setup{max-width:100%}
 .actions{flex-wrap:wrap}
 footer{padding:22px 14px 30px;line-height:1.8}
 
+@media (max-width:1180px){
+  .bar .meta{display:none}
+}
 @media (max-width:720px){
   #scorepill{display:none}
   .bar a.pill{display:none}
@@ -303,11 +631,12 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 28</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
-    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
-    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
-    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
+    <button class="btn ghost btn-sm" id="tfilter">全部</button>
+    <button class="btn ghost btn-sm" id="grid">题号</button>
+    <button class="btn ghost btn-sm" id="exam">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
-    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+    <button class="btn ghost btn-sm" id="restart">重来</button>
+    <span data-theme-ctl="cycle"></span>
   </div>
   <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
 </header>
@@ -379,32 +708,33 @@ footer{padding:22px 14px 30px;line-height:1.8}
   function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
   function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
 
+  /* 主题只改强调色：浅色 / 深色 / 跟随系统由 data-theme 决定，两者互不冲突 */
   var THEMES={
-    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
-    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
-    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
-    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+    gold:  {accent:"#B7791F"},
+    warm:  {accent:"#C2410C"},
+    forest:{accent:"#047857"},
+    sakura:{accent:"#BE185D"}
   };
   function applyTheme(){
     var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
-    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
-    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+    root.style.removeProperty("--accent");
+    if(t && THEMES[t]){ root.style.setProperty("--accent", THEMES[t].accent); }
   }
   function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
 
   var SHOP=[
-    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
-    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
-    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
-    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
-    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
-    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
-    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
-    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
-    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
-    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
-    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
-    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"}
   ];
 
   function buy(id){
@@ -612,7 +942,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
     "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
 
-    "🛒 商城":"Shop","← 首页":"← Home",
+    "商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
     "还原默认主题":"Reset theme","卸下称号":"Remove title",
@@ -1212,31 +1542,50 @@ footer{padding:22px 14px 30px;line-height:1.8}
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var title = inv.equipped && inv.equipped.title
+      ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
     var ne = nextExam();
-    var dd = ne ? ne.days : null;
-    var badgeHtml = BADGES.map(function(x){
-      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+    var owned = BADGES.filter(function(x){ return b[x.id]; });
+    var badgeHtml = owned.map(function(x){
+      return '<span class="badge on" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
     }).join("");
     host.innerHTML =
-      '<div class="hero-top">'+
-        '<span class="lvp">Lv.'+lv+'</span>'+
-        '<span class="xpv">'+xp+'</span>'+
-        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
-        title+'<span class="grow"></span>'+
-        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
+      '<div class="ovc">'+
+        '<span class="ovl">等级'+title+'</span>'+
+        '<span class="ovn">'+lv+'<small>Lv</small></span>'+
+        '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+        '<span class="ovh">'+(nx?'还差 '+(nx-xp)+' XP 升级':'已满级')+' · 共 '+xp+' XP</span>'+
       '</div>'+
-      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-      '<div class="metaline">'+
-        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
-        '<span>连续 <b>'+st+'</b> 天</span>'+
-        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
-        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
-        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+      '<div class="ovc">'+
+        '<span class="ovl">今日</span>'+
+        '<span class="ovn">'+tc+'<small>/'+GOAL+'</small></span>'+
+        '<span class="ovh">连续 '+st+' 天 · 连对 '+(g.best||0)+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已开始</span>'+
+        '<span class="ovn" id="ovStarted">—</span>'+
+        '<span class="ovh">'+(ne?('下一场 '+ne.name+' · '+ne.days+' 天后'):'')+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已做题</span>'+
+        '<span class="ovn" id="ovAnswered">—</span>'+
+        '<span class="ovh" id="ovAcc">还没有作答记录</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">错题</span>'+
+        '<span class="ovn" id="ovMistakes">—</span>'+
+        '<span class="ovh" id="ovDue">今天没有到期</span>'+
+      '</div>'+
+      '<div class="ovbadges">'+
+        '<span class="ovb-lbl">徽章 '+owned.length+'/'+BADGES.length+'</span>'+
+        badgeHtml+
+        (owned.length? '' : '<span class="ovb-hint">做题、连对、连续打卡都会解锁</span>')+
+        '<span class="grow"></span>'+
+        '<span class="coinline">金币 <b>'+(c.n||0)+'</b> · 星尘 <b>'+(c.dust||0)+'</b></span>'+
         '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
-      '</div>'+
-      '<div class="badges">'+badgeHtml+'</div>';
+      '</div>';
+    if(window.__homeStats) window.__homeStats();
   }
   function renderAll(){
     renderProfile();
@@ -1284,6 +1633,54 @@ footer{padding:22px 14px 30px;line-height:1.8}
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+
+/* ── 主题（浅色 / 深色 / 跟随系统）──────────────────────── */
+(function(){
+  var KEY="dsh-theme";
+  function mode(){
+    try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
+    catch(e){return "system";}
+  }
+  var LABEL={light:"浅色",dark:"深色",system:"自动"};
+  function paint(box){
+    var m=mode();
+    if(box.getAttribute("data-theme-ctl")==="cycle"){
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="外观：'+LABEL[m]+
+        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+    }else{
+      box.innerHTML=['light','dark','system'].map(function(k){
+        return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
+      }).join("");
+    }
+  }
+  function apply(m){
+    var r=document.documentElement;
+    if(m==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",m);
+    r.setAttribute("data-theme-mode",m);
+    document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+  }
+  function set(m){
+    try{localStorage.setItem(KEY,m);}catch(e){}
+    apply(m);
+  }
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest ? ev.target.closest("[data-mode],[data-cycle]") : null;
+    if(!b) return;
+    if(b.hasAttribute("data-cycle")){
+      var order=["system","light","dark"], cur=mode();
+      set(order[(order.indexOf(cur)+1)%3]);
+    }else{ set(b.getAttribute("data-mode")); }
+    ev.preventDefault();
+  });
+  try{
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys=function(){ if(mode()==="system") apply("system"); };
+    if(mq.addEventListener) mq.addEventListener("change",onSys);
+    else if(mq.addListener) mq.addListener(onSys);
+  }catch(e){}
+  window.DSH_THEME={set:set,mode:mode};
+  document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+})();
 </script>
 <script>
 const DATA = {"slug": "his", "title": "历史 · 10 年级", "examMin": 60, "questions": [{"id": "his-001", "topic": "年考术语 · 单极格局", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines unipolarity?", "options": ["One state is dominant, with no rival of comparable power", "Power is dispersed among several competing great powers", "Power is shared between two rival blocs that balance each other", "Power rests with whichever state acts first without consulting others"], "answer": 0, "explanation": "单极＝只有一个占绝对优势的力量中心，没有同级对手。两极是冷战的美苏互衡，多极是多方均衡；「Power rests with whichever state acts first without consulting others」 描述的是单边主义的行事方式，不是权力结构。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unipolarity）", "weak": false}, {"id": "his-002", "topic": "年考术语 · 多边行动", "difficulty": "easy", "type": "mcq", "stem": "Which action is the clearest example of multilateral action?", "options": ["One state acting alone without notifying any other government", "A coalition of states acting together under UN Security Council authorisation", "One state threatening to act alone unless its allies fall into line", "Two neighbouring states signing a border and trade agreement"], "answer": 1, "explanation": "multilateral 指多国共同参与、通常经国际机构协调的行动，关键词是「多国＋授权」。「One state acting alone without notifying any other government」 和 「One state threatening to act alone unless its allies fall into line」 是单边；「Two neighbouring states signing a border and trade agreement」 只有两国，属 bilateral，不是 multilateral。", "source": "Term 4 · Yearly Assessment Notification — Section One（Multilateral）", "weak": false}, {"id": "his-003", "topic": "年考术语 · 单边主义", "difficulty": "medium", "type": "mcq", "stem": "A government repeatedly insists it will act alone when allies disagree, even at the cost of isolation. This pattern of behaviour is best described as:", "options": ["Humanitarian intervention — force to protect civilians", "Multilateralism — several states act together", "Unilateralism — the habit of acting alone by choice", "Collective security — allies respond together"], "answer": 2, "explanation": "unilateralism 是一种「偏好／习惯」：明知盟友反对仍倾向自行行动。collective security 强调集体回应侵略，multilateralism 强调多国协调，都与题干相反。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateralism）", "weak": false}, {"id": "his-004", "topic": "年考术语 · 集体安全", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines collective security?", "options": ["A single state decides when and where military force will be used", "Each state builds enough weapons to deter rivals without any allies", "A powerful state intervenes inside another to stop human rights abuses", "States agree that an attack on one member is an attack on all"], "answer": 3, "explanation": "集体安全的核心是「一国受攻＝全体受攻」，成员共同回应（通常经联合国）。「Each state builds enough weapons to deter rivals without any allies」 是自行威慑，「A powerful state intervenes inside another to stop human rights abuses」 是人道干预，「A single state decides when and where military force will be used」 是单边决策。", "source": "Term 4 · Yearly Assessment Notification — Section One（Collective Security）", "weak": false}, {"id": "his-005", "topic": "年考术语 · 集体安全 vs 人道干预", "difficulty": "medium", "type": "mcq", "stem": "Which action is the clearest example of collective security rather than humanitarian intervention?", "options": ["A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait", "US troops landing in Somalia in 1992 to protect food convoys", "US-led forces invading Iraq in 2003 without any explicit UN approval", "NATO aircraft bombing Serbia in 1999 to stop ethnic cleansing"], "answer": 0, "explanation": "海湾战争回应的是「跨国侵略」这一对成员国的攻击，属集体安全的典型。其余三个的动因都是保护平民或推翻政权，属人道干预或先发制人，不是集体安全。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）", "weak": false}, {"id": "his-006", "topic": "年考术语 · 先发制人", "difficulty": "easy", "type": "mcq", "stem": "In the Bush Doctrine, pre-emption means:", "options": ["Intervening to stop a government killing its own citizens", "Striking first at a state or group judged to pose a future threat", "Waiting for an attack, then responding with UN approval", "Working through alliances so no single state decides on war"], "answer": 1, "explanation": "先发制人把动武时点前移到「威胁可能成真」之前，不等待实际攻击发生。这正是 Bush Doctrine 与集体安全、人道干预的关键区别。", "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption）", "weak": false}, {"id": "his-007", "topic": "年考术语 · 先发制人 vs 人道干预", "difficulty": "medium", "type": "mcq", "stem": "Which feature most clearly separates pre-emption from humanitarian intervention?", "options": ["Pre-emption targets only non-state groups; intervention only states", "Pre-emption is always multilateral; intervention is always unilateral in form", "Pre-emption answers a future threat; intervention answers harm under way", "Pre-emption always needs UN authorisation; intervention never does"], "answer": 2, "explanation": "区分点在「威胁的时间性」：先发制人针对尚未发生的威胁，人道干预针对正在发生的大规模伤害。授权方式、参与国数量、目标类型都不是二者的分界。", "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption / Humanitarian Intervention）", "weak": false}, {"id": "his-008", "topic": "年考术语 · 人道干预", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines humanitarian intervention?", "options": ["Defensive action taken after a direct attack on one's own soil", "Military action to seize disputed territory and its natural resources", "Economic sanctions agreed by a regional trade or security organisation", "Military action inside a state, without consent, to stop mass suffering"], "answer": 3, "explanation": "人道干预的三个要件：进入他国、未经该国同意、目的是制止大规模人道灾难。「Economic sanctions agreed by a regional trade or security organisation」 是制裁而非军事干预，「Defensive action taken after a direct attack on one's own soil」 是自卫。", "source": "Term 4 · Yearly Assessment Notification — Section One（Humanitarian Intervention）", "weak": false}, {"id": "his-009", "topic": "年考术语 · 单边与多边辨析", "difficulty": "medium", "type": "mcq", "stem": "In 2003 State A went to war with a small group of allies after failing to win UN Security Council support, while State B sent troops to a UN-authorised mission. Which pairing is correct?", "options": ["A — unilateral action; B — multilateral action", "A — multilateral action; B — unilateral action", "A — collective security; B — humanitarian intervention", "A — humanitarian intervention; B — collective security"], "answer": 0, "explanation": "判准是「是否有广泛授权」：A 只带少数盟友、绕过安理会，属单边；B 参与联合国授权任务，属多边。注意 A 虽有盟友，但「小圈子＋无授权」仍被归为单边行动。", "source": "Term 4 · Yearly Assessment Notification — Body 2（invasion of Iraq）", "weak": false}, {"id": "his-010", "topic": "年考术语 · unilateral 与 unilateralism", "difficulty": "medium", "type": "mcq", "stem": "Why does the course list both 'unilateral' and 'unilateralism' as separate terms?", "options": ["'Unilateralism' describes one action; 'unilateral' a whole doctrine", "'Unilateral' is one action taken alone; 'unilateralism' is the doctrine", "They are synonyms, listed twice for emphasis in the notes", "'Unilateral' describes economic policy; 'unilateralism' military policy"], "answer": 1, "explanation": "unilateral 是形容词，描述「单方采取的一次行动」；unilateralism 是名词，指「倾向单方行动的主义／政策取向」。Section One 考 metalanguage，正是要辨清词性与层级。", "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateral / Unilateralism）", "weak": false}, {"id": "his-011", "topic": "年考论证 · Body 1 选材", "difficulty": "easy", "type": "short", "stem": "Body 1 of the essay covers the 1990s. Name the two events from the notification's list that you would use, and justify your choice in one sentence. (2 marks)", "options": [], "answer": "The Gulf War (1991) and Somalia (1992–94). Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene.", "explanation": "Body 1 只需两个事件，但要形成「对照」而非并列：一个成功多边、一个暴露局限。选 Gulf War＋Somalia、或 Gulf War＋Kosovo 都可，关键是说明为何这两个能支撑主题句。", "source": "Term 4 · Yearly Assessment Notification — Body 1（possible events）", "points": [{"t": "The Gulf War (1991) and Somalia (1992–94)", "m": 1}, {"t": "Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene", "m": 1}], "weak": false}, {"id": "his-012", "topic": "年考论证 · 海湾战争与多边主义", "difficulty": "easy", "type": "short", "stem": "Explain how the Gulf War of 1991 demonstrates multilateralism. (2 marks)", "options": [], "answer": "The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.", "explanation": "多边主义的两个标志：联合国授权＋多国共同承担。答题要写出「谁授权、多少方参与、为何这算多边」，只写「很多国家参加」不够。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）", "points": [{"t": "The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.", "m": 1}], "weak": false}, {"id": "his-013", "topic": "年考论证 · 海湾战争为何属集体安全", "difficulty": "medium", "type": "short", "stem": "Explain why the Gulf War of 1991 is better described as collective security than as humanitarian intervention. (3 marks)", "options": [], "answer": "The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression. Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention.", "explanation": "关键分界是「触发原因」：集体安全回应国家对国家的侵略，人道干预回应政府对自己人民的伤害。海湾战争是前者，1990 年代后期科索沃才是后者的争议案例。", "source": "Term 4 · Yearly Assessment Notification — Section One + Body 1", "points": [{"t": "The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression", "m": 1}, {"t": "Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention", "m": 1}], "weak": false}, {"id": "his-014", "topic": "年考论证 · 索马里与人道干预的局限", "difficulty": "medium", "type": "short", "stem": "What did the US experience in Somalia (1992–94) reveal about the limits of humanitarian intervention? (3 marks)", "options": [], "answer": "A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal. It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country.", "explanation": "索马里常被用作「干预容易、收尾困难」的反面教材：任务目标从送粮扩到战斗、伤亡引发国内压力、最后撤军。写清这条因果链才能拿满分。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Somalia 1992-94）＋ 课程标准补充", "points": [{"t": "A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal", "m": 1}, {"t": "It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country", "m": 1}], "weak": true}, {"id": "his-015", "topic": "年考论证 · 卢旺达 1994 的干预失败", "difficulty": "medium", "type": "short", "stem": "Why is Rwanda (1994) usually described as a failure of humanitarian intervention? (3 marks)", "options": [], "answer": "The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide. The world stood aside, so the decade's humanitarian language was not matched by action.", "explanation": "答「失败」要有两层：现场力量不足＋大国政治上不愿介入（连 genocide 一词都回避）。这正好与同期科索沃的积极干预形成对照。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Rwanda 1994）＋ 课程标准补充", "points": [{"t": "The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide", "m": 1}, {"t": "The world stood aside, so the decade's humanitarian language was not matched by action", "m": 1}], "weak": true}, {"id": "his-016", "topic": "年考论证 · 科索沃的灰色地带", "difficulty": "hard", "type": "short", "stem": "Why is NATO's 1999 intervention in Kosovo often called a 'grey case' of humanitarian intervention? (4 marks)", "options": [], "answer": "The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate. It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance.", "explanation": "「灰色」＝动机正当但授权缺失：合法性与正当性分离。答题要同时写出两边，只说「救了人」或只说「违法」都拿不到高分。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Kosovo 1999）＋ 课程标准补充", "points": [{"t": "The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate", "m": 1}, {"t": "It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance", "m": 1}], "weak": true}, {"id": "his-017", "topic": "年考写作 · Body 1 主题句", "difficulty": "medium", "type": "short", "stem": "Write a topic sentence for Body 1 (the 1990s) that directly answers the essay question. (2 marks)", "options": [], "answer": "In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.", "explanation": "主题句必须含「时段＋论点」，不能只写「1990 年代有很多事件」。好的主题句还会预告张力（多边领导 vs 局限），为结尾 link 句留接口。", "source": "Term 4 · Yearly Assessment Notification — Body 1（topic sentence row）", "points": [{"t": "In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.", "m": 1}], "weak": false}, {"id": "his-018", "topic": "年考论证 · 九一一的转向", "difficulty": "easy", "type": "short", "stem": "Explain how the 9/11 attacks changed the priorities of US foreign policy. (3 marks)", "options": [], "answer": "They shifted US priorities from managing the post-Cold War order to a global 'war on terror'. The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation.", "explanation": "答题锚点是「优先级转移」：从维持后冷战秩序转向反恐。要写出至少两个具体表现（阿富汗、监控、军费、先发制人），不能只写「变得更 aggressive」。", "source": "Term 4 · Lesson 3.1 9/11 Attacks; Notification — Body 2（Impact of 9/11）", "points": [{"t": "They shifted US priorities from managing the post-Cold War order to a global 'war on terror'", "m": 1}, {"t": "The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation", "m": 1}], "weak": false}, {"id": "his-019", "topic": "年考论证 · Bush Doctrine 的特征", "difficulty": "easy", "type": "short", "stem": "Outline the key features of the Bush Doctrine. (3 marks)", "options": [], "answer": "Pre-emption — striking first against states or groups judged to pose a future threat; a willingness to act unilaterally when multilateral agreement could not be reached; regime change and the promotion of democracy; and the claim that American security required action beyond UN authorisation.", "explanation": "四个特征要能分别举例对应：先发制人（伊拉克）、单边（绕开安理会）、政权更替（推翻萨达姆）、推广民主。只背名字不解释会失分。", "source": "Term 4 · Lesson 3.2 The Bush Doctrine; Notification — Body 2", "points": [{"t": "Pre-emption — striking first against states or groups judged to pose a future threat", "m": 1}, {"t": "a willingness to act unilaterally when multilateral agreement could not be reached", "m": 1}, {"t": "regime change and the promotion of democracy", "m": 1}, {"t": "and the claim that American security required action beyond UN authorisation", "m": 1}], "weak": false}, {"id": "his-020", "topic": "年考论证 · 伊拉克战争为何是单边", "difficulty": "medium", "type": "short", "stem": "Explain why the 2003 invasion of Iraq is often described as unilateral rather than multilateral. (3 marks)", "options": [], "answer": "The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself. Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral.", "explanation": "判准不是「有没有盟友」，而是「有没有广泛授权与共同承担」。美国确有盟友，但小圈子＋无安理会授权，因此在教材分类中被归为单边。", "source": "Term 4 · Lesson 4.2 Iraq; Notification — Body 2（invasion of Iraq）", "points": [{"t": "The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself", "m": 1}, {"t": "Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral", "m": 1}], "weak": false}, {"id": "his-021", "topic": "年考论证 · 1991 与 2003 对照", "difficulty": "hard", "type": "short", "stem": "Contrast the multilateralism of the 1991 Gulf War with the unilateralism of the 2003 invasion of Iraq. (4 marks)", "options": [], "answer": "In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression. In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack.", "explanation": "对照要落在三个可比的维度：授权（有／无）、联盟规模与分担（广泛／小圈子）、目标（恢复现状／改变政权）。三点对齐，分数就稳。", "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War）＋ Body 2（Iraq）", "points": [{"t": "In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression", "m": 1}, {"t": "In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack", "m": 1}], "weak": false}, {"id": "his-022", "topic": "年考论证 · 中国崛起与单极秩序", "difficulty": "hard", "type": "short", "stem": "Explain how the rise of China challenged unipolarity after 2001. (3 marks)", "options": [], "answer": "China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence. As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific.", "explanation": "单极受到挑战＝出现接近同级的对手。答题要给经济（WTO、体量）＋军事＋制度性倡议三类证据，只说「中国变强了」太空泛。", "source": "Term 4 · Yearly Assessment Notification — Body 3（Rise of China）＋ 课程标准补充", "points": [{"t": "China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence", "m": 1}, {"t": "As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific", "m": 1}], "weak": true}, {"id": "his-023", "topic": "年考论证 · 软实力下降", "difficulty": "easy", "type": "short", "stem": "Explain what a decline in US soft power means, and give one example from the period. (2 marks)", "options": [], "answer": "Soft power is influence gained through attraction — culture, values and institutions — rather than through coercion or payment. The Iraq War and the abuse of prisoners at Abu Ghraib damaged America's international reputation in the 2000s, making other states less willing to cooperate.", "explanation": "软实力＝吸引力（文化、价值、制度），与以军力或金钱施压的硬实力相对。举 2003 年后形象受损的例子最直接。", "source": "Term 4 · Yearly Assessment Notification — Body 3（Decline in US soft power）＋ 课程标准补充", "points": [{"t": "Soft power is influence gained through attraction — culture, values and institutions — rather than through coercion or payment", "m": 1}, {"t": "The Iraq War and the abuse of prisoners at Abu Ghraib damaged America's international reputation in the 2000s, making other states less willing to cooperate", "m": 1}], "weak": true}, {"id": "his-024", "topic": "年考论证 · 保护主义与去全球化", "difficulty": "easy", "type": "short", "stem": "Explain how the rise of protectionism and deglobalisation shaped US foreign policy after 2008. (2 marks)", "options": [], "answer": "The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade. The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation.", "explanation": "保护主义＝用关税与壁垒保护本国产业；去全球化＝削弱贸易与投资的一体化。答题要给具体政策（退出 TPP、对华关税），否则只是复述定义。", "source": "Term 4 · Yearly Assessment Notification — Body 3（protectionism/deglobalisation）＋ 课程标准补充", "points": [{"t": "The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade", "m": 1}, {"t": "The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation", "m": 1}], "weak": true}, {"id": "his-025", "topic": "年考论证 · 单极到多极", "difficulty": "hard", "type": "short", "stem": "Explain the shift from unipolarity towards a more multipolar order between 1991 and 2019. (3 marks)", "options": [], "answer": "In 1991 the United States was the only superpower, with no economic or military peer. By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant.", "explanation": "多极化的证据是「权力分散」：经济体量接近、区域大国自主性上升、制度性替代出现。注意区分「军事仍最强」与「总体权力不再独大」。", "source": "Term 4 · Yearly Assessment Notification — Body 3 ＋ 课程标准补充", "points": [{"t": "In 1991 the United States was the only superpower, with no economic or military peer", "m": 1}, {"t": "By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant", "m": 1}], "weak": true}, {"id": "his-026", "topic": "年考写作 · Body 2 的结构", "difficulty": "medium", "type": "short", "stem": "Explain how you would structure Body 2 (9/11 and Iraq) — which events, and what the link sentence must do. (3 marks)", "options": [], "answer": "Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine. The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force.", "explanation": "Body 2 的写法是「触发→理论→实践」三步。link 句不能只说「所以美国变了」，要指明「相对 Body 1 变了什么」。", "source": "Term 4 · Yearly Assessment Notification — Body 2（events to include）", "points": [{"t": "Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine", "m": 1}, {"t": "The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force", "m": 1}], "weak": false}, {"id": "his-027", "topic": "年考写作 · 论点句", "difficulty": "hard", "type": "short", "stem": "Write a thesis statement that answers: 'Explain the development of US foreign policy between 1991 and 2019.' (3 marks)", "options": [], "answer": "Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.", "explanation": "论点句要能覆盖三段而不只是第一段：多边领导 → 单边先发 → 应对衰落。一句话讲清「变化方向」，就是 thesis。", "source": "Term 4 · Yearly Assessment Notification — Section Two（thesis statement row）", "points": [{"t": "Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.", "m": 1}], "weak": false}, {"id": "his-028", "topic": "年考写作 · 三段如何合成一条论证线", "difficulty": "hard", "type": "short", "stem": "Explain how the three body paragraphs together answer the essay question. (4 marks)", "options": [], "answer": "Body 1 establishes the multilateral, collective-security phase of the 1990s. Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation. Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment. Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline.", "explanation": "论述题高分靠「一条线」而不是三段独立：每段是同一变化过程中的一个阶段。答题要写出段与段之间的转折关系，而非各段内容摘要。", "source": "Term 4 · Yearly Assessment Notification — Body 1 / 2 / 3", "points": [{"t": "Body 1 establishes the multilateral, collective-security phase of the 1990s", "m": 1}, {"t": "Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation", "m": 1}, {"t": "Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment", "m": 1}, {"t": "Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline", "m": 1}], "weak": false}]};
@@ -1300,6 +1697,9 @@ function TFILTER(){
 function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
+const AI_ENGINE = {};
+function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
   "as at by from it its their they them we you your our not no but if then than so such can could may might " +
@@ -1571,9 +1971,10 @@ function render() {
           <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
           ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
           ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
+          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
         </div>
         <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI: '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
             return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
         <div class="actions">
           <button class="btn ghost" id="allpt">全部勾上</button>
@@ -1670,21 +2071,37 @@ function render() {
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
       res.style.color = hit ? "var(--ok)" : "var(--bad)";
     };
+    const ac = document.getElementById("aiconf");
+    if (ac) ac.onclick = () => {
+      const cur = localAI();
+      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      if (v === null) return;
+      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+    };
     const ai = document.getElementById("aigrade");
     if (ai) ai.onclick = () => {
       const arr = readSlots(), answer = joinSlots(arr);
       if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
       ai.disabled = true; ai.textContent = "AI 判分中…";
-      fetch(apibase() + "/grade", {
-        method: "POST", headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer})
-      }).then(r=>r.json()).then(d => {
-        if (!d || !d.ok) throw new Error((d && d.error) || "failed");
-        AI_RES[q.id] = d.results; save(); render();
-      }).catch(e => {
+      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+      const engines = [];
+      if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
+      const loc = localAI();
+      if (loc) engines.push({n:"local", u: loc + "/grade"});
+      (async function(){
+        let lastErr = "no engine";
+        for (const en of engines) {
+          try {
+            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
+            const d = await r.json();
+            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+            return;
+          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+        }
         ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分失败：" + e.message, false);
-      });
+        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
+      })();
     };
     const ap2 = document.getElementById("applyai");
     if (ap2) ap2.onclick = () => {

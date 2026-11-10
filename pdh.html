@@ -1,71 +1,395 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
+(function(){try{
+  var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
+  var s=m||localStorage.getItem("dsh-theme")||"system";
+  var r=document.documentElement;
+  if(s==="light"||s==="dark") r.setAttribute("data-theme",s);
+  r.setAttribute("data-theme-mode",s);
+}catch(e){}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PDHPE · 10 年级 · 复习测验</title>
 <style>
+/* ══ design tokens ═══════════════════════════════════════ */
 :root{
-  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
-  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+  --bg: var(--background);
+  --card: var(--surface);
+  --card2: var(--surface-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-secondary);
+  --fg: var(--foreground);
+  --dim: var(--muted);
+  --line: var(--border);
+  --line2: var(--border-strong);
+  --ok: var(--success);
+  --bad: var(--error);
+  --warn: var(--warning);
+  /* 派生色：只覆盖 --accent，其余自动跟着变（商店主题用它）*/
+  --accent-text: color-mix(in srgb, var(--accent) 74%, var(--foreground));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
 }
-@media (prefers-color-scheme: light) {
-  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --background: #09090B;
+    --surface: #111113;
+    --surface-secondary: #18181B;
+    --surface-inset: #1F1F23;
+    --foreground: #FAFAFA;
+    --muted: #A1A1AA;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --accent: #3291FF;
+    --success: #4ADE80;
+    --success-soft: rgba(74,222,128,.12);
+    --error: #F87171;
+    --error-soft: rgba(248,113,113,.12);
+    --warning: #F59E0B;
+    --warning-soft: rgba(245,158,11,.12);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+    --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+    --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+  }
 }
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --background: #09090B;
+  --surface: #111113;
+  --surface-secondary: #18181B;
+  --surface-inset: #1F1F23;
+  --foreground: #FAFAFA;
+  --muted: #A1A1AA;
+  --border: #27272A;
+  --border-strong: #3F3F46;
+  --primary: #FAFAFA;
+  --primary-foreground: #171717;
+  --accent: #3291FF;
+  --success: #4ADE80;
+  --success-soft: rgba(74,222,128,.12);
+  --error: #F87171;
+  --error-soft: rgba(248,113,113,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+  --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+}
+
+/* ══ foundations ═════════════════════════════════════════ */
+:root{
+  /* type */
+  --font-sans:"Geist Variable","Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono:"Geist Mono Variable","Geist Mono",ui-monospace,SFMono-Regular,"SF Mono",
+    Menlo,Consolas,monospace;
+  --text-2xl:28px; --text-xl:20px; --text-lg:17px; --text-md:15px;
+  --text-base:14px; --text-sm:12px; --text-xs:11px;
+  --lh-tight:1.25; --lh-snug:1.45; --lh-base:1.6; --lh-prose:1.75;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s8:32px; --s10:40px; --s12:48px; --s16:64px;
+  /* radius */
+  --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px; --r-full:999px;
+  /* layout */
+  --page-max:1120px;
+  --read-max:760px;
+  --page-x:32px;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --fast:.12s; --norm:.2s;
+}
+
+@font-face{
+  font-family:"Geist Variable";
+  src:url("fonts/geist-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-latin.woff2") format("woff2");
+  font-weight:400 700; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,
+    U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Geist Mono Variable";
+  src:url("fonts/geist-mono-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight:400 600; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,
+    U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:var(--text-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11";
+  font-synthesis-weight:none;
+  transition:background-color var(--norm) var(--ease),color var(--norm) var(--ease);
+}
+body,body *{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:var(--lh-tight);font-weight:600}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl)}
+h3{font-size:var(--text-md)}
+a{color:var(--accent-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+::selection{background:var(--accent-soft);color:var(--foreground)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+hr{border:0;border-top:1px solid var(--border);margin:var(--s6) 0}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em}
+kbd{background:var(--surface-secondary);border:1px solid var(--border);border-bottom-width:2px;
+  border-radius:var(--r-sm);padding:1px 6px;color:var(--muted);font-size:11px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+/* 数字统一等宽，避免跳动 */
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ══ 共享顶栏（首页 / 商城 / 错题本）═════════════════════ */
+.topbar{position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);
+  height:56px;display:flex;align-items:center;gap:var(--s4)}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--foreground);
+  text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:-.01em;flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--primary);
+  color:var(--primary-foreground);display:grid;place-items:center;font-size:11px;
+  font-weight:600;font-family:var(--font-mono);line-height:1}
+.nav{display:flex;align-items:center;gap:1px;min-width:0;overflow:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px;color:var(--muted);padding:5px 9px;border-radius:var(--r-sm);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--fast) var(--ease),background-color var(--fast) var(--ease)}
+.nav a:hover{color:var(--foreground);background:var(--surface-secondary);text-decoration:none}
+.nav a.on{color:var(--foreground);font-weight:500}
+.grow{flex:1}
+@media (max-width:720px){
+  .topbar-in{height:auto;flex-wrap:wrap;gap:8px;padding:9px var(--page-x) 0}
+  .brand .bname{display:none}
+  .topbar .nav{order:10;width:100%;margin:2px calc(-1 * var(--page-x)) 0;
+    padding:0 var(--page-x) 8px;border-top:1px solid var(--border)}
+  .topbar .themectl{margin-left:auto}
+}
+
+/* 分段控件选中态 */
+.seg button.on{border-color:var(--foreground)!important}
+
+/* ══ components ══════════════════════════════════════════ */
+.btn,.btn-ghost,.btn2{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  height:34px;padding:0 14px;border-radius:var(--r-sm);
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),opacity var(--fast) var(--ease);
+  text-decoration:none;
+}
+.btn{
+  background:var(--primary);color:var(--primary-foreground);
+  border-color:var(--primary);
+}
+.btn:hover{opacity:.88;text-decoration:none}
+.btn:active{transform:translateY(.5px)}
+.btn:disabled,.btn[disabled]{background:var(--surface-secondary);color:var(--muted);
+  border-color:var(--border);opacity:1;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost,.btn.ghost,.btn2{
+  background:var(--surface);color:var(--foreground);border-color:var(--border);
+}
+.btn-ghost:hover,.btn.ghost:hover,.btn2:hover{
+  background:var(--surface-secondary);border-color:var(--border-strong);text-decoration:none;
+}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;background:var(--surface)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:var(--r-sm)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent:hover{opacity:.9;color:#fff}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:none;
+}
+.input,input[type="text"],input[type="search"],input[type="number"],textarea,select{
+  font-family:inherit;font-size:var(--text-base);color:var(--foreground);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:8px 11px;outline:none;transition:border-color var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.input:hover,input:hover,textarea:hover,select:hover{border-color:var(--border-strong)}
+.input:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--muted);opacity:.85}
+
+.chip,.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:var(--text-xs);line-height:1.6;font-weight:500;
+  padding:2px 8px;border-radius:var(--r-sm);
+  background:var(--surface-secondary);border:1px solid var(--border);color:var(--muted);
+  white-space:nowrap;
+}
+
+/* 主题切换控件 */
+.themectl{display:inline-flex;align-items:center;gap:2px;padding:2px;
+  background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm)}
+.themectl button{
+  font:inherit;font-size:11.5px;font-weight:500;line-height:1;height:24px;padding:0 9px;
+  border:0;border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease);
+}
+.themectl button:hover{color:var(--foreground)}
+.themectl button.on{background:var(--surface);color:var(--foreground);
+  box-shadow:var(--shadow-sm)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;
+  color:var(--muted);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);height:28px;padding:0 10px;cursor:pointer;
+  transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease)}
+.themebtn:hover{color:var(--foreground);border-color:var(--border-strong)}
+.themebtn b{color:var(--foreground);font-weight:500}
+
+/* 浅色下别让深色主题的重阴影漏过来 */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .submit-card{box-shadow:var(--shadow-lg)}
+  :root:not([data-theme="dark"]) .lb-fab{box-shadow:var(--shadow-md)}
+  :root:not([data-theme="dark"]) .lang-btn{box-shadow:var(--shadow-sm)}
+}
+:root[data-theme="light"] .submit-card{box-shadow:var(--shadow-lg)}
+:root[data-theme="light"] .lb-fab{box-shadow:var(--shadow-md)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:900px){ :root{--page-x:20px} }
+@media (max-width:560px){ :root{--page-x:16px} }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);
- font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
- backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
-.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
-.bar .meta{color:var(--dim);font-size:13px}
+body{margin:0;display:flex;flex-direction:column;min-height:100vh}
+header{position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb,var(--background) 88%,transparent);
+  -webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--border);padding:9px 0 0}
+.bar{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);display:flex;
+  align-items:center;gap:7px;flex-wrap:wrap;min-height:34px}
+.bar h1{font-size:15px;margin:0;font-weight:600;letter-spacing:-.01em}
+.bar .meta{color:var(--muted);font-size:12px}
 .spacer{flex:1}
-.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
- font-size:12px;color:var(--dim)}
-.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
-.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
-main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
-.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
-.chip.easy{color:#2fbf71;border-color:#2fbf7144}
-.chip.medium{color:#f5a623;border-color:#f5a62344}
-.chip.hard{color:#ff5f56;border-color:#ff5f5644}
-.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
-.opts{display:grid;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);
+  background:var(--surface);border-radius:var(--r-sm);padding:3px 8px;font-size:11.5px;
+  color:var(--muted);font-family:var(--font-mono);font-variant-numeric:tabular-nums;
+  white-space:nowrap;text-decoration:none}
+a.pill:hover{border-color:var(--border-strong);color:var(--foreground);text-decoration:none}
+.progress{height:3px;background:var(--surface-secondary);border-radius:99px;overflow:hidden;
+  margin:9px 0 0}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;
+  transition:width .3s var(--ease)}
+main{width:100%;max-width:860px;margin:0 auto;padding:var(--s6) var(--page-x) 96px;flex:1 0 auto}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip.easy{color:var(--success);border-color:color-mix(in srgb,var(--success) 40%,var(--border));
+  background:var(--success-soft)}
+.chip.medium{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 40%,var(--border));
+  background:var(--warning-soft)}
+.chip.hard{color:var(--error);border-color:color-mix(in srgb,var(--error) 40%,var(--border));
+  background:var(--error-soft)}
+.stem{font-size:17px;line-height:1.7;margin:4px 0 16px;white-space:pre-wrap;
+  color:var(--foreground);letter-spacing:-.005em}
+.opts{display:grid;gap:8px}
 .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
- background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
- padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
-.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+  background:var(--surface);border:1px solid var(--border);color:var(--foreground);
+  border-radius:var(--r-sm);padding:12px 14px;font:inherit;font-size:14.5px;line-height:1.6;
+  cursor:pointer;transition:border-color var(--fast) var(--ease),
+  background-color var(--fast) var(--ease)}
+.opt:hover:not(:disabled){border-color:var(--border-strong);background:var(--surface-secondary)}
 .opt:disabled{cursor:default}
-.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
- display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
-.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
-.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
-.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
-.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
-textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
- border-radius:11px;padding:12px;font:inherit;resize:vertical}
-.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
- border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.opt .k{flex:0 0 22px;height:22px;border-radius:4px;background:var(--surface-secondary);
+  border:1px solid var(--border);display:grid;place-items:center;font-size:11px;font-weight:600;
+  color:var(--muted);font-family:var(--font-mono)}
+.opt.correct{border-color:var(--success);background:var(--success-soft)}
+.opt.correct .k{background:var(--success);color:var(--surface);border-color:var(--success)}
+.opt.wrong{border-color:var(--error);background:var(--error-soft)}
+.opt.wrong .k{background:var(--error);color:var(--surface);border-color:var(--error)}
+textarea{width:100%;min-height:96px;background:var(--surface);color:var(--foreground);
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;font:inherit;
+  font-size:14px;line-height:1.65;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:2px solid var(--accent);
+  background:var(--surface-secondary);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-size:13.5px;line-height:1.7;display:none}
 .exp.show{display:block}
-.exp b{color:var(--accent)}
-.src{margin-top:8px;color:var(--dim);font-size:12px}
-.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
- font:inherit;font-weight:600;cursor:pointer}
-button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-button.btn:disabled{opacity:.45;cursor:default}
-.done h2{margin:0 0 6px}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
-.stat b{display:block;font-size:24px;line-height:1.2}
-.stat span{color:var(--dim);font-size:12px}
-.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.exp b{color:var(--accent-text)}
+.src{margin-top:8px;color:var(--muted);font-size:11.5px}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+button.btn{height:34px;padding:0 14px;border-radius:var(--r-sm);border:1px solid var(--primary);
+  background:var(--primary);color:var(--primary-foreground);font:inherit;font-size:13px;
+  font-weight:500;cursor:pointer;transition:opacity var(--fast) var(--ease)}
+button.btn:hover:not(:disabled){opacity:.88}
+button.btn.ghost{background:var(--surface);color:var(--foreground);border-color:var(--border)}
+button.btn.ghost:hover:not(:disabled){background:var(--surface-secondary);
+  border-color:var(--border-strong)}
+button.btn:disabled{opacity:.4;cursor:not-allowed}
+.done h2{margin:0 0 6px;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:16px 0}
+.stat{background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:12px 14px}
+.stat b{display:block;font-size:22px;line-height:1.2;font-family:var(--font-mono);
+  font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:11.5px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
 .wronglist li{margin:4px 0}
-footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
-kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:11.5px;padding:26px 16px 30px;line-height:1.7}
 
 .chip.warn{border-color:#f5a62366;color:#f5a623}
 .muted{color:var(--dim);font-size:13px}
@@ -96,7 +420,8 @@ kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;paddi
 .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
  padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
-.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.seg button.on{border-color:var(--foreground);background:var(--surface);font-weight:600;
+ box-shadow:var(--shadow-sm)}
 .setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
 .setup-foot .sum{color:var(--dim);font-size:14px}
 .setup-foot .sum b{color:var(--fg);font-size:18px}
@@ -250,6 +575,9 @@ main,.card,.setup{max-width:100%}
 .actions{flex-wrap:wrap}
 footer{padding:22px 14px 30px;line-height:1.8}
 
+@media (max-width:1180px){
+  .bar .meta{display:none}
+}
 @media (max-width:720px){
   #scorepill{display:none}
   .bar a.pill{display:none}
@@ -303,11 +631,12 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 30</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
-    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
-    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
-    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
+    <button class="btn ghost btn-sm" id="tfilter">全部</button>
+    <button class="btn ghost btn-sm" id="grid">题号</button>
+    <button class="btn ghost btn-sm" id="exam">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
-    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+    <button class="btn ghost btn-sm" id="restart">重来</button>
+    <span data-theme-ctl="cycle"></span>
   </div>
   <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
 </header>
@@ -379,32 +708,33 @@ footer{padding:22px 14px 30px;line-height:1.8}
   function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
   function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
 
+  /* 主题只改强调色：浅色 / 深色 / 跟随系统由 data-theme 决定，两者互不冲突 */
   var THEMES={
-    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
-    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
-    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
-    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+    gold:  {accent:"#B7791F"},
+    warm:  {accent:"#C2410C"},
+    forest:{accent:"#047857"},
+    sakura:{accent:"#BE185D"}
   };
   function applyTheme(){
     var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
-    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
-    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+    root.style.removeProperty("--accent");
+    if(t && THEMES[t]){ root.style.setProperty("--accent", THEMES[t].accent); }
   }
   function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
 
   var SHOP=[
-    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
-    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
-    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
-    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
-    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
-    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
-    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
-    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
-    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
-    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
-    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
-    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"}
   ];
 
   function buy(id){
@@ -612,7 +942,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
     "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
 
-    "🛒 商城":"Shop","← 首页":"← Home",
+    "商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
     "还原默认主题":"Reset theme","卸下称号":"Remove title",
@@ -1212,31 +1542,50 @@ footer{padding:22px 14px 30px;line-height:1.8}
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var title = inv.equipped && inv.equipped.title
+      ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
     var ne = nextExam();
-    var dd = ne ? ne.days : null;
-    var badgeHtml = BADGES.map(function(x){
-      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+    var owned = BADGES.filter(function(x){ return b[x.id]; });
+    var badgeHtml = owned.map(function(x){
+      return '<span class="badge on" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
     }).join("");
     host.innerHTML =
-      '<div class="hero-top">'+
-        '<span class="lvp">Lv.'+lv+'</span>'+
-        '<span class="xpv">'+xp+'</span>'+
-        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
-        title+'<span class="grow"></span>'+
-        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
+      '<div class="ovc">'+
+        '<span class="ovl">等级'+title+'</span>'+
+        '<span class="ovn">'+lv+'<small>Lv</small></span>'+
+        '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+        '<span class="ovh">'+(nx?'还差 '+(nx-xp)+' XP 升级':'已满级')+' · 共 '+xp+' XP</span>'+
       '</div>'+
-      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-      '<div class="metaline">'+
-        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
-        '<span>连续 <b>'+st+'</b> 天</span>'+
-        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
-        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
-        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+      '<div class="ovc">'+
+        '<span class="ovl">今日</span>'+
+        '<span class="ovn">'+tc+'<small>/'+GOAL+'</small></span>'+
+        '<span class="ovh">连续 '+st+' 天 · 连对 '+(g.best||0)+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已开始</span>'+
+        '<span class="ovn" id="ovStarted">—</span>'+
+        '<span class="ovh">'+(ne?('下一场 '+ne.name+' · '+ne.days+' 天后'):'')+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已做题</span>'+
+        '<span class="ovn" id="ovAnswered">—</span>'+
+        '<span class="ovh" id="ovAcc">还没有作答记录</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">错题</span>'+
+        '<span class="ovn" id="ovMistakes">—</span>'+
+        '<span class="ovh" id="ovDue">今天没有到期</span>'+
+      '</div>'+
+      '<div class="ovbadges">'+
+        '<span class="ovb-lbl">徽章 '+owned.length+'/'+BADGES.length+'</span>'+
+        badgeHtml+
+        (owned.length? '' : '<span class="ovb-hint">做题、连对、连续打卡都会解锁</span>')+
+        '<span class="grow"></span>'+
+        '<span class="coinline">金币 <b>'+(c.n||0)+'</b> · 星尘 <b>'+(c.dust||0)+'</b></span>'+
         '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
-      '</div>'+
-      '<div class="badges">'+badgeHtml+'</div>';
+      '</div>';
+    if(window.__homeStats) window.__homeStats();
   }
   function renderAll(){
     renderProfile();
@@ -1284,6 +1633,54 @@ footer{padding:22px 14px 30px;line-height:1.8}
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+
+/* ── 主题（浅色 / 深色 / 跟随系统）──────────────────────── */
+(function(){
+  var KEY="dsh-theme";
+  function mode(){
+    try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
+    catch(e){return "system";}
+  }
+  var LABEL={light:"浅色",dark:"深色",system:"自动"};
+  function paint(box){
+    var m=mode();
+    if(box.getAttribute("data-theme-ctl")==="cycle"){
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="外观：'+LABEL[m]+
+        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+    }else{
+      box.innerHTML=['light','dark','system'].map(function(k){
+        return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
+      }).join("");
+    }
+  }
+  function apply(m){
+    var r=document.documentElement;
+    if(m==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",m);
+    r.setAttribute("data-theme-mode",m);
+    document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+  }
+  function set(m){
+    try{localStorage.setItem(KEY,m);}catch(e){}
+    apply(m);
+  }
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest ? ev.target.closest("[data-mode],[data-cycle]") : null;
+    if(!b) return;
+    if(b.hasAttribute("data-cycle")){
+      var order=["system","light","dark"], cur=mode();
+      set(order[(order.indexOf(cur)+1)%3]);
+    }else{ set(b.getAttribute("data-mode")); }
+    ev.preventDefault();
+  });
+  try{
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys=function(){ if(mode()==="system") apply("system"); };
+    if(mq.addEventListener) mq.addEventListener("change",onSys);
+    else if(mq.addListener) mq.addListener(onSys);
+  }catch(e){}
+  window.DSH_THEME={set:set,mode:mode};
+  document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+})();
 </script>
 <script>
 const DATA = {"slug": "pdh", "title": "PDHPE · 10 年级", "examMin": 60, "questions": [{"id": "pdh-001", "topic": "风险行为 · 正负风险举例", "difficulty": "easy", "type": "short", "stem": "List THREE examples of positive risk taking and THREE examples of negative risk taking.", "options": [], "answer": "Positive: trying a new sport such as rock climbing or martial arts; joining the school play or band; volunteering for a community cause or running for the school committee. Negative: binge drinking or vaping; sexting; getting a lift with a driver who has been drinking; dangerous driving; skipping school; trespassing or vandalism.", "explanation": "得分点拆分：正面例子 3 个各 1 分（3 分）；负面例子 3 个各 1 分（3 分）。若再用一句话点出区别——正面风险仍带不确定性，但结果是新技能或成长；负面风险带来伤害、法律后果或健康损失——可另得 1 分。常见失分：把「坐酒驾者的车」当成驾驶行为本身，它同样属于负面风险。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Risk taking", "points": [{"t": "Positive: trying a new sport such as rock climbing or martial arts", "m": 1}, {"t": "joining the school play or band", "m": 1}, {"t": "volunteering for a community cause or running for the school committee. Negative: binge drinking or vaping", "m": 1}, {"t": "getting a lift with a driver who has been drinking", "m": 1}, {"t": "dangerous driving", "m": 1}, {"t": "skipping school", "m": 1}, {"t": "trespassing or vandalism", "m": 1}], "weak": false}, {"id": "pdh-002", "topic": "健康服务 · 就医障碍与影响", "difficulty": "hard", "type": "short", "stem": "List FIVE barriers that stop people from accessing health services. For TWO of the barriers, explain the effect this may have on a person's health.", "options": [], "answer": "Barriers: cost; fear about confidentiality; low health literacy (not realising a condition is treatable); transport and distance, especially in rural areas; long waiting times and complicated booking systems; language and communication difficulties; stigma and embarrassment; not knowing which service to contact. Effects: (1) Cost — a young person delays seeing a GP or dentist, so a treatable condition worsens and may eventually need hospital care. (2) Fear about confidentiality — they avoid discussing mental or sexual health with a doctor, so the problem goes untreated and can escalate into a crisis.", "explanation": "得分点拆分：列出 5 个障碍各 1 分（5 分）；自选其中 2 个各解释健康影响 1 分（2 分），要写出「延误→恶化／并发症／危机」的因果链；表达与结构 1 分。常见失分：第二部分只是把障碍重说一遍（如「费用高所以很贵」），没有落到健康后果，不得分。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Barriers to accessing health services", "points": [{"t": "Barriers: cost", "m": 1}, {"t": "fear about confidentiality", "m": 1}, {"t": "low health literacy (not realising a condition is treatable)", "m": 1}, {"t": "transport and distance, especially in rural areas", "m": 1}, {"t": "long waiting times and complicated booking systems", "m": 1}, {"t": "language and communication difficulties", "m": 1}, {"t": "stigma and embarrassment", "m": 1}, {"t": "not knowing which service to contact. Effects: (1) Cost — a young person delays seeing a GP or dentist, so a treatable condition worsens and may eventually need hospital care. (2) Fear about confidentiality — they avoid discussing mental or sexual health with a doctor, so the problem goes untreated and can escalate into a crisis", "m": 1}], "weak": false}, {"id": "pdh-003", "topic": "健康服务 · 面向青少年的服务", "difficulty": "easy", "type": "short", "stem": "List FIVE health services that are available for young people in Australia.", "options": [], "answer": "A general practitioner (GP) under Medicare; Headspace or another youth mental health service; the school counsellor; a dental clinic; a sexual health clinic; physiotherapy; a community health centre; a pharmacy; a hospital emergency department; a dietitian or nutritional support service.", "explanation": "得分点拆分：每写出一个具体服务 1 分，共 5 分。必须写具体机构或服务类型，只写「看医生」「去医院」这类笼统说法不给分；若能注明其中哪些对青少年免费或低价（Medicare、Headspace、学校辅导员）可加 1 分。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Health services for young people", "points": [{"t": "A general practitioner (GP) under Medicare; Headspace or another youth mental health service; the school counsellor; a dental clinic; a sexual health clinic; physiotherapy; a community health centre; a pharmacy; a hospital emergency department; a dietitian or nutritional support service.", "m": 1}], "weak": false}, {"id": "pdh-004", "topic": "道路安全 · 事故主要原因排序", "difficulty": "medium", "type": "mcq", "stem": "Which list ranks the leading causes of fatal road crashes in NSW from LARGEST to SMALLEST contribution (2025 data)?", "options": ["Speeding – Fatigue – Drink/drug impairment – Not wearing a seatbelt – Distraction", "Distraction – Speeding – Fatigue – Not wearing a seatbelt – Drink/drug impairment", "Drink/drug impairment – Speeding – Fatigue – Distraction – Not wearing a seatbelt", "Fatigue – Speeding – Distraction – Drink/drug impairment – Not wearing a seatbelt"], "answer": 0, "explanation": "得分点拆分：排序全对 2 分，只对前半部分（超速第一、疲劳第二）1 分。2025 新州数据：超速第一（约 39–40% 致命撞车涉及超速，134 人死亡）；疲劳第二（约 20–21%，75 人死亡）；酒驾毒驾第三；未系安全带第四（29 人死亡）；分心第五（常被漏报）。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Rank the top 5 causes + Term 1 · Lesson 2–3 (2025 Fatal Five)", "weak": false}, {"id": "pdh-005", "topic": "道路安全 · Haddon 矩阵与可控因素", "difficulty": "medium", "type": "short", "stem": "Road crashes are caused by a combination of human, vehicle and environmental factors. Classify each of the following, then explain which category is easiest to change and why: (a) a driver using a mobile phone; (b) worn brake pads; (c) a wet road on a bend.", "options": [], "answer": "(a) Human factor. (b) Vehicle factor. (c) Environmental factor. The human category is easiest to change, because the driver directly controls their own behaviour — speed, phone use, seatbelt use, fatigue and alcohol can all be changed through education, laws and police enforcement. Vehicle and environmental factors also matter, but about 95% of crashes involve human factors alone or in combination, so changing driver behaviour has the biggest effect on the road toll.", "explanation": "得分点拆分：三项分类各 1 分（3 分）；指出人为因素最易改变 1 分；理由 2 分（驾驶人可控、约 95% 事故涉及人为因素、靠教育＋立法＋执法改变）。常见失分：只写「人为因素最多」而没解释「为什么可以被改变」，理由分只能拿一半。", "source": "Term 1 · Lesson 2–3 Factors influencing road and traffic incidents（对应清单 List the major causes 一题）", "points": [{"t": "The human category is easiest to change, because the driver directly controls their own behaviour — speed, phone use, seatbelt use, fatigue and alcohol can all be changed through education, laws and police enforcement", "m": 1}, {"t": "Vehicle and environmental factors also matter, but about 95% of crashes involve human factors alone or in combination, so changing driver behaviour has the biggest effect on the road toll", "m": 1}], "weak": false}, {"id": "pdh-006", "topic": "道路安全 · 车内分心来源", "difficulty": "easy", "type": "mcq", "stem": "Which two are the most common distractions for a driver that come from INSIDE the vehicle?", "options": ["Checking a map and setting a GPS destination", "Using a mobile phone and interacting with passengers", "Adjusting the radio and the air-conditioning controls", "Eating food and drinking coffee while driving"], "answer": 1, "explanation": "得分点拆分：认出两项各 1 分（2 分）。手机与乘客互动是最主要的两项——用手机时撞车风险约提高 4 倍；P 牌司机载 3 名以上乘客事故几率翻倍以上。其余选项（音响、吃喝、导航）确实属于车内分心，但不是最常见的两项，选它们会失去「最常见」的分数。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Driver distractions + Term 1 · Lesson 2–3 & Lesson 5 Safety Plans", "weak": false}, {"id": "pdh-007", "topic": "驾驶知识 · BAC 三个空", "difficulty": "easy", "type": "mcq", "stem": "What are the legal blood alcohol concentration (BAC) limits in NSW for a learner, a provisional and a full licence holder?", "options": ["0.00 for learner, 0.05 for provisional, 0.05 for full", "0.02 for learner, 0.02 for provisional, 0.05 for full", "0.00 for learner, 0.00 for provisional, 0.05 for full", "0.05 for learner, 0.05 for provisional, 0.05 for full"], "answer": 2, "explanation": "得分点拆分：三个空各 1 分——Learner 0.00、Provisional 0.00、Full 0.05。最常见的错法是把 P 牌写成 0.05；新州 P 牌与 L 牌一样必须为零，全牌上限才是 0.05。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · BAC（数值按 NSW 法定标准，课程标准补充）", "weak": true}, {"id": "pdh-008", "topic": "网络与游戏 · 三种动机驱动", "difficulty": "medium", "type": "mcq", "stem": "The lesson says games fall into three motivational drives. Which set is correct?", "options": ["Social, competition and loss of rewards", "Social, peer pressure and punishment for logging off", "Skill, reward and punishment for losing rank", "Social, pleasure (intermittent reward) and pain"], "answer": 3, "explanation": "得分点拆分：三个空各 1 分（3 分）——Social（如 Farmville，和朋友一起经营自己的世界）、Pleasure／intermittent reward（如 Call of Duty，间歇给奖励，让人一直想再来一次）、Pain（如 World of Warcraft，用掉段位、清空奖励惩罚下线的人）。只写「好玩」「上瘾」这类笼统词不给分。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Games – three motivational drives + Term 1 · Lesson 9 Online Safety", "weak": false}, {"id": "pdh-009", "topic": "人际关系 · 尊重关系的五个特征", "difficulty": "easy", "type": "short", "stem": "List FIVE common features of respectful relationships.", "options": [], "answer": "Mutual respect; trust; honesty; open communication; consent; equality (no one holds all the power); freedom to be yourself; support and encouragement.", "explanation": "得分点拆分：每个特征 1 分，共 5 分。要写课程术语（mutual respect / trust / consent / open communication / equality），只写「对你好」「不吵架」这类笼统描述不给分；写出 6 个但有一个重复，仍只按 5 个计。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Features of respectful relationships", "points": [{"t": "Mutual respect", "m": 1}, {"t": "open communication", "m": 1}, {"t": "equality (no one holds all the power)", "m": 1}, {"t": "freedom to be yourself", "m": 1}, {"t": "support and encouragement", "m": 1}], "weak": false}, {"id": "pdh-010", "topic": "人际关系 · 权力的正面使用", "difficulty": "medium", "type": "short", "stem": "Give examples of the POSITIVE use of power in a relationship.", "options": [], "answer": "Using influence to support and encourage the other person; making decisions together and giving them a voice; standing up for someone who is being bullied; mentoring a younger player and sharing responsibility; being honest about your own limits and asking for their input; using a leadership role to make sure everyone is included.", "explanation": "得分点拆分：每个具体例子 1 分，通常给 3–4 分。判断标准是「权力被用来让对方更有选择、让关系更平等」。注意：替对方做所有决定即使出发点是保护，也属于负面（控制）用法，这一点常被写反。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Positive use of power", "points": [{"t": "Using influence to support and encourage the other person", "m": 1}, {"t": "making decisions together and giving them a voice", "m": 1}, {"t": "standing up for someone who is being bullied", "m": 1}, {"t": "mentoring a younger player and sharing responsibility", "m": 1}, {"t": "being honest about your own limits and asking for their input", "m": 1}, {"t": "using a leadership role to make sure everyone is included", "m": 1}], "weak": false}, {"id": "pdh-011", "topic": "人际关系 · 权力的负面使用", "difficulty": "easy", "type": "short", "stem": "Give examples of the NEGATIVE use of power in a relationship.", "options": [], "answer": "Coercion or threats; manipulation and guilt-tripping; peer pressure to do something risky; bullying or public humiliation; controlling who the other person sees or what they wear; withholding money or information; using physical size or status to intimidate; pressuring someone about consent.", "explanation": "得分点拆分：每个具体例子 1 分，通常给 3–4 分。负面权力的共同点是「用地位、力量或信息差让对方失去选择权」——凡是让人不敢拒绝的做法都算，包括冷暴力和经济控制，不只是动手。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Negative use of power", "points": [{"t": "Coercion or threats", "m": 1}, {"t": "manipulation and guilt-tripping", "m": 1}, {"t": "peer pressure to do something risky", "m": 1}, {"t": "bullying or public humiliation", "m": 1}, {"t": "controlling who the other person sees or what they wear", "m": 1}, {"t": "withholding money or information", "m": 1}, {"t": "using physical size or status to intimidate", "m": 1}, {"t": "pressuring someone about consent", "m": 1}], "weak": false}, {"id": "pdh-012", "topic": "人际关系 · 四种沟通方式", "difficulty": "hard", "type": "short", "stem": "List and describe the FOUR communication styles.", "options": [], "answer": "Passive: holding back your own needs and going along with others, often to avoid conflict. Aggressive: putting your own needs first and disregarding or violating the other person's rights (shouting, blaming, threats). Passive-aggressive: expressing anger indirectly — sulking, sarcasm, silent treatment or gossiping instead of saying it directly. Assertive: stating your needs clearly and calmly while respecting the other person's needs, using 'I' statements and staying open to negotiation.", "explanation": "得分点拆分：四种类型名称各 1 分（4 分），描述准确各 1 分（4 分）。判定关键是「自己的需求 vs 对方的需求」这个二维坐标：被动＝放弃自己；攻击＝压过对方；被动攻击＝不当面说、用冷暴力或阴阳怪气；果断＝两边都顾到。只写名称不描述，描述分全失。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Four communication styles（得分点按课程内容整理）", "points": [{"t": "Passive: holding back your own needs and going along with others, often to avoid conflict", "m": 1}, {"t": "Aggressive: putting your own needs first and disregarding or violating the other person's rights (shouting, blaming, threats)", "m": 1}, {"t": "Passive-aggressive: expressing anger indirectly — sulking, sarcasm, silent treatment or gossiping instead of saying it directly", "m": 1}, {"t": "Assertive: stating your needs clearly and calmly while respecting the other person's needs, using 'I' statements and staying open to negotiation", "m": 1}], "weak": false}, {"id": "pdh-013", "topic": "自我认知 · sense of self", "difficulty": "easy", "type": "short", "stem": "Describe what SENSE OF SELF means.", "options": [], "answer": "A sense of self is how a person sees and values themselves — their self-esteem, self-worth and personal identity. It includes their beliefs about who they are, their values, their strengths and weaknesses, and how they think others see them. It is shaped by family, peers, culture, media, school and personal experience, and it keeps changing through adolescence.", "explanation": "得分点拆分：定义（怎么看自己）1–2 分；组成部分（自尊、自我价值、身份、价值观）1–2 分；影响因素（家庭、同伴、媒体、文化、经历）1 分。注意 sense of self 不等于「自信」——自信只是其中一个成分，只写自信只能拿部分分。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Sense of self（得分点按课程内容整理）", "points": [{"t": "A sense of self is how a person sees and values themselves — their self-esteem, self-worth and personal identity", "m": 1}, {"t": "It includes their beliefs about who they are, their values, their strengths and weaknesses, and how they think others see them", "m": 1}, {"t": "It is shaped by family, peers, culture, media, school and personal experience, and it keeps changing through adolescence", "m": 1}], "weak": false}, {"id": "pdh-014", "topic": "心理健康 · 污名的定义与影响", "difficulty": "medium", "type": "short", "stem": "Describe what the term STIGMA means and explain how it can affect a young person with a mental illness.", "options": [], "answer": "Stigma is a cluster of negative attitudes and beliefs that lead people to fear, reject, avoid and discriminate against those with a mental illness. It labels the person rather than the illness. For a young person it can cause shame and isolation, lead to bullying or being left out, and stop them telling anyone or seeking treatment, so the condition gets worse.", "explanation": "得分点拆分：定义须包含「负面标签→恐惧／排斥／歧视」2 分；对青少年的影响 2 分（羞耻与孤立、被欺凌或排斥、不敢求助导致病情恶化）。只写「别人看不起他」这类口语表达只能拿 1 分，因为没有体现歧视与回避。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Stigma + Term 2 · Lesson 2 Myths, Misconceptions & Stigma", "points": [{"t": "Stigma is a cluster of negative attitudes and beliefs that lead people to fear, reject, avoid and discriminate against those with a mental illness", "m": 1}, {"t": "It labels the person rather than the illness", "m": 1}, {"t": "For a young person it can cause shame and isolation, lead to bullying or being left out, and stop them telling anyone or seeking treatment, so the condition gets worse", "m": 1}], "weak": false}, {"id": "pdh-015", "topic": "心理健康 · 四种常见精神疾病", "difficulty": "medium", "type": "short", "stem": "List and describe FOUR common mental health disorders.", "options": [], "answer": "Depression: persistent low mood and loss of interest for weeks, with low confidence, changed appetite and sleep, tiredness and, at worst, suicidal thoughts. Anxiety: excessive worry with physical tension, difficulty concentrating, avoidance of situations and being easily startled. Bipolar disorder: mood swings between manic highs (elevated energy, little sleep, risky behaviour) and depressive lows. Schizophrenia: disturbance of thinking and perception, including delusions and hallucinations, which changes how the person interprets reality. (Eating disorders and PTSD are also acceptable answers.)", "explanation": "得分点拆分：每种病名称 1 分＋典型症状描述 1 分，四组共 4–8 分。描述必须写该病特有的症状：把「心情不好」当抑郁、把「考试前紧张」当焦虑会失分。常见失分：四种都写了名称，但没有一个有具体症状。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Common mental health disorders + Term 2 · Lesson 1", "points": [{"t": "Depression: persistent low mood and loss of interest for weeks, with low confidence, changed appetite and sleep, tiredness and, at worst, suicidal thoughts", "m": 1}, {"t": "Anxiety: excessive worry with physical tension, difficulty concentrating, avoidance of situations and being easily startled", "m": 1}, {"t": "Bipolar disorder: mood swings between manic highs (elevated energy, little sleep, risky behaviour) and depressive lows", "m": 1}, {"t": "Schizophrenia: disturbance of thinking and perception, including delusions and hallucinations, which changes how the person interprets reality", "m": 1}, {"t": "(Eating disorders and PTSD are also acceptable answers.)", "m": 1}], "weak": false}, {"id": "pdh-016", "topic": "青春期 · 与父母关系的变化", "difficulty": "hard", "type": "short", "stem": "Explain why a teenager's relationship with their parents often changes during adolescence. Discuss at least TWO social changes and TWO emotional changes.", "options": [], "answer": "Social changes: teenagers develop their own values and are influenced more by peers and media than by parents, so conflict over rules increases; they form a sexual identity and want more privacy; they seek independence and greater responsibility, and want to negotiate rather than be told what to do. Emotional changes: moods and feelings swing more widely, they become more sensitive to others' opinions and self-conscious about how they look, and they want to make their own decisions. As a result the relationship shifts from parent-controlled to more equal, with more negotiation and sometimes more conflict, and it usually settles again as independence is worked out.", "explanation": "得分点拆分：社会变化至少 2 项并解释（2–3 分）；情感变化至少 2 项并解释（2–3 分）；指出关系总体从「被管」转向「协商／平等」并说明结果（1–2 分）。常见失分：只罗列清单里的关键词（values、identity、moods），不解释它们如何改变亲子互动，最多拿一半分。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Adolescent relationships", "points": [{"t": "Social changes: teenagers develop their own values and are influenced more by peers and media than by parents, so conflict over rules increases", "m": 1}, {"t": "they form a sexual identity and want more privacy", "m": 1}, {"t": "they seek independence and greater responsibility, and want to negotiate rather than be told what to do. Emotional changes: moods and feelings swing more widely, they become more sensitive to others' opinions and self-conscious about how they look, and they want to make their own decisions. As a result the relationship shifts from parent-controlled to more equal, with more negotiation and sometimes more conflict, and it usually settles again as independence is worked out", "m": 1}], "weak": false}, {"id": "pdh-017", "topic": "沟通 · 好的倾听者特征", "difficulty": "easy", "type": "short", "stem": "List some features of a good listener.", "options": [], "answer": "Gives eye contact and open body language; puts the phone away and stops other tasks; does not interrupt; lets the speaker finish before replying; asks clarifying questions; paraphrases or summarises what was said; shows empathy and does not judge; keeps the conversation confidential.", "explanation": "得分点拆分：每个特征 1 分，通常给 4–5 分。要写可观察的具体行为（眼神接触、不打断、复述要点、把手机放下）；只写「认真听」「很关心他」这种抽象评价不给分。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Features of a good listener", "points": [{"t": "Gives eye contact and open body language", "m": 1}, {"t": "puts the phone away and stops other tasks", "m": 1}, {"t": "does not interrupt", "m": 1}, {"t": "lets the speaker finish before replying", "m": 1}, {"t": "asks clarifying questions", "m": 1}, {"t": "paraphrases or summarises what was said", "m": 1}, {"t": "shows empathy and does not judge", "m": 1}, {"t": "keeps the conversation confidential", "m": 1}], "weak": false}, {"id": "pdh-018", "topic": "人际关系 · 分析维持尊重关系的行为", "difficulty": "hard", "type": "short", "stem": "Analyse the behaviours needed to maintain respectful relationships. Use at least FOUR of: trust, honesty, freedom, consent, open communication, mutual respect. You must describe each behaviour, show how the behaviours affect each other, and discuss the implications.", "options": [], "answer": "Description: trust is the confidence that the other person will not hurt or betray you; honesty means telling the truth even when it is difficult; freedom is each person's right to their own friends, interests and choices; consent means a clear, freely given yes to any physical or emotional intimacy; open communication means saying what you think and feel, and listening in return; mutual respect means treating the other person as an equal whose needs matter. Interaction: without honesty there can be no trust, therefore a relationship built on small lies gradually loses its security; without open communication consent cannot be given or checked, so respect breaks down and conflict or harm follows. Implications: a relationship missing trust and respect tends to become controlling or collapse, leading to emotional harm, isolation and, for young people, damage to self-esteem and mental health.", "explanation": "得分点拆分：描述 4 个行为各 1 分（4 分）；用连接词（therefore / as a result / leading to）说明行为之间的因果关系 2–3 分；讨论后果与影响（对个人、家庭、心理健康）2–3 分。分水岭在「分析」：只逐条解释、不写一个行为如何导致另一个行为，就拿不到分析与影响的分。", "source": "Year 10 PDHPE Yearly Revision Questions 2023 · Analysing respectful relationships", "points": [{"t": "Description: trust is the confidence that the other person will not hurt or betray you", "m": 1}, {"t": "honesty means telling the truth even when it is difficult", "m": 1}, {"t": "freedom is each person's right to their own friends, interests and choices", "m": 1}, {"t": "consent means a clear, freely given yes to any physical or emotional intimacy", "m": 1}, {"t": "open communication means saying what you think and feel, and listening in return", "m": 1}, {"t": "mutual respect means treating the other person as an equal whose needs matter. Interaction: without honesty there can be no trust, therefore a relationship built on small lies gradually loses its security", "m": 1}, {"t": "without open communication consent cannot be given or checked, so respect breaks down and conflict or harm follows. Implications: a relationship missing trust and respect tends to become controlling or collapse, leading to emotional harm, isolation and, for young people, damage to self-esteem and mental health", "m": 1}], "weak": false}, {"id": "pdh-019", "topic": "急救 · DRSABCD 顺序", "difficulty": "easy", "type": "mcq", "stem": "In the DRSABCD action plan, what must you do FIRST before attending to a casualty?", "options": ["Check the area is safe for you, bystanders and the casualty", "Send another person to dial triple zero (000) straight away", "Check for a response by squeezing their shoulders firmly", "Start chest compressions on the casualty straight away"], "answer": 0, "explanation": "得分点拆分：顺序 1 分（D 在最前），理由 1 分（救援者自身安全优先）。D 是 Danger，不是 Defibrillation；现场不安全时应先撤离再呼救，而不是冲上去做 CPR。", "source": "Term 3 · Lesson 5 First Aid · DANGER", "weak": false}, {"id": "pdh-020", "topic": "急救 · CPR 按压通气比", "difficulty": "easy", "type": "mcq", "stem": "When performing CPR on an adult, what is the correct compression-to-breath ratio?", "options": ["50 compressions : 5 breaths", "30 compressions : 2 breaths", "15 compressions then 2 breaths", "5 compressions : 1 breath"], "answer": 1, "explanation": "得分点拆分：比例 30:2 记 1 分。还要知道开始 CPR 后只有三种情况可以停：救援到达、伤员恢复、或你体力上确实无法继续——这一条常在情景题里考。", "source": "Term 3 · Lesson 5 First Aid · CPR", "weak": false}, {"id": "pdh-021", "topic": "急救 · 车祸现场 DRSABCD", "difficulty": "hard", "type": "short", "stem": "You are the first person to arrive at a motorcycle crash on a busy road. Describe, in order, the actions you would take using DRSABCD, including two hazards you would manage.", "options": [], "answer": "Danger: stop safely with hazard lights on, keep clear of moving traffic and any fuel spill, and ask bystanders to warn oncoming vehicles. Response: check whether the rider responds by speaking to them and squeezing their shoulders. Send for help: call 000 or direct a bystander to do it. Airway: open the airway and clear any foreign material. Breathing: look, listen and feel; if breathing is not normal, start CPR at 30:2. Circulation: control any major bleeding. Defibrillation: apply an AED if available and follow the voice prompts.", "explanation": "得分点拆分：D 描述现场危险与自保 2 分；R 检查反应 1 分；S 呼救并说明 000／指定他人 1 分；A、B、C 顺序与判断正确 3 分；D 取 AED 1 分；两项以上现场危险（来车、燃油、电线、玻璃碎片）1–2 分。顺序写错或漏掉 Send for help 会连锁失分。", "source": "Term 1 · First Aid – Road Trauma + Term 3 · Lesson 5 First Aid · DRSABCD", "points": [{"t": "Danger: stop safely with hazard lights on, keep clear of moving traffic and any fuel spill, and ask bystanders to warn oncoming vehicles. Response: check whether the rider responds by speaking to them and squeezing their shoulders. Send for help: call 000 or direct a bystander to do it. Airway: open the airway and clear any foreign material. Breathing: look, listen and feel", "m": 1}, {"t": "if breathing is not normal, start CPR at 30:2. Circulation: control any major bleeding. Defibrillation: apply an AED if available and follow the voice prompts", "m": 1}], "weak": false}, {"id": "pdh-022", "topic": "道路安全 · 分心驾驶的盲开距离", "difficulty": "easy", "type": "mcq", "stem": "At 60 km/h, how far does a car travel in the two seconds a driver's eyes are off the road?", "options": ["About 60 m", "About 120 m", "About 33 m", "About 17 m"], "answer": 2, "explanation": "得分点拆分：先用 60 ÷ 3.6 = 16.7 m/s，再乘 2 秒约 33 m，1 分。最常见的错选是 17 m——那只是 1 秒的距离；题目给的是 2 秒。", "source": "Term 1 · Lesson 2–3 · Are you driving blind?", "weak": false}, {"id": "pdh-023", "topic": "道路安全 · 新手司机风险倍数", "difficulty": "medium", "type": "mcq", "stem": "A 17-year-old driver on a P1 licence is how much more likely to be involved in a fatal crash than a driver over 26 years?", "options": ["Ten times as likely", "Three times as likely", "Two times as likely", "Four times as likely"], "answer": 3, "explanation": "得分点拆分：答案 4 倍记 1 分；能补充原因（不熟悉路况、危险感知能力尚未成熟、更倾向冒险）再加 1 分。这一数据是 Term 1 论文「年轻男性为何事故率更高」的核心论据，建议背下来。", "source": "Term 1 · Lesson 4 Influences on Road Safety · Young People on the Roads", "weak": false}, {"id": "pdh-024", "topic": "心理健康 · 患病率与常见类型", "difficulty": "medium", "type": "short", "stem": "What proportion of Australians aged 16–85 experience a mental illness in any one year? Name the three most common types and explain why they often occur together.", "options": [], "answer": "About one in five (20%). The most common are depression, anxiety and substance use disorders. They often occur together: a person with an anxiety disorder may go on to develop depression, and a person with depression may misuse alcohol or other drugs to cope, so one condition can trigger or hide another.", "explanation": "得分点拆分：20%（1 in 5）1 分；三种类型各 1 分（3 分）；解释共病与相互触发 2 分。数字写成 1 in 10 或 50% 直接失分；只写「三种病很常见」而没说相互关系，解释分不给。", "source": "Term 2 · Lesson 1 Common Mental Health Conditions · Prevalence", "points": [{"t": "The most common are depression, anxiety and substance use disorders", "m": 1}, {"t": "They often occur together: a person with an anxiety disorder may go on to develop depression, and a person with depression may misuse alcohol or other drugs to cope, so one condition can trigger or hide another", "m": 1}], "weak": false}, {"id": "pdh-025", "topic": "心理健康 · 韧性特征", "difficulty": "medium", "type": "mcq", "stem": "Which of the following is one of the characteristics of resilient people identified in the lesson?", "options": ["A strong sense of control over their own life", "Seeing themselves as a victim of circumstance", "Never asking anybody for help at all", "Avoiding every situation that feels difficult"], "answer": 0, "explanation": "得分点拆分：识别正确特征 1 分；能列出另外几项再加 1 分。五个特征是：控制感、强的问题解决能力、牢固的社交联系、把自己看作「幸存者」而非「受害者」、能主动求助。「从不求助」和「受害者心态」正好是反面。", "source": "Term 2 · Lesson 3 Characteristics of Resilient people", "weak": false}, {"id": "pdh-026", "topic": "心理健康 · 求助障碍", "difficulty": "hard", "type": "short", "stem": "Explain TWO barriers that stop young people, especially young males, from seeking help for a mental health issue, and outline one way each barrier could be reduced.", "options": [], "answer": "Stigma: seeing mental illness as weakness or as 'not masculine' makes young men hide their feelings and bottle them up, so problems get worse; it can be reduced through mental health education and campaigns that present help-seeking as normal. Low mental health literacy: many cannot recognise their own symptoms or do not know which service to contact, so they wait until crisis point; this can be reduced by teaching help-seeking skills in school and promoting services such as ReachOut, Beyond Blue and Headspace.", "explanation": "得分点拆分：每个障碍 1 分＋解释它为什么阻碍求助 1 分（共 4 分）；每个障碍对应的改进措施 1 分（共 2 分）。障碍与措施必须一一对应——用「加强教育」去解决「费用高」是无效配对，不得分。", "source": "Term 2 · Lesson 8 Seeking Help · Barriers to seeking help", "points": [{"t": "Stigma: seeing mental illness as weakness or as 'not masculine' makes young men hide their feelings and bottle them up, so problems get worse", "m": 1}, {"t": "it can be reduced through mental health education and campaigns that present help-seeking as normal. Low mental health literacy: many cannot recognise their own symptoms or do not know which service to contact, so they wait until crisis point", "m": 1}, {"t": "this can be reduced by teaching help-seeking skills in school and promoting services such as ReachOut, Beyond Blue and Headspace", "m": 1}], "weak": false}, {"id": "pdh-027", "topic": "营养 · 健康服务的类型", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is listed in the course as a type of health service available to young people?", "options": ["Private driving lessons", "Nutritional support", "Private exam tutoring", "Careers counselling"], "answer": 1, "explanation": "得分点拆分：认出「营养支持」属于健康服务 1 分；能说出另外几类再加 1 分。Lesson 1 列出九类：心理保健、牙科、物质滥用治疗、预防保健、物理与职业治疗、营养支持、药物服务、交通、产前保健。营养师／膳食师就属于营养支持这一类。", "source": "Term 3 · Lesson 1 Health Services · Types of Health services", "weak": false}, {"id": "pdh-028", "topic": "营养 · 自我管理与长期健康", "difficulty": "medium", "type": "short", "stem": "Explain why nutrition and physical activity are described as self-management skills for adulthood, and give one specific example of each.", "options": [], "answer": "They are self-management skills because adults must regulate their own daily routine — no one else plans their meals or schedules their exercise — and these habits strongly shape long-term health, energy levels and disease risk. Example: planning meals around the core food groups (vegetables, fruit, grains, lean protein, dairy or alternatives) instead of relying on takeaway; example: scheduling at least 60 minutes of moderate physical activity each day.", "explanation": "得分点拆分：说明「为什么算自我管理」（要自己安排、没人替你规划、直接影响长期健康）2 分；营养例子 1 分；身体活动例子 1 分；点出与疾病风险的关系 1 分。例子要具体到行为，写「吃健康点」不算。", "source": "Term 3 · Lesson 8 Life Challenges · Self-Management Skills（营养与体能细节按课程标准补充）", "points": [{"t": "They are self-management skills because adults must regulate their own daily routine — no one else plans their meals or schedules their exercise — and these habits strongly shape long-term health, energy levels and disease risk. Example: planning meals around the core food groups (vegetables, fruit, grains, lean protein, dairy or alternatives) instead of relying on takeaway", "m": 1}, {"t": "example: scheduling at least 60 minutes of moderate physical activity each day", "m": 1}], "weak": true}, {"id": "pdh-029", "topic": "健康信息 · 可信度判断", "difficulty": "medium", "type": "mcq", "stem": "A website advertises a 'detox cleanse' that claims to cure anxiety. Which question would BEST help you judge the credibility of this service?", "options": ["How colourful and modern does the website look to you?", "Is the product cheap enough to be worth trying anyway?", "What qualifications and training does the practitioner have?", "How many people have shared this advertisement on social media?"], "answer": 2, "explanation": "得分点拆分：选出「资质与培训」1 分；能补出材料里其他判断问题再加 2 分：提供什么治疗、有何效果、费用、能否与传统药物配合。网页美观、转发量和价格都不能证明有效性——这是这类题的固定陷阱。", "source": "Term 3 · Lesson 3 Assessing Credibility of Health Information", "weak": false}, {"id": "pdh-030", "topic": "赌博 · 四大影响因素", "difficulty": "medium", "type": "mcq", "stem": "What are the four main influences on a young person's attitude to gambling identified in the lesson?", "options": ["Personality, fatigue, alcohol use and speeding", "Cost, transport, language barriers and long waiting times", "Family income, suburb, age and gender of the player", "Advertising, friends, easy access and gambling-like games"], "answer": 3, "explanation": "得分点拆分：四项各 1 分（4 分）——广告宣传、朋友是否赌（同辈压力）、获取的容易程度、看起来像赌博的游戏。「Cost, transport, language barriers and long waiting times」 是健康服务障碍，「Personality, fatigue, alcohol use and speeding」 是道路安全 Fatal Five，正好是这一题最常见的混淆项。", "source": "Term 1 · Lesson 8 Gambling · Potential Influences on Gambling（Study Guide Section 2 明确要求）", "weak": false}]};
@@ -1300,6 +1697,9 @@ function TFILTER(){
 function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
+const AI_ENGINE = {};
+function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
   "as at by from it its their they them we you your our not no but if then than so such can could may might " +
@@ -1571,9 +1971,10 @@ function render() {
           <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
           ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
           ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
+          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
         </div>
         <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI: '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
             return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
         <div class="actions">
           <button class="btn ghost" id="allpt">全部勾上</button>
@@ -1670,21 +2071,37 @@ function render() {
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
       res.style.color = hit ? "var(--ok)" : "var(--bad)";
     };
+    const ac = document.getElementById("aiconf");
+    if (ac) ac.onclick = () => {
+      const cur = localAI();
+      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      if (v === null) return;
+      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+    };
     const ai = document.getElementById("aigrade");
     if (ai) ai.onclick = () => {
       const arr = readSlots(), answer = joinSlots(arr);
       if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
       ai.disabled = true; ai.textContent = "AI 判分中…";
-      fetch(apibase() + "/grade", {
-        method: "POST", headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer})
-      }).then(r=>r.json()).then(d => {
-        if (!d || !d.ok) throw new Error((d && d.error) || "failed");
-        AI_RES[q.id] = d.results; save(); render();
-      }).catch(e => {
+      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+      const engines = [];
+      if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
+      const loc = localAI();
+      if (loc) engines.push({n:"local", u: loc + "/grade"});
+      (async function(){
+        let lastErr = "no engine";
+        for (const en of engines) {
+          try {
+            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
+            const d = await r.json();
+            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+            return;
+          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+        }
         ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分失败：" + e.message, false);
-      });
+        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
+      })();
     };
     const ap2 = document.getElementById("applyai");
     if (ap2) ap2.onclick = () => {

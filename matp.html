@@ -1,71 +1,395 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
+(function(){try{
+  var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
+  var s=m||localStorage.getItem("dsh-theme")||"system";
+  var r=document.documentElement;
+  if(s==="light"||s==="dark") r.setAttribute("data-theme",s);
+  r.setAttribute("data-theme-mode",s);
+}catch(e){}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>数学 P · 10 年级 · 复习测验</title>
 <style>
+/* ══ design tokens ═══════════════════════════════════════ */
 :root{
-  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --fg:#e8ecf1; --dim:#9aa4b2;
-  --line:#2a2f3a; --accent:#5b8cff; --ok:#2fbf71; --bad:#ff5f56; --warn:#f5a623;
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+  --bg: var(--background);
+  --card: var(--surface);
+  --card2: var(--surface-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-secondary);
+  --fg: var(--foreground);
+  --dim: var(--muted);
+  --line: var(--border);
+  --line2: var(--border-strong);
+  --ok: var(--success);
+  --bad: var(--error);
+  --warn: var(--warning);
+  /* 派生色：只覆盖 --accent，其余自动跟着变（商店主题用它）*/
+  --accent-text: color-mix(in srgb, var(--accent) 74%, var(--foreground));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
 }
-@media (prefers-color-scheme: light) {
-  :root{--bg:#f6f7f9;--card:#fff;--card2:#f0f2f5;--fg:#1b1f26;--dim:#5f6b7a;--line:#e2e6ec;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --background: #09090B;
+    --surface: #111113;
+    --surface-secondary: #18181B;
+    --surface-inset: #1F1F23;
+    --foreground: #FAFAFA;
+    --muted: #A1A1AA;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --accent: #3291FF;
+    --success: #4ADE80;
+    --success-soft: rgba(74,222,128,.12);
+    --error: #F87171;
+    --error-soft: rgba(248,113,113,.12);
+    --warning: #F59E0B;
+    --warning-soft: rgba(245,158,11,.12);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+    --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+    --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+  }
 }
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --background: #09090B;
+  --surface: #111113;
+  --surface-secondary: #18181B;
+  --surface-inset: #1F1F23;
+  --foreground: #FAFAFA;
+  --muted: #A1A1AA;
+  --border: #27272A;
+  --border-strong: #3F3F46;
+  --primary: #FAFAFA;
+  --primary-foreground: #171717;
+  --accent: #3291FF;
+  --success: #4ADE80;
+  --success-soft: rgba(74,222,128,.12);
+  --error: #F87171;
+  --error-soft: rgba(248,113,113,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+  --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+}
+
+/* ══ foundations ═════════════════════════════════════════ */
+:root{
+  /* type */
+  --font-sans:"Geist Variable","Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono:"Geist Mono Variable","Geist Mono",ui-monospace,SFMono-Regular,"SF Mono",
+    Menlo,Consolas,monospace;
+  --text-2xl:28px; --text-xl:20px; --text-lg:17px; --text-md:15px;
+  --text-base:14px; --text-sm:12px; --text-xs:11px;
+  --lh-tight:1.25; --lh-snug:1.45; --lh-base:1.6; --lh-prose:1.75;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s8:32px; --s10:40px; --s12:48px; --s16:64px;
+  /* radius */
+  --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px; --r-full:999px;
+  /* layout */
+  --page-max:1120px;
+  --read-max:760px;
+  --page-x:32px;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --fast:.12s; --norm:.2s;
+}
+
+@font-face{
+  font-family:"Geist Variable";
+  src:url("fonts/geist-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-latin.woff2") format("woff2");
+  font-weight:400 700; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,
+    U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Geist Mono Variable";
+  src:url("fonts/geist-mono-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight:400 600; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,
+    U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:var(--text-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11";
+  font-synthesis-weight:none;
+  transition:background-color var(--norm) var(--ease),color var(--norm) var(--ease);
+}
+body,body *{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:var(--lh-tight);font-weight:600}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl)}
+h3{font-size:var(--text-md)}
+a{color:var(--accent-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+::selection{background:var(--accent-soft);color:var(--foreground)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+hr{border:0;border-top:1px solid var(--border);margin:var(--s6) 0}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em}
+kbd{background:var(--surface-secondary);border:1px solid var(--border);border-bottom-width:2px;
+  border-radius:var(--r-sm);padding:1px 6px;color:var(--muted);font-size:11px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+/* 数字统一等宽，避免跳动 */
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ══ 共享顶栏（首页 / 商城 / 错题本）═════════════════════ */
+.topbar{position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);
+  height:56px;display:flex;align-items:center;gap:var(--s4)}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--foreground);
+  text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:-.01em;flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--primary);
+  color:var(--primary-foreground);display:grid;place-items:center;font-size:11px;
+  font-weight:600;font-family:var(--font-mono);line-height:1}
+.nav{display:flex;align-items:center;gap:1px;min-width:0;overflow:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px;color:var(--muted);padding:5px 9px;border-radius:var(--r-sm);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--fast) var(--ease),background-color var(--fast) var(--ease)}
+.nav a:hover{color:var(--foreground);background:var(--surface-secondary);text-decoration:none}
+.nav a.on{color:var(--foreground);font-weight:500}
+.grow{flex:1}
+@media (max-width:720px){
+  .topbar-in{height:auto;flex-wrap:wrap;gap:8px;padding:9px var(--page-x) 0}
+  .brand .bname{display:none}
+  .topbar .nav{order:10;width:100%;margin:2px calc(-1 * var(--page-x)) 0;
+    padding:0 var(--page-x) 8px;border-top:1px solid var(--border)}
+  .topbar .themectl{margin-left:auto}
+}
+
+/* 分段控件选中态 */
+.seg button.on{border-color:var(--foreground)!important}
+
+/* ══ components ══════════════════════════════════════════ */
+.btn,.btn-ghost,.btn2{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  height:34px;padding:0 14px;border-radius:var(--r-sm);
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),opacity var(--fast) var(--ease);
+  text-decoration:none;
+}
+.btn{
+  background:var(--primary);color:var(--primary-foreground);
+  border-color:var(--primary);
+}
+.btn:hover{opacity:.88;text-decoration:none}
+.btn:active{transform:translateY(.5px)}
+.btn:disabled,.btn[disabled]{background:var(--surface-secondary);color:var(--muted);
+  border-color:var(--border);opacity:1;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost,.btn.ghost,.btn2{
+  background:var(--surface);color:var(--foreground);border-color:var(--border);
+}
+.btn-ghost:hover,.btn.ghost:hover,.btn2:hover{
+  background:var(--surface-secondary);border-color:var(--border-strong);text-decoration:none;
+}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;background:var(--surface)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:var(--r-sm)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent:hover{opacity:.9;color:#fff}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:none;
+}
+.input,input[type="text"],input[type="search"],input[type="number"],textarea,select{
+  font-family:inherit;font-size:var(--text-base);color:var(--foreground);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:8px 11px;outline:none;transition:border-color var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.input:hover,input:hover,textarea:hover,select:hover{border-color:var(--border-strong)}
+.input:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--muted);opacity:.85}
+
+.chip,.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:var(--text-xs);line-height:1.6;font-weight:500;
+  padding:2px 8px;border-radius:var(--r-sm);
+  background:var(--surface-secondary);border:1px solid var(--border);color:var(--muted);
+  white-space:nowrap;
+}
+
+/* 主题切换控件 */
+.themectl{display:inline-flex;align-items:center;gap:2px;padding:2px;
+  background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm)}
+.themectl button{
+  font:inherit;font-size:11.5px;font-weight:500;line-height:1;height:24px;padding:0 9px;
+  border:0;border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease);
+}
+.themectl button:hover{color:var(--foreground)}
+.themectl button.on{background:var(--surface);color:var(--foreground);
+  box-shadow:var(--shadow-sm)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;
+  color:var(--muted);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);height:28px;padding:0 10px;cursor:pointer;
+  transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease)}
+.themebtn:hover{color:var(--foreground);border-color:var(--border-strong)}
+.themebtn b{color:var(--foreground);font-weight:500}
+
+/* 浅色下别让深色主题的重阴影漏过来 */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .submit-card{box-shadow:var(--shadow-lg)}
+  :root:not([data-theme="dark"]) .lb-fab{box-shadow:var(--shadow-md)}
+  :root:not([data-theme="dark"]) .lang-btn{box-shadow:var(--shadow-sm)}
+}
+:root[data-theme="light"] .submit-card{box-shadow:var(--shadow-lg)}
+:root[data-theme="light"] .lb-fab{box-shadow:var(--shadow-md)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:900px){ :root{--page-x:20px} }
+@media (max-width:560px){ :root{--page-x:16px} }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);
- font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);
- backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px}
-.bar{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.bar h1{font-size:16px;margin:0;font-weight:650;letter-spacing:.2px}
-.bar .meta{color:var(--dim);font-size:13px}
+body{margin:0;display:flex;flex-direction:column;min-height:100vh}
+header{position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb,var(--background) 88%,transparent);
+  -webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--border);padding:9px 0 0}
+.bar{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);display:flex;
+  align-items:center;gap:7px;flex-wrap:wrap;min-height:34px}
+.bar h1{font-size:15px;margin:0;font-weight:600;letter-spacing:-.01em}
+.bar .meta{color:var(--muted);font-size:12px}
 .spacer{flex:1}
-.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;
- font-size:12px;color:var(--dim)}
-.progress{height:5px;background:var(--card2);border-radius:99px;overflow:hidden;margin-top:8px}
-.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
-main{max-width:820px;margin:0 auto;padding:22px 16px 80px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
-.chip{padding:2px 9px;border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line)}
-.chip.easy{color:#2fbf71;border-color:#2fbf7144}
-.chip.medium{color:#f5a623;border-color:#f5a62344}
-.chip.hard{color:#ff5f56;border-color:#ff5f5644}
-.stem{font-size:17px;line-height:1.6;margin:6px 0 16px;white-space:pre-wrap}
-.opts{display:grid;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);
+  background:var(--surface);border-radius:var(--r-sm);padding:3px 8px;font-size:11.5px;
+  color:var(--muted);font-family:var(--font-mono);font-variant-numeric:tabular-nums;
+  white-space:nowrap;text-decoration:none}
+a.pill:hover{border-color:var(--border-strong);color:var(--foreground);text-decoration:none}
+.progress{height:3px;background:var(--surface-secondary);border-radius:99px;overflow:hidden;
+  margin:9px 0 0}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;
+  transition:width .3s var(--ease)}
+main{width:100%;max-width:860px;margin:0 auto;padding:var(--s6) var(--page-x) 96px;flex:1 0 auto}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip.easy{color:var(--success);border-color:color-mix(in srgb,var(--success) 40%,var(--border));
+  background:var(--success-soft)}
+.chip.medium{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 40%,var(--border));
+  background:var(--warning-soft)}
+.chip.hard{color:var(--error);border-color:color-mix(in srgb,var(--error) 40%,var(--border));
+  background:var(--error-soft)}
+.stem{font-size:17px;line-height:1.7;margin:4px 0 16px;white-space:pre-wrap;
+  color:var(--foreground);letter-spacing:-.005em}
+.opts{display:grid;gap:8px}
 .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
- background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:11px;
- padding:12px 14px;font:inherit;cursor:pointer;transition:.15s}
-.opt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+  background:var(--surface);border:1px solid var(--border);color:var(--foreground);
+  border-radius:var(--r-sm);padding:12px 14px;font:inherit;font-size:14.5px;line-height:1.6;
+  cursor:pointer;transition:border-color var(--fast) var(--ease),
+  background-color var(--fast) var(--ease)}
+.opt:hover:not(:disabled){border-color:var(--border-strong);background:var(--surface-secondary)}
 .opt:disabled{cursor:default}
-.opt .k{flex:0 0 24px;height:24px;border-radius:7px;background:var(--bg);border:1px solid var(--line);
- display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--dim)}
-.opt.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card2))}
-.opt.correct .k{background:var(--ok);color:#04170c;border-color:var(--ok)}
-.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card2))}
-.opt.wrong .k{background:var(--bad);color:#1a0403;border-color:var(--bad)}
-textarea{width:100%;min-height:96px;background:var(--card2);color:var(--fg);border:1px solid var(--line);
- border-radius:11px;padding:12px;font:inherit;resize:vertical}
-.exp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--card2);
- border-radius:0 10px 10px 0;font-size:14.5px;display:none}
+.opt .k{flex:0 0 22px;height:22px;border-radius:4px;background:var(--surface-secondary);
+  border:1px solid var(--border);display:grid;place-items:center;font-size:11px;font-weight:600;
+  color:var(--muted);font-family:var(--font-mono)}
+.opt.correct{border-color:var(--success);background:var(--success-soft)}
+.opt.correct .k{background:var(--success);color:var(--surface);border-color:var(--success)}
+.opt.wrong{border-color:var(--error);background:var(--error-soft)}
+.opt.wrong .k{background:var(--error);color:var(--surface);border-color:var(--error)}
+textarea{width:100%;min-height:96px;background:var(--surface);color:var(--foreground);
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;font:inherit;
+  font-size:14px;line-height:1.65;resize:vertical}
+.exp{margin-top:14px;padding:12px 14px;border-left:2px solid var(--accent);
+  background:var(--surface-secondary);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-size:13.5px;line-height:1.7;display:none}
 .exp.show{display:block}
-.exp b{color:var(--accent)}
-.src{margin-top:8px;color:var(--dim);font-size:12px}
-.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-button.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;
- font:inherit;font-weight:600;cursor:pointer}
-button.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-button.btn:disabled{opacity:.45;cursor:default}
-.done h2{margin:0 0 6px}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-.stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:110px}
-.stat b{display:block;font-size:24px;line-height:1.2}
-.stat span{color:var(--dim);font-size:12px}
-.wronglist{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:14px}
+.exp b{color:var(--accent-text)}
+.src{margin-top:8px;color:var(--muted);font-size:11.5px}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+button.btn{height:34px;padding:0 14px;border-radius:var(--r-sm);border:1px solid var(--primary);
+  background:var(--primary);color:var(--primary-foreground);font:inherit;font-size:13px;
+  font-weight:500;cursor:pointer;transition:opacity var(--fast) var(--ease)}
+button.btn:hover:not(:disabled){opacity:.88}
+button.btn.ghost{background:var(--surface);color:var(--foreground);border-color:var(--border)}
+button.btn.ghost:hover:not(:disabled){background:var(--surface-secondary);
+  border-color:var(--border-strong)}
+button.btn:disabled{opacity:.4;cursor:not-allowed}
+.done h2{margin:0 0 6px;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:16px 0}
+.stat{background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:12px 14px}
+.stat b{display:block;font-size:22px;line-height:1.2;font-family:var(--font-mono);
+  font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:11.5px}
+.wronglist{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
 .wronglist li{margin:4px 0}
-footer{text-align:center;color:var(--dim);font-size:12px;padding:26px 16px}
-kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:11.5px;padding:26px 16px 30px;line-height:1.7}
 
 .chip.warn{border-color:#f5a62366;color:#f5a623}
 .muted{color:var(--dim);font-size:13px}
@@ -96,7 +420,8 @@ kbd{background:var(--card2);border:1px solid var(--line);border-radius:6px;paddi
 .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .seg button{background:var(--card2);border:1px solid var(--line);color:var(--fg);border-radius:10px;
  padding:10px 0;font:inherit;font-size:14px;cursor:pointer}
-.seg button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card2));font-weight:600}
+.seg button.on{border-color:var(--foreground);background:var(--surface);font-weight:600;
+ box-shadow:var(--shadow-sm)}
 .setup-foot{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:4px}
 .setup-foot .sum{color:var(--dim);font-size:14px}
 .setup-foot .sum b{color:var(--fg);font-size:18px}
@@ -250,6 +575,9 @@ main,.card,.setup{max-width:100%}
 .actions{flex-wrap:wrap}
 footer{padding:22px 14px 30px;line-height:1.8}
 
+@media (max-width:1180px){
+  .bar .meta{display:none}
+}
 @media (max-width:720px){
   #scorepill{display:none}
   .bar a.pill{display:none}
@@ -303,11 +631,12 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 49</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
-    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
-    <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
-    <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
+    <button class="btn ghost btn-sm" id="tfilter">全部</button>
+    <button class="btn ghost btn-sm" id="grid">题号</button>
+    <button class="btn ghost btn-sm" id="exam">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
-    <button class="btn ghost" id="restart" style="padding:5px 10px;font-size:13px">重来</button>
+    <button class="btn ghost btn-sm" id="restart">重来</button>
+    <span data-theme-ctl="cycle"></span>
   </div>
   <div class="bar"><div class="progress" style="flex:1"><i id="pbar"></i></div></div>
 </header>
@@ -379,32 +708,33 @@ footer{padding:22px 14px 30px;line-height:1.8}
   function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
   function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
 
+  /* 主题只改强调色：浅色 / 深色 / 跟随系统由 data-theme 决定，两者互不冲突 */
   var THEMES={
-    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
-    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
-    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
-    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+    gold:  {accent:"#B7791F"},
+    warm:  {accent:"#C2410C"},
+    forest:{accent:"#047857"},
+    sakura:{accent:"#BE185D"}
   };
   function applyTheme(){
     var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
-    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
-    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+    root.style.removeProperty("--accent");
+    if(t && THEMES[t]){ root.style.setProperty("--accent", THEMES[t].accent); }
   }
   function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
 
   var SHOP=[
-    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
-    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
-    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
-    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
-    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
-    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
-    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
-    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
-    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
-    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
-    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
-    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"}
   ];
 
   function buy(id){
@@ -612,7 +942,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
     "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
 
-    "🛒 商城":"Shop","← 首页":"← Home",
+    "商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
     "还原默认主题":"Reset theme","卸下称号":"Remove title",
@@ -1212,31 +1542,50 @@ footer{padding:22px 14px 30px;line-height:1.8}
     var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
-    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var title = inv.equipped && inv.equipped.title
+      ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
     var ne = nextExam();
-    var dd = ne ? ne.days : null;
-    var badgeHtml = BADGES.map(function(x){
-      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+    var owned = BADGES.filter(function(x){ return b[x.id]; });
+    var badgeHtml = owned.map(function(x){
+      return '<span class="badge on" title="'+x.n+' · '+x.d+'">'+
              (BADGE_SVG[x.id]||"")+'</span>';
     }).join("");
     host.innerHTML =
-      '<div class="hero-top">'+
-        '<span class="lvp">Lv.'+lv+'</span>'+
-        '<span class="xpv">'+xp+'</span>'+
-        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
-        title+'<span class="grow"></span>'+
-        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
+      '<div class="ovc">'+
+        '<span class="ovl">等级'+title+'</span>'+
+        '<span class="ovn">'+lv+'<small>Lv</small></span>'+
+        '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+        '<span class="ovh">'+(nx?'还差 '+(nx-xp)+' XP 升级':'已满级')+' · 共 '+xp+' XP</span>'+
       '</div>'+
-      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
-      '<div class="metaline">'+
-        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
-        '<span>连续 <b>'+st+'</b> 天</span>'+
-        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
-        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
-        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+      '<div class="ovc">'+
+        '<span class="ovl">今日</span>'+
+        '<span class="ovn">'+tc+'<small>/'+GOAL+'</small></span>'+
+        '<span class="ovh">连续 '+st+' 天 · 连对 '+(g.best||0)+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已开始</span>'+
+        '<span class="ovn" id="ovStarted">—</span>'+
+        '<span class="ovh">'+(ne?('下一场 '+ne.name+' · '+ne.days+' 天后'):'')+'</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">已做题</span>'+
+        '<span class="ovn" id="ovAnswered">—</span>'+
+        '<span class="ovh" id="ovAcc">还没有作答记录</span>'+
+      '</div>'+
+      '<div class="ovc">'+
+        '<span class="ovl">错题</span>'+
+        '<span class="ovn" id="ovMistakes">—</span>'+
+        '<span class="ovh" id="ovDue">今天没有到期</span>'+
+      '</div>'+
+      '<div class="ovbadges">'+
+        '<span class="ovb-lbl">徽章 '+owned.length+'/'+BADGES.length+'</span>'+
+        badgeHtml+
+        (owned.length? '' : '<span class="ovb-hint">做题、连对、连续打卡都会解锁</span>')+
+        '<span class="grow"></span>'+
+        '<span class="coinline">金币 <b>'+(c.n||0)+'</b> · 星尘 <b>'+(c.dust||0)+'</b></span>'+
         '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
-      '</div>'+
-      '<div class="badges">'+badgeHtml+'</div>';
+      '</div>';
+    if(window.__homeStats) window.__homeStats();
   }
   function renderAll(){
     renderProfile();
@@ -1284,6 +1633,54 @@ footer{padding:22px 14px 30px;line-height:1.8}
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+
+/* ── 主题（浅色 / 深色 / 跟随系统）──────────────────────── */
+(function(){
+  var KEY="dsh-theme";
+  function mode(){
+    try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
+    catch(e){return "system";}
+  }
+  var LABEL={light:"浅色",dark:"深色",system:"自动"};
+  function paint(box){
+    var m=mode();
+    if(box.getAttribute("data-theme-ctl")==="cycle"){
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="外观：'+LABEL[m]+
+        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+    }else{
+      box.innerHTML=['light','dark','system'].map(function(k){
+        return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
+      }).join("");
+    }
+  }
+  function apply(m){
+    var r=document.documentElement;
+    if(m==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",m);
+    r.setAttribute("data-theme-mode",m);
+    document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+  }
+  function set(m){
+    try{localStorage.setItem(KEY,m);}catch(e){}
+    apply(m);
+  }
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest ? ev.target.closest("[data-mode],[data-cycle]") : null;
+    if(!b) return;
+    if(b.hasAttribute("data-cycle")){
+      var order=["system","light","dark"], cur=mode();
+      set(order[(order.indexOf(cur)+1)%3]);
+    }else{ set(b.getAttribute("data-mode")); }
+    ev.preventDefault();
+  });
+  try{
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys=function(){ if(mode()==="system") apply("system"); };
+    if(mq.addEventListener) mq.addEventListener("change",onSys);
+    else if(mq.addListener) mq.addListener(onSys);
+  }catch(e){}
+  window.DSH_THEME={set:set,mode:mode};
+  document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+})();
 </script>
 <script>
 const DATA = {"slug": "matp", "title": "数学 P · 10 年级", "examMin": 80, "questions": [{"id": "matp-001", "topic": "金融数学 · 加班工资", "difficulty": "easy", "type": "mcq", "stem": "Tomas earns $28 per hour for the first 38 hours he works each week. Any hours beyond 38 are paid at time-and-a-half. Last week he worked 45 hours. What was his total pay for the week?", "options": ["$1,358", "$1,890", "$1,260", "$1,456"], "answer": 0, "explanation": "前 38 小时 38×28=$1,064，超时 45−38=7 小时按 1.5 倍时薪 $42 计，7×42=$294，合计 $1,358。常见错误是 45 小时全按基本时薪得 $1,260，或把加班时薪算成双倍得 $1,456。", "source": "Topic1 Interest and Depreciation.pdf · 1-01 Earning an income", "weak": false}, {"id": "matp-002", "topic": "金融数学 · 复利（按月）", "difficulty": "medium", "type": "mcq", "stem": "Sophie deposits $1,200 into a savings account that earns 5% per annum, compounded monthly. How much will she have in the account after 3 years?", "options": ["$1,389.15", "$1,393.77", "$1,380.00", "$1,458.61"], "answer": 1, "explanation": "按月复利要把利率和期数同时换成月：R=0.05/12，n=3×12=36，A=1200(1+0.05/12)^36≈$1,393.77。用单利得 $1,380，把 5% 当成年利率只复 3 次得 $1,389.15，都是常见错误。", "source": "1-04_ Compound Interest.pdf · A = P(1 + R)^n（R 为每期利率）", "weak": false}, {"id": "matp-003", "topic": "金融数学 · 折余折旧", "difficulty": "medium", "type": "short", "stem": "A delivery van is bought for $42,000. It depreciates at 15% per annum using the reducing-balance formula A = P(1 − R)^n. Find (a) its value after 4 years, correct to the nearest dollar, and (b) the total amount it has depreciated over those 4 years.", "options": [], "answer": "(a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924. (b) Depreciation = 42,000 − 21,924 = $20,076.", "explanation": "减少率折旧是每年乘 0.85，共 4 次，不是 42,000×(1−0.15×4)。用直线法（每年固定减 $6,300）会得 $16,800，那是另一种模型。", "source": "1-07_ Depreciation.pdf · A = P(1 − R)^n（reducing balance）", "points": [{"t": "(a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924", "m": 1}, {"t": "(b) Depreciation = 42,000 − 21,924 = $20,076", "m": 1}], "weak": false}, {"id": "matp-004", "topic": "代数 · 指数律（幂的乘方）", "difficulty": "easy", "type": "mcq", "stem": "Simplify (3a⁴)².", "options": ["6a⁶", "9a⁶", "9a⁸", "6a⁸"], "answer": 2, "explanation": "括号内每一项都要乘方：3²=9，指数相乘 4×2=8，所以是 9a⁸。只把系数 3 错写成 6，或把 4×2 误算成 6，是两个最常见的错。", "source": "Algebra Topic test + Solutions.pdf · Part A Q12 · 4-01_ Index Laws", "weak": false}, {"id": "matp-005", "topic": "代数 · 单项式乘法", "difficulty": "easy", "type": "mcq", "stem": "Simplify 2m × 5m p × 3n.", "options": ["30m np", "30m³np", "10m²np", "30m²np"], "answer": 3, "explanation": "系数 2×5×3=30；m×m=m²（指数相加），p 和 n 各出现一次，结果是 30m²np。把 m×m 当成 2m 会得 10m²np，当成 m³ 则指数加错。", "source": "Topic2 Algebra.pdf · 4-01 The index laws", "weak": false}, {"id": "matp-006", "topic": "代数 · 代数分式约分", "difficulty": "medium", "type": "mcq", "stem": "Simplify (6x²y) ÷ (9xy³).", "options": ["2x / (3y²)", "2x / (3y³)", "2y² / (3x)", "3x / (2y²)"], "answer": 0, "explanation": "系数约分 6/9=2/3；同底数相除指数相减：x²÷x=x，y÷y³=1/y²。所以是 2x/(3y²)。把 y 的指数写成 3，或忘记约分系数，都是常见错误。", "source": "4-03_ Multiplying and dividing algebraic fractions.pdf", "weak": false}, {"id": "matp-007", "topic": "代数 · 二项式展开", "difficulty": "medium", "type": "mcq", "stem": "Expand and simplify (2x − 5)(3x + 7).", "options": ["6x² + 21x − 35", "6x² − x − 35", "6x² + x − 35", "6x² − 29x − 35"], "answer": 1, "explanation": "逐项相乘得 6x² + 14x − 15x − 35 = 6x² − x − 35。中间项 14x − 15x = −x，若把 −15x 误写成 +15x 就会得到 6x² + 29x 一类的错误。", "source": "4-05_ Expanding Binomial Products.pdf · Algebra Topic test + Solutions.pdf Q24c", "weak": false}, {"id": "matp-008", "topic": "代数 · 完全平方中项", "difficulty": "medium", "type": "mcq", "stem": "If (7g + 3)² = 49g² + hg + 9, what is the value of h?", "options": ["84", "14", "42", "21"], "answer": 2, "explanation": "完全平方的中项是 2×7g×3 = 42g，所以 h = 42。只算 7×3 = 21（漏掉公式里的 2）是最常见的错误。", "source": "Algebra Topic test + Solutions.pdf · Part A Q14（perfect squares）", "weak": false}, {"id": "matp-009", "topic": "代数 · 因式分解", "difficulty": "medium", "type": "short", "stem": "Factorise each expression fully. (a) 12a²b − 21ab²  (b) x² + 7x + 10", "options": [], "answer": "(a) 3ab(4a − 7b)   (b) (x + 5)(x + 2)", "explanation": "(a) 取最大公因式：12 与 21 的 HCF 是 3，字母取公有因子 a、b，得 3ab；括号内 3ab×4a=12a²b、3ab×(−7b)=−21ab²。(b) 找和为 7、积为 10 的两个数，即 5 和 2。", "source": "4-06 Factorising monic quadratics.pdf · 2025 BBHS 10 (5.2) T2 Q14", "points": [{"t": "(a) 3ab(4a − 7b)   (b) (x + 5)(x + 2)", "m": 1}], "weak": false}, {"id": "matp-010", "topic": "方程 · 一元一次（两边有未知数）", "difficulty": "easy", "type": "mcq", "stem": "Solve 9x + 10 = 7x − 6.", "options": ["x = 8", "x = 2", "x = −2", "x = −8"], "answer": 3, "explanation": "两边同减 7x、同减 10，得 2x = −16，故 x = −8。常见错误是把 10 移项时忘记变号（得 −2），或把 −16 ÷ 2 算成 +8。", "source": "Topic 2 Equations and Inequality.pdf · 6-01 Equations（Example 1c）", "weak": false}, {"id": "matp-011", "topic": "不等式 · 除以负数变号", "difficulty": "hard", "type": "mcq", "stem": "Solve the inequality −3(x − 2) ≥ 15.", "options": ["x ≤ −3", "x ≤ 3", "x ≥ 3", "x ≥ −3"], "answer": 0, "explanation": "展开得 −3x + 6 ≥ 15，即 −3x ≥ 9；两边同除以 −3 时不等号必须反向，得 x ≤ −3。可以用 x = −4 代回检验：−3(−6)=18 ≥ 15 成立。", "source": "Topic 2 Equations and Inequality.pdf · 6-07 Solving inequalities（除负数要 reverse the sign）", "weak": false}, {"id": "matp-012", "topic": "方程 · 含分式的方程", "difficulty": "medium", "type": "short", "stem": "Solve x/3 − (x − 2)/4 = 2.", "options": [], "answer": "Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.", "explanation": "分母 3 和 4 的最小公倍数是 12。第二项前的负号要乘进括号，变成 +6；若写成 −6 会得到 x = 6，这是最常见的失分点。", "source": "Topic 2 Equations and Inequality.pdf · 6-02 Equations with algebraic fractions", "points": [{"t": "Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.", "m": 1}], "weak": false}, {"id": "matp-013", "topic": "联立方程 · 消元法", "difficulty": "easy", "type": "mcq", "stem": "Solve the simultaneous equations 5x + 2y = 19 and 3x − 2y = 5.", "options": ["x = 3, y = −2", "x = 3, y = 2", "x = 2, y = 3", "x = 4, y = −0.5"], "answer": 1, "explanation": "两式相加消去 y：8x = 24，x = 3；代回第一式得 2y = 19 − 15 = 4，y = 2。干扰项 (4, −0.5) 只满足第一个方程，代回第二个即可排除。", "source": "Topic 2 Simultaneous Equations.pdf · 9-02 The elimination method", "weak": false}, {"id": "matp-014", "topic": "联立方程 · 应用建模", "difficulty": "hard", "type": "short", "stem": "At the school canteen, 3 sandwiches and 2 drinks cost $19.50, while 2 sandwiches and 3 drinks cost $18.00. Find the cost of one sandwich and one drink.", "options": [], "answer": "Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.", "explanation": "先列两个方程，再消元（第一式×3 减第二式×2 得 5s = 22.50）。只用一个条件无法定出两个价格；代回检验 3×4.50+2×3 = $19.50 正确。", "source": "Topic 2 Simultaneous Equations.pdf · 9-04 Simultaneous equations problems", "points": [{"t": "Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.", "m": 1}], "weak": false}, {"id": "matp-015", "topic": "坐标几何 · 两点距离", "difficulty": "easy", "type": "mcq", "stem": "Find the distance between the points (2, −1) and (5, 3).", "options": ["7", "√7", "5", "25"], "answer": 2, "explanation": "d = √[(5−2)² + (3−(−1))²] = √(9+16) = √25 = 5。忘记开方会得 25，把两段差直接相加会得 7。", "source": "Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval", "weak": false}, {"id": "matp-016", "topic": "坐标几何 · 斜率", "difficulty": "easy", "type": "mcq", "stem": "Find the gradient of the line passing through (2, 5) and (6, −3).", "options": ["2", "−1/2", "1/2", "−2"], "answer": 3, "explanation": "m = (y₂−y₁)/(x₂−x₁) = (−3−5)/(6−2) = −8/4 = −2。上面减下面的顺序颠倒会得 −1/2；漏写负号则得 2。", "source": "Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval", "weak": false}, {"id": "matp-017", "topic": "坐标几何 · 求直线方程", "difficulty": "medium", "type": "mcq", "stem": "Which equation describes the line with gradient 3 that passes through the point (2, −1)?", "options": ["y = 3x − 7", "y = 3x − 1", "y = 3x + 7", "y = −3x + 5"], "answer": 0, "explanation": "代入 y = mx + b：−1 = 3(2) + b，得 b = −7，所以 y = 3x − 7。把已知点的坐标当成 y 轴截距（得 y = 3x − 1）是典型错误。", "source": "Topic 1 Coordinate Geometry.pdf · 2-06 Finding the equation of a line", "weak": false}, {"id": "matp-018", "topic": "坐标几何 · 垂直直线", "difficulty": "hard", "type": "short", "stem": "Find the equation of the line that is perpendicular to y = 2x + 5 and passes through the point (4, 1). Give your answer in the form y = mx + b.", "options": [], "answer": "The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.", "explanation": "垂直直线斜率之积为 −1，所以用 −1/2（不是 −2，也不是 2）；再代入 (4, 1) 求截距得 3。验证：x = 4 时 y = −2 + 3 = 1。", "source": "Topic 1 Coordinate Geometry.pdf · 2-07 Equations of parallel and perpendicular lines", "points": [{"t": "The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.", "m": 1}], "weak": false}, {"id": "matp-019", "topic": "函数 · 正比例", "difficulty": "easy", "type": "mcq", "stem": "y varies directly as x. If y = 12 when x = 5, find x when y = 30.", "options": ["2.5", "12.5", "10", "72"], "answer": 1, "explanation": "正比例写成 y = kx，先求常数 k = 12/5 = 2.4；y = 30 时 x = 30 ÷ 2.4 = 12.5。把比例关系倒过来乘会得到 72。", "source": "Topic 1 Graphs.pdf · 7-01 Direct proportion", "weak": false}, {"id": "matp-020", "topic": "函数 · 反比例", "difficulty": "medium", "type": "mcq", "stem": "y is inversely proportional to x. When x = 5, y = 8. Find y when x = 20.", "options": ["0.5", "160", "2", "32"], "answer": 2, "explanation": "反比例写成 y = k/x，由 5×8 得 k = 40；x = 20 时 y = 40/20 = 2。若误当正比例会用 k = 8/5 得 32，是典型错误。", "source": "Topic 1 Graphs.pdf · 7-02 Inverse proportion", "weak": false}, {"id": "matp-021", "topic": "函数 · 圆的方程", "difficulty": "easy", "type": "short", "stem": "A circle has equation x² + y² = 49. State its centre and radius, and determine whether the point (5, 5) lies on the circle.", "options": [], "answer": "Centre (0, 0) and radius 7. The point (5, 5) does not lie on the circle, because 5² + 5² = 50, not 49.", "explanation": "x² + y² = r² 的圆心在原点，半径 r = √49 = 7。判断点在不在圆上，只要把坐标代入看左边是否恰好等于 49。", "source": "Topic 1 Graphs.pdf · 7-06 The circle", "points": [{"t": "Centre (0, 0) and radius 7", "m": 1}, {"t": "The point (5, 5) does not lie on the circle, because 5² + 5² = 50, not 49", "m": 1}], "weak": false}, {"id": "matp-022", "topic": "三角 · 毕氏定理", "difficulty": "easy", "type": "mcq", "stem": "A right-angled triangle has two shorter sides of 9 cm and 12 cm. Find the length of the hypotenuse.", "options": ["225 cm", "21 cm", "108 cm", "15 cm"], "answer": 3, "explanation": "斜边 = √(9² + 12²) = √225 = 15 cm。把两条直角边直接相加得 21，或忘记开方得 225，是最常见的两种错。", "source": "Topic 3 Trigonometry.pdf · 8-01 Pythagoras' theorem", "weak": false}, {"id": "matp-023", "topic": "三角 · 用正切求边", "difficulty": "medium", "type": "mcq", "stem": "In a right-angled triangle an angle is 35° and the side adjacent to it is 12 m. Find the length of the opposite side, correct to two decimal places.", "options": ["8.40 m", "6.88 m", "17.14 m", "14.65 m"], "answer": 0, "explanation": "tan 35° = 对边/邻边，所以 opposite = 12 × tan 35° ≈ 8.40 m。选错比值会得 12 sin 35° = 6.88 m 或 12/tan 35° = 17.14 m。", "source": "Topic 3 Trigonometry.pdf · 8-03 Finding an unknown side", "weak": false}, {"id": "matp-024", "topic": "三角 · 求未知角", "difficulty": "medium", "type": "mcq", "stem": "In a right-angled triangle, sin θ = 7/12. Find θ, correct to one decimal place.", "options": ["54.3°", "35.7°", "30.3°", "60.0°"], "answer": 1, "explanation": "θ = sin⁻¹(7/12) ≈ 35.7°。用 tan⁻¹(7/12) 得 30.3°，或误取余角 90° − 35.7° = 54.3°，都是常见的按键/概念错误。", "source": "Topic 3 Trigonometry.pdf · 8-04 Finding an unknown angle", "weak": false}, {"id": "matp-025", "topic": "三角 · 仰角", "difficulty": "medium", "type": "short", "stem": "From a point on level ground 45 m from the base of a vertical tower, the angle of elevation of the top of the tower is 62°. Find the height of the tower, correct to one decimal place.", "options": [], "answer": "tan 62° = h / 45, so h = 45 × tan 62° ≈ 84.6 m.", "explanation": "仰角是从水平线向上量到视线的角，45 m 是与 62° 相邻的边，所以用 tan。误用 sin 会得 39.7 m，是因为把 45 m 当成了斜边。", "source": "Topic 3 Trigonometry.pdf · 8-05 Angles of elevation and depression", "points": [{"t": "tan 62° = h / 45, so h = 45 × tan 62° ≈ 84.6 m.", "m": 1}], "weak": false}, {"id": "matp-026", "topic": "三角 · 方位角", "difficulty": "hard", "type": "short", "stem": "A plane flies 15 km due north and then 20 km due east. Find (a) its distance from the starting point and (b) its bearing from the starting point, correct to the nearest degree.", "options": [], "answer": "Distance = √(15² + 20²) = 25 km. Bearing = tan⁻¹(20/15) ≈ 53°, measured clockwise from north, so the bearing is 053°.", "explanation": "方位角一律从正北顺时针量：位移是「北 15、东 20」，所以角度在正北以东 53°。写成 037° 是把 15 和 20 用反了（tan⁻¹(15/20)）。", "source": "Topic 3 Trigonometry.pdf · 8-06 Bearings / 8-07 Problems involving bearings", "points": [{"t": "Distance = √(15² + 20²) = 25 km", "m": 1}, {"t": "Bearing = tan⁻¹(20/15) ≈ 53°, measured clockwise from north, so the bearing is 053°", "m": 1}], "weak": false}, {"id": "matp-027", "topic": "体积 · 圆柱（直径陷阱）", "difficulty": "easy", "type": "mcq", "stem": "A cylinder has a diameter of 14 cm and a height of 20 cm. Find its volume, correct to one decimal place.", "options": ["1026.3 cm³", "439.8 cm³", "3078.8 cm³", "12315.0 cm³"], "answer": 2, "explanation": "先求半径 r = 14 ÷ 2 = 7 cm，V = πr²h = π × 49 × 20 = 980π ≈ 3078.8 cm³。直接把直径当半径会得 12315.0 cm³，这是本题最主要的陷阱。", "source": "Topic3 Surface area and Volume.pdf · 3-05 Volumes of prisms and cylinders（V = πr²h）", "weak": false}, {"id": "matp-028", "topic": "面积 · 组合图形", "difficulty": "medium", "type": "mcq", "stem": "A shape is made by attaching a semicircle of radius 4 cm to one side of a rectangle measuring 12 cm by 8 cm. Find the total area, correct to one decimal place.", "options": ["146.3 cm²", "96.0 cm²", "108.6 cm²", "121.1 cm²"], "answer": 3, "explanation": "矩形 12 × 8 = 96 cm²，半圆 ½ × π × 4² = 8π ≈ 25.13 cm²，合计 ≈ 121.1 cm²。忘记取一半会得 146.3，只算四分之一圆会得 108.6。", "source": "Topic3 Surface area and Volume.pdf · 3-01 Areas of composite shapes", "weak": false}, {"id": "matp-029", "topic": "表面积 · 圆柱与涂漆成本", "difficulty": "hard", "type": "short", "stem": "A cylindrical water tank has a radius of 5 m and a height of 10 m. Its entire surface, including the top and the bottom, is to be painted. (a) Find the total surface area, correct to the nearest square metre. (b) If paint costs $12 per square metre, find the total cost.", "options": [], "answer": "(a) SA = 2πr² + 2πrh = 50π + 100π = 150π ≈ 471.24 m², so 471 m². (b) Cost = 471 × 12 = $5,652.", "explanation": "两个圆面加一个侧面共 150π。只算侧面（100π ≈ 314 m²）会漏掉顶和底；若中间不四舍五入、用 471.24 × 12 得 $5,654.88，也算正确。", "source": "2025 BBHS 10 (5.2) T2 - soln.pdf · Q19 · Topic3 Surface area and Volume.pdf", "points": [{"t": "(a) SA = 2πr² + 2πrh = 50π + 100π = 150π ≈ 471.24 m², so 471 m²", "m": 1}, {"t": "(b) Cost = 471 × 12 = $5,652", "m": 1}], "weak": false}, {"id": "matp-030", "topic": "统计 · 分布形状", "difficulty": "easy", "type": "mcq", "stem": "A data distribution has a long tail extending towards the higher scores. How is this distribution described?", "options": ["Positively skewed", "Negatively skewed", "Symmetrical", "Bimodal"], "answer": 0, "explanation": "尾部指向高分一侧叫 positively skewed（正偏）；负偏的尾指向低分一侧。两者最容易记反，记法是「尾巴往哪边甩，就叫哪边偏」。", "source": "Topic 1 Investigating Data.pdf · 5-01 The shape of a frequency distribution", "weak": false}, {"id": "matp-031", "topic": "统计 · 四分位距 IQR", "difficulty": "easy", "type": "mcq", "stem": "Find the interquartile range of the data set 4, 7, 7, 9, 12, 15, 15, 18, 20, 22.", "options": ["8", "11", "13.5", "18"], "answer": 1, "explanation": "n = 10，中位数 = (12+15)/2 = 13.5；下半组中位数 Q1 = 7，上半组中位数 Q3 = 18，IQR = 18 − 7 = 11。选 13.5 是把它当成 IQR 了，其实那是中位数。", "source": "Topic 1 Investigating Data.pdf · 5-02 Quartiles and interquartile range", "weak": false}, {"id": "matp-032", "topic": "统计 · 五数概括与偏度", "difficulty": "hard", "type": "short", "stem": "The ages of 13 participants in a sports event are: 12, 14, 15, 16, 17, 17, 18, 20, 21, 22, 25, 27, 30. (a) Write the five-number summary. (b) Calculate the interquartile range. (c) State, with a reason, whether the distribution is symmetrical or skewed.", "options": [], "answer": "(a) Lowest 12, Q1 = 15.5, median = 18, Q3 = 23.5, highest 30. (b) IQR = 23.5 − 15.5 = 8. (c) Positively skewed, because the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5).", "explanation": "13 个数中，中位数取第 7 个；Q1、Q3 分别取上下各 6 个数的中位数。上须 6.5 比下须 3.5 长，说明高分一侧拖尾，所以是正偏。", "source": "Topic 1 Investigating Data.pdf · 5-03 Boxplots · 2025 BBHS 10 (5.2) T2 - soln.pdf Q9", "points": [{"t": "(a) Lowest 12, Q1 = 15.5, median = 18, Q3 = 23.5, highest 30", "m": 1}, {"t": "(b) IQR = 23.5 − 15.5 = 8", "m": 1}, {"t": "(c) Positively skewed, because the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5)", "m": 1}], "weak": false}, {"id": "matp-033", "topic": "概率 · 韦恩图（至少/都不）", "difficulty": "easy", "type": "mcq", "stem": "In a class of 30 students, 18 play soccer, 12 play basketball and 6 play both. How many students play neither sport?", "options": ["0", "12", "6", "24"], "answer": 2, "explanation": "至少会一项的人数 = 18 + 12 − 6 = 24，其中交集 6 人被数了两次，必须减掉。所以两项都不玩的有 30 − 24 = 6 人。忘记减交集会算成 0。", "source": "Topic 3 Probability.pdf · 10-02 Venn diagrams", "weak": false}, {"id": "matp-034", "topic": "概率 · 双向表与条件概率", "difficulty": "hard", "type": "mcq", "stem": "Year 11 students were surveyed about part-time work. The results were: male with part-time work 43, male without part-time work 27, female with part-time work 35, female without part-time work 31. What is the probability that a randomly selected student works part-time, given that the student is male?", "options": ["70/136", "43/78", "43/136", "43/70"], "answer": 3, "explanation": "条件概率的分母必须是「已知是男生」的总人数 43 + 27 = 70，所以是 43/70。用全校 136 人（43/136）或所有兼职者 78 人（43/78）作分母，都是没把条件落到样本空间上。", "source": "Topic 3 Probability.pdf · 10-03 Two-way tables（Example 5）", "weak": false}, {"id": "matp-035", "topic": "概率 · 不放回抽样", "difficulty": "medium", "type": "short", "stem": "A bag contains 3 red and 5 blue marbles. Two marbles are drawn at random one after the other without replacement. Find the probability that both marbles are red.", "options": [], "answer": "P(both red) = 3/8 × 2/7 = 6/56 = 3/28.", "explanation": "不放回抽样时第二次的样本空间少了一个球，所以是 3/8 × 2/7。写成 3/8 × 3/8 是把不放回当成放回了，这是最常见的错误。", "source": "Topic 3 Probability.pdf · 10-05 Selecting with and without replacement", "points": [{"t": "P(both red) = 3/8 × 2/7 = 6/56 = 3/28.", "m": 1}], "weak": false}, {"id": "matp-036", "topic": "金融数学 · 应税收入与可扣除项", "difficulty": "easy", "type": "mcq", "stem": "Priya's records for the financial year show: wages $62,400, bank interest $310, a $200 bonus, private school fees $4,800, work-related tool expenses $680, a donation to charity $150, a speeding fine $420 and her tax agent's fee $120. Using Taxable income = gross income − allowable deductions, calculate her taxable income.", "options": ["$61,960", "$63,860", "$56,740", "$62,910"], "answer": 0, "explanation": "收入合计 62,400+310+200 = $62,910；可扣除的只有与赚取收入相关的支出和捐赠：工具费 680 + 捐款 150 + 报税代理费 120 = $950，所以应税收入 = $61,960。私人学费和罚款不属于 allowable deductions，把它们也扣掉会错得 $56,740。", "source": "1-02_ Income tax.pdf（Taxable income = gross income − allowable deductions）· 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J", "weak": false}, {"id": "matp-037", "topic": "金融数学 · 所得税（19c 档）", "difficulty": "easy", "type": "mcq", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Calculate the income tax payable on a taxable income of $30,000.", "options": ["$11,800.00", "$2,242.00", "$3,572.00", "$5,700.00"], "answer": 1, "explanation": "$30,000 落在 19c 档：0.19 × (30,000 − 18,200) = 0.19 × 11,800 = $2,242。必须先减掉 $18,200 的免税门槛，直接用 0.19 × 30,000 会得 $5,700；$11,800 是只减门槛没乘税率。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5a（官方答案 $2 242）· 1-02_ Income tax.pdf", "weak": false}, {"id": "matp-038", "topic": "金融数学 · 所得税（37c 档）", "difficulty": "medium", "type": "mcq", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Calculate the income tax payable on a taxable income of $150,000.", "options": ["$80,447.00", "$40,297.00", "$43,447.00", "$55,500.00"], "answer": 2, "explanation": "$150,000 在 37c 档：17,547 + 0.37 × (150,000 − 80,000) = 17,547 + 25,900 = $43,447。两个高频错误是漏掉基准金额（0.37 × 150,000 = $55,500）和用错基准（拿顶层 54,547 得 $80,447）；$40,297 是错用上一档 32.5c 算的。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5c（官方答案 $43 447）", "weak": false}, {"id": "matp-039", "topic": "金融数学 · 税率档边界", "difficulty": "hard", "type": "short", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Ann's taxable income is $80,000 and Ben's is $80,001. Ignoring the Medicare levy, calculate the tax each person pays and state how much more tax Ben pays than Ann.", "options": [], "answer": "Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547. Ben pays $17,547 + 0.37 × $1 = $17,547.37. Ben pays 37 cents more than Ann.", "explanation": "税率档是连续的：32.5c 档顶端的金额 17,547 正好等于 37c 档的基准金额，所以 Ben 只多出的那 1 元按 37c 计税，差额只有 37 分。误以为跨档要把全部收入按 37% 重算，会算出几千元的差距。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q4（官方答案：37 cents）", "points": [{"t": "Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547", "m": 1}, {"t": "Ben pays $17,547 + 0.37 × $1 = $17,547.37", "m": 1}, {"t": "Ben pays 37 cents more than Ann", "m": 1}], "weak": false}, {"id": "matp-040", "topic": "金融数学 · 净收入", "difficulty": "medium", "type": "short", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Kim's gross pay for the year is $54,300. She has no allowable deductions, so her taxable income is also $54,300. Calculate (a) her income tax payable and (b) her net pay, given that she also pays $960 in other deductions (union fees and health fund contributions).", "options": [], "answer": "(a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50. (b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50.", "explanation": "净收入公式是 net pay = gross pay − tax − other deductions，税和其他扣除两项都要减。只减税会得 $45,105.50，这是本题最主要的错误。", "source": "1-02_ Income tax.pdf（Net pay = gross pay − tax − other deduction；Example 3）", "points": [{"t": "(a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50", "m": 1}, {"t": "(b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50", "m": 1}], "weak": false}, {"id": "matp-041", "topic": "统计 · 标准差的含义", "difficulty": "easy", "type": "mcq", "stem": "Two netball teams each score a mean of 24 goals per game over a season. Team A's scores have a standard deviation of 2.1 goals and Team B's have a standard deviation of 6.4 goals. What does this tell you?", "options": ["Team A's standard deviation must be wrong, because both teams have the same mean.", "Team B scored more goals in total than Team A.", "Both teams had exactly the same range of scores.", "Team A's scores were more consistent from game to game than Team B's."], "answer": 3, "explanation": "标准差衡量数据相对均值的离散程度：两个均值相同时，标准差越大说明每场得分波动越大，所以 A 队更稳定。标准差与总分无关，也不等于极差，所以前两个选项都推不出来。", "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation · 2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf Q7(e)", "weak": false}, {"id": "matp-042", "topic": "统计 · 计算标准差", "difficulty": "medium", "type": "mcq", "stem": "Find the standard deviation of the data set 2, 4, 4, 4, 5, 5, 7, 9, correct to one decimal place. Use σ = √(Σ(x − x̄)² ÷ n).", "options": ["2.0", "2.1", "1.5", "4.0"], "answer": 0, "explanation": "均值 x̄ = 40 ÷ 8 = 5，偏差平方和 = 9+1+1+1+0+0+4+16 = 32，σ = √(32 ÷ 8) = √4 = 2.0。选 4.0 是忘了开方（那是方差）；2.1 是除以 n−1 的样本标准差。", "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation（σ = √(Σ(x − x̄)² ÷ n)）", "weak": false}, {"id": "matp-043", "topic": "统计 · 均值与标准差", "difficulty": "hard", "type": "short", "stem": "A team scored the following number of goals in its 10 matches: 0, 1, 1, 2, 2, 2, 3, 3, 5, 6. (a) Find the mean. (b) Find the standard deviation, correct to two decimal places, using σ = √(Σ(x − x̄)² ÷ n).", "options": [], "answer": "(a) Mean = 25 ÷ 10 = 2.5 goals. (b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals.", "explanation": "先求均值 2.5，再逐个算偏差平方：6.25+2.25+2.25+0.25+0.25+0.25+0.25+0.25+6.25+12.25 = 30.5，除以 n=10 后开方得 1.75。本题按总体标准差（除以 n）计算；若除以 n−1=9 会得 1.84，那是样本标准差的口径。", "source": "2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf · Q7(e) · New Century 10 Standard-Core Textbook.pdf · 5.03", "points": [{"t": "(a) Mean = 25 ÷ 10 = 2.5 goals", "m": 1}, {"t": "(b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals", "m": 1}], "weak": false}, {"topic": "网络 · 术语", "difficulty": "easy", "type": "mcq", "stem": "In a network diagram, the number of edges meeting at a vertex is called its:", "options": ["Order", "Degree", "Weight", "Path"], "answer": 1, "explanation": "一个顶点连出的边数叫度数（degree）。奇度顶点数决定能否一笔画完：全偶数→可回到起点；恰好两个奇数→可一笔画但终点不同。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Networks: terminology）", "id": "matp-044", "weak": false}, {"topic": "网络 · 欧拉回路", "difficulty": "medium", "type": "mcq", "stem": "A connected network has vertices with degrees 2, 2, 4, 2, 2. Which statement is true?", "options": ["It has no Eulerian circuit", "It cannot be drawn without lifting the pen", "It has an Eulerian circuit because every vertex has even degree", "It has exactly one odd vertex"], "answer": 2, "explanation": "所有顶点度数都是偶数 → 存在欧拉回路（从任意点出发、每条边走一次并回到起点）。只要有一个奇度点就不成立。", "source": "Yearly Study Guide 2026 · Mathematics Standard（Eulerian trails and circuits）", "id": "matp-045", "weak": false}, {"topic": "网络 · 欧拉路径", "difficulty": "medium", "type": "mcq", "stem": "A network has exactly two vertices of odd degree. What can be concluded?", "options": ["No Eulerian trail exists", "The network is not connected", "Every vertex must be visited twice", "An Eulerian trail exists, starting and finishing at the two odd-degree vertices"], "answer": 3, "explanation": "恰好两个奇度点 → 存在欧拉路径（一笔画），必须从一个奇点出发、另一个奇点结束。若想回到起点（回路）则需要全部为偶数。", "source": "Yearly Study Guide 2026 · Mathematics Standard（Eulerian trials and circuits）", "id": "matp-046", "weak": false}, {"topic": "网络 · 最小生成树", "difficulty": "hard", "type": "mcq", "stem": "A town must connect four buildings with cable at minimum total length. The possible connections and lengths (km) are AB 2, AC 5, BC 3, BD 4, CD 1. What is the minimum total length?", "options": ["6 km", "10 km", "8 km", "7 km"], "answer": 0, "explanation": "最小生成树=选 3 条边连成整体且不成环。按长度排序：CD 1、AB 2、BC 3 → 三条边连接 A-B-C-D 且无环，总长 1+2+3=6。再加任一条都会成环。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path and minimum spanning trees）", "id": "matp-047", "weak": false}, {"topic": "网络 · 最短路径", "difficulty": "medium", "type": "mcq", "stem": "Using the network in which AB = 2, BC = 3, AC = 5, BD = 4 and CD = 1 (all in km), what is the shortest distance from A to D?", "options": ["7 km", "6 km", "5 km", "9 km"], "answer": 1, "explanation": "所有路线都经过 C 或 B：A→B→D=6，A→B→C→D=6，A→C→D=6。最短为 6 km，所以选 6 km。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path）", "id": "matp-048", "weak": false}, {"topic": "网络 · 平面图", "difficulty": "medium", "type": "mcq", "stem": "A planar graph is one that:", "options": ["Has no cycles", "Has all vertices of equal degree", "Can be drawn on a plane without any edges crossing", "Contains no more than four vertices"], "answer": 2, "explanation": "平面图指能在平面上画出、边彼此不交叉的图。是否看起来交叉不重要，能否重新画成不交叉才重要。", "source": "Yearly Study Guide 2026 · Mathematics Core（Network terminology and planar graphs）", "id": "matp-049", "weak": false}]};
@@ -1300,6 +1697,9 @@ function TFILTER(){
 function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
+const AI_ENGINE = {};
+function localAI(){ try{ return (localStorage.getItem("dsh-local-ai")||"").replace(/\/$/,""); }catch(e){ return ""; } }
+function setLocalAI(v){ try{ localStorage.setItem("dsh-local-ai", (v||"").trim().replace(/\/$/,"")); }catch(e){} }
 /* ===== 简答自动预判：关键词覆盖率（离线，无需后端） ===== */
 const AUTO_STOP = ("the a an of and or to in on for with that this these those is are was were be been being " +
   "as at by from it its their they them we you your our not no but if then than so such can could may might " +
@@ -1571,9 +1971,10 @@ function render() {
           <button class="btn2" id="applyauto" style="margin-left:8px">按系统判断勾选</button>
           ${apibase() ? '<button class="btn2" id="aigrade" style="margin-left:6px">AI 判分</button>' : ''}
           ${AI_RES[q.id] ? '<button class="btn2" id="applyai" style="margin-left:6px">采用 AI 评分</button>' : ''}
+          ${apibase() ? '<button class="btn2" id="aiconf" style="margin-left:6px" title="本地模型地址">引擎</button>' : ''}
         </div>
         <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI: '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}${(()=>{const ai=AI_RES[q.id]&&AI_RES[q.id][i]; if(ai) return '<span class="auto '+(ai.covered?'ok':'no')+'">AI'+(AI_ENGINE[q.id]==="local"?" (local)":"")+': '+(ai.covered?'covered':'missed')+(ai.reason?' — '+esc(ai.reason):'')+'</span>';
             return '<span class="auto '+(autoRes[i].hit?'ok':'no')+'">'+(autoRes[i].hit?'系统：大概率写到':'系统：可能没写到')+'（'+autoRes[i].matched+'/'+autoRes[i].total+' 关键词'+(autoRes[i].missing.length?'，缺 '+esc(autoRes[i].missing.join(', ')):'')+'）</span>';})()}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
         <div class="actions">
           <button class="btn ghost" id="allpt">全部勾上</button>
@@ -1670,21 +2071,37 @@ function render() {
       res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
       res.style.color = hit ? "var(--ok)" : "var(--bad)";
     };
+    const ac = document.getElementById("aiconf");
+    if (ac) ac.onclick = () => {
+      const cur = localAI();
+      const v = prompt("本地判分地址（如 http://127.0.0.1:8787；留空则关闭）", cur);
+      if (v === null) return;
+      setLocalAI(v); toast(v.trim() ? "已保存本地引擎" : "已关闭本地引擎", true);
+    };
     const ai = document.getElementById("aigrade");
     if (ai) ai.onclick = () => {
       const arr = readSlots(), answer = joinSlots(arr);
       if (!answer.trim()) { ai.textContent = "先写点东西"; return; }
       ai.disabled = true; ai.textContent = "AI 判分中…";
-      fetch(apibase() + "/grade", {
-        method: "POST", headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer})
-      }).then(r=>r.json()).then(d => {
-        if (!d || !d.ok) throw new Error((d && d.error) || "failed");
-        AI_RES[q.id] = d.results; save(); render();
-      }).catch(e => {
+      const payload = JSON.stringify({stem: q.stem, points: pts.map(p=>({t:p.t, m:p.m||1})), answer: answer});
+      const engines = [];
+      if (apibase()) engines.push({n:"cloud", u: apibase() + "/grade"});
+      const loc = localAI();
+      if (loc) engines.push({n:"local", u: loc + "/grade"});
+      (async function(){
+        let lastErr = "no engine";
+        for (const en of engines) {
+          try {
+            const r = await fetch(en.u, {method:"POST", headers:{"Content-Type":"application/json"}, body: payload});
+            const d = await r.json();
+            if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+            AI_RES[q.id] = d.results; AI_ENGINE[q.id] = en.n; save(); render();
+            return;
+          } catch (e) { lastErr = en.n + ": " + (e && e.message || e); }
+        }
         ai.disabled = false; ai.textContent = "AI 判分";
-        toast("AI 判分失败：" + e.message, false);
-      });
+        toast("AI 判分不可用（" + lastErr + "），已保留关键词预判", false);
+      })();
     };
     const ap2 = document.getElementById("applyai");
     if (ap2) ap2.onclick = () => {
