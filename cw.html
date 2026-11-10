@@ -293,6 +293,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 15</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
+    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
     <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
     <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
@@ -580,6 +581,22 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
     "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
     "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "只选选择题":"MCQ only","只选简答题":"Short answers only",
+    "从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers return to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "科学":"Science","科学 · 非年考内容（Term 1–3）":"Science · non-exam (Terms 1–3)",
+    "数学 P（Standard 5.2）":"Maths (Standard 5.2)","5.3 数学":"Maths 5.3",
+    "英语 · 年考版":"English · yearly","历史 · 年考版":"History · yearly",
+    "历史 · 非年考内容":"History · non-exam","地理 · 海岸单元考版":"Geography · coastal unit",
+    "地理 · 非年考内容":"Geography · non-exam","个人发展、健康与体育（PDHPE）":"PDHPE",
+    "户外教育（环境意识单元）":"Outdoor Education","食品科技":"Food Technology",
+    "生涯规划":"Careers","体育":"Sport","心理与福祉（Wellbeing Hub）":"Wellbeing",
+    "英语 · 非年考内容":"English · non-exam",
+
+    "1 · 选科目":"1 · Subjects","2 · 题型":"2 · Question type","3 · 每科抽几题":"3 · Questions per subject",
+    "从各科抽题混着做，做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers go back to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
+    "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
+
     "🛒 商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
@@ -694,6 +711,10 @@ footer{padding:22px 14px 30px;line-height:1.8}
     [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"],
     [/^(\d+) 币$/, "$1 coins"],
     [/^(\d+) 星尘$/, "$1 stardust"],
+    [/^已选 (\d+) 科$/, "$1 subjects selected"],
+    [/^共 (\d+) 题$/, "$1 questions total"],
+    [/^(\d+) · (选科目|题型|每科抽几题)$/, "$1"],
+    [/^每科抽几题$/, "Questions per subject"],
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
     [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];
@@ -1242,6 +1263,21 @@ footer{padding:22px 14px 30px;line-height:1.8}
 const DATA = {"slug": "cw", "title": "心理与福祉", "examMin": 45, "questions": [{"id": "cw-001", "topic": "求助渠道 · 紧急情况", "difficulty": "easy", "type": "mcq", "stem": "You are walking home with a friend when they collapse and stop breathing. Which number should you call?", "options": ["000 (ambulance, police or fire)", "1800 011 511 (Mental Health Line)", "13 11 14 (Lifeline)", "1800 55 1800 (Kids Helpline)"], "answer": 0, "explanation": "000 是澳洲的紧急电话，救护车、警察、消防都是这个号。有人处于即时危险时必须打 000；其余三个都是心理支持与倾听热线，处理不了需要救护车的现场。", "source": "Urgent Help（Call 000 — ambulance, police or fire services）", "weak": false}, {"id": "cw-002", "topic": "求助渠道 · 24 小时热线", "difficulty": "easy", "type": "mcq", "stem": "It is 11 pm on a Sunday and you feel overwhelmed and want to talk to someone right now. Which service offers free, confidential crisis support at any hour?", "options": ["Your year advisor by email", "Lifeline on 13 11 14", "SSO Sara at school", "The counsellor's office"], "answer": 1, "explanation": "Lifeline 13 11 14 提供 24/7 的免费保密危机支持。校内的辅导员、SSO 和 Year Advisor 只在上班日的工作时间可用，所以半夜应先打热线。", "source": "Urgent Help（Lifeline — 13 11 14, available 24/7）· Support people at school", "weak": false}, {"id": "cw-003", "topic": "健康 · 睡眠时长", "difficulty": "easy", "type": "mcq", "stem": "According to the Sleep page, how much sleep is recommended for someone aged 14 to 17?", "options": ["11–13 hours", "6–7 hours", "8–10 hours", "7–8 hours"], "answer": 2, "explanation": "14–17 岁的建议量是 8–10 小时；7–11 小时属于「可能可以」的区间，少于 7 小时或超过 11 小时都属于不建议。睡眠不足会直接影响记忆、专注力和情绪。", "source": "Sleep（Recommended sleep 表格：14–17 years — 8–10 hours）", "weak": false}, {"id": "cw-004", "topic": "心理健康 · 抑郁的判据", "difficulty": "easy", "type": "mcq", "stem": "The Depression page describes clinical depression as significant low mood lasting longer than which period and starting to get in the way of everyday life?", "options": ["one year", "three months", "24 hours", "two weeks"], "answer": 3, "explanation": "关键判据是「持续超过两周」且已经影响日常生活。一天或几天的低落属于正常情绪波动，不等于抑郁症；而且材料强调只有医疗专业人员才能下诊断。", "source": "Depression（lasting longer than two weeks and start to get in the way of your everyday life）", "weak": false}, {"id": "cw-005", "topic": "情绪管理 · 箱式呼吸", "difficulty": "easy", "type": "mcq", "stem": "The Anxiety page describes box breathing as a technique for slowing your breathing and calming your body. What is the pattern?", "options": ["Inhale 4 – hold 4 – exhale 4 – hold 4", "Inhale 10 – hold 10 – exhale 10", "Inhale 4 – hold 7 – exhale 8", "Inhale 2 – exhale 2, repeated quickly"], "answer": 0, "explanation": "箱式呼吸四个阶段各 4 秒，像走完一个正方形的四条边，重复至少 4 次。4-7-8 是同一页上的另一种技术，专门用于睡前脑子停不下来的时候，两者不要混。", "source": "Anxiety（Breathing techniques：Box breathing 与 The 4-7-8 technique）", "weak": false}, {"id": "cw-006", "topic": "心理健康 · 自伤的正确理解", "difficulty": "easy", "type": "mcq", "stem": "Which statement about self-harm matches what the Self Harm page says?", "options": ["It is simply attention seeking behaviour and should be ignored by everyone.", "It is usually a way of coping with intense feelings, not attention seeking.", "It will stop on its own, so professional help is not needed for it.", "It always means the person wants to die and has already planned how to."], "answer": 1, "explanation": "材料明确写 self harm is not \"attention seeking\"：它通常是应对强烈情绪和压力的方式，也不等于有自杀念头。但它会带来长期的身心伤害，必须寻求专业帮助。", "source": "Self Harm（self harm is not \"attention seeking\"；reasons people self harm）", "weak": false}, {"id": "cw-007", "topic": "情绪管理 · 愤怒的冰山", "difficulty": "medium", "type": "mcq", "stem": "The Anger page uses the idea of an 'iceberg' to explain anger. What does the metaphor mean?", "options": ["Anger cannot really be managed, so it should be suppressed at all times.", "Anger is always a sign of an anxiety disorder or another mental illness.", "Anger is the visible emotion, often hiding embarrassment, sadness or jealousy.", "Anger only comes from external events, such as a traffic jam, never our own thoughts."], "answer": 2, "explanation": "冰山比喻的关键是：愤怒浮在水面之上，底下压着尴尬、挫败、难过、嫉妒等其他情绪。先找出真正被触发的情绪，才谈得上处理；材料也明确说压抑愤怒不是办法，学会管理才是。", "source": "Anger（Why am I angry? — anger iceberg；external and internal events）", "weak": false}, {"id": "cw-008", "topic": "心理健康 · 如何支持朋友", "difficulty": "medium", "type": "mcq", "stem": "A friend tells you they think they have depression. Which response would the Depression page say is NOT helpful?", "options": ["\"What can I do to help?\"", "\"What's been on your mind recently?\"", "\"How have you been going lately? You seem a little down.\"", "\"Just cheer up and snap out of it.\""], "answer": 3, "explanation": "材料专门点名：不能对朋友说 cheer up、snap out of it、get over it，这会否定对方的感受。开放式提问、主动倾听、问「我能帮什么」才是有效回应。", "source": "Depression（Take their feelings seriously — cannot just \"cheer up\"、\"snap out of it\"）", "weak": false}, {"id": "cw-009", "topic": "求助渠道 · 预约学校辅导员", "difficulty": "medium", "type": "mcq", "stem": "You want to see a school counsellor. Which of these is a way the Support People at School page says you can arrange an appointment?", "options": ["Fill in a referral form, a referral slip, or message a counsellor on Canvas.", "Ask a friend to book the appointment with the school counsellor on your behalf.", "Ask your doctor to write a referral letter before a counsellor will see you.", "Wait for a teacher to notice that you are struggling and refer you themselves."], "answer": 0, "explanation": "学校给了三条路：填 School Counsellor Referral Form、到 G201 对面辅导室填推荐条、或通过 Canvas 直接给辅导员发消息。见学校辅导员不需要医生转介（需要转介的是部分校外服务）。", "source": "Support people at school（To organise an appointment with a school counsellor）", "weak": false}, {"id": "cw-010", "topic": "压力与应对 · 番茄工作法", "difficulty": "medium", "type": "mcq", "stem": "The Study Tips and Tricks page recommends the Pomodoro technique for breaking up study sessions. What does it involve?", "options": ["Study only in the hour before an exam.", "Work in 25-minute blocks with short breaks in between.", "Study for three hours straight, then take a whole day off.", "Study for 5 minutes and rest for 55 minutes."], "answer": 1, "explanation": "番茄工作法是 25 分钟一段、中间短休。材料还补了一条硬规则：不管用什么节奏，都不要连续超过一小时不休息，因为拖太久效率反而下降。", "source": "Study tips and tricks（Take breaks；Pomodoro technique — 25-minute intervals）", "weak": false}, {"id": "cw-011", "topic": "尊重与安全 · 不健康关系信号", "difficulty": "medium", "type": "mcq", "stem": "Which of these is listed on the Relationships page as a sign of an unhealthy relationship?", "options": ["Encouraging each other's hobbies, friendships and time apart", "Talking calmly through disagreements and respecting each other's view", "Checking your partner's phone and demanding to know where they are", "Being open and honest about your thoughts and feelings in the relationship"], "answer": 2, "explanation": "查手机、盘问行踪属于 controlling behaviour 加上 lack of trust，是材料列出的典型红旗。健康关系的四个要素是尊重、沟通、信任和支持。", "source": "Relationships（Signs of an Unhealthy Relationship / What Makes a Healthy Relationship?）", "weak": false}, {"id": "cw-012", "topic": "尊重与安全 · 性别与身份术语", "difficulty": "medium", "type": "mcq", "stem": "On the Identity and Gender page, which term refers to a person's biological characteristics, such as chromosomes and reproductive organs?", "options": ["Cisgender", "Gender", "Sexuality", "Sex"], "answer": 3, "explanation": "Sex 是生理性别（染色体、生殖器官等）；Gender 是认同与表达（男性、女性、非二元、性别流动、无性别等）；Sexuality 是被谁吸引（性取向）。Cisgender 指性别认同与出生指定性别一致。", "source": "Identity and Gender（GENDER / SEX / SEXUALITY 对照表及 Key Terms）", "weak": false}, {"id": "cw-013", "topic": "心理健康 · 酒精与其他药物的信号", "difficulty": "hard", "type": "short", "stem": "A friend has stopped coming to footy training, is sleeping badly, has frequent mood swings and drinks on weekends 'to relax'. Name three signs of substance misuse listed on the Alcohol and Other Drugs page and describe one thing you could do to help.", "options": [], "answer": "Signs include becoming disengaged from activities he used to enjoy, significant behaviour or mood changes, relying on alcohol to relax, and changes in eating and sleeping habits. I would raise it with him calmly and suggest he talks to SSO Sara, who can refer him to a youth drug and alcohol service.", "explanation": "材料把「脱离原本喜欢的活动」「情绪突变」「靠酒放松」「作息饮食紊乱」「耐受性上升」都列为 substance misuse 的信号；校内的第一站是 SSO Sara，可转介 DAYSS、SDECC 这类青少年戒治服务。", "source": "Alcohol and Other Drugs（Signs of substance misuse or addiction；Where to go for support）", "points": [{"t": "Signs include becoming disengaged from activities he used to enjoy, significant behaviour or mood changes, relying on alcohol to relax, and changes in eating and sleeping habits", "m": 1}, {"t": "I would raise it with him calmly and suggest he talks to SSO Sara, who can refer him to a youth drug and alcohol service", "m": 1}], "weak": false}, {"id": "cw-014", "topic": "心理健康 · 保密与安全优先", "difficulty": "hard", "type": "short", "stem": "A friend tells you in confidence that they have been hurting themselves and asks you to keep it secret. Describe what the Wellbeing Hub material advises you to do.", "options": [], "answer": "Encourage them to speak to a parent, a school counsellor or SSO Sara, and offer to go with them. If they cannot seek help themselves, ask their permission to tell an adult you trust — but if they refuse and you are still seriously concerned, tell a trusted adult anyway, and call 000 if they are injured or in immediate danger.", "explanation": "安全优先于保密承诺。材料明确写：若对方不愿求助而你仍然非常担心，就应该去告诉值得信任的成年人；一旦已经受伤或有即时危险，立刻打 000。", "source": "Depression（Help them find support）· Self Harm（Who can help?）· Urgent Help（call 000）", "points": [{"t": "Encourage them to speak to a parent, a school counsellor or SSO Sara, and offer to go with them", "m": 1}, {"t": "If they cannot seek help themselves, ask their permission to tell an adult you trust — but if they refuse and you are still seriously concerned, tell a trusted adult anyway, and call 000 if they are injured or in immediate danger", "m": 1}], "weak": false}, {"id": "cw-015", "topic": "压力与应对 · 备考减压策略", "difficulty": "hard", "type": "short", "stem": "Exams are two weeks away. Describe two strategies suggested in the Wellbeing Hub for managing stress, and explain why each one helps.", "options": [], "answer": "Box breathing (inhale 4, hold 4, exhale 4, hold 4, repeated at least four times) slows your breathing and calms your body's stress response. Planning a study timetable and studying a little every day spreads the workload and avoids last-minute cramming, which is itself a major source of stress.", "explanation": "呼吸法处理「当下」的身体反应，时间管理处理「来源」，两者配合才有效。材料还提醒：连续学习超过一小时不休息，效率会下降，反而更焦虑。", "source": "Anxiety（Box breathing；progressive muscle relaxation）· Study tips and tricks（Plan your time / Study every day / Take breaks）", "points": [{"t": "Box breathing (inhale 4, hold 4, exhale 4, hold 4, repeated at least four times) slows your breathing and calms your body's stress response", "m": 1}, {"t": "Planning a study timetable and studying a little every day spreads the workload and avoids last-minute cramming, which is itself a major source of stress", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-cw";
 const MULTI = DATA.slug === "all";
+const FKEY = "dsh-filter";
+function TFILTER(){
+  try{
+    var m=(location.search.match(/[?&]filter=(all|mcq|short)/)||[])[1];
+    if(m){ localStorage.setItem(FKEY,m); return m; }
+    return localStorage.getItem(FKEY) || "all";
+  }catch(e){ return "all"; }
+}
+function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
+function buildOrder(){
+  var f = TFILTER();
+  return DATA.questions.map(function(q,i){ return {q:q,i:i}; })
+    .filter(function(x){ return f==="all" || x.q.type===f; })
+    .map(function(x){ return x.i; });
+}
 const app = document.getElementById("app");
 let state = {idx:0, answers:{}, order:null};
 
@@ -1251,7 +1287,7 @@ function load() {
     if (s && s.answers) state = s;
   } catch(e) {}
   if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
-  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (!state.order || !state.order.length) state.order = buildOrder();
   if (state.idx >= state.order.length) state.idx = state.order.length - 1;
   try {
     const m = location.search.match(/[?&]q=([^&]+)/);
@@ -1292,7 +1328,13 @@ function renderSetup() {
     </section>
 
     <section class="setup-block">
-      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="setup-label">2 · 题型</div>
+      <div class="seg">${[["all","全部"],["mcq","只选选择题"],["short","只选简答题"]].map(function(x){
+        return '<button data-t="'+x[0]+'" class="'+((state.ttype||"all")===x[0]?'on':'')+'">'+x[1]+'</button>';
+      }).join("")}</div>
+    </section>
+    <section class="setup-block">
+      <div class="setup-label">3 · 每科抽几题</div>
       <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
     </section>
 
@@ -1321,6 +1363,9 @@ function renderSetup() {
   app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
     state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
   });
+  app.querySelectorAll("[data-t]").forEach(b => b.onclick = () => {
+    state.ttype = b.dataset.t; save(); render();
+  });
   app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
     state.per = +b.dataset.n; save(); render();
   });
@@ -1348,7 +1393,8 @@ function renderSetup() {
     if (!chosen.length) { alert("至少选一科"); return; }
     let idxs = [];
     chosen.forEach(k => {
-      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      const tt = state.ttype || "all";
+      let pool = DATA.questions.map((q, i) => (q.subj === k && (tt === "all" || q.type === tt)) ? i : -1).filter(i => i >= 0);
       pool.sort(() => Math.random() - 0.5);
       idxs = idxs.concat(per ? pool.slice(0, per) : pool);
     });
@@ -1607,12 +1653,26 @@ catch(e) { document.body.insertAdjacentHTML("afterbegin",
 document.getElementById("exam").onclick = startExam;
 if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
 
+var _tf = document.getElementById("tfilter");
+function paintFilter(){
+  if(!_tf) return;
+  var f = TFILTER();
+  _tf.textContent = f==="all" ? T("全部") : (f==="mcq" ? T("选择题") : T("简答"));
+}
+if (_tf) _tf.onclick = function(){
+  var order = ["all","mcq","short"], cur = TFILTER();
+  var nx = order[(order.indexOf(cur)+1) % 3];
+  setTFILTER(nx);
+  state.order = buildOrder(); state.idx = 0; save();
+  paintFilter(); render();
+};
 var _langBtn = document.getElementById("langBtn");
 if (_langBtn) _langBtn.onclick = cycleLang;
 applyChrome();
+paintFilter();
 document.getElementById("restart").onclick = () => {
   if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
-  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:buildOrder()};
   save(); render();
 };
 

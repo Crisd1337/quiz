@@ -293,6 +293,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 14</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
+    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
     <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
     <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
@@ -580,6 +581,22 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
     "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
     "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "只选选择题":"MCQ only","只选简答题":"Short answers only",
+    "从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers return to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "科学":"Science","科学 · 非年考内容（Term 1–3）":"Science · non-exam (Terms 1–3)",
+    "数学 P（Standard 5.2）":"Maths (Standard 5.2)","5.3 数学":"Maths 5.3",
+    "英语 · 年考版":"English · yearly","历史 · 年考版":"History · yearly",
+    "历史 · 非年考内容":"History · non-exam","地理 · 海岸单元考版":"Geography · coastal unit",
+    "地理 · 非年考内容":"Geography · non-exam","个人发展、健康与体育（PDHPE）":"PDHPE",
+    "户外教育（环境意识单元）":"Outdoor Education","食品科技":"Food Technology",
+    "生涯规划":"Careers","体育":"Sport","心理与福祉（Wellbeing Hub）":"Wellbeing",
+    "英语 · 非年考内容":"English · non-exam",
+
+    "1 · 选科目":"1 · Subjects","2 · 题型":"2 · Question type","3 · 每科抽几题":"3 · Questions per subject",
+    "从各科抽题混着做，做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers go back to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
+    "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
+
     "🛒 商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
@@ -694,6 +711,10 @@ footer{padding:22px 14px 30px;line-height:1.8}
     [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"],
     [/^(\d+) 币$/, "$1 coins"],
     [/^(\d+) 星尘$/, "$1 stardust"],
+    [/^已选 (\d+) 科$/, "$1 subjects selected"],
+    [/^共 (\d+) 题$/, "$1 questions total"],
+    [/^(\d+) · (选科目|题型|每科抽几题)$/, "$1"],
+    [/^每科抽几题$/, "Questions per subject"],
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
     [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];
@@ -1242,6 +1263,21 @@ footer{padding:22px 14px 30px;line-height:1.8}
 const DATA = {"slug": "geoother", "title": "地理 · 非年考", "examMin": 60, "questions": [{"id": "geoother-001", "topic": "人类福祉 · 国内生产总值", "difficulty": "easy", "type": "mcq", "stem": "Why do geographers use GDP per capita rather than total GDP when comparing the wellbeing of different countries?", "options": ["It divides GDP by population, so countries of different size can be compared", "It measures only the income earned by the very richest people in that country", "It measures the value of unpaid work done inside the household", "It removes the need for any other development measure or index"], "answer": 0, "explanation": "人均 GDP＝GDP÷人口，解决人口大国总量天然偏高的问题。但它仍不反映分配是否公平，也不能取代 HDI 等指标。", "source": "Term 1 · Week 2 Global — Measuring and Mapping Human Wellbeing", "weak": false}, {"id": "geoother-002", "topic": "人类福祉 · 人类发展指数", "difficulty": "easy", "type": "mcq", "stem": "The Human Development Index (HDI) combines which three dimensions?", "options": ["GDP, inflation rate and the unemployment rate", "Health, education and standard of living (GNI per capita)", "Population size, land area and length of coastline", "Life expectancy, birth rate and the death rate"], "answer": 1, "explanation": "HDI 三个维度是健康（预期寿命）、教育（平均与预期受教育年限）、生活水平（人均国民总收入）。它把 GDP 之外的健康与教育纳入，因此比单一经济指标更全面。", "source": "Term 1 · Week 2 Global — Lesson 3: quantitative (GDP) vs qualitative (HDI)", "weak": false}, {"id": "geoother-003", "topic": "人口 · 老龄化数据解读", "difficulty": "medium", "type": "mcq", "stem": "In the population-pyramid lesson students study China's ageing population. The source states that by 2100, 37.8% of China's population is projected to be aged over 60. Which is the most likely implication of this figure?", "options": ["A rising birth rate that will require many new schools and many more teachers", "A population pyramid with a very wide base and a much narrower top", "A smaller workforce supporting a larger elderly group, straining pensions", "A rapidly growing labour force that will raise industrial output sharply"], "answer": 2, "explanation": "老年人口占比接近四成意味着抚养比上升、劳动力相对减少，财政压力集中在医疗与养老。「A population pyramid with a very wide base and a much narrower top」（宽底金字塔）描述的是高出生率的扩张型人口，与老龄化相反。", "source": "Term 1 · Weeks 3–4 Geographic Skills — China's Ageing Population (37.8% over 60 by 2100)", "weak": false}, {"id": "geoother-004", "topic": "福祉差异 · 悉尼社会经济格局", "difficulty": "hard", "type": "short", "stem": "Describe the spatial pattern of advantage and disadvantage in Sydney and explain one factor that produces it.", "options": [], "answer": "Advantage is concentrated in the east, north and harbour-side suburbs, while disadvantage is concentrated in the west and south-west. Higher incomes, employment and better access to services, schools and healthy food cluster in the advantaged areas, while high housing costs push lower-income households further from those opportunities.", "explanation": "答题要点是「格局＋一个成因」：格局（东／北 vs 西／西南）＋成因（收入、房价、服务与就业可达性）。课程 scaffold 正是要求这两部分。", "source": "Term 1 · Weeks 7–8 Local — Sydney's socio-economic divide (East vs West)", "points": [{"t": "Advantage is concentrated in the east, north and harbour-side suburbs, while disadvantage is concentrated in the west and south-west", "m": 1}, {"t": "Higher incomes, employment and better access to services, schools and healthy food cluster in the advantaged areas, while high housing costs push lower-income households further from those opportunities", "m": 1}], "weak": false}, {"id": "geoother-005", "topic": "原住民福祉 · 圆桌量刑", "difficulty": "easy", "type": "mcq", "stem": "Circle sentencing in NSW is best described as:", "options": ["A separate court that hears only cases involving young offenders", "A process that replaces the court entirely with a community tribunal", "A police caution given before any charge is laid against an offender", "A sentencing process where Elders sit with a magistrate after a guilty verdict"], "answer": 3, "explanation": "圆桌量刑发生在有罪判决之后，由长者与社区成员参与量刑讨论，目的是提高文化适应性并降低再犯。它既不取代法院，也不是审判前程序。", "source": "Term 2 · Week 2.3 First Nations Justice — Action (circle sentencing)", "weak": false}, {"id": "geoother-006", "topic": "地理技能 · 三元图", "difficulty": "medium", "type": "mcq", "stem": "On a ternary graph, what do the three axes represent?", "options": ["Three parts of a whole that add to 100%, read off one point", "Three separate time periods shown along a single horizontal line", "Three separate graphs placed side by side on one page", "Three countries compared by their total population"], "answer": 0, "explanation": "三元图表示三个分量构成 100% 的比例关系（如就业结构、土壤成分）。读图时要沿各自的轴向读数，三者相加必须为 100。", "source": "Term 2 · Week 10.1 Ternary Graphs", "weak": false}, {"id": "geoother-007", "topic": "地理技能 · 面积参照与网格参照", "difficulty": "medium", "type": "mcq", "stem": "Which statement correctly distinguishes an area reference (AR) from a grid reference (GR)?", "options": ["An AR gives elevation in metres; a GR gives distance in km", "An AR uses four figures for a square; a GR uses six for a point", "An AR is used on small-scale maps; a GR only on précis maps", "An AR uses six figures for a point; a GR uses four for a grid square"], "answer": 1, "explanation": "AR 四位数字定位一个方格（约 1 km×1 km）；GR 六位数字定位方格内的具体点位（精确到 100 m）。两者位数顺序不要记反。", "source": "Term 1 · Weeks 3–4 Topographic Skills — AR, GR and elevation", "weak": false}, {"id": "geoother-008", "topic": "原住民福祉 · 量刑成效评估", "difficulty": "medium", "type": "short", "stem": "Explain one way circle sentencing could improve outcomes for First Nations people compared with a standard court process.", "options": [], "answer": "It involves Elders and community members in deciding the sentence, so the outcome reflects the offender's community and culture and the offender is held accountable in front of people they know. This can increase respect for the process and reduce reoffending, which matters given the over-representation of Aboriginal people in custody.", "explanation": "要写出「机制→结果」：社区与长者参与→文化安全与问责→更可能被接受、再犯率下降。只写「更公平」拿不到分。", "source": "Term 2 · Weeks 2.3 / 3.1 First Nations Justice — Action & Outcome", "points": [{"t": "It involves Elders and community members in deciding the sentence, so the outcome reflects the offender's community and culture and the offender is held accountable in front of people they know", "m": 1}, {"t": "This can increase respect for the process and reduce reoffending, which matters given the over-representation of Aboriginal people in custody", "m": 1}], "weak": false}, {"id": "geoother-009", "topic": "气候变化 · 选择性引用", "difficulty": "easy", "type": "mcq", "stem": "In the climate misinformation lessons, 'cherry picking' as a science-denial technique means:", "options": ["Choosing only the most reliable long-term dataset available", "Repeating an experiment until the results agree with the theory you hold", "Selecting data that support a position while ignoring contrary data", "Refusing to accept any scientific evidence whatsoever on the topic"], "answer": 2, "explanation": "选择性引用是 FLICC 五种手法之一：只挑对自己有利的数据点，忽略整体趋势。课上的反思问题正是让学生自查有没有这样做过。", "source": "Term 4 · Lessons 1.1–1.2 Climate misinformation (FLICC) / Lesson 2.1", "weak": false}, {"id": "geoother-010", "topic": "气候变化 · 增强温室效应", "difficulty": "medium", "type": "mcq", "stem": "How does the enhanced greenhouse effect differ from the natural greenhouse effect?", "options": ["The enhanced effect is caused by more solar radiation reaching Earth", "Human activity has removed the natural effect, so less heat is trapped", "The natural effect involves only incoming solar radiation, with no re-emission of heat", "Human greenhouse gas emissions trap more infrared radiation, adding to warming"], "answer": 3, "explanation": "自然温室效应本身使地球适宜居住；人类排放的额外温室气体增强了它，使更多红外辐射被吸收并重新辐射回地表。区分两者是常见考点。", "source": "Term 4 · Lesson 2.2 What are the causes of climate change? (Part 1)", "weak": false}, {"id": "geoother-011", "topic": "气候变化 · 珊瑚白化", "difficulty": "easy", "type": "mcq", "stem": "How does rising sea temperature cause coral bleaching?", "options": ["Heat stress makes corals expel their symbiotic algae, losing colour and food", "Warmer water dissolves the corals' calcium carbonate skeleton directly", "Warmer water multiplies the algae living inside corals, making them overgrow faster", "Corals absorb more dissolved carbon dioxide and so grow much faster"], "answer": 0, "explanation": "珊瑚与虫黄藻共生；高温胁迫下珊瑚排出虫黄藻，失去颜色与主要营养来源。若高温持续，珊瑚会死亡，而不只是变白。", "source": "Term 4 · Lesson 3.3 How does sea temperature rise lead to coral bleaching?", "weak": false}, {"id": "geoother-012", "topic": "气候变化 · 全球变暖与气候变化", "difficulty": "easy", "type": "mcq", "stem": "Lesson 2.1 asks students to distinguish between global warming and climate change. Which statement is correct?", "options": ["Global warming refers only to sea temperatures; climate change only to air temperatures", "Global warming is rising average temperature; climate change also covers rainfall and sea level", "The two terms mean exactly the same thing and can be used interchangeably in every case", "Climate change happens naturally, while global warming is a separate process unrelated to it"], "answer": 1, "explanation": "全球变暖是「平均气温上升」这一部分；气候变化范围更广，还包括降水、海平面、冰盖与极端天气的变化。两者相关但不等同。", "source": "Term 4 · Lesson 2.1 EVIDENCE — distinguishing global warming from climate change", "weak": false}, {"id": "geoother-013", "topic": "气候变化 · 海洋酸化", "difficulty": "hard", "type": "short", "stem": "Explain how ocean acidification impacts marine life.", "options": [], "answer": "The ocean absorbs extra carbon dioxide, which forms carbonic acid and lowers the pH of seawater. This reduces the availability of carbonate ions, so organisms such as corals, shellfish and some plankton cannot build or maintain their shells and skeletons, which then affects the wider food chain.", "explanation": "机制链是：CO2 溶入海水→生成碳酸→pH 下降→碳酸根离子减少→钙化生物难以造壳与骨骼→食物链受影响。", "source": "Term 4 · Lesson 4.1 Ocean Acidification & Its Impact on Marine Life", "points": [{"t": "The ocean absorbs extra carbon dioxide, which forms carbonic acid and lowers the pH of seawater", "m": 1}, {"t": "This reduces the availability of carbonate ions, so organisms such as corals, shellfish and some plankton cannot build or maintain their shells and skeletons, which then affects the wider food chain", "m": 1}], "weak": false}, {"id": "geoother-014", "topic": "气候变化 · 海平面上升的案例", "difficulty": "hard", "type": "short", "stem": "Using the Solomon Islands case study, explain two impacts of sea level rise on low-lying Pacific nations.", "options": [], "answer": "First, higher seas and larger storm surges erode beaches and inundate low-lying land, so villages, gardens and fresh-water supplies are lost and communities are forced to relocate. Second, salt water intrudes into soil and groundwater, reducing the land available for growing food and increasing dependence on outside aid.", "explanation": "分两个层面答：环境与土地（侵蚀、淹没、咸水入侵）以及社会经济（被迫搬迁、粮食与水源短缺、依赖援助）。", "source": "Term 4 · Lesson 3.2 Sea level rise — Solomon Islands case study", "points": [{"t": "First, higher seas and larger storm surges erode beaches and inundate low-lying land, so villages, gardens and fresh-water supplies are lost and communities are forced to relocate", "m": 1}, {"t": "Second, salt water intrudes into soil and groundwater, reducing the land available for growing food and increasing dependence on outside aid", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-geoother";
 const MULTI = DATA.slug === "all";
+const FKEY = "dsh-filter";
+function TFILTER(){
+  try{
+    var m=(location.search.match(/[?&]filter=(all|mcq|short)/)||[])[1];
+    if(m){ localStorage.setItem(FKEY,m); return m; }
+    return localStorage.getItem(FKEY) || "all";
+  }catch(e){ return "all"; }
+}
+function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
+function buildOrder(){
+  var f = TFILTER();
+  return DATA.questions.map(function(q,i){ return {q:q,i:i}; })
+    .filter(function(x){ return f==="all" || x.q.type===f; })
+    .map(function(x){ return x.i; });
+}
 const app = document.getElementById("app");
 let state = {idx:0, answers:{}, order:null};
 
@@ -1251,7 +1287,7 @@ function load() {
     if (s && s.answers) state = s;
   } catch(e) {}
   if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
-  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (!state.order || !state.order.length) state.order = buildOrder();
   if (state.idx >= state.order.length) state.idx = state.order.length - 1;
   try {
     const m = location.search.match(/[?&]q=([^&]+)/);
@@ -1292,7 +1328,13 @@ function renderSetup() {
     </section>
 
     <section class="setup-block">
-      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="setup-label">2 · 题型</div>
+      <div class="seg">${[["all","全部"],["mcq","只选选择题"],["short","只选简答题"]].map(function(x){
+        return '<button data-t="'+x[0]+'" class="'+((state.ttype||"all")===x[0]?'on':'')+'">'+x[1]+'</button>';
+      }).join("")}</div>
+    </section>
+    <section class="setup-block">
+      <div class="setup-label">3 · 每科抽几题</div>
       <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
     </section>
 
@@ -1321,6 +1363,9 @@ function renderSetup() {
   app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
     state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
   });
+  app.querySelectorAll("[data-t]").forEach(b => b.onclick = () => {
+    state.ttype = b.dataset.t; save(); render();
+  });
   app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
     state.per = +b.dataset.n; save(); render();
   });
@@ -1348,7 +1393,8 @@ function renderSetup() {
     if (!chosen.length) { alert("至少选一科"); return; }
     let idxs = [];
     chosen.forEach(k => {
-      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      const tt = state.ttype || "all";
+      let pool = DATA.questions.map((q, i) => (q.subj === k && (tt === "all" || q.type === tt)) ? i : -1).filter(i => i >= 0);
       pool.sort(() => Math.random() - 0.5);
       idxs = idxs.concat(per ? pool.slice(0, per) : pool);
     });
@@ -1607,12 +1653,26 @@ catch(e) { document.body.insertAdjacentHTML("afterbegin",
 document.getElementById("exam").onclick = startExam;
 if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
 
+var _tf = document.getElementById("tfilter");
+function paintFilter(){
+  if(!_tf) return;
+  var f = TFILTER();
+  _tf.textContent = f==="all" ? T("全部") : (f==="mcq" ? T("选择题") : T("简答"));
+}
+if (_tf) _tf.onclick = function(){
+  var order = ["all","mcq","short"], cur = TFILTER();
+  var nx = order[(order.indexOf(cur)+1) % 3];
+  setTFILTER(nx);
+  state.order = buildOrder(); state.idx = 0; save();
+  paintFilter(); render();
+};
 var _langBtn = document.getElementById("langBtn");
 if (_langBtn) _langBtn.onclick = cycleLang;
 applyChrome();
+paintFilter();
 document.getElementById("restart").onclick = () => {
   if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
-  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:buildOrder()};
   save(); render();
 };
 

@@ -463,6 +463,22 @@ if (window.applyI18n) setTimeout(applyI18n, 0);
     "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
     "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
     "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "只选选择题":"MCQ only","只选简答题":"Short answers only",
+    "从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers return to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "科学":"Science","科学 · 非年考内容（Term 1–3）":"Science · non-exam (Terms 1–3)",
+    "数学 P（Standard 5.2）":"Maths (Standard 5.2)","5.3 数学":"Maths 5.3",
+    "英语 · 年考版":"English · yearly","历史 · 年考版":"History · yearly",
+    "历史 · 非年考内容":"History · non-exam","地理 · 海岸单元考版":"Geography · coastal unit",
+    "地理 · 非年考内容":"Geography · non-exam","个人发展、健康与体育（PDHPE）":"PDHPE",
+    "户外教育（环境意识单元）":"Outdoor Education","食品科技":"Food Technology",
+    "生涯规划":"Careers","体育":"Sport","心理与福祉（Wellbeing Hub）":"Wellbeing",
+    "英语 · 非年考内容":"English · non-exam",
+
+    "1 · 选科目":"1 · Subjects","2 · 题型":"2 · Question type","3 · 每科抽几题":"3 · Questions per subject",
+    "从各科抽题混着做，做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers go back to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
+    "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
+
     "🛒 商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
@@ -577,6 +593,10 @@ if (window.applyI18n) setTimeout(applyI18n, 0);
     [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"],
     [/^(\d+) 币$/, "$1 coins"],
     [/^(\d+) 星尘$/, "$1 stardust"],
+    [/^已选 (\d+) 科$/, "$1 subjects selected"],
+    [/^共 (\d+) 题$/, "$1 questions total"],
+    [/^(\d+) · (选科目|题型|每科抽几题)$/, "$1"],
+    [/^每科抽几题$/, "Questions per subject"],
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
     [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];

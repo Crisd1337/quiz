@@ -293,6 +293,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 15</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
+    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
     <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
     <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
@@ -580,6 +581,22 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
     "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
     "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "只选选择题":"MCQ only","只选简答题":"Short answers only",
+    "从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers return to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "科学":"Science","科学 · 非年考内容（Term 1–3）":"Science · non-exam (Terms 1–3)",
+    "数学 P（Standard 5.2）":"Maths (Standard 5.2)","5.3 数学":"Maths 5.3",
+    "英语 · 年考版":"English · yearly","历史 · 年考版":"History · yearly",
+    "历史 · 非年考内容":"History · non-exam","地理 · 海岸单元考版":"Geography · coastal unit",
+    "地理 · 非年考内容":"Geography · non-exam","个人发展、健康与体育（PDHPE）":"PDHPE",
+    "户外教育（环境意识单元）":"Outdoor Education","食品科技":"Food Technology",
+    "生涯规划":"Careers","体育":"Sport","心理与福祉（Wellbeing Hub）":"Wellbeing",
+    "英语 · 非年考内容":"English · non-exam",
+
+    "1 · 选科目":"1 · Subjects","2 · 题型":"2 · Question type","3 · 每科抽几题":"3 · Questions per subject",
+    "从各科抽题混着做，做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers go back to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
+    "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
+
     "🛒 商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
@@ -694,6 +711,10 @@ footer{padding:22px 14px 30px;line-height:1.8}
     [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"],
     [/^(\d+) 币$/, "$1 coins"],
     [/^(\d+) 星尘$/, "$1 stardust"],
+    [/^已选 (\d+) 科$/, "$1 subjects selected"],
+    [/^共 (\d+) 题$/, "$1 questions total"],
+    [/^(\d+) · (选科目|题型|每科抽几题)$/, "$1"],
+    [/^每科抽几题$/, "Questions per subject"],
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
     [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];
@@ -1242,6 +1263,21 @@ footer{padding:22px 14px 30px;line-height:1.8}
 const DATA = {"slug": "hisother", "title": "历史 · 非年考", "examMin": 60, "questions": [{"id": "hisother-001", "topic": "大屠杀 · 史料视角分析", "difficulty": "easy", "type": "mcq", "stem": "The Holocaust practice questions set out three steps for 'accounting for the perspective' of a source. After stating what the perspective is, what must you do next?", "options": ["Explain how the perspective appears in the source and why it is there", "Summarise the source in one sentence without using its evidence", "State whether the source is a primary or secondary source", "Describe how long the source is, where it was published and who wrote it"], "answer": 0, "explanation": "材料的三步是：先判断视角（犹太视角还是反犹视角），再说明视角如何在史料中体现、为什么这样呈现。只概括内容而不分析视角，是这类题最常见的失分点。", "source": "Term 1 · Practice Questions.pdf — Account for the perspective of Source A", "weak": false}, {"id": "hisother-002", "topic": "大屠杀 · 特别行动队", "difficulty": "easy", "type": "mcq", "stem": "In the Lessons 3.2–4.1 sequence, the Einsatzgruppen are described as which of the following?", "options": ["Jewish resistance fighters", "Mobile killing squads", "The Gestapo secret police", "Camp-based killing units"], "answer": 1, "explanation": "课程标题直接写明 The Einsatzgruppen — mobile killing squads。它们随德军进入东欧和苏联，以大规模枪决方式屠杀，与集中营体系是不同的屠杀形式。", "source": "Term 1 · Lessons 3.2–4.1 The Einsatzgruppen (module list)", "weak": false}, {"id": "hisother-003", "topic": "大屠杀 · 宣传画分析", "difficulty": "hard", "type": "mcq", "stem": "A 1934 Nazi propaganda image shows a Jewish man as greedy and physically repellent while a German family looks healthy and prosperous. Which conclusion is most defensible for a historian?", "options": ["It proves German families were wealthier than Jewish families in 1934", "It shows that antisemitism only began in Germany in 1934", "It shows the regime's dehumanising portrayal, not how Jews lived", "It is too one-sided to be of much use to any historian"], "answer": 2, "explanation": "宣传画的价值在于反映制作者的意图与被推广的刻板印象，而不是事实本身。选「没有价值」是典型错误——偏见本身就是研究纳粹意识形态的重要证据。", "source": "Term 1 · Lesson 1.3 Nazi propaganda & the skill of perspective", "weak": false}, {"id": "hisother-004", "topic": "大屠杀 · 史料价值判断", "difficulty": "medium", "type": "short", "stem": "Explain why a historian studying Kristallnacht might still find a source produced by a Nazi official valuable, even though it is biased.", "options": [], "answer": "It reveals the perpetrator's perspective, language and motives — what the regime wanted its audience to believe and how it justified the attacks. The bias is itself evidence of Nazi intent, but the source must be checked against other evidence, such as victim testimony.", "explanation": "偏见不等于无价值：犯罪者视角能揭示宣传意图与动机，但要与受害者证词等史料对照使用。答题要落到「谁、为什么这样说」而不是只判断真假。", "source": "Term 1 · Practice Questions.pdf / Lesson 4.1 Propaganda value source analysis", "points": [{"t": "It reveals the perpetrator's perspective, language and motives — what the regime wanted its audience to believe and how it justified the attacks", "m": 1}, {"t": "The bias is itself evidence of Nazi intent, but the source must be checked against other evidence, such as victim testimony", "m": 1}], "weak": false}, {"id": "hisother-005", "topic": "大屠杀 · 内容与视角", "difficulty": "medium", "type": "short", "stem": "Distinguish between a source's content and its perspective, and explain why a historian needs both.", "options": [], "answer": "Content is what the source says or shows — the events, people and details in it. Perspective is the point of view from which it was made, shaped by the author's side, purpose and audience. A historian needs the content as evidence and the perspective to judge how far that evidence can be trusted.", "explanation": "内容回答「说了什么」，视角回答「谁、站在哪一边、为什么这样说」。两者分开，才能既使用史料又评估史料。", "source": "Term 1 · Source Analysis Study Notes / Practice Questions", "points": [{"t": "Content is what the source says or shows — the events, people and details in it", "m": 1}, {"t": "Perspective is the point of view from which it was made, shaped by the author's side, purpose and audience", "m": 1}, {"t": "A historian needs the content as evidence and the perspective to judge how far that evidence can be trusted", "m": 1}], "weak": false}, {"id": "hisother-006", "topic": "冷战 · 波茨坦会议", "difficulty": "easy", "type": "mcq", "stem": "Which conference does Lesson 2.1 use as the starting point for explaining how the Cold War began?", "options": ["The Yalta Conference", "The Versailles Conference", "The Geneva Conference", "The Potsdam Conference"], "answer": 3, "explanation": "材料写明本课目标是理解 the Potsdam Conference and its impact in creating the Cold War Conflict。雅尔塔会议也在战争末期召开，但课程设定的起点是波茨坦。", "source": "Term 2 · Lesson 2.1 Origins of the Cold War (Potsdam Conference)", "weak": false}, {"id": "hisother-007", "topic": "冷战 · 马歇尔计划与北约", "difficulty": "medium", "type": "mcq", "stem": "Which pairing correctly matches the two containment instruments taught in Lesson 2.3?", "options": ["Marshall Plan — economic aid; NATO — collective security alliance", "Marshall Plan — cultural exchange; NATO — trade agreement", "Marshall Plan — military alliance; NATO — economic aid programme", "Marshall Plan — covert CIA action; NATO — nuclear sharing"], "answer": 0, "explanation": "马歇尔计划用经济援助重建西欧、削弱共产主义的吸引力；北约（1949）是集体安全军事同盟。一文一武，共同构成欧洲的遏制体系。", "source": "Term 2 · Lesson 2.3 The Policy of Containment in Europe — Marshall Plan & NATO", "weak": false}, {"id": "hisother-008", "topic": "冷战 · 柏林危机 1961", "difficulty": "easy", "type": "mcq", "stem": "What was the immediate result of the Berlin Crisis of 1961?", "options": ["The reunification of Germany under a single government", "The building of the Berlin Wall, dividing East from West Berlin", "The withdrawal of all Soviet troops from East Germany", "The signing of a formal peace treaty formally ending the Cold War"], "answer": 1, "explanation": "1961 年柏林危机中，东德在苏联支持下修建柏林墙阻止人口外流，柏林墙成为冷战分裂的象征。", "source": "Term 2 · Lesson 5.2 The Berlin Crisis (1961)", "weak": false}, {"id": "hisother-009", "topic": "冷战 · 遏制手段比较", "difficulty": "medium", "type": "short", "stem": "Explain one significant difference between Truman's and Eisenhower's methods of containing communism.", "options": [], "answer": "Truman relied mainly on economic and military aid (the Truman Doctrine, the Marshall Plan) and on collective security through NATO, plus a limited conventional war in Korea. Eisenhower preferred nuclear deterrence, brinkmanship and covert CIA action because it contained communism at a lower cost.", "explanation": "核心差别是手段与成本：杜鲁门重经济援助与同盟，艾森豪威尔重核威慑与隐蔽行动。答题要落到具体政策名称上，不能只写「方式不同」。", "source": "Term 2 · Unit essay question (Lessons 3.2 / 6.1 modelling)", "points": [{"t": "Truman relied mainly on economic and military aid (the Truman Doctrine, the Marshall Plan) and on collective security through NATO, plus a limited conventional war in Korea", "m": 1}, {"t": "Eisenhower preferred nuclear deterrence, brinkmanship and covert CIA action because it contained communism at a lower cost", "m": 1}], "weak": false}, {"id": "hisother-010", "topic": "冷战 · 古巴导弹危机", "difficulty": "hard", "type": "short", "stem": "Explain why the Cuban Missile Crisis of 1962 is treated as the most dangerous moment of the Cold War.", "options": [], "answer": "The discovery of Soviet nuclear missiles in Cuba led to a US naval quarantine and a direct superpower standoff in which any miscalculation could have triggered nuclear war. It ended with the Soviet withdrawal of the missiles and a US pledge not to invade Cuba, and it pushed both sides towards arms control.", "explanation": "危险在于两个核大国直接对峙、决策时间极短；结果是苏联撤导弹、美国承诺不入侵古巴（并秘密撤走驻土耳其导弹），此后双方开始军控谈判。", "source": "Term 2 · Lesson 5.3 JFK and the Cuban Missile Crisis (1962)", "points": [{"t": "The discovery of Soviet nuclear missiles in Cuba led to a US naval quarantine and a direct superpower standoff in which any miscalculation could have triggered nuclear war", "m": 1}, {"t": "It ended with the Soviet withdrawal of the missiles and a US pledge not to invade Cuba, and it pushed both sides towards arms control", "m": 1}], "weak": false}, {"id": "hisother-011", "topic": "民权 · 世界人权宣言", "difficulty": "easy", "type": "mcq", "stem": "Lesson 1.2 examines the significance of the UDHR. Which description of the UDHR is correct?", "options": ["An Australian law passed in 1948 that ended the White Australia Policy", "A document listing the punishments given at the Nuremberg Trials", "A 1948 UN declaration of fundamental rights that influenced later conventions", "A treaty signed only by the United States and the Soviet Union in 1948"], "answer": 2, "explanation": "《世界人权宣言》1948 年由联合国大会通过，本身不是条约，但成为后续人权公约与国内法的规范基础——这正是它「意义」之所在。", "source": "Term 3 · Lesson 1.2 The significance of the UDHR to human rights & freedoms", "weak": false}, {"id": "hisother-012", "topic": "民权 · 澳洲自由之行", "difficulty": "easy", "type": "mcq", "stem": "According to the Significant Individuals list in the assessment guide, who led the 1965 Freedom Ride?", "options": ["Vincent Lingiari", "Eddie Koiki Mabo", "William Cooper", "Charles Perkins"], "answer": 3, "explanation": "材料明确写 Charles Perkins — led the 1965 Freedom Ride。其他几位分别对应 1966 年 Wave Hill 罢工（Lingiari）、1992 年 Mabo 案、1938 年哀悼日（Cooper）。", "source": "Term 3 · Civil Rights Comic Book Assessment Guide — Significant Individuals", "weak": false}, {"id": "hisother-013", "topic": "民权 · Mabo 与原住民所有权", "difficulty": "medium", "type": "mcq", "stem": "Which statement explains the significance of Eddie Koiki Mabo's case (1992)?", "options": ["It overturned terra nullius and recognised native title in law", "It created the first Aboriginal community-controlled health service", "It gave Aboriginal Australians the right to vote in elections", "It ended the forced removal of Aboriginal children from families"], "answer": 0, "explanation": "Mabo 判决否定了「无主之地」的法律前提，承认原住民与托雷斯海峡岛民的土地权利，是土地权运动的转折点。", "source": "Term 3 · Assessment Guide — Significant Individuals (Eddie Koiki Mabo)", "weak": false}, {"id": "hisother-014", "topic": "民权 · 被偷走的一代", "difficulty": "medium", "type": "short", "stem": "Explain what is meant by the 'Stolen Generations'.", "options": [], "answer": "They are the Aboriginal and Torres Strait Islander children who were forcibly removed from their families by government agencies and church missions under protection and welfare laws, mainly across the twentieth century. The removals broke families and caused long-term trauma that still affects communities.", "explanation": "要点是「被强行带走」而非自愿离开，依据的是各州保护法／福利法；后果是家庭断裂与代际创伤。", "source": "Term 3 · Lesson 5.2 The Stolen Generations", "points": [{"t": "They are the Aboriginal and Torres Strait Islander children who were forcibly removed from their families by government agencies and church missions under protection and welfare laws, mainly across the twentieth century", "m": 1}, {"t": "The removals broke families and caused long-term trauma that still affects communities", "m": 1}], "weak": false}, {"id": "hisother-015", "topic": "民权 · 土地权与原住民所有权", "difficulty": "hard", "type": "short", "stem": "Distinguish between 'land rights' and 'native title' as used in Lesson 5.3.", "options": [], "answer": "Land rights are grants or recognition of land by government legislation — land returned or given to Aboriginal communities. Native title is a right recognised by the courts as belonging to Aboriginal and Torres Strait Islander peoples whose traditional laws and customs connect them to the land; it is understood to have survived colonisation rather than being granted.", "explanation": "关键差别在来源：land rights 来自立法与政府授予，native title 来自法庭承认的、殖民前即存在的传统权利（Mabo 判决）。", "source": "Term 3 · Lesson 5.3 The Significance of the Land Rights Movement & Native Title", "points": [{"t": "Land rights are grants or recognition of land by government legislation — land returned or given to Aboriginal communities. Native title is a right recognised by the courts as belonging to Aboriginal and Torres Strait Islander peoples whose traditional laws and customs connect them to the land", "m": 1}, {"t": "it is understood to have survived colonisation rather than being granted", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-hisother";
 const MULTI = DATA.slug === "all";
+const FKEY = "dsh-filter";
+function TFILTER(){
+  try{
+    var m=(location.search.match(/[?&]filter=(all|mcq|short)/)||[])[1];
+    if(m){ localStorage.setItem(FKEY,m); return m; }
+    return localStorage.getItem(FKEY) || "all";
+  }catch(e){ return "all"; }
+}
+function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
+function buildOrder(){
+  var f = TFILTER();
+  return DATA.questions.map(function(q,i){ return {q:q,i:i}; })
+    .filter(function(x){ return f==="all" || x.q.type===f; })
+    .map(function(x){ return x.i; });
+}
 const app = document.getElementById("app");
 let state = {idx:0, answers:{}, order:null};
 
@@ -1251,7 +1287,7 @@ function load() {
     if (s && s.answers) state = s;
   } catch(e) {}
   if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
-  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (!state.order || !state.order.length) state.order = buildOrder();
   if (state.idx >= state.order.length) state.idx = state.order.length - 1;
   try {
     const m = location.search.match(/[?&]q=([^&]+)/);
@@ -1292,7 +1328,13 @@ function renderSetup() {
     </section>
 
     <section class="setup-block">
-      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="setup-label">2 · 题型</div>
+      <div class="seg">${[["all","全部"],["mcq","只选选择题"],["short","只选简答题"]].map(function(x){
+        return '<button data-t="'+x[0]+'" class="'+((state.ttype||"all")===x[0]?'on':'')+'">'+x[1]+'</button>';
+      }).join("")}</div>
+    </section>
+    <section class="setup-block">
+      <div class="setup-label">3 · 每科抽几题</div>
       <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
     </section>
 
@@ -1321,6 +1363,9 @@ function renderSetup() {
   app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
     state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
   });
+  app.querySelectorAll("[data-t]").forEach(b => b.onclick = () => {
+    state.ttype = b.dataset.t; save(); render();
+  });
   app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
     state.per = +b.dataset.n; save(); render();
   });
@@ -1348,7 +1393,8 @@ function renderSetup() {
     if (!chosen.length) { alert("至少选一科"); return; }
     let idxs = [];
     chosen.forEach(k => {
-      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      const tt = state.ttype || "all";
+      let pool = DATA.questions.map((q, i) => (q.subj === k && (tt === "all" || q.type === tt)) ? i : -1).filter(i => i >= 0);
       pool.sort(() => Math.random() - 0.5);
       idxs = idxs.concat(per ? pool.slice(0, per) : pool);
     });
@@ -1607,12 +1653,26 @@ catch(e) { document.body.insertAdjacentHTML("afterbegin",
 document.getElementById("exam").onclick = startExam;
 if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
 
+var _tf = document.getElementById("tfilter");
+function paintFilter(){
+  if(!_tf) return;
+  var f = TFILTER();
+  _tf.textContent = f==="all" ? T("全部") : (f==="mcq" ? T("选择题") : T("简答"));
+}
+if (_tf) _tf.onclick = function(){
+  var order = ["all","mcq","short"], cur = TFILTER();
+  var nx = order[(order.indexOf(cur)+1) % 3];
+  setTFILTER(nx);
+  state.order = buildOrder(); state.idx = 0; save();
+  paintFilter(); render();
+};
 var _langBtn = document.getElementById("langBtn");
 if (_langBtn) _langBtn.onclick = cycleLang;
 applyChrome();
+paintFilter();
 document.getElementById("restart").onclick = () => {
   if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
-  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:buildOrder()};
   save(); render();
 };
 

@@ -293,6 +293,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     <span class="pill" id="counter">0 / 14</span>
     <a class="pill" style="text-decoration:none" href="index.html">← 科目列表</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
+    <button class="btn ghost" id="tfilter" style="padding:5px 10px;font-size:13px">全部</button>
     <button class="btn ghost" id="grid" style="padding:5px 10px;font-size:13px">题号</button>
     <button class="btn ghost" id="exam" style="padding:5px 10px;font-size:13px">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
@@ -580,6 +581,22 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
     "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
     "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "只选选择题":"MCQ only","只选简答题":"Short answers only",
+    "从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers return to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "科学":"Science","科学 · 非年考内容（Term 1–3）":"Science · non-exam (Terms 1–3)",
+    "数学 P（Standard 5.2）":"Maths (Standard 5.2)","5.3 数学":"Maths 5.3",
+    "英语 · 年考版":"English · yearly","历史 · 年考版":"History · yearly",
+    "历史 · 非年考内容":"History · non-exam","地理 · 海岸单元考版":"Geography · coastal unit",
+    "地理 · 非年考内容":"Geography · non-exam","个人发展、健康与体育（PDHPE）":"PDHPE",
+    "户外教育（环境意识单元）":"Outdoor Education","食品科技":"Food Technology",
+    "生涯规划":"Careers","体育":"Sport","心理与福祉（Wellbeing Hub）":"Wellbeing",
+    "英语 · 非年考内容":"English · non-exam",
+
+    "1 · 选科目":"1 · Subjects","2 · 题型":"2 · Question type","3 · 每科抽几题":"3 · Questions per subject",
+    "从各科抽题混着做，做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers go back to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
+    "开始答题 →":"Start →","综合卷 · 全科":"Mixed paper · all subjects",
+    "这套题是空的。":"This paper is empty.","没有这道题型的题目":"No questions of that type",
+
     "🛒 商城":"Shop","← 首页":"← Home",
     "做题赚金币：答对 +5 币起，连对更多，解锁成就有 20 币。买的东西立刻生效。":"Earn coins by answering: +5 per correct answer, more for combos, 20 for each achievement. Purchases take effect immediately.",
     "当前装扮":"Current look","主题：":"Theme: ","称号：":"Title: ","默认":"Default","无":"None","· 称号：":"· Title: ",
@@ -694,6 +711,10 @@ footer{padding:22px 14px 30px;line-height:1.8}
     [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"],
     [/^(\d+) 币$/, "$1 coins"],
     [/^(\d+) 星尘$/, "$1 stardust"],
+    [/^已选 (\d+) 科$/, "$1 subjects selected"],
+    [/^共 (\d+) 题$/, "$1 questions total"],
+    [/^(\d+) · (选科目|题型|每科抽几题)$/, "$1"],
+    [/^每科抽几题$/, "Questions per subject"],
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
     [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];
@@ -1242,6 +1263,21 @@ footer{padding:22px 14px 30px;line-height:1.8}
 const DATA = {"slug": "engother", "title": "英语 · 非年考", "examMin": 60, "questions": [{"id": "engother-001", "topic": "核心概念 · 偏见", "difficulty": "easy", "type": "mcq", "stem": "Which term from the unit glossary means 'a preconceived opinion that is not based on reason or actual experience'?", "options": ["Prejudice", "Justice", "Ethics", "Empathy"], "answer": 0, "explanation": "这是 Term 3 词汇表中 prejudice 的原定义：先入为主、无理性或经验依据的看法。empathy 是共情，justice 是公平，ethics 是道德原则体系。", "source": "Term 3 · Justice, Ethics and Morality — Key Definitions glossary (10ENGA)", "weak": false}, {"id": "engother-002", "topic": "核心概念 · 共情", "difficulty": "easy", "type": "mcq", "stem": "According to the unit's key definitions, which statement best defines 'empathy'?", "options": ["Treating every individual in an equitable and fair way", "Understanding and sharing the feelings of another person", "A system of moral principles that guides behaviour", "The belief that one's own race is superior to another"], "answer": 1, "explanation": "empathy 在词汇表中定义为“理解并分享他人感受”。第二项是 ethics，第三项是 justice，第四项是 racism，同在一张词汇表里，要逐条区分。", "source": "Term 3 · JEM Key Definitions (10ENGA / LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-003", "topic": "核心概念 · 战争悲悯（pathos）", "difficulty": "easy", "type": "mcq", "stem": "The Term 1 unit defines 'the pathos of war' as:", "options": ["The historical timeline of the Western Front from 1914 to 1918", "The patriotic pride soldiers feel when they enlist", "The deep emotional suffering and human tragedy caused by conflict", "The strategic and political causes of a particular battle"], "answer": 2, "explanation": "材料原文把 pathos of war 定义为冲突带来的深层情感痛苦与人的悲剧（grief、loss、devastation），强调的不是战略、政治或爱国情绪。", "source": "Term 1 · Pathos of War — All Quiet on the Western Front, introductory definition (10ENGR)", "weak": false}, {"id": "engother-004", "topic": "战争单元 · 身份与青春", "difficulty": "medium", "type": "mcq", "stem": "Read the extract: 'Young men of iron. Young? None of us is more than twenty. But young? Young men? That was a long time ago. We are old now.'\nWhat does this extract most strongly suggest about the soldiers?", "options": ["That they are physically the oldest soldiers in the whole regiment", "That they are proud of being described as 'young men of iron'", "That they have genuinely forgotten how old they actually are", "That the war has aged them psychologically, so they no longer feel young"], "answer": 3, "explanation": "连续的设问与 'We are old now' 构成悖论：实际不到二十岁，心却被战争耗尽。战争摧毁的是心理上的青春，不是年龄；答题要抓住“反问＋对比”这两处手法。", "source": "Term 2 · AQWF essay extract — 'the impact of war on a soldier's identity' (Glover 10ENGY)", "weak": false}, {"id": "engother-005", "topic": "战争单元 · 反问修辞", "difficulty": "medium", "type": "mcq", "stem": "Read the extract: 'Like an emptying tube, after a couple of minutes he collapses. What good is it to him now that he was such a good mathematician at school?'\nThe rhetorical question mainly works to:", "options": ["Emphasise how pointless his education now seems", "Praise Leer's achievements at school before he dies", "Suggest that Leer had never been a good student", "Blame Leer himself for the injury that kills him"], "answer": 0, "explanation": "反问句把“数学好”与“正在死去”并置，答案显然是“毫无用处”，从而放大战争的荒诞与生命的浪费，这是 pathos 的典型写法。", "source": "Term 2 · AQWF essay extract — Leer's death passage (Glover 10ENGY)", "weak": false}, {"id": "engother-006", "topic": "战争单元 · 传统战争观", "difficulty": "medium", "type": "mcq", "stem": "An essay question asks: 'How does Remarque refute traditional notions of war?' What does 'traditional notions of war' refer to?", "options": ["Ideas about the causes of the Treaty of Versailles", "Ideas of honour, glory, duty and patriotic heroism", "Ideas about how novels should be structured", "Ideas about trench construction and military logistics"], "answer": 1, "explanation": "traditional notions of war 指社会对战争的浪漫化想象——荣誉、光荣、责任、英雄主义；Remarque 用血肉、恐惧与无意义的死亡反驳的正是这一整套叙事。", "source": "Term 1 · AQWF additional practice questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-007", "topic": "战争单元 · 去浪漫化手法", "difficulty": "medium", "type": "short", "stem": "Explain how Remarque challenges traditional, romanticised ideas about war in All Quiet on the Western Front. Refer to at least one technique. (4 marks)", "options": [], "answer": "1 mark — he replaces heroic language with clinical bodily detail (rats, dysentery, amputations, the sounds of dying men).\n1 mark — first-person narration through Paul makes the damage personal rather than statistical.\n1 mark — the ironic gap between the schoolmaster's patriotic speeches and the soldiers' reality undermines the rhetoric of honour and duty.\n1 mark — the effect is to make the reader experience war as physical and psychological damage rather than as glory.", "explanation": "四点：身体/疾病/尸体的具体细节 → 第一人称让损失个人化 → 学校爱国演讲与现实的反讽 → 读者体验落在“伤害”而非“光荣”。答题时至少要点名一种手法（意象、反讽、叙述视角）。", "source": "Term 1 · The Pathos of War — 'Romanticism of War' lesson and AQWF novel study (LEEDER 10ENGB)", "points": [{"t": "he replaces heroic language with clinical bodily detail (rats, dysentery, amputations, the sounds of dying men).", "m": 1}, {"t": "first-person narration through Paul makes the damage personal rather than statistical.", "m": 1}, {"t": "the ironic gap between the schoolmaster's patriotic speeches and the soldiers' reality undermines the rhetoric of honour and duty.", "m": 1}, {"t": "the effect is to make the reader experience war as physical and psychological damage rather than as glory.", "m": 1}], "weak": false}, {"id": "engother-008", "topic": "诗歌单元 · 弗罗斯特作品", "difficulty": "easy", "type": "mcq", "stem": "Which Robert Frost poem studied in Term 2 is built around a speaker choosing between two paths in a wood?", "options": ["'Mending Wall'", "'Birches'", "'The Road Not Taken'", "'Stopping by Woods on a Snowy Evening'"], "answer": 2, "explanation": "The Road Not Taken 的核心情境就是林中岔路与选择；Mending Wall 讲邻居修墙，Birches 讲童年荡树，Stopping by Woods 讲雪夜驻足。", "source": "Term 2 · Robert Frost Poetry — The Road Not Taken, poem and questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-009", "topic": "诗歌单元 · Mending Wall 主题", "difficulty": "medium", "type": "mcq", "stem": "Which Frost poem studied in Term 2 is built around two neighbours repairing a stone wall between their properties?", "options": ["'Birches'", "'The Road Not Taken'", "'Stopping by Woods on a Snowy Evening'", "'Mending Wall'"], "answer": 3, "explanation": "Mending Wall 的核心情境就是每年春天两家人一同修补石墙，并借墙讨论边界、传统与「Good fences make good neighbours」这句老话。", "source": "Term 2 · Robert Frost Poetry — Mending Wall, poem and questions (LEEDER 10ENGB Homepage)", "weak": false}, {"id": "engother-010", "topic": "诗歌单元 · 责任与诱惑", "difficulty": "easy", "type": "mcq", "stem": "The exam study materials say an imaginative response may draw on 'the central idea of obligation and responsibility' from 'Stopping by Woods on a Snowy Evening'. Which situation best matches that idea?", "options": ["A traveller lingers in beautiful woods but remembers his promises", "A speaker boasting that he took the difficult path", "A child swinging on birch trees and dreaming of escape", "Two neighbours arguing about who owns the strip of land between them"], "answer": 0, "explanation": "材料原文点明这首诗的核心是 obligation and responsibility：雪夜景色迷人，但旅人想到“还有诺言要守”，必须继续赶路。Birches 对应童年与逃离，Mending Wall 对应邻里边界，The Road Not Taken 对应选择。", "source": "Year 10 English 2026 — YEAR 10 EXAM STUDY MATERIALS (Frost imaginative prompts)", "weak": false}, {"id": "engother-011", "topic": "诗歌单元 · 创造性仿写", "difficulty": "hard", "type": "short", "stem": "A question asks you to write an imaginative piece 'dealing with solitude and reflection', using a character from the world of Frost's poetry. Explain how you would develop setting, character and structure without simply retelling the poem. (5 marks)", "options": [], "answer": "1 mark — borrow the situation, not the plot: keep the isolated setting (a snow-filled wood, a stone wall at dusk) but invent a new persona.\n1 mark — give the character a specific voice and a memory that explains their solitude.\n1 mark — use one recurring image and controlled sentence length to create the reflective tone.\n1 mark — organise the piece with a flashback that turns the reflection into a decision or a changed understanding.\n1 mark — end on that change rather than on a summary of Frost's lines, so the piece is a new story rather than a retelling.", "explanation": "材料要求“用弗罗斯特诗歌的语言特征、惯例与主题进行创作”，不是复述。五点：借情境不借情节 → 给人物的声音与记忆 → 单一意象＋句式控节奏 → 用 flashback 形成转折 → 收在“转变”而不是概述原诗。", "source": "Term 2 · Frost imaginative task — 'construct an imaginative piece that deals with solitude and reflection' (Glover 10ENGY)", "points": [{"t": "borrow the situation, not the plot: keep the isolated setting (a snow-filled wood, a stone wall at dusk) but invent a new persona.", "m": 1}, {"t": "give the character a specific voice and a memory that explains their solitude.", "m": 1}, {"t": "use one recurring image and controlled sentence length to create the reflective tone.", "m": 1}, {"t": "organise the piece with a flashback that turns the reflection into a decision or a changed understanding.", "m": 1}, {"t": "end on that change rather than on a summary of Frost's lines, so the piece is a new story rather than a retelling.", "m": 1}], "weak": false}, {"id": "engother-012", "topic": "阅读卷 · 文本类型", "difficulty": "easy", "type": "mcq", "stem": "In the Term 3 Reading Section (15 marks), which set of texts are you asked to analyse?", "options": ["Australian newspaper editorials and film reviews", "Historical images, protest poetry and speech extracts", "Shakespearean soliloquies and Romantic poetry", "Novel chapters and wartime diary entries"], "answer": 1, "explanation": "材料明确列出三类文本：历史图像、抗议与民权诗歌、民权人物演讲节选。三类文本的分析术语不同，备考时各要练一篇。", "source": "Term 3 · Reading Section (15 marks) — task outline (10ENGA)", "weak": false}, {"id": "engother-013", "topic": "阅读卷 · 诗歌态度", "difficulty": "medium", "type": "mcq", "stem": "'Still I Rise' is studied in the Term 3 Reading Section. Which attitude does the speaker most clearly represent?", "options": ["Indifference towards history, politics and the struggle for change", "Nostalgia for a lost childhood home and the songs of the past", "Defiant pride and a refusal to be diminished by oppression", "Resigned acceptance of injustice and a longing for silence"], "answer": 2, "explanation": "这首诗以反复的 'I rise' 表现反抗与尊严，属于材料所说的 representations of injustice, discrimination and resistance 中的 resistance（抵抗），而非认命或怀旧。", "source": "Term 3 · 'Still I Rise' poem and questions (10ENGL TERM THREE HOMEPAGE)", "weak": false}, {"id": "engother-014", "topic": "阅读卷 · 抗议诗手法", "difficulty": "hard", "type": "short", "stem": "Explain how repetition and direct address help a protest poem construct resistance. (4 marks)", "options": [], "answer": "1 mark — repetition of an assertive phrase works like a refrain, turning a private feeling into a public chant.\n1 mark — the repeated assertion makes the speaker's defiance sound unstoppable, which is itself an argument against oppression.\n1 mark — direct address ('you') pulls the reader or the oppressor into the poem, so the audience cannot remain neutral.\n1 mark — combined with a rising tone, the poem turns testimony into a demand for recognition.", "explanation": "四点：反复＝副歌化、把私人情绪变成公共口号 → 语气显得“压不住” → 直接称呼把读者/压迫者拉进场 → 见证转成要求。分析要写“对读者产生什么效果”，不能只数修辞格。", "source": "Term 3 · Poem Techniques — 'Still I Rise' / 'Caged Bird' / 'They Took Me from My Mother' reading practice", "points": [{"t": "repetition of an assertive phrase works like a refrain, turning a private feeling into a public chant.", "m": 1}, {"t": "the repeated assertion makes the speaker's defiance sound unstoppable, which is itself an argument against oppression.", "m": 1}, {"t": "direct address ('you') pulls the reader or the oppressor into the poem, so the audience cannot remain neutral.", "m": 1}, {"t": "combined with a rising tone, the poem turns testimony into a demand for recognition.", "m": 1}], "weak": false}]};
 const KEY = "dsh-quiz-engother";
 const MULTI = DATA.slug === "all";
+const FKEY = "dsh-filter";
+function TFILTER(){
+  try{
+    var m=(location.search.match(/[?&]filter=(all|mcq|short)/)||[])[1];
+    if(m){ localStorage.setItem(FKEY,m); return m; }
+    return localStorage.getItem(FKEY) || "all";
+  }catch(e){ return "all"; }
+}
+function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
+function buildOrder(){
+  var f = TFILTER();
+  return DATA.questions.map(function(q,i){ return {q:q,i:i}; })
+    .filter(function(x){ return f==="all" || x.q.type===f; })
+    .map(function(x){ return x.i; });
+}
 const app = document.getElementById("app");
 let state = {idx:0, answers:{}, order:null};
 
@@ -1251,7 +1287,7 @@ function load() {
     if (s && s.answers) state = s;
   } catch(e) {}
   if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
-  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (!state.order || !state.order.length) state.order = buildOrder();
   if (state.idx >= state.order.length) state.idx = state.order.length - 1;
   try {
     const m = location.search.match(/[?&]q=([^&]+)/);
@@ -1292,7 +1328,13 @@ function renderSetup() {
     </section>
 
     <section class="setup-block">
-      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="setup-label">2 · 题型</div>
+      <div class="seg">${[["all","全部"],["mcq","只选选择题"],["short","只选简答题"]].map(function(x){
+        return '<button data-t="'+x[0]+'" class="'+((state.ttype||"all")===x[0]?'on':'')+'">'+x[1]+'</button>';
+      }).join("")}</div>
+    </section>
+    <section class="setup-block">
+      <div class="setup-label">3 · 每科抽几题</div>
       <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
     </section>
 
@@ -1321,6 +1363,9 @@ function renderSetup() {
   app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
     state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
   });
+  app.querySelectorAll("[data-t]").forEach(b => b.onclick = () => {
+    state.ttype = b.dataset.t; save(); render();
+  });
   app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
     state.per = +b.dataset.n; save(); render();
   });
@@ -1348,7 +1393,8 @@ function renderSetup() {
     if (!chosen.length) { alert("至少选一科"); return; }
     let idxs = [];
     chosen.forEach(k => {
-      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      const tt = state.ttype || "all";
+      let pool = DATA.questions.map((q, i) => (q.subj === k && (tt === "all" || q.type === tt)) ? i : -1).filter(i => i >= 0);
       pool.sort(() => Math.random() - 0.5);
       idxs = idxs.concat(per ? pool.slice(0, per) : pool);
     });
@@ -1607,12 +1653,26 @@ catch(e) { document.body.insertAdjacentHTML("afterbegin",
 document.getElementById("exam").onclick = startExam;
 if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
 
+var _tf = document.getElementById("tfilter");
+function paintFilter(){
+  if(!_tf) return;
+  var f = TFILTER();
+  _tf.textContent = f==="all" ? T("全部") : (f==="mcq" ? T("选择题") : T("简答"));
+}
+if (_tf) _tf.onclick = function(){
+  var order = ["all","mcq","short"], cur = TFILTER();
+  var nx = order[(order.indexOf(cur)+1) % 3];
+  setTFILTER(nx);
+  state.order = buildOrder(); state.idx = 0; save();
+  paintFilter(); render();
+};
 var _langBtn = document.getElementById("langBtn");
 if (_langBtn) _langBtn.onclick = cycleLang;
 applyChrome();
+paintFilter();
 document.getElementById("restart").onclick = () => {
   if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
-  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:buildOrder()};
   save(); render();
 };
 
