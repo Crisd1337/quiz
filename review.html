@@ -8,6 +8,9 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif}
 .wrap{max-width:860px;margin:0 auto;padding:32px 18px 80px}
+.lang-btn{position:fixed;left:16px;bottom:16px;z-index:35;background:var(--card);border:1px solid var(--line);
+ border-radius:999px;padding:7px 14px;font:inherit;font-size:12px;color:var(--dim);cursor:pointer}
+.lang-btn b{color:var(--accent)}
 h1{font-size:24px;margin:0 0 6px}
 .lead{color:var(--dim);margin:0 0 20px}
 .stats{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}
@@ -199,5 +202,915 @@ document.getElementById("clear").onclick = () => {
   localStorage.removeItem(KEY); render();
 };
 render();
+if (window.applyI18n) setTimeout(applyI18n, 0);
+</script>
+<script>
+
+(function(){
+  var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
+  var COIN_KEY="dsh-coins-v1", INV_KEY="dsh-inv-v1", BUFF_KEY="dsh-buffs-v1";
+  var LEVELS=[0,60,150,280,450,680,980,1360,1820,2360,3000,3750,4600,5560,6650,7880,9250,10800,12500,14400];
+  function db(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{"xp":0,"combo":0,"best":0}'); }catch(e){ return {xp:0,combo:0,best:0}; } }
+  function save(g){ try{ localStorage.setItem(KEY,JSON.stringify(g)); }catch(e){} }
+  function bdb(){ try{ return JSON.parse(localStorage.getItem(BKEY)||'{}'); }catch(e){ return {}; } }
+  function bsave(b){ try{ localStorage.setItem(BKEY,JSON.stringify(b)); }catch(e){} }
+  function log(){ try{ return JSON.parse(localStorage.getItem('dsh-log-v1')||'[]'); }catch(e){ return []; } }
+  function levelOf(xp){ var l=1; for(var i=0;i<LEVELS.length;i++){ if(xp>=LEVELS[i]) l=i+1; } return l; }
+  function nextAt(xp){ var l=levelOf(xp); return LEVELS[l]!==undefined?LEVELS[l]:null; }
+
+  /* ---------- 金币 / 库存 / 增益 ---------- */
+  function readCoins(){ var o={n:0,earned:0,dust:0}; try{ o=JSON.parse(localStorage.getItem(COIN_KEY)||'null')||o; }catch(e){} if(o.dust===undefined)o.dust=0; return o; }
+  function saveCoins(o){ try{ localStorage.setItem(COIN_KEY,JSON.stringify(o)); }catch(e){} }
+  function addCoins(n){ var c=readCoins(); c.n=(c.n||0)+n; c.earned=(c.earned||0)+Math.max(0,n); saveCoins(c); }
+  function addDust(n){ var c=readCoins(); c.dust=(c.dust||0)+n; saveCoins(c); }
+
+  /* 音效：WebAudio 现场合成，不依赖音频文件 */
+  var SFX_ON = (function(){ try{ return localStorage.getItem("dsh-sfx")!=="0"; }catch(e){ return true; } })();
+  var AC=null;
+  function beep(freq, dur, type, vol){
+    if(!SFX_ON) return;
+    try{
+      AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+      var o=AC.createOscillator(), g=AC.createGain();
+      o.type=type||"sine"; o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001, AC.currentTime);
+      g.gain.exponentialRampToValueAtTime(vol||0.06, AC.currentTime+0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime+(dur||0.12));
+      o.connect(g); g.connect(AC.destination);
+      o.start(); o.stop(AC.currentTime+(dur||0.12)+0.02);
+    }catch(e){}
+  }
+  function levelUpSound(){ [523,659,784,1046].forEach(function(f,i){ setTimeout(function(){ beep(f,0.16,"triangle",0.07); }, i*90); }); }
+  function toggleSfx(){ SFX_ON=!SFX_ON; try{ localStorage.setItem("dsh-sfx", SFX_ON?"1":"0"); }catch(e){} return SFX_ON; }
+  function readInv(){
+    var d={owned:[],equipped:{theme:"",title:""},uses:{}};
+    try{ var o=JSON.parse(localStorage.getItem(INV_KEY)||'null'); if(o){ d.owned=o.owned||[]; d.equipped=o.equipped||{theme:"",title:""}; d.uses=o.uses||{}; } }catch(e){}
+    return d;
+  }
+  function saveInv(d){ try{ localStorage.setItem(INV_KEY,JSON.stringify(d)); }catch(e){} }
+  function readBuffs(){ var d={xp2Until:0}; try{ d=JSON.parse(localStorage.getItem(BUFF_KEY)||'null')||d; }catch(e){} return d; }
+  function saveBuffs(d){ try{ localStorage.setItem(BUFF_KEY,JSON.stringify(d)); }catch(e){} }
+
+  var THEMES={
+    gold:  {bg:"#16130a",card:"#211c10",card2:"#2b2414",fg:"#f7efd8",dim:"#b8a878",line:"#3d3420",accent:"#f2c94c"},
+    warm:  {bg:"#1a1310",card:"#241a15",card2:"#2e221b",fg:"#f3e9e1",dim:"#b39a86",line:"#3b2c22",accent:"#ff9f45"},
+    forest:{bg:"#0b1410",card:"#111d17",card2:"#172720",fg:"#e2f0e7",dim:"#8cae9b",line:"#213528",accent:"#3ddc97"},
+    sakura:{bg:"#160f15",card:"#1e151d",card2:"#281b25",fg:"#f6e9f2",dim:"#b59bb0",line:"#34222f",accent:"#ff7ab6"}
+  };
+  function applyTheme(){
+    var inv=readInv(), t=inv.equipped && inv.equipped.theme, root=document.documentElement;
+    ["bg","card","card2","fg","dim","line","accent"].forEach(function(k){ root.style.removeProperty("--"+k); });
+    if(t && THEMES[t]){ var m=THEMES[t]; Object.keys(m).forEach(function(k){ root.style.setProperty("--"+k,m[k]); }); }
+  }
+  function shieldCount(){ var inv=readInv(); return (inv.owned||[]).filter(function(x){ return x.indexOf("shield")===0; }).length; }
+
+  var SHOP=[
+    {id:"theme_warm",  n:"暖阳主题",   d:"焦糖 + 橙色调",        p:120, i:"🌅", t:"theme", v:"warm"},
+    {id:"theme_forest",n:"森林主题",   d:"深绿护眼",             p:120, i:"🌿", t:"theme", v:"forest"},
+    {id:"theme_sakura",n:"樱粉主题",   d:"粉紫夜空",             p:160, i:"🌸", t:"theme", v:"sakura"},
+    {id:"title_king",  n:"称号 · 卷王", d:"挂在等级旁边",         p:200, i:"👑", t:"title", v:"卷王"},
+    {id:"title_aim",   n:"称号 · 一枪一个", d:"挂在等级旁边",     p:150, i:"🎯", t:"title", v:"一枪一个"},
+    {id:"title_ghost", n:"称号 · 静默刷题", d:"挂在等级旁边",     p:100, i:"🕶", t:"title", v:"静默刷题"},
+    {id:"buff_xp2",    n:"双倍经验 30 分钟", d:"立刻生效",        p:80,  i:"⚡", t:"buff"},
+    {id:"shield1",     n:"连续保护 ×1", d:"断一天不算断",        p:150, i:"🛡", t:"perm"},
+    {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, i:"🛡", t:"perm"},
+    {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, i:"🎫", t:"use"},
+    {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, i:"✨", t:"theme", v:"gold",  cur:"dust"},
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, i:"💎", t:"title", v:"星尘旅人", cur:"dust"}
+  ];
+
+  function buy(id){
+    var item=null; SHOP.forEach(function(x){ if(x.id===id) item=x; });
+    if(!item) return {ok:false,msg:"没有这件商品"};
+    var c=readCoins(), inv=readInv();
+    if(item.t!=="use" && inv.owned.indexOf(id)>=0) return {ok:false,msg:"已经拥有了"};
+    var isDust = item.cur==="dust";
+    var bal = isDust ? (c.dust||0) : (c.n||0);
+    if(bal < item.p) return {ok:false,msg:(isDust?"星尘":"金币")+"不够，还差 "+(item.p-bal)};
+    if(isDust){ c.dust=(c.dust||0)-item.p; } else { c.n=(c.n||0)-item.p; }
+    saveCoins(c);
+    if(item.t==="use"){ inv.uses[id]=(inv.uses[id]||0)+1; }
+    else { inv.owned.push(id); }
+    saveInv(inv);
+    if(item.t==="theme"){ inv.equipped.theme=item.v; saveInv(inv); applyTheme(); }
+    if(item.t==="title"){ inv.equipped.title=item.v; saveInv(inv); }
+    if(item.t==="buff"){ var b=readBuffs(); b.xp2Until=Date.now()+30*60000; saveBuffs(b); }
+    return {ok:true,msg:"已购买："+item.n};
+  }
+  function equipTheme(v){ var inv=readInv(); inv.equipped.theme=v||""; saveInv(inv); applyTheme(); }
+  function equipTitle(v){ var inv=readInv(); inv.equipped.title=v||""; saveInv(inv); }
+
+  /* ---------- 提示 ---------- */
+  function toast(txt, ok){
+    var el=document.createElement('div');
+    el.className='xp-toast'+(ok?' ok':'');
+    el.textContent=txt;
+    document.body.appendChild(el);
+    setTimeout(function(){ el.classList.add('up'); }, 20);
+    setTimeout(function(){ el.remove(); }, 1500);
+  }
+
+  var BADGE_SVG={
+    first:'<svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h11l-2 4 2 4H6"/></svg>',
+    combo5:'<svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>',
+    combo10:'<svg viewBox="0 0 24 24"><path d="M10 2 4 12h5l-1 6 7-9H11z"/><path d="M18 11l-3 5h3l-1 5 4-6h-3z"/></svg>',
+    daily:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>',
+    streak3:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+    streak7:'<svg viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 5H4v2a3 3 0 0 0 3 3M17 5h3v2a3 3 0 0 1-3 3"/><path d="M12 14v4M9 21h6"/></svg>',
+    subject:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>',
+    review:'<svg viewBox="0 0 24 24"><path d="M4 6h16M9 6V4h6v2M6 6l1 14h10l1-14"/></svg>'
+  };
+  var BADGES=[
+    {id:'first',  n:'第一题',   d:'完成第一道题'},
+    {id:'combo5', n:'连对 5',   d:'一次连对 5 题'},
+    {id:'combo10',n:'连对 10',  d:'一次连对 10 题'},
+    {id:'daily',  n:'今日达标', d:'一天做满 30 题'},
+    {id:'streak3',n:'三天不断', d:'连续 3 天做题'},
+    {id:'streak7',n:'一周',     d:'连续 7 天做题'},
+    {id:'subject',n:'一科通关', d:'某科全部做完'},
+    {id:'review', n:'错题清零', d:'错题本清空'}
+  ];
+
+  function unlock(id){
+    var b=bdb(); if(b[id]) return false;
+    b[id]=Date.now(); bsave(b);
+    addCoins(20);
+    var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
+    if(meta) toast('解锁成就 · '+meta.n+' · +20 币', true);
+    return true;
+  }
+
+  function todayCount(){
+    var d0=new Date(); d0.setHours(0,0,0,0);
+    return log().filter(function(x){ return x.t>=d0.getTime(); }).length;
+  }
+  function streakDays(){
+    var days={}, d0=new Date(); d0.setHours(0,0,0,0), t0=d0.getTime();
+    log().forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0); days[d.getTime()]=1; });
+    var gaps=shieldCount(), n=0, c=t0, used=0;
+    while(true){
+      if(days[c]){ n++; c-=864e5; continue; }
+      if(c===t0){ c-=864e5; continue; }
+      if(used<gaps){ used++; c-=864e5; continue; }
+      break;
+    }
+    return n;
+  }
+
+  function checkBadges(){
+    var g=db(), L=log();
+    if(L.length>=1) unlock('first');
+    if((g.best||0)>=5) unlock('combo5');
+    if((g.best||0)>=10) unlock('combo10');
+    if(todayCount()>=GOAL) unlock('daily');
+    if(streakDays()>=3) unlock('streak3');
+    if(streakDays()>=7) unlock('streak7');
+    try{
+      var rv=JSON.parse(localStorage.getItem('dsh-review-v1')||'{}');
+      if(L.length>10 && Object.keys(rv).length===0) unlock('review');
+    }catch(e){}
+    try{
+      var cards=document.querySelectorAll('[data-slug][data-total]');
+      for(var i=0;i<cards.length;i++){
+        var c=cards[i], sl=c.dataset.slug, tot=+c.dataset.total;
+        var st=JSON.parse(localStorage.getItem('dsh-quiz-'+sl)||'null');
+        if(st && st.answers && tot && Object.keys(st.answers).length>=tot){ unlock('subject'); break; }
+      }
+    }catch(e){}
+  }
+
+  function awardXP(base, ok){
+    var g=db();
+    if(ok){ g.combo=(g.combo||0)+1; } else { g.combo=0; }
+    var mult = ok ? Math.min(2, 1 + 0.1*Math.max(0, (g.combo||1)-1)) : 1;
+    var buffs=readBuffs(), dbl = buffs.xp2Until && Date.now()<buffs.xp2Until ? 2 : 1;
+    var gain = ok ? Math.round(base*mult*dbl) : Math.max(1, Math.round(base*0.2));
+    var before=levelOf(g.xp||0);
+    g.xp=(g.xp||0)+gain;
+    g.best=Math.max(g.best||0, g.combo||0);
+    save(g);
+    var coin = Math.max(1, Math.round(gain*0.5));
+    var crit = ok && Math.random()<0.12;
+    if(crit) coin*=2;
+    addCoins(coin);
+    if(ok) beep(crit?1180:660, 0.1, "sine", crit?0.08:0.05); else beep(180,0.14,"sawtooth",0.05);
+    toast('+'+gain+' XP · +'+coin+' 币'+(crit?' · 暴击':"")+(ok&&g.combo>1?' · 连对 '+g.combo:'')+(dbl>1?' · ×2':''), ok);
+    var after=levelOf(g.xp);
+    if(after>before){ setTimeout(function(){ toast('🎉 升到 Lv.'+after, true); levelUpSound(); }, 450); }
+    checkBadges();
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+
+  /* 答题计分：难度加权 + 重复递减（对标论文里盛大的“反刷”规则） */
+  var SEEN_KEY="dsh-seen-v1";
+  function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
+  function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+
+
+  /* ===== 界面中英切换（运行时替换文本节点） ===== */
+  /* 语言状态（共享给所有页面） */
+  function LANG(){
+    try{
+      var m = (location.search.match(/[?&]lang=(en|zh|both)/) || [])[1];
+      if(m){ localStorage.setItem("dsh-lang", m); return m; }
+      var v = localStorage.getItem("dsh-lang");
+      if(v) return v;
+      var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+      return nav.indexOf("zh") === 0 ? "zh" : "en";
+    }catch(e){ return "en"; }
+  }
+  window.LANG = LANG;
+  window.setLANG = function(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} };
+
+  var I18N = {
+    // 通用
+    "题号":"Index","考试模式":"Exam mode","重来":"Restart","上一题":"Previous","下一题":"Next",
+    "看成绩":"See results","回到科目列表":"Subjects","整套重做":"Redo all","查看今日榜单":"Today's leaderboard",
+    "简单":"Easy","中等":"Medium","较难":"Hard","选择题":"Multiple choice","简答":"Short answer",
+    "第":"Q","题":"questions","共":"of","分":"marks",
+    "搜索课程、单元或代码（电磁学 / King Lear / 10SCI）":"Search subjects, topics or codes",
+    // 答题
+    "先自己写（英文），写完点下面的按钮对照得分点":"Write your answer in English, then check it against the marking points",
+    "对照得分点":"Show marking points","重新对照得分点":"Review marking points","数值自检":"Check number",
+    "自评 · 勾选你写到的得分点":"Self-mark · tick the points you covered","全部勾上":"Tick all","全部取消":"Clear all",
+    "你写的：":"Your answer:","（空）":"(empty)","解析：":"Explanation:","出处：":"Source:",
+    "看完整参考答案":"Show full model answer","已得":"Scored","个得分点":"marking points",
+    "你还没写数字":"Type a number first","参考答案无数字":"No number in the model answer",
+    "数值与参考答案一致":"Number matches the model answer","数值与参考答案不一致":"Number does not match",
+    "只练错题":"Practise wrong ones only",
+    // 结算
+    "总题数":"Total questions","未做":"Unanswered","答对":"Correct","答错":"Wrong",
+    "选择题答对":"MCQ correct","选择题答错":"MCQ wrong","简答得分":"Short-answer marks","正确率":"Accuracy",
+    // 档案/任务/榜单
+    "等级":"Level","今日":"Today","连续":"Streak","天":"days","连对纪录":"Best combo","金币":"Coins","星尘":"Stardust",
+    "今日任务":"Today's tasks","每天 0 点刷新":"Resets daily","领取":"Claim","已领取":"Claimed",
+    "今日好友榜":"Today's leaderboard","服务器设置":"Server settings","复制我的战绩码":"Copy my score code",
+    "粘贴同学的战绩码":"Paste a classmate's code","加入":"Add","提交到服务器":"Submit",
+    "你附近 · 再对一道题就能超过":"Near you · one more correct answer to overtake",
+    "今日榜单":"Today's leaderboard","关闭":"Close","答对题数":"Correct answers","用时":"Time",
+    "我":"Me","（我）":" (me)","第一名":"1st","第二名":"2nd","第三名":"3rd",
+    "已交卷":"Submitted by","人":"students","近 7 天正确率":"Accuracy, last 7 days",
+    // 首页
+    "复习测验":"Revision Quizzes","今日挑战":"Daily challenge","错题本":"Mistakes","商城":"Shop",
+    "课程":"Subjects","门 · 年考优先":"subjects · exam order","搜索课程、单元或代码":"Search subjects, topics or codes",
+    "没有匹配的课程":"No matching subject","下一场":"Next exam","天后":"days away",
+    "年考":"Yearly","未开始":"Not started","选择":"MCQ","下一场考试":"Next exam",
+    "综合卷 · 全科":"Mixed paper · all subjects","从":"From","科抽题混做":"subjects, mixed",
+    "科目列表":"Subjects","分数":"Score","语言":"Language",    "← 科目列表":"Subjects","正在上传试卷…":"Uploading your paper...",
+    "正在加密上传试卷…":"Encrypting and uploading...","正在实时计算排名…":"Calculating your rank...",
+    "今天还没有人上榜":"No one on the board yet","你还没上榜，交卷即可参与":"Not on the board yet - submit to join",
+    "绿=对 红=错 橙=半对 灰=未做":"Green = correct · Red = wrong · Amber = partial · Grey = unanswered",
+    "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
+    "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
+    "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "错题本 · 待复习":"Mistakes · Due for review",
+    "按遗忘曲线排期：第一次做错后第 1 天复习，答对推到第 3 天，再对推到第 7 天，全对后自动「毕业」。":"Spaced repetition: review 1 day after a mistake, then 3, then 7. Get it fully right and it graduates.",
+    "今天该复习":"Due today","未来 7 天内":"Next 7 days","天后":"days","已掌握（在册）":"Mastered (tracked)",
+    "清空错题本":"Clear all","导出备份":"Export backup","导入备份":"Import backup",
+    "去做 →":"Practise →","今天没有到期的错题——先把题目做一遍，错题会自动进来。":"Nothing due today. Do a quiz and mistakes will appear here automatically.",
+    "数据存在本机浏览器里；换设备/换浏览器不会同步":"Data lives in this browser. It does not sync across devices.",
+    "清空整个错题本？各科做题记录不受影响。":"Clear the whole mistake list? Quiz progress is not affected.",
+    "已导入 ":"Imported "," 项，页面将刷新。":" items. Reloading.",
+    "导入失败：":"Import failed: ","没有延后券了，去商城买一张？":"No postpone passes left. Buy one in the shop?",
+    "已加入 ":"Added "," 的 ":" ","全部":"All",
+    "允许":"Allow","未开始":"Not started","已开始":"Started","完成":"done",
+
+    // 页面标题与页脚
+    "Canvas 复习测验":"Canvas Revision Quizzes",
+    "音效 开":"Sound on","音效 关":"Sound off",
+    "今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。":"No one has submitted yet today. Finish the daily challenge and hit Submit, or swap score codes with classmates.",
+    "进度存在本机浏览器里，换设备需导出备份":"Progress is saved in this browser. Export a backup to move devices.",
+    "「原始资料」链接指向":"The source-material link points to",
+    "，未一起上传时失效，不影响做题":". It is broken when not uploaded together, but quizzing still works.",
+    // 分组
+    "年考重点":"Core exams","非年考内容（有余力再看）":"Non-exam content","其他科目":"Other subjects",
+    "年考版":"Yearly","学科":"Elective","辅导":"Wellbeing",
+    // 科目
+    "科学 · 10 年级":"Science · Year 10","英语 · 10 年级":"English · Year 10",
+    "历史 · 10 年级":"History · Year 10","地理 · 10 年级":"Geography · Year 10",
+    "PDHPE · 10 年级":"PDHPE · Year 10","数学 P · 10 年级":"Maths (Standard) · Year 10",
+    "数学 5.3 · 10 年级":"Maths (Advanced) · Year 10",
+    "科学 · 非年考":"Science · non-exam","历史 · 非年考":"History · non-exam",
+    "地理 · 非年考":"Geography · non-exam","英语 · 非年考":"English · non-exam",
+    "食品科技 · 10 年级":"Food Technology · Year 10","生涯规划 · 10 年级":"Careers · Year 10",
+    "体育 · 10 年级":"Sport · Year 10","户外教育 · 10 年级":"Outdoor Education · Year 10",
+    "心理与福祉":"Wellbeing",
+    // 范围
+    "有机化学 25 / 进化 25 / 技能 20":"Organic chemistry 25 / Evolution 25 / Skills 20",
+    "King Lear 短答 + 比较论文":"King Lear short answer + comparative essay",
+    "术语选择 + 1991–2019 美国外交":"Terminology MCQ + US foreign policy 1991-2019",
+    "气候变化 · 温室效应 / 海平面 / 珊瑚白化":"Climate change · greenhouse / sea level / bleaching",
+    "道路安全 / 急救 / 心理健康":"Road safety / first aid / mental health",
+    "金融 / 代数 / 坐标几何 / 统计":"Finance / algebra / coordinate geometry / statistics",
+    "根式 / 指数 / 对数 / 三角 / 概率":"Surds / indices / logs / trig / probability",
+    "电磁学 / 进化 / 技能":"Organic chemistry / evolution / skills",
+    "地球能量 / 遗传 / 运动 / 化学 / 气候":"Earth energy / genetics / motion / chemistry / climate",
+    "Holocaust / 冷战 / 民权":"Holocaust / Cold War / civil rights",
+    "福祉 / 原住民 / 气候变化":"Wellbeing / Indigenous / climate",
+    "战争单元 / 诗歌 / 阅读卷":"War unit / poetry / reading",
+    "食品安全 / 食物不平等 / 特殊需求":"Food safety / food inequality / special needs",
+    "就业路径 / 求职 / ATAR / USI·TFN":"Career paths / job hunt / ATAR / USI-TFN",
+    "规则 / 赛事 / 训练常识":"Rules / events / training",
+    "环境意识 / Leave No Trace":"Environmental awareness / Leave No Trace",
+    "焦虑 / 抑郁 / 求助渠道":"Anxiety / depression / where to get help",
+    // 任务
+    "精准":"Accuracy","写作":"Writing","数量":"Volume","攻坚":"Stretch","连击":"Combo","每日":"Daily",
+    "正确率 80%（至少 10 题）":"80% accuracy (at least 10 questions)",
+    "完成 3 道简答自评":"Self-mark 3 short answers",
+    "今天做满 20 题":"Answer 20 questions today",
+    "今天做满 12 题":"Answer 12 questions today",
+    "一次连对 5 题":"Get 5 correct in a row",
+    "一次连对 8 题":"Get 8 correct in a row",
+    "做对 3 道「较难」题":"Get 3 hard questions right",
+    "完成今日挑战":"Finish the daily challenge",
+    // 课程图标首字
+    "科":"S","英":"E","历":"H","地":"G","数":"M","食":"F","生":"C","体":"P","户":"O","心":"W"
+  };
+  Object.assign(I18N, {"A Changing Global Climate · 温室气体": "Climate · Greenhouse gases", "A Changing Global Climate · 增强温室效应": "Climate · Enhanced greenhouse effect", "A Changing Global Climate · 温室效应机理": "Climate · How the greenhouse effect works", "A Changing Global Climate · 碳源与碳汇": "Climate · Carbon sources and sinks", "A Changing Global Climate · 海平面上升": "Climate · Sea level rise", "A Changing Global Climate · 海洋酸化": "Climate · Ocean acidification", "A Changing Global Climate · 珊瑚白化": "Climate · Coral bleaching", "A Changing Global Climate · 天气图 · 锋面符号": "Climate · Synoptic charts · Front symbols", "A Changing Global Climate · 天气图 · 高压": "Climate · Synoptic charts · High pressure", "A Changing Global Climate · FLICC · 假专家": "Climate · FLICC · Fake experts", "A Changing Global Climate · FLICC · 挑樱桃": "Climate · FLICC · Cherry-picking", "A Changing Global Climate · 反馈 · 反照率": "Climate · Feedback · Albedo", "A Changing Global Climate · 图表判读": "Climate · Reading graphs", "A Changing Global Climate · 海岸影响": "Climate · Coastal impacts", "A Changing Global Climate · 温室效应（简答）": "Climate · Greenhouse effect (short answer)", "A Changing Global Climate · 自然 vs 增强（简答）": "Climate · Natural vs enhanced (short answer)", "A Changing Global Climate · 海平面上升（简答）": "Climate · Sea level rise (short answer)", "A Changing Global Climate · 海洋酸化（简答）": "Climate · Ocean acidification (short answer)", "A Changing Global Climate · 珊瑚白化（简答）": "Climate · Coral bleaching (short answer)", "A Changing Global Climate · 天气图判读（简答）": "Climate · Synoptic chart reading (short answer)", "A Changing Global Climate · FLICC 反驳（简答）": "Climate · Rebutting FLICC (short answer)", "A Changing Global Climate · 缓解 vs 适应（简答）": "Climate · Mitigation vs adaptation (short answer)", "East Coast Lows · 2016 事件的机制": "East Coast Lows · 2016 event mechanics", "East Coast Lows · 天气图判读": "East Coast Lows · Chart reading", "环境变化 · 变化的速度与尺度": "Environmental change · Rate and scale", "管理策略 · 分类与理由": "Management · Types and reasons", "管理策略 · 预防／缓解／准备": "Management · Prevent / mitigate / prepare", "海堤争议 · 立场评估": "Seawall debate · Evaluating a position", "有机化学 · 烷烃通式": "Organic chemistry · Alkane formula", "有机化学 · 命名": "Organic chemistry · Naming", "有机化学 · 命名练习": "Organic chemistry · Naming practice", "有机化学 · 官能团": "Organic chemistry · Functional groups", "有机化学 · 官能团识别": "Organic chemistry · Identifying functional groups", "有机化学 · 不饱和烃检验": "Organic chemistry · Test for unsaturation", "有机化学 · 同分异构": "Organic chemistry · Isomers", "有机化学 · 燃烧产物": "Organic chemistry · Combustion products", "有机化学 · 检验 CO2": "Organic chemistry · Testing for CO2", "有机化学 · 加成反应": "Organic chemistry · Addition reactions", "有机化学 · 酯化反应": "Organic chemistry · Esterification", "有机化学 · 加聚反应": "Organic chemistry · Addition polymerisation", "有机化学 · 乙醇用途": "Organic chemistry · Uses of ethanol", "有机化学 · 分子式与结构": "Organic chemistry · Formula and structure", "有机化学 · 沸点趋势": "Organic chemistry · Boiling point trend", "有机化学 · 反应类型": "Organic chemistry · Reaction types", "有机化学 · 结构式书写": "Organic chemistry · Drawing structures", "有机化学 · 证据解释": "Organic chemistry · Explaining evidence", "有机化学 · 比较与用途": "Organic chemistry · Comparison and uses", "有机化学 · 同系物规律": "Organic chemistry · Homologous series", "有机化学 · 实验设计": "Organic chemistry · Experimental design", "进化 · 达尔文的证据": "Evolution · Darwin's evidence", "进化 · 拉马克与达尔文": "Evolution · Lamarck vs Darwin", "进化 · 拉马克与达尔文对比": "Evolution · Lamarck vs Darwin (compare)", "进化 · 选择压力": "Evolution · Selection pressure", "进化 · 选择压力定义": "Evolution · Defining selection pressure", "进化 · 自然选择的步骤": "Evolution · Steps of natural selection", "进化 · 变异的来源": "Evolution · Sources of variation", "进化 · 达尔文的观察与推论": "Evolution · Observations and inferences", "进化 · 工业黑化": "Evolution · Industrial melanism", "进化 · 现存物种的证据": "Evolution · Evidence from living species", "进化 · 化石测年": "Evolution · Dating fossils", "进化 · 华莱士线": "Evolution · Wallace's Line", "进化 · 生命起源实验": "Evolution · Origin-of-life experiment", "进化 · 蜥蜴情景分析": "Evolution · Lizard scenario", "进化 · 孔雀鱼情景分析": "Evolution · Guppy scenario", "进化 · 乳糖耐受综合应用": "Evolution · Lactose tolerance (applied)", "技能 · 数据制图": "Skills · Graphing (CUTLAS)", "技能 · 变量识别": "Skills · Identifying variables", "技能 · 误差与可靠性": "Skills · Error and reliability", "技能 · 实验设计": "Skills · Experimental design", "技能 · 数据制表": "Skills · Tabulating data", "技能 · 图表类型选择": "Skills · Choosing a graph type", "技能 · 误差类型": "Skills · Types of error", "技能 · 效度与信度": "Skills · Validity and reliability", "技能 · 数据趋势与碱基配对": "Skills · Data trends and base pairing", "技能 · 求梯度与斜率含义": "Skills · Gradient and its meaning", "技能 · 插值读数": "Skills · Interpolating values", "李尔王 · 剧情": "King Lear · Plot", "李尔王 · 分国与 Cordelia 的「Nothing」": "King Lear · Division and Cordelia's 'Nothing'", "李尔王 · 谄媚的语言（Act 1 Sc 1）": "King Lear · Flattering language (1.1)", "李尔王 · 暴风雨的象征（Act 3 Sc 2）": "King Lear · The storm as symbol (3.2)", "李尔王 · poor naked wretches（转折点）": "King Lear · 'Poor naked wretches' (turning point)", "李尔王 · Gloucester 失明（Act 3 Sc 7）": "King Lear · Gloucester's blinding (3.7)", "李尔王 · 「reason not the need」": "King Lear · 'Reason not the need'", "李尔王 · 「lendings」与身份剥除": "King Lear · 'Lendings' and stripping of identity", "李尔王 · 「I am not ague-proof」与身份转变": "King Lear · 'I am not ague-proof' and change", "李尔王 · 「I stumbled when I saw」的反讽": "King Lear · Irony of 'I stumbled when I saw'", "李尔王 · hamartia（龙的比喻）": "King Lear · Hamartia (the dragon image)", "李尔王 · Edmund 的价值观与戏剧功能": "King Lear · Edmund's values and dramatic function", "李尔王 · 伪造信与戏剧反讽": "King Lear · The forged letter and dramatic irony", "李尔王 · Cordelia 之死与诗性公正": "King Lear · Cordelia's death and poetic justice", "李尔王 · 诸神与人的处境": "King Lear · The gods and the human condition", "李尔王 · 权力、失去与身份": "King Lear · Power, loss and identity", "李尔王 · 视觉隐喻与 blindness motif": "King Lear · Sight and blindness imagery", "比较论文 · 写 thesis statement": "Comparative essay · Writing a thesis", "比较论文 · thesis 判别": "Comparative essay · Judging a thesis", "比较论文 · 主题句功能": "Comparative essay · Function of topic sentences", "比较论文 · 主题轴「法律失效」": "Comparative essay · Theme: law failing", "比较论文 · 主题轴「个体责任」": "Comparative essay · Theme: individual responsibility", "比较论文 · 引文整合策略": "Comparative essay · Integrating quotations", "比较论文 · 节选整合的要求": "Comparative essay · Using the supplied extract", "比较论文 · 手法对比（叙述 vs 镜头）": "Comparative essay · Technique (prose vs film)", "比较论文 · 段落规划": "Comparative essay · Paragraph planning", "比较论文 · 结尾回收": "Comparative essay · Conclusion", "写作技巧 · 描述 vs 分析": "Writing · Describing vs analysing", "写作技巧 · 什么叫「使用节选」": "Writing · What 'using the extract' means", "写作技巧 · 写主题句": "Writing · Writing topic sentences", "写作技巧 · 比较性主题句": "Writing · Comparative topic sentences", "道路安全 · Haddon 矩阵与可控因素": "Road safety · Haddon matrix", "道路安全 · 事故主要原因排序": "Road safety · Ranking causes of crashes", "道路安全 · 分心驾驶的盲开距离": "Road safety · Blind distance when distracted", "道路安全 · 新手司机风险倍数": "Road safety · Novice driver risk", "道路安全 · 车内分心来源": "Road safety · In-car distractions", "心理健康 · 四种常见精神疾病": "Mental health · Four common conditions", "心理健康 · 患病率与常见类型": "Mental health · Prevalence and types", "心理健康 · 求助障碍": "Mental health · Barriers to help-seeking", "心理健康 · 污名的定义与影响": "Mental health · Stigma", "心理健康 · 韧性特征": "Mental health · Resilience", "人际关系 · 分析维持尊重关系的行为": "Relationships · Maintaining respect", "人际关系 · 四种沟通方式": "Relationships · Four communication styles", "人际关系 · 尊重关系的五个特征": "Relationships · Five features of respect", "人际关系 · 权力的正面使用": "Relationships · Positive use of power", "人际关系 · 权力的负面使用": "Relationships · Negative use of power", "急救 · CPR 按压通气比": "First aid · CPR compression ratio", "急救 · DRSABCD 顺序": "First aid · DRSABCD order", "急救 · 车祸现场 DRSABCD": "First aid · DRSABCD at a crash", "健康服务 · 就医障碍与影响": "Health services · Barriers to access", "健康服务 · 面向青少年的服务": "Health services · Services for young people", "健康信息 · 可信度判断": "Health information · Judging credibility", "营养 · 健康服务的类型": "Nutrition · Types of health services", "营养 · 自我管理与长期健康": "Nutrition · Self-management", "风险行为 · 正负风险举例": "Risk behaviour · Positive and negative risks", "驾驶知识 · BAC 三个空": "Driving · BAC limits", "赌博 · 四大影响因素": "Gambling · Four influences", "运动安全 · 热身与损伤预防": "Sport safety · Warm-up and injury", "赛事规则 · 规则与裁判": "Sport rules · Rules and officials", "运动安全 · 紧急处理": "Sport safety · Emergency response", "体能训练 · FITT 原则": "Training · FITT principle", "体能训练 · 训练方法": "Training · Methods", "体能训练 · 恢复与超量恢复": "Training · Recovery", "沟通 · 好的倾听者特征": "Communication · Good listening", "自我认知 · sense of self": "Self-concept · Sense of self", "青春期 · 与父母关系的变化": "Adolescence · Changing parental relationships", "情绪管理 · 识别与调节": "Emotions · Recognising and regulating", "压力与应对 · 备考减压策略": "Stress · Coping strategies", "压力与应对 · 压力来源": "Stress · Sources", "网络与游戏 · 三种动机驱动": "Gaming · Three motivations", "特殊场合 · 婚礼与毕业典礼": "Special occasions · Weddings and graduations", "特定需求 · 无障碍设计": "Special needs · Accessible design", "特定需求 · 饮食限制": "Special needs · Dietary restrictions", "食物公平 · 食物沙漠": "Food equity · Food deserts", "食物公平 · 价格与可及性": "Food equity · Price and access", "食物安全 · HACCP 与温度危险带": "Food safety · HACCP and danger zone", "食物安全 · 交叉污染": "Food safety · Cross-contamination", "食物趋势 · 植物基与替代蛋白": "Food trends · Plant-based proteins", "食物趋势 · 本地与季节性": "Food trends · Local and seasonal", "年考术语 · 单极格局": "Terms · Unipolarity", "年考术语 · 集体安全": "Terms · Collective security", "年考术语 · 先发制人": "Terms · Pre-emption", "年考术语 · 单边主义": "Terms · Unilateralism", "年考术语 · 人道干预": "Terms · Humanitarian intervention", "年考术语 · 多边行动": "Terms · Multilateral action", "年考术语 · unilateral 与 unilateralism": "Terms · Unilateral vs unilateralism", "年考术语 · 单边与多边辨析": "Terms · Unilateral vs multilateral", "年考术语 · 先发制人 vs 人道干预": "Terms · Pre-emption vs humanitarian intervention", "年考术语 · 集体安全 vs 人道干预": "Terms · Collective security vs intervention", "年考论证 · 1991 与 2003 对照": "Essay · 1991 vs 2003", "年考论证 · 九一一的转向": "Essay · The post-9/11 shift", "年考论证 · 伊拉克战争为何是单边": "Essay · Why Iraq was unilateral", "年考论证 · 海湾战争与多边主义": "Essay · Gulf War and multilateralism", "年考论证 · 海湾战争为何属集体安全": "Essay · Gulf War as collective security", "年考论证 · 科索沃的灰色地带": "Essay · Kosovo's grey area", "年考论证 · 卢旺达 1994 的干预失败": "Essay · Rwanda 1994", "年考论证 · 索马里与人道干预的局限": "Essay · Somalia and limits of intervention", "年考论证 · Bush Doctrine 的特征": "Essay · The Bush Doctrine", "年考论证 · 中国崛起与单极秩序": "Essay · China's rise and unipolarity", "年考论证 · 单极到多极": "Essay · Unipolar to multipolar", "年考论证 · 保护主义与去全球化": "Essay · Protectionism and deglobalisation", "年考论证 · 软实力下降": "Essay · Decline of soft power", "年考论证 · Body 1 选材": "Essay · Choosing evidence for Body 1", "年考写作 · 论点句": "Essay writing · Thesis statement", "年考写作 · Body 1 主题句": "Essay writing · Body 1 topic sentence", "年考写作 · Body 2 的结构": "Essay writing · Structuring Body 2", "年考写作 · 三段如何合成一条论证线": "Essay writing · Building one argument", "金融数学 · 净收入": "Finance · Net income", "金融数学 · 加班工资": "Finance · Overtime pay", "金融数学 · 复利（按月）": "Finance · Compound interest (monthly)", "金融数学 · 应税收入与可扣除项": "Finance · Taxable income and deductions", "金融数学 · 所得税（19c 档）": "Finance · Income tax (19c bracket)", "金融数学 · 所得税（37c 档）": "Finance · Income tax (37c bracket)", "金融数学 · 折余折旧": "Finance · Declining-balance depreciation", "金融数学 · 税率档边界": "Finance · Tax bracket boundaries", "代数 · 二项式展开": "Algebra · Binomial expansion", "代数 · 代数分式约分": "Algebra · Simplifying algebraic fractions", "代数 · 单项式乘法": "Algebra · Multiplying terms", "代数 · 因式分解": "Algebra · Factorising", "代数 · 完全平方中项": "Algebra · Perfect squares", "代数 · 指数律（幂的乘方）": "Algebra · Index laws", "代数式 · 二项式展开": "Expressions · Binomial expansion", "代数式 · 代数分式化简": "Expressions · Simplifying fractions", "代数式 · 非首一二次三项式因式分解": "Expressions · Factorising non-monic quadratics", "方程 · 一元一次（两边有未知数）": "Equations · Linear with unknowns both sides", "方程 · 含分式的方程": "Equations · Equations with fractions", "不等式 · 除以负数变号": "Inequalities · Sign flip when dividing", "二次方程 · 因式分解法": "Quadratics · Factorising method", "二次方程 · 求根公式": "Quadratics · Quadratic formula", "二次方程 · 高次方程": "Quadratics · Higher-degree equations", "联立方程 · 消元法": "Simultaneous equations · Elimination", "联立方程 · 应用题": "Simultaneous equations · Word problems", "联立方程 · 应用建模": "Simultaneous equations · Modelling", "联立方程 · 直线与抛物线交点": "Simultaneous equations · Line and parabola", "坐标几何 · 两点距离": "Coordinate geometry · Distance", "坐标几何 · 两点间斜率": "Coordinate geometry · Gradient from two points", "坐标几何 · 中点公式": "Coordinate geometry · Midpoint", "坐标几何 · 垂直直线": "Coordinate geometry · Perpendicular lines", "坐标几何 · 垂直直线的斜率": "Coordinate geometry · Perpendicular gradient", "坐标几何 · 斜率": "Coordinate geometry · Gradient", "坐标几何 · 求直线方程": "Coordinate geometry · Equation of a line", "坐标几何 · 由两点求直线方程": "Coordinate geometry · Line through two points", "函数 · 函数值": "Functions · Function values", "函数 · 反比例": "Functions · Inverse proportion", "函数 · 圆的方程": "Functions · Equation of a circle", "函数 · 定义域与值域": "Functions · Domain and range", "函数 · 正比例": "Functions · Direct proportion", "函数图像 · 三次曲线": "Graphs · Cubic curves", "函数图像 · 双曲线": "Graphs · Hyperbola", "函数图像 · 圆": "Graphs · Circle", "函数图像 · 指数曲线": "Graphs · Exponential curve", "抛物线 · 对称轴与顶点": "Parabolas · Axis and vertex", "指数 · 分数与负指数": "Indices · Fractional and negative", "指数 · 分数指数综合": "Indices · Fractional indices (mixed)", "指数 · 幂的乘方": "Indices · Power of a power", "根式 · 二项分母有理化": "Surds · Rationalising binomial denominators", "根式 · 分母有理化": "Surds · Rationalising denominators", "根式 · 化简根式": "Surds · Simplifying", "根式 · 同类根式加减": "Surds · Adding like surds", "对数 · 对数定义": "Logarithms · Definition", "对数 · 对数方程": "Logarithms · Log equations", "对数 · 对数法则": "Logarithms · Laws", "对数 · 指数方程": "Logarithms · Exponential equations", "三角 · 三角形面积": "Trigonometry · Area of a triangle", "三角 · 仰角": "Trigonometry · Angle of elevation", "三角 · 余弦定理求边": "Trigonometry · Cosine rule (side)", "三角 · 方位角": "Trigonometry · Bearings", "三角 · 正弦定理求边": "Trigonometry · Sine rule (side)", "三角 · 正弦定理的模糊情况": "Trigonometry · Ambiguous case", "三角 · 毕氏定理": "Trigonometry · Pythagoras", "三角 · 求未知角": "Trigonometry · Finding an unknown angle", "三角 · 用正切求边": "Trigonometry · Tangent ratio", "统计 · 五数概括与偏度": "Statistics · Five-number summary and skew", "统计 · 分布形状": "Statistics · Shape of distributions", "统计 · 四分位距 IQR": "Statistics · Interquartile range", "统计 · 均值与标准差": "Statistics · Mean and standard deviation", "统计 · 标准差的含义": "Statistics · Meaning of standard deviation", "统计 · 计算标准差": "Statistics · Calculating standard deviation", "概率 · 不放回抽样": "Probability · Sampling without replacement", "概率 · 无放回抽样": "Probability · Without replacement", "概率 · 双向表与条件概率": "Probability · Two-way tables and conditional", "概率 · 双向表读数": "Probability · Reading two-way tables", "概率 · 条件概率": "Probability · Conditional probability", "概率 · 树状图与无放回": "Probability · Tree diagrams", "概率 · 独立事件的乘积法则": "Probability · Product rule for independent events", "概率 · 相对频率": "Probability · Relative frequency", "概率 · 韦恩图与条件概率": "Probability · Venn diagrams and conditional", "概率 · 韦恩图（至少/都不）": "Probability · Venn (at least / neither)", "概率 · 韦恩图（重叠事件）": "Probability · Venn (overlapping events)", "网络 · 平面图": "Networks · Planar graphs", "网络 · 最小生成树": "Networks · Minimum spanning tree", "网络 · 最短路径": "Networks · Shortest path", "网络 · 术语": "Networks · Terminology", "网络 · 欧拉回路": "Networks · Eulerian circuit", "网络 · 欧拉路径": "Networks · Eulerian trail", "体积 · 圆柱（直径陷阱）": "Volume · Cylinder (diameter trap)", "表面积 · 圆柱与涂漆成本": "Surface area · Cylinder and paint cost", "面积 · 组合图形": "Area · Composite shapes"});
+  var I18N_PAT = [
+    [/^第 (\d+) 题 \/ 共 (\d+)$/, "Q$1 of $2"],
+    [/^(\d+) \/ (\d+)$/, "$1 / $2"],
+    [/^已得 (\d+) \/ (\d+) 分$/, "Scored $1 / $2"],
+    [/^共 (\d+) 分 · (\d+) 个得分点$/, "$1 marks · $2 marking points"],
+    [/^(\d+) 题$/, "$1 questions"],
+    [/^\s*题\s*$/, "questions"],
+    [/^(\S+) (\d+) · (\d+) 题 · (.+)$/, "$1 $2 · $3 questions · $4"],
+    [/^今日 (\d+)\/(\d+)$/, "Today $1/$2"],
+    [/^连续 (\d+) 天$/, "Streak $1 days"],
+    [/^连对纪录 (\d+)$/, "Best combo $1"],
+    [/^金币 (\d+)$/, "Coins $1"],
+    [/^星尘 (\d+)$/, "Stardust $1"],
+    [/^已交卷 (\d+) 人$/, "$1 submitted"],
+    [/^下一场 (.+) · (\d+\/\d+) · (\d+) 天后$/, "Next: $1 · $2 · $3 days"],
+    [/^(\d+\/\d+) (.+) · (\d+) 天$/, "$1 $2 · $3 days"],
+    [/^第 (\d+) 名$/, "#$1"],
+    [/^最高 (\d+)%$/, "Top $1%"],
+    [/^今日榜$/, "Board"],
+    [/^Lv\.(\d+)$/, "Lv.$1"],
+    [/^(\d+) 科 · (\d+) 题$/, "$1 subjects · $2 questions"],
+    [/^(\d+) 门 · 年考优先$/, "$1 subjects · exam order"],
+    [/^(\d+) 门$/, "$1 subjects"],
+    [/^(\d+) 天后$/, "$1 days"],
+    [/^XP · 还差 (\d+) 升级$/, "XP · $1 to next level"],
+    [/^从 (\d+) 科抽题混做，(\d+) 题可选$/, "Mix questions from $1 subjects, $2 available"],
+    [/^(\d+) 选择$/, "$1 MCQ"],
+    [/^(\d+) 简答$/, "$1 short"],
+    [/^下一场 (.+) · (\d+\/\d+) ·$/, "Next: $1 · $2 ·"],
+    [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"]
+  ];
+  function applyI18n(){
+    if(window.LANG()==="zh") return;
+    var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n, changed=[];
+    while((n=walker.nextNode())){
+      var s=(n.nodeValue||"").trim(); if(!s) continue;
+      if(I18N[s]){ n.nodeValue=n.nodeValue.replace(s, I18N[s]); continue; }
+      for(var i=0;i<I18N_PAT.length;i++){
+        if(I18N_PAT[i][0].test(s)){ n.nodeValue=n.nodeValue.replace(s, s.replace(I18N_PAT[i][0], I18N_PAT[i][1])); break; }
+      }
+    }
+    document.querySelectorAll("[placeholder]").forEach(function(el){
+      var p=el.getAttribute("placeholder");
+      if(I18N[p]) el.setAttribute("placeholder", I18N[p]);
+    });
+    document.querySelectorAll("[title]").forEach(function(el){
+      var t2=el.getAttribute("title");
+      if(I18N[t2]) el.setAttribute("title", I18N[t2]);
+    });
+  }
+  window.applyI18n=applyI18n;
+  function kickI18n(){ try{ applyI18n(); }catch(e){} }
+  if(document.readyState==="loading")
+    document.addEventListener("DOMContentLoaded", function(){ setTimeout(kickI18n, 20); });
+  else setTimeout(kickI18n, 20);
+  window.addEventListener("load", function(){ setTimeout(kickI18n, 60); });
+  setTimeout(kickI18n, 300);
+
+  /* ===== 排行榜：分阶段披露（战中抽屉 / 战后全屏） ===== */
+  var LB={sort:"pct", list:[], open:false, at:0, timer:null};
+  var LB_TABS=[["pct","正确率"],["score","答对题数"],["speed","用时"]];
+
+  function lbMetric(x, sort){
+    if(sort==="score") return (x.correct!==undefined?x.correct:Math.round(x.pct*x.answered/100))+" 题";
+    if(sort==="speed") return x.ms>0 ? fmtMs(x.ms) : "—";
+    return x.pct+"%";
+  }
+  function fmtMs(ms){ var s=Math.round(ms/1000); return Math.floor(s/60)+"'"+String(s%60).padStart(2,"0")+'"'; }
+
+  function lbFetch(cb){
+    if(!apibase()){ if(cb) cb(); return; }
+    var now=Date.now();
+    if(now-LB.at < 3500 && LB.list.length){ if(cb) cb(); return; }
+    LB.at=now;
+    fetch(apibase()+"/board?day="+encodeURIComponent(todayKey())+"&sort="+LB.sort)
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok && d.list){ LB.list=d.list; if(cb) cb(); } })
+      .catch(function(){});
+  }
+
+  function lbNearRange(){
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    if(idx<3) return null;
+    return [Math.max(0,idx-2), Math.min(LB.list.length-1, idx+2)];
+  }
+
+  function lbRowsHtml(){
+    var me=nick()||"我";
+    var start = LB.list.length>3 ? 3 : 0;
+    var near = lbNearRange();
+    return LB.list.slice(start).map(function(x,i){
+      if(near && (i+start)>=near[0] && (i+start)<=near[1]) return "";
+      var mine = x.name===me;
+      return '<div class="lb-row'+(mine?' me':'')+'" data-k="'+x.name+'">'+
+        '<span class="rk">'+(i+start+1)+'</span>'+
+        '<span class="rname">'+x.name+(mine?'（我）':'')+
+          (x.ms>0?'<span class="lb-time">'+fmtMs(x.ms)+'</span>':'')+'</span>'+
+        '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
+    }).join("") || '<div class="mutedsmall">今天还没有人上榜</div>';
+  }
+
+  function lbPodiumHtml(){
+    var top=LB.list.slice(0,3), me=nick()||"我";
+    if(!top.length) return "";
+    var order=[1,0,2]; // 2nd, 1st, 3rd
+    return '<div class="podium">'+order.map(function(idx){
+      var x=top[idx]; if(!x) return '<div></div>';
+      var place=idx+1, cls="p"+place;
+      return '<div class="pod '+cls+'"><div class="pl">第'+["一","二","三"][idx]+'名</div><div class="av">'+place+'</div>'+
+        '<div class="nm">'+x.name+(x.name===me?' ·我':'')+'</div>'+
+        '<div class="sc">'+lbMetric(x,LB.sort)+'</div></div>';
+    }).join("")+'</div>';
+  }
+
+  function lbSelfHtml(){
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    if(idx<0) return '<div class="lb-self"><span class="rk">—</span><span class="rname">你还没上榜，交卷即可参与</span></div>';
+    var x=LB.list[idx];
+    return '<div class="lb-self"><span class="rk">'+(idx+1)+'</span><span class="rname">'+me+'（我）</span>'+
+      '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
+  }
+
+  var LB_FREEZE=false, LB_PENDING=0, LB_SCROLL_T=null, LB_PREV=null;
+
+  function lbNeighborsHtml(){
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    var r=lbNearRange();
+    if(!r) return "";
+    var a=r[0], b=r[1], out=[];
+    for(var k=a;k<=b;k++){
+      var x=LB.list[k], mine=(k===idx);
+      out.push('<div class="lb-row'+(mine?' me':'')+'" data-k="'+x.name+'">'+
+        '<span class="rk">'+(k+1)+'</span>'+
+        '<span class="rname">'+x.name+(mine?'（我）':'')+
+          (x.ms>0?'<span class="lb-time">'+fmtMs(x.ms)+'</span>':'')+'</span>'+
+        '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>');
+    }
+    return '<div class="lb-near"><div class="near-h">你附近 · 再对一道题就能超过</div>'+out.join("")+'</div>';
+  }
+
+  function lbCountAnim(real){
+    var el=document.getElementById("lbCount");
+    if(el) el.textContent = "已交卷 " + real + " 人";
+  }
+
+  function lbRender(){
+    var box=document.getElementById("lbBody"); if(!box) return;
+    lbCountAnim(LB.list.length);
+    if(LB_FREEZE){ LB_PENDING++; var p=document.getElementById("lbRefresh");
+      if(p){ p.textContent="有 "+LB_PENDING+" 条新动态 · 点击刷新榜单"; p.classList.add("on"); }
+      return; }
+    var before={};
+    box.querySelectorAll(".lb-row").forEach(function(el){ before[el.dataset.k]=el.getBoundingClientRect().top; });
+    box.innerHTML = lbPodiumHtml() + lbNeighborsHtml() +
+      '<div class="lb-list" id="lbList">'+lbRowsHtml()+'</div>' + lbSelfHtml();
+    // 新进榜高亮
+    var names={}; LB.list.forEach(function(x){ names[x.name]=1; });
+    if(LB_PREV){
+      box.querySelectorAll(".lb-row").forEach(function(el){
+        if(!LB_PREV[el.dataset.k]) el.classList.add("fresh");
+      });
+    }
+    LB_PREV=names;
+    box.querySelectorAll(".lb-row").forEach(function(el){
+      var old=before[el.dataset.k]; if(old===undefined) return;
+      var now=el.getBoundingClientRect().top, dy=old-now;
+      if(Math.abs(dy)<1) return;
+      el.style.transform="translateY("+dy+"px)";
+      requestAnimationFrame(function(){ el.style.transition="transform .32s ease"; el.style.transform=""; });
+    });
+  }
+
+  function lbOpen(){
+    var ov=document.getElementById("lbOverlay");
+    if(!ov || !apibase()) return;
+    ov.classList.add("on"); LB.open=true;
+    lbFetch(lbRender);
+    if(LB.timer) clearInterval(LB.timer);
+    LB.timer=setInterval(function(){ if(LB.open) lbFetch(lbRender); }, 5000);
+  }
+  function lbClose(){
+    var ov=document.getElementById("lbOverlay");
+    if(ov) ov.classList.remove("on");
+    LB.open=false;
+    if(LB.timer){ clearInterval(LB.timer); LB.timer=null; }
+  }
+  window.__openLB=lbOpen;
+
+  function lbFab(){
+    var el=document.getElementById("lbFab");
+    if(!el || !apibase()) return;
+    var me=nick()||"我", idx=-1;
+    LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
+    if(idx>=0) el.innerHTML='第 <b>'+(idx+1)+'</b> 名';
+    else if(LB.list.length) el.innerHTML='最高 <b>'+LB.list[0].pct+'%</b>';
+    else el.innerHTML='今日榜';
+  }
+
+  var SUBMITING=false;
+  function submitText(txt){ var el=document.getElementById("submitTxt"); if(el) el.innerHTML=txt; }
+  function showMask(){ var m=document.getElementById("submitMask"); if(m) m.classList.add("on"); SUBMITING=true; }
+  function hideMask(){ var m=document.getElementById("submitMask"); if(m) m.classList.remove("on"); SUBMITING=false; }
+
+  // 交卷时上传耗时（带情绪缓冲遮罩）
+  function lbSubmit(ms){
+    if(!apibase()) return;
+    showMask();
+    submitText("正在加密上传试卷…");
+    setTimeout(function(){ if(SUBMITING) submitText("正在实时计算排名…"); }, 900);
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return;
+    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21,
+        ms:ms||0, day:rec.date})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d&&d.ok){ LB.list=d.list||LB.list; lbRender(); lbFab(); } })
+      .catch(function(){})
+      .then(function(){ setTimeout(hideMask, 350); });
+  }
+  window.lbSubmit=lbSubmit;
+
+  function lbInit(){
+    if(!apibase()) return;
+    var ov=document.getElementById("lbOverlay");
+    if(ov) ov.addEventListener("click", function(e){ if(e.target===ov) lbClose(); });
+    var cl=document.getElementById("lbClose"); if(cl) cl.onclick=lbClose;
+    var fab=document.getElementById("lbFab");
+    if(fab && document.getElementById("app")){ fab.style.display="flex"; fab.onclick=lbOpen; }
+    document.querySelectorAll(".lb-tabs button").forEach(function(b){
+      b.onclick=function(){
+        LB.sort=b.dataset.sort;
+        document.querySelectorAll(".lb-tabs button").forEach(function(x){ x.classList.toggle("on", x===b); });
+        lbFetch(lbRender);
+      };
+    });
+    var dd=document.getElementById("lbDay"); if(dd) dd.textContent=todayKey();
+    var sheet=document.querySelector(".lb-sheet");
+    if(sheet) sheet.addEventListener("scroll", function(){
+      if(sheet.scrollTop>4){
+        LB_FREEZE=true;
+        if(LB_SCROLL_T) clearTimeout(LB_SCROLL_T);
+        LB_SCROLL_T=setTimeout(function(){ LB_FREEZE=false;
+          var p=document.getElementById("lbRefresh");
+          if(p && LB_PENDING){ p.textContent="有 "+LB_PENDING+" 条新动态 · 点击刷新榜单"; p.classList.add("on"); }
+        }, 900);
+      }
+    });
+    var rf=document.getElementById("lbRefresh");
+    if(rf) rf.onclick=function(){ LB_FREEZE=false; LB_PENDING=0; rf.classList.remove("on"); LB.at=0; lbFetch(lbRender); };
+    lbFetch(function(){ lbRender(); lbFab(); });
+    setInterval(function(){ lbFetch(function(){ lbFab(); if(LB.open) lbRender(); }); }, 8000);
+  }
+
+  function awardForQ(id, diff, type, ok){
+    var base = type==='short' ? ({easy:12,medium:16,hard:22}[diff]||16)
+                              : ({easy:8, medium:10,hard:14}[diff]||10);
+    var S=seen(), e=S[id]||{n:0,right:false,sealed:false}, mul=1, note="";
+    if(e.right && ok){
+      if(e.sealed || e.n>=3){ mul=0; note="已掌握，不再加分"; }
+      else { mul=0.3; note="重做已会的题，经验 ×0.3"; }
+    } else if(e.right && !ok){
+      mul=1; note="";
+    } else if(!e.right && ok && e.n>0){
+      mul=1; note="纠错 + 全额";
+    }
+    e.n=(e.n||0)+1;
+    if(ok){ e.right=true; if(e.n>=3 && mul===0) e.sealed=true; }
+    S[id]=e; saveSeen(S);
+    if(mul===0){ toast(note+" · 去刷没掌握的题", false); return; }
+    var gain = Math.round(base*mul);
+    if(note) toast(note, true);
+    awardXP(gain, ok);
+  }
+  /* ---- 每日挑战任务（对应“挑战”要素） ---- */
+  var QKEY="dsh-quest-v1";
+  var QTEMPL=[
+    {id:"q_ans12", n:"今天做满 12 题", tip:"数量", type:"count", target:12, r:{coin:40}},
+    {id:"q_ans20", n:"今天做满 20 题", tip:"数量", type:"count", target:20, r:{coin:60}},
+    {id:"q_combo5", n:"一次连对 5 题", tip:"连击", type:"combo", target:5, r:{coin:50}},
+    {id:"q_combo8", n:"一次连对 8 题", tip:"连击", type:"combo", target:8, r:{coin:70}},
+    {id:"q_hard3", n:"做对 3 道「较难」题", tip:"攻坚", type:"hard", target:3, r:{dust:1}},
+    {id:"q_acc80", n:"正确率 80%（至少 10 题）", tip:"精准", type:"acc", target:80, r:{coin:60}},
+    {id:"q_short3", n:"完成 3 道简答自评", tip:"写作", type:"short", target:3, r:{coin:45}},
+    {id:"q_daily", n:"完成今日挑战", tip:"每日", type:"daily", target:1, r:{dust:2}}
+  ];
+  function qseed(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; }; }
+  function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function todayLog(){ var d0=new Date(); d0.setHours(0,0,0,0); return log().filter(function(x){ return x.t>=d0.getTime(); }); }
+  function quests(){
+    var Q=null;
+    try{ Q=JSON.parse(localStorage.getItem(QKEY)||"null"); }catch(e){}
+    if(!Q || Q.date!==todayKey()){
+      var rnd=qseed("q:"+todayKey()), pool=QTEMPL.slice();
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      Q={date:todayKey(), list:pool.slice(0,3).map(function(x){return x.id;}), claimed:[]};
+      try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    }
+    return Q;
+  }
+  function questProgress(){
+    var L=todayLog(), n=L.length;
+    var okCnt=L.filter(function(x){return x.ok;}).length;
+    var maxCombo=0, cur=0;
+    L.slice().sort(function(a,b){return a.t-b.t;}).forEach(function(x){ if(x.ok){ cur++; maxCombo=Math.max(maxCombo,cur);} else cur=0; });
+    var hard=L.filter(function(x){ return x.ok && x.d==="hard"; }).length;
+    var short=L.filter(function(x){ return x.ty==="short"; }).length;
+    var acc = n>=10 ? Math.round(okCnt/n*100) : 0;
+    var dailyDone = 0;
+    try{ var dr=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); if(dr.date===todayKey()) dailyDone=1; }catch(e){}
+    return {count:n, combo:maxCombo, hard:hard, short:short, acc:acc, daily:dailyDone};
+  }
+  function questValue(q, p){ return p[q.type] || 0; }
+  window.quests=quests; window.questProgress=questProgress; window.questValue=questValue; window.QTEMPL=QTEMPL;
+
+  var CHEST_KEY="dsh-chest-v1";
+  function openChest(){
+    var roll=Math.random(), msg="", dust=0, coin=0;
+    if(roll<0.10){ dust=3; msg="💎 稀有宝箱：星尘 ×3"; addDust(3); }
+    else if(roll<0.45){ coin=Math.round(30+Math.random()*40); msg="🎁 宝箱：金币 +"+coin; addCoins(coin); }
+    else { dust=1; msg="🎁 宝箱：星尘 ×1"; addDust(1); }
+    try{ var c=JSON.parse(localStorage.getItem(CHEST_KEY)||'{"n":0}'); c.n=(c.n||0)+1; localStorage.setItem(CHEST_KEY,JSON.stringify(c)); }catch(e){}
+    setTimeout(function(){ toast(msg, true); beep(880,0.18,"triangle",0.07); }, 700);
+    if(window.__refreshProfile) window.__refreshProfile();
+  }
+  window.openChest=openChest;
+
+  function claimQuest(id){
+    var Q=quests(), meta=null;
+    QTEMPL.forEach(function(x){ if(x.id===id) meta=x; });
+    if(!meta) return {ok:false,msg:"任务不存在"};
+    if(Q.claimed.indexOf(id)>=0) return {ok:false,msg:"已经领过了"};
+    var p=questProgress();
+    if(questValue(meta,p) < meta.target) return {ok:false,msg:"还没完成"};
+    Q.claimed.push(id);
+    try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
+    if(meta.r.coin) addCoins(meta.r.coin);
+    if(meta.r.dust) addDust(meta.r.dust);
+    toast("任务完成 · "+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
+    beep(1046,0.16,"triangle",0.07);
+    if(window.__refreshProfile) window.__refreshProfile();
+    return {ok:true,msg:"已领取"};
+  }
+  window.claimQuest=claimQuest;
+  window.awardForQ=awardForQ; window.lbOpen=lbOpen; window.lbClose=lbClose; window.lbInit=lbInit;
+  window.awardXP=awardXP; window.checkBadges=checkBadges;
+  window.GAME={db:db,levelOf:levelOf,BADGES:BADGES,bdb:bdb,todayCount:todayCount,streakDays:streakDays,
+    GOAL:GOAL,coins:readCoins,inv:readInv,buffs:readBuffs,SHOP:SHOP,buy:buy,equipTheme:equipTheme,
+    equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
+    shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
+
+  var EXAM_LIST=[
+    ["English",  "2026-11-23", "P1–P2"],
+    ["Science",  "2026-11-24", "P3–P4"],
+    ["Maths",    "2026-11-25", "P3–P4"],
+    ["History",  "2026-11-26", "P1"],
+    ["Geography","2026-11-26", "P2"],
+    ["PDHPE",    "2026-11-26", "P5"],
+    ["Electives","2026-11-27", "P1–P2"]
+  ];
+  function daysTo(iso){
+    var d=new Date(iso+"T00:00:00"), now=new Date(); now.setHours(0,0,0,0);
+    return Math.round((d-now)/864e5);
+  }
+  function nextExam(){
+    for(var i=0;i<EXAM_LIST.length;i++){
+      var n=daysTo(EXAM_LIST[i][1]);
+      if(n>=0) return {name:EXAM_LIST[i][0], date:EXAM_LIST[i][1], per:EXAM_LIST[i][2], days:n};
+    }
+    return null;
+  }
+
+  function renderQuests(host){
+    if(!host) return;
+    var Q=quests(), p=questProgress();
+    host.innerHTML = Q.list.map(function(id){
+      var m=null; QTEMPL.forEach(function(x){ if(x.id===id) m=x; });
+      var v=Math.min(questValue(m,p), m.target), pct=Math.round(v/m.target*100);
+      var done=v>=m.target, claimed=Q.claimed.indexOf(id)>=0;
+      var right = claimed ? '<span class="qdone">已领取</span>'
+                : (done ? '<button class="qbtn" data-claim="'+id+'">领取</button>'
+                        : '<span class="qnum">'+v+'/'+m.target+'</span>');
+      return '<div class="qrow'+(done?' done':'')+'">'+
+        '<span class="qtip">'+m.tip+'</span>'+
+        '<span class="qname">'+m.n+'</span>'+
+        '<span class="qbar"><i style="width:'+pct+'%"></i></span>'+right+'</div>';
+    }).join("");
+  }
+  window.__renderQuests=renderQuests;
+
+  /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
+  var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
+  var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
+  function apibase(){ try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; } }
+  function setApi(v){ try{ localStorage.setItem(AKEY,(v||"").trim().replace(/\/$/,"")); }catch(e){} }
+  function loadBoard(){
+    var box=document.getElementById("rankbox"); if(!box||!apibase()) return;
+    fetch(apibase()+"/board?day="+encodeURIComponent(todayKey()))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok || !d.list || !d.list.length) return;
+        var me=nick()||"我";
+        box.innerHTML=d.list.map(function(x,i){
+          return '<div class="rrow'+(x.name===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+                 '<span class="rname">'+x.name+(x.name===me?'（我）':'')+'</span>'+
+                 '<span class="rp">'+x.pct+'%</span></div>';
+        }).join("");
+      })
+      .catch(function(){});
+  }
+  function pushScore(){
+    if(!apibase()) return {ok:false,msg:"还没设置服务器地址"};
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok) loadBoard(); })
+      .catch(function(){});
+    return {ok:true,msg:"已提交"};
+  }
+  window.loadBoard=loadBoard; window.pushScore=pushScore; window.apibase=apibase; window.setApi=setApi;
+  function b64e(str){ try{ return btoa(unescape(encodeURIComponent(str))).replace(/=+$/,"").replace(/\+/g,"-").replace(/\//g,"_"); }catch(e){ return ""; } }
+  function b64d(str){ try{ return decodeURIComponent(escape(atob(str.replace(/-/g,"+").replace(/_/g,"/")))); }catch(e){ return ""; } }
+  function nick(){ try{ return localStorage.getItem(NKEY)||""; }catch(e){ return ""; } }
+  function setNick(v){ try{ localStorage.setItem(NKEY, v); }catch(e){} }
+  function friends(){ try{ return JSON.parse(localStorage.getItem(FKEY)||"[]"); }catch(e){ return []; } }
+  function saveFriends(a){ try{ localStorage.setItem(FKEY, JSON.stringify(a.slice(0,60))); }catch(e){} }
+
+  function myCode(){
+    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
+    var g=db();
+    return {ok:true, code:b64e(JSON.stringify({v:1,d:rec.date,p:rec.best,n:rec.answer||21,
+      name:(nick()||"我"), xp:g.xp||0}))};
+  }
+  function addCode(str){
+    var raw=b64d((str||"").trim());
+    if(!raw) return {ok:false,msg:"码不对"};
+    var o; try{ o=JSON.parse(raw); }catch(e){ return {ok:false,msg:"码不对"}; }
+    if(!o || o.v!==1 || !o.d || o.p===undefined) return {ok:false,msg:"码不对"};
+    var list=friends();
+    list=list.filter(function(x){ return !(x.d===o.d && x.name===o.name); });
+    list.push({d:o.d, p:o.p, n:o.n||0, name:String(o.name||"同学").slice(0,12), xp:o.xp||0, t:Date.now()});
+    saveFriends(list);
+    return {ok:true,msg:"已加入 "+String(o.name||"同学").slice(0,12)+" 的 "+o.p+"%"};
+  }
+  window.myCode=myCode; window.addCode=addCode; window.nick=nick; window.setNick=setNick;
+
+  function renderBoard(host){
+    if(!host) return;
+    var g=db(), L=log();
+    var day=document.getElementById("boardday");
+    if(day) day.textContent = todayKey();
+
+    var myRec={}; try{ myRec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+    var rows=[];
+    if(myRec.date===todayKey()) rows.push({name:nick()||"我", p:myRec.best||0, me:true});
+    friends().filter(function(x){ return x.d===todayKey(); }).forEach(function(x){
+      rows.push({name:x.name, p:x.p, me:false});
+    });
+    rows.sort(function(a,b){ return b.p-a.p; });
+
+    var list = rows.length ? rows.map(function(r,i){
+      return '<div class="rankrow'+(r.me?' me':'')+'"><span class="rk">'+(i+1)+'</span>'+
+        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
+        '<span class="rpct">'+r.p+'%</span></div>';
+    }).join("") : '<div class="mutedsmall">今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。</div>';
+
+    var days={}, dayOk={};
+    L.forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0);
+      var k=d.getTime(); days[k]=(days[k]||0)+1; dayOk[k]=(dayOk[k]||0)+(x.ok?1:0); });
+    var last7=Object.keys(days).map(function(k){
+      return {ts:+k, pct:Math.round(dayOk[k]/days[k]*100)}; })
+      .sort(function(a,b){ return b.ts-a.ts; }).slice(0,7).reverse();
+    var spark = last7.length>1 ? ('<div class="spark">'+last7.map(function(x){
+        return '<i style="height:'+Math.max(3,Math.round(x.pct*0.3))+'px" title="'+x.pct+'%"></i>';
+      }).join("")+'<span class="sparklab">近 7 天正确率</span></div>') : "";
+
+    host.innerHTML =
+      '<div class="ranklist" id="rankbox">'+list+'</div>'+
+      spark +
+      '<div class="codebar"><button class="btn2" id="mecode">复制我的战绩码</button>'+
+      '<input id="friendcode" placeholder="粘贴同学的战绩码">'+
+      '<button class="btn2" id="addcode">加入</button>'+
+      (apibase() ? '<button class="btn2" id="pushscore">提交到服务器</button>' : '')+'</div>';
+  }
+  window.__renderBoard=renderBoard;
+
+  function renderProfile(){
+    var host=document.getElementById("profile");
+    if(!host) return;
+    var g=db(), xp=g.xp||0, lv=levelOf(xp), nx=nextAt(xp), prev=LEVELS[lv-1]||0;
+    var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
+    var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
+    var title = inv.equipped && inv.equipped.title ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+    var ne = nextExam();
+    var dd = ne ? ne.days : null;
+    var badgeHtml = BADGES.map(function(x){
+      return '<span class="badge'+(b[x.id]?' on':'')+'" title="'+x.n+' · '+x.d+'">'+
+             (BADGE_SVG[x.id]||"")+'</span>';
+    }).join("");
+    host.innerHTML =
+      '<div class="hero-top">'+
+        '<span class="lvp">Lv.'+lv+'</span>'+
+        '<span class="xpv">'+xp+'</span>'+
+        '<span style="font-size:12px;color:var(--dim)">XP'+(nx?' · 还差 '+(nx-xp)+' 升级':'')+'</span>'+
+        title+'<span class="grow"></span>'+
+        (ne?'<span class="cd">下一场 '+ne.name+' · '+(+ne.date.slice(5,7))+'/'+(+ne.date.slice(8,10))+' · <b>'+ne.days+'</b> 天后</span>':'')+
+      '</div>'+
+      '<div class="xpbar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="metaline">'+
+        '<span>今日 <b>'+tc+'</b>/'+GOAL+'</span>'+
+        '<span>连续 <b>'+st+'</b> 天</span>'+
+        '<span>连对纪录 <b>'+(g.best||0)+'</b></span>'+
+        '<span>金币 <b>'+(c.n||0)+'</b></span>'+
+        '<span>星尘 <b>'+(c.dust||0)+'</b></span>'+
+        '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
+      '</div>'+
+      '<div class="badges">'+badgeHtml+'</div>';
+  }
+  function renderAll(){
+    renderProfile();
+    setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
+    setTimeout(loadBoard, 0);
+    renderQuests(document.getElementById("quests"));
+    renderBoard(document.getElementById("board"));
+  }
+  window.__refreshProfile=renderAll;
+  document.addEventListener("click", function(ev){
+    var s = ev.target.closest && ev.target.closest("#sfxbtn");
+    if(s){ var on = toggleSfx(); s.textContent = on ? "音效 开" : "音效 关"; return; }
+    var q = ev.target.closest && ev.target.closest("[data-claim]");
+    if(q){ claimQuest(q.getAttribute("data-claim")); renderAll(); return; }
+    if(ev.target.closest && ev.target.closest("#mecode")){
+      if(!nick()){ var nm=prompt("给自己起个名字（显示在好友榜）",""); if(nm) setNick(nm.slice(0,12)); }
+      var r=myCode();
+      if(!r.ok){ toast(r.msg,false); return; }
+      var ta=document.createElement("textarea"); ta.value=r.code;
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); toast("战绩码已复制，发给同学吧", true); }
+      catch(e){ toast("复制失败，手动选中："+r.code.slice(0,20)+"…", false); }
+      ta.remove();
+      return;
+    }
+    if(ev.target.closest && ev.target.closest("#cfgapi")){
+      var cur=apibase();
+      var v=prompt("填入 Cloudflare Worker 地址（留空则清除）", cur);
+      if(v===null) return;
+      setApi(v);
+      toast(v.trim()?"已保存，正在拉取云端榜…":"已清除服务器地址", true);
+      renderAll(); return;
+    }
+    if(ev.target.closest && ev.target.closest("#pushscore")){
+      var r2=pushScore(); toast(r2.msg, r2.ok); return;
+    }
+    if(ev.target.closest && ev.target.closest("#addcode")){
+      var inp=document.getElementById("friendcode");
+      var res=addCode(inp?inp.value:"");
+      toast(res.msg, res.ok); renderAll(); return;
+    }
+  });
+  applyTheme();
+  if(document.readyState!=='loading'){ renderAll(); if(window.lbInit) lbInit(); }
+  else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
+})();
+
+</script>
+<button class="lang-btn" id="langBtn">Language <b id="langNow">EN</b></button>
+<script>
+(function(){
+  var b=document.getElementById("langBtn");
+  function paint(){ var l=(window.LANG?LANG():"en"); var n=document.getElementById("langNow");
+    if(n) n.textContent = l==="en"?"EN":(l==="zh"?"中文":"EN+中"); }
+  if(b) b.onclick=function(){
+    var order=["en","zh","both"], cur=(window.LANG?LANG():"en");
+    var nx=order[(order.indexOf(cur)+1)%3]; if(window.setLANG) setLANG(nx);
+    paint(); if(window.applyI18n) applyI18n(); if(typeof render==="function") render();
+  };
+  paint();
+})();
 </script>
 </body></html>
