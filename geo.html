@@ -735,7 +735,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
     [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];
-  var I18N_SUB = [["大概率写到","likely covered"],["可能没写到","likely missed"],
+  var I18N_SUB = [["系统：","Auto: "],["大概率写到","likely covered"],["可能没写到","likely missed"],
     ["关键词","keywords"],["，缺 "," , missing "],["自动","auto"]];
   function applyI18n(){
     if(window.LANG()==="zh") return;
