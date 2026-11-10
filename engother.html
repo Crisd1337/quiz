@@ -229,6 +229,11 @@ footer{padding-bottom:96px}
 .badge .bi{display:block;font-size:18px;line-height:1.3}
 .badge .bn{display:block;font-size:10px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media (max-width:720px){ .badges{grid-template-columns:repeat(4,1fr)} }
+.slots{display:grid;gap:10px;margin:4px 0 6px}
+.slot{display:flex;gap:10px;align-items:flex-start}
+.sn{flex:0 0 22px;height:22px;border-radius:6px;border:1px solid var(--line2);color:var(--dim);
+ display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:6px}
+.slot textarea{margin:0;flex:1;min-height:56px}
 .panel{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:16px}
 .panel-h{font-size:12px;color:var(--dim);margin-bottom:10px}
 body{display:flex;flex-direction:column;min-height:100vh}
@@ -582,6 +587,8 @@ footer{padding:22px 14px 30px;line-height:1.8}
     "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
     "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
     "只选选择题":"MCQ only","只选简答题":"Short answers only",
+    "给点提示":"Hint","藏起提示":"Hide hint","写这一点的内容（英文）":"Write this point in English",
+    "点已写":"points written",
     "从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。":"Mix questions across subjects. Wrong answers return to their own subject's mistake list and are scheduled 1 / 3 / 7 days later.",
     "科学":"Science","科学 · 非年考内容（Term 1–3）":"Science · non-exam (Terms 1–3)",
     "数学 P（Standard 5.2）":"Maths (Standard 5.2)","5.3 数学":"Maths 5.3",
@@ -713,6 +720,7 @@ footer{padding:22px 14px 30px;line-height:1.8}
     [/^(\d+) 星尘$/, "$1 stardust"],
     [/^已选 (\d+) 科$/, "$1 subjects selected"],
     [/^共 (\d+) 题$/, "$1 questions total"],
+    [/^(\d+) \/ (\d+) 点已写$/, "$1 / $2 points written"],
     [/^(\d+) · (选科目|题型|每科抽几题)$/, "$1"],
     [/^每科抽几题$/, "Questions per subject"],
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
@@ -1272,6 +1280,7 @@ function TFILTER(){
   }catch(e){ return "all"; }
 }
 function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
+const HINTED = {};
 function buildOrder(){
   var f = TFILTER();
   return DATA.questions.map(function(q,i){ return {q:q,i:i}; })
@@ -1477,10 +1486,24 @@ function render() {
     const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
     const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
     const hasNum = /-?\d/.test(bareAns);
-    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
+    let slots = (rec && Array.isArray(rec.slots)) ? rec.slots.slice() : [];
+    if (!slots.length && rec && rec.text) slots = [rec.text];
+    while (slots.length < pts.length) slots.push("");
+    const many = pts.length >= 2;
+    const hinted = HINTED[q.id];
+    const hintFor = (i) => hinted ? pts[i].t.split(/\s+/).slice(0,4).join(" ") + " …" : "写这一点的内容（英文）";
+    const taHtml = many
+      ? `<div class="slots" id="slots">${pts.map((p,i)=>`
+          <div class="slot"><span class="sn">${i+1}</span>
+            <textarea data-slot="${i}" rows="2" placeholder="${esc(hintFor(i))}">${esc(slots[i]||"")}</textarea>
+          </div>`).join("")}</div>`
+      : `<textarea id="ta" data-slot="0" rows="4" placeholder="${esc(hintFor(0))}">${esc(slots[0]||"")}</textarea>`;
+    bodyHtml = taHtml + `
       <div class="actions">
         <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        <button class="btn ghost" id="hint">${hinted ? "藏起提示" : "给点提示"}</button>
         ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
+        <span class="muted" id="slotsum" style="align-self:center">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} 点已写</span>
         ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
       </div>`;
     if (rec) {
@@ -1492,7 +1515,7 @@ function render() {
           <button class="btn ghost" id="allpt">全部勾上</button>
           <button class="btn ghost" id="nonept">全部取消</button>
         </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
+        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>
       </div>`;
     }
   }
@@ -1530,19 +1553,43 @@ function render() {
       save(); render();
     }));
   } else {
-    const ta = document.getElementById("ta");
     const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
+    const slotEls = () => Array.from(app.querySelectorAll("[data-slot]"));
+    const readSlots = () => slotEls().map(el => el.value || "");
+    const joinSlots = (arr) => arr.map(s => (s||"").trim()).filter(Boolean).join(String.fromCharCode(10,10));
+    const updateSum = () => {
+      const el = document.getElementById("slotsum");
+      if (!el) return;
+      const filled = readSlots().filter(s => s.trim()).length;
+      el.textContent = filled + " / " + pts.length + " 点已写";
+      el.style.color = filled >= pts.length ? "var(--ok)" : "var(--dim)";
+    };
+    let _saveT = null;
+    if (many) {
+      slotEls().forEach(el => el.addEventListener("input", () => {
+        const c = cur();
+        const arr = readSlots();
+        state.answers[q.id] = Object.assign({}, c, {chosen:-1, slots:arr, text:joinSlots(arr)});
+        updateSum();
+        clearTimeout(_saveT); _saveT = setTimeout(save, 400);
+      }));
+      updateSum();
+    }
     document.getElementById("reveal").onclick = () => {
       const c = cur();
-      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
+      const arr = readSlots();
+      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: c.checked || [], ok:"ok"};
       save(); render();
     };
-    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
+    const hb = document.getElementById("hint");
+    if (hb) hb.onclick = () => { HINTED[q.id] = !HINTED[q.id]; render(); };
+    if (many) app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
       const c = cur(); const i = +cb.dataset.i;
       const set = new Set(c.checked || []);
       if (cb.checked) set.add(i); else set.delete(i);
-      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,i)=>set.has(i));
+      const arr = c.slots || [c.text || ""];
+      state.answers[q.id] = {chosen:-1, slots:arr, text:joinSlots(arr), checked: [...set].sort((a,b)=>a-b), ok:"ok"};
+      const full = pts.every((_,j)=>set.has(j));
       if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
       reviewMark(q.subj || DATA.slug, q.id, full);
       logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
@@ -1550,17 +1597,18 @@ function render() {
     }));
     const nc = document.getElementById("numcheck");
     if (nc) nc.onclick = () => {
-      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
+      const typed = joinSlots(readSlots());
+      const u = numsOf(typed), a = numsOf(q.answer), res = document.getElementById("numres");
       if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
       if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
       const last = u[u.length-1];
       const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
-      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
+      res.textContent = hit ? "数值与参考答案一致" : "数值与参考答案不一致";
       res.style.color = hit ? "var(--ok)" : "var(--bad)";
     };
     const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
+    if (all) all.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
+    if (none) none.onclick = () => { const c=cur(); const arr=c.slots||[c.text||""]; state.answers[q.id]={chosen:-1,slots:arr,text:joinSlots(arr),checked:[],ok:"ok"}; save(); render(); };
   }
   document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
   const nx = document.getElementById("next");
