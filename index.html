@@ -356,6 +356,7 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
       first=false;
     });
     host.innerHTML=html;
+    if(window.applyI18n) applyI18n();
   })();
   var done=0, started=0;
   document.querySelectorAll('[data-slug]').forEach(function(card){
@@ -614,6 +615,175 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
   var SEEN_KEY="dsh-seen-v1";
   function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
   function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+
+
+  /* ===== 界面中英切换（运行时替换文本节点） ===== */
+  /* 语言状态（共享给所有页面） */
+  function LANG(){
+    try{
+      var m = (location.search.match(/[?&]lang=(en|zh|both)/) || [])[1];
+      if(m){ localStorage.setItem("dsh-lang", m); return m; }
+      var v = localStorage.getItem("dsh-lang");
+      if(v) return v;
+      var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+      return nav.indexOf("zh") === 0 ? "zh" : "en";
+    }catch(e){ return "en"; }
+  }
+  window.LANG = LANG;
+  window.setLANG = function(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} };
+
+  var I18N = {
+    // 通用
+    "题号":"Index","考试模式":"Exam mode","重来":"Restart","上一题":"Previous","下一题":"Next",
+    "看成绩":"See results","回到科目列表":"Subjects","整套重做":"Redo all","查看今日榜单":"Today's leaderboard",
+    "简单":"Easy","中等":"Medium","较难":"Hard","选择题":"Multiple choice","简答":"Short answer",
+    "第":"Q","题":"questions","共":"of","分":"marks",
+    "搜索课程、单元或代码（电磁学 / King Lear / 10SCI）":"Search subjects, topics or codes",
+    // 答题
+    "先自己写（英文），写完点下面的按钮对照得分点":"Write your answer in English, then check it against the marking points",
+    "对照得分点":"Show marking points","重新对照得分点":"Review marking points","数值自检":"Check number",
+    "自评 · 勾选你写到的得分点":"Self-mark · tick the points you covered","全部勾上":"Tick all","全部取消":"Clear all",
+    "你写的：":"Your answer:","（空）":"(empty)","解析：":"Explanation:","出处：":"Source:",
+    "看完整参考答案":"Show full model answer","已得":"Scored","个得分点":"marking points",
+    "你还没写数字":"Type a number first","参考答案无数字":"No number in the model answer",
+    "数值与参考答案一致":"Number matches the model answer","数值与参考答案不一致":"Number does not match",
+    "只练错题":"Practise wrong ones only",
+    // 结算
+    "总题数":"Total questions","未做":"Unanswered","答对":"Correct","答错":"Wrong",
+    "选择题答对":"MCQ correct","选择题答错":"MCQ wrong","简答得分":"Short-answer marks","正确率":"Accuracy",
+    // 档案/任务/榜单
+    "等级":"Level","今日":"Today","连续":"Streak","天":"days","连对纪录":"Best combo","金币":"Coins","星尘":"Stardust",
+    "今日任务":"Today's tasks","每天 0 点刷新":"Resets daily","领取":"Claim","已领取":"Claimed",
+    "今日好友榜":"Today's leaderboard","服务器设置":"Server settings","复制我的战绩码":"Copy my score code",
+    "粘贴同学的战绩码":"Paste a classmate's code","加入":"Add","提交到服务器":"Submit",
+    "你附近 · 再对一道题就能超过":"Near you · one more correct answer to overtake",
+    "今日榜单":"Today's leaderboard","关闭":"Close","答对题数":"Correct answers","用时":"Time",
+    "我":"Me","（我）":" (me)","第一名":"1st","第二名":"2nd","第三名":"3rd",
+    "已交卷":"Submitted by","人":"students","近 7 天正确率":"Accuracy, last 7 days",
+    // 首页
+    "复习测验":"Revision Quizzes","今日挑战":"Daily challenge","错题本":"Mistakes","商城":"Shop",
+    "课程":"Subjects","门 · 年考优先":"subjects · exam order","搜索课程、单元或代码":"Search subjects, topics or codes",
+    "没有匹配的课程":"No matching subject","下一场":"Next exam","天后":"days away",
+    "年考":"Yearly","未开始":"Not started","选择":"MCQ","下一场考试":"Next exam",
+    "综合卷 · 全科":"Mixed paper · all subjects","从":"From","科抽题混做":"subjects, mixed",
+    "科目列表":"Subjects","分数":"Score","语言":"Language",    "← 科目列表":"Subjects","正在上传试卷…":"Uploading your paper...",
+    "正在加密上传试卷…":"Encrypting and uploading...","正在实时计算排名…":"Calculating your rank...",
+    "今天还没有人上榜":"No one on the board yet","你还没上榜，交卷即可参与":"Not on the board yet - submit to join",
+    "绿=对 红=错 橙=半对 灰=未做":"Green = correct · Red = wrong · Amber = partial · Grey = unanswered",
+    "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
+    "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
+    "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "允许":"Allow","未开始":"Not started","已开始":"Started","完成":"done",
+
+    // 页面标题与页脚
+    "Canvas 复习测验":"Canvas Revision Quizzes",
+    "音效 开":"Sound on","音效 关":"Sound off",
+    "今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。":"No one has submitted yet today. Finish the daily challenge and hit Submit, or swap score codes with classmates.",
+    "进度存在本机浏览器里，换设备需导出备份":"Progress is saved in this browser. Export a backup to move devices.",
+    "「原始资料」链接指向":"The source-material link points to",
+    "，未一起上传时失效，不影响做题":". It is broken when not uploaded together, but quizzing still works.",
+    // 分组
+    "年考重点":"Core exams","非年考内容（有余力再看）":"Non-exam content","其他科目":"Other subjects",
+    "年考版":"Yearly","学科":"Elective","辅导":"Wellbeing",
+    // 科目
+    "科学 · 10 年级":"Science · Year 10","英语 · 10 年级":"English · Year 10",
+    "历史 · 10 年级":"History · Year 10","地理 · 10 年级":"Geography · Year 10",
+    "PDHPE · 10 年级":"PDHPE · Year 10","数学 P · 10 年级":"Maths (Standard) · Year 10",
+    "数学 5.3 · 10 年级":"Maths (Advanced) · Year 10",
+    "科学 · 非年考":"Science · non-exam","历史 · 非年考":"History · non-exam",
+    "地理 · 非年考":"Geography · non-exam","英语 · 非年考":"English · non-exam",
+    "食品科技 · 10 年级":"Food Technology · Year 10","生涯规划 · 10 年级":"Careers · Year 10",
+    "体育 · 10 年级":"Sport · Year 10","户外教育 · 10 年级":"Outdoor Education · Year 10",
+    "心理与福祉":"Wellbeing",
+    // 范围
+    "有机化学 25 / 进化 25 / 技能 20":"Organic chemistry 25 / Evolution 25 / Skills 20",
+    "King Lear 短答 + 比较论文":"King Lear short answer + comparative essay",
+    "术语选择 + 1991–2019 美国外交":"Terminology MCQ + US foreign policy 1991-2019",
+    "气候变化 · 温室效应 / 海平面 / 珊瑚白化":"Climate change · greenhouse / sea level / bleaching",
+    "道路安全 / 急救 / 心理健康":"Road safety / first aid / mental health",
+    "金融 / 代数 / 坐标几何 / 统计":"Finance / algebra / coordinate geometry / statistics",
+    "根式 / 指数 / 对数 / 三角 / 概率":"Surds / indices / logs / trig / probability",
+    "电磁学 / 进化 / 技能":"Organic chemistry / evolution / skills",
+    "地球能量 / 遗传 / 运动 / 化学 / 气候":"Earth energy / genetics / motion / chemistry / climate",
+    "Holocaust / 冷战 / 民权":"Holocaust / Cold War / civil rights",
+    "福祉 / 原住民 / 气候变化":"Wellbeing / Indigenous / climate",
+    "战争单元 / 诗歌 / 阅读卷":"War unit / poetry / reading",
+    "食品安全 / 食物不平等 / 特殊需求":"Food safety / food inequality / special needs",
+    "就业路径 / 求职 / ATAR / USI·TFN":"Career paths / job hunt / ATAR / USI-TFN",
+    "规则 / 赛事 / 训练常识":"Rules / events / training",
+    "环境意识 / Leave No Trace":"Environmental awareness / Leave No Trace",
+    "焦虑 / 抑郁 / 求助渠道":"Anxiety / depression / where to get help",
+    // 任务
+    "精准":"Accuracy","写作":"Writing","数量":"Volume","攻坚":"Stretch","连击":"Combo","每日":"Daily",
+    "正确率 80%（至少 10 题）":"80% accuracy (at least 10 questions)",
+    "完成 3 道简答自评":"Self-mark 3 short answers",
+    "今天做满 20 题":"Answer 20 questions today",
+    "今天做满 12 题":"Answer 12 questions today",
+    "一次连对 5 题":"Get 5 correct in a row",
+    "一次连对 8 题":"Get 8 correct in a row",
+    "做对 3 道「较难」题":"Get 3 hard questions right",
+    "完成今日挑战":"Finish the daily challenge",
+    // 课程图标首字
+    "科":"S","英":"E","历":"H","地":"G","数":"M","食":"F","生":"C","体":"P","户":"O","心":"W"
+  };
+  var I18N_PAT = [
+    [/^第 (\d+) 题 \/ 共 (\d+)$/, "Q$1 of $2"],
+    [/^(\d+) \/ (\d+)$/, "$1 / $2"],
+    [/^已得 (\d+) \/ (\d+) 分$/, "Scored $1 / $2"],
+    [/^共 (\d+) 分 · (\d+) 个得分点$/, "$1 marks · $2 marking points"],
+    [/^(\d+) 题$/, "$1 questions"],
+    [/^\s*题\s*$/, "questions"],
+    [/^(\S+) (\d+) · (\d+) 题 · (.+)$/, "$1 $2 · $3 questions · $4"],
+    [/^今日 (\d+)\/(\d+)$/, "Today $1/$2"],
+    [/^连续 (\d+) 天$/, "Streak $1 days"],
+    [/^连对纪录 (\d+)$/, "Best combo $1"],
+    [/^金币 (\d+)$/, "Coins $1"],
+    [/^星尘 (\d+)$/, "Stardust $1"],
+    [/^已交卷 (\d+) 人$/, "$1 submitted"],
+    [/^下一场 (.+) · (\d+\/\d+) · (\d+) 天后$/, "Next: $1 · $2 · $3 days"],
+    [/^(\d+\/\d+) (.+) · (\d+) 天$/, "$1 $2 · $3 days"],
+    [/^第 (\d+) 名$/, "#$1"],
+    [/^最高 (\d+)%$/, "Top $1%"],
+    [/^今日榜$/, "Board"],
+    [/^Lv\.(\d+)$/, "Lv.$1"],
+    [/^(\d+) 科 · (\d+) 题$/, "$1 subjects · $2 questions"],
+    [/^(\d+) 门 · 年考优先$/, "$1 subjects · exam order"],
+    [/^(\d+) 门$/, "$1 subjects"],
+    [/^(\d+) 天后$/, "$1 days"],
+    [/^XP · 还差 (\d+) 升级$/, "XP · $1 to next level"],
+    [/^从 (\d+) 科抽题混做，(\d+) 题可选$/, "Mix questions from $1 subjects, $2 available"],
+    [/^(\d+) 选择$/, "$1 MCQ"],
+    [/^(\d+) 简答$/, "$1 short"],
+    [/^下一场 (.+) · (\d+\/\d+) ·$/, "Next: $1 · $2 ·"],
+    [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"]
+  ];
+  function applyI18n(){
+    if(window.LANG()==="zh") return;
+    var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n, changed=[];
+    while((n=walker.nextNode())){
+      var s=(n.nodeValue||"").trim(); if(!s) continue;
+      if(I18N[s]){ n.nodeValue=n.nodeValue.replace(s, I18N[s]); continue; }
+      for(var i=0;i<I18N_PAT.length;i++){
+        if(I18N_PAT[i][0].test(s)){ n.nodeValue=n.nodeValue.replace(s, s.replace(I18N_PAT[i][0], I18N_PAT[i][1])); break; }
+      }
+    }
+    document.querySelectorAll("[placeholder]").forEach(function(el){
+      var p=el.getAttribute("placeholder");
+      if(I18N[p]) el.setAttribute("placeholder", I18N[p]);
+    });
+    document.querySelectorAll("[title]").forEach(function(el){
+      var t2=el.getAttribute("title");
+      if(I18N[t2]) el.setAttribute("title", I18N[t2]);
+    });
+  }
+  window.applyI18n=applyI18n;
+  function kickI18n(){ try{ applyI18n(); }catch(e){} }
+  if(document.readyState==="loading")
+    document.addEventListener("DOMContentLoaded", function(){ setTimeout(kickI18n, 20); });
+  else setTimeout(kickI18n, 20);
+  window.addEventListener("load", function(){ setTimeout(kickI18n, 60); });
+  setTimeout(kickI18n, 300);
 
   /* ===== 排行榜：分阶段披露（战中抽屉 / 战后全屏） ===== */
   var LB={sort:"pct", list:[], open:false, at:0, timer:null};
@@ -1083,6 +1253,7 @@ footer code{background:var(--panel);padding:1px 5px;border-radius:4px;font-size:
   }
   function renderAll(){
     renderProfile();
+    setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
     setTimeout(loadBoard, 0);
     renderQuests(document.getElementById("quests"));
     renderBoard(document.getElementById("board"));

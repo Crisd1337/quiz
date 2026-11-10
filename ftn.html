@@ -322,487 +322,6 @@ footer{padding:22px 14px 30px;line-height:1.8}
 </div></div>
 <footer>键盘：<kbd>1</kbd>–<kbd>4</kbd> 选择 · <kbd>←</kbd><kbd>→</kbd> 切题 · <kbd>G</kbd> 题号 · <kbd>Enter</kbd> 下一题 · <kbd>S</kbd> 看成绩 · 进度自动保存在本机浏览器</footer>
 <script>
-const DATA = {"slug": "ftn", "title": "食品科技 · 10 年级", "examMin": 60, "questions": [{"id": "ftn-001", "topic": "食品安全 · 危险温区", "difficulty": "easy", "type": "mcq", "stem": "What is the temperature range of the food safety 'danger zone'?", "options": ["5°C to 60°C", "0°C to 5°C", "60°C to 100°C", "-18°C to 4°C"], "answer": 0, "explanation": "危险温区是 5°C–60°C，这个区间里有害细菌繁殖最快。0°C 以下只是抑制生长，并不等于杀菌。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone", "weak": false}, {"id": "ftn-002", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "easy", "type": "mcq", "stem": "Under the 2-hour / 4-hour rule, what must happen to potentially hazardous food that has been in the danger zone for more than 4 hours?", "options": ["It can be returned to the fridge and used again the next day", "It must be thrown away because bacteria levels are too high", "It can be frozen and kept for up to one week", "It can be reheated to 100°C and then served"], "answer": 1, "explanation": "超过 4 小时细菌数量已高到可能引发食物中毒，必须丢弃，不能靠回锅或冷冻补救。很多同学会误以为重新加热就安全。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-003", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "medium", "type": "mcq", "stem": "A tray of cooked chicken has been sitting at room temperature for 3 hours. Under the 2-hour / 4-hour rule, which action is correct?", "options": ["Reheat it, then freeze it for the following week", "Return it to the fridge and use it later", "Eat it now, but do not return it to the fridge", "Throw the chicken away immediately"], "answer": 2, "explanation": "超过 2 小时、不足 4 小时的食物仍可食用，但不能放回冰箱（否则只是把细菌一起冷藏）。只有 2 小时以内的食物才能冷藏。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-004", "topic": "食品安全 · 冷藏温度", "difficulty": "easy", "type": "mcq", "stem": "To keep perishable food out of the danger zone, foods such as ham and salami should be stored at:", "options": ["8°C or below", "About 22°C", "About 60°C", "4°C or below"], "answer": 3, "explanation": "冷藏需控制在 4°C 或以下，才能让细菌繁殖速度降到很低。8°C、22°C 都高于安全冷藏温度，挡不住细菌增殖。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone（Industry Example）", "weak": false}, {"id": "ftn-005", "topic": "厨房运作 · Mise en place", "difficulty": "easy", "type": "mcq", "stem": "In a commercial kitchen, 'mise en place' refers to:", "options": ["Preparing ingredients and equipment before cooking", "Cleaning down kitchen benches at the end of service", "Plating the finished dish neatly for service", "Ordering stock and checking supplier deliveries"], "answer": 0, "explanation": "mise en place 是「备料到位」，包括切好洋葱、量好调料、预热烤箱等。缺了这一步会直接造成 poor workflow。", "source": "Term 1 · Assumed Knowledge Quiz 6: Mise en place；Structured Responses (Sample Answers).pdf — Poor Workflow", "weak": false}, {"id": "ftn-006", "topic": "食物公平 · 定义", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines food inequity?", "options": ["People choose not to eat certain foods for religious reasons", "Some groups have limited access to affordable, safe food while others do not", "Restaurants charge different prices for the same meal", "Everyone in a country has equal access to safe, nutritious food"], "answer": 1, "explanation": "food inequity 强调「可获得性不平等」，是有的人吃不到足量、安全、有营养的食物。不要和宗教饮食禁忌或个人选择混为一谈。", "source": "Term 1 · Food Inequity Assignment (Part 1 – Define)", "weak": false}, {"id": "ftn-007", "topic": "食物公平 · 受影响人群", "difficulty": "easy", "type": "mcq", "stem": "According to the Term 1 unit, which group is identified as likely to experience food inequity in developed and developing countries?", "options": ["Professional athletes on high incomes", "Full-time university students living on campus", "People on low incomes or who are unemployed", "Food critics who review restaurants"], "answer": 2, "explanation": "低收入或失业人群是课程列出的典型群体。同类的还有偏远地区居民、女性与儿童、老年人、慢性病患者、残障人士、原住民与无家可归者。", "source": "Term 1 · Food Inequity Assignment（Introduction 受影响人群列表）", "weak": false}, {"id": "ftn-008", "topic": "食物公平 · 慈善机构", "difficulty": "medium", "type": "mcq", "stem": "Which Australian organisation was listed in the Term 1 assignment as a charity that rescues surplus food and redistributes it to people experiencing food insecurity?", "options": ["Woolworths", "Fair Work Australia", "MasterChef Australia", "OzHarvest"], "answer": 3, "explanation": "OzHarvest 是澳洲典型的食物救援慈善机构，把商家剩余的食材收集后分发给有需要的人。Woolworths 是超市企业，Fair Work 是职场监管机构，都不是慈善机构。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity list)（机构职能为课程标准知识补充）", "weak": true}, {"id": "ftn-009", "topic": "食物趋势 · Snackification", "difficulty": "easy", "type": "mcq", "stem": "The food trend known as 'snackification' refers to:", "options": ["Replacing main meals with more frequent, smaller snacks", "Selling snacks only through supermarkets", "Eating only two large meals a day and no snacks in between", "Removing all snacks from your daily diet"], "answer": 0, "explanation": "snackification 指「正餐零食化」，人们用更多小份量、便携的进食场合取代传统三餐。它和「少吃零食」正好相反。", "source": "Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends", "weak": false}, {"id": "ftn-010", "topic": "食物趋势 · 丑果蔬", "difficulty": "medium", "type": "mcq", "stem": "Supermarkets selling 'ugly' fruit and vegetables is a trend that mainly aims to:", "options": ["Charge a higher price for imperfect-looking produce", "Reduce food waste by selling produce rejected as ugly", "Replace fresh produce with canned produce", "Encourage farmers to grow fewer vegetables"], "answer": 1, "explanation": "这类趋势针对的是「长相不合格但完全可食用」的蔬果，目的是减少农场端和零售端的食物浪费。核心卖点是减废，而不是涨价。", "source": "Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets", "weak": false}, {"id": "ftn-011", "topic": "食物趋势 · 明星厨师", "difficulty": "medium", "type": "mcq", "stem": "How do celebrity chefs most directly influence food trends?", "options": ["By writing the national dietary guidelines used in all schools", "By inspecting restaurants for food safety compliance", "By popularising ingredients and dishes through media exposure", "By setting the official price of restaurant meals"], "answer": 2, "explanation": "明星厨师通过电视节目、社交媒体和食谱把某些食材或做法带火，形成流行趋势。他们并不制定价格、膳食指南或做卫生检查。", "source": "Term 2 · Food Trends: Quiz 2 Celebrity Chef", "weak": false}, {"id": "ftn-012", "topic": "特定需求 · 乳糜泻", "difficulty": "easy", "type": "mcq", "stem": "A person with coeliac disease must avoid:", "options": ["All nuts, seeds and peanut products", "All dairy products, such as milk", "All foods containing added sugar", "Gluten, found in wheat, barley and rye"], "answer": 3, "explanation": "乳糜泻是对麸质（gluten）的自身免疫反应，必须终身严格无麸质饮食。它属于免疫反应，不是普通「面粉过敏」。", "source": "Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease", "weak": false}, {"id": "ftn-013", "topic": "特定需求 · 血糖生成指数", "difficulty": "medium", "type": "mcq", "stem": "A food with a low glycaemic index (GI) is best described as one that:", "options": ["Is digested slowly and raises blood glucose gradually", "Contains no carbohydrate or sugar at all", "Must be avoided by everyone with diabetes at all times", "Raises blood glucose quickly and sharply"], "answer": 0, "explanation": "低 GI 食物消化吸收慢，血糖上升平缓，饱腹感也更持久。高 GI 才是快速冲高血糖。低 GI 不等于零碳水，也不是所有糖尿病患者都要完全回避。", "source": "Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index", "weak": false}, {"id": "ftn-014", "topic": "特定需求 · 过敏与不耐受", "difficulty": "medium", "type": "mcq", "stem": "Which statement correctly distinguishes a food allergy from a food intolerance?", "options": ["An allergy can be removed by cooking the food thoroughly", "An allergy involves the immune system, while an intolerance does not", "An intolerance is always more dangerous than an allergy", "They are two names for exactly the same reaction"], "answer": 1, "explanation": "食物过敏由免疫系统介导，可能引发呼吸困难等严重反应；不耐受多是消化酶不足，症状以肠胃不适为主。两者机制不同，不能互换使用。", "source": "Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances", "weak": false}, {"id": "ftn-015", "topic": "特定需求 · 骨质疏松", "difficulty": "easy", "type": "mcq", "stem": "Which two nutrients are most important for reducing the risk of osteoporosis?", "options": ["Protein and vitamin B12", "Iron and vitamin C", "Calcium and vitamin D", "Sodium and potassium"], "answer": 2, "explanation": "钙是骨骼的主要矿物质，维生素 D 帮助钙吸收，两者缺一都会增加骨质疏松风险。只补钙不补维生素 D 吸收效率会打折扣。", "source": "Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis", "weak": false}, {"id": "ftn-016", "topic": "特定需求 · 缺铁性贫血", "difficulty": "medium", "type": "mcq", "stem": "Iron-deficiency anaemia is best managed by including more of which foods in the diet?", "options": ["Refined white flour products such as white bread", "Foods high in calcium, such as milk and cheese", "Foods high in vitamin C only, such as citrus fruit and juice", "Iron-rich foods such as red meat, legumes and leafy greens"], "answer": 3, "explanation": "缺铁性贫血的饮食重点是补铁，红肉、豆类和深绿叶菜都是常见来源。维生素 C 能促进铁吸收，但它本身不是铁的来源。", "source": "Term 3 · Food for Specific Needs: Quiz 8A Anaemia", "weak": false}, {"id": "ftn-017", "topic": "特殊场合 · 农历新年", "difficulty": "easy", "type": "mcq", "stem": "In Chinese New Year celebrations, long noodles are served because they symbolise:", "options": ["Longevity and a long life", "The end of the harvest season", "Good luck in school examinations", "Wealth in the form of gold coins"], "answer": 0, "explanation": "长寿面象征长寿，讲究不断开、不剪断。金元宝形状的饺子才和财富相关，两样不要混。", "source": "Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year", "weak": false}, {"id": "ftn-018", "topic": "特殊场合 · 亡灵节", "difficulty": "medium", "type": "mcq", "stem": "Día de los Muertos (Day of the Dead) is a celebration in which families:", "options": ["Fast for three days to mourn deceased relatives at home", "Build ofrendas with food to honour deceased relatives", "Give children cakes with a hidden coin inside", "Throw a decorated birthday cake into the sea"], "answer": 1, "explanation": "亡灵节是墨西哥 11 月初的纪念活动，家人搭建 ofrenda 祭坛，摆放逝者生前喜爱的食物与物品。它的基调是纪念与团聚，不是哀悼性禁食。", "source": "Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos", "weak": false}, {"id": "ftn-019", "topic": "厨房运作 · Poor workflow", "difficulty": "hard", "type": "short", "stem": "Discuss how poor workflow can impact a chef working in a commercial kitchen. In your answer, identify one cause of poor workflow and one way it could be improved.", "options": [], "answer": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.", "explanation": "结构化简答要按 Is–Affects–Caused by–Improved by–Example 五步写：先定义，再说影响、成因、改进方式，最后补一个行业例子。只写「很乱」拿不到分。", "source": "Structured Responses (Sample Answers).pdf — Poor Workflow", "points": [{"t": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food", "m": 1}, {"t": "it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team", "m": 1}], "weak": false}, {"id": "ftn-020", "topic": "食物公平 · 发达国家中的不公平", "difficulty": "hard", "type": "short", "stem": "Food inequity also exists in developed countries such as Australia. Identify two groups affected and explain one factor that makes it hard for them to access nutritious food.", "options": [], "answer": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.", "explanation": "答案要「两个群体 + 一个原因」。常见失分是只列群体不解释原因；能被接受的典型原因是价格、交通距离、住宿条件（无厨房）或健康限制。", "source": "Term 1 · Food Inequity Assignment（Introduction 与 Part 1）", "points": [{"t": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people", "m": 1}, {"t": "One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach", "m": 1}], "weak": false}, {"id": "ftn-021", "topic": "食物公平 · 慈善机构的作用与局限", "difficulty": "hard", "type": "short", "stem": "Explain how charities such as OzHarvest or Foodbank reduce food inequity, and outline one limitation of relying on charities to solve food insecurity.", "options": [], "answer": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.", "explanation": "拿分点有两层：先说慈善机构怎么「救急」（收集余粮、再分配），再指出结构性问题无法靠捐赠解决。只说「他们帮助穷人」不够深入。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity research)＋Part 4（未来策略）", "points": [{"t": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food", "m": 1}, {"t": "A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs", "m": 1}], "weak": false}, {"id": "ftn-022", "topic": "食物趋势 · 社交媒体", "difficulty": "hard", "type": "short", "stem": "Explain how social media drives food trends such as the #foodie movement and snackification, and identify one risk this creates for consumers.", "options": [], "answer": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.", "explanation": "要写出「传播机制」（视觉内容、hashtag、网红）和「风险」（误导性营养信息、份量与健康问题）。只描述现象不解释机制容易被扣分。", "source": "Term 2 · Food Trends: Quiz 6 #foodie；Quiz 4 Snackification and other Food Trends", "points": [{"t": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products", "m": 1}, {"t": "One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition", "m": 1}], "weak": false}, {"id": "ftn-023", "topic": "特定需求 · 运动员能量需求", "difficulty": "medium", "type": "short", "stem": "Explain why a professional NRL player has different daily energy and nutrient requirements from a sedentary office worker.", "options": [], "answer": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.", "explanation": "答案要落到「能量消耗差异 → 碳水/蛋白/水分需求差异」。只写「运动员吃得多」没有解释营养素的分配，属于低分答案。", "source": "Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players；Quiz 7 Diet of an Olympic Athlete", "points": [{"t": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses", "m": 1}, {"t": "A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat", "m": 1}], "weak": false}, {"id": "ftn-024", "topic": "特殊场合 · 用食物庆祝的原因", "difficulty": "medium", "type": "short", "stem": "Give two reasons why families and communities celebrate with particular foods, and support each reason with one example.", "options": [], "answer": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.", "explanation": "两个理由要区分开：一个是「社交团聚」，一个是「文化/宗教象征」，并各配一个例子。只举例子不说明理由会丢分。", "source": "Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food", "points": [{"t": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas", "m": 1}, {"t": "Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year", "m": 1}], "weak": false}, {"id": "ftn-025", "topic": "食品安全 · 个人卫生", "difficulty": "hard", "type": "short", "stem": "Explain why personal hygiene is the responsibility of every food handler. Give two examples of poor personal hygiene that could contaminate food.", "options": [], "answer": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.", "explanation": "要点是「个体行为会导致整批食物污染」以及具体错误做法（洗手、生病上岗、对着食物咳嗽）。Food Handler Basics 模块 2 就是这一块。", "source": "Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)", "points": [{"t": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible", "m": 1}, {"t": "Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro", "m": 1}], "weak": false}]};
-const KEY = "dsh-quiz-ftn";
-const MULTI = DATA.slug === "all";
-const app = document.getElementById("app");
-let state = {idx:0, answers:{}, order:null};
-
-function load() {
-  try {
-    const s = JSON.parse(localStorage.getItem(KEY) || "null");
-    if (s && s.answers) state = s;
-  } catch(e) {}
-  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
-  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
-  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
-  try {
-    const m = location.search.match(/[?&]q=([^&]+)/);
-    if (m) {
-      const qid = decodeURIComponent(m[1]);
-      const qi = DATA.questions.findIndex(x => x.id === qid);
-      const pos = state.order.indexOf(qi);
-      if (pos >= 0) state.idx = pos;
-    }
-  } catch(e) {}
-}
-function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-
-function renderSetup() {
-  const subs = DATA.subjects || {};
-  const keys = Object.keys(subs);
-  const saved = state.pick || {};
-  const opts = keys.map(k => {
-    const on = saved[k] !== false;
-    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
-      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
-  }).join("");
-  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
-  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
-  app.innerHTML = `<div class="setup">
-    <div class="setup-head">
-      <h2>综合卷 · 全科</h2>
-      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
-    </div>
-
-    <section class="setup-block">
-      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
-      <div class="picks">${opts}</div>
-    </section>
-
-    <section class="setup-block">
-      <div class="setup-label">2 · 每科抽几题</div>
-      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
-    </section>
-
-    <div class="setup-foot">
-      <div class="sum">共 <b id="cnt">0</b> 题</div>
-      <button class="btn ghost" id="daily">今日挑战</button>
-      <button class="btn" id="startmix">开始答题 →</button>
-    </div>
-  </div>`;
-  const chosenCount = () => {
-    let c = 0;
-    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
-    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
-  };
-  const calc = () => {
-    let n = 0;
-    app.querySelectorAll(".pick input").forEach(cb => {
-      if (!cb.checked) return;
-      const k = cb.dataset.s, c = subs[k].n;
-      n += per ? Math.min(per, c) : c;
-    });
-    document.getElementById("cnt").textContent = n;
-    const pc = document.getElementById("pickcount");
-    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
-  };
-  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
-    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
-  });
-  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
-    state.per = +b.dataset.n; save(); render();
-  });
-  function seedRnd(str){
-    var h=2166136261;
-    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
-    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
-      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
-  }
-  function startDaily(){
-    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-    var rnd=seedRnd("daily:"+key);
-    var idxs=[];
-    DAILY.forEach(function(sl){
-      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
-      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
-      idxs=idxs.concat(pool.slice(0,3));
-    });
-    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
-    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
-  }
-  document.getElementById("daily").onclick = startDaily;
-  document.getElementById("startmix").onclick = () => {
-    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
-    if (!chosen.length) { alert("至少选一科"); return; }
-    let idxs = [];
-    chosen.forEach(k => {
-      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
-      pool.sort(() => Math.random() - 0.5);
-      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
-    });
-    idxs.sort(() => Math.random() - 0.5);
-    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
-    state.answers = {}; state.t0 = Date.now(); save(); render();
-  };
-  calc();
-}
-
-
-/* ===== 语言切换 ===== */
-function LANG(){ try{ return localStorage.getItem("dsh-lang") || "en"; }catch(e){ return "en"; } }
-function setLANG(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} }
-var UI_TEXT = {
-  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
-        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
-  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
-        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
-};
-function T(k){
-  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
-  return d[k] || UI_TEXT.en[k] || k;
-}
-function applyChrome(){
-  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
-  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
-  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
-  var l=LANG();
-  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
-}
-function cycleLang(){
-  var order=["en","zh","both"], i=order.indexOf(LANG());
-  setLANG(order[(i+1)%3] || "en");
-  applyChrome(); render();
-}
-
-function render() {
-  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
-    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
-  }
-  if (MULTI && state.setup && !state.started) return renderSetup();
-  const qs = state.order.map(i => DATA.questions[i]);
-  const q = qs[state.idx];
-  const L = LANG(), ZH = (q && q.zh) || null;
-  const total = qs.length;
-  const answered = qs.filter(x => state.answers[x.id]).length;
-  const right = qs.filter(x => state.answers[x.id] === "ok").length;
-  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
-  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
-  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
-  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
-  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
-
-  const rec = state.answers[q.id];
-  const chips = `<div class="chips">
-      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
-      <span class="chip">${esc(q.topic)}</span>
-      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
-      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
-      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
-    </div>`;
-
-  let bodyHtml = "";
-  if (q.type === "mcq") {
-    const opts = (q.options || []).map((o, i) => {
-      let cls = "opt", mark = "";
-      if (rec) {
-        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
-        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
-      }
-      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
-      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
-      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
-        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
-    }).join("");
-    bodyHtml = `<div class="opts">${opts}</div>`;
-  } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
-    const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
-    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
-    const hasNum = /-?\d/.test(bareAns);
-    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
-      <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
-        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点</div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
-      </div>`;
-    }
-  }
-
-  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
-      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
-      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
-
-  const last = state.idx >= total - 1;
-  let stemHtml;
-  if (L === "zh" && ZH && ZH.stem) {
-    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
-  } else if (L === "both" && ZH && ZH.stem) {
-    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
-  } else {
-    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
-  }
-  app.innerHTML = `<div class="card">${chips}${stemHtml}
-      ${bodyHtml}${expHtml}</div>
-      <div class="actionbar">
-        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
-        <span class="spacer"></span>
-        <button class="btn ghost" id="finish">${T("finish")}</button>
-        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
-      </div>`;
-
-  if (q.type === "mcq") {
-    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
-      const i = +b.dataset.i;
-      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
-      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
-      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
-      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
-      save(); render();
-    }));
-  } else {
-    const ta = document.getElementById("ta");
-    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
-    document.getElementById("reveal").onclick = () => {
-      const c = cur();
-      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
-      const set = new Set(c.checked || []);
-      if (cb.checked) set.add(i); else set.delete(i);
-      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,i)=>set.has(i));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
-      save(); render();
-    }));
-    const nc = document.getElementById("numcheck");
-    if (nc) nc.onclick = () => {
-      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
-      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
-  }
-  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
-  const nx = document.getElementById("next");
-  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
-  document.getElementById("finish").onclick = showResult;
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function showResult() {
-  const qs = state.order.map(i => DATA.questions[i]);
-  if (!state.rewarded && qs.length) {
-    state.rewarded = true; save();
-    if (state.daily) {
-      try {
-        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
-        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
-        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
-        var DKEY = "dsh-daily-v1";
-        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
-        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
-        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
-          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
-          localStorage.setItem(DKEY, JSON.stringify(drec));
-        }
-        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
-      } catch(e) {}
-    }
-    const answered = qs.filter(x => state.answers[x.id]).length;
-    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
-    if (window.openChest && answered >= 3) openChest();
-  }
-  const rec = id => state.answers[id] || null;
-  const mcq = qs.filter(x => x.type === "mcq");
-  const shorts = qs.filter(x => x.type === "short");
-  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
-  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
-  const todo = qs.filter(x => !rec(x.id));
-  let earnedM = 0, totalM = 0, partM = 0;
-  const weak = [];
-  shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
-    const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
-    totalM += tot;
-    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
-  });
-  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
-  const needRedo = [...wrong, ...weak];
-  const wrongIds = needRedo.map(x => x.id);
-  app.innerHTML = `<div class="card done">
-      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
-      <div class="stats">
-        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
-        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
-        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
-        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
-      </div>
-      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
-      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
-      <div class="actions">
-        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
-        <button class="btn ghost" id="showlb">${T("lb")}</button>
-        <button class="btn ghost" id="again">${T("again")}</button>
-        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
-      </div></div>`;
-  const redo = document.getElementById("redo");
-  if (redo) redo.onclick = () => {
-    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
-    wrongIds.forEach(id => delete state.answers[id]);
-    state.idx = 0; save(); render();
-  };
-  const showlb = document.getElementById("showlb");
-  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
-  document.getElementById("again").onclick = () => {
-    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
-    save(); render();
-  };
-}
-
-document.getElementById("grid").onclick = openNav;
-document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
-document.getElementById("nav").addEventListener("click", e => {
-  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
-});
-try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
-catch(e) { document.body.insertAdjacentHTML("afterbegin",
-  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
-
-document.getElementById("exam").onclick = startExam;
-if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
-
-var _langBtn = document.getElementById("langBtn");
-if (_langBtn) _langBtn.onclick = cycleLang;
-applyChrome();
-document.getElementById("restart").onclick = () => {
-  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
-  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
-  save(); render();
-};
-
-document.addEventListener("keydown", e => {
-  if (MULTI && state.setup && !state.started) {
-    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
-    return;
-  }
-  const tag = (e.target && e.target.tagName) || "";
-  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
-  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
-  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
-  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
-  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
-    else showResult();
-    return;
-  }
-  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
-  if (!q || q.type !== "mcq") return;
-  const n = parseInt(e.key, 10);
-  if (n >= 1 && n <= (q.options || []).length) {
-    if (!state.answers[q.id]) {
-      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
-      save(); render();
-    }
-  }
-});
-
-const REVIEW_KEY = "dsh-review-v1";
-const GAPS = [1, 3, 7];
-function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
-function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
-function reviewMark(slug, qid, correct){
-  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
-  if (correct) {
-    const it = db[id];
-    if (!it) return;
-    const st = (it.stage || 0) + 1;
-    if (st >= GAPS.length) delete db[id];
-    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
-  } else {
-    const old = db[id] || {};
-    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
-  }
-  reviewSave(db);
-}
-function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
-
-const LOG_KEY = "dsh-log-v1";
-function logAnswer(slug, qid, ok, diff, ty){
-  try {
-    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
-    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
-    if (arr.length > 3000) arr = arr.slice(-3000);
-    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
-  } catch(e) {}
-}
-function navState(qi){
-  const q = DATA.questions[qi], a = state.answers[q.id];
-  if (!a) return "";
-  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
-  const pts = q.points || [{m:1}], c = (a.checked || []).length;
-  if (c >= pts.length) return "ok";
-  if (c > 0) return "part";
-  return "";
-}
-function openNav(){
-  const grid = document.getElementById("navgrid");
-  grid.innerHTML = state.order.map((qi, pos) =>
-    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
-  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
-    state.idx = +b.dataset.pos; save();
-    document.getElementById("nav").classList.remove("on"); render();
-  });
-  document.getElementById("nav").classList.add("on");
-}
-
-let timerId = null;
-function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
-function tickClock(){
-  const el = document.getElementById("clock");
-  if (!state.deadline) { if (el) el.style.display = "none"; return; }
-  const left = state.deadline - Date.now();
-  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
-            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
-  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
-}
-function startExam(){
-  const def = DATA.examMin || 60;
-  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
-  if (v === null) return;
-  const mins = parseInt(v, 10);
-  if (!mins || mins <= 0) return;
-  state.deadline = Date.now() + mins*60000; save();
-  if (timerId) clearInterval(timerId);
-  timerId = setInterval(tickClock, 1000);
-  tickClock();
-}
-
-
-load(); render();
-</script>
-<script>
 
 (function(){
   var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
@@ -1003,6 +522,175 @@ load(); render();
   var SEEN_KEY="dsh-seen-v1";
   function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
   function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+
+
+  /* ===== 界面中英切换（运行时替换文本节点） ===== */
+  /* 语言状态（共享给所有页面） */
+  function LANG(){
+    try{
+      var m = (location.search.match(/[?&]lang=(en|zh|both)/) || [])[1];
+      if(m){ localStorage.setItem("dsh-lang", m); return m; }
+      var v = localStorage.getItem("dsh-lang");
+      if(v) return v;
+      var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+      return nav.indexOf("zh") === 0 ? "zh" : "en";
+    }catch(e){ return "en"; }
+  }
+  window.LANG = LANG;
+  window.setLANG = function(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} };
+
+  var I18N = {
+    // 通用
+    "题号":"Index","考试模式":"Exam mode","重来":"Restart","上一题":"Previous","下一题":"Next",
+    "看成绩":"See results","回到科目列表":"Subjects","整套重做":"Redo all","查看今日榜单":"Today's leaderboard",
+    "简单":"Easy","中等":"Medium","较难":"Hard","选择题":"Multiple choice","简答":"Short answer",
+    "第":"Q","题":"questions","共":"of","分":"marks",
+    "搜索课程、单元或代码（电磁学 / King Lear / 10SCI）":"Search subjects, topics or codes",
+    // 答题
+    "先自己写（英文），写完点下面的按钮对照得分点":"Write your answer in English, then check it against the marking points",
+    "对照得分点":"Show marking points","重新对照得分点":"Review marking points","数值自检":"Check number",
+    "自评 · 勾选你写到的得分点":"Self-mark · tick the points you covered","全部勾上":"Tick all","全部取消":"Clear all",
+    "你写的：":"Your answer:","（空）":"(empty)","解析：":"Explanation:","出处：":"Source:",
+    "看完整参考答案":"Show full model answer","已得":"Scored","个得分点":"marking points",
+    "你还没写数字":"Type a number first","参考答案无数字":"No number in the model answer",
+    "数值与参考答案一致":"Number matches the model answer","数值与参考答案不一致":"Number does not match",
+    "只练错题":"Practise wrong ones only",
+    // 结算
+    "总题数":"Total questions","未做":"Unanswered","答对":"Correct","答错":"Wrong",
+    "选择题答对":"MCQ correct","选择题答错":"MCQ wrong","简答得分":"Short-answer marks","正确率":"Accuracy",
+    // 档案/任务/榜单
+    "等级":"Level","今日":"Today","连续":"Streak","天":"days","连对纪录":"Best combo","金币":"Coins","星尘":"Stardust",
+    "今日任务":"Today's tasks","每天 0 点刷新":"Resets daily","领取":"Claim","已领取":"Claimed",
+    "今日好友榜":"Today's leaderboard","服务器设置":"Server settings","复制我的战绩码":"Copy my score code",
+    "粘贴同学的战绩码":"Paste a classmate's code","加入":"Add","提交到服务器":"Submit",
+    "你附近 · 再对一道题就能超过":"Near you · one more correct answer to overtake",
+    "今日榜单":"Today's leaderboard","关闭":"Close","答对题数":"Correct answers","用时":"Time",
+    "我":"Me","（我）":" (me)","第一名":"1st","第二名":"2nd","第三名":"3rd",
+    "已交卷":"Submitted by","人":"students","近 7 天正确率":"Accuracy, last 7 days",
+    // 首页
+    "复习测验":"Revision Quizzes","今日挑战":"Daily challenge","错题本":"Mistakes","商城":"Shop",
+    "课程":"Subjects","门 · 年考优先":"subjects · exam order","搜索课程、单元或代码":"Search subjects, topics or codes",
+    "没有匹配的课程":"No matching subject","下一场":"Next exam","天后":"days away",
+    "年考":"Yearly","未开始":"Not started","选择":"MCQ","下一场考试":"Next exam",
+    "综合卷 · 全科":"Mixed paper · all subjects","从":"From","科抽题混做":"subjects, mixed",
+    "科目列表":"Subjects","分数":"Score","语言":"Language",    "← 科目列表":"Subjects","正在上传试卷…":"Uploading your paper...",
+    "正在加密上传试卷…":"Encrypting and uploading...","正在实时计算排名…":"Calculating your rank...",
+    "今天还没有人上榜":"No one on the board yet","你还没上榜，交卷即可参与":"Not on the board yet - submit to join",
+    "绿=对 红=错 橙=半对 灰=未做":"Green = correct · Red = wrong · Amber = partial · Grey = unanswered",
+    "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
+    "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
+    "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "允许":"Allow","未开始":"Not started","已开始":"Started","完成":"done",
+
+    // 页面标题与页脚
+    "Canvas 复习测验":"Canvas Revision Quizzes",
+    "音效 开":"Sound on","音效 关":"Sound off",
+    "今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。":"No one has submitted yet today. Finish the daily challenge and hit Submit, or swap score codes with classmates.",
+    "进度存在本机浏览器里，换设备需导出备份":"Progress is saved in this browser. Export a backup to move devices.",
+    "「原始资料」链接指向":"The source-material link points to",
+    "，未一起上传时失效，不影响做题":". It is broken when not uploaded together, but quizzing still works.",
+    // 分组
+    "年考重点":"Core exams","非年考内容（有余力再看）":"Non-exam content","其他科目":"Other subjects",
+    "年考版":"Yearly","学科":"Elective","辅导":"Wellbeing",
+    // 科目
+    "科学 · 10 年级":"Science · Year 10","英语 · 10 年级":"English · Year 10",
+    "历史 · 10 年级":"History · Year 10","地理 · 10 年级":"Geography · Year 10",
+    "PDHPE · 10 年级":"PDHPE · Year 10","数学 P · 10 年级":"Maths (Standard) · Year 10",
+    "数学 5.3 · 10 年级":"Maths (Advanced) · Year 10",
+    "科学 · 非年考":"Science · non-exam","历史 · 非年考":"History · non-exam",
+    "地理 · 非年考":"Geography · non-exam","英语 · 非年考":"English · non-exam",
+    "食品科技 · 10 年级":"Food Technology · Year 10","生涯规划 · 10 年级":"Careers · Year 10",
+    "体育 · 10 年级":"Sport · Year 10","户外教育 · 10 年级":"Outdoor Education · Year 10",
+    "心理与福祉":"Wellbeing",
+    // 范围
+    "有机化学 25 / 进化 25 / 技能 20":"Organic chemistry 25 / Evolution 25 / Skills 20",
+    "King Lear 短答 + 比较论文":"King Lear short answer + comparative essay",
+    "术语选择 + 1991–2019 美国外交":"Terminology MCQ + US foreign policy 1991-2019",
+    "气候变化 · 温室效应 / 海平面 / 珊瑚白化":"Climate change · greenhouse / sea level / bleaching",
+    "道路安全 / 急救 / 心理健康":"Road safety / first aid / mental health",
+    "金融 / 代数 / 坐标几何 / 统计":"Finance / algebra / coordinate geometry / statistics",
+    "根式 / 指数 / 对数 / 三角 / 概率":"Surds / indices / logs / trig / probability",
+    "电磁学 / 进化 / 技能":"Organic chemistry / evolution / skills",
+    "地球能量 / 遗传 / 运动 / 化学 / 气候":"Earth energy / genetics / motion / chemistry / climate",
+    "Holocaust / 冷战 / 民权":"Holocaust / Cold War / civil rights",
+    "福祉 / 原住民 / 气候变化":"Wellbeing / Indigenous / climate",
+    "战争单元 / 诗歌 / 阅读卷":"War unit / poetry / reading",
+    "食品安全 / 食物不平等 / 特殊需求":"Food safety / food inequality / special needs",
+    "就业路径 / 求职 / ATAR / USI·TFN":"Career paths / job hunt / ATAR / USI-TFN",
+    "规则 / 赛事 / 训练常识":"Rules / events / training",
+    "环境意识 / Leave No Trace":"Environmental awareness / Leave No Trace",
+    "焦虑 / 抑郁 / 求助渠道":"Anxiety / depression / where to get help",
+    // 任务
+    "精准":"Accuracy","写作":"Writing","数量":"Volume","攻坚":"Stretch","连击":"Combo","每日":"Daily",
+    "正确率 80%（至少 10 题）":"80% accuracy (at least 10 questions)",
+    "完成 3 道简答自评":"Self-mark 3 short answers",
+    "今天做满 20 题":"Answer 20 questions today",
+    "今天做满 12 题":"Answer 12 questions today",
+    "一次连对 5 题":"Get 5 correct in a row",
+    "一次连对 8 题":"Get 8 correct in a row",
+    "做对 3 道「较难」题":"Get 3 hard questions right",
+    "完成今日挑战":"Finish the daily challenge",
+    // 课程图标首字
+    "科":"S","英":"E","历":"H","地":"G","数":"M","食":"F","生":"C","体":"P","户":"O","心":"W"
+  };
+  var I18N_PAT = [
+    [/^第 (\d+) 题 \/ 共 (\d+)$/, "Q$1 of $2"],
+    [/^(\d+) \/ (\d+)$/, "$1 / $2"],
+    [/^已得 (\d+) \/ (\d+) 分$/, "Scored $1 / $2"],
+    [/^共 (\d+) 分 · (\d+) 个得分点$/, "$1 marks · $2 marking points"],
+    [/^(\d+) 题$/, "$1 questions"],
+    [/^\s*题\s*$/, "questions"],
+    [/^(\S+) (\d+) · (\d+) 题 · (.+)$/, "$1 $2 · $3 questions · $4"],
+    [/^今日 (\d+)\/(\d+)$/, "Today $1/$2"],
+    [/^连续 (\d+) 天$/, "Streak $1 days"],
+    [/^连对纪录 (\d+)$/, "Best combo $1"],
+    [/^金币 (\d+)$/, "Coins $1"],
+    [/^星尘 (\d+)$/, "Stardust $1"],
+    [/^已交卷 (\d+) 人$/, "$1 submitted"],
+    [/^下一场 (.+) · (\d+\/\d+) · (\d+) 天后$/, "Next: $1 · $2 · $3 days"],
+    [/^(\d+\/\d+) (.+) · (\d+) 天$/, "$1 $2 · $3 days"],
+    [/^第 (\d+) 名$/, "#$1"],
+    [/^最高 (\d+)%$/, "Top $1%"],
+    [/^今日榜$/, "Board"],
+    [/^Lv\.(\d+)$/, "Lv.$1"],
+    [/^(\d+) 科 · (\d+) 题$/, "$1 subjects · $2 questions"],
+    [/^(\d+) 门 · 年考优先$/, "$1 subjects · exam order"],
+    [/^(\d+) 门$/, "$1 subjects"],
+    [/^(\d+) 天后$/, "$1 days"],
+    [/^XP · 还差 (\d+) 升级$/, "XP · $1 to next level"],
+    [/^从 (\d+) 科抽题混做，(\d+) 题可选$/, "Mix questions from $1 subjects, $2 available"],
+    [/^(\d+) 选择$/, "$1 MCQ"],
+    [/^(\d+) 简答$/, "$1 short"],
+    [/^下一场 (.+) · (\d+\/\d+) ·$/, "Next: $1 · $2 ·"],
+    [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"]
+  ];
+  function applyI18n(){
+    if(window.LANG()==="zh") return;
+    var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n, changed=[];
+    while((n=walker.nextNode())){
+      var s=(n.nodeValue||"").trim(); if(!s) continue;
+      if(I18N[s]){ n.nodeValue=n.nodeValue.replace(s, I18N[s]); continue; }
+      for(var i=0;i<I18N_PAT.length;i++){
+        if(I18N_PAT[i][0].test(s)){ n.nodeValue=n.nodeValue.replace(s, s.replace(I18N_PAT[i][0], I18N_PAT[i][1])); break; }
+      }
+    }
+    document.querySelectorAll("[placeholder]").forEach(function(el){
+      var p=el.getAttribute("placeholder");
+      if(I18N[p]) el.setAttribute("placeholder", I18N[p]);
+    });
+    document.querySelectorAll("[title]").forEach(function(el){
+      var t2=el.getAttribute("title");
+      if(I18N[t2]) el.setAttribute("title", I18N[t2]);
+    });
+  }
+  window.applyI18n=applyI18n;
+  function kickI18n(){ try{ applyI18n(); }catch(e){} }
+  if(document.readyState==="loading")
+    document.addEventListener("DOMContentLoaded", function(){ setTimeout(kickI18n, 20); });
+  else setTimeout(kickI18n, 20);
+  window.addEventListener("load", function(){ setTimeout(kickI18n, 60); });
+  setTimeout(kickI18n, 300);
 
   /* ===== 排行榜：分阶段披露（战中抽屉 / 战后全屏） ===== */
   var LB={sort:"pct", list:[], open:false, at:0, timer:null};
@@ -1472,6 +1160,7 @@ load(); render();
   }
   function renderAll(){
     renderProfile();
+    setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
     setTimeout(loadBoard, 0);
     renderQuests(document.getElementById("quests"));
     renderBoard(document.getElementById("board"));
@@ -1515,6 +1204,486 @@ load(); render();
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+</script>
+<script>
+const DATA = {"slug": "ftn", "title": "食品科技 · 10 年级", "examMin": 60, "questions": [{"id": "ftn-001", "topic": "食品安全 · 危险温区", "difficulty": "easy", "type": "mcq", "stem": "What is the temperature range of the food safety 'danger zone'?", "options": ["5°C to 60°C", "0°C to 5°C", "60°C to 100°C", "-18°C to 4°C"], "answer": 0, "explanation": "危险温区是 5°C–60°C，这个区间里有害细菌繁殖最快。0°C 以下只是抑制生长，并不等于杀菌。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone", "weak": false}, {"id": "ftn-002", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "easy", "type": "mcq", "stem": "Under the 2-hour / 4-hour rule, what must happen to potentially hazardous food that has been in the danger zone for more than 4 hours?", "options": ["It can be returned to the fridge and used again the next day", "It must be thrown away because bacteria levels are too high", "It can be frozen and kept for up to one week", "It can be reheated to 100°C and then served"], "answer": 1, "explanation": "超过 4 小时细菌数量已高到可能引发食物中毒，必须丢弃，不能靠回锅或冷冻补救。很多同学会误以为重新加热就安全。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-003", "topic": "食品安全 · 2 小时/4 小时规则", "difficulty": "medium", "type": "mcq", "stem": "A tray of cooked chicken has been sitting at room temperature for 3 hours. Under the 2-hour / 4-hour rule, which action is correct?", "options": ["Reheat it, then freeze it for the following week", "Return it to the fridge and use it later", "Eat it now, but do not return it to the fridge", "Throw the chicken away immediately"], "answer": 2, "explanation": "超过 2 小时、不足 4 小时的食物仍可食用，但不能放回冰箱（否则只是把细菌一起冷藏）。只有 2 小时以内的食物才能冷藏。", "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule", "weak": false}, {"id": "ftn-004", "topic": "食品安全 · 冷藏温度", "difficulty": "easy", "type": "mcq", "stem": "To keep perishable food out of the danger zone, foods such as ham and salami should be stored at:", "options": ["8°C or below", "About 22°C", "About 60°C", "4°C or below"], "answer": 3, "explanation": "冷藏需控制在 4°C 或以下，才能让细菌繁殖速度降到很低。8°C、22°C 都高于安全冷藏温度，挡不住细菌增殖。", "source": "Structured Responses (Sample Answers).pdf — The Danger Zone（Industry Example）", "weak": false}, {"id": "ftn-005", "topic": "厨房运作 · Mise en place", "difficulty": "easy", "type": "mcq", "stem": "In a commercial kitchen, 'mise en place' refers to:", "options": ["Preparing ingredients and equipment before cooking", "Cleaning down kitchen benches at the end of service", "Plating the finished dish neatly for service", "Ordering stock and checking supplier deliveries"], "answer": 0, "explanation": "mise en place 是「备料到位」，包括切好洋葱、量好调料、预热烤箱等。缺了这一步会直接造成 poor workflow。", "source": "Term 1 · Assumed Knowledge Quiz 6: Mise en place；Structured Responses (Sample Answers).pdf — Poor Workflow", "weak": false}, {"id": "ftn-006", "topic": "食物公平 · 定义", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines food inequity?", "options": ["People choose not to eat certain foods for religious reasons", "Some groups have limited access to affordable, safe food while others do not", "Restaurants charge different prices for the same meal", "Everyone in a country has equal access to safe, nutritious food"], "answer": 1, "explanation": "food inequity 强调「可获得性不平等」，是有的人吃不到足量、安全、有营养的食物。不要和宗教饮食禁忌或个人选择混为一谈。", "source": "Term 1 · Food Inequity Assignment (Part 1 – Define)", "weak": false}, {"id": "ftn-007", "topic": "食物公平 · 受影响人群", "difficulty": "easy", "type": "mcq", "stem": "According to the Term 1 unit, which group is identified as likely to experience food inequity in developed and developing countries?", "options": ["Professional athletes on high incomes", "Full-time university students living on campus", "People on low incomes or who are unemployed", "Food critics who review restaurants"], "answer": 2, "explanation": "低收入或失业人群是课程列出的典型群体。同类的还有偏远地区居民、女性与儿童、老年人、慢性病患者、残障人士、原住民与无家可归者。", "source": "Term 1 · Food Inequity Assignment（Introduction 受影响人群列表）", "weak": false}, {"id": "ftn-008", "topic": "食物公平 · 慈善机构", "difficulty": "medium", "type": "mcq", "stem": "Which Australian organisation was listed in the Term 1 assignment as a charity that rescues surplus food and redistributes it to people experiencing food insecurity?", "options": ["Woolworths", "Fair Work Australia", "MasterChef Australia", "OzHarvest"], "answer": 3, "explanation": "OzHarvest 是澳洲典型的食物救援慈善机构，把商家剩余的食材收集后分发给有需要的人。Woolworths 是超市企业，Fair Work 是职场监管机构，都不是慈善机构。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity list)（机构职能为课程标准知识补充）", "weak": true}, {"id": "ftn-009", "topic": "食物趋势 · Snackification", "difficulty": "easy", "type": "mcq", "stem": "The food trend known as 'snackification' refers to:", "options": ["Replacing main meals with more frequent, smaller snacks", "Selling snacks only through supermarkets", "Eating only two large meals a day and no snacks in between", "Removing all snacks from your daily diet"], "answer": 0, "explanation": "snackification 指「正餐零食化」，人们用更多小份量、便携的进食场合取代传统三餐。它和「少吃零食」正好相反。", "source": "Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends", "weak": false}, {"id": "ftn-010", "topic": "食物趋势 · 丑果蔬", "difficulty": "medium", "type": "mcq", "stem": "Supermarkets selling 'ugly' fruit and vegetables is a trend that mainly aims to:", "options": ["Charge a higher price for imperfect-looking produce", "Reduce food waste by selling produce rejected as ugly", "Replace fresh produce with canned produce", "Encourage farmers to grow fewer vegetables"], "answer": 1, "explanation": "这类趋势针对的是「长相不合格但完全可食用」的蔬果，目的是减少农场端和零售端的食物浪费。核心卖点是减废，而不是涨价。", "source": "Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets", "weak": false}, {"id": "ftn-011", "topic": "食物趋势 · 明星厨师", "difficulty": "medium", "type": "mcq", "stem": "How do celebrity chefs most directly influence food trends?", "options": ["By writing the national dietary guidelines used in all schools", "By inspecting restaurants for food safety compliance", "By popularising ingredients and dishes through media exposure", "By setting the official price of restaurant meals"], "answer": 2, "explanation": "明星厨师通过电视节目、社交媒体和食谱把某些食材或做法带火，形成流行趋势。他们并不制定价格、膳食指南或做卫生检查。", "source": "Term 2 · Food Trends: Quiz 2 Celebrity Chef", "weak": false}, {"id": "ftn-012", "topic": "特定需求 · 乳糜泻", "difficulty": "easy", "type": "mcq", "stem": "A person with coeliac disease must avoid:", "options": ["All nuts, seeds and peanut products", "All dairy products, such as milk", "All foods containing added sugar", "Gluten, found in wheat, barley and rye"], "answer": 3, "explanation": "乳糜泻是对麸质（gluten）的自身免疫反应，必须终身严格无麸质饮食。它属于免疫反应，不是普通「面粉过敏」。", "source": "Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease", "weak": false}, {"id": "ftn-013", "topic": "特定需求 · 血糖生成指数", "difficulty": "medium", "type": "mcq", "stem": "A food with a low glycaemic index (GI) is best described as one that:", "options": ["Is digested slowly and raises blood glucose gradually", "Contains no carbohydrate or sugar at all", "Must be avoided by everyone with diabetes at all times", "Raises blood glucose quickly and sharply"], "answer": 0, "explanation": "低 GI 食物消化吸收慢，血糖上升平缓，饱腹感也更持久。高 GI 才是快速冲高血糖。低 GI 不等于零碳水，也不是所有糖尿病患者都要完全回避。", "source": "Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index", "weak": false}, {"id": "ftn-014", "topic": "特定需求 · 过敏与不耐受", "difficulty": "medium", "type": "mcq", "stem": "Which statement correctly distinguishes a food allergy from a food intolerance?", "options": ["An allergy can be removed by cooking the food thoroughly", "An allergy involves the immune system, while an intolerance does not", "An intolerance is always more dangerous than an allergy", "They are two names for exactly the same reaction"], "answer": 1, "explanation": "食物过敏由免疫系统介导，可能引发呼吸困难等严重反应；不耐受多是消化酶不足，症状以肠胃不适为主。两者机制不同，不能互换使用。", "source": "Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances", "weak": false}, {"id": "ftn-015", "topic": "特定需求 · 骨质疏松", "difficulty": "easy", "type": "mcq", "stem": "Which two nutrients are most important for reducing the risk of osteoporosis?", "options": ["Protein and vitamin B12", "Iron and vitamin C", "Calcium and vitamin D", "Sodium and potassium"], "answer": 2, "explanation": "钙是骨骼的主要矿物质，维生素 D 帮助钙吸收，两者缺一都会增加骨质疏松风险。只补钙不补维生素 D 吸收效率会打折扣。", "source": "Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis", "weak": false}, {"id": "ftn-016", "topic": "特定需求 · 缺铁性贫血", "difficulty": "medium", "type": "mcq", "stem": "Iron-deficiency anaemia is best managed by including more of which foods in the diet?", "options": ["Refined white flour products such as white bread", "Foods high in calcium, such as milk and cheese", "Foods high in vitamin C only, such as citrus fruit and juice", "Iron-rich foods such as red meat, legumes and leafy greens"], "answer": 3, "explanation": "缺铁性贫血的饮食重点是补铁，红肉、豆类和深绿叶菜都是常见来源。维生素 C 能促进铁吸收，但它本身不是铁的来源。", "source": "Term 3 · Food for Specific Needs: Quiz 8A Anaemia", "weak": false}, {"id": "ftn-017", "topic": "特殊场合 · 农历新年", "difficulty": "easy", "type": "mcq", "stem": "In Chinese New Year celebrations, long noodles are served because they symbolise:", "options": ["Longevity and a long life", "The end of the harvest season", "Good luck in school examinations", "Wealth in the form of gold coins"], "answer": 0, "explanation": "长寿面象征长寿，讲究不断开、不剪断。金元宝形状的饺子才和财富相关，两样不要混。", "source": "Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year", "weak": false}, {"id": "ftn-018", "topic": "特殊场合 · 亡灵节", "difficulty": "medium", "type": "mcq", "stem": "Día de los Muertos (Day of the Dead) is a celebration in which families:", "options": ["Fast for three days to mourn deceased relatives at home", "Build ofrendas with food to honour deceased relatives", "Give children cakes with a hidden coin inside", "Throw a decorated birthday cake into the sea"], "answer": 1, "explanation": "亡灵节是墨西哥 11 月初的纪念活动，家人搭建 ofrenda 祭坛，摆放逝者生前喜爱的食物与物品。它的基调是纪念与团聚，不是哀悼性禁食。", "source": "Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos", "weak": false}, {"id": "ftn-019", "topic": "厨房运作 · Poor workflow", "difficulty": "hard", "type": "short", "stem": "Discuss how poor workflow can impact a chef working in a commercial kitchen. In your answer, identify one cause of poor workflow and one way it could be improved.", "options": [], "answer": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.", "explanation": "结构化简答要按 Is–Affects–Caused by–Improved by–Example 五步写：先定义，再说影响、成因、改进方式，最后补一个行业例子。只写「很乱」拿不到分。", "source": "Structured Responses (Sample Answers).pdf — Poor Workflow", "points": [{"t": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food", "m": 1}, {"t": "it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team", "m": 1}], "weak": false}, {"id": "ftn-020", "topic": "食物公平 · 发达国家中的不公平", "difficulty": "hard", "type": "short", "stem": "Food inequity also exists in developed countries such as Australia. Identify two groups affected and explain one factor that makes it hard for them to access nutritious food.", "options": [], "answer": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.", "explanation": "答案要「两个群体 + 一个原因」。常见失分是只列群体不解释原因；能被接受的典型原因是价格、交通距离、住宿条件（无厨房）或健康限制。", "source": "Term 1 · Food Inequity Assignment（Introduction 与 Part 1）", "points": [{"t": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people", "m": 1}, {"t": "One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach", "m": 1}], "weak": false}, {"id": "ftn-021", "topic": "食物公平 · 慈善机构的作用与局限", "difficulty": "hard", "type": "short", "stem": "Explain how charities such as OzHarvest or Foodbank reduce food inequity, and outline one limitation of relying on charities to solve food insecurity.", "options": [], "answer": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.", "explanation": "拿分点有两层：先说慈善机构怎么「救急」（收集余粮、再分配），再指出结构性问题无法靠捐赠解决。只说「他们帮助穷人」不够深入。", "source": "Term 1 · Food Inequity Assignment (Part 1 – charity research)＋Part 4（未来策略）", "points": [{"t": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food", "m": 1}, {"t": "A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs", "m": 1}], "weak": false}, {"id": "ftn-022", "topic": "食物趋势 · 社交媒体", "difficulty": "hard", "type": "short", "stem": "Explain how social media drives food trends such as the #foodie movement and snackification, and identify one risk this creates for consumers.", "options": [], "answer": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.", "explanation": "要写出「传播机制」（视觉内容、hashtag、网红）和「风险」（误导性营养信息、份量与健康问题）。只描述现象不解释机制容易被扣分。", "source": "Term 2 · Food Trends: Quiz 6 #foodie；Quiz 4 Snackification and other Food Trends", "points": [{"t": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products", "m": 1}, {"t": "One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition", "m": 1}], "weak": false}, {"id": "ftn-023", "topic": "特定需求 · 运动员能量需求", "difficulty": "medium", "type": "short", "stem": "Explain why a professional NRL player has different daily energy and nutrient requirements from a sedentary office worker.", "options": [], "answer": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.", "explanation": "答案要落到「能量消耗差异 → 碳水/蛋白/水分需求差异」。只写「运动员吃得多」没有解释营养素的分配，属于低分答案。", "source": "Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players；Quiz 7 Diet of an Olympic Athlete", "points": [{"t": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses", "m": 1}, {"t": "A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat", "m": 1}], "weak": false}, {"id": "ftn-024", "topic": "特殊场合 · 用食物庆祝的原因", "difficulty": "medium", "type": "short", "stem": "Give two reasons why families and communities celebrate with particular foods, and support each reason with one example.", "options": [], "answer": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.", "explanation": "两个理由要区分开：一个是「社交团聚」，一个是「文化/宗教象征」，并各配一个例子。只举例子不说明理由会丢分。", "source": "Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food", "points": [{"t": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas", "m": 1}, {"t": "Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year", "m": 1}], "weak": false}, {"id": "ftn-025", "topic": "食品安全 · 个人卫生", "difficulty": "hard", "type": "short", "stem": "Explain why personal hygiene is the responsibility of every food handler. Give two examples of poor personal hygiene that could contaminate food.", "options": [], "answer": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.", "explanation": "要点是「个体行为会导致整批食物污染」以及具体错误做法（洗手、生病上岗、对着食物咳嗽）。Food Handler Basics 模块 2 就是这一块。", "source": "Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)", "points": [{"t": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible", "m": 1}, {"t": "Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro", "m": 1}], "weak": false}]};
+const KEY = "dsh-quiz-ftn";
+const MULTI = DATA.slug === "all";
+const app = document.getElementById("app");
+let state = {idx:0, answers:{}, order:null};
+
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (s && s.answers) state = s;
+  } catch(e) {}
+  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
+  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
+  try {
+    const m = location.search.match(/[?&]q=([^&]+)/);
+    if (m) {
+      const qid = decodeURIComponent(m[1]);
+      const qi = DATA.questions.findIndex(x => x.id === qid);
+      const pos = state.order.indexOf(qi);
+      if (pos >= 0) state.idx = pos;
+    }
+  } catch(e) {}
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function renderSetup() {
+  const subs = DATA.subjects || {};
+  const keys = Object.keys(subs);
+  const saved = state.pick || {};
+  const opts = keys.map(k => {
+    const on = saved[k] !== false;
+    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
+      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
+  }).join("");
+  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
+  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
+  app.innerHTML = `<div class="setup">
+    <div class="setup-head">
+      <h2>综合卷 · 全科</h2>
+      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
+    </div>
+
+    <section class="setup-block">
+      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
+      <div class="picks">${opts}</div>
+    </section>
+
+    <section class="setup-block">
+      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
+    </section>
+
+    <div class="setup-foot">
+      <div class="sum">共 <b id="cnt">0</b> 题</div>
+      <button class="btn ghost" id="daily">今日挑战</button>
+      <button class="btn" id="startmix">开始答题 →</button>
+    </div>
+  </div>`;
+  const chosenCount = () => {
+    let c = 0;
+    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
+    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
+  };
+  const calc = () => {
+    let n = 0;
+    app.querySelectorAll(".pick input").forEach(cb => {
+      if (!cb.checked) return;
+      const k = cb.dataset.s, c = subs[k].n;
+      n += per ? Math.min(per, c) : c;
+    });
+    document.getElementById("cnt").textContent = n;
+    const pc = document.getElementById("pickcount");
+    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
+  };
+  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
+    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
+  });
+  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
+    state.per = +b.dataset.n; save(); render();
+  });
+  function seedRnd(str){
+    var h=2166136261;
+    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
+      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
+  }
+  function startDaily(){
+    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    var rnd=seedRnd("daily:"+key);
+    var idxs=[];
+    DAILY.forEach(function(sl){
+      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      idxs=idxs.concat(pool.slice(0,3));
+    });
+    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
+    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
+  }
+  document.getElementById("daily").onclick = startDaily;
+  document.getElementById("startmix").onclick = () => {
+    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
+    if (!chosen.length) { alert("至少选一科"); return; }
+    let idxs = [];
+    chosen.forEach(k => {
+      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      pool.sort(() => Math.random() - 0.5);
+      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
+    });
+    idxs.sort(() => Math.random() - 0.5);
+    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
+    state.answers = {}; state.t0 = Date.now(); save(); render();
+  };
+  calc();
+}
+
+
+/* ===== 语言切换 ===== */
+var UI_TEXT = {
+  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
+        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
+  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
+        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
+};
+function T(k){
+  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
+  return d[k] || UI_TEXT.en[k] || k;
+}
+function applyChrome(){
+  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
+  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
+  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
+  var l=LANG();
+  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
+}
+function cycleLang(){
+  var order=["en","zh","both"], i=order.indexOf(LANG());
+  setLANG(order[(i+1)%3] || "en");
+  applyChrome(); render();
+}
+
+function render() {
+  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
+    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
+  }
+  if (MULTI && state.setup && !state.started) return renderSetup();
+  const qs = state.order.map(i => DATA.questions[i]);
+  const q = qs[state.idx];
+  const L = LANG(), ZH = (q && q.zh) || null;
+  const total = qs.length;
+  const answered = qs.filter(x => state.answers[x.id]).length;
+  const right = qs.filter(x => state.answers[x.id] === "ok").length;
+  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
+  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
+  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
+  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
+  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
+
+  const rec = state.answers[q.id];
+  const chips = `<div class="chips">
+      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
+      <span class="chip">${esc(q.topic)}</span>
+      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
+      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
+      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
+    </div>`;
+
+  let bodyHtml = "";
+  if (q.type === "mcq") {
+    const opts = (q.options || []).map((o, i) => {
+      let cls = "opt", mark = "";
+      if (rec) {
+        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
+        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
+      }
+      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
+      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
+      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
+        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
+    }).join("");
+    bodyHtml = `<div class="opts">${opts}</div>`;
+  } else {
+    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
+    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    const checked = (rec && rec.checked) ? rec.checked : [];
+    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
+    const hasNum = /-?\d/.test(bareAns);
+    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
+      <div class="actions">
+        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
+        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
+      </div>`;
+    if (rec) {
+      bodyHtml += `<div class="panel">
+        <div class="panel-h">自评 · 勾选你写到的得分点</div>
+        <div class="pts">${pts.map((p,i)=>`
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
+        <div class="actions">
+          <button class="btn ghost" id="allpt">全部勾上</button>
+          <button class="btn ghost" id="nonept">全部取消</button>
+        </div>
+        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
+      </div>`;
+    }
+  }
+
+  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
+      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
+      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
+
+  const last = state.idx >= total - 1;
+  let stemHtml;
+  if (L === "zh" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
+  } else if (L === "both" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
+  } else {
+    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
+  }
+  setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
+  app.innerHTML = `<div class="card">${chips}${stemHtml}
+      ${bodyHtml}${expHtml}</div>
+      <div class="actionbar">
+        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="finish">${T("finish")}</button>
+        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
+      </div>`;
+
+  if (q.type === "mcq") {
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const i = +b.dataset.i;
+      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
+      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
+      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
+      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
+      save(); render();
+    }));
+  } else {
+    const ta = document.getElementById("ta");
+    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
+    document.getElementById("reveal").onclick = () => {
+      const c = cur();
+      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
+      save(); render();
+    };
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
+      const c = cur(); const i = +cb.dataset.i;
+      const set = new Set(c.checked || []);
+      if (cb.checked) set.add(i); else set.delete(i);
+      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
+      const full = pts.every((_,i)=>set.has(i));
+      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
+      reviewMark(q.subj || DATA.slug, q.id, full);
+      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      save(); render();
+    }));
+    const nc = document.getElementById("numcheck");
+    if (nc) nc.onclick = () => {
+      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
+      const last = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
+      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
+    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
+  }
+  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
+  const nx = document.getElementById("next");
+  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
+  document.getElementById("finish").onclick = showResult;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function showResult() {
+  const qs = state.order.map(i => DATA.questions[i]);
+  if (!state.rewarded && qs.length) {
+    state.rewarded = true; save();
+    if (state.daily) {
+      try {
+        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
+        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
+        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
+        var DKEY = "dsh-daily-v1";
+        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
+        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
+        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
+          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
+          localStorage.setItem(DKEY, JSON.stringify(drec));
+        }
+        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
+      } catch(e) {}
+    }
+    const answered = qs.filter(x => state.answers[x.id]).length;
+    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
+    if (window.openChest && answered >= 3) openChest();
+  }
+  const rec = id => state.answers[id] || null;
+  const mcq = qs.filter(x => x.type === "mcq");
+  const shorts = qs.filter(x => x.type === "short");
+  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
+  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
+  const todo = qs.filter(x => !rec(x.id));
+  let earnedM = 0, totalM = 0, partM = 0;
+  const weak = [];
+  shorts.forEach(x => {
+    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
+    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const r = rec(x.id);
+    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    totalM += tot;
+    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
+  });
+  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
+  const needRedo = [...wrong, ...weak];
+  const wrongIds = needRedo.map(x => x.id);
+  app.innerHTML = `<div class="card done">
+      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
+      <div class="stats">
+        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
+        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
+        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
+        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
+      </div>
+      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
+      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
+      <div class="actions">
+        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
+        <button class="btn ghost" id="showlb">${T("lb")}</button>
+        <button class="btn ghost" id="again">${T("again")}</button>
+        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
+      </div></div>`;
+  const redo = document.getElementById("redo");
+  if (redo) redo.onclick = () => {
+    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
+    wrongIds.forEach(id => delete state.answers[id]);
+    state.idx = 0; save(); render();
+  };
+  const showlb = document.getElementById("showlb");
+  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
+  document.getElementById("again").onclick = () => {
+    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+    save(); render();
+  };
+}
+
+document.getElementById("grid").onclick = openNav;
+document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
+document.getElementById("nav").addEventListener("click", e => {
+  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
+});
+try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
+catch(e) { document.body.insertAdjacentHTML("afterbegin",
+  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
+
+document.getElementById("exam").onclick = startExam;
+if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
+
+var _langBtn = document.getElementById("langBtn");
+if (_langBtn) _langBtn.onclick = cycleLang;
+applyChrome();
+document.getElementById("restart").onclick = () => {
+  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  save(); render();
+};
+
+document.addEventListener("keydown", e => {
+  if (MULTI && state.setup && !state.started) {
+    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
+    return;
+  }
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
+  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
+  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
+  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
+  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
+    else showResult();
+    return;
+  }
+  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
+  if (!q || q.type !== "mcq") return;
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= (q.options || []).length) {
+    if (!state.answers[q.id]) {
+      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
+      save(); render();
+    }
+  }
+});
+
+const REVIEW_KEY = "dsh-review-v1";
+const GAPS = [1, 3, 7];
+function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
+function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
+function reviewMark(slug, qid, correct){
+  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
+  if (correct) {
+    const it = db[id];
+    if (!it) return;
+    const st = (it.stage || 0) + 1;
+    if (st >= GAPS.length) delete db[id];
+    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
+  } else {
+    const old = db[id] || {};
+    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
+  }
+  reviewSave(db);
+}
+function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
+
+const LOG_KEY = "dsh-log-v1";
+function logAnswer(slug, qid, ok, diff, ty){
+  try {
+    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
+    if (arr.length > 3000) arr = arr.slice(-3000);
+    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
+  } catch(e) {}
+}
+function navState(qi){
+  const q = DATA.questions[qi], a = state.answers[q.id];
+  if (!a) return "";
+  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
+  const pts = q.points || [{m:1}], c = (a.checked || []).length;
+  if (c >= pts.length) return "ok";
+  if (c > 0) return "part";
+  return "";
+}
+function openNav(){
+  const grid = document.getElementById("navgrid");
+  grid.innerHTML = state.order.map((qi, pos) =>
+    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
+  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
+    state.idx = +b.dataset.pos; save();
+    document.getElementById("nav").classList.remove("on"); render();
+  });
+  document.getElementById("nav").classList.add("on");
+}
+
+let timerId = null;
+function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+function tickClock(){
+  const el = document.getElementById("clock");
+  if (!state.deadline) { if (el) el.style.display = "none"; return; }
+  const left = state.deadline - Date.now();
+  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
+            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
+  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
+}
+function startExam(){
+  const def = DATA.examMin || 60;
+  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
+  if (v === null) return;
+  const mins = parseInt(v, 10);
+  if (!mins || mins <= 0) return;
+  state.deadline = Date.now() + mins*60000; save();
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(tickClock, 1000);
+  tickClock();
+}
+
+
+load(); render();
 </script>
 </body>
 </html>

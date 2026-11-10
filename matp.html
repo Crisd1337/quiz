@@ -322,487 +322,6 @@ footer{padding:22px 14px 30px;line-height:1.8}
 </div></div>
 <footer>键盘：<kbd>1</kbd>–<kbd>4</kbd> 选择 · <kbd>←</kbd><kbd>→</kbd> 切题 · <kbd>G</kbd> 题号 · <kbd>Enter</kbd> 下一题 · <kbd>S</kbd> 看成绩 · 进度自动保存在本机浏览器</footer>
 <script>
-const DATA = {"slug": "matp", "title": "数学 P · 10 年级", "examMin": 80, "questions": [{"id": "matp-001", "topic": "金融数学 · 加班工资", "difficulty": "easy", "type": "mcq", "stem": "Tomas earns $28 per hour for the first 38 hours he works each week. Any hours beyond 38 are paid at time-and-a-half. Last week he worked 45 hours. What was his total pay for the week?", "options": ["$1,358", "$1,890", "$1,260", "$1,456"], "answer": 0, "explanation": "前 38 小时 38×28=$1,064，超时 45−38=7 小时按 1.5 倍时薪 $42 计，7×42=$294，合计 $1,358。常见错误是 45 小时全按基本时薪得 $1,260，或把加班时薪算成双倍得 $1,456。", "source": "Topic1 Interest and Depreciation.pdf · 1-01 Earning an income", "weak": false}, {"id": "matp-002", "topic": "金融数学 · 复利（按月）", "difficulty": "medium", "type": "mcq", "stem": "Sophie deposits $1,200 into a savings account that earns 5% per annum, compounded monthly. How much will she have in the account after 3 years?", "options": ["$1,389.15", "$1,393.77", "$1,380.00", "$1,458.61"], "answer": 1, "explanation": "按月复利要把利率和期数同时换成月：R=0.05/12，n=3×12=36，A=1200(1+0.05/12)^36≈$1,393.77。用单利得 $1,380，把 5% 当成年利率只复 3 次得 $1,389.15，都是常见错误。", "source": "1-04_ Compound Interest.pdf · A = P(1 + R)^n（R 为每期利率）", "weak": false}, {"id": "matp-003", "topic": "金融数学 · 折余折旧", "difficulty": "medium", "type": "short", "stem": "A delivery van is bought for $42,000. It depreciates at 15% per annum using the reducing-balance formula A = P(1 − R)^n. Find (a) its value after 4 years, correct to the nearest dollar, and (b) the total amount it has depreciated over those 4 years.", "options": [], "answer": "(a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924. (b) Depreciation = 42,000 − 21,924 = $20,076.", "explanation": "减少率折旧是每年乘 0.85，共 4 次，不是 42,000×(1−0.15×4)。用直线法（每年固定减 $6,300）会得 $16,800，那是另一种模型。", "source": "1-07_ Depreciation.pdf · A = P(1 − R)^n（reducing balance）", "points": [{"t": "(a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924", "m": 1}, {"t": "(b) Depreciation = 42,000 − 21,924 = $20,076", "m": 1}], "weak": false}, {"id": "matp-004", "topic": "代数 · 指数律（幂的乘方）", "difficulty": "easy", "type": "mcq", "stem": "Simplify (3a⁴)².", "options": ["6a⁶", "9a⁶", "9a⁸", "6a⁸"], "answer": 2, "explanation": "括号内每一项都要乘方：3²=9，指数相乘 4×2=8，所以是 9a⁸。只把系数 3 错写成 6，或把 4×2 误算成 6，是两个最常见的错。", "source": "Algebra Topic test + Solutions.pdf · Part A Q12 · 4-01_ Index Laws", "weak": false}, {"id": "matp-005", "topic": "代数 · 单项式乘法", "difficulty": "easy", "type": "mcq", "stem": "Simplify 2m × 5m p × 3n.", "options": ["30m np", "30m³np", "10m²np", "30m²np"], "answer": 3, "explanation": "系数 2×5×3=30；m×m=m²（指数相加），p 和 n 各出现一次，结果是 30m²np。把 m×m 当成 2m 会得 10m²np，当成 m³ 则指数加错。", "source": "Topic2 Algebra.pdf · 4-01 The index laws", "weak": false}, {"id": "matp-006", "topic": "代数 · 代数分式约分", "difficulty": "medium", "type": "mcq", "stem": "Simplify (6x²y) ÷ (9xy³).", "options": ["2x / (3y²)", "2x / (3y³)", "2y² / (3x)", "3x / (2y²)"], "answer": 0, "explanation": "系数约分 6/9=2/3；同底数相除指数相减：x²÷x=x，y÷y³=1/y²。所以是 2x/(3y²)。把 y 的指数写成 3，或忘记约分系数，都是常见错误。", "source": "4-03_ Multiplying and dividing algebraic fractions.pdf", "weak": false}, {"id": "matp-007", "topic": "代数 · 二项式展开", "difficulty": "medium", "type": "mcq", "stem": "Expand and simplify (2x − 5)(3x + 7).", "options": ["6x² + 21x − 35", "6x² − x − 35", "6x² + x − 35", "6x² − 29x − 35"], "answer": 1, "explanation": "逐项相乘得 6x² + 14x − 15x − 35 = 6x² − x − 35。中间项 14x − 15x = −x，若把 −15x 误写成 +15x 就会得到 6x² + 29x 一类的错误。", "source": "4-05_ Expanding Binomial Products.pdf · Algebra Topic test + Solutions.pdf Q24c", "weak": false}, {"id": "matp-008", "topic": "代数 · 完全平方中项", "difficulty": "medium", "type": "mcq", "stem": "If (7g + 3)² = 49g² + hg + 9, what is the value of h?", "options": ["84", "14", "42", "21"], "answer": 2, "explanation": "完全平方的中项是 2×7g×3 = 42g，所以 h = 42。只算 7×3 = 21（漏掉公式里的 2）是最常见的错误。", "source": "Algebra Topic test + Solutions.pdf · Part A Q14（perfect squares）", "weak": false}, {"id": "matp-009", "topic": "代数 · 因式分解", "difficulty": "medium", "type": "short", "stem": "Factorise each expression fully. (a) 12a²b − 21ab²  (b) x² + 7x + 10", "options": [], "answer": "(a) 3ab(4a − 7b)   (b) (x + 5)(x + 2)", "explanation": "(a) 取最大公因式：12 与 21 的 HCF 是 3，字母取公有因子 a、b，得 3ab；括号内 3ab×4a=12a²b、3ab×(−7b)=−21ab²。(b) 找和为 7、积为 10 的两个数，即 5 和 2。", "source": "4-06 Factorising monic quadratics.pdf · 2025 BBHS 10 (5.2) T2 Q14", "points": [{"t": "(a) 3ab(4a − 7b)   (b) (x + 5)(x + 2)", "m": 1}], "weak": false}, {"id": "matp-010", "topic": "方程 · 一元一次（两边有未知数）", "difficulty": "easy", "type": "mcq", "stem": "Solve 9x + 10 = 7x − 6.", "options": ["x = 8", "x = 2", "x = −2", "x = −8"], "answer": 3, "explanation": "两边同减 7x、同减 10，得 2x = −16，故 x = −8。常见错误是把 10 移项时忘记变号（得 −2），或把 −16 ÷ 2 算成 +8。", "source": "Topic 2 Equations and Inequality.pdf · 6-01 Equations（Example 1c）", "weak": false}, {"id": "matp-011", "topic": "不等式 · 除以负数变号", "difficulty": "hard", "type": "mcq", "stem": "Solve the inequality −3(x − 2) ≥ 15.", "options": ["x ≤ −3", "x ≤ 3", "x ≥ 3", "x ≥ −3"], "answer": 0, "explanation": "展开得 −3x + 6 ≥ 15，即 −3x ≥ 9；两边同除以 −3 时不等号必须反向，得 x ≤ −3。可以用 x = −4 代回检验：−3(−6)=18 ≥ 15 成立。", "source": "Topic 2 Equations and Inequality.pdf · 6-07 Solving inequalities（除负数要 reverse the sign）", "weak": false}, {"id": "matp-012", "topic": "方程 · 含分式的方程", "difficulty": "medium", "type": "short", "stem": "Solve x/3 − (x − 2)/4 = 2.", "options": [], "answer": "Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.", "explanation": "分母 3 和 4 的最小公倍数是 12。第二项前的负号要乘进括号，变成 +6；若写成 −6 会得到 x = 6，这是最常见的失分点。", "source": "Topic 2 Equations and Inequality.pdf · 6-02 Equations with algebraic fractions", "points": [{"t": "Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.", "m": 1}], "weak": false}, {"id": "matp-013", "topic": "联立方程 · 消元法", "difficulty": "easy", "type": "mcq", "stem": "Solve the simultaneous equations 5x + 2y = 19 and 3x − 2y = 5.", "options": ["x = 3, y = −2", "x = 3, y = 2", "x = 2, y = 3", "x = 4, y = −0.5"], "answer": 1, "explanation": "两式相加消去 y：8x = 24，x = 3；代回第一式得 2y = 19 − 15 = 4，y = 2。干扰项 (4, −0.5) 只满足第一个方程，代回第二个即可排除。", "source": "Topic 2 Simultaneous Equations.pdf · 9-02 The elimination method", "weak": false}, {"id": "matp-014", "topic": "联立方程 · 应用建模", "difficulty": "hard", "type": "short", "stem": "At the school canteen, 3 sandwiches and 2 drinks cost $19.50, while 2 sandwiches and 3 drinks cost $18.00. Find the cost of one sandwich and one drink.", "options": [], "answer": "Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.", "explanation": "先列两个方程，再消元（第一式×3 减第二式×2 得 5s = 22.50）。只用一个条件无法定出两个价格；代回检验 3×4.50+2×3 = $19.50 正确。", "source": "Topic 2 Simultaneous Equations.pdf · 9-04 Simultaneous equations problems", "points": [{"t": "Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.", "m": 1}], "weak": false}, {"id": "matp-015", "topic": "坐标几何 · 两点距离", "difficulty": "easy", "type": "mcq", "stem": "Find the distance between the points (2, −1) and (5, 3).", "options": ["7", "√7", "5", "25"], "answer": 2, "explanation": "d = √[(5−2)² + (3−(−1))²] = √(9+16) = √25 = 5。忘记开方会得 25，把两段差直接相加会得 7。", "source": "Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval", "weak": false}, {"id": "matp-016", "topic": "坐标几何 · 斜率", "difficulty": "easy", "type": "mcq", "stem": "Find the gradient of the line passing through (2, 5) and (6, −3).", "options": ["2", "−1/2", "1/2", "−2"], "answer": 3, "explanation": "m = (y₂−y₁)/(x₂−x₁) = (−3−5)/(6−2) = −8/4 = −2。上面减下面的顺序颠倒会得 −1/2；漏写负号则得 2。", "source": "Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval", "weak": false}, {"id": "matp-017", "topic": "坐标几何 · 求直线方程", "difficulty": "medium", "type": "mcq", "stem": "Which equation describes the line with gradient 3 that passes through the point (2, −1)?", "options": ["y = 3x − 7", "y = 3x − 1", "y = 3x + 7", "y = −3x + 5"], "answer": 0, "explanation": "代入 y = mx + b：−1 = 3(2) + b，得 b = −7，所以 y = 3x − 7。把已知点的坐标当成 y 轴截距（得 y = 3x − 1）是典型错误。", "source": "Topic 1 Coordinate Geometry.pdf · 2-06 Finding the equation of a line", "weak": false}, {"id": "matp-018", "topic": "坐标几何 · 垂直直线", "difficulty": "hard", "type": "short", "stem": "Find the equation of the line that is perpendicular to y = 2x + 5 and passes through the point (4, 1). Give your answer in the form y = mx + b.", "options": [], "answer": "The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.", "explanation": "垂直直线斜率之积为 −1，所以用 −1/2（不是 −2，也不是 2）；再代入 (4, 1) 求截距得 3。验证：x = 4 时 y = −2 + 3 = 1。", "source": "Topic 1 Coordinate Geometry.pdf · 2-07 Equations of parallel and perpendicular lines", "points": [{"t": "The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.", "m": 1}], "weak": false}, {"id": "matp-019", "topic": "函数 · 正比例", "difficulty": "easy", "type": "mcq", "stem": "y varies directly as x. If y = 12 when x = 5, find x when y = 30.", "options": ["2.5", "12.5", "10", "72"], "answer": 1, "explanation": "正比例写成 y = kx，先求常数 k = 12/5 = 2.4；y = 30 时 x = 30 ÷ 2.4 = 12.5。把比例关系倒过来乘会得到 72。", "source": "Topic 1 Graphs.pdf · 7-01 Direct proportion", "weak": false}, {"id": "matp-020", "topic": "函数 · 反比例", "difficulty": "medium", "type": "mcq", "stem": "y is inversely proportional to x. When x = 5, y = 8. Find y when x = 20.", "options": ["0.5", "160", "2", "32"], "answer": 2, "explanation": "反比例写成 y = k/x，由 5×8 得 k = 40；x = 20 时 y = 40/20 = 2。若误当正比例会用 k = 8/5 得 32，是典型错误。", "source": "Topic 1 Graphs.pdf · 7-02 Inverse proportion", "weak": false}, {"id": "matp-021", "topic": "函数 · 圆的方程", "difficulty": "easy", "type": "short", "stem": "A circle has equation x² + y² = 49. State its centre and radius, and determine whether the point (5, 5) lies on the circle.", "options": [], "answer": "Centre (0, 0) and radius 7. The point (5, 5) does not lie on the circle, because 5² + 5² = 50, not 49.", "explanation": "x² + y² = r² 的圆心在原点，半径 r = √49 = 7。判断点在不在圆上，只要把坐标代入看左边是否恰好等于 49。", "source": "Topic 1 Graphs.pdf · 7-06 The circle", "points": [{"t": "Centre (0, 0) and radius 7", "m": 1}, {"t": "The point (5, 5) does not lie on the circle, because 5² + 5² = 50, not 49", "m": 1}], "weak": false}, {"id": "matp-022", "topic": "三角 · 毕氏定理", "difficulty": "easy", "type": "mcq", "stem": "A right-angled triangle has two shorter sides of 9 cm and 12 cm. Find the length of the hypotenuse.", "options": ["225 cm", "21 cm", "108 cm", "15 cm"], "answer": 3, "explanation": "斜边 = √(9² + 12²) = √225 = 15 cm。把两条直角边直接相加得 21，或忘记开方得 225，是最常见的两种错。", "source": "Topic 3 Trigonometry.pdf · 8-01 Pythagoras' theorem", "weak": false}, {"id": "matp-023", "topic": "三角 · 用正切求边", "difficulty": "medium", "type": "mcq", "stem": "In a right-angled triangle an angle is 35° and the side adjacent to it is 12 m. Find the length of the opposite side, correct to two decimal places.", "options": ["8.40 m", "6.88 m", "17.14 m", "14.65 m"], "answer": 0, "explanation": "tan 35° = 对边/邻边，所以 opposite = 12 × tan 35° ≈ 8.40 m。选错比值会得 12 sin 35° = 6.88 m 或 12/tan 35° = 17.14 m。", "source": "Topic 3 Trigonometry.pdf · 8-03 Finding an unknown side", "weak": false}, {"id": "matp-024", "topic": "三角 · 求未知角", "difficulty": "medium", "type": "mcq", "stem": "In a right-angled triangle, sin θ = 7/12. Find θ, correct to one decimal place.", "options": ["54.3°", "35.7°", "30.3°", "60.0°"], "answer": 1, "explanation": "θ = sin⁻¹(7/12) ≈ 35.7°。用 tan⁻¹(7/12) 得 30.3°，或误取余角 90° − 35.7° = 54.3°，都是常见的按键/概念错误。", "source": "Topic 3 Trigonometry.pdf · 8-04 Finding an unknown angle", "weak": false}, {"id": "matp-025", "topic": "三角 · 仰角", "difficulty": "medium", "type": "short", "stem": "From a point on level ground 45 m from the base of a vertical tower, the angle of elevation of the top of the tower is 62°. Find the height of the tower, correct to one decimal place.", "options": [], "answer": "tan 62° = h / 45, so h = 45 × tan 62° ≈ 84.6 m.", "explanation": "仰角是从水平线向上量到视线的角，45 m 是与 62° 相邻的边，所以用 tan。误用 sin 会得 39.7 m，是因为把 45 m 当成了斜边。", "source": "Topic 3 Trigonometry.pdf · 8-05 Angles of elevation and depression", "points": [{"t": "tan 62° = h / 45, so h = 45 × tan 62° ≈ 84.6 m.", "m": 1}], "weak": false}, {"id": "matp-026", "topic": "三角 · 方位角", "difficulty": "hard", "type": "short", "stem": "A plane flies 15 km due north and then 20 km due east. Find (a) its distance from the starting point and (b) its bearing from the starting point, correct to the nearest degree.", "options": [], "answer": "Distance = √(15² + 20²) = 25 km. Bearing = tan⁻¹(20/15) ≈ 53°, measured clockwise from north, so the bearing is 053°.", "explanation": "方位角一律从正北顺时针量：位移是「北 15、东 20」，所以角度在正北以东 53°。写成 037° 是把 15 和 20 用反了（tan⁻¹(15/20)）。", "source": "Topic 3 Trigonometry.pdf · 8-06 Bearings / 8-07 Problems involving bearings", "points": [{"t": "Distance = √(15² + 20²) = 25 km", "m": 1}, {"t": "Bearing = tan⁻¹(20/15) ≈ 53°, measured clockwise from north, so the bearing is 053°", "m": 1}], "weak": false}, {"id": "matp-027", "topic": "体积 · 圆柱（直径陷阱）", "difficulty": "easy", "type": "mcq", "stem": "A cylinder has a diameter of 14 cm and a height of 20 cm. Find its volume, correct to one decimal place.", "options": ["1026.3 cm³", "439.8 cm³", "3078.8 cm³", "12315.0 cm³"], "answer": 2, "explanation": "先求半径 r = 14 ÷ 2 = 7 cm，V = πr²h = π × 49 × 20 = 980π ≈ 3078.8 cm³。直接把直径当半径会得 12315.0 cm³，这是本题最主要的陷阱。", "source": "Topic3 Surface area and Volume.pdf · 3-05 Volumes of prisms and cylinders（V = πr²h）", "weak": false}, {"id": "matp-028", "topic": "面积 · 组合图形", "difficulty": "medium", "type": "mcq", "stem": "A shape is made by attaching a semicircle of radius 4 cm to one side of a rectangle measuring 12 cm by 8 cm. Find the total area, correct to one decimal place.", "options": ["146.3 cm²", "96.0 cm²", "108.6 cm²", "121.1 cm²"], "answer": 3, "explanation": "矩形 12 × 8 = 96 cm²，半圆 ½ × π × 4² = 8π ≈ 25.13 cm²，合计 ≈ 121.1 cm²。忘记取一半会得 146.3，只算四分之一圆会得 108.6。", "source": "Topic3 Surface area and Volume.pdf · 3-01 Areas of composite shapes", "weak": false}, {"id": "matp-029", "topic": "表面积 · 圆柱与涂漆成本", "difficulty": "hard", "type": "short", "stem": "A cylindrical water tank has a radius of 5 m and a height of 10 m. Its entire surface, including the top and the bottom, is to be painted. (a) Find the total surface area, correct to the nearest square metre. (b) If paint costs $12 per square metre, find the total cost.", "options": [], "answer": "(a) SA = 2πr² + 2πrh = 50π + 100π = 150π ≈ 471.24 m², so 471 m². (b) Cost = 471 × 12 = $5,652.", "explanation": "两个圆面加一个侧面共 150π。只算侧面（100π ≈ 314 m²）会漏掉顶和底；若中间不四舍五入、用 471.24 × 12 得 $5,654.88，也算正确。", "source": "2025 BBHS 10 (5.2) T2 - soln.pdf · Q19 · Topic3 Surface area and Volume.pdf", "points": [{"t": "(a) SA = 2πr² + 2πrh = 50π + 100π = 150π ≈ 471.24 m², so 471 m²", "m": 1}, {"t": "(b) Cost = 471 × 12 = $5,652", "m": 1}], "weak": false}, {"id": "matp-030", "topic": "统计 · 分布形状", "difficulty": "easy", "type": "mcq", "stem": "A data distribution has a long tail extending towards the higher scores. How is this distribution described?", "options": ["Positively skewed", "Negatively skewed", "Symmetrical", "Bimodal"], "answer": 0, "explanation": "尾部指向高分一侧叫 positively skewed（正偏）；负偏的尾指向低分一侧。两者最容易记反，记法是「尾巴往哪边甩，就叫哪边偏」。", "source": "Topic 1 Investigating Data.pdf · 5-01 The shape of a frequency distribution", "weak": false}, {"id": "matp-031", "topic": "统计 · 四分位距 IQR", "difficulty": "easy", "type": "mcq", "stem": "Find the interquartile range of the data set 4, 7, 7, 9, 12, 15, 15, 18, 20, 22.", "options": ["8", "11", "13.5", "18"], "answer": 1, "explanation": "n = 10，中位数 = (12+15)/2 = 13.5；下半组中位数 Q1 = 7，上半组中位数 Q3 = 18，IQR = 18 − 7 = 11。选 13.5 是把它当成 IQR 了，其实那是中位数。", "source": "Topic 1 Investigating Data.pdf · 5-02 Quartiles and interquartile range", "weak": false}, {"id": "matp-032", "topic": "统计 · 五数概括与偏度", "difficulty": "hard", "type": "short", "stem": "The ages of 13 participants in a sports event are: 12, 14, 15, 16, 17, 17, 18, 20, 21, 22, 25, 27, 30. (a) Write the five-number summary. (b) Calculate the interquartile range. (c) State, with a reason, whether the distribution is symmetrical or skewed.", "options": [], "answer": "(a) Lowest 12, Q1 = 15.5, median = 18, Q3 = 23.5, highest 30. (b) IQR = 23.5 − 15.5 = 8. (c) Positively skewed, because the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5).", "explanation": "13 个数中，中位数取第 7 个；Q1、Q3 分别取上下各 6 个数的中位数。上须 6.5 比下须 3.5 长，说明高分一侧拖尾，所以是正偏。", "source": "Topic 1 Investigating Data.pdf · 5-03 Boxplots · 2025 BBHS 10 (5.2) T2 - soln.pdf Q9", "points": [{"t": "(a) Lowest 12, Q1 = 15.5, median = 18, Q3 = 23.5, highest 30", "m": 1}, {"t": "(b) IQR = 23.5 − 15.5 = 8", "m": 1}, {"t": "(c) Positively skewed, because the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5)", "m": 1}], "weak": false}, {"id": "matp-033", "topic": "概率 · 韦恩图（至少/都不）", "difficulty": "easy", "type": "mcq", "stem": "In a class of 30 students, 18 play soccer, 12 play basketball and 6 play both. How many students play neither sport?", "options": ["0", "12", "6", "24"], "answer": 2, "explanation": "至少会一项的人数 = 18 + 12 − 6 = 24，其中交集 6 人被数了两次，必须减掉。所以两项都不玩的有 30 − 24 = 6 人。忘记减交集会算成 0。", "source": "Topic 3 Probability.pdf · 10-02 Venn diagrams", "weak": false}, {"id": "matp-034", "topic": "概率 · 双向表与条件概率", "difficulty": "hard", "type": "mcq", "stem": "Year 11 students were surveyed about part-time work. The results were: male with part-time work 43, male without part-time work 27, female with part-time work 35, female without part-time work 31. What is the probability that a randomly selected student works part-time, given that the student is male?", "options": ["70/136", "43/78", "43/136", "43/70"], "answer": 3, "explanation": "条件概率的分母必须是「已知是男生」的总人数 43 + 27 = 70，所以是 43/70。用全校 136 人（43/136）或所有兼职者 78 人（43/78）作分母，都是没把条件落到样本空间上。", "source": "Topic 3 Probability.pdf · 10-03 Two-way tables（Example 5）", "weak": false}, {"id": "matp-035", "topic": "概率 · 不放回抽样", "difficulty": "medium", "type": "short", "stem": "A bag contains 3 red and 5 blue marbles. Two marbles are drawn at random one after the other without replacement. Find the probability that both marbles are red.", "options": [], "answer": "P(both red) = 3/8 × 2/7 = 6/56 = 3/28.", "explanation": "不放回抽样时第二次的样本空间少了一个球，所以是 3/8 × 2/7。写成 3/8 × 3/8 是把不放回当成放回了，这是最常见的错误。", "source": "Topic 3 Probability.pdf · 10-05 Selecting with and without replacement", "points": [{"t": "P(both red) = 3/8 × 2/7 = 6/56 = 3/28.", "m": 1}], "weak": false}, {"id": "matp-036", "topic": "金融数学 · 应税收入与可扣除项", "difficulty": "easy", "type": "mcq", "stem": "Priya's records for the financial year show: wages $62,400, bank interest $310, a $200 bonus, private school fees $4,800, work-related tool expenses $680, a donation to charity $150, a speeding fine $420 and her tax agent's fee $120. Using Taxable income = gross income − allowable deductions, calculate her taxable income.", "options": ["$61,960", "$63,860", "$56,740", "$62,910"], "answer": 0, "explanation": "收入合计 62,400+310+200 = $62,910；可扣除的只有与赚取收入相关的支出和捐赠：工具费 680 + 捐款 150 + 报税代理费 120 = $950，所以应税收入 = $61,960。私人学费和罚款不属于 allowable deductions，把它们也扣掉会错得 $56,740。", "source": "1-02_ Income tax.pdf（Taxable income = gross income − allowable deductions）· 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J", "weak": false}, {"id": "matp-037", "topic": "金融数学 · 所得税（19c 档）", "difficulty": "easy", "type": "mcq", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Calculate the income tax payable on a taxable income of $30,000.", "options": ["$11,800.00", "$2,242.00", "$3,572.00", "$5,700.00"], "answer": 1, "explanation": "$30,000 落在 19c 档：0.19 × (30,000 − 18,200) = 0.19 × 11,800 = $2,242。必须先减掉 $18,200 的免税门槛，直接用 0.19 × 30,000 会得 $5,700；$11,800 是只减门槛没乘税率。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5a（官方答案 $2 242）· 1-02_ Income tax.pdf", "weak": false}, {"id": "matp-038", "topic": "金融数学 · 所得税（37c 档）", "difficulty": "medium", "type": "mcq", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Calculate the income tax payable on a taxable income of $150,000.", "options": ["$80,447.00", "$40,297.00", "$43,447.00", "$55,500.00"], "answer": 2, "explanation": "$150,000 在 37c 档：17,547 + 0.37 × (150,000 − 80,000) = 17,547 + 25,900 = $43,447。两个高频错误是漏掉基准金额（0.37 × 150,000 = $55,500）和用错基准（拿顶层 54,547 得 $80,447）；$40,297 是错用上一档 32.5c 算的。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5c（官方答案 $43 447）", "weak": false}, {"id": "matp-039", "topic": "金融数学 · 税率档边界", "difficulty": "hard", "type": "short", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Ann's taxable income is $80,000 and Ben's is $80,001. Ignoring the Medicare levy, calculate the tax each person pays and state how much more tax Ben pays than Ann.", "options": [], "answer": "Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547. Ben pays $17,547 + 0.37 × $1 = $17,547.37. Ben pays 37 cents more than Ann.", "explanation": "税率档是连续的：32.5c 档顶端的金额 17,547 正好等于 37c 档的基准金额，所以 Ben 只多出的那 1 元按 37c 计税，差额只有 37 分。误以为跨档要把全部收入按 37% 重算，会算出几千元的差距。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q4（官方答案：37 cents）", "points": [{"t": "Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547", "m": 1}, {"t": "Ben pays $17,547 + 0.37 × $1 = $17,547.37", "m": 1}, {"t": "Ben pays 37 cents more than Ann", "m": 1}], "weak": false}, {"id": "matp-040", "topic": "金融数学 · 净收入", "difficulty": "medium", "type": "short", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Kim's gross pay for the year is $54,300. She has no allowable deductions, so her taxable income is also $54,300. Calculate (a) her income tax payable and (b) her net pay, given that she also pays $960 in other deductions (union fees and health fund contributions).", "options": [], "answer": "(a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50. (b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50.", "explanation": "净收入公式是 net pay = gross pay − tax − other deductions，税和其他扣除两项都要减。只减税会得 $45,105.50，这是本题最主要的错误。", "source": "1-02_ Income tax.pdf（Net pay = gross pay − tax − other deduction；Example 3）", "points": [{"t": "(a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50", "m": 1}, {"t": "(b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50", "m": 1}], "weak": false}, {"id": "matp-041", "topic": "统计 · 标准差的含义", "difficulty": "easy", "type": "mcq", "stem": "Two netball teams each score a mean of 24 goals per game over a season. Team A's scores have a standard deviation of 2.1 goals and Team B's have a standard deviation of 6.4 goals. What does this tell you?", "options": ["Team A's standard deviation must be wrong, because both teams have the same mean.", "Team B scored more goals in total than Team A.", "Both teams had exactly the same range of scores.", "Team A's scores were more consistent from game to game than Team B's."], "answer": 3, "explanation": "标准差衡量数据相对均值的离散程度：两个均值相同时，标准差越大说明每场得分波动越大，所以 A 队更稳定。标准差与总分无关，也不等于极差，所以前两个选项都推不出来。", "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation · 2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf Q7(e)", "weak": false}, {"id": "matp-042", "topic": "统计 · 计算标准差", "difficulty": "medium", "type": "mcq", "stem": "Find the standard deviation of the data set 2, 4, 4, 4, 5, 5, 7, 9, correct to one decimal place. Use σ = √(Σ(x − x̄)² ÷ n).", "options": ["2.0", "2.1", "1.5", "4.0"], "answer": 0, "explanation": "均值 x̄ = 40 ÷ 8 = 5，偏差平方和 = 9+1+1+1+0+0+4+16 = 32，σ = √(32 ÷ 8) = √4 = 2.0。选 4.0 是忘了开方（那是方差）；2.1 是除以 n−1 的样本标准差。", "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation（σ = √(Σ(x − x̄)² ÷ n)）", "weak": false}, {"id": "matp-043", "topic": "统计 · 均值与标准差", "difficulty": "hard", "type": "short", "stem": "A team scored the following number of goals in its 10 matches: 0, 1, 1, 2, 2, 2, 3, 3, 5, 6. (a) Find the mean. (b) Find the standard deviation, correct to two decimal places, using σ = √(Σ(x − x̄)² ÷ n).", "options": [], "answer": "(a) Mean = 25 ÷ 10 = 2.5 goals. (b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals.", "explanation": "先求均值 2.5，再逐个算偏差平方：6.25+2.25+2.25+0.25+0.25+0.25+0.25+0.25+6.25+12.25 = 30.5，除以 n=10 后开方得 1.75。本题按总体标准差（除以 n）计算；若除以 n−1=9 会得 1.84，那是样本标准差的口径。", "source": "2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf · Q7(e) · New Century 10 Standard-Core Textbook.pdf · 5.03", "points": [{"t": "(a) Mean = 25 ÷ 10 = 2.5 goals", "m": 1}, {"t": "(b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals", "m": 1}], "weak": false}, {"topic": "网络 · 术语", "difficulty": "easy", "type": "mcq", "stem": "In a network diagram, the number of edges meeting at a vertex is called its:", "options": ["Order", "Degree", "Weight", "Path"], "answer": 1, "explanation": "一个顶点连出的边数叫度数（degree）。奇度顶点数决定能否一笔画完：全偶数→可回到起点；恰好两个奇数→可一笔画但终点不同。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Networks: terminology）", "id": "matp-044", "weak": false}, {"topic": "网络 · 欧拉回路", "difficulty": "medium", "type": "mcq", "stem": "A connected network has vertices with degrees 2, 2, 4, 2, 2. Which statement is true?", "options": ["It has no Eulerian circuit", "It cannot be drawn without lifting the pen", "It has an Eulerian circuit because every vertex has even degree", "It has exactly one odd vertex"], "answer": 2, "explanation": "所有顶点度数都是偶数 → 存在欧拉回路（从任意点出发、每条边走一次并回到起点）。只要有一个奇度点就不成立。", "source": "Yearly Study Guide 2026 · Mathematics Standard（Eulerian trails and circuits）", "id": "matp-045", "weak": false}, {"topic": "网络 · 欧拉路径", "difficulty": "medium", "type": "mcq", "stem": "A network has exactly two vertices of odd degree. What can be concluded?", "options": ["No Eulerian trail exists", "The network is not connected", "Every vertex must be visited twice", "An Eulerian trail exists, starting and finishing at the two odd-degree vertices"], "answer": 3, "explanation": "恰好两个奇度点 → 存在欧拉路径（一笔画），必须从一个奇点出发、另一个奇点结束。若想回到起点（回路）则需要全部为偶数。", "source": "Yearly Study Guide 2026 · Mathematics Standard（Eulerian trials and circuits）", "id": "matp-046", "weak": false}, {"topic": "网络 · 最小生成树", "difficulty": "hard", "type": "mcq", "stem": "A town must connect four buildings with cable at minimum total length. The possible connections and lengths (km) are AB 2, AC 5, BC 3, BD 4, CD 1. What is the minimum total length?", "options": ["6 km", "10 km", "8 km", "7 km"], "answer": 0, "explanation": "最小生成树=选 3 条边连成整体且不成环。按长度排序：CD 1、AB 2、BC 3 → 三条边连接 A-B-C-D 且无环，总长 1+2+3=6。再加任一条都会成环。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path and minimum spanning trees）", "id": "matp-047", "weak": false}, {"topic": "网络 · 最短路径", "difficulty": "medium", "type": "mcq", "stem": "Using the network in which AB = 2, BC = 3, AC = 5, BD = 4 and CD = 1 (all in km), what is the shortest distance from A to D?", "options": ["7 km", "6 km", "5 km", "9 km"], "answer": 1, "explanation": "所有路线都经过 C 或 B：A→B→D=6，A→B→C→D=6，A→C→D=6。最短为 6 km，所以选 6 km。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path）", "id": "matp-048", "weak": false}, {"topic": "网络 · 平面图", "difficulty": "medium", "type": "mcq", "stem": "A planar graph is one that:", "options": ["Has no cycles", "Has all vertices of equal degree", "Can be drawn on a plane without any edges crossing", "Contains no more than four vertices"], "answer": 2, "explanation": "平面图指能在平面上画出、边彼此不交叉的图。是否看起来交叉不重要，能否重新画成不交叉才重要。", "source": "Yearly Study Guide 2026 · Mathematics Core（Network terminology and planar graphs）", "id": "matp-049", "weak": false}]};
-const KEY = "dsh-quiz-matp";
-const MULTI = DATA.slug === "all";
-const app = document.getElementById("app");
-let state = {idx:0, answers:{}, order:null};
-
-function load() {
-  try {
-    const s = JSON.parse(localStorage.getItem(KEY) || "null");
-    if (s && s.answers) state = s;
-  } catch(e) {}
-  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
-  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
-  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
-  try {
-    const m = location.search.match(/[?&]q=([^&]+)/);
-    if (m) {
-      const qid = decodeURIComponent(m[1]);
-      const qi = DATA.questions.findIndex(x => x.id === qid);
-      const pos = state.order.indexOf(qi);
-      if (pos >= 0) state.idx = pos;
-    }
-  } catch(e) {}
-}
-function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-
-function renderSetup() {
-  const subs = DATA.subjects || {};
-  const keys = Object.keys(subs);
-  const saved = state.pick || {};
-  const opts = keys.map(k => {
-    const on = saved[k] !== false;
-    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
-      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
-  }).join("");
-  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
-  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
-  app.innerHTML = `<div class="setup">
-    <div class="setup-head">
-      <h2>综合卷 · 全科</h2>
-      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
-    </div>
-
-    <section class="setup-block">
-      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
-      <div class="picks">${opts}</div>
-    </section>
-
-    <section class="setup-block">
-      <div class="setup-label">2 · 每科抽几题</div>
-      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
-    </section>
-
-    <div class="setup-foot">
-      <div class="sum">共 <b id="cnt">0</b> 题</div>
-      <button class="btn ghost" id="daily">今日挑战</button>
-      <button class="btn" id="startmix">开始答题 →</button>
-    </div>
-  </div>`;
-  const chosenCount = () => {
-    let c = 0;
-    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
-    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
-  };
-  const calc = () => {
-    let n = 0;
-    app.querySelectorAll(".pick input").forEach(cb => {
-      if (!cb.checked) return;
-      const k = cb.dataset.s, c = subs[k].n;
-      n += per ? Math.min(per, c) : c;
-    });
-    document.getElementById("cnt").textContent = n;
-    const pc = document.getElementById("pickcount");
-    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
-  };
-  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
-    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
-  });
-  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
-    state.per = +b.dataset.n; save(); render();
-  });
-  function seedRnd(str){
-    var h=2166136261;
-    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
-    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
-      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
-  }
-  function startDaily(){
-    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-    var rnd=seedRnd("daily:"+key);
-    var idxs=[];
-    DAILY.forEach(function(sl){
-      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
-      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
-      idxs=idxs.concat(pool.slice(0,3));
-    });
-    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
-    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
-  }
-  document.getElementById("daily").onclick = startDaily;
-  document.getElementById("startmix").onclick = () => {
-    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
-    if (!chosen.length) { alert("至少选一科"); return; }
-    let idxs = [];
-    chosen.forEach(k => {
-      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
-      pool.sort(() => Math.random() - 0.5);
-      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
-    });
-    idxs.sort(() => Math.random() - 0.5);
-    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
-    state.answers = {}; state.t0 = Date.now(); save(); render();
-  };
-  calc();
-}
-
-
-/* ===== 语言切换 ===== */
-function LANG(){ try{ return localStorage.getItem("dsh-lang") || "en"; }catch(e){ return "en"; } }
-function setLANG(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} }
-var UI_TEXT = {
-  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
-        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
-  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
-        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
-};
-function T(k){
-  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
-  return d[k] || UI_TEXT.en[k] || k;
-}
-function applyChrome(){
-  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
-  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
-  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
-  var l=LANG();
-  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
-}
-function cycleLang(){
-  var order=["en","zh","both"], i=order.indexOf(LANG());
-  setLANG(order[(i+1)%3] || "en");
-  applyChrome(); render();
-}
-
-function render() {
-  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
-    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
-  }
-  if (MULTI && state.setup && !state.started) return renderSetup();
-  const qs = state.order.map(i => DATA.questions[i]);
-  const q = qs[state.idx];
-  const L = LANG(), ZH = (q && q.zh) || null;
-  const total = qs.length;
-  const answered = qs.filter(x => state.answers[x.id]).length;
-  const right = qs.filter(x => state.answers[x.id] === "ok").length;
-  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
-  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
-  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
-  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
-  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
-
-  const rec = state.answers[q.id];
-  const chips = `<div class="chips">
-      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
-      <span class="chip">${esc(q.topic)}</span>
-      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
-      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
-      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
-    </div>`;
-
-  let bodyHtml = "";
-  if (q.type === "mcq") {
-    const opts = (q.options || []).map((o, i) => {
-      let cls = "opt", mark = "";
-      if (rec) {
-        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
-        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
-      }
-      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
-      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
-      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
-        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
-    }).join("");
-    bodyHtml = `<div class="opts">${opts}</div>`;
-  } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
-    const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
-    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
-    const hasNum = /-?\d/.test(bareAns);
-    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
-      <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
-        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点</div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
-      </div>`;
-    }
-  }
-
-  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
-      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
-      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
-
-  const last = state.idx >= total - 1;
-  let stemHtml;
-  if (L === "zh" && ZH && ZH.stem) {
-    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
-  } else if (L === "both" && ZH && ZH.stem) {
-    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
-  } else {
-    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
-  }
-  app.innerHTML = `<div class="card">${chips}${stemHtml}
-      ${bodyHtml}${expHtml}</div>
-      <div class="actionbar">
-        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
-        <span class="spacer"></span>
-        <button class="btn ghost" id="finish">${T("finish")}</button>
-        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
-      </div>`;
-
-  if (q.type === "mcq") {
-    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
-      const i = +b.dataset.i;
-      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
-      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
-      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
-      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
-      save(); render();
-    }));
-  } else {
-    const ta = document.getElementById("ta");
-    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
-    document.getElementById("reveal").onclick = () => {
-      const c = cur();
-      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
-      const set = new Set(c.checked || []);
-      if (cb.checked) set.add(i); else set.delete(i);
-      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,i)=>set.has(i));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
-      save(); render();
-    }));
-    const nc = document.getElementById("numcheck");
-    if (nc) nc.onclick = () => {
-      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
-      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
-  }
-  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
-  const nx = document.getElementById("next");
-  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
-  document.getElementById("finish").onclick = showResult;
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function showResult() {
-  const qs = state.order.map(i => DATA.questions[i]);
-  if (!state.rewarded && qs.length) {
-    state.rewarded = true; save();
-    if (state.daily) {
-      try {
-        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
-        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
-        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
-        var DKEY = "dsh-daily-v1";
-        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
-        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
-        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
-          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
-          localStorage.setItem(DKEY, JSON.stringify(drec));
-        }
-        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
-      } catch(e) {}
-    }
-    const answered = qs.filter(x => state.answers[x.id]).length;
-    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
-    if (window.openChest && answered >= 3) openChest();
-  }
-  const rec = id => state.answers[id] || null;
-  const mcq = qs.filter(x => x.type === "mcq");
-  const shorts = qs.filter(x => x.type === "short");
-  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
-  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
-  const todo = qs.filter(x => !rec(x.id));
-  let earnedM = 0, totalM = 0, partM = 0;
-  const weak = [];
-  shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
-    const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
-    totalM += tot;
-    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
-  });
-  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
-  const needRedo = [...wrong, ...weak];
-  const wrongIds = needRedo.map(x => x.id);
-  app.innerHTML = `<div class="card done">
-      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
-      <div class="stats">
-        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
-        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
-        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
-        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
-      </div>
-      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
-      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
-      <div class="actions">
-        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
-        <button class="btn ghost" id="showlb">${T("lb")}</button>
-        <button class="btn ghost" id="again">${T("again")}</button>
-        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
-      </div></div>`;
-  const redo = document.getElementById("redo");
-  if (redo) redo.onclick = () => {
-    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
-    wrongIds.forEach(id => delete state.answers[id]);
-    state.idx = 0; save(); render();
-  };
-  const showlb = document.getElementById("showlb");
-  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
-  document.getElementById("again").onclick = () => {
-    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
-    save(); render();
-  };
-}
-
-document.getElementById("grid").onclick = openNav;
-document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
-document.getElementById("nav").addEventListener("click", e => {
-  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
-});
-try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
-catch(e) { document.body.insertAdjacentHTML("afterbegin",
-  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
-
-document.getElementById("exam").onclick = startExam;
-if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
-
-var _langBtn = document.getElementById("langBtn");
-if (_langBtn) _langBtn.onclick = cycleLang;
-applyChrome();
-document.getElementById("restart").onclick = () => {
-  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
-  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
-  save(); render();
-};
-
-document.addEventListener("keydown", e => {
-  if (MULTI && state.setup && !state.started) {
-    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
-    return;
-  }
-  const tag = (e.target && e.target.tagName) || "";
-  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
-  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
-  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
-  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
-  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
-    else showResult();
-    return;
-  }
-  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
-  if (!q || q.type !== "mcq") return;
-  const n = parseInt(e.key, 10);
-  if (n >= 1 && n <= (q.options || []).length) {
-    if (!state.answers[q.id]) {
-      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
-      save(); render();
-    }
-  }
-});
-
-const REVIEW_KEY = "dsh-review-v1";
-const GAPS = [1, 3, 7];
-function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
-function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
-function reviewMark(slug, qid, correct){
-  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
-  if (correct) {
-    const it = db[id];
-    if (!it) return;
-    const st = (it.stage || 0) + 1;
-    if (st >= GAPS.length) delete db[id];
-    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
-  } else {
-    const old = db[id] || {};
-    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
-  }
-  reviewSave(db);
-}
-function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
-
-const LOG_KEY = "dsh-log-v1";
-function logAnswer(slug, qid, ok, diff, ty){
-  try {
-    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
-    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
-    if (arr.length > 3000) arr = arr.slice(-3000);
-    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
-  } catch(e) {}
-}
-function navState(qi){
-  const q = DATA.questions[qi], a = state.answers[q.id];
-  if (!a) return "";
-  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
-  const pts = q.points || [{m:1}], c = (a.checked || []).length;
-  if (c >= pts.length) return "ok";
-  if (c > 0) return "part";
-  return "";
-}
-function openNav(){
-  const grid = document.getElementById("navgrid");
-  grid.innerHTML = state.order.map((qi, pos) =>
-    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
-  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
-    state.idx = +b.dataset.pos; save();
-    document.getElementById("nav").classList.remove("on"); render();
-  });
-  document.getElementById("nav").classList.add("on");
-}
-
-let timerId = null;
-function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
-function tickClock(){
-  const el = document.getElementById("clock");
-  if (!state.deadline) { if (el) el.style.display = "none"; return; }
-  const left = state.deadline - Date.now();
-  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
-            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
-  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
-}
-function startExam(){
-  const def = DATA.examMin || 60;
-  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
-  if (v === null) return;
-  const mins = parseInt(v, 10);
-  if (!mins || mins <= 0) return;
-  state.deadline = Date.now() + mins*60000; save();
-  if (timerId) clearInterval(timerId);
-  timerId = setInterval(tickClock, 1000);
-  tickClock();
-}
-
-
-load(); render();
-</script>
-<script>
 
 (function(){
   var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
@@ -1003,6 +522,175 @@ load(); render();
   var SEEN_KEY="dsh-seen-v1";
   function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
   function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+
+
+  /* ===== 界面中英切换（运行时替换文本节点） ===== */
+  /* 语言状态（共享给所有页面） */
+  function LANG(){
+    try{
+      var m = (location.search.match(/[?&]lang=(en|zh|both)/) || [])[1];
+      if(m){ localStorage.setItem("dsh-lang", m); return m; }
+      var v = localStorage.getItem("dsh-lang");
+      if(v) return v;
+      var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+      return nav.indexOf("zh") === 0 ? "zh" : "en";
+    }catch(e){ return "en"; }
+  }
+  window.LANG = LANG;
+  window.setLANG = function(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} };
+
+  var I18N = {
+    // 通用
+    "题号":"Index","考试模式":"Exam mode","重来":"Restart","上一题":"Previous","下一题":"Next",
+    "看成绩":"See results","回到科目列表":"Subjects","整套重做":"Redo all","查看今日榜单":"Today's leaderboard",
+    "简单":"Easy","中等":"Medium","较难":"Hard","选择题":"Multiple choice","简答":"Short answer",
+    "第":"Q","题":"questions","共":"of","分":"marks",
+    "搜索课程、单元或代码（电磁学 / King Lear / 10SCI）":"Search subjects, topics or codes",
+    // 答题
+    "先自己写（英文），写完点下面的按钮对照得分点":"Write your answer in English, then check it against the marking points",
+    "对照得分点":"Show marking points","重新对照得分点":"Review marking points","数值自检":"Check number",
+    "自评 · 勾选你写到的得分点":"Self-mark · tick the points you covered","全部勾上":"Tick all","全部取消":"Clear all",
+    "你写的：":"Your answer:","（空）":"(empty)","解析：":"Explanation:","出处：":"Source:",
+    "看完整参考答案":"Show full model answer","已得":"Scored","个得分点":"marking points",
+    "你还没写数字":"Type a number first","参考答案无数字":"No number in the model answer",
+    "数值与参考答案一致":"Number matches the model answer","数值与参考答案不一致":"Number does not match",
+    "只练错题":"Practise wrong ones only",
+    // 结算
+    "总题数":"Total questions","未做":"Unanswered","答对":"Correct","答错":"Wrong",
+    "选择题答对":"MCQ correct","选择题答错":"MCQ wrong","简答得分":"Short-answer marks","正确率":"Accuracy",
+    // 档案/任务/榜单
+    "等级":"Level","今日":"Today","连续":"Streak","天":"days","连对纪录":"Best combo","金币":"Coins","星尘":"Stardust",
+    "今日任务":"Today's tasks","每天 0 点刷新":"Resets daily","领取":"Claim","已领取":"Claimed",
+    "今日好友榜":"Today's leaderboard","服务器设置":"Server settings","复制我的战绩码":"Copy my score code",
+    "粘贴同学的战绩码":"Paste a classmate's code","加入":"Add","提交到服务器":"Submit",
+    "你附近 · 再对一道题就能超过":"Near you · one more correct answer to overtake",
+    "今日榜单":"Today's leaderboard","关闭":"Close","答对题数":"Correct answers","用时":"Time",
+    "我":"Me","（我）":" (me)","第一名":"1st","第二名":"2nd","第三名":"3rd",
+    "已交卷":"Submitted by","人":"students","近 7 天正确率":"Accuracy, last 7 days",
+    // 首页
+    "复习测验":"Revision Quizzes","今日挑战":"Daily challenge","错题本":"Mistakes","商城":"Shop",
+    "课程":"Subjects","门 · 年考优先":"subjects · exam order","搜索课程、单元或代码":"Search subjects, topics or codes",
+    "没有匹配的课程":"No matching subject","下一场":"Next exam","天后":"days away",
+    "年考":"Yearly","未开始":"Not started","选择":"MCQ","下一场考试":"Next exam",
+    "综合卷 · 全科":"Mixed paper · all subjects","从":"From","科抽题混做":"subjects, mixed",
+    "科目列表":"Subjects","分数":"Score","语言":"Language",    "← 科目列表":"Subjects","正在上传试卷…":"Uploading your paper...",
+    "正在加密上传试卷…":"Encrypting and uploading...","正在实时计算排名…":"Calculating your rank...",
+    "今天还没有人上榜":"No one on the board yet","你还没上榜，交卷即可参与":"Not on the board yet - submit to join",
+    "绿=对 红=错 橙=半对 灰=未做":"Green = correct · Red = wrong · Amber = partial · Grey = unanswered",
+    "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
+    "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
+    "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "允许":"Allow","未开始":"Not started","已开始":"Started","完成":"done",
+
+    // 页面标题与页脚
+    "Canvas 复习测验":"Canvas Revision Quizzes",
+    "音效 开":"Sound on","音效 关":"Sound off",
+    "今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。":"No one has submitted yet today. Finish the daily challenge and hit Submit, or swap score codes with classmates.",
+    "进度存在本机浏览器里，换设备需导出备份":"Progress is saved in this browser. Export a backup to move devices.",
+    "「原始资料」链接指向":"The source-material link points to",
+    "，未一起上传时失效，不影响做题":". It is broken when not uploaded together, but quizzing still works.",
+    // 分组
+    "年考重点":"Core exams","非年考内容（有余力再看）":"Non-exam content","其他科目":"Other subjects",
+    "年考版":"Yearly","学科":"Elective","辅导":"Wellbeing",
+    // 科目
+    "科学 · 10 年级":"Science · Year 10","英语 · 10 年级":"English · Year 10",
+    "历史 · 10 年级":"History · Year 10","地理 · 10 年级":"Geography · Year 10",
+    "PDHPE · 10 年级":"PDHPE · Year 10","数学 P · 10 年级":"Maths (Standard) · Year 10",
+    "数学 5.3 · 10 年级":"Maths (Advanced) · Year 10",
+    "科学 · 非年考":"Science · non-exam","历史 · 非年考":"History · non-exam",
+    "地理 · 非年考":"Geography · non-exam","英语 · 非年考":"English · non-exam",
+    "食品科技 · 10 年级":"Food Technology · Year 10","生涯规划 · 10 年级":"Careers · Year 10",
+    "体育 · 10 年级":"Sport · Year 10","户外教育 · 10 年级":"Outdoor Education · Year 10",
+    "心理与福祉":"Wellbeing",
+    // 范围
+    "有机化学 25 / 进化 25 / 技能 20":"Organic chemistry 25 / Evolution 25 / Skills 20",
+    "King Lear 短答 + 比较论文":"King Lear short answer + comparative essay",
+    "术语选择 + 1991–2019 美国外交":"Terminology MCQ + US foreign policy 1991-2019",
+    "气候变化 · 温室效应 / 海平面 / 珊瑚白化":"Climate change · greenhouse / sea level / bleaching",
+    "道路安全 / 急救 / 心理健康":"Road safety / first aid / mental health",
+    "金融 / 代数 / 坐标几何 / 统计":"Finance / algebra / coordinate geometry / statistics",
+    "根式 / 指数 / 对数 / 三角 / 概率":"Surds / indices / logs / trig / probability",
+    "电磁学 / 进化 / 技能":"Organic chemistry / evolution / skills",
+    "地球能量 / 遗传 / 运动 / 化学 / 气候":"Earth energy / genetics / motion / chemistry / climate",
+    "Holocaust / 冷战 / 民权":"Holocaust / Cold War / civil rights",
+    "福祉 / 原住民 / 气候变化":"Wellbeing / Indigenous / climate",
+    "战争单元 / 诗歌 / 阅读卷":"War unit / poetry / reading",
+    "食品安全 / 食物不平等 / 特殊需求":"Food safety / food inequality / special needs",
+    "就业路径 / 求职 / ATAR / USI·TFN":"Career paths / job hunt / ATAR / USI-TFN",
+    "规则 / 赛事 / 训练常识":"Rules / events / training",
+    "环境意识 / Leave No Trace":"Environmental awareness / Leave No Trace",
+    "焦虑 / 抑郁 / 求助渠道":"Anxiety / depression / where to get help",
+    // 任务
+    "精准":"Accuracy","写作":"Writing","数量":"Volume","攻坚":"Stretch","连击":"Combo","每日":"Daily",
+    "正确率 80%（至少 10 题）":"80% accuracy (at least 10 questions)",
+    "完成 3 道简答自评":"Self-mark 3 short answers",
+    "今天做满 20 题":"Answer 20 questions today",
+    "今天做满 12 题":"Answer 12 questions today",
+    "一次连对 5 题":"Get 5 correct in a row",
+    "一次连对 8 题":"Get 8 correct in a row",
+    "做对 3 道「较难」题":"Get 3 hard questions right",
+    "完成今日挑战":"Finish the daily challenge",
+    // 课程图标首字
+    "科":"S","英":"E","历":"H","地":"G","数":"M","食":"F","生":"C","体":"P","户":"O","心":"W"
+  };
+  var I18N_PAT = [
+    [/^第 (\d+) 题 \/ 共 (\d+)$/, "Q$1 of $2"],
+    [/^(\d+) \/ (\d+)$/, "$1 / $2"],
+    [/^已得 (\d+) \/ (\d+) 分$/, "Scored $1 / $2"],
+    [/^共 (\d+) 分 · (\d+) 个得分点$/, "$1 marks · $2 marking points"],
+    [/^(\d+) 题$/, "$1 questions"],
+    [/^\s*题\s*$/, "questions"],
+    [/^(\S+) (\d+) · (\d+) 题 · (.+)$/, "$1 $2 · $3 questions · $4"],
+    [/^今日 (\d+)\/(\d+)$/, "Today $1/$2"],
+    [/^连续 (\d+) 天$/, "Streak $1 days"],
+    [/^连对纪录 (\d+)$/, "Best combo $1"],
+    [/^金币 (\d+)$/, "Coins $1"],
+    [/^星尘 (\d+)$/, "Stardust $1"],
+    [/^已交卷 (\d+) 人$/, "$1 submitted"],
+    [/^下一场 (.+) · (\d+\/\d+) · (\d+) 天后$/, "Next: $1 · $2 · $3 days"],
+    [/^(\d+\/\d+) (.+) · (\d+) 天$/, "$1 $2 · $3 days"],
+    [/^第 (\d+) 名$/, "#$1"],
+    [/^最高 (\d+)%$/, "Top $1%"],
+    [/^今日榜$/, "Board"],
+    [/^Lv\.(\d+)$/, "Lv.$1"],
+    [/^(\d+) 科 · (\d+) 题$/, "$1 subjects · $2 questions"],
+    [/^(\d+) 门 · 年考优先$/, "$1 subjects · exam order"],
+    [/^(\d+) 门$/, "$1 subjects"],
+    [/^(\d+) 天后$/, "$1 days"],
+    [/^XP · 还差 (\d+) 升级$/, "XP · $1 to next level"],
+    [/^从 (\d+) 科抽题混做，(\d+) 题可选$/, "Mix questions from $1 subjects, $2 available"],
+    [/^(\d+) 选择$/, "$1 MCQ"],
+    [/^(\d+) 简答$/, "$1 short"],
+    [/^下一场 (.+) · (\d+\/\d+) ·$/, "Next: $1 · $2 ·"],
+    [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"]
+  ];
+  function applyI18n(){
+    if(window.LANG()==="zh") return;
+    var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n, changed=[];
+    while((n=walker.nextNode())){
+      var s=(n.nodeValue||"").trim(); if(!s) continue;
+      if(I18N[s]){ n.nodeValue=n.nodeValue.replace(s, I18N[s]); continue; }
+      for(var i=0;i<I18N_PAT.length;i++){
+        if(I18N_PAT[i][0].test(s)){ n.nodeValue=n.nodeValue.replace(s, s.replace(I18N_PAT[i][0], I18N_PAT[i][1])); break; }
+      }
+    }
+    document.querySelectorAll("[placeholder]").forEach(function(el){
+      var p=el.getAttribute("placeholder");
+      if(I18N[p]) el.setAttribute("placeholder", I18N[p]);
+    });
+    document.querySelectorAll("[title]").forEach(function(el){
+      var t2=el.getAttribute("title");
+      if(I18N[t2]) el.setAttribute("title", I18N[t2]);
+    });
+  }
+  window.applyI18n=applyI18n;
+  function kickI18n(){ try{ applyI18n(); }catch(e){} }
+  if(document.readyState==="loading")
+    document.addEventListener("DOMContentLoaded", function(){ setTimeout(kickI18n, 20); });
+  else setTimeout(kickI18n, 20);
+  window.addEventListener("load", function(){ setTimeout(kickI18n, 60); });
+  setTimeout(kickI18n, 300);
 
   /* ===== 排行榜：分阶段披露（战中抽屉 / 战后全屏） ===== */
   var LB={sort:"pct", list:[], open:false, at:0, timer:null};
@@ -1472,6 +1160,7 @@ load(); render();
   }
   function renderAll(){
     renderProfile();
+    setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
     setTimeout(loadBoard, 0);
     renderQuests(document.getElementById("quests"));
     renderBoard(document.getElementById("board"));
@@ -1515,6 +1204,486 @@ load(); render();
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+</script>
+<script>
+const DATA = {"slug": "matp", "title": "数学 P · 10 年级", "examMin": 80, "questions": [{"id": "matp-001", "topic": "金融数学 · 加班工资", "difficulty": "easy", "type": "mcq", "stem": "Tomas earns $28 per hour for the first 38 hours he works each week. Any hours beyond 38 are paid at time-and-a-half. Last week he worked 45 hours. What was his total pay for the week?", "options": ["$1,358", "$1,890", "$1,260", "$1,456"], "answer": 0, "explanation": "前 38 小时 38×28=$1,064，超时 45−38=7 小时按 1.5 倍时薪 $42 计，7×42=$294，合计 $1,358。常见错误是 45 小时全按基本时薪得 $1,260，或把加班时薪算成双倍得 $1,456。", "source": "Topic1 Interest and Depreciation.pdf · 1-01 Earning an income", "weak": false}, {"id": "matp-002", "topic": "金融数学 · 复利（按月）", "difficulty": "medium", "type": "mcq", "stem": "Sophie deposits $1,200 into a savings account that earns 5% per annum, compounded monthly. How much will she have in the account after 3 years?", "options": ["$1,389.15", "$1,393.77", "$1,380.00", "$1,458.61"], "answer": 1, "explanation": "按月复利要把利率和期数同时换成月：R=0.05/12，n=3×12=36，A=1200(1+0.05/12)^36≈$1,393.77。用单利得 $1,380，把 5% 当成年利率只复 3 次得 $1,389.15，都是常见错误。", "source": "1-04_ Compound Interest.pdf · A = P(1 + R)^n（R 为每期利率）", "weak": false}, {"id": "matp-003", "topic": "金融数学 · 折余折旧", "difficulty": "medium", "type": "short", "stem": "A delivery van is bought for $42,000. It depreciates at 15% per annum using the reducing-balance formula A = P(1 − R)^n. Find (a) its value after 4 years, correct to the nearest dollar, and (b) the total amount it has depreciated over those 4 years.", "options": [], "answer": "(a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924. (b) Depreciation = 42,000 − 21,924 = $20,076.", "explanation": "减少率折旧是每年乘 0.85，共 4 次，不是 42,000×(1−0.15×4)。用直线法（每年固定减 $6,300）会得 $16,800，那是另一种模型。", "source": "1-07_ Depreciation.pdf · A = P(1 − R)^n（reducing balance）", "points": [{"t": "(a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924", "m": 1}, {"t": "(b) Depreciation = 42,000 − 21,924 = $20,076", "m": 1}], "weak": false}, {"id": "matp-004", "topic": "代数 · 指数律（幂的乘方）", "difficulty": "easy", "type": "mcq", "stem": "Simplify (3a⁴)².", "options": ["6a⁶", "9a⁶", "9a⁸", "6a⁸"], "answer": 2, "explanation": "括号内每一项都要乘方：3²=9，指数相乘 4×2=8，所以是 9a⁸。只把系数 3 错写成 6，或把 4×2 误算成 6，是两个最常见的错。", "source": "Algebra Topic test + Solutions.pdf · Part A Q12 · 4-01_ Index Laws", "weak": false}, {"id": "matp-005", "topic": "代数 · 单项式乘法", "difficulty": "easy", "type": "mcq", "stem": "Simplify 2m × 5m p × 3n.", "options": ["30m np", "30m³np", "10m²np", "30m²np"], "answer": 3, "explanation": "系数 2×5×3=30；m×m=m²（指数相加），p 和 n 各出现一次，结果是 30m²np。把 m×m 当成 2m 会得 10m²np，当成 m³ 则指数加错。", "source": "Topic2 Algebra.pdf · 4-01 The index laws", "weak": false}, {"id": "matp-006", "topic": "代数 · 代数分式约分", "difficulty": "medium", "type": "mcq", "stem": "Simplify (6x²y) ÷ (9xy³).", "options": ["2x / (3y²)", "2x / (3y³)", "2y² / (3x)", "3x / (2y²)"], "answer": 0, "explanation": "系数约分 6/9=2/3；同底数相除指数相减：x²÷x=x，y÷y³=1/y²。所以是 2x/(3y²)。把 y 的指数写成 3，或忘记约分系数，都是常见错误。", "source": "4-03_ Multiplying and dividing algebraic fractions.pdf", "weak": false}, {"id": "matp-007", "topic": "代数 · 二项式展开", "difficulty": "medium", "type": "mcq", "stem": "Expand and simplify (2x − 5)(3x + 7).", "options": ["6x² + 21x − 35", "6x² − x − 35", "6x² + x − 35", "6x² − 29x − 35"], "answer": 1, "explanation": "逐项相乘得 6x² + 14x − 15x − 35 = 6x² − x − 35。中间项 14x − 15x = −x，若把 −15x 误写成 +15x 就会得到 6x² + 29x 一类的错误。", "source": "4-05_ Expanding Binomial Products.pdf · Algebra Topic test + Solutions.pdf Q24c", "weak": false}, {"id": "matp-008", "topic": "代数 · 完全平方中项", "difficulty": "medium", "type": "mcq", "stem": "If (7g + 3)² = 49g² + hg + 9, what is the value of h?", "options": ["84", "14", "42", "21"], "answer": 2, "explanation": "完全平方的中项是 2×7g×3 = 42g，所以 h = 42。只算 7×3 = 21（漏掉公式里的 2）是最常见的错误。", "source": "Algebra Topic test + Solutions.pdf · Part A Q14（perfect squares）", "weak": false}, {"id": "matp-009", "topic": "代数 · 因式分解", "difficulty": "medium", "type": "short", "stem": "Factorise each expression fully. (a) 12a²b − 21ab²  (b) x² + 7x + 10", "options": [], "answer": "(a) 3ab(4a − 7b)   (b) (x + 5)(x + 2)", "explanation": "(a) 取最大公因式：12 与 21 的 HCF 是 3，字母取公有因子 a、b，得 3ab；括号内 3ab×4a=12a²b、3ab×(−7b)=−21ab²。(b) 找和为 7、积为 10 的两个数，即 5 和 2。", "source": "4-06 Factorising monic quadratics.pdf · 2025 BBHS 10 (5.2) T2 Q14", "points": [{"t": "(a) 3ab(4a − 7b)   (b) (x + 5)(x + 2)", "m": 1}], "weak": false}, {"id": "matp-010", "topic": "方程 · 一元一次（两边有未知数）", "difficulty": "easy", "type": "mcq", "stem": "Solve 9x + 10 = 7x − 6.", "options": ["x = 8", "x = 2", "x = −2", "x = −8"], "answer": 3, "explanation": "两边同减 7x、同减 10，得 2x = −16，故 x = −8。常见错误是把 10 移项时忘记变号（得 −2），或把 −16 ÷ 2 算成 +8。", "source": "Topic 2 Equations and Inequality.pdf · 6-01 Equations（Example 1c）", "weak": false}, {"id": "matp-011", "topic": "不等式 · 除以负数变号", "difficulty": "hard", "type": "mcq", "stem": "Solve the inequality −3(x − 2) ≥ 15.", "options": ["x ≤ −3", "x ≤ 3", "x ≥ 3", "x ≥ −3"], "answer": 0, "explanation": "展开得 −3x + 6 ≥ 15，即 −3x ≥ 9；两边同除以 −3 时不等号必须反向，得 x ≤ −3。可以用 x = −4 代回检验：−3(−6)=18 ≥ 15 成立。", "source": "Topic 2 Equations and Inequality.pdf · 6-07 Solving inequalities（除负数要 reverse the sign）", "weak": false}, {"id": "matp-012", "topic": "方程 · 含分式的方程", "difficulty": "medium", "type": "short", "stem": "Solve x/3 − (x − 2)/4 = 2.", "options": [], "answer": "Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.", "explanation": "分母 3 和 4 的最小公倍数是 12。第二项前的负号要乘进括号，变成 +6；若写成 −6 会得到 x = 6，这是最常见的失分点。", "source": "Topic 2 Equations and Inequality.pdf · 6-02 Equations with algebraic fractions", "points": [{"t": "Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.", "m": 1}], "weak": false}, {"id": "matp-013", "topic": "联立方程 · 消元法", "difficulty": "easy", "type": "mcq", "stem": "Solve the simultaneous equations 5x + 2y = 19 and 3x − 2y = 5.", "options": ["x = 3, y = −2", "x = 3, y = 2", "x = 2, y = 3", "x = 4, y = −0.5"], "answer": 1, "explanation": "两式相加消去 y：8x = 24，x = 3；代回第一式得 2y = 19 − 15 = 4，y = 2。干扰项 (4, −0.5) 只满足第一个方程，代回第二个即可排除。", "source": "Topic 2 Simultaneous Equations.pdf · 9-02 The elimination method", "weak": false}, {"id": "matp-014", "topic": "联立方程 · 应用建模", "difficulty": "hard", "type": "short", "stem": "At the school canteen, 3 sandwiches and 2 drinks cost $19.50, while 2 sandwiches and 3 drinks cost $18.00. Find the cost of one sandwich and one drink.", "options": [], "answer": "Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.", "explanation": "先列两个方程，再消元（第一式×3 减第二式×2 得 5s = 22.50）。只用一个条件无法定出两个价格；代回检验 3×4.50+2×3 = $19.50 正确。", "source": "Topic 2 Simultaneous Equations.pdf · 9-04 Simultaneous equations problems", "points": [{"t": "Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.", "m": 1}], "weak": false}, {"id": "matp-015", "topic": "坐标几何 · 两点距离", "difficulty": "easy", "type": "mcq", "stem": "Find the distance between the points (2, −1) and (5, 3).", "options": ["7", "√7", "5", "25"], "answer": 2, "explanation": "d = √[(5−2)² + (3−(−1))²] = √(9+16) = √25 = 5。忘记开方会得 25，把两段差直接相加会得 7。", "source": "Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval", "weak": false}, {"id": "matp-016", "topic": "坐标几何 · 斜率", "difficulty": "easy", "type": "mcq", "stem": "Find the gradient of the line passing through (2, 5) and (6, −3).", "options": ["2", "−1/2", "1/2", "−2"], "answer": 3, "explanation": "m = (y₂−y₁)/(x₂−x₁) = (−3−5)/(6−2) = −8/4 = −2。上面减下面的顺序颠倒会得 −1/2；漏写负号则得 2。", "source": "Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval", "weak": false}, {"id": "matp-017", "topic": "坐标几何 · 求直线方程", "difficulty": "medium", "type": "mcq", "stem": "Which equation describes the line with gradient 3 that passes through the point (2, −1)?", "options": ["y = 3x − 7", "y = 3x − 1", "y = 3x + 7", "y = −3x + 5"], "answer": 0, "explanation": "代入 y = mx + b：−1 = 3(2) + b，得 b = −7，所以 y = 3x − 7。把已知点的坐标当成 y 轴截距（得 y = 3x − 1）是典型错误。", "source": "Topic 1 Coordinate Geometry.pdf · 2-06 Finding the equation of a line", "weak": false}, {"id": "matp-018", "topic": "坐标几何 · 垂直直线", "difficulty": "hard", "type": "short", "stem": "Find the equation of the line that is perpendicular to y = 2x + 5 and passes through the point (4, 1). Give your answer in the form y = mx + b.", "options": [], "answer": "The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.", "explanation": "垂直直线斜率之积为 −1，所以用 −1/2（不是 −2，也不是 2）；再代入 (4, 1) 求截距得 3。验证：x = 4 时 y = −2 + 3 = 1。", "source": "Topic 1 Coordinate Geometry.pdf · 2-07 Equations of parallel and perpendicular lines", "points": [{"t": "The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.", "m": 1}], "weak": false}, {"id": "matp-019", "topic": "函数 · 正比例", "difficulty": "easy", "type": "mcq", "stem": "y varies directly as x. If y = 12 when x = 5, find x when y = 30.", "options": ["2.5", "12.5", "10", "72"], "answer": 1, "explanation": "正比例写成 y = kx，先求常数 k = 12/5 = 2.4；y = 30 时 x = 30 ÷ 2.4 = 12.5。把比例关系倒过来乘会得到 72。", "source": "Topic 1 Graphs.pdf · 7-01 Direct proportion", "weak": false}, {"id": "matp-020", "topic": "函数 · 反比例", "difficulty": "medium", "type": "mcq", "stem": "y is inversely proportional to x. When x = 5, y = 8. Find y when x = 20.", "options": ["0.5", "160", "2", "32"], "answer": 2, "explanation": "反比例写成 y = k/x，由 5×8 得 k = 40；x = 20 时 y = 40/20 = 2。若误当正比例会用 k = 8/5 得 32，是典型错误。", "source": "Topic 1 Graphs.pdf · 7-02 Inverse proportion", "weak": false}, {"id": "matp-021", "topic": "函数 · 圆的方程", "difficulty": "easy", "type": "short", "stem": "A circle has equation x² + y² = 49. State its centre and radius, and determine whether the point (5, 5) lies on the circle.", "options": [], "answer": "Centre (0, 0) and radius 7. The point (5, 5) does not lie on the circle, because 5² + 5² = 50, not 49.", "explanation": "x² + y² = r² 的圆心在原点，半径 r = √49 = 7。判断点在不在圆上，只要把坐标代入看左边是否恰好等于 49。", "source": "Topic 1 Graphs.pdf · 7-06 The circle", "points": [{"t": "Centre (0, 0) and radius 7", "m": 1}, {"t": "The point (5, 5) does not lie on the circle, because 5² + 5² = 50, not 49", "m": 1}], "weak": false}, {"id": "matp-022", "topic": "三角 · 毕氏定理", "difficulty": "easy", "type": "mcq", "stem": "A right-angled triangle has two shorter sides of 9 cm and 12 cm. Find the length of the hypotenuse.", "options": ["225 cm", "21 cm", "108 cm", "15 cm"], "answer": 3, "explanation": "斜边 = √(9² + 12²) = √225 = 15 cm。把两条直角边直接相加得 21，或忘记开方得 225，是最常见的两种错。", "source": "Topic 3 Trigonometry.pdf · 8-01 Pythagoras' theorem", "weak": false}, {"id": "matp-023", "topic": "三角 · 用正切求边", "difficulty": "medium", "type": "mcq", "stem": "In a right-angled triangle an angle is 35° and the side adjacent to it is 12 m. Find the length of the opposite side, correct to two decimal places.", "options": ["8.40 m", "6.88 m", "17.14 m", "14.65 m"], "answer": 0, "explanation": "tan 35° = 对边/邻边，所以 opposite = 12 × tan 35° ≈ 8.40 m。选错比值会得 12 sin 35° = 6.88 m 或 12/tan 35° = 17.14 m。", "source": "Topic 3 Trigonometry.pdf · 8-03 Finding an unknown side", "weak": false}, {"id": "matp-024", "topic": "三角 · 求未知角", "difficulty": "medium", "type": "mcq", "stem": "In a right-angled triangle, sin θ = 7/12. Find θ, correct to one decimal place.", "options": ["54.3°", "35.7°", "30.3°", "60.0°"], "answer": 1, "explanation": "θ = sin⁻¹(7/12) ≈ 35.7°。用 tan⁻¹(7/12) 得 30.3°，或误取余角 90° − 35.7° = 54.3°，都是常见的按键/概念错误。", "source": "Topic 3 Trigonometry.pdf · 8-04 Finding an unknown angle", "weak": false}, {"id": "matp-025", "topic": "三角 · 仰角", "difficulty": "medium", "type": "short", "stem": "From a point on level ground 45 m from the base of a vertical tower, the angle of elevation of the top of the tower is 62°. Find the height of the tower, correct to one decimal place.", "options": [], "answer": "tan 62° = h / 45, so h = 45 × tan 62° ≈ 84.6 m.", "explanation": "仰角是从水平线向上量到视线的角，45 m 是与 62° 相邻的边，所以用 tan。误用 sin 会得 39.7 m，是因为把 45 m 当成了斜边。", "source": "Topic 3 Trigonometry.pdf · 8-05 Angles of elevation and depression", "points": [{"t": "tan 62° = h / 45, so h = 45 × tan 62° ≈ 84.6 m.", "m": 1}], "weak": false}, {"id": "matp-026", "topic": "三角 · 方位角", "difficulty": "hard", "type": "short", "stem": "A plane flies 15 km due north and then 20 km due east. Find (a) its distance from the starting point and (b) its bearing from the starting point, correct to the nearest degree.", "options": [], "answer": "Distance = √(15² + 20²) = 25 km. Bearing = tan⁻¹(20/15) ≈ 53°, measured clockwise from north, so the bearing is 053°.", "explanation": "方位角一律从正北顺时针量：位移是「北 15、东 20」，所以角度在正北以东 53°。写成 037° 是把 15 和 20 用反了（tan⁻¹(15/20)）。", "source": "Topic 3 Trigonometry.pdf · 8-06 Bearings / 8-07 Problems involving bearings", "points": [{"t": "Distance = √(15² + 20²) = 25 km", "m": 1}, {"t": "Bearing = tan⁻¹(20/15) ≈ 53°, measured clockwise from north, so the bearing is 053°", "m": 1}], "weak": false}, {"id": "matp-027", "topic": "体积 · 圆柱（直径陷阱）", "difficulty": "easy", "type": "mcq", "stem": "A cylinder has a diameter of 14 cm and a height of 20 cm. Find its volume, correct to one decimal place.", "options": ["1026.3 cm³", "439.8 cm³", "3078.8 cm³", "12315.0 cm³"], "answer": 2, "explanation": "先求半径 r = 14 ÷ 2 = 7 cm，V = πr²h = π × 49 × 20 = 980π ≈ 3078.8 cm³。直接把直径当半径会得 12315.0 cm³，这是本题最主要的陷阱。", "source": "Topic3 Surface area and Volume.pdf · 3-05 Volumes of prisms and cylinders（V = πr²h）", "weak": false}, {"id": "matp-028", "topic": "面积 · 组合图形", "difficulty": "medium", "type": "mcq", "stem": "A shape is made by attaching a semicircle of radius 4 cm to one side of a rectangle measuring 12 cm by 8 cm. Find the total area, correct to one decimal place.", "options": ["146.3 cm²", "96.0 cm²", "108.6 cm²", "121.1 cm²"], "answer": 3, "explanation": "矩形 12 × 8 = 96 cm²，半圆 ½ × π × 4² = 8π ≈ 25.13 cm²，合计 ≈ 121.1 cm²。忘记取一半会得 146.3，只算四分之一圆会得 108.6。", "source": "Topic3 Surface area and Volume.pdf · 3-01 Areas of composite shapes", "weak": false}, {"id": "matp-029", "topic": "表面积 · 圆柱与涂漆成本", "difficulty": "hard", "type": "short", "stem": "A cylindrical water tank has a radius of 5 m and a height of 10 m. Its entire surface, including the top and the bottom, is to be painted. (a) Find the total surface area, correct to the nearest square metre. (b) If paint costs $12 per square metre, find the total cost.", "options": [], "answer": "(a) SA = 2πr² + 2πrh = 50π + 100π = 150π ≈ 471.24 m², so 471 m². (b) Cost = 471 × 12 = $5,652.", "explanation": "两个圆面加一个侧面共 150π。只算侧面（100π ≈ 314 m²）会漏掉顶和底；若中间不四舍五入、用 471.24 × 12 得 $5,654.88，也算正确。", "source": "2025 BBHS 10 (5.2) T2 - soln.pdf · Q19 · Topic3 Surface area and Volume.pdf", "points": [{"t": "(a) SA = 2πr² + 2πrh = 50π + 100π = 150π ≈ 471.24 m², so 471 m²", "m": 1}, {"t": "(b) Cost = 471 × 12 = $5,652", "m": 1}], "weak": false}, {"id": "matp-030", "topic": "统计 · 分布形状", "difficulty": "easy", "type": "mcq", "stem": "A data distribution has a long tail extending towards the higher scores. How is this distribution described?", "options": ["Positively skewed", "Negatively skewed", "Symmetrical", "Bimodal"], "answer": 0, "explanation": "尾部指向高分一侧叫 positively skewed（正偏）；负偏的尾指向低分一侧。两者最容易记反，记法是「尾巴往哪边甩，就叫哪边偏」。", "source": "Topic 1 Investigating Data.pdf · 5-01 The shape of a frequency distribution", "weak": false}, {"id": "matp-031", "topic": "统计 · 四分位距 IQR", "difficulty": "easy", "type": "mcq", "stem": "Find the interquartile range of the data set 4, 7, 7, 9, 12, 15, 15, 18, 20, 22.", "options": ["8", "11", "13.5", "18"], "answer": 1, "explanation": "n = 10，中位数 = (12+15)/2 = 13.5；下半组中位数 Q1 = 7，上半组中位数 Q3 = 18，IQR = 18 − 7 = 11。选 13.5 是把它当成 IQR 了，其实那是中位数。", "source": "Topic 1 Investigating Data.pdf · 5-02 Quartiles and interquartile range", "weak": false}, {"id": "matp-032", "topic": "统计 · 五数概括与偏度", "difficulty": "hard", "type": "short", "stem": "The ages of 13 participants in a sports event are: 12, 14, 15, 16, 17, 17, 18, 20, 21, 22, 25, 27, 30. (a) Write the five-number summary. (b) Calculate the interquartile range. (c) State, with a reason, whether the distribution is symmetrical or skewed.", "options": [], "answer": "(a) Lowest 12, Q1 = 15.5, median = 18, Q3 = 23.5, highest 30. (b) IQR = 23.5 − 15.5 = 8. (c) Positively skewed, because the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5).", "explanation": "13 个数中，中位数取第 7 个；Q1、Q3 分别取上下各 6 个数的中位数。上须 6.5 比下须 3.5 长，说明高分一侧拖尾，所以是正偏。", "source": "Topic 1 Investigating Data.pdf · 5-03 Boxplots · 2025 BBHS 10 (5.2) T2 - soln.pdf Q9", "points": [{"t": "(a) Lowest 12, Q1 = 15.5, median = 18, Q3 = 23.5, highest 30", "m": 1}, {"t": "(b) IQR = 23.5 − 15.5 = 8", "m": 1}, {"t": "(c) Positively skewed, because the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5)", "m": 1}], "weak": false}, {"id": "matp-033", "topic": "概率 · 韦恩图（至少/都不）", "difficulty": "easy", "type": "mcq", "stem": "In a class of 30 students, 18 play soccer, 12 play basketball and 6 play both. How many students play neither sport?", "options": ["0", "12", "6", "24"], "answer": 2, "explanation": "至少会一项的人数 = 18 + 12 − 6 = 24，其中交集 6 人被数了两次，必须减掉。所以两项都不玩的有 30 − 24 = 6 人。忘记减交集会算成 0。", "source": "Topic 3 Probability.pdf · 10-02 Venn diagrams", "weak": false}, {"id": "matp-034", "topic": "概率 · 双向表与条件概率", "difficulty": "hard", "type": "mcq", "stem": "Year 11 students were surveyed about part-time work. The results were: male with part-time work 43, male without part-time work 27, female with part-time work 35, female without part-time work 31. What is the probability that a randomly selected student works part-time, given that the student is male?", "options": ["70/136", "43/78", "43/136", "43/70"], "answer": 3, "explanation": "条件概率的分母必须是「已知是男生」的总人数 43 + 27 = 70，所以是 43/70。用全校 136 人（43/136）或所有兼职者 78 人（43/78）作分母，都是没把条件落到样本空间上。", "source": "Topic 3 Probability.pdf · 10-03 Two-way tables（Example 5）", "weak": false}, {"id": "matp-035", "topic": "概率 · 不放回抽样", "difficulty": "medium", "type": "short", "stem": "A bag contains 3 red and 5 blue marbles. Two marbles are drawn at random one after the other without replacement. Find the probability that both marbles are red.", "options": [], "answer": "P(both red) = 3/8 × 2/7 = 6/56 = 3/28.", "explanation": "不放回抽样时第二次的样本空间少了一个球，所以是 3/8 × 2/7。写成 3/8 × 3/8 是把不放回当成放回了，这是最常见的错误。", "source": "Topic 3 Probability.pdf · 10-05 Selecting with and without replacement", "points": [{"t": "P(both red) = 3/8 × 2/7 = 6/56 = 3/28.", "m": 1}], "weak": false}, {"id": "matp-036", "topic": "金融数学 · 应税收入与可扣除项", "difficulty": "easy", "type": "mcq", "stem": "Priya's records for the financial year show: wages $62,400, bank interest $310, a $200 bonus, private school fees $4,800, work-related tool expenses $680, a donation to charity $150, a speeding fine $420 and her tax agent's fee $120. Using Taxable income = gross income − allowable deductions, calculate her taxable income.", "options": ["$61,960", "$63,860", "$56,740", "$62,910"], "answer": 0, "explanation": "收入合计 62,400+310+200 = $62,910；可扣除的只有与赚取收入相关的支出和捐赠：工具费 680 + 捐款 150 + 报税代理费 120 = $950，所以应税收入 = $61,960。私人学费和罚款不属于 allowable deductions，把它们也扣掉会错得 $56,740。", "source": "1-02_ Income tax.pdf（Taxable income = gross income − allowable deductions）· 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J", "weak": false}, {"id": "matp-037", "topic": "金融数学 · 所得税（19c 档）", "difficulty": "easy", "type": "mcq", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Calculate the income tax payable on a taxable income of $30,000.", "options": ["$11,800.00", "$2,242.00", "$3,572.00", "$5,700.00"], "answer": 1, "explanation": "$30,000 落在 19c 档：0.19 × (30,000 − 18,200) = 0.19 × 11,800 = $2,242。必须先减掉 $18,200 的免税门槛，直接用 0.19 × 30,000 会得 $5,700；$11,800 是只减门槛没乘税率。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5a（官方答案 $2 242）· 1-02_ Income tax.pdf", "weak": false}, {"id": "matp-038", "topic": "金融数学 · 所得税（37c 档）", "difficulty": "medium", "type": "mcq", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Calculate the income tax payable on a taxable income of $150,000.", "options": ["$80,447.00", "$40,297.00", "$43,447.00", "$55,500.00"], "answer": 2, "explanation": "$150,000 在 37c 档：17,547 + 0.37 × (150,000 − 80,000) = 17,547 + 25,900 = $43,447。两个高频错误是漏掉基准金额（0.37 × 150,000 = $55,500）和用错基准（拿顶层 54,547 得 $80,447）；$40,297 是错用上一档 32.5c 算的。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5c（官方答案 $43 447）", "weak": false}, {"id": "matp-039", "topic": "金融数学 · 税率档边界", "difficulty": "hard", "type": "short", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Ann's taxable income is $80,000 and Ben's is $80,001. Ignoring the Medicare levy, calculate the tax each person pays and state how much more tax Ben pays than Ann.", "options": [], "answer": "Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547. Ben pays $17,547 + 0.37 × $1 = $17,547.37. Ben pays 37 cents more than Ann.", "explanation": "税率档是连续的：32.5c 档顶端的金额 17,547 正好等于 37c 档的基准金额，所以 Ben 只多出的那 1 元按 37c 计税，差额只有 37 分。误以为跨档要把全部收入按 37% 重算，会算出几千元的差距。", "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q4（官方答案：37 cents）", "points": [{"t": "Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547", "m": 1}, {"t": "Ben pays $17,547 + 0.37 × $1 = $17,547.37", "m": 1}, {"t": "Ben pays 37 cents more than Ann", "m": 1}], "weak": false}, {"id": "matp-040", "topic": "金融数学 · 净收入", "difficulty": "medium", "type": "short", "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Kim's gross pay for the year is $54,300. She has no allowable deductions, so her taxable income is also $54,300. Calculate (a) her income tax payable and (b) her net pay, given that she also pays $960 in other deductions (union fees and health fund contributions).", "options": [], "answer": "(a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50. (b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50.", "explanation": "净收入公式是 net pay = gross pay − tax − other deductions，税和其他扣除两项都要减。只减税会得 $45,105.50，这是本题最主要的错误。", "source": "1-02_ Income tax.pdf（Net pay = gross pay − tax − other deduction；Example 3）", "points": [{"t": "(a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50", "m": 1}, {"t": "(b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50", "m": 1}], "weak": false}, {"id": "matp-041", "topic": "统计 · 标准差的含义", "difficulty": "easy", "type": "mcq", "stem": "Two netball teams each score a mean of 24 goals per game over a season. Team A's scores have a standard deviation of 2.1 goals and Team B's have a standard deviation of 6.4 goals. What does this tell you?", "options": ["Team A's standard deviation must be wrong, because both teams have the same mean.", "Team B scored more goals in total than Team A.", "Both teams had exactly the same range of scores.", "Team A's scores were more consistent from game to game than Team B's."], "answer": 3, "explanation": "标准差衡量数据相对均值的离散程度：两个均值相同时，标准差越大说明每场得分波动越大，所以 A 队更稳定。标准差与总分无关，也不等于极差，所以前两个选项都推不出来。", "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation · 2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf Q7(e)", "weak": false}, {"id": "matp-042", "topic": "统计 · 计算标准差", "difficulty": "medium", "type": "mcq", "stem": "Find the standard deviation of the data set 2, 4, 4, 4, 5, 5, 7, 9, correct to one decimal place. Use σ = √(Σ(x − x̄)² ÷ n).", "options": ["2.0", "2.1", "1.5", "4.0"], "answer": 0, "explanation": "均值 x̄ = 40 ÷ 8 = 5，偏差平方和 = 9+1+1+1+0+0+4+16 = 32，σ = √(32 ÷ 8) = √4 = 2.0。选 4.0 是忘了开方（那是方差）；2.1 是除以 n−1 的样本标准差。", "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation（σ = √(Σ(x − x̄)² ÷ n)）", "weak": false}, {"id": "matp-043", "topic": "统计 · 均值与标准差", "difficulty": "hard", "type": "short", "stem": "A team scored the following number of goals in its 10 matches: 0, 1, 1, 2, 2, 2, 3, 3, 5, 6. (a) Find the mean. (b) Find the standard deviation, correct to two decimal places, using σ = √(Σ(x − x̄)² ÷ n).", "options": [], "answer": "(a) Mean = 25 ÷ 10 = 2.5 goals. (b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals.", "explanation": "先求均值 2.5，再逐个算偏差平方：6.25+2.25+2.25+0.25+0.25+0.25+0.25+0.25+6.25+12.25 = 30.5，除以 n=10 后开方得 1.75。本题按总体标准差（除以 n）计算；若除以 n−1=9 会得 1.84，那是样本标准差的口径。", "source": "2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf · Q7(e) · New Century 10 Standard-Core Textbook.pdf · 5.03", "points": [{"t": "(a) Mean = 25 ÷ 10 = 2.5 goals", "m": 1}, {"t": "(b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals", "m": 1}], "weak": false}, {"topic": "网络 · 术语", "difficulty": "easy", "type": "mcq", "stem": "In a network diagram, the number of edges meeting at a vertex is called its:", "options": ["Order", "Degree", "Weight", "Path"], "answer": 1, "explanation": "一个顶点连出的边数叫度数（degree）。奇度顶点数决定能否一笔画完：全偶数→可回到起点；恰好两个奇数→可一笔画但终点不同。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Networks: terminology）", "id": "matp-044", "weak": false}, {"topic": "网络 · 欧拉回路", "difficulty": "medium", "type": "mcq", "stem": "A connected network has vertices with degrees 2, 2, 4, 2, 2. Which statement is true?", "options": ["It has no Eulerian circuit", "It cannot be drawn without lifting the pen", "It has an Eulerian circuit because every vertex has even degree", "It has exactly one odd vertex"], "answer": 2, "explanation": "所有顶点度数都是偶数 → 存在欧拉回路（从任意点出发、每条边走一次并回到起点）。只要有一个奇度点就不成立。", "source": "Yearly Study Guide 2026 · Mathematics Standard（Eulerian trails and circuits）", "id": "matp-045", "weak": false}, {"topic": "网络 · 欧拉路径", "difficulty": "medium", "type": "mcq", "stem": "A network has exactly two vertices of odd degree. What can be concluded?", "options": ["No Eulerian trail exists", "The network is not connected", "Every vertex must be visited twice", "An Eulerian trail exists, starting and finishing at the two odd-degree vertices"], "answer": 3, "explanation": "恰好两个奇度点 → 存在欧拉路径（一笔画），必须从一个奇点出发、另一个奇点结束。若想回到起点（回路）则需要全部为偶数。", "source": "Yearly Study Guide 2026 · Mathematics Standard（Eulerian trials and circuits）", "id": "matp-046", "weak": false}, {"topic": "网络 · 最小生成树", "difficulty": "hard", "type": "mcq", "stem": "A town must connect four buildings with cable at minimum total length. The possible connections and lengths (km) are AB 2, AC 5, BC 3, BD 4, CD 1. What is the minimum total length?", "options": ["6 km", "10 km", "8 km", "7 km"], "answer": 0, "explanation": "最小生成树=选 3 条边连成整体且不成环。按长度排序：CD 1、AB 2、BC 3 → 三条边连接 A-B-C-D 且无环，总长 1+2+3=6。再加任一条都会成环。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path and minimum spanning trees）", "id": "matp-047", "weak": false}, {"topic": "网络 · 最短路径", "difficulty": "medium", "type": "mcq", "stem": "Using the network in which AB = 2, BC = 3, AC = 5, BD = 4 and CD = 1 (all in km), what is the shortest distance from A to D?", "options": ["7 km", "6 km", "5 km", "9 km"], "answer": 1, "explanation": "所有路线都经过 C 或 B：A→B→D=6，A→B→C→D=6，A→C→D=6。最短为 6 km，所以选 6 km。", "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path）", "id": "matp-048", "weak": false}, {"topic": "网络 · 平面图", "difficulty": "medium", "type": "mcq", "stem": "A planar graph is one that:", "options": ["Has no cycles", "Has all vertices of equal degree", "Can be drawn on a plane without any edges crossing", "Contains no more than four vertices"], "answer": 2, "explanation": "平面图指能在平面上画出、边彼此不交叉的图。是否看起来交叉不重要，能否重新画成不交叉才重要。", "source": "Yearly Study Guide 2026 · Mathematics Core（Network terminology and planar graphs）", "id": "matp-049", "weak": false}]};
+const KEY = "dsh-quiz-matp";
+const MULTI = DATA.slug === "all";
+const app = document.getElementById("app");
+let state = {idx:0, answers:{}, order:null};
+
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (s && s.answers) state = s;
+  } catch(e) {}
+  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
+  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
+  try {
+    const m = location.search.match(/[?&]q=([^&]+)/);
+    if (m) {
+      const qid = decodeURIComponent(m[1]);
+      const qi = DATA.questions.findIndex(x => x.id === qid);
+      const pos = state.order.indexOf(qi);
+      if (pos >= 0) state.idx = pos;
+    }
+  } catch(e) {}
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function renderSetup() {
+  const subs = DATA.subjects || {};
+  const keys = Object.keys(subs);
+  const saved = state.pick || {};
+  const opts = keys.map(k => {
+    const on = saved[k] !== false;
+    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
+      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
+  }).join("");
+  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
+  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
+  app.innerHTML = `<div class="setup">
+    <div class="setup-head">
+      <h2>综合卷 · 全科</h2>
+      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
+    </div>
+
+    <section class="setup-block">
+      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
+      <div class="picks">${opts}</div>
+    </section>
+
+    <section class="setup-block">
+      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
+    </section>
+
+    <div class="setup-foot">
+      <div class="sum">共 <b id="cnt">0</b> 题</div>
+      <button class="btn ghost" id="daily">今日挑战</button>
+      <button class="btn" id="startmix">开始答题 →</button>
+    </div>
+  </div>`;
+  const chosenCount = () => {
+    let c = 0;
+    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
+    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
+  };
+  const calc = () => {
+    let n = 0;
+    app.querySelectorAll(".pick input").forEach(cb => {
+      if (!cb.checked) return;
+      const k = cb.dataset.s, c = subs[k].n;
+      n += per ? Math.min(per, c) : c;
+    });
+    document.getElementById("cnt").textContent = n;
+    const pc = document.getElementById("pickcount");
+    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
+  };
+  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
+    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
+  });
+  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
+    state.per = +b.dataset.n; save(); render();
+  });
+  function seedRnd(str){
+    var h=2166136261;
+    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
+      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
+  }
+  function startDaily(){
+    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    var rnd=seedRnd("daily:"+key);
+    var idxs=[];
+    DAILY.forEach(function(sl){
+      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      idxs=idxs.concat(pool.slice(0,3));
+    });
+    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
+    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
+  }
+  document.getElementById("daily").onclick = startDaily;
+  document.getElementById("startmix").onclick = () => {
+    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
+    if (!chosen.length) { alert("至少选一科"); return; }
+    let idxs = [];
+    chosen.forEach(k => {
+      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      pool.sort(() => Math.random() - 0.5);
+      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
+    });
+    idxs.sort(() => Math.random() - 0.5);
+    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
+    state.answers = {}; state.t0 = Date.now(); save(); render();
+  };
+  calc();
+}
+
+
+/* ===== 语言切换 ===== */
+var UI_TEXT = {
+  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
+        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
+  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
+        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
+};
+function T(k){
+  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
+  return d[k] || UI_TEXT.en[k] || k;
+}
+function applyChrome(){
+  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
+  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
+  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
+  var l=LANG();
+  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
+}
+function cycleLang(){
+  var order=["en","zh","both"], i=order.indexOf(LANG());
+  setLANG(order[(i+1)%3] || "en");
+  applyChrome(); render();
+}
+
+function render() {
+  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
+    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
+  }
+  if (MULTI && state.setup && !state.started) return renderSetup();
+  const qs = state.order.map(i => DATA.questions[i]);
+  const q = qs[state.idx];
+  const L = LANG(), ZH = (q && q.zh) || null;
+  const total = qs.length;
+  const answered = qs.filter(x => state.answers[x.id]).length;
+  const right = qs.filter(x => state.answers[x.id] === "ok").length;
+  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
+  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
+  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
+  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
+  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
+
+  const rec = state.answers[q.id];
+  const chips = `<div class="chips">
+      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
+      <span class="chip">${esc(q.topic)}</span>
+      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
+      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
+      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
+    </div>`;
+
+  let bodyHtml = "";
+  if (q.type === "mcq") {
+    const opts = (q.options || []).map((o, i) => {
+      let cls = "opt", mark = "";
+      if (rec) {
+        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
+        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
+      }
+      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
+      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
+      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
+        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
+    }).join("");
+    bodyHtml = `<div class="opts">${opts}</div>`;
+  } else {
+    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
+    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    const checked = (rec && rec.checked) ? rec.checked : [];
+    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
+    const hasNum = /-?\d/.test(bareAns);
+    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
+      <div class="actions">
+        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
+        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
+      </div>`;
+    if (rec) {
+      bodyHtml += `<div class="panel">
+        <div class="panel-h">自评 · 勾选你写到的得分点</div>
+        <div class="pts">${pts.map((p,i)=>`
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
+        <div class="actions">
+          <button class="btn ghost" id="allpt">全部勾上</button>
+          <button class="btn ghost" id="nonept">全部取消</button>
+        </div>
+        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
+      </div>`;
+    }
+  }
+
+  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
+      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
+      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
+
+  const last = state.idx >= total - 1;
+  let stemHtml;
+  if (L === "zh" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
+  } else if (L === "both" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
+  } else {
+    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
+  }
+  setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
+  app.innerHTML = `<div class="card">${chips}${stemHtml}
+      ${bodyHtml}${expHtml}</div>
+      <div class="actionbar">
+        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="finish">${T("finish")}</button>
+        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
+      </div>`;
+
+  if (q.type === "mcq") {
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const i = +b.dataset.i;
+      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
+      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
+      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
+      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
+      save(); render();
+    }));
+  } else {
+    const ta = document.getElementById("ta");
+    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
+    document.getElementById("reveal").onclick = () => {
+      const c = cur();
+      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
+      save(); render();
+    };
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
+      const c = cur(); const i = +cb.dataset.i;
+      const set = new Set(c.checked || []);
+      if (cb.checked) set.add(i); else set.delete(i);
+      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
+      const full = pts.every((_,i)=>set.has(i));
+      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
+      reviewMark(q.subj || DATA.slug, q.id, full);
+      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      save(); render();
+    }));
+    const nc = document.getElementById("numcheck");
+    if (nc) nc.onclick = () => {
+      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
+      const last = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
+      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
+    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
+  }
+  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
+  const nx = document.getElementById("next");
+  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
+  document.getElementById("finish").onclick = showResult;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function showResult() {
+  const qs = state.order.map(i => DATA.questions[i]);
+  if (!state.rewarded && qs.length) {
+    state.rewarded = true; save();
+    if (state.daily) {
+      try {
+        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
+        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
+        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
+        var DKEY = "dsh-daily-v1";
+        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
+        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
+        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
+          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
+          localStorage.setItem(DKEY, JSON.stringify(drec));
+        }
+        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
+      } catch(e) {}
+    }
+    const answered = qs.filter(x => state.answers[x.id]).length;
+    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
+    if (window.openChest && answered >= 3) openChest();
+  }
+  const rec = id => state.answers[id] || null;
+  const mcq = qs.filter(x => x.type === "mcq");
+  const shorts = qs.filter(x => x.type === "short");
+  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
+  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
+  const todo = qs.filter(x => !rec(x.id));
+  let earnedM = 0, totalM = 0, partM = 0;
+  const weak = [];
+  shorts.forEach(x => {
+    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
+    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const r = rec(x.id);
+    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    totalM += tot;
+    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
+  });
+  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
+  const needRedo = [...wrong, ...weak];
+  const wrongIds = needRedo.map(x => x.id);
+  app.innerHTML = `<div class="card done">
+      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
+      <div class="stats">
+        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
+        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
+        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
+        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
+      </div>
+      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
+      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
+      <div class="actions">
+        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
+        <button class="btn ghost" id="showlb">${T("lb")}</button>
+        <button class="btn ghost" id="again">${T("again")}</button>
+        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
+      </div></div>`;
+  const redo = document.getElementById("redo");
+  if (redo) redo.onclick = () => {
+    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
+    wrongIds.forEach(id => delete state.answers[id]);
+    state.idx = 0; save(); render();
+  };
+  const showlb = document.getElementById("showlb");
+  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
+  document.getElementById("again").onclick = () => {
+    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+    save(); render();
+  };
+}
+
+document.getElementById("grid").onclick = openNav;
+document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
+document.getElementById("nav").addEventListener("click", e => {
+  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
+});
+try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
+catch(e) { document.body.insertAdjacentHTML("afterbegin",
+  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
+
+document.getElementById("exam").onclick = startExam;
+if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
+
+var _langBtn = document.getElementById("langBtn");
+if (_langBtn) _langBtn.onclick = cycleLang;
+applyChrome();
+document.getElementById("restart").onclick = () => {
+  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  save(); render();
+};
+
+document.addEventListener("keydown", e => {
+  if (MULTI && state.setup && !state.started) {
+    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
+    return;
+  }
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
+  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
+  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
+  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
+  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
+    else showResult();
+    return;
+  }
+  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
+  if (!q || q.type !== "mcq") return;
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= (q.options || []).length) {
+    if (!state.answers[q.id]) {
+      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
+      save(); render();
+    }
+  }
+});
+
+const REVIEW_KEY = "dsh-review-v1";
+const GAPS = [1, 3, 7];
+function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
+function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
+function reviewMark(slug, qid, correct){
+  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
+  if (correct) {
+    const it = db[id];
+    if (!it) return;
+    const st = (it.stage || 0) + 1;
+    if (st >= GAPS.length) delete db[id];
+    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
+  } else {
+    const old = db[id] || {};
+    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
+  }
+  reviewSave(db);
+}
+function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
+
+const LOG_KEY = "dsh-log-v1";
+function logAnswer(slug, qid, ok, diff, ty){
+  try {
+    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
+    if (arr.length > 3000) arr = arr.slice(-3000);
+    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
+  } catch(e) {}
+}
+function navState(qi){
+  const q = DATA.questions[qi], a = state.answers[q.id];
+  if (!a) return "";
+  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
+  const pts = q.points || [{m:1}], c = (a.checked || []).length;
+  if (c >= pts.length) return "ok";
+  if (c > 0) return "part";
+  return "";
+}
+function openNav(){
+  const grid = document.getElementById("navgrid");
+  grid.innerHTML = state.order.map((qi, pos) =>
+    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
+  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
+    state.idx = +b.dataset.pos; save();
+    document.getElementById("nav").classList.remove("on"); render();
+  });
+  document.getElementById("nav").classList.add("on");
+}
+
+let timerId = null;
+function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+function tickClock(){
+  const el = document.getElementById("clock");
+  if (!state.deadline) { if (el) el.style.display = "none"; return; }
+  const left = state.deadline - Date.now();
+  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
+            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
+  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
+}
+function startExam(){
+  const def = DATA.examMin || 60;
+  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
+  if (v === null) return;
+  const mins = parseInt(v, 10);
+  if (!mins || mins <= 0) return;
+  state.deadline = Date.now() + mins*60000; save();
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(tickClock, 1000);
+  tickClock();
+}
+
+
+load(); render();
 </script>
 </body>
 </html>

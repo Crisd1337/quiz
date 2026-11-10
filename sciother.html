@@ -322,487 +322,6 @@ footer{padding:22px 14px 30px;line-height:1.8}
 </div></div>
 <footer>键盘：<kbd>1</kbd>–<kbd>4</kbd> 选择 · <kbd>←</kbd><kbd>→</kbd> 切题 · <kbd>G</kbd> 题号 · <kbd>Enter</kbd> 下一题 · <kbd>S</kbd> 看成绩 · 进度自动保存在本机浏览器</footer>
 <script>
-const DATA = {"slug": "sciother", "title": "科学 · 非年考", "examMin": 60, "questions": [{"id": "sciother-001", "topic": "地球能量 · 太阳辐射", "difficulty": "easy", "type": "mcq", "stem": "Which two types of solar radiation reach the surface of the Earth and act as the main driving force for Earth's processes?", "options": ["Visible light and infrared", "Visible light and X-rays", "Microwaves and X-rays", "Microwaves and infrared"], "answer": 0, "explanation": "到达地表并驱动地球过程的主要是可见光和红外线：可见光提供光合作用的能量，红外线加热水圈驱动水循环。X 射线和微波绝大部分被大气吸收，到不了地表。", "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 Earth · Solar radiation）", "weak": false}, {"id": "sciother-002", "topic": "地球能量 · 地球圈层", "difficulty": "easy", "type": "mcq", "stem": "Which of Earth's four spheres is described as the outer part of the Earth, consisting of the crust and upper mantle and about 100 km thick?", "options": ["Biosphere", "Lithosphere", "Atmosphere", "Hydrosphere"], "answer": 1, "explanation": "岩石圈（lithosphere）＝地壳＋上地幔，约 100 km 厚。大气圈是气体层，生物圈是生物生存的范围，水圈是地表固态/液态/气态的水。", "source": "Term 1 · Earth's Energy – Revision Booklet（Topic 6 Earth · Terminology）", "weak": false}, {"id": "sciother-003", "topic": "地球能量 · 反照率反馈", "difficulty": "medium", "type": "mcq", "stem": "Arctic sea ice melts and exposes the dark ocean underneath. Which statement best explains the effect on global temperature?", "options": ["Albedo increases, so more radiation is reflected and the temperature falls.", "Albedo stays the same because water and ice reflect the same amount of radiation.", "Albedo decreases, so more solar radiation is absorbed and the temperature rises further.", "Albedo decreases, so more radiation is reflected back to space and the temperature falls."], "answer": 2, "explanation": "反照率（albedo）介于 0 到 1，越白越反光。冰融化后露出深色海水，反照率下降，吸收更多太阳辐射，温度升高又加速融冰，形成正反馈。", "source": "Term 1 · Earth's Energy – STUDENT 5. Earth.docx（Practical 2 Albedo Effect）", "weak": false}, {"id": "sciother-004", "topic": "地球能量 · 水循环", "difficulty": "medium", "type": "short", "stem": "Explain how solar radiation drives the water cycle.", "options": [], "answer": "Infrared radiation from the Sun warms the hydrosphere, so liquid water evaporates into water vapour. The vapour rises and cools, condenses into clouds, and eventually falls back to the surface as precipitation such as rain, hail or snow.", "explanation": "水循环的能量来自太阳红外辐射加热水圈：蒸发→上升冷却凝结→降水，把水送回海洋、湖泊与河流。", "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 · The Water Cycle）", "points": [{"t": "Infrared radiation from the Sun warms the hydrosphere, so liquid water evaporates into water vapour", "m": 1}, {"t": "The vapour rises and cools, condenses into clouds, and eventually falls back to the surface as precipitation such as rain, hail or snow", "m": 1}], "weak": false}, {"id": "sciother-005", "topic": "遗传 · 基因的定义", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines a gene?", "options": ["A compound that stores energy in all cells", "A whole chromosome containing many genes", "An inherited disease passed on to offspring", "A section of DNA that codes for a protein"], "answer": 3, "explanation": "基因是 DNA 上编码一种蛋白质的一段。染色体是 DNA 的组织形式（人体 23 对），DNA 本身由核苷酸组成，三者不是同一层级。", "source": "Term 1 · Genetics – Revision Booklet（Topic 8 Genetics · Terminology）", "weak": false}, {"id": "sciother-006", "topic": "遗传 · 碱基互补配对", "difficulty": "easy", "type": "mcq", "stem": "A section of DNA has the base sequence AGT TAC CTG. What is the sequence of the complementary DNA strand?", "options": ["TCA ATG GAC", "AGT TAC CTG", "UCA AUG GGC", "AGU UAC CUG"], "answer": 0, "explanation": "DNA 互补配对是 A–T、G–C，所以 AGT→TCA、TAC→ATG、CTG→GAC。含 U 的选项是 mRNA 序列，不是互补 DNA 链。", "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q3）", "weak": false}, {"id": "sciother-007", "topic": "遗传 · 碱基比例计算", "difficulty": "medium", "type": "mcq", "stem": "In a sample of DNA, 30% of the bases are adenine. What percentage of the bases is guanine?", "options": ["30%", "20%", "40%", "10%"], "answer": 1, "explanation": "由 A=T 得 T 也占 30%，两者共 60%，剩下的 40% 由 G 与 C 平分，所以 G=20%。直接把 30% 选上（以为 G=A）是最常见的错误。", "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q4）+ 碱基配对规则", "weak": false}, {"id": "sciother-008", "topic": "遗传 · 有丝分裂与减数分裂", "difficulty": "medium", "type": "short", "stem": "Distinguish between mitosis and meiosis in terms of the number of daughter cells produced and the chromosome number in each daughter cell.", "options": [], "answer": "Mitosis produces two genetically identical diploid daughter cells and is used for growth and repair of body cells. Meiosis produces four genetically different haploid gametes, each with half the chromosome number of the parent cell.", "explanation": "有丝分裂：2 个二倍体子细胞，用于生长与修复；减数分裂：4 个单倍体配子，用于有性生殖（23+23=46 恢复二倍体）。", "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 2 · Compare mitosis and meiosis）", "points": [{"t": "Mitosis produces two genetically identical diploid daughter cells and is used for growth and repair of body cells", "m": 1}, {"t": "Meiosis produces four genetically different haploid gametes, each with half the chromosome number of the parent cell", "m": 1}], "weak": false}, {"id": "sciother-009", "topic": "遗传 · 基因突变（移码）", "difficulty": "medium", "type": "mcq", "stem": "One extra base is inserted into the middle of a gene. Which statement best describes the likely effect on the protein produced?", "options": ["There is no effect because the genetic code is degenerate.", "The DNA double helix can no longer be replicated.", "The reading frame shifts, so every codon after that point may code for a different amino acid.", "Only the codon containing the extra base is affected; the rest of the protein is normal."], "answer": 2, "explanation": "密码子按三个碱基一组读取，插入 1 个碱基会使其后所有密码子错位（frameshift），蛋白序列通常大幅改变。只有插入 3 的倍数个碱基才只影响一个氨基酸。", "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 3 · Frameshift - Insertion）", "weak": false}, {"id": "sciother-010", "topic": "遗传 · 孟德尔遗传比例", "difficulty": "hard", "type": "mcq", "stem": "Two heterozygous tall pea plants (Tt) are crossed, and tall (T) is dominant over short (t). What fraction of the tall offspring is expected to be heterozygous?", "options": ["1/3", "1/2", "3/4", "2/3"], "answer": 3, "explanation": "Tt×Tt→1TT:2Tt:1tt，高:矮=3:1。题目问的是高茎子代内部的比例，分母只数高茎（3 份），其中杂合 Tt 占 2/3，所以不是 1/2，也不是 3/4。", "source": "Term 1 · Genetics – Half Yearly Revision.pdf（Punnett Squares：基因型与表现型比例）", "weak": false}, {"id": "sciother-011", "topic": "运动 · 平均速度", "difficulty": "easy", "type": "mcq", "stem": "A cyclist travels 300 m in 20 s. What is the cyclist's average speed?", "options": ["15 m/s", "0.067 m/s", "60 m/s", "320 m/s"], "answer": 0, "explanation": "v=d/t=300 m÷20 s=15 m/s。0.067 m/s 是把公式倒过来（20÷300）的错误，320 m/s 是把两个数字相加。", "source": "Term 1 · Motion – Speed and Velocity Problem Solving Jan 10（v = d/t）", "weak": false}, {"id": "sciother-012", "topic": "运动 · 标量与矢量", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is a vector quantity?", "options": ["Time", "Displacement", "Speed", "Distance"], "answer": 1, "explanation": "位移有大小也有方向，是矢量；距离、速率、时间只有大小，是标量。速度（velocity）和力也是矢量。", "source": "Term 1 · Motion – Half Yearly Revision.pdf（Scalar vs Vector）", "weak": false}, {"id": "sciother-013", "topic": "运动 · 加速度公式", "difficulty": "medium", "type": "mcq", "stem": "A motorcycle travelling at 25 m/s accelerates at 7.0 m/s² for 6.0 s. What is its final speed?", "options": ["175 m/s", "42 m/s", "67 m/s", "56 m/s"], "answer": 2, "explanation": "v_f=v_i+at=25+7.0×6.0=25+42=67 m/s。42 m/s 只是速度的增加量，忘记加上初速度；175 m/s 是 25×7，用错了运算。", "source": "Term 1 · Motion – Acceleration Problems (Practice)（第 10 题）", "weak": false}, {"id": "sciother-014", "topic": "运动 · 运动图像", "difficulty": "medium", "type": "mcq", "stem": "On a velocity–time graph, what does the gradient (slope) of the line represent?", "options": ["The net force", "The distance travelled", "The average speed", "The acceleration"], "answer": 3, "explanation": "v–t 图的斜率＝Δv/Δt＝加速度；线下的面积才代表位移。这是本题最常见的混淆点（面积 vs 斜率）。", "source": "Term 1 · Motion – SG 1.1 Study Guide（velocity–time graph）", "weak": false}, {"id": "sciother-015", "topic": "运动 · 牛顿第二定律", "difficulty": "hard", "type": "short", "stem": "A 1200 kg car travelling at 20 m/s brakes and comes to rest in 5.0 s. Calculate (a) its acceleration and (b) the net force acting on it.", "options": [], "answer": "a = (v_f − v_i)/t = (0 − 20)/5.0 = −4.0 m/s², so the car decelerates at 4.0 m/s². F = ma = 1200 × (−4.0) = −4800 N, that is, a net force of 4800 N opposite to the car's motion.", "explanation": "先用加速度公式（末速减初速除以时间，负号表示减速），再代入 F=ma。合力 4800 N，方向与运动方向相反。", "source": "Term 1 · Motion – Half Yearly Revision.pdf（DESA：average acceleration 与 F = ma）", "points": [{"t": "a = (v_f − v_i)/t = (0 − 20)/5.0 = −4.0 m/s², so the car decelerates at 4.0 m/s²", "m": 1}, {"t": "F = ma = 1200 × (−4.0) = −4800 N, that is, a net force of 4800 N opposite to the car's motion", "m": 1}], "weak": false}, {"id": "sciother-016", "topic": "化学 · 酸与金属反应", "difficulty": "easy", "type": "mcq", "stem": "Magnesium is added to hydrochloric acid and a gas is produced that gives a 'pop' when a lit splint is held to it. Which gas is this?", "options": ["Hydrogen", "Oxygen", "Chlorine", "Carbon dioxide"], "answer": 0, "explanation": "酸＋金属→盐＋氢气，氢气用点燃的木条检验会发出爆鸣声（pop test）。若是酸＋碳酸盐，产生的气体是 CO2，要用石灰水检验。", "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 5 Answers（Acid-Metal Reaction）", "weak": false}, {"id": "sciother-017", "topic": "化学 · 中和反应", "difficulty": "easy", "type": "short", "stem": "Sodium hydroxide solution is added to hydrochloric acid. Name the type of reaction and write the word equation.", "options": [], "answer": "This is a neutralisation reaction. The word equation is: hydrochloric acid + sodium hydroxide → sodium chloride + water.", "explanation": "酸＋碱→盐＋水，即中和反应。盐的金属部分来自碱（Na⁺），非金属部分来自酸（Cl⁻），所以生成氯化钠。", "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Neutralisation Reaction）", "points": [{"t": "This is a neutralisation reaction", "m": 1}, {"t": "The word equation is: hydrochloric acid + sodium hydroxide → sodium chloride + water", "m": 1}], "weak": false}, {"id": "sciother-018", "topic": "化学 · 碰撞理论", "difficulty": "medium", "type": "mcq", "stem": "Using collision theory, why does raising the temperature increase the rate of a chemical reaction?", "options": ["The concentration of the reacting particles increases.", "Particles gain kinetic energy, so more collisions succeed.", "The particles get larger, so they collide more often.", "The activation energy of the reaction is lowered."], "answer": 1, "explanation": "碰撞理论要求粒子以足够的力和正确的方向相撞。升温提高平均动能，碰撞更频繁、超过活化能的有效碰撞比例更高，所以速率增大；降低活化能是催化剂的作用。", "source": "Term 2 · Reactive Chemistry – 2020 Year 10 Yearly Examination Answers（Part A Q7 碰撞理论）", "weak": false}, {"id": "sciother-019", "topic": "化学 · 酸与碳酸盐", "difficulty": "medium", "type": "short", "stem": "Copper carbonate is added to nitric acid. Write the word equation, name the salt formed, and describe how you would test for the gas produced.", "options": [], "answer": "copper carbonate + nitric acid → copper nitrate + water + carbon dioxide. The salt formed is copper nitrate. Bubble the gas through limewater; if the limewater turns milky (chalky white), the gas is carbon dioxide.", "explanation": "酸＋碳酸盐→盐＋水＋二氧化碳；盐名后半来自酸（硝酸→硝酸盐），所以是 copper nitrate。CO2 用石灰水变浑浊检验，注意不是用点燃的木条。", "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（balanced equations / acid-carbonate）", "points": [{"t": "copper carbonate + nitric acid → copper nitrate + water + carbon dioxide. The salt formed is copper nitrate. Bubble the gas through limewater", "m": 1}, {"t": "if the limewater turns milky (chalky white), the gas is carbon dioxide", "m": 1}], "weak": false}, {"id": "sciother-020", "topic": "化学 · 化学方程式配平", "difficulty": "hard", "type": "mcq", "stem": "Which set of coefficients correctly balances this equation: __Al + __HCl → __AlCl₃ + __H₂ ?", "options": ["3, 6, 2, 3", "2, 3, 2, 3", "2, 6, 2, 3", "1, 3, 1, 3"], "answer": 2, "explanation": "2Al+6HCl→2AlCl₃+3H₂：左边 Al 2、H 6、Cl 6；右边 Al 2、Cl 2×3=6、H 3×2=6，两边原子数相等。配平只能改前面的系数，不能改下标。", "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Balanced Equations part 2）", "weak": false}, {"id": "sciother-021", "topic": "核反应 · 同位素", "difficulty": "easy", "type": "mcq", "stem": "Carbon-12 and carbon-14 are both atoms of carbon. How do the two atoms differ?", "options": ["The number of protons", "The number of electrons in a neutral atom", "The number of electron shells", "The number of neutrons"], "answer": 3, "explanation": "同位素指质子数相同、中子数不同的同种元素原子。碳-12 有 6 个中子，碳-14 有 8 个中子；中性原子电子数相同，都是 6 个。", "source": "Term 2 · Nuclear Reactions – atomic_models_interactive_v2.html（Isotopes）", "weak": false}, {"id": "sciother-022", "topic": "核反应 · 恒星核聚变", "difficulty": "medium", "type": "mcq", "stem": "In the core of a main sequence star such as the Sun, hydrogen nuclei are combined to form helium, releasing large amounts of energy. What is this process called?", "options": ["Nuclear fusion", "Nuclear fission of uranium", "Chemical combustion of hydrogen in oxygen", "Radioactive decay of carbon"], "answer": 0, "explanation": "太阳核心约 1500 万 °C，氢核聚变成氦核并释放巨大能量，这正是太阳辐射的来源。它属于核反应，不是化学燃烧（化学燃烧不改变原子核）。", "source": "Term 2 · Nuclear Reactions – The Universe 2020.pptx（Main Sequence Star）+ Revision Booklet Topic 6（solar radiation 定义）", "weak": false}, {"id": "sciother-023", "topic": "核反应 · 放射性测年", "difficulty": "medium", "type": "short", "stem": "Explain how scientists use radioactive carbon (carbon-14) in the remains of a once-living organism to work out when it died.", "options": [], "answer": "While an organism is alive it continuously takes in small amounts of radioactive carbon dioxide from the air. When it dies the intake stops, so the radioactive carbon slowly decays into the non-radioactive form. Measuring how much radioactive carbon is left in the remains therefore shows how long ago the organism died.", "explanation": "活着时不断摄入放射性碳；死亡后摄入停止，放射性碳按固定速率衰变。测剩余比例即可推算死亡时间（绝对测年）。", "source": "Term 2 · Nuclear Reactions – Year 10 - Evolution.pptx（Techniques used to date fossils · Absolute dating）", "points": [{"t": "While an organism is alive it continuously takes in small amounts of radioactive carbon dioxide from the air", "m": 1}, {"t": "When it dies the intake stops, so the radioactive carbon slowly decays into the non-radioactive form", "m": 1}, {"t": "Measuring how much radioactive carbon is left in the remains therefore shows how long ago the organism died", "m": 1}], "weak": false}, {"id": "sciother-024", "topic": "气候 · 温室效应", "difficulty": "easy", "type": "mcq", "stem": "Which statement correctly distinguishes the enhanced greenhouse effect from the natural greenhouse effect?", "options": ["The natural greenhouse effect stops all infrared radiation from leaving the atmosphere.", "The enhanced greenhouse effect is the additional warming caused by human activities releasing abnormally high amounts of greenhouse gases.", "The natural greenhouse effect is caused by human activity, while the enhanced effect is caused by volcanic eruptions.", "The enhanced greenhouse effect only occurs when the ozone layer is destroyed."], "answer": 1, "explanation": "自然温室效应是大气温室气体吸收红外辐射、使地球温度相对稳定；增强温室效应是人类活动额外排放温室气体造成的附加升温。臭氧层空洞是另一个问题，不能混为一谈。", "source": "Term 3 · Climate Science – Term 3 Earth Week 1 Answers（natural vs enhanced greenhouse effect）", "weak": false}, {"id": "sciother-025", "topic": "气候 · 温室气体识别", "difficulty": "easy", "type": "mcq", "stem": "Which gas is a colourless, odourless, incombustible greenhouse gas formed during respiration, combustion and the breakdown of dead organic material?", "options": ["Methane", "Nitrogen", "Carbon dioxide", "Argon"], "answer": 2, "explanation": "题眼是 incombustible（不可燃）：甲烷可燃，氮气和氩气既不是题述来源的产物也不是主要温室气体，所以是二氧化碳。", "source": "Term 3 · Climate Science – 2020 Year 10 Yearly Examination Answers（Part B Q2）", "weak": false}, {"id": "sciother-026", "topic": "气候 · 减缓与适应策略", "difficulty": "medium", "type": "mcq", "stem": "Which of the following is an example of an adaptation strategy rather than a mitigation strategy?", "options": ["Building wind farms to generate electricity without coal", "Capturing and storing carbon dioxide from power stations", "Installing solar panels on the roofs of houses", "Painting roofs white to mimic the albedo effect"], "answer": 3, "explanation": "减缓（mitigation）针对减排、稳定大气温室气体浓度（风能、太阳能、碳封存）；适应（adaptation）针对已经发生的影响、降低社会脆弱性，例如把屋顶刷白提高反照率。", "source": "Term 3 · Climate Science – Revision Booklet（Topic 6 · Mitigation / Adaptation strategies）", "weak": false}, {"id": "sciother-027", "topic": "气候 · 海洋酸化", "difficulty": "hard", "type": "mcq", "stem": "Extra carbon dioxide dissolves in seawater and forms carbonic acid, which releases hydrogen ions. Why does this harm shellfish?", "options": ["The hydrogen ions compete with the shells for carbonate ions, so shellfish cannot build their shells.", "The hydrogen ions dissolve the calcium carbonate shells by raising the pH of the water.", "The extra carbon dioxide warms the water so the shellfish cannot respire.", "The carbonic acid removes calcium from the water so shellfish absorb more carbonate."], "answer": 0, "explanation": "碳酸根是造壳原料，多出的 H⁺ 会与碳酸根结合成碳酸氢根，等于和贝壳“抢”碳酸根，壳体难以生成。另外酸化的方向是 pH 降低，不是升高。", "source": "Term 3 · Climate Science – Term 3 Earth Week 2 Answers（Ocean Acidification）", "weak": false}, {"id": "sciother-028", "topic": "气候 · 冻土正反馈", "difficulty": "hard", "type": "short", "stem": "Large areas of Arctic permafrost are thawing. Explain why this is described as a positive feedback that makes global warming worse.", "options": [], "answer": "Frozen soils store large amounts of organic carbon and methane. When the permafrost thaws, microbes break this material down and release carbon dioxide and methane, which are both greenhouse gases. These extra gases trap more heat, which thaws even more permafrost, so the warming reinforces itself.", "explanation": "链条是：冻土解冻→微生物分解→释放 CO2 和甲烷→温室效应增强→升温→更多冻土解冻。输出反过来加强输入，所以是正反馈。", "source": "Term 3 · Climate Science – SCNSW10CH00393.pdf（Global systems · permafrost）+ Revision Booklet（冻土甲烷）", "points": [{"t": "Frozen soils store large amounts of organic carbon and methane", "m": 1}, {"t": "When the permafrost thaws, microbes break this material down and release carbon dioxide and methane, which are both greenhouse gases", "m": 1}, {"t": "These extra gases trap more heat, which thaws even more permafrost, so the warming reinforces itself", "m": 1}], "weak": false}, {"id": "sciother-029", "topic": "有机化学 · 碳链命名", "difficulty": "easy", "type": "mcq", "stem": "Which name is correct for a straight-chain alkane containing six carbon atoms?", "options": ["Hexene", "Hexane", "Pentane", "Heptane"], "answer": 1, "explanation": "前缀 hex- 表示 6 个碳，烷烃词尾是 -ane，所以是 hexane。hexene 虽然也是 6 个碳但含双键属烯烃，heptane 是 7 个碳。", "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 3 Naming Organic Compounds）", "weak": false}, {"id": "sciother-030", "topic": "有机化学 · 同系物通式", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is the general formula of the alkanes?", "options": ["CnH2n+1OH", "CnH2n−2", "CnH2n+2", "CnH2n"], "answer": 2, "explanation": "烷烃通式 CnH2n+2（例如 n=5 时 C5H12）；烯烃 CnH2n，炔烃 CnH2n−2，最后一个是醇类（含 −OH 官能团）。", "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part C Q6）", "weak": false}, {"id": "sciother-031", "topic": "有机化学 · 分馏", "difficulty": "medium", "type": "short", "stem": "Explain how fractional distillation separates crude oil into fractions, and why the smaller molecules are collected near the top of the column.", "options": [], "answer": "Crude oil is heated so that most of it vaporises, and the vapours rise up the fractionating column, which is hot at the bottom and cooler at the top. Each fraction condenses at the level where the temperature falls below its boiling point. Smaller molecules have lower boiling points, so they rise further and are collected near the top.", "explanation": "分馏利用沸点差：塔内温度自下而上降低，各组分在温度低于自身沸点的高度冷凝。小分子沸点低→升得更高→塔顶（LPG、汽油），大分子留在塔底（沥青）。", "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 2 Fractional Distillation）", "points": [{"t": "Crude oil is heated so that most of it vaporises, and the vapours rise up the fractionating column, which is hot at the bottom and cooler at the top", "m": 1}, {"t": "Each fraction condenses at the level where the temperature falls below its boiling point", "m": 1}, {"t": "Smaller molecules have lower boiling points, so they rise further and are collected near the top", "m": 1}], "weak": false}, {"id": "sciother-032", "topic": "有机化学 · 支链命名", "difficulty": "hard", "type": "mcq", "stem": "What is the correct IUPAC name of the compound CH₃–CH(CH₃)–CH₂–CH₃?", "options": ["3-methylpentane", "2-methylpropane", "3-methylbutane", "2-methylbutane"], "answer": 3, "explanation": "最长碳链为 4 个碳（butane），甲基支链接在 2 号碳上；编号必须从靠近支链的一端开始以使位号最小，所以是 2-methylbutane。3-methylbutane 是同一分子从另一端编号的错误命名。", "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part G Q12）", "weak": false}, {"id": "sciother-033", "topic": "有机化学 · 分子式判断", "difficulty": "hard", "type": "mcq", "stem": "A hydrocarbon has the molecular formula C₅H₁₀. Could it be an alkane?", "options": ["No, because alkanes follow CnH2n+2, which for five carbons is C₅H₁₂ and not C₅H₁₀.", "Yes, because any compound with five carbon atoms always has ten hydrogen atoms.", "No, because it does not contain enough hydrogen to be a hydrocarbon at all.", "Yes, because it contains only carbon and hydrogen."], "answer": 0, "explanation": "把 n=5 代入烷烃通式 CnH2n+2 得 C5H12；C5H10 少两个氢，符合 CnH2n，属于烯烃（或环烷烃），不可能是直链烷烃。", "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part N Q32）", "weak": false}]};
-const KEY = "dsh-quiz-sciother";
-const MULTI = DATA.slug === "all";
-const app = document.getElementById("app");
-let state = {idx:0, answers:{}, order:null};
-
-function load() {
-  try {
-    const s = JSON.parse(localStorage.getItem(KEY) || "null");
-    if (s && s.answers) state = s;
-  } catch(e) {}
-  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
-  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
-  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
-  try {
-    const m = location.search.match(/[?&]q=([^&]+)/);
-    if (m) {
-      const qid = decodeURIComponent(m[1]);
-      const qi = DATA.questions.findIndex(x => x.id === qid);
-      const pos = state.order.indexOf(qi);
-      if (pos >= 0) state.idx = pos;
-    }
-  } catch(e) {}
-}
-function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-
-function renderSetup() {
-  const subs = DATA.subjects || {};
-  const keys = Object.keys(subs);
-  const saved = state.pick || {};
-  const opts = keys.map(k => {
-    const on = saved[k] !== false;
-    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
-      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
-  }).join("");
-  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
-  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
-  app.innerHTML = `<div class="setup">
-    <div class="setup-head">
-      <h2>综合卷 · 全科</h2>
-      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
-    </div>
-
-    <section class="setup-block">
-      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
-      <div class="picks">${opts}</div>
-    </section>
-
-    <section class="setup-block">
-      <div class="setup-label">2 · 每科抽几题</div>
-      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
-    </section>
-
-    <div class="setup-foot">
-      <div class="sum">共 <b id="cnt">0</b> 题</div>
-      <button class="btn ghost" id="daily">今日挑战</button>
-      <button class="btn" id="startmix">开始答题 →</button>
-    </div>
-  </div>`;
-  const chosenCount = () => {
-    let c = 0;
-    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
-    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
-  };
-  const calc = () => {
-    let n = 0;
-    app.querySelectorAll(".pick input").forEach(cb => {
-      if (!cb.checked) return;
-      const k = cb.dataset.s, c = subs[k].n;
-      n += per ? Math.min(per, c) : c;
-    });
-    document.getElementById("cnt").textContent = n;
-    const pc = document.getElementById("pickcount");
-    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
-  };
-  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
-    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
-  });
-  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
-    state.per = +b.dataset.n; save(); render();
-  });
-  function seedRnd(str){
-    var h=2166136261;
-    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
-    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
-      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
-  }
-  function startDaily(){
-    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-    var rnd=seedRnd("daily:"+key);
-    var idxs=[];
-    DAILY.forEach(function(sl){
-      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
-      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
-      idxs=idxs.concat(pool.slice(0,3));
-    });
-    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
-    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
-  }
-  document.getElementById("daily").onclick = startDaily;
-  document.getElementById("startmix").onclick = () => {
-    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
-    if (!chosen.length) { alert("至少选一科"); return; }
-    let idxs = [];
-    chosen.forEach(k => {
-      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
-      pool.sort(() => Math.random() - 0.5);
-      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
-    });
-    idxs.sort(() => Math.random() - 0.5);
-    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
-    state.answers = {}; state.t0 = Date.now(); save(); render();
-  };
-  calc();
-}
-
-
-/* ===== 语言切换 ===== */
-function LANG(){ try{ return localStorage.getItem("dsh-lang") || "en"; }catch(e){ return "en"; } }
-function setLANG(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} }
-var UI_TEXT = {
-  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
-        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
-  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
-        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
-};
-function T(k){
-  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
-  return d[k] || UI_TEXT.en[k] || k;
-}
-function applyChrome(){
-  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
-  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
-  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
-  var l=LANG();
-  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
-}
-function cycleLang(){
-  var order=["en","zh","both"], i=order.indexOf(LANG());
-  setLANG(order[(i+1)%3] || "en");
-  applyChrome(); render();
-}
-
-function render() {
-  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
-    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
-  }
-  if (MULTI && state.setup && !state.started) return renderSetup();
-  const qs = state.order.map(i => DATA.questions[i]);
-  const q = qs[state.idx];
-  const L = LANG(), ZH = (q && q.zh) || null;
-  const total = qs.length;
-  const answered = qs.filter(x => state.answers[x.id]).length;
-  const right = qs.filter(x => state.answers[x.id] === "ok").length;
-  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
-  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
-  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
-  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
-  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
-
-  const rec = state.answers[q.id];
-  const chips = `<div class="chips">
-      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
-      <span class="chip">${esc(q.topic)}</span>
-      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
-      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
-      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
-    </div>`;
-
-  let bodyHtml = "";
-  if (q.type === "mcq") {
-    const opts = (q.options || []).map((o, i) => {
-      let cls = "opt", mark = "";
-      if (rec) {
-        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
-        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
-      }
-      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
-      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
-      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
-        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
-    }).join("");
-    bodyHtml = `<div class="opts">${opts}</div>`;
-  } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
-    const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
-    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
-    const hasNum = /-?\d/.test(bareAns);
-    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
-      <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
-        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点</div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
-      </div>`;
-    }
-  }
-
-  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
-      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
-      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
-
-  const last = state.idx >= total - 1;
-  let stemHtml;
-  if (L === "zh" && ZH && ZH.stem) {
-    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
-  } else if (L === "both" && ZH && ZH.stem) {
-    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
-  } else {
-    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
-  }
-  app.innerHTML = `<div class="card">${chips}${stemHtml}
-      ${bodyHtml}${expHtml}</div>
-      <div class="actionbar">
-        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
-        <span class="spacer"></span>
-        <button class="btn ghost" id="finish">${T("finish")}</button>
-        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
-      </div>`;
-
-  if (q.type === "mcq") {
-    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
-      const i = +b.dataset.i;
-      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
-      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
-      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
-      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
-      save(); render();
-    }));
-  } else {
-    const ta = document.getElementById("ta");
-    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
-    document.getElementById("reveal").onclick = () => {
-      const c = cur();
-      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
-      const set = new Set(c.checked || []);
-      if (cb.checked) set.add(i); else set.delete(i);
-      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,i)=>set.has(i));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
-      save(); render();
-    }));
-    const nc = document.getElementById("numcheck");
-    if (nc) nc.onclick = () => {
-      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
-      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
-  }
-  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
-  const nx = document.getElementById("next");
-  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
-  document.getElementById("finish").onclick = showResult;
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function showResult() {
-  const qs = state.order.map(i => DATA.questions[i]);
-  if (!state.rewarded && qs.length) {
-    state.rewarded = true; save();
-    if (state.daily) {
-      try {
-        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
-        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
-        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
-        var DKEY = "dsh-daily-v1";
-        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
-        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
-        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
-          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
-          localStorage.setItem(DKEY, JSON.stringify(drec));
-        }
-        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
-      } catch(e) {}
-    }
-    const answered = qs.filter(x => state.answers[x.id]).length;
-    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
-    if (window.openChest && answered >= 3) openChest();
-  }
-  const rec = id => state.answers[id] || null;
-  const mcq = qs.filter(x => x.type === "mcq");
-  const shorts = qs.filter(x => x.type === "short");
-  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
-  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
-  const todo = qs.filter(x => !rec(x.id));
-  let earnedM = 0, totalM = 0, partM = 0;
-  const weak = [];
-  shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
-    const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
-    totalM += tot;
-    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
-  });
-  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
-  const needRedo = [...wrong, ...weak];
-  const wrongIds = needRedo.map(x => x.id);
-  app.innerHTML = `<div class="card done">
-      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
-      <div class="stats">
-        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
-        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
-        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
-        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
-      </div>
-      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
-      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
-      <div class="actions">
-        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
-        <button class="btn ghost" id="showlb">${T("lb")}</button>
-        <button class="btn ghost" id="again">${T("again")}</button>
-        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
-      </div></div>`;
-  const redo = document.getElementById("redo");
-  if (redo) redo.onclick = () => {
-    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
-    wrongIds.forEach(id => delete state.answers[id]);
-    state.idx = 0; save(); render();
-  };
-  const showlb = document.getElementById("showlb");
-  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
-  document.getElementById("again").onclick = () => {
-    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
-    save(); render();
-  };
-}
-
-document.getElementById("grid").onclick = openNav;
-document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
-document.getElementById("nav").addEventListener("click", e => {
-  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
-});
-try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
-catch(e) { document.body.insertAdjacentHTML("afterbegin",
-  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
-
-document.getElementById("exam").onclick = startExam;
-if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
-
-var _langBtn = document.getElementById("langBtn");
-if (_langBtn) _langBtn.onclick = cycleLang;
-applyChrome();
-document.getElementById("restart").onclick = () => {
-  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
-  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
-  save(); render();
-};
-
-document.addEventListener("keydown", e => {
-  if (MULTI && state.setup && !state.started) {
-    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
-    return;
-  }
-  const tag = (e.target && e.target.tagName) || "";
-  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
-  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
-  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
-  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
-  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
-    else showResult();
-    return;
-  }
-  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
-  if (!q || q.type !== "mcq") return;
-  const n = parseInt(e.key, 10);
-  if (n >= 1 && n <= (q.options || []).length) {
-    if (!state.answers[q.id]) {
-      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
-      save(); render();
-    }
-  }
-});
-
-const REVIEW_KEY = "dsh-review-v1";
-const GAPS = [1, 3, 7];
-function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
-function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
-function reviewMark(slug, qid, correct){
-  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
-  if (correct) {
-    const it = db[id];
-    if (!it) return;
-    const st = (it.stage || 0) + 1;
-    if (st >= GAPS.length) delete db[id];
-    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
-  } else {
-    const old = db[id] || {};
-    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
-  }
-  reviewSave(db);
-}
-function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
-
-const LOG_KEY = "dsh-log-v1";
-function logAnswer(slug, qid, ok, diff, ty){
-  try {
-    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
-    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
-    if (arr.length > 3000) arr = arr.slice(-3000);
-    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
-  } catch(e) {}
-}
-function navState(qi){
-  const q = DATA.questions[qi], a = state.answers[q.id];
-  if (!a) return "";
-  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
-  const pts = q.points || [{m:1}], c = (a.checked || []).length;
-  if (c >= pts.length) return "ok";
-  if (c > 0) return "part";
-  return "";
-}
-function openNav(){
-  const grid = document.getElementById("navgrid");
-  grid.innerHTML = state.order.map((qi, pos) =>
-    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
-  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
-    state.idx = +b.dataset.pos; save();
-    document.getElementById("nav").classList.remove("on"); render();
-  });
-  document.getElementById("nav").classList.add("on");
-}
-
-let timerId = null;
-function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
-function tickClock(){
-  const el = document.getElementById("clock");
-  if (!state.deadline) { if (el) el.style.display = "none"; return; }
-  const left = state.deadline - Date.now();
-  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
-            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
-  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
-}
-function startExam(){
-  const def = DATA.examMin || 60;
-  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
-  if (v === null) return;
-  const mins = parseInt(v, 10);
-  if (!mins || mins <= 0) return;
-  state.deadline = Date.now() + mins*60000; save();
-  if (timerId) clearInterval(timerId);
-  timerId = setInterval(tickClock, 1000);
-  tickClock();
-}
-
-
-load(); render();
-</script>
-<script>
 
 (function(){
   var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
@@ -1003,6 +522,175 @@ load(); render();
   var SEEN_KEY="dsh-seen-v1";
   function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
   function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+
+
+  /* ===== 界面中英切换（运行时替换文本节点） ===== */
+  /* 语言状态（共享给所有页面） */
+  function LANG(){
+    try{
+      var m = (location.search.match(/[?&]lang=(en|zh|both)/) || [])[1];
+      if(m){ localStorage.setItem("dsh-lang", m); return m; }
+      var v = localStorage.getItem("dsh-lang");
+      if(v) return v;
+      var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+      return nav.indexOf("zh") === 0 ? "zh" : "en";
+    }catch(e){ return "en"; }
+  }
+  window.LANG = LANG;
+  window.setLANG = function(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} };
+
+  var I18N = {
+    // 通用
+    "题号":"Index","考试模式":"Exam mode","重来":"Restart","上一题":"Previous","下一题":"Next",
+    "看成绩":"See results","回到科目列表":"Subjects","整套重做":"Redo all","查看今日榜单":"Today's leaderboard",
+    "简单":"Easy","中等":"Medium","较难":"Hard","选择题":"Multiple choice","简答":"Short answer",
+    "第":"Q","题":"questions","共":"of","分":"marks",
+    "搜索课程、单元或代码（电磁学 / King Lear / 10SCI）":"Search subjects, topics or codes",
+    // 答题
+    "先自己写（英文），写完点下面的按钮对照得分点":"Write your answer in English, then check it against the marking points",
+    "对照得分点":"Show marking points","重新对照得分点":"Review marking points","数值自检":"Check number",
+    "自评 · 勾选你写到的得分点":"Self-mark · tick the points you covered","全部勾上":"Tick all","全部取消":"Clear all",
+    "你写的：":"Your answer:","（空）":"(empty)","解析：":"Explanation:","出处：":"Source:",
+    "看完整参考答案":"Show full model answer","已得":"Scored","个得分点":"marking points",
+    "你还没写数字":"Type a number first","参考答案无数字":"No number in the model answer",
+    "数值与参考答案一致":"Number matches the model answer","数值与参考答案不一致":"Number does not match",
+    "只练错题":"Practise wrong ones only",
+    // 结算
+    "总题数":"Total questions","未做":"Unanswered","答对":"Correct","答错":"Wrong",
+    "选择题答对":"MCQ correct","选择题答错":"MCQ wrong","简答得分":"Short-answer marks","正确率":"Accuracy",
+    // 档案/任务/榜单
+    "等级":"Level","今日":"Today","连续":"Streak","天":"days","连对纪录":"Best combo","金币":"Coins","星尘":"Stardust",
+    "今日任务":"Today's tasks","每天 0 点刷新":"Resets daily","领取":"Claim","已领取":"Claimed",
+    "今日好友榜":"Today's leaderboard","服务器设置":"Server settings","复制我的战绩码":"Copy my score code",
+    "粘贴同学的战绩码":"Paste a classmate's code","加入":"Add","提交到服务器":"Submit",
+    "你附近 · 再对一道题就能超过":"Near you · one more correct answer to overtake",
+    "今日榜单":"Today's leaderboard","关闭":"Close","答对题数":"Correct answers","用时":"Time",
+    "我":"Me","（我）":" (me)","第一名":"1st","第二名":"2nd","第三名":"3rd",
+    "已交卷":"Submitted by","人":"students","近 7 天正确率":"Accuracy, last 7 days",
+    // 首页
+    "复习测验":"Revision Quizzes","今日挑战":"Daily challenge","错题本":"Mistakes","商城":"Shop",
+    "课程":"Subjects","门 · 年考优先":"subjects · exam order","搜索课程、单元或代码":"Search subjects, topics or codes",
+    "没有匹配的课程":"No matching subject","下一场":"Next exam","天后":"days away",
+    "年考":"Yearly","未开始":"Not started","选择":"MCQ","下一场考试":"Next exam",
+    "综合卷 · 全科":"Mixed paper · all subjects","从":"From","科抽题混做":"subjects, mixed",
+    "科目列表":"Subjects","分数":"Score","语言":"Language",    "← 科目列表":"Subjects","正在上传试卷…":"Uploading your paper...",
+    "正在加密上传试卷…":"Encrypting and uploading...","正在实时计算排名…":"Calculating your rank...",
+    "今天还没有人上榜":"No one on the board yet","你还没上榜，交卷即可参与":"Not on the board yet - submit to join",
+    "绿=对 红=错 橙=半对 灰=未做":"Green = correct · Red = wrong · Amber = partial · Grey = unanswered",
+    "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
+    "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
+    "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "允许":"Allow","未开始":"Not started","已开始":"Started","完成":"done",
+
+    // 页面标题与页脚
+    "Canvas 复习测验":"Canvas Revision Quizzes",
+    "音效 开":"Sound on","音效 关":"Sound off",
+    "今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。":"No one has submitted yet today. Finish the daily challenge and hit Submit, or swap score codes with classmates.",
+    "进度存在本机浏览器里，换设备需导出备份":"Progress is saved in this browser. Export a backup to move devices.",
+    "「原始资料」链接指向":"The source-material link points to",
+    "，未一起上传时失效，不影响做题":". It is broken when not uploaded together, but quizzing still works.",
+    // 分组
+    "年考重点":"Core exams","非年考内容（有余力再看）":"Non-exam content","其他科目":"Other subjects",
+    "年考版":"Yearly","学科":"Elective","辅导":"Wellbeing",
+    // 科目
+    "科学 · 10 年级":"Science · Year 10","英语 · 10 年级":"English · Year 10",
+    "历史 · 10 年级":"History · Year 10","地理 · 10 年级":"Geography · Year 10",
+    "PDHPE · 10 年级":"PDHPE · Year 10","数学 P · 10 年级":"Maths (Standard) · Year 10",
+    "数学 5.3 · 10 年级":"Maths (Advanced) · Year 10",
+    "科学 · 非年考":"Science · non-exam","历史 · 非年考":"History · non-exam",
+    "地理 · 非年考":"Geography · non-exam","英语 · 非年考":"English · non-exam",
+    "食品科技 · 10 年级":"Food Technology · Year 10","生涯规划 · 10 年级":"Careers · Year 10",
+    "体育 · 10 年级":"Sport · Year 10","户外教育 · 10 年级":"Outdoor Education · Year 10",
+    "心理与福祉":"Wellbeing",
+    // 范围
+    "有机化学 25 / 进化 25 / 技能 20":"Organic chemistry 25 / Evolution 25 / Skills 20",
+    "King Lear 短答 + 比较论文":"King Lear short answer + comparative essay",
+    "术语选择 + 1991–2019 美国外交":"Terminology MCQ + US foreign policy 1991-2019",
+    "气候变化 · 温室效应 / 海平面 / 珊瑚白化":"Climate change · greenhouse / sea level / bleaching",
+    "道路安全 / 急救 / 心理健康":"Road safety / first aid / mental health",
+    "金融 / 代数 / 坐标几何 / 统计":"Finance / algebra / coordinate geometry / statistics",
+    "根式 / 指数 / 对数 / 三角 / 概率":"Surds / indices / logs / trig / probability",
+    "电磁学 / 进化 / 技能":"Organic chemistry / evolution / skills",
+    "地球能量 / 遗传 / 运动 / 化学 / 气候":"Earth energy / genetics / motion / chemistry / climate",
+    "Holocaust / 冷战 / 民权":"Holocaust / Cold War / civil rights",
+    "福祉 / 原住民 / 气候变化":"Wellbeing / Indigenous / climate",
+    "战争单元 / 诗歌 / 阅读卷":"War unit / poetry / reading",
+    "食品安全 / 食物不平等 / 特殊需求":"Food safety / food inequality / special needs",
+    "就业路径 / 求职 / ATAR / USI·TFN":"Career paths / job hunt / ATAR / USI-TFN",
+    "规则 / 赛事 / 训练常识":"Rules / events / training",
+    "环境意识 / Leave No Trace":"Environmental awareness / Leave No Trace",
+    "焦虑 / 抑郁 / 求助渠道":"Anxiety / depression / where to get help",
+    // 任务
+    "精准":"Accuracy","写作":"Writing","数量":"Volume","攻坚":"Stretch","连击":"Combo","每日":"Daily",
+    "正确率 80%（至少 10 题）":"80% accuracy (at least 10 questions)",
+    "完成 3 道简答自评":"Self-mark 3 short answers",
+    "今天做满 20 题":"Answer 20 questions today",
+    "今天做满 12 题":"Answer 12 questions today",
+    "一次连对 5 题":"Get 5 correct in a row",
+    "一次连对 8 题":"Get 8 correct in a row",
+    "做对 3 道「较难」题":"Get 3 hard questions right",
+    "完成今日挑战":"Finish the daily challenge",
+    // 课程图标首字
+    "科":"S","英":"E","历":"H","地":"G","数":"M","食":"F","生":"C","体":"P","户":"O","心":"W"
+  };
+  var I18N_PAT = [
+    [/^第 (\d+) 题 \/ 共 (\d+)$/, "Q$1 of $2"],
+    [/^(\d+) \/ (\d+)$/, "$1 / $2"],
+    [/^已得 (\d+) \/ (\d+) 分$/, "Scored $1 / $2"],
+    [/^共 (\d+) 分 · (\d+) 个得分点$/, "$1 marks · $2 marking points"],
+    [/^(\d+) 题$/, "$1 questions"],
+    [/^\s*题\s*$/, "questions"],
+    [/^(\S+) (\d+) · (\d+) 题 · (.+)$/, "$1 $2 · $3 questions · $4"],
+    [/^今日 (\d+)\/(\d+)$/, "Today $1/$2"],
+    [/^连续 (\d+) 天$/, "Streak $1 days"],
+    [/^连对纪录 (\d+)$/, "Best combo $1"],
+    [/^金币 (\d+)$/, "Coins $1"],
+    [/^星尘 (\d+)$/, "Stardust $1"],
+    [/^已交卷 (\d+) 人$/, "$1 submitted"],
+    [/^下一场 (.+) · (\d+\/\d+) · (\d+) 天后$/, "Next: $1 · $2 · $3 days"],
+    [/^(\d+\/\d+) (.+) · (\d+) 天$/, "$1 $2 · $3 days"],
+    [/^第 (\d+) 名$/, "#$1"],
+    [/^最高 (\d+)%$/, "Top $1%"],
+    [/^今日榜$/, "Board"],
+    [/^Lv\.(\d+)$/, "Lv.$1"],
+    [/^(\d+) 科 · (\d+) 题$/, "$1 subjects · $2 questions"],
+    [/^(\d+) 门 · 年考优先$/, "$1 subjects · exam order"],
+    [/^(\d+) 门$/, "$1 subjects"],
+    [/^(\d+) 天后$/, "$1 days"],
+    [/^XP · 还差 (\d+) 升级$/, "XP · $1 to next level"],
+    [/^从 (\d+) 科抽题混做，(\d+) 题可选$/, "Mix questions from $1 subjects, $2 available"],
+    [/^(\d+) 选择$/, "$1 MCQ"],
+    [/^(\d+) 简答$/, "$1 short"],
+    [/^下一场 (.+) · (\d+\/\d+) ·$/, "Next: $1 · $2 ·"],
+    [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"]
+  ];
+  function applyI18n(){
+    if(window.LANG()==="zh") return;
+    var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n, changed=[];
+    while((n=walker.nextNode())){
+      var s=(n.nodeValue||"").trim(); if(!s) continue;
+      if(I18N[s]){ n.nodeValue=n.nodeValue.replace(s, I18N[s]); continue; }
+      for(var i=0;i<I18N_PAT.length;i++){
+        if(I18N_PAT[i][0].test(s)){ n.nodeValue=n.nodeValue.replace(s, s.replace(I18N_PAT[i][0], I18N_PAT[i][1])); break; }
+      }
+    }
+    document.querySelectorAll("[placeholder]").forEach(function(el){
+      var p=el.getAttribute("placeholder");
+      if(I18N[p]) el.setAttribute("placeholder", I18N[p]);
+    });
+    document.querySelectorAll("[title]").forEach(function(el){
+      var t2=el.getAttribute("title");
+      if(I18N[t2]) el.setAttribute("title", I18N[t2]);
+    });
+  }
+  window.applyI18n=applyI18n;
+  function kickI18n(){ try{ applyI18n(); }catch(e){} }
+  if(document.readyState==="loading")
+    document.addEventListener("DOMContentLoaded", function(){ setTimeout(kickI18n, 20); });
+  else setTimeout(kickI18n, 20);
+  window.addEventListener("load", function(){ setTimeout(kickI18n, 60); });
+  setTimeout(kickI18n, 300);
 
   /* ===== 排行榜：分阶段披露（战中抽屉 / 战后全屏） ===== */
   var LB={sort:"pct", list:[], open:false, at:0, timer:null};
@@ -1472,6 +1160,7 @@ load(); render();
   }
   function renderAll(){
     renderProfile();
+    setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
     setTimeout(loadBoard, 0);
     renderQuests(document.getElementById("quests"));
     renderBoard(document.getElementById("board"));
@@ -1515,6 +1204,486 @@ load(); render();
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+</script>
+<script>
+const DATA = {"slug": "sciother", "title": "科学 · 非年考", "examMin": 60, "questions": [{"id": "sciother-001", "topic": "地球能量 · 太阳辐射", "difficulty": "easy", "type": "mcq", "stem": "Which two types of solar radiation reach the surface of the Earth and act as the main driving force for Earth's processes?", "options": ["Visible light and infrared", "Visible light and X-rays", "Microwaves and X-rays", "Microwaves and infrared"], "answer": 0, "explanation": "到达地表并驱动地球过程的主要是可见光和红外线：可见光提供光合作用的能量，红外线加热水圈驱动水循环。X 射线和微波绝大部分被大气吸收，到不了地表。", "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 Earth · Solar radiation）", "weak": false}, {"id": "sciother-002", "topic": "地球能量 · 地球圈层", "difficulty": "easy", "type": "mcq", "stem": "Which of Earth's four spheres is described as the outer part of the Earth, consisting of the crust and upper mantle and about 100 km thick?", "options": ["Biosphere", "Lithosphere", "Atmosphere", "Hydrosphere"], "answer": 1, "explanation": "岩石圈（lithosphere）＝地壳＋上地幔，约 100 km 厚。大气圈是气体层，生物圈是生物生存的范围，水圈是地表固态/液态/气态的水。", "source": "Term 1 · Earth's Energy – Revision Booklet（Topic 6 Earth · Terminology）", "weak": false}, {"id": "sciother-003", "topic": "地球能量 · 反照率反馈", "difficulty": "medium", "type": "mcq", "stem": "Arctic sea ice melts and exposes the dark ocean underneath. Which statement best explains the effect on global temperature?", "options": ["Albedo increases, so more radiation is reflected and the temperature falls.", "Albedo stays the same because water and ice reflect the same amount of radiation.", "Albedo decreases, so more solar radiation is absorbed and the temperature rises further.", "Albedo decreases, so more radiation is reflected back to space and the temperature falls."], "answer": 2, "explanation": "反照率（albedo）介于 0 到 1，越白越反光。冰融化后露出深色海水，反照率下降，吸收更多太阳辐射，温度升高又加速融冰，形成正反馈。", "source": "Term 1 · Earth's Energy – STUDENT 5. Earth.docx（Practical 2 Albedo Effect）", "weak": false}, {"id": "sciother-004", "topic": "地球能量 · 水循环", "difficulty": "medium", "type": "short", "stem": "Explain how solar radiation drives the water cycle.", "options": [], "answer": "Infrared radiation from the Sun warms the hydrosphere, so liquid water evaporates into water vapour. The vapour rises and cools, condenses into clouds, and eventually falls back to the surface as precipitation such as rain, hail or snow.", "explanation": "水循环的能量来自太阳红外辐射加热水圈：蒸发→上升冷却凝结→降水，把水送回海洋、湖泊与河流。", "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 · The Water Cycle）", "points": [{"t": "Infrared radiation from the Sun warms the hydrosphere, so liquid water evaporates into water vapour", "m": 1}, {"t": "The vapour rises and cools, condenses into clouds, and eventually falls back to the surface as precipitation such as rain, hail or snow", "m": 1}], "weak": false}, {"id": "sciother-005", "topic": "遗传 · 基因的定义", "difficulty": "easy", "type": "mcq", "stem": "Which statement best defines a gene?", "options": ["A compound that stores energy in all cells", "A whole chromosome containing many genes", "An inherited disease passed on to offspring", "A section of DNA that codes for a protein"], "answer": 3, "explanation": "基因是 DNA 上编码一种蛋白质的一段。染色体是 DNA 的组织形式（人体 23 对），DNA 本身由核苷酸组成，三者不是同一层级。", "source": "Term 1 · Genetics – Revision Booklet（Topic 8 Genetics · Terminology）", "weak": false}, {"id": "sciother-006", "topic": "遗传 · 碱基互补配对", "difficulty": "easy", "type": "mcq", "stem": "A section of DNA has the base sequence AGT TAC CTG. What is the sequence of the complementary DNA strand?", "options": ["TCA ATG GAC", "AGT TAC CTG", "UCA AUG GGC", "AGU UAC CUG"], "answer": 0, "explanation": "DNA 互补配对是 A–T、G–C，所以 AGT→TCA、TAC→ATG、CTG→GAC。含 U 的选项是 mRNA 序列，不是互补 DNA 链。", "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q3）", "weak": false}, {"id": "sciother-007", "topic": "遗传 · 碱基比例计算", "difficulty": "medium", "type": "mcq", "stem": "In a sample of DNA, 30% of the bases are adenine. What percentage of the bases is guanine?", "options": ["30%", "20%", "40%", "10%"], "answer": 1, "explanation": "由 A=T 得 T 也占 30%，两者共 60%，剩下的 40% 由 G 与 C 平分，所以 G=20%。直接把 30% 选上（以为 G=A）是最常见的错误。", "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q4）+ 碱基配对规则", "weak": false}, {"id": "sciother-008", "topic": "遗传 · 有丝分裂与减数分裂", "difficulty": "medium", "type": "short", "stem": "Distinguish between mitosis and meiosis in terms of the number of daughter cells produced and the chromosome number in each daughter cell.", "options": [], "answer": "Mitosis produces two genetically identical diploid daughter cells and is used for growth and repair of body cells. Meiosis produces four genetically different haploid gametes, each with half the chromosome number of the parent cell.", "explanation": "有丝分裂：2 个二倍体子细胞，用于生长与修复；减数分裂：4 个单倍体配子，用于有性生殖（23+23=46 恢复二倍体）。", "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 2 · Compare mitosis and meiosis）", "points": [{"t": "Mitosis produces two genetically identical diploid daughter cells and is used for growth and repair of body cells", "m": 1}, {"t": "Meiosis produces four genetically different haploid gametes, each with half the chromosome number of the parent cell", "m": 1}], "weak": false}, {"id": "sciother-009", "topic": "遗传 · 基因突变（移码）", "difficulty": "medium", "type": "mcq", "stem": "One extra base is inserted into the middle of a gene. Which statement best describes the likely effect on the protein produced?", "options": ["There is no effect because the genetic code is degenerate.", "The DNA double helix can no longer be replicated.", "The reading frame shifts, so every codon after that point may code for a different amino acid.", "Only the codon containing the extra base is affected; the rest of the protein is normal."], "answer": 2, "explanation": "密码子按三个碱基一组读取，插入 1 个碱基会使其后所有密码子错位（frameshift），蛋白序列通常大幅改变。只有插入 3 的倍数个碱基才只影响一个氨基酸。", "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 3 · Frameshift - Insertion）", "weak": false}, {"id": "sciother-010", "topic": "遗传 · 孟德尔遗传比例", "difficulty": "hard", "type": "mcq", "stem": "Two heterozygous tall pea plants (Tt) are crossed, and tall (T) is dominant over short (t). What fraction of the tall offspring is expected to be heterozygous?", "options": ["1/3", "1/2", "3/4", "2/3"], "answer": 3, "explanation": "Tt×Tt→1TT:2Tt:1tt，高:矮=3:1。题目问的是高茎子代内部的比例，分母只数高茎（3 份），其中杂合 Tt 占 2/3，所以不是 1/2，也不是 3/4。", "source": "Term 1 · Genetics – Half Yearly Revision.pdf（Punnett Squares：基因型与表现型比例）", "weak": false}, {"id": "sciother-011", "topic": "运动 · 平均速度", "difficulty": "easy", "type": "mcq", "stem": "A cyclist travels 300 m in 20 s. What is the cyclist's average speed?", "options": ["15 m/s", "0.067 m/s", "60 m/s", "320 m/s"], "answer": 0, "explanation": "v=d/t=300 m÷20 s=15 m/s。0.067 m/s 是把公式倒过来（20÷300）的错误，320 m/s 是把两个数字相加。", "source": "Term 1 · Motion – Speed and Velocity Problem Solving Jan 10（v = d/t）", "weak": false}, {"id": "sciother-012", "topic": "运动 · 标量与矢量", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is a vector quantity?", "options": ["Time", "Displacement", "Speed", "Distance"], "answer": 1, "explanation": "位移有大小也有方向，是矢量；距离、速率、时间只有大小，是标量。速度（velocity）和力也是矢量。", "source": "Term 1 · Motion – Half Yearly Revision.pdf（Scalar vs Vector）", "weak": false}, {"id": "sciother-013", "topic": "运动 · 加速度公式", "difficulty": "medium", "type": "mcq", "stem": "A motorcycle travelling at 25 m/s accelerates at 7.0 m/s² for 6.0 s. What is its final speed?", "options": ["175 m/s", "42 m/s", "67 m/s", "56 m/s"], "answer": 2, "explanation": "v_f=v_i+at=25+7.0×6.0=25+42=67 m/s。42 m/s 只是速度的增加量，忘记加上初速度；175 m/s 是 25×7，用错了运算。", "source": "Term 1 · Motion – Acceleration Problems (Practice)（第 10 题）", "weak": false}, {"id": "sciother-014", "topic": "运动 · 运动图像", "difficulty": "medium", "type": "mcq", "stem": "On a velocity–time graph, what does the gradient (slope) of the line represent?", "options": ["The net force", "The distance travelled", "The average speed", "The acceleration"], "answer": 3, "explanation": "v–t 图的斜率＝Δv/Δt＝加速度；线下的面积才代表位移。这是本题最常见的混淆点（面积 vs 斜率）。", "source": "Term 1 · Motion – SG 1.1 Study Guide（velocity–time graph）", "weak": false}, {"id": "sciother-015", "topic": "运动 · 牛顿第二定律", "difficulty": "hard", "type": "short", "stem": "A 1200 kg car travelling at 20 m/s brakes and comes to rest in 5.0 s. Calculate (a) its acceleration and (b) the net force acting on it.", "options": [], "answer": "a = (v_f − v_i)/t = (0 − 20)/5.0 = −4.0 m/s², so the car decelerates at 4.0 m/s². F = ma = 1200 × (−4.0) = −4800 N, that is, a net force of 4800 N opposite to the car's motion.", "explanation": "先用加速度公式（末速减初速除以时间，负号表示减速），再代入 F=ma。合力 4800 N，方向与运动方向相反。", "source": "Term 1 · Motion – Half Yearly Revision.pdf（DESA：average acceleration 与 F = ma）", "points": [{"t": "a = (v_f − v_i)/t = (0 − 20)/5.0 = −4.0 m/s², so the car decelerates at 4.0 m/s²", "m": 1}, {"t": "F = ma = 1200 × (−4.0) = −4800 N, that is, a net force of 4800 N opposite to the car's motion", "m": 1}], "weak": false}, {"id": "sciother-016", "topic": "化学 · 酸与金属反应", "difficulty": "easy", "type": "mcq", "stem": "Magnesium is added to hydrochloric acid and a gas is produced that gives a 'pop' when a lit splint is held to it. Which gas is this?", "options": ["Hydrogen", "Oxygen", "Chlorine", "Carbon dioxide"], "answer": 0, "explanation": "酸＋金属→盐＋氢气，氢气用点燃的木条检验会发出爆鸣声（pop test）。若是酸＋碳酸盐，产生的气体是 CO2，要用石灰水检验。", "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 5 Answers（Acid-Metal Reaction）", "weak": false}, {"id": "sciother-017", "topic": "化学 · 中和反应", "difficulty": "easy", "type": "short", "stem": "Sodium hydroxide solution is added to hydrochloric acid. Name the type of reaction and write the word equation.", "options": [], "answer": "This is a neutralisation reaction. The word equation is: hydrochloric acid + sodium hydroxide → sodium chloride + water.", "explanation": "酸＋碱→盐＋水，即中和反应。盐的金属部分来自碱（Na⁺），非金属部分来自酸（Cl⁻），所以生成氯化钠。", "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Neutralisation Reaction）", "points": [{"t": "This is a neutralisation reaction", "m": 1}, {"t": "The word equation is: hydrochloric acid + sodium hydroxide → sodium chloride + water", "m": 1}], "weak": false}, {"id": "sciother-018", "topic": "化学 · 碰撞理论", "difficulty": "medium", "type": "mcq", "stem": "Using collision theory, why does raising the temperature increase the rate of a chemical reaction?", "options": ["The concentration of the reacting particles increases.", "Particles gain kinetic energy, so more collisions succeed.", "The particles get larger, so they collide more often.", "The activation energy of the reaction is lowered."], "answer": 1, "explanation": "碰撞理论要求粒子以足够的力和正确的方向相撞。升温提高平均动能，碰撞更频繁、超过活化能的有效碰撞比例更高，所以速率增大；降低活化能是催化剂的作用。", "source": "Term 2 · Reactive Chemistry – 2020 Year 10 Yearly Examination Answers（Part A Q7 碰撞理论）", "weak": false}, {"id": "sciother-019", "topic": "化学 · 酸与碳酸盐", "difficulty": "medium", "type": "short", "stem": "Copper carbonate is added to nitric acid. Write the word equation, name the salt formed, and describe how you would test for the gas produced.", "options": [], "answer": "copper carbonate + nitric acid → copper nitrate + water + carbon dioxide. The salt formed is copper nitrate. Bubble the gas through limewater; if the limewater turns milky (chalky white), the gas is carbon dioxide.", "explanation": "酸＋碳酸盐→盐＋水＋二氧化碳；盐名后半来自酸（硝酸→硝酸盐），所以是 copper nitrate。CO2 用石灰水变浑浊检验，注意不是用点燃的木条。", "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（balanced equations / acid-carbonate）", "points": [{"t": "copper carbonate + nitric acid → copper nitrate + water + carbon dioxide. The salt formed is copper nitrate. Bubble the gas through limewater", "m": 1}, {"t": "if the limewater turns milky (chalky white), the gas is carbon dioxide", "m": 1}], "weak": false}, {"id": "sciother-020", "topic": "化学 · 化学方程式配平", "difficulty": "hard", "type": "mcq", "stem": "Which set of coefficients correctly balances this equation: __Al + __HCl → __AlCl₃ + __H₂ ?", "options": ["3, 6, 2, 3", "2, 3, 2, 3", "2, 6, 2, 3", "1, 3, 1, 3"], "answer": 2, "explanation": "2Al+6HCl→2AlCl₃+3H₂：左边 Al 2、H 6、Cl 6；右边 Al 2、Cl 2×3=6、H 3×2=6，两边原子数相等。配平只能改前面的系数，不能改下标。", "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Balanced Equations part 2）", "weak": false}, {"id": "sciother-021", "topic": "核反应 · 同位素", "difficulty": "easy", "type": "mcq", "stem": "Carbon-12 and carbon-14 are both atoms of carbon. How do the two atoms differ?", "options": ["The number of protons", "The number of electrons in a neutral atom", "The number of electron shells", "The number of neutrons"], "answer": 3, "explanation": "同位素指质子数相同、中子数不同的同种元素原子。碳-12 有 6 个中子，碳-14 有 8 个中子；中性原子电子数相同，都是 6 个。", "source": "Term 2 · Nuclear Reactions – atomic_models_interactive_v2.html（Isotopes）", "weak": false}, {"id": "sciother-022", "topic": "核反应 · 恒星核聚变", "difficulty": "medium", "type": "mcq", "stem": "In the core of a main sequence star such as the Sun, hydrogen nuclei are combined to form helium, releasing large amounts of energy. What is this process called?", "options": ["Nuclear fusion", "Nuclear fission of uranium", "Chemical combustion of hydrogen in oxygen", "Radioactive decay of carbon"], "answer": 0, "explanation": "太阳核心约 1500 万 °C，氢核聚变成氦核并释放巨大能量，这正是太阳辐射的来源。它属于核反应，不是化学燃烧（化学燃烧不改变原子核）。", "source": "Term 2 · Nuclear Reactions – The Universe 2020.pptx（Main Sequence Star）+ Revision Booklet Topic 6（solar radiation 定义）", "weak": false}, {"id": "sciother-023", "topic": "核反应 · 放射性测年", "difficulty": "medium", "type": "short", "stem": "Explain how scientists use radioactive carbon (carbon-14) in the remains of a once-living organism to work out when it died.", "options": [], "answer": "While an organism is alive it continuously takes in small amounts of radioactive carbon dioxide from the air. When it dies the intake stops, so the radioactive carbon slowly decays into the non-radioactive form. Measuring how much radioactive carbon is left in the remains therefore shows how long ago the organism died.", "explanation": "活着时不断摄入放射性碳；死亡后摄入停止，放射性碳按固定速率衰变。测剩余比例即可推算死亡时间（绝对测年）。", "source": "Term 2 · Nuclear Reactions – Year 10 - Evolution.pptx（Techniques used to date fossils · Absolute dating）", "points": [{"t": "While an organism is alive it continuously takes in small amounts of radioactive carbon dioxide from the air", "m": 1}, {"t": "When it dies the intake stops, so the radioactive carbon slowly decays into the non-radioactive form", "m": 1}, {"t": "Measuring how much radioactive carbon is left in the remains therefore shows how long ago the organism died", "m": 1}], "weak": false}, {"id": "sciother-024", "topic": "气候 · 温室效应", "difficulty": "easy", "type": "mcq", "stem": "Which statement correctly distinguishes the enhanced greenhouse effect from the natural greenhouse effect?", "options": ["The natural greenhouse effect stops all infrared radiation from leaving the atmosphere.", "The enhanced greenhouse effect is the additional warming caused by human activities releasing abnormally high amounts of greenhouse gases.", "The natural greenhouse effect is caused by human activity, while the enhanced effect is caused by volcanic eruptions.", "The enhanced greenhouse effect only occurs when the ozone layer is destroyed."], "answer": 1, "explanation": "自然温室效应是大气温室气体吸收红外辐射、使地球温度相对稳定；增强温室效应是人类活动额外排放温室气体造成的附加升温。臭氧层空洞是另一个问题，不能混为一谈。", "source": "Term 3 · Climate Science – Term 3 Earth Week 1 Answers（natural vs enhanced greenhouse effect）", "weak": false}, {"id": "sciother-025", "topic": "气候 · 温室气体识别", "difficulty": "easy", "type": "mcq", "stem": "Which gas is a colourless, odourless, incombustible greenhouse gas formed during respiration, combustion and the breakdown of dead organic material?", "options": ["Methane", "Nitrogen", "Carbon dioxide", "Argon"], "answer": 2, "explanation": "题眼是 incombustible（不可燃）：甲烷可燃，氮气和氩气既不是题述来源的产物也不是主要温室气体，所以是二氧化碳。", "source": "Term 3 · Climate Science – 2020 Year 10 Yearly Examination Answers（Part B Q2）", "weak": false}, {"id": "sciother-026", "topic": "气候 · 减缓与适应策略", "difficulty": "medium", "type": "mcq", "stem": "Which of the following is an example of an adaptation strategy rather than a mitigation strategy?", "options": ["Building wind farms to generate electricity without coal", "Capturing and storing carbon dioxide from power stations", "Installing solar panels on the roofs of houses", "Painting roofs white to mimic the albedo effect"], "answer": 3, "explanation": "减缓（mitigation）针对减排、稳定大气温室气体浓度（风能、太阳能、碳封存）；适应（adaptation）针对已经发生的影响、降低社会脆弱性，例如把屋顶刷白提高反照率。", "source": "Term 3 · Climate Science – Revision Booklet（Topic 6 · Mitigation / Adaptation strategies）", "weak": false}, {"id": "sciother-027", "topic": "气候 · 海洋酸化", "difficulty": "hard", "type": "mcq", "stem": "Extra carbon dioxide dissolves in seawater and forms carbonic acid, which releases hydrogen ions. Why does this harm shellfish?", "options": ["The hydrogen ions compete with the shells for carbonate ions, so shellfish cannot build their shells.", "The hydrogen ions dissolve the calcium carbonate shells by raising the pH of the water.", "The extra carbon dioxide warms the water so the shellfish cannot respire.", "The carbonic acid removes calcium from the water so shellfish absorb more carbonate."], "answer": 0, "explanation": "碳酸根是造壳原料，多出的 H⁺ 会与碳酸根结合成碳酸氢根，等于和贝壳“抢”碳酸根，壳体难以生成。另外酸化的方向是 pH 降低，不是升高。", "source": "Term 3 · Climate Science – Term 3 Earth Week 2 Answers（Ocean Acidification）", "weak": false}, {"id": "sciother-028", "topic": "气候 · 冻土正反馈", "difficulty": "hard", "type": "short", "stem": "Large areas of Arctic permafrost are thawing. Explain why this is described as a positive feedback that makes global warming worse.", "options": [], "answer": "Frozen soils store large amounts of organic carbon and methane. When the permafrost thaws, microbes break this material down and release carbon dioxide and methane, which are both greenhouse gases. These extra gases trap more heat, which thaws even more permafrost, so the warming reinforces itself.", "explanation": "链条是：冻土解冻→微生物分解→释放 CO2 和甲烷→温室效应增强→升温→更多冻土解冻。输出反过来加强输入，所以是正反馈。", "source": "Term 3 · Climate Science – SCNSW10CH00393.pdf（Global systems · permafrost）+ Revision Booklet（冻土甲烷）", "points": [{"t": "Frozen soils store large amounts of organic carbon and methane", "m": 1}, {"t": "When the permafrost thaws, microbes break this material down and release carbon dioxide and methane, which are both greenhouse gases", "m": 1}, {"t": "These extra gases trap more heat, which thaws even more permafrost, so the warming reinforces itself", "m": 1}], "weak": false}, {"id": "sciother-029", "topic": "有机化学 · 碳链命名", "difficulty": "easy", "type": "mcq", "stem": "Which name is correct for a straight-chain alkane containing six carbon atoms?", "options": ["Hexene", "Hexane", "Pentane", "Heptane"], "answer": 1, "explanation": "前缀 hex- 表示 6 个碳，烷烃词尾是 -ane，所以是 hexane。hexene 虽然也是 6 个碳但含双键属烯烃，heptane 是 7 个碳。", "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 3 Naming Organic Compounds）", "weak": false}, {"id": "sciother-030", "topic": "有机化学 · 同系物通式", "difficulty": "easy", "type": "mcq", "stem": "Which of the following is the general formula of the alkanes?", "options": ["CnH2n+1OH", "CnH2n−2", "CnH2n+2", "CnH2n"], "answer": 2, "explanation": "烷烃通式 CnH2n+2（例如 n=5 时 C5H12）；烯烃 CnH2n，炔烃 CnH2n−2，最后一个是醇类（含 −OH 官能团）。", "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part C Q6）", "weak": false}, {"id": "sciother-031", "topic": "有机化学 · 分馏", "difficulty": "medium", "type": "short", "stem": "Explain how fractional distillation separates crude oil into fractions, and why the smaller molecules are collected near the top of the column.", "options": [], "answer": "Crude oil is heated so that most of it vaporises, and the vapours rise up the fractionating column, which is hot at the bottom and cooler at the top. Each fraction condenses at the level where the temperature falls below its boiling point. Smaller molecules have lower boiling points, so they rise further and are collected near the top.", "explanation": "分馏利用沸点差：塔内温度自下而上降低，各组分在温度低于自身沸点的高度冷凝。小分子沸点低→升得更高→塔顶（LPG、汽油），大分子留在塔底（沥青）。", "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 2 Fractional Distillation）", "points": [{"t": "Crude oil is heated so that most of it vaporises, and the vapours rise up the fractionating column, which is hot at the bottom and cooler at the top", "m": 1}, {"t": "Each fraction condenses at the level where the temperature falls below its boiling point", "m": 1}, {"t": "Smaller molecules have lower boiling points, so they rise further and are collected near the top", "m": 1}], "weak": false}, {"id": "sciother-032", "topic": "有机化学 · 支链命名", "difficulty": "hard", "type": "mcq", "stem": "What is the correct IUPAC name of the compound CH₃–CH(CH₃)–CH₂–CH₃?", "options": ["3-methylpentane", "2-methylpropane", "3-methylbutane", "2-methylbutane"], "answer": 3, "explanation": "最长碳链为 4 个碳（butane），甲基支链接在 2 号碳上；编号必须从靠近支链的一端开始以使位号最小，所以是 2-methylbutane。3-methylbutane 是同一分子从另一端编号的错误命名。", "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part G Q12）", "weak": false}, {"id": "sciother-033", "topic": "有机化学 · 分子式判断", "difficulty": "hard", "type": "mcq", "stem": "A hydrocarbon has the molecular formula C₅H₁₀. Could it be an alkane?", "options": ["No, because alkanes follow CnH2n+2, which for five carbons is C₅H₁₂ and not C₅H₁₀.", "Yes, because any compound with five carbon atoms always has ten hydrogen atoms.", "No, because it does not contain enough hydrogen to be a hydrocarbon at all.", "Yes, because it contains only carbon and hydrogen."], "answer": 0, "explanation": "把 n=5 代入烷烃通式 CnH2n+2 得 C5H12；C5H10 少两个氢，符合 CnH2n，属于烯烃（或环烷烃），不可能是直链烷烃。", "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part N Q32）", "weak": false}]};
+const KEY = "dsh-quiz-sciother";
+const MULTI = DATA.slug === "all";
+const app = document.getElementById("app");
+let state = {idx:0, answers:{}, order:null};
+
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (s && s.answers) state = s;
+  } catch(e) {}
+  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
+  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
+  try {
+    const m = location.search.match(/[?&]q=([^&]+)/);
+    if (m) {
+      const qid = decodeURIComponent(m[1]);
+      const qi = DATA.questions.findIndex(x => x.id === qid);
+      const pos = state.order.indexOf(qi);
+      if (pos >= 0) state.idx = pos;
+    }
+  } catch(e) {}
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function renderSetup() {
+  const subs = DATA.subjects || {};
+  const keys = Object.keys(subs);
+  const saved = state.pick || {};
+  const opts = keys.map(k => {
+    const on = saved[k] !== false;
+    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
+      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
+  }).join("");
+  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
+  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
+  app.innerHTML = `<div class="setup">
+    <div class="setup-head">
+      <h2>综合卷 · 全科</h2>
+      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
+    </div>
+
+    <section class="setup-block">
+      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
+      <div class="picks">${opts}</div>
+    </section>
+
+    <section class="setup-block">
+      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
+    </section>
+
+    <div class="setup-foot">
+      <div class="sum">共 <b id="cnt">0</b> 题</div>
+      <button class="btn ghost" id="daily">今日挑战</button>
+      <button class="btn" id="startmix">开始答题 →</button>
+    </div>
+  </div>`;
+  const chosenCount = () => {
+    let c = 0;
+    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
+    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
+  };
+  const calc = () => {
+    let n = 0;
+    app.querySelectorAll(".pick input").forEach(cb => {
+      if (!cb.checked) return;
+      const k = cb.dataset.s, c = subs[k].n;
+      n += per ? Math.min(per, c) : c;
+    });
+    document.getElementById("cnt").textContent = n;
+    const pc = document.getElementById("pickcount");
+    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
+  };
+  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
+    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
+  });
+  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
+    state.per = +b.dataset.n; save(); render();
+  });
+  function seedRnd(str){
+    var h=2166136261;
+    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
+      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
+  }
+  function startDaily(){
+    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    var rnd=seedRnd("daily:"+key);
+    var idxs=[];
+    DAILY.forEach(function(sl){
+      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      idxs=idxs.concat(pool.slice(0,3));
+    });
+    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
+    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
+  }
+  document.getElementById("daily").onclick = startDaily;
+  document.getElementById("startmix").onclick = () => {
+    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
+    if (!chosen.length) { alert("至少选一科"); return; }
+    let idxs = [];
+    chosen.forEach(k => {
+      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      pool.sort(() => Math.random() - 0.5);
+      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
+    });
+    idxs.sort(() => Math.random() - 0.5);
+    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
+    state.answers = {}; state.t0 = Date.now(); save(); render();
+  };
+  calc();
+}
+
+
+/* ===== 语言切换 ===== */
+var UI_TEXT = {
+  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
+        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
+  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
+        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
+};
+function T(k){
+  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
+  return d[k] || UI_TEXT.en[k] || k;
+}
+function applyChrome(){
+  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
+  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
+  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
+  var l=LANG();
+  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
+}
+function cycleLang(){
+  var order=["en","zh","both"], i=order.indexOf(LANG());
+  setLANG(order[(i+1)%3] || "en");
+  applyChrome(); render();
+}
+
+function render() {
+  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
+    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
+  }
+  if (MULTI && state.setup && !state.started) return renderSetup();
+  const qs = state.order.map(i => DATA.questions[i]);
+  const q = qs[state.idx];
+  const L = LANG(), ZH = (q && q.zh) || null;
+  const total = qs.length;
+  const answered = qs.filter(x => state.answers[x.id]).length;
+  const right = qs.filter(x => state.answers[x.id] === "ok").length;
+  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
+  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
+  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
+  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
+  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
+
+  const rec = state.answers[q.id];
+  const chips = `<div class="chips">
+      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
+      <span class="chip">${esc(q.topic)}</span>
+      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
+      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
+      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
+    </div>`;
+
+  let bodyHtml = "";
+  if (q.type === "mcq") {
+    const opts = (q.options || []).map((o, i) => {
+      let cls = "opt", mark = "";
+      if (rec) {
+        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
+        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
+      }
+      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
+      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
+      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
+        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
+    }).join("");
+    bodyHtml = `<div class="opts">${opts}</div>`;
+  } else {
+    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
+    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    const checked = (rec && rec.checked) ? rec.checked : [];
+    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
+    const hasNum = /-?\d/.test(bareAns);
+    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
+      <div class="actions">
+        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
+        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
+      </div>`;
+    if (rec) {
+      bodyHtml += `<div class="panel">
+        <div class="panel-h">自评 · 勾选你写到的得分点</div>
+        <div class="pts">${pts.map((p,i)=>`
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
+        <div class="actions">
+          <button class="btn ghost" id="allpt">全部勾上</button>
+          <button class="btn ghost" id="nonept">全部取消</button>
+        </div>
+        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
+      </div>`;
+    }
+  }
+
+  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
+      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
+      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
+
+  const last = state.idx >= total - 1;
+  let stemHtml;
+  if (L === "zh" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
+  } else if (L === "both" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
+  } else {
+    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
+  }
+  setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
+  app.innerHTML = `<div class="card">${chips}${stemHtml}
+      ${bodyHtml}${expHtml}</div>
+      <div class="actionbar">
+        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="finish">${T("finish")}</button>
+        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
+      </div>`;
+
+  if (q.type === "mcq") {
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const i = +b.dataset.i;
+      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
+      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
+      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
+      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
+      save(); render();
+    }));
+  } else {
+    const ta = document.getElementById("ta");
+    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
+    document.getElementById("reveal").onclick = () => {
+      const c = cur();
+      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
+      save(); render();
+    };
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
+      const c = cur(); const i = +cb.dataset.i;
+      const set = new Set(c.checked || []);
+      if (cb.checked) set.add(i); else set.delete(i);
+      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
+      const full = pts.every((_,i)=>set.has(i));
+      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
+      reviewMark(q.subj || DATA.slug, q.id, full);
+      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      save(); render();
+    }));
+    const nc = document.getElementById("numcheck");
+    if (nc) nc.onclick = () => {
+      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
+      const last = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
+      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
+    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
+  }
+  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
+  const nx = document.getElementById("next");
+  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
+  document.getElementById("finish").onclick = showResult;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function showResult() {
+  const qs = state.order.map(i => DATA.questions[i]);
+  if (!state.rewarded && qs.length) {
+    state.rewarded = true; save();
+    if (state.daily) {
+      try {
+        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
+        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
+        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
+        var DKEY = "dsh-daily-v1";
+        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
+        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
+        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
+          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
+          localStorage.setItem(DKEY, JSON.stringify(drec));
+        }
+        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
+      } catch(e) {}
+    }
+    const answered = qs.filter(x => state.answers[x.id]).length;
+    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
+    if (window.openChest && answered >= 3) openChest();
+  }
+  const rec = id => state.answers[id] || null;
+  const mcq = qs.filter(x => x.type === "mcq");
+  const shorts = qs.filter(x => x.type === "short");
+  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
+  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
+  const todo = qs.filter(x => !rec(x.id));
+  let earnedM = 0, totalM = 0, partM = 0;
+  const weak = [];
+  shorts.forEach(x => {
+    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
+    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const r = rec(x.id);
+    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    totalM += tot;
+    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
+  });
+  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
+  const needRedo = [...wrong, ...weak];
+  const wrongIds = needRedo.map(x => x.id);
+  app.innerHTML = `<div class="card done">
+      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
+      <div class="stats">
+        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
+        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
+        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
+        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
+      </div>
+      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
+      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
+      <div class="actions">
+        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
+        <button class="btn ghost" id="showlb">${T("lb")}</button>
+        <button class="btn ghost" id="again">${T("again")}</button>
+        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
+      </div></div>`;
+  const redo = document.getElementById("redo");
+  if (redo) redo.onclick = () => {
+    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
+    wrongIds.forEach(id => delete state.answers[id]);
+    state.idx = 0; save(); render();
+  };
+  const showlb = document.getElementById("showlb");
+  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
+  document.getElementById("again").onclick = () => {
+    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+    save(); render();
+  };
+}
+
+document.getElementById("grid").onclick = openNav;
+document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
+document.getElementById("nav").addEventListener("click", e => {
+  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
+});
+try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
+catch(e) { document.body.insertAdjacentHTML("afterbegin",
+  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
+
+document.getElementById("exam").onclick = startExam;
+if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
+
+var _langBtn = document.getElementById("langBtn");
+if (_langBtn) _langBtn.onclick = cycleLang;
+applyChrome();
+document.getElementById("restart").onclick = () => {
+  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  save(); render();
+};
+
+document.addEventListener("keydown", e => {
+  if (MULTI && state.setup && !state.started) {
+    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
+    return;
+  }
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
+  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
+  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
+  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
+  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
+    else showResult();
+    return;
+  }
+  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
+  if (!q || q.type !== "mcq") return;
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= (q.options || []).length) {
+    if (!state.answers[q.id]) {
+      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
+      save(); render();
+    }
+  }
+});
+
+const REVIEW_KEY = "dsh-review-v1";
+const GAPS = [1, 3, 7];
+function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
+function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
+function reviewMark(slug, qid, correct){
+  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
+  if (correct) {
+    const it = db[id];
+    if (!it) return;
+    const st = (it.stage || 0) + 1;
+    if (st >= GAPS.length) delete db[id];
+    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
+  } else {
+    const old = db[id] || {};
+    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
+  }
+  reviewSave(db);
+}
+function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
+
+const LOG_KEY = "dsh-log-v1";
+function logAnswer(slug, qid, ok, diff, ty){
+  try {
+    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
+    if (arr.length > 3000) arr = arr.slice(-3000);
+    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
+  } catch(e) {}
+}
+function navState(qi){
+  const q = DATA.questions[qi], a = state.answers[q.id];
+  if (!a) return "";
+  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
+  const pts = q.points || [{m:1}], c = (a.checked || []).length;
+  if (c >= pts.length) return "ok";
+  if (c > 0) return "part";
+  return "";
+}
+function openNav(){
+  const grid = document.getElementById("navgrid");
+  grid.innerHTML = state.order.map((qi, pos) =>
+    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
+  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
+    state.idx = +b.dataset.pos; save();
+    document.getElementById("nav").classList.remove("on"); render();
+  });
+  document.getElementById("nav").classList.add("on");
+}
+
+let timerId = null;
+function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+function tickClock(){
+  const el = document.getElementById("clock");
+  if (!state.deadline) { if (el) el.style.display = "none"; return; }
+  const left = state.deadline - Date.now();
+  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
+            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
+  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
+}
+function startExam(){
+  const def = DATA.examMin || 60;
+  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
+  if (v === null) return;
+  const mins = parseInt(v, 10);
+  if (!mins || mins <= 0) return;
+  state.deadline = Date.now() + mins*60000; save();
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(tickClock, 1000);
+  tickClock();
+}
+
+
+load(); render();
 </script>
 </body>
 </html>

@@ -322,487 +322,6 @@ footer{padding:22px 14px 30px;line-height:1.8}
 </div></div>
 <footer>键盘：<kbd>1</kbd>–<kbd>4</kbd> 选择 · <kbd>←</kbd><kbd>→</kbd> 切题 · <kbd>G</kbd> 题号 · <kbd>Enter</kbd> 下一题 · <kbd>S</kbd> 看成绩 · 进度自动保存在本机浏览器</footer>
 <script>
-const DATA = {"slug": "geo", "title": "地理 · 10 年级", "examMin": 50, "questions": [{"topic": "A Changing Global Climate · 温室气体", "difficulty": "easy", "type": "mcq", "stem": "Which group lists only greenhouse gases?", "options": ["Carbon dioxide, methane, water vapour", "Oxygen, nitrogen, argon", "Nitrogen, methane, neon", "Oxygen, carbon dioxide, helium"], "answer": 0, "explanation": "温室气体能吸收并再辐射红外线：CO₂、CH₄、水汽、N₂O、CFCs。氧气和氮气占大气 99% 但几乎不吸收红外线，不是温室气体。", "source": "Yearly Study Guide 2026 · Geography Section I（terms / metalanguage）", "id": "geo-001", "weak": false}, {"topic": "A Changing Global Climate · 增强温室效应", "difficulty": "easy", "type": "mcq", "stem": "The enhanced greenhouse effect refers to:", "options": ["The reflection of sunlight by clouds", "Extra warming caused by human increases in greenhouse gas concentrations", "The natural warming that keeps Earth habitable", "The cooling effect of volcanic ash"], "answer": 1, "explanation": "自然温室效应让地球平均约 15°C 而不是 −18°C，是必需的；『增强』指人类活动额外增加的温室气体让这个效应变强。", "source": "Yearly Study Guide 2026 · Geography Section I", "id": "geo-002", "weak": false}, {"topic": "A Changing Global Climate · 温室效应机理", "difficulty": "medium", "type": "mcq", "stem": "In the greenhouse effect, which sequence is correct?", "options": ["The ozone layer traps heat near the surface", "Long-wave radiation from the Sun is absorbed by the surface", "Short-wave solar radiation passes through the atmosphere, is absorbed and re-emitted as long-wave radiation which is trapped", "Greenhouse gases reflect short-wave radiation back to space"], "answer": 2, "explanation": "太阳辐射以短波为主，能穿过大气到达地表；地表升温后以长波（红外）向外辐射，被温室气体吸收并再辐射，一部分返回地表。", "source": "Yearly Study Guide 2026 · Geography Section II（greenhouse effect）", "id": "geo-003", "weak": false}, {"topic": "A Changing Global Climate · 碳源与碳汇", "difficulty": "medium", "type": "mcq", "stem": "Which of the following is best described as a carbon sink?", "options": ["Deforestation in the Amazon", "Cattle producing methane", "A coal-fired power station", "The ocean absorbing dissolved carbon dioxide"], "answer": 3, "explanation": "碳汇是吸收并储存碳的库：海洋、森林、土壤。燃煤、砍伐、反刍动物都是碳源。", "source": "Yearly Study Guide 2026 · Geography Section I", "id": "geo-004", "weak": false}, {"topic": "A Changing Global Climate · 海平面上升", "difficulty": "medium", "type": "mcq", "stem": "Global sea level is rising mainly because of:", "options": ["Thermal expansion of warming seawater and melting of land-based ice", "More rain falling into the oceans", "The ocean becoming saltier", "Volcanic eruptions under the sea"], "answer": 0, "explanation": "两大机制：海水受热膨胀（约一半贡献）+ 陆地冰（冰川、格陵兰、南极）融化注入海洋。注意『海冰融化』不抬高海平面——它本来就浮在水里。", "source": "Yearly Study Guide 2026 · Geography Section II（sea level rise）", "id": "geo-005", "weak": false}, {"topic": "A Changing Global Climate · 海洋酸化", "difficulty": "medium", "type": "mcq", "stem": "Ocean acidification occurs because:", "options": ["Coral reefs release acid", "Carbon dioxide dissolves in seawater forming carbonic acid, lowering pH", "Salt concentration increases", "Acid rain falls directly into the sea"], "answer": 1, "explanation": "CO₂ + H₂O → H₂CO₃（碳酸），碳酸释放 H⁺，pH 下降。工业革命以来表层海水 pH 已下降约 0.1（酸度上升约 30%）。", "source": "Yearly Study Guide 2026 · Geography Section II（ocean acidification）", "id": "geo-006", "weak": false}, {"topic": "A Changing Global Climate · 珊瑚白化", "difficulty": "medium", "type": "mcq", "stem": "Coral bleaching is caused by:", "options": ["Too much oxygen in the water", "An increase in coral predators only", "Loss of the symbiotic algae (zooxanthellae) due to heat stress, exposing the white skeleton", "Corals being covered by sand"], "answer": 2, "explanation": "水温持续偏高时珊瑚排出体内的共生藻（虫黄藻），失去颜色和主要能量来源，露出白色骨骼。若高温持续太久，珊瑚会死亡。", "source": "Yearly Study Guide 2026 · Geography Section II（ocean temperature and coral bleaching）", "id": "geo-007", "weak": false}, {"topic": "A Changing Global Climate · 天气图 · 锋面符号", "difficulty": "easy", "type": "mcq", "stem": "On a synoptic chart, a line with triangles pointing in the direction of movement represents:", "options": ["An isobar", "A high pressure centre", "A warm front", "A cold front"], "answer": 3, "explanation": "冷锋用三角符号（▲），暖锋用半圆符号（◗），三角/半圆朝向表示锋面移动方向。等压线是细实线。", "source": "Yearly Study Guide 2026 · Geography Section I（synoptic charts）", "id": "geo-008", "weak": false}, {"topic": "A Changing Global Climate · 天气图 · 高压", "difficulty": "easy", "type": "mcq", "stem": "An area of high pressure on a synoptic chart is usually associated with:", "options": ["Clear skies and settled weather", "Thunderstorms", "A cold front passing", "Heavy rain and strong winds"], "answer": 0, "explanation": "高压中心空气下沉，不易成云致雨，天气稳定晴朗；低压中心空气上升，容易成云降水。", "source": "Yearly Study Guide 2026 · Geography Section I（skills · synoptic charts）", "id": "geo-009", "weak": false}, {"topic": "A Changing Global Climate · FLICC · 挑樱桃", "difficulty": "medium", "type": "mcq", "stem": "A website says: 'It snowed heavily last winter, so global warming is a hoax.' Which FLICC technique is this?", "options": ["Fake experts", "Logical fallacy (cherry-picking)", "Conspiracy theory", "Impossible expectations"], "answer": 1, "explanation": "挑樱桃（cherry-picking）：只挑一个短期、局部的天气事件来否定长期、全球的趋势。天气≠气候：单个寒潮不能推翻 30 年的升温趋势。", "source": "Yearly Study Guide 2026 · Geography Section I（critical thinking · FLICC）", "id": "geo-010", "weak": false}, {"topic": "A Changing Global Climate · FLICC · 假专家", "difficulty": "medium", "type": "mcq", "stem": "A blog cites 'a retired physicist' with no climate science background as proof that CO₂ does not trap heat. Which FLICC technique is this?", "options": ["Cherry picking", "Conspiracy theory", "Fake experts", "Impossible expectations"], "answer": 2, "explanation": "假专家（fake experts）：用没有相关领域资历的人营造『专家有争议』的假象。判断要看其研究领域、同行评议记录，而不是头衔本身。", "source": "Yearly Study Guide 2026 · Geography Section I（FLICC）", "id": "geo-011", "weak": false}, {"topic": "A Changing Global Climate · 反馈 · 反照率", "difficulty": "hard", "type": "mcq", "stem": "As sea ice melts, the darker ocean surface absorbs more sunlight, which causes further warming. This is an example of:", "options": ["Ocean acidification", "The greenhouse effect", "A negative feedback loop", "A positive feedback loop (albedo effect)"], "answer": 3, "explanation": "冰反照率高（反射阳光），融化后露出深色海面吸收更多热量，进一步升温→进一步融冰，是正反馈（自我增强）。", "source": "Yearly Study Guide 2026 · Geography Section I（critical thinking / climate system）", "id": "geo-012", "weak": false}, {"topic": "A Changing Global Climate · 图表判读", "difficulty": "medium", "type": "mcq", "stem": "A graph shows CO₂ concentration and global average temperature rising together over 150 years. The most defensible conclusion is:", "options": ["There is a positive correlation, consistent with CO₂ driving warming", "Temperature causes CO₂ only", "CO₂ has no effect on temperature", "The data proves nothing at all"], "answer": 0, "explanation": "相关不等于因果，但『正相关且与物理机制一致』同时成立时，结论应表述为『与……一致』。只说『证明』错，说『毫无意义』也错。", "source": "Yearly Study Guide 2026 · Geography Section I（graph interpretation）", "id": "geo-013", "weak": false}, {"topic": "A Changing Global Climate · 海岸影响", "difficulty": "medium", "type": "mcq", "stem": "Which combination most increases coastal erosion risk in eastern Australia?", "options": ["Lower sea level and weaker storms", "Higher sea level, larger storm surges and more intense East Coast Lows", "Less coastal development", "Colder ocean temperatures"], "answer": 1, "explanation": "海平面升高让同样的风暴浪能在更高的基面上起作用；风暴潮叠加、East Coast Lows 增强、海岸带开发增加暴露度，三者叠加才会放大风险。", "source": "Yearly Study Guide 2026 · Geography（climate change and impacts on coastal environments）", "id": "geo-014", "weak": false}, {"topic": "A Changing Global Climate · 温室效应（简答）", "difficulty": "medium", "type": "short", "stem": "Explain, step by step, how the greenhouse effect keeps Earth warmer than it would otherwise be.", "answer": "Short-wave radiation from the Sun passes through the atmosphere and is absorbed by the Earth's surface, warming it. The surface re-emits this energy as longer-wave infrared radiation. Greenhouse gases (CO2, methane, water vapour) absorb this infrared radiation and re-radiate it in all directions, including back towards the surface. This trapped energy raises the average surface temperature. Without this effect Earth's average temperature would be about -18C instead of about 15C.", "explanation": "得分点四步：短波进入 → 地表吸收并发出长波 → 温室气体吸收再辐射 → 结果升温。顺序错或漏掉『再辐射回地表』会扣分。", "source": "Yearly Study Guide 2026 · Geography Section II（greenhouse effect）", "points": [{"t": "Short-wave radiation from the Sun passes through the atmosphere and is absorbed by the Earth's surface, warming it", "m": 1}, {"t": "The surface re-emits this energy as longer-wave infrared radiation", "m": 1}, {"t": "Greenhouse gases (CO2, methane, water vapour) absorb this infrared radiation and re-radiate it in all directions, including back towards the surface", "m": 1}, {"t": "This trapped energy raises the average surface temperature", "m": 1}, {"t": "Without this effect Earth's average temperature would be about -18C instead of about 15C", "m": 1}], "id": "geo-015", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 自然 vs 增强（简答）", "difficulty": "medium", "type": "short", "stem": "Distinguish between the natural greenhouse effect and the enhanced greenhouse effect.", "answer": "The natural greenhouse effect is a process that has always operated: naturally occurring greenhouse gases trap some outgoing infrared radiation and keep the average surface temperature around 15C, which makes life possible. The enhanced greenhouse effect is the additional warming caused by human activities that increase greenhouse gas concentrations - burning fossil fuels (CO2), agriculture and livestock (methane), and deforestation. The mechanism is identical; what differs is the extra quantity of greenhouse gases and therefore the extra trapped energy.", "explanation": "关键在『机理相同、量不同』。只写『一个是自然的、一个是人类造成的』拿不到满分，要指出多出来的温室气体导致额外截留的能量。", "source": "Yearly Study Guide 2026 · Geography Section II", "points": [{"t": "The natural greenhouse effect is a process that has always operated: naturally occurring greenhouse gases trap some outgoing infrared radiation and keep the average surface temperature around 15C, which makes life possible. The enhanced greenhouse effect is the additional warming caused by human activities that increase greenhouse gas concentrations - burning fossil fuels (CO2), agriculture and livestock (methane), and deforestation. The mechanism is identical", "m": 1}, {"t": "what differs is the extra quantity of greenhouse gases and therefore the extra trapped energy", "m": 1}], "id": "geo-016", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 海平面上升（简答）", "difficulty": "hard", "type": "short", "stem": "Explain the two main mechanisms of sea level rise and describe two impacts on the Australian coast.", "answer": "First, thermal expansion: as seawater warms it expands and takes up more volume. Second, melting of land-based ice (glaciers, Greenland, Antarctica) adds water to the ocean. (Melting sea ice does not raise sea level because it already displaces its own weight.) Impacts: increased coastal erosion and shoreline retreat during storms; inundation of low-lying areas and infrastructure; saltwater intrusion into estuaries and coastal groundwater; loss of beaches and wetlands; greater damage from storm surges.", "explanation": "机理必须两项（热膨胀 + 陆地冰），并注意海冰不算。影响要落到澳洲海岸的具体后果（侵蚀、淹没、咸潮、湿地丧失）。", "source": "Yearly Study Guide 2026 · Geography Section II（sea level rise）", "points": [{"t": "First, thermal expansion: as seawater warms it expands and takes up more volume. Second, melting of land-based ice (glaciers, Greenland, Antarctica) adds water to the ocean. (Melting sea ice does not raise sea level because it already displaces its own weight.) Impacts: increased coastal erosion and shoreline retreat during storms", "m": 1}, {"t": "inundation of low-lying areas and infrastructure", "m": 1}, {"t": "saltwater intrusion into estuaries and coastal groundwater", "m": 1}, {"t": "loss of beaches and wetlands", "m": 1}, {"t": "greater damage from storm surges", "m": 1}], "id": "geo-017", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 海洋酸化（简答）", "difficulty": "hard", "type": "short", "stem": "Explain how ocean acidification occurs and why it threatens marine life.", "answer": "The ocean absorbs about a quarter of human CO2 emissions. Dissolved CO2 reacts with water to form carbonic acid (CO2 + H2O -> H2CO3), which releases hydrogen ions and lowers the pH of seawater (ocean acidification). The extra hydrogen ions combine with carbonate ions, reducing the carbonate available to organisms. Corals, shellfish and plankton need carbonate to build calcium carbonate shells and skeletons, so their growth slows and shells can dissolve, weakening reef structures and food webs.", "explanation": "三步：吸收 CO₂ → 生成碳酸、pH 下降 → 碳酸根减少、钙化受阻。最后要落到生物后果（珊瑚、贝类、浮游生物）。", "source": "Yearly Study Guide 2026 · Geography Section II（ocean acidification）", "points": [{"t": "The ocean absorbs about a quarter of human CO2 emissions", "m": 1}, {"t": "Dissolved CO2 reacts with water to form carbonic acid (CO2 + H2O -> H2CO3), which releases hydrogen ions and lowers the pH of seawater (ocean acidification)", "m": 1}, {"t": "The extra hydrogen ions combine with carbonate ions, reducing the carbonate available to organisms", "m": 1}, {"t": "Corals, shellfish and plankton need carbonate to build calcium carbonate shells and skeletons, so their growth slows and shells can dissolve, weakening reef structures and food webs", "m": 1}], "id": "geo-018", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 珊瑚白化（简答）", "difficulty": "hard", "type": "short", "stem": "Describe the process of coral bleaching and explain the conditions under which a reef can recover.", "answer": "Corals live in symbiosis with zooxanthellae, algae that live in their tissue, give them their colour and supply most of their energy through photosynthesis. When water temperatures rise well above the summer average (or the coral is stressed by pollution or extreme low tides), the coral expels the zooxanthellae. The coral tissue becomes transparent, showing the white calcium carbonate skeleton - bleaching. If the stress is short and temperatures return to normal, the coral can take up algae again and recover over weeks to months. If the heat stress persists, the coral starves and dies, and recovery can take a decade or more.", "explanation": "要写清『共生藻供给能量与颜色』这一环，否则解释不了为什么会死。恢复条件 = 热压力及时解除 + 水质好。", "source": "Yearly Study Guide 2026 · Geography Section II（ocean temperature and coral bleaching）", "points": [{"t": "Corals live in symbiosis with zooxanthellae, algae that live in their tissue, give them their colour and supply most of their energy through photosynthesis", "m": 1}, {"t": "When water temperatures rise well above the summer average (or the coral is stressed by pollution or extreme low tides), the coral expels the zooxanthellae", "m": 1}, {"t": "The coral tissue becomes transparent, showing the white calcium carbonate skeleton - bleaching", "m": 1}, {"t": "If the stress is short and temperatures return to normal, the coral can take up algae again and recover over weeks to months", "m": 1}, {"t": "If the heat stress persists, the coral starves and dies, and recovery can take a decade or more", "m": 1}], "id": "geo-019", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 天气图判读（简答）", "difficulty": "hard", "type": "short", "stem": "A synoptic chart shows a cold front approaching the NSW coast from the west, with a low pressure centre to the south and a high pressure system over the Tasman Sea. Predict the weather change over the next 24 hours and explain your reasoning.", "answer": "Before the front arrives: warm, moist north-westerly winds ahead of the front, rising temperature and humidity, increasing cloud. As the cold front crosses: a narrow band of heavy rain, thunderstorms, a sharp temperature drop and a wind shift from north-west to south-west, with a rapid rise in pressure afterwards. After the front passes: cooler, drier air, clearing skies and settled weather as the high moves in, with cold nights.", "explanation": "判读套路：锋前（暖湿、气压下降）→ 过境（暴雨、降温、风向突转）→ 锋后（干冷、转晴、气压回升）。每一项都要对应图中的要素。", "source": "Yearly Study Guide 2026 · Geography Section II（synoptic charts）", "points": [{"t": "Before the front arrives: warm, moist north-westerly winds ahead of the front, rising temperature and humidity, increasing cloud", "m": 1}, {"t": "As the cold front crosses: a narrow band of heavy rain, thunderstorms, a sharp temperature drop and a wind shift from north-west to south-west, with a rapid rise in pressure afterwards", "m": 1}, {"t": "After the front passes: cooler, drier air, clearing skies and settled weather as the high moves in, with cold nights", "m": 1}], "id": "geo-020", "options": [], "weak": false}, {"topic": "A Changing Global Climate · FLICC 反驳（简答）", "difficulty": "hard", "type": "short", "stem": "Someone posts: 'Climate has always changed, so this is natural. Scientists are only saying this to get more funding.' Identify the two FLICC techniques used and write a short, accurate rebuttal.", "answer": "The two techniques are: (1) cherry-picking/oversimplification - 'climate has always changed' ignores the rate and the different driver (natural cycles such as orbital change operated over tens of thousands of years, whereas current warming tracks the added greenhouse gases and is far faster), and (2) conspiracy theory - claiming scientists are motivated by funding rather than evidence. Rebuttal: natural factors alone cannot reproduce the observed warming of the last century, particularly the pattern of stratospheric cooling alongside tropospheric warming, which is the fingerprint of greenhouse gases. Scientific claims should be assessed on evidence and mechanism, not on assumed motives; the funding accusation is not evidence.", "explanation": "评分看两点：准确指出两种手法名称 + 给出基于证据的反驳。只骂人不给证据拿不到分。", "source": "Yearly Study Guide 2026 · Geography Section I（critical thinking · FLICC）", "points": [{"t": "The two techniques are: (1) cherry-picking/oversimplification - 'climate has always changed' ignores the rate and the different driver (natural cycles such as orbital change operated over tens of thousands of years, whereas current warming tracks the added greenhouse gases and is far faster), and (2) conspiracy theory - claiming scientists are motivated by funding rather than evidence. Rebuttal: natural factors alone cannot reproduce the observed warming of the last century, particularly the pattern of stratospheric cooling alongside tropospheric warming, which is the fingerprint of greenhouse gases. Scientific claims should be assessed on evidence and mechanism, not on assumed motives", "m": 1}, {"t": "the funding accusation is not evidence", "m": 1}], "id": "geo-021", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 缓解 vs 适应（简答）", "difficulty": "medium", "type": "short", "stem": "Define mitigation and adaptation in relation to climate change and give one Australian example of each.", "answer": "Mitigation reduces the causes of climate change by cutting greenhouse gas emissions or increasing carbon sinks - for example building large-scale solar and wind generation and retiring coal-fired power, or protecting and restoring coastal wetlands as a carbon sink. Adaptation reduces vulnerability to the effects that can no longer be avoided - for example building sea walls and dune restoration programs at Collaroy-Narrabeen, or planning retreat zones and raising building floor levels.", "explanation": "Mitigation = 减少 cause（减排/增汇）；Adaptation = 降低 impact（防护/回避）。例子要落到澳洲、最好落到海岸。", "source": "Yearly Study Guide 2026 · Geography（climate change responses）", "points": [{"t": "Mitigation reduces the causes of climate change by cutting greenhouse gas emissions or increasing carbon sinks - for example building large-scale solar and wind generation and retiring coal-fired power, or protecting and restoring coastal wetlands as a carbon sink", "m": 1}, {"t": "Adaptation reduces vulnerability to the effects that can no longer be avoided - for example building sea walls and dune restoration programs at Collaroy-Narrabeen, or planning retreat zones and raising building floor levels", "m": 1}], "id": "geo-022", "options": [], "weak": false}, {"id": "geo-023", "topic": "环境变化 · 变化的速度与尺度", "difficulty": "easy", "type": "mcq", "stem": "Stimulus: A beach can lose a large volume of sand during a single East Coast Low, while a dune system may migrate inland over thousands of years. What does this comparison illustrate?", "options": ["That erosion is permanent and that deposition never occurs anywhere", "That coastal change is caused only by human activity", "That environmental change operates at different rates and scales", "That all coastal change is gradual rather than sudden"], "answer": 2, "explanation": "环境变化的时间尺度与空间尺度是 1.1 的核心概念：单次风暴可在数小时内改变海滩，沙丘迁移则需千年。两者并存，说明「变化」要按速率与尺度分别描述。", "source": "Term 3 · Lesson 1.1 Environmental Change（rate and scale of change）", "weak": false}, {"id": "geo-024", "topic": "East Coast Lows · 天气图判读", "difficulty": "medium", "type": "mcq", "stem": "Stimulus: A synoptic chart shows tightly packed isobars and a closed low-pressure centre just off the NSW coast, with a cold front crossing the coast. What does this chart indicate, and why does it matter for Collaroy–Narrabeen?", "options": ["A stationary front producing no wind and no coastal impact", "A high-pressure ridge, bringing calm seas and steady offshore winds", "A tropical cyclone tracking inland across the ranges from the west", "An East Coast Low, bringing heavy rain and large erosion-driven waves"], "answer": 3, "explanation": "密集等压线＝气压梯度大＝强风；闭合低压＋冷锋＝东海岸低压，带来暴雨、强风与大浪。这正是 2016 年该海滩遭受严重侵蚀的天气背景。", "source": "Term 3 · Lesson 2.2 Understanding East Coast Lows（synoptic map）", "weak": false}, {"id": "geo-025", "topic": "管理策略 · 预防／缓解／准备", "difficulty": "easy", "type": "mcq", "stem": "Which set correctly matches the three management categories taught in Lessons 3.1–3.2?", "options": ["Prevention — stopping change; mitigation — reducing impact; preparedness — planning response", "Prevention — reducing impact; mitigation — planning response; preparedness — stopping change", "All three categories describe the same action taken at different scales", "Prevention — planning response; mitigation — stopping change; preparedness — reducing impact"], "answer": 0, "explanation": "prevention 从源头避免（如禁止在前丘新建）、mitigation 减轻已发生变化的冲击（如海堤、补沙）、preparedness 为事件做准备（如预警与疏散）。分类决定评价标准，别混用。", "source": "Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems", "weak": false}, {"id": "geo-026", "topic": "East Coast Lows · 2016 事件的机制", "difficulty": "hard", "type": "short", "stem": "Stimulus: A synoptic chart shows tightly packed isobars and a closed low off the NSW coast with a cold front crossing the coast. Explain why this system produced such destructive conditions at Collaroy–Narrabeen in 2016. (3 marks)", "options": [], "answer": "Tightly packed isobars mean a steep pressure gradient and therefore strong winds, which generate large waves and a storm surge that raises water levels at the shore. The cold front adds intense rainfall and runoff, so the combination of higher water and bigger waves produced a major storm cut and foredune erosion.", "explanation": "机制链：密集等压线→强风→大浪＋风暴增水；冷锋→暴雨。三者叠加正好赶上涨潮，才造成破坏性侵蚀。只写「风很大」拿不到满分。", "source": "Term 3 · Lesson 2.2 Understanding East Coast Lows", "points": [{"t": "Tightly packed isobars mean a steep pressure gradient and therefore strong winds, which generate large waves and a storm surge that raises water levels at the shore", "m": 1}, {"t": "The cold front adds intense rainfall and runoff, so the combination of higher water and bigger waves produced a major storm cut and foredune erosion", "m": 1}], "weak": false}, {"id": "geo-027", "topic": "管理策略 · 分类与理由", "difficulty": "easy", "type": "short", "stem": "Classify each strategy as prevention, mitigation or preparedness, and justify your choice: (a) zoning that prevents new building on the foredune; (b) a seawall; (c) an evacuation plan. (3 marks)", "options": [], "answer": "(a) Prevention — it removes the exposure before damage can occur. (b) Mitigation — it reduces the impact of wave energy on assets that already exist. (c) Preparedness — it plans the response for when an event happens.", "explanation": "判断依据是「作用于变化之前／之中／之后」：预防在源头避免暴露，缓解降低既有资产的受损程度，准备安排事件发生时的应对。", "source": "Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems", "points": [{"t": "(a) Prevention — it removes the exposure before damage can occur", "m": 1}, {"t": "(b) Mitigation — it reduces the impact of wave energy on assets that already exist", "m": 1}, {"t": "(c) Preparedness — it plans the response for when an event happens", "m": 1}], "weak": false}, {"id": "geo-028", "topic": "海堤争议 · 立场评估", "difficulty": "hard", "type": "short", "stem": "Stimulus: Two stakeholders disagree about the Collaroy–Narrabeen seawall. One argues it protects homes; the other argues it damages the beach and shifts erosion along the coast. Evaluate both positions using your knowledge of coastal processes. (5 marks)", "options": [], "answer": "The protection argument is valid in the short term: the wall prevents wave attack on the houses immediately behind it. The criticism is also valid: a vertical wall reflects wave energy, removes sediment from the beach budget and can increase erosion at the ends of the wall, so the beach in front narrows and the problem shifts along the coast. The decision therefore trades protection of private assets against the loss of public beach.", "explanation": "评估题要「两边都成立＋说明代价」：短期保护有效，但过程代价（反射、输沙收支改变、侵蚀转移）真实存在。只站一边不给高分。", "source": "Term 3 · Lesson 3.3 The Controversial Seawall（stakeholder perspectives）", "points": [{"t": "The protection argument is valid in the short term: the wall prevents wave attack on the houses immediately behind it", "m": 1}, {"t": "The criticism is also valid: a vertical wall reflects wave energy, removes sediment from the beach budget and can increase erosion at the ends of the wall, so the beach in front narrows and the problem shifts along the coast", "m": 1}, {"t": "The decision therefore trades protection of private assets against the loss of public beach", "m": 1}], "weak": false}]};
-const KEY = "dsh-quiz-geo";
-const MULTI = DATA.slug === "all";
-const app = document.getElementById("app");
-let state = {idx:0, answers:{}, order:null};
-
-function load() {
-  try {
-    const s = JSON.parse(localStorage.getItem(KEY) || "null");
-    if (s && s.answers) state = s;
-  } catch(e) {}
-  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
-  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
-  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
-  try {
-    const m = location.search.match(/[?&]q=([^&]+)/);
-    if (m) {
-      const qid = decodeURIComponent(m[1]);
-      const qi = DATA.questions.findIndex(x => x.id === qid);
-      const pos = state.order.indexOf(qi);
-      if (pos >= 0) state.idx = pos;
-    }
-  } catch(e) {}
-}
-function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-
-function renderSetup() {
-  const subs = DATA.subjects || {};
-  const keys = Object.keys(subs);
-  const saved = state.pick || {};
-  const opts = keys.map(k => {
-    const on = saved[k] !== false;
-    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
-      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
-  }).join("");
-  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
-  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
-  app.innerHTML = `<div class="setup">
-    <div class="setup-head">
-      <h2>综合卷 · 全科</h2>
-      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
-    </div>
-
-    <section class="setup-block">
-      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
-      <div class="picks">${opts}</div>
-    </section>
-
-    <section class="setup-block">
-      <div class="setup-label">2 · 每科抽几题</div>
-      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
-    </section>
-
-    <div class="setup-foot">
-      <div class="sum">共 <b id="cnt">0</b> 题</div>
-      <button class="btn ghost" id="daily">今日挑战</button>
-      <button class="btn" id="startmix">开始答题 →</button>
-    </div>
-  </div>`;
-  const chosenCount = () => {
-    let c = 0;
-    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
-    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
-  };
-  const calc = () => {
-    let n = 0;
-    app.querySelectorAll(".pick input").forEach(cb => {
-      if (!cb.checked) return;
-      const k = cb.dataset.s, c = subs[k].n;
-      n += per ? Math.min(per, c) : c;
-    });
-    document.getElementById("cnt").textContent = n;
-    const pc = document.getElementById("pickcount");
-    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
-  };
-  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
-    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
-  });
-  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
-    state.per = +b.dataset.n; save(); render();
-  });
-  function seedRnd(str){
-    var h=2166136261;
-    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
-    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
-      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
-  }
-  function startDaily(){
-    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-    var rnd=seedRnd("daily:"+key);
-    var idxs=[];
-    DAILY.forEach(function(sl){
-      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
-      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
-      idxs=idxs.concat(pool.slice(0,3));
-    });
-    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
-    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
-  }
-  document.getElementById("daily").onclick = startDaily;
-  document.getElementById("startmix").onclick = () => {
-    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
-    if (!chosen.length) { alert("至少选一科"); return; }
-    let idxs = [];
-    chosen.forEach(k => {
-      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
-      pool.sort(() => Math.random() - 0.5);
-      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
-    });
-    idxs.sort(() => Math.random() - 0.5);
-    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
-    state.answers = {}; state.t0 = Date.now(); save(); render();
-  };
-  calc();
-}
-
-
-/* ===== 语言切换 ===== */
-function LANG(){ try{ return localStorage.getItem("dsh-lang") || "en"; }catch(e){ return "en"; } }
-function setLANG(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} }
-var UI_TEXT = {
-  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
-        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
-  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
-        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
-};
-function T(k){
-  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
-  return d[k] || UI_TEXT.en[k] || k;
-}
-function applyChrome(){
-  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
-  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
-  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
-  var l=LANG();
-  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
-}
-function cycleLang(){
-  var order=["en","zh","both"], i=order.indexOf(LANG());
-  setLANG(order[(i+1)%3] || "en");
-  applyChrome(); render();
-}
-
-function render() {
-  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
-    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
-  }
-  if (MULTI && state.setup && !state.started) return renderSetup();
-  const qs = state.order.map(i => DATA.questions[i]);
-  const q = qs[state.idx];
-  const L = LANG(), ZH = (q && q.zh) || null;
-  const total = qs.length;
-  const answered = qs.filter(x => state.answers[x.id]).length;
-  const right = qs.filter(x => state.answers[x.id] === "ok").length;
-  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
-  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
-  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
-  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
-  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
-
-  const rec = state.answers[q.id];
-  const chips = `<div class="chips">
-      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
-      <span class="chip">${esc(q.topic)}</span>
-      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
-      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
-      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
-    </div>`;
-
-  let bodyHtml = "";
-  if (q.type === "mcq") {
-    const opts = (q.options || []).map((o, i) => {
-      let cls = "opt", mark = "";
-      if (rec) {
-        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
-        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
-      }
-      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
-      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
-      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
-        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
-    }).join("");
-    bodyHtml = `<div class="opts">${opts}</div>`;
-  } else {
-    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
-    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
-    const checked = (rec && rec.checked) ? rec.checked : [];
-    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
-    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
-    const hasNum = /-?\d/.test(bareAns);
-    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
-      <div class="actions">
-        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
-        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
-        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
-      </div>`;
-    if (rec) {
-      bodyHtml += `<div class="panel">
-        <div class="panel-h">自评 · 勾选你写到的得分点</div>
-        <div class="pts">${pts.map((p,i)=>`
-          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
-        <div class="actions">
-          <button class="btn ghost" id="allpt">全部勾上</button>
-          <button class="btn ghost" id="nonept">全部取消</button>
-        </div>
-        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
-      </div>`;
-    }
-  }
-
-  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
-      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
-      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
-
-  const last = state.idx >= total - 1;
-  let stemHtml;
-  if (L === "zh" && ZH && ZH.stem) {
-    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
-  } else if (L === "both" && ZH && ZH.stem) {
-    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
-  } else {
-    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
-  }
-  app.innerHTML = `<div class="card">${chips}${stemHtml}
-      ${bodyHtml}${expHtml}</div>
-      <div class="actionbar">
-        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
-        <span class="spacer"></span>
-        <button class="btn ghost" id="finish">${T("finish")}</button>
-        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
-      </div>`;
-
-  if (q.type === "mcq") {
-    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
-      const i = +b.dataset.i;
-      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
-      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
-      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
-      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
-      save(); render();
-    }));
-  } else {
-    const ta = document.getElementById("ta");
-    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
-    document.getElementById("reveal").onclick = () => {
-      const c = cur();
-      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
-      save(); render();
-    };
-    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
-      const c = cur(); const i = +cb.dataset.i;
-      const set = new Set(c.checked || []);
-      if (cb.checked) set.add(i); else set.delete(i);
-      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
-      const full = pts.every((_,i)=>set.has(i));
-      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
-      reviewMark(q.subj || DATA.slug, q.id, full);
-      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
-      save(); render();
-    }));
-    const nc = document.getElementById("numcheck");
-    if (nc) nc.onclick = () => {
-      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
-      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
-      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
-      const last = u[u.length-1];
-      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
-      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
-      res.style.color = hit ? "var(--ok)" : "var(--bad)";
-    };
-    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
-    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
-    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
-  }
-  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
-  const nx = document.getElementById("next");
-  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
-  document.getElementById("finish").onclick = showResult;
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-function showResult() {
-  const qs = state.order.map(i => DATA.questions[i]);
-  if (!state.rewarded && qs.length) {
-    state.rewarded = true; save();
-    if (state.daily) {
-      try {
-        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
-        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
-        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
-        var DKEY = "dsh-daily-v1";
-        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
-        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
-        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
-          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
-          localStorage.setItem(DKEY, JSON.stringify(drec));
-        }
-        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
-      } catch(e) {}
-    }
-    const answered = qs.filter(x => state.answers[x.id]).length;
-    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
-    if (window.openChest && answered >= 3) openChest();
-  }
-  const rec = id => state.answers[id] || null;
-  const mcq = qs.filter(x => x.type === "mcq");
-  const shorts = qs.filter(x => x.type === "short");
-  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
-  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
-  const todo = qs.filter(x => !rec(x.id));
-  let earnedM = 0, totalM = 0, partM = 0;
-  const weak = [];
-  shorts.forEach(x => {
-    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
-    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
-    const r = rec(x.id);
-    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
-    totalM += tot;
-    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
-  });
-  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
-  const needRedo = [...wrong, ...weak];
-  const wrongIds = needRedo.map(x => x.id);
-  app.innerHTML = `<div class="card done">
-      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
-      <div class="stats">
-        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
-        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
-        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
-        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
-      </div>
-      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
-      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
-      <div class="actions">
-        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
-        <button class="btn ghost" id="showlb">${T("lb")}</button>
-        <button class="btn ghost" id="again">${T("again")}</button>
-        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
-      </div></div>`;
-  const redo = document.getElementById("redo");
-  if (redo) redo.onclick = () => {
-    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
-    wrongIds.forEach(id => delete state.answers[id]);
-    state.idx = 0; save(); render();
-  };
-  const showlb = document.getElementById("showlb");
-  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
-  document.getElementById("again").onclick = () => {
-    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
-    save(); render();
-  };
-}
-
-document.getElementById("grid").onclick = openNav;
-document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
-document.getElementById("nav").addEventListener("click", e => {
-  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
-});
-try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
-catch(e) { document.body.insertAdjacentHTML("afterbegin",
-  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
-
-document.getElementById("exam").onclick = startExam;
-if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
-
-var _langBtn = document.getElementById("langBtn");
-if (_langBtn) _langBtn.onclick = cycleLang;
-applyChrome();
-document.getElementById("restart").onclick = () => {
-  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
-  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
-  save(); render();
-};
-
-document.addEventListener("keydown", e => {
-  if (MULTI && state.setup && !state.started) {
-    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
-    return;
-  }
-  const tag = (e.target && e.target.tagName) || "";
-  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
-  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
-  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
-  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
-  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
-    else showResult();
-    return;
-  }
-  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
-  if (!q || q.type !== "mcq") return;
-  const n = parseInt(e.key, 10);
-  if (n >= 1 && n <= (q.options || []).length) {
-    if (!state.answers[q.id]) {
-      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
-      save(); render();
-    }
-  }
-});
-
-const REVIEW_KEY = "dsh-review-v1";
-const GAPS = [1, 3, 7];
-function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
-function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
-function reviewMark(slug, qid, correct){
-  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
-  if (correct) {
-    const it = db[id];
-    if (!it) return;
-    const st = (it.stage || 0) + 1;
-    if (st >= GAPS.length) delete db[id];
-    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
-  } else {
-    const old = db[id] || {};
-    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
-  }
-  reviewSave(db);
-}
-function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
-
-const LOG_KEY = "dsh-log-v1";
-function logAnswer(slug, qid, ok, diff, ty){
-  try {
-    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
-    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
-    if (arr.length > 3000) arr = arr.slice(-3000);
-    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
-  } catch(e) {}
-}
-function navState(qi){
-  const q = DATA.questions[qi], a = state.answers[q.id];
-  if (!a) return "";
-  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
-  const pts = q.points || [{m:1}], c = (a.checked || []).length;
-  if (c >= pts.length) return "ok";
-  if (c > 0) return "part";
-  return "";
-}
-function openNav(){
-  const grid = document.getElementById("navgrid");
-  grid.innerHTML = state.order.map((qi, pos) =>
-    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
-  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
-    state.idx = +b.dataset.pos; save();
-    document.getElementById("nav").classList.remove("on"); render();
-  });
-  document.getElementById("nav").classList.add("on");
-}
-
-let timerId = null;
-function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
-function tickClock(){
-  const el = document.getElementById("clock");
-  if (!state.deadline) { if (el) el.style.display = "none"; return; }
-  const left = state.deadline - Date.now();
-  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
-            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
-  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
-}
-function startExam(){
-  const def = DATA.examMin || 60;
-  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
-  if (v === null) return;
-  const mins = parseInt(v, 10);
-  if (!mins || mins <= 0) return;
-  state.deadline = Date.now() + mins*60000; save();
-  if (timerId) clearInterval(timerId);
-  timerId = setInterval(tickClock, 1000);
-  tickClock();
-}
-
-
-load(); render();
-</script>
-<script>
 
 (function(){
   var KEY="dsh-xp-v1", BKEY="dsh-badges-v1", GOAL=30;
@@ -1003,6 +522,175 @@ load(); render();
   var SEEN_KEY="dsh-seen-v1";
   function seen(){ try{ return JSON.parse(localStorage.getItem(SEEN_KEY)||'{}'); }catch(e){ return {}; } }
   function saveSeen(o){ try{ localStorage.setItem(SEEN_KEY,JSON.stringify(o)); }catch(e){} }
+
+
+  /* ===== 界面中英切换（运行时替换文本节点） ===== */
+  /* 语言状态（共享给所有页面） */
+  function LANG(){
+    try{
+      var m = (location.search.match(/[?&]lang=(en|zh|both)/) || [])[1];
+      if(m){ localStorage.setItem("dsh-lang", m); return m; }
+      var v = localStorage.getItem("dsh-lang");
+      if(v) return v;
+      var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+      return nav.indexOf("zh") === 0 ? "zh" : "en";
+    }catch(e){ return "en"; }
+  }
+  window.LANG = LANG;
+  window.setLANG = function(v){ try{ localStorage.setItem("dsh-lang", v); }catch(e){} };
+
+  var I18N = {
+    // 通用
+    "题号":"Index","考试模式":"Exam mode","重来":"Restart","上一题":"Previous","下一题":"Next",
+    "看成绩":"See results","回到科目列表":"Subjects","整套重做":"Redo all","查看今日榜单":"Today's leaderboard",
+    "简单":"Easy","中等":"Medium","较难":"Hard","选择题":"Multiple choice","简答":"Short answer",
+    "第":"Q","题":"questions","共":"of","分":"marks",
+    "搜索课程、单元或代码（电磁学 / King Lear / 10SCI）":"Search subjects, topics or codes",
+    // 答题
+    "先自己写（英文），写完点下面的按钮对照得分点":"Write your answer in English, then check it against the marking points",
+    "对照得分点":"Show marking points","重新对照得分点":"Review marking points","数值自检":"Check number",
+    "自评 · 勾选你写到的得分点":"Self-mark · tick the points you covered","全部勾上":"Tick all","全部取消":"Clear all",
+    "你写的：":"Your answer:","（空）":"(empty)","解析：":"Explanation:","出处：":"Source:",
+    "看完整参考答案":"Show full model answer","已得":"Scored","个得分点":"marking points",
+    "你还没写数字":"Type a number first","参考答案无数字":"No number in the model answer",
+    "数值与参考答案一致":"Number matches the model answer","数值与参考答案不一致":"Number does not match",
+    "只练错题":"Practise wrong ones only",
+    // 结算
+    "总题数":"Total questions","未做":"Unanswered","答对":"Correct","答错":"Wrong",
+    "选择题答对":"MCQ correct","选择题答错":"MCQ wrong","简答得分":"Short-answer marks","正确率":"Accuracy",
+    // 档案/任务/榜单
+    "等级":"Level","今日":"Today","连续":"Streak","天":"days","连对纪录":"Best combo","金币":"Coins","星尘":"Stardust",
+    "今日任务":"Today's tasks","每天 0 点刷新":"Resets daily","领取":"Claim","已领取":"Claimed",
+    "今日好友榜":"Today's leaderboard","服务器设置":"Server settings","复制我的战绩码":"Copy my score code",
+    "粘贴同学的战绩码":"Paste a classmate's code","加入":"Add","提交到服务器":"Submit",
+    "你附近 · 再对一道题就能超过":"Near you · one more correct answer to overtake",
+    "今日榜单":"Today's leaderboard","关闭":"Close","答对题数":"Correct answers","用时":"Time",
+    "我":"Me","（我）":" (me)","第一名":"1st","第二名":"2nd","第三名":"3rd",
+    "已交卷":"Submitted by","人":"students","近 7 天正确率":"Accuracy, last 7 days",
+    // 首页
+    "复习测验":"Revision Quizzes","今日挑战":"Daily challenge","错题本":"Mistakes","商城":"Shop",
+    "课程":"Subjects","门 · 年考优先":"subjects · exam order","搜索课程、单元或代码":"Search subjects, topics or codes",
+    "没有匹配的课程":"No matching subject","下一场":"Next exam","天后":"days away",
+    "年考":"Yearly","未开始":"Not started","选择":"MCQ","下一场考试":"Next exam",
+    "综合卷 · 全科":"Mixed paper · all subjects","从":"From","科抽题混做":"subjects, mixed",
+    "科目列表":"Subjects","分数":"Score","语言":"Language",    "← 科目列表":"Subjects","正在上传试卷…":"Uploading your paper...",
+    "正在加密上传试卷…":"Encrypting and uploading...","正在实时计算排名…":"Calculating your rank...",
+    "今天还没有人上榜":"No one on the board yet","你还没上榜，交卷即可参与":"Not on the board yet - submit to join",
+    "绿=对 红=错 橙=半对 灰=未做":"Green = correct · Red = wrong · Amber = partial · Grey = unanswered",
+    "键盘：":"Keys:","选择 ·":"choose ·","切题 ·":"prev/next ·","题号 ·":"index ·",
+    "下一题 ·":"next ·","看成绩 · 进度自动保存在本机浏览器":"results · progress saved in this browser",
+    "已保存":"Saved","好友榜":"Leaderboard","今日挑战":"Daily challenge",
+    "允许":"Allow","未开始":"Not started","已开始":"Started","完成":"done",
+
+    // 页面标题与页脚
+    "Canvas 复习测验":"Canvas Revision Quizzes",
+    "音效 开":"Sound on","音效 关":"Sound off",
+    "今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。":"No one has submitted yet today. Finish the daily challenge and hit Submit, or swap score codes with classmates.",
+    "进度存在本机浏览器里，换设备需导出备份":"Progress is saved in this browser. Export a backup to move devices.",
+    "「原始资料」链接指向":"The source-material link points to",
+    "，未一起上传时失效，不影响做题":". It is broken when not uploaded together, but quizzing still works.",
+    // 分组
+    "年考重点":"Core exams","非年考内容（有余力再看）":"Non-exam content","其他科目":"Other subjects",
+    "年考版":"Yearly","学科":"Elective","辅导":"Wellbeing",
+    // 科目
+    "科学 · 10 年级":"Science · Year 10","英语 · 10 年级":"English · Year 10",
+    "历史 · 10 年级":"History · Year 10","地理 · 10 年级":"Geography · Year 10",
+    "PDHPE · 10 年级":"PDHPE · Year 10","数学 P · 10 年级":"Maths (Standard) · Year 10",
+    "数学 5.3 · 10 年级":"Maths (Advanced) · Year 10",
+    "科学 · 非年考":"Science · non-exam","历史 · 非年考":"History · non-exam",
+    "地理 · 非年考":"Geography · non-exam","英语 · 非年考":"English · non-exam",
+    "食品科技 · 10 年级":"Food Technology · Year 10","生涯规划 · 10 年级":"Careers · Year 10",
+    "体育 · 10 年级":"Sport · Year 10","户外教育 · 10 年级":"Outdoor Education · Year 10",
+    "心理与福祉":"Wellbeing",
+    // 范围
+    "有机化学 25 / 进化 25 / 技能 20":"Organic chemistry 25 / Evolution 25 / Skills 20",
+    "King Lear 短答 + 比较论文":"King Lear short answer + comparative essay",
+    "术语选择 + 1991–2019 美国外交":"Terminology MCQ + US foreign policy 1991-2019",
+    "气候变化 · 温室效应 / 海平面 / 珊瑚白化":"Climate change · greenhouse / sea level / bleaching",
+    "道路安全 / 急救 / 心理健康":"Road safety / first aid / mental health",
+    "金融 / 代数 / 坐标几何 / 统计":"Finance / algebra / coordinate geometry / statistics",
+    "根式 / 指数 / 对数 / 三角 / 概率":"Surds / indices / logs / trig / probability",
+    "电磁学 / 进化 / 技能":"Organic chemistry / evolution / skills",
+    "地球能量 / 遗传 / 运动 / 化学 / 气候":"Earth energy / genetics / motion / chemistry / climate",
+    "Holocaust / 冷战 / 民权":"Holocaust / Cold War / civil rights",
+    "福祉 / 原住民 / 气候变化":"Wellbeing / Indigenous / climate",
+    "战争单元 / 诗歌 / 阅读卷":"War unit / poetry / reading",
+    "食品安全 / 食物不平等 / 特殊需求":"Food safety / food inequality / special needs",
+    "就业路径 / 求职 / ATAR / USI·TFN":"Career paths / job hunt / ATAR / USI-TFN",
+    "规则 / 赛事 / 训练常识":"Rules / events / training",
+    "环境意识 / Leave No Trace":"Environmental awareness / Leave No Trace",
+    "焦虑 / 抑郁 / 求助渠道":"Anxiety / depression / where to get help",
+    // 任务
+    "精准":"Accuracy","写作":"Writing","数量":"Volume","攻坚":"Stretch","连击":"Combo","每日":"Daily",
+    "正确率 80%（至少 10 题）":"80% accuracy (at least 10 questions)",
+    "完成 3 道简答自评":"Self-mark 3 short answers",
+    "今天做满 20 题":"Answer 20 questions today",
+    "今天做满 12 题":"Answer 12 questions today",
+    "一次连对 5 题":"Get 5 correct in a row",
+    "一次连对 8 题":"Get 8 correct in a row",
+    "做对 3 道「较难」题":"Get 3 hard questions right",
+    "完成今日挑战":"Finish the daily challenge",
+    // 课程图标首字
+    "科":"S","英":"E","历":"H","地":"G","数":"M","食":"F","生":"C","体":"P","户":"O","心":"W"
+  };
+  var I18N_PAT = [
+    [/^第 (\d+) 题 \/ 共 (\d+)$/, "Q$1 of $2"],
+    [/^(\d+) \/ (\d+)$/, "$1 / $2"],
+    [/^已得 (\d+) \/ (\d+) 分$/, "Scored $1 / $2"],
+    [/^共 (\d+) 分 · (\d+) 个得分点$/, "$1 marks · $2 marking points"],
+    [/^(\d+) 题$/, "$1 questions"],
+    [/^\s*题\s*$/, "questions"],
+    [/^(\S+) (\d+) · (\d+) 题 · (.+)$/, "$1 $2 · $3 questions · $4"],
+    [/^今日 (\d+)\/(\d+)$/, "Today $1/$2"],
+    [/^连续 (\d+) 天$/, "Streak $1 days"],
+    [/^连对纪录 (\d+)$/, "Best combo $1"],
+    [/^金币 (\d+)$/, "Coins $1"],
+    [/^星尘 (\d+)$/, "Stardust $1"],
+    [/^已交卷 (\d+) 人$/, "$1 submitted"],
+    [/^下一场 (.+) · (\d+\/\d+) · (\d+) 天后$/, "Next: $1 · $2 · $3 days"],
+    [/^(\d+\/\d+) (.+) · (\d+) 天$/, "$1 $2 · $3 days"],
+    [/^第 (\d+) 名$/, "#$1"],
+    [/^最高 (\d+)%$/, "Top $1%"],
+    [/^今日榜$/, "Board"],
+    [/^Lv\.(\d+)$/, "Lv.$1"],
+    [/^(\d+) 科 · (\d+) 题$/, "$1 subjects · $2 questions"],
+    [/^(\d+) 门 · 年考优先$/, "$1 subjects · exam order"],
+    [/^(\d+) 门$/, "$1 subjects"],
+    [/^(\d+) 天后$/, "$1 days"],
+    [/^XP · 还差 (\d+) 升级$/, "XP · $1 to next level"],
+    [/^从 (\d+) 科抽题混做，(\d+) 题可选$/, "Mix questions from $1 subjects, $2 available"],
+    [/^(\d+) 选择$/, "$1 MCQ"],
+    [/^(\d+) 简答$/, "$1 short"],
+    [/^下一场 (.+) · (\d+\/\d+) ·$/, "Next: $1 · $2 ·"],
+    [/^搜索课程、单元或代码（.*?）$/, "Search subjects, topics or codes"]
+  ];
+  function applyI18n(){
+    if(window.LANG()==="zh") return;
+    var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n, changed=[];
+    while((n=walker.nextNode())){
+      var s=(n.nodeValue||"").trim(); if(!s) continue;
+      if(I18N[s]){ n.nodeValue=n.nodeValue.replace(s, I18N[s]); continue; }
+      for(var i=0;i<I18N_PAT.length;i++){
+        if(I18N_PAT[i][0].test(s)){ n.nodeValue=n.nodeValue.replace(s, s.replace(I18N_PAT[i][0], I18N_PAT[i][1])); break; }
+      }
+    }
+    document.querySelectorAll("[placeholder]").forEach(function(el){
+      var p=el.getAttribute("placeholder");
+      if(I18N[p]) el.setAttribute("placeholder", I18N[p]);
+    });
+    document.querySelectorAll("[title]").forEach(function(el){
+      var t2=el.getAttribute("title");
+      if(I18N[t2]) el.setAttribute("title", I18N[t2]);
+    });
+  }
+  window.applyI18n=applyI18n;
+  function kickI18n(){ try{ applyI18n(); }catch(e){} }
+  if(document.readyState==="loading")
+    document.addEventListener("DOMContentLoaded", function(){ setTimeout(kickI18n, 20); });
+  else setTimeout(kickI18n, 20);
+  window.addEventListener("load", function(){ setTimeout(kickI18n, 60); });
+  setTimeout(kickI18n, 300);
 
   /* ===== 排行榜：分阶段披露（战中抽屉 / 战后全屏） ===== */
   var LB={sort:"pct", list:[], open:false, at:0, timer:null};
@@ -1472,6 +1160,7 @@ load(); render();
   }
   function renderAll(){
     renderProfile();
+    setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
     setTimeout(loadBoard, 0);
     renderQuests(document.getElementById("quests"));
     renderBoard(document.getElementById("board"));
@@ -1515,6 +1204,486 @@ load(); render();
   else document.addEventListener('DOMContentLoaded', function(){ renderAll(); if(window.lbInit) lbInit(); });
 })();
 
+</script>
+<script>
+const DATA = {"slug": "geo", "title": "地理 · 10 年级", "examMin": 50, "questions": [{"topic": "A Changing Global Climate · 温室气体", "difficulty": "easy", "type": "mcq", "stem": "Which group lists only greenhouse gases?", "options": ["Carbon dioxide, methane, water vapour", "Oxygen, nitrogen, argon", "Nitrogen, methane, neon", "Oxygen, carbon dioxide, helium"], "answer": 0, "explanation": "温室气体能吸收并再辐射红外线：CO₂、CH₄、水汽、N₂O、CFCs。氧气和氮气占大气 99% 但几乎不吸收红外线，不是温室气体。", "source": "Yearly Study Guide 2026 · Geography Section I（terms / metalanguage）", "id": "geo-001", "weak": false}, {"topic": "A Changing Global Climate · 增强温室效应", "difficulty": "easy", "type": "mcq", "stem": "The enhanced greenhouse effect refers to:", "options": ["The reflection of sunlight by clouds", "Extra warming caused by human increases in greenhouse gas concentrations", "The natural warming that keeps Earth habitable", "The cooling effect of volcanic ash"], "answer": 1, "explanation": "自然温室效应让地球平均约 15°C 而不是 −18°C，是必需的；『增强』指人类活动额外增加的温室气体让这个效应变强。", "source": "Yearly Study Guide 2026 · Geography Section I", "id": "geo-002", "weak": false}, {"topic": "A Changing Global Climate · 温室效应机理", "difficulty": "medium", "type": "mcq", "stem": "In the greenhouse effect, which sequence is correct?", "options": ["The ozone layer traps heat near the surface", "Long-wave radiation from the Sun is absorbed by the surface", "Short-wave solar radiation passes through the atmosphere, is absorbed and re-emitted as long-wave radiation which is trapped", "Greenhouse gases reflect short-wave radiation back to space"], "answer": 2, "explanation": "太阳辐射以短波为主，能穿过大气到达地表；地表升温后以长波（红外）向外辐射，被温室气体吸收并再辐射，一部分返回地表。", "source": "Yearly Study Guide 2026 · Geography Section II（greenhouse effect）", "id": "geo-003", "weak": false}, {"topic": "A Changing Global Climate · 碳源与碳汇", "difficulty": "medium", "type": "mcq", "stem": "Which of the following is best described as a carbon sink?", "options": ["Deforestation in the Amazon", "Cattle producing methane", "A coal-fired power station", "The ocean absorbing dissolved carbon dioxide"], "answer": 3, "explanation": "碳汇是吸收并储存碳的库：海洋、森林、土壤。燃煤、砍伐、反刍动物都是碳源。", "source": "Yearly Study Guide 2026 · Geography Section I", "id": "geo-004", "weak": false}, {"topic": "A Changing Global Climate · 海平面上升", "difficulty": "medium", "type": "mcq", "stem": "Global sea level is rising mainly because of:", "options": ["Thermal expansion of warming seawater and melting of land-based ice", "More rain falling into the oceans", "The ocean becoming saltier", "Volcanic eruptions under the sea"], "answer": 0, "explanation": "两大机制：海水受热膨胀（约一半贡献）+ 陆地冰（冰川、格陵兰、南极）融化注入海洋。注意『海冰融化』不抬高海平面——它本来就浮在水里。", "source": "Yearly Study Guide 2026 · Geography Section II（sea level rise）", "id": "geo-005", "weak": false}, {"topic": "A Changing Global Climate · 海洋酸化", "difficulty": "medium", "type": "mcq", "stem": "Ocean acidification occurs because:", "options": ["Coral reefs release acid", "Carbon dioxide dissolves in seawater forming carbonic acid, lowering pH", "Salt concentration increases", "Acid rain falls directly into the sea"], "answer": 1, "explanation": "CO₂ + H₂O → H₂CO₃（碳酸），碳酸释放 H⁺，pH 下降。工业革命以来表层海水 pH 已下降约 0.1（酸度上升约 30%）。", "source": "Yearly Study Guide 2026 · Geography Section II（ocean acidification）", "id": "geo-006", "weak": false}, {"topic": "A Changing Global Climate · 珊瑚白化", "difficulty": "medium", "type": "mcq", "stem": "Coral bleaching is caused by:", "options": ["Too much oxygen in the water", "An increase in coral predators only", "Loss of the symbiotic algae (zooxanthellae) due to heat stress, exposing the white skeleton", "Corals being covered by sand"], "answer": 2, "explanation": "水温持续偏高时珊瑚排出体内的共生藻（虫黄藻），失去颜色和主要能量来源，露出白色骨骼。若高温持续太久，珊瑚会死亡。", "source": "Yearly Study Guide 2026 · Geography Section II（ocean temperature and coral bleaching）", "id": "geo-007", "weak": false}, {"topic": "A Changing Global Climate · 天气图 · 锋面符号", "difficulty": "easy", "type": "mcq", "stem": "On a synoptic chart, a line with triangles pointing in the direction of movement represents:", "options": ["An isobar", "A high pressure centre", "A warm front", "A cold front"], "answer": 3, "explanation": "冷锋用三角符号（▲），暖锋用半圆符号（◗），三角/半圆朝向表示锋面移动方向。等压线是细实线。", "source": "Yearly Study Guide 2026 · Geography Section I（synoptic charts）", "id": "geo-008", "weak": false}, {"topic": "A Changing Global Climate · 天气图 · 高压", "difficulty": "easy", "type": "mcq", "stem": "An area of high pressure on a synoptic chart is usually associated with:", "options": ["Clear skies and settled weather", "Thunderstorms", "A cold front passing", "Heavy rain and strong winds"], "answer": 0, "explanation": "高压中心空气下沉，不易成云致雨，天气稳定晴朗；低压中心空气上升，容易成云降水。", "source": "Yearly Study Guide 2026 · Geography Section I（skills · synoptic charts）", "id": "geo-009", "weak": false}, {"topic": "A Changing Global Climate · FLICC · 挑樱桃", "difficulty": "medium", "type": "mcq", "stem": "A website says: 'It snowed heavily last winter, so global warming is a hoax.' Which FLICC technique is this?", "options": ["Fake experts", "Logical fallacy (cherry-picking)", "Conspiracy theory", "Impossible expectations"], "answer": 1, "explanation": "挑樱桃（cherry-picking）：只挑一个短期、局部的天气事件来否定长期、全球的趋势。天气≠气候：单个寒潮不能推翻 30 年的升温趋势。", "source": "Yearly Study Guide 2026 · Geography Section I（critical thinking · FLICC）", "id": "geo-010", "weak": false}, {"topic": "A Changing Global Climate · FLICC · 假专家", "difficulty": "medium", "type": "mcq", "stem": "A blog cites 'a retired physicist' with no climate science background as proof that CO₂ does not trap heat. Which FLICC technique is this?", "options": ["Cherry picking", "Conspiracy theory", "Fake experts", "Impossible expectations"], "answer": 2, "explanation": "假专家（fake experts）：用没有相关领域资历的人营造『专家有争议』的假象。判断要看其研究领域、同行评议记录，而不是头衔本身。", "source": "Yearly Study Guide 2026 · Geography Section I（FLICC）", "id": "geo-011", "weak": false}, {"topic": "A Changing Global Climate · 反馈 · 反照率", "difficulty": "hard", "type": "mcq", "stem": "As sea ice melts, the darker ocean surface absorbs more sunlight, which causes further warming. This is an example of:", "options": ["Ocean acidification", "The greenhouse effect", "A negative feedback loop", "A positive feedback loop (albedo effect)"], "answer": 3, "explanation": "冰反照率高（反射阳光），融化后露出深色海面吸收更多热量，进一步升温→进一步融冰，是正反馈（自我增强）。", "source": "Yearly Study Guide 2026 · Geography Section I（critical thinking / climate system）", "id": "geo-012", "weak": false}, {"topic": "A Changing Global Climate · 图表判读", "difficulty": "medium", "type": "mcq", "stem": "A graph shows CO₂ concentration and global average temperature rising together over 150 years. The most defensible conclusion is:", "options": ["There is a positive correlation, consistent with CO₂ driving warming", "Temperature causes CO₂ only", "CO₂ has no effect on temperature", "The data proves nothing at all"], "answer": 0, "explanation": "相关不等于因果，但『正相关且与物理机制一致』同时成立时，结论应表述为『与……一致』。只说『证明』错，说『毫无意义』也错。", "source": "Yearly Study Guide 2026 · Geography Section I（graph interpretation）", "id": "geo-013", "weak": false}, {"topic": "A Changing Global Climate · 海岸影响", "difficulty": "medium", "type": "mcq", "stem": "Which combination most increases coastal erosion risk in eastern Australia?", "options": ["Lower sea level and weaker storms", "Higher sea level, larger storm surges and more intense East Coast Lows", "Less coastal development", "Colder ocean temperatures"], "answer": 1, "explanation": "海平面升高让同样的风暴浪能在更高的基面上起作用；风暴潮叠加、East Coast Lows 增强、海岸带开发增加暴露度，三者叠加才会放大风险。", "source": "Yearly Study Guide 2026 · Geography（climate change and impacts on coastal environments）", "id": "geo-014", "weak": false}, {"topic": "A Changing Global Climate · 温室效应（简答）", "difficulty": "medium", "type": "short", "stem": "Explain, step by step, how the greenhouse effect keeps Earth warmer than it would otherwise be.", "answer": "Short-wave radiation from the Sun passes through the atmosphere and is absorbed by the Earth's surface, warming it. The surface re-emits this energy as longer-wave infrared radiation. Greenhouse gases (CO2, methane, water vapour) absorb this infrared radiation and re-radiate it in all directions, including back towards the surface. This trapped energy raises the average surface temperature. Without this effect Earth's average temperature would be about -18C instead of about 15C.", "explanation": "得分点四步：短波进入 → 地表吸收并发出长波 → 温室气体吸收再辐射 → 结果升温。顺序错或漏掉『再辐射回地表』会扣分。", "source": "Yearly Study Guide 2026 · Geography Section II（greenhouse effect）", "points": [{"t": "Short-wave radiation from the Sun passes through the atmosphere and is absorbed by the Earth's surface, warming it", "m": 1}, {"t": "The surface re-emits this energy as longer-wave infrared radiation", "m": 1}, {"t": "Greenhouse gases (CO2, methane, water vapour) absorb this infrared radiation and re-radiate it in all directions, including back towards the surface", "m": 1}, {"t": "This trapped energy raises the average surface temperature", "m": 1}, {"t": "Without this effect Earth's average temperature would be about -18C instead of about 15C", "m": 1}], "id": "geo-015", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 自然 vs 增强（简答）", "difficulty": "medium", "type": "short", "stem": "Distinguish between the natural greenhouse effect and the enhanced greenhouse effect.", "answer": "The natural greenhouse effect is a process that has always operated: naturally occurring greenhouse gases trap some outgoing infrared radiation and keep the average surface temperature around 15C, which makes life possible. The enhanced greenhouse effect is the additional warming caused by human activities that increase greenhouse gas concentrations - burning fossil fuels (CO2), agriculture and livestock (methane), and deforestation. The mechanism is identical; what differs is the extra quantity of greenhouse gases and therefore the extra trapped energy.", "explanation": "关键在『机理相同、量不同』。只写『一个是自然的、一个是人类造成的』拿不到满分，要指出多出来的温室气体导致额外截留的能量。", "source": "Yearly Study Guide 2026 · Geography Section II", "points": [{"t": "The natural greenhouse effect is a process that has always operated: naturally occurring greenhouse gases trap some outgoing infrared radiation and keep the average surface temperature around 15C, which makes life possible. The enhanced greenhouse effect is the additional warming caused by human activities that increase greenhouse gas concentrations - burning fossil fuels (CO2), agriculture and livestock (methane), and deforestation. The mechanism is identical", "m": 1}, {"t": "what differs is the extra quantity of greenhouse gases and therefore the extra trapped energy", "m": 1}], "id": "geo-016", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 海平面上升（简答）", "difficulty": "hard", "type": "short", "stem": "Explain the two main mechanisms of sea level rise and describe two impacts on the Australian coast.", "answer": "First, thermal expansion: as seawater warms it expands and takes up more volume. Second, melting of land-based ice (glaciers, Greenland, Antarctica) adds water to the ocean. (Melting sea ice does not raise sea level because it already displaces its own weight.) Impacts: increased coastal erosion and shoreline retreat during storms; inundation of low-lying areas and infrastructure; saltwater intrusion into estuaries and coastal groundwater; loss of beaches and wetlands; greater damage from storm surges.", "explanation": "机理必须两项（热膨胀 + 陆地冰），并注意海冰不算。影响要落到澳洲海岸的具体后果（侵蚀、淹没、咸潮、湿地丧失）。", "source": "Yearly Study Guide 2026 · Geography Section II（sea level rise）", "points": [{"t": "First, thermal expansion: as seawater warms it expands and takes up more volume. Second, melting of land-based ice (glaciers, Greenland, Antarctica) adds water to the ocean. (Melting sea ice does not raise sea level because it already displaces its own weight.) Impacts: increased coastal erosion and shoreline retreat during storms", "m": 1}, {"t": "inundation of low-lying areas and infrastructure", "m": 1}, {"t": "saltwater intrusion into estuaries and coastal groundwater", "m": 1}, {"t": "loss of beaches and wetlands", "m": 1}, {"t": "greater damage from storm surges", "m": 1}], "id": "geo-017", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 海洋酸化（简答）", "difficulty": "hard", "type": "short", "stem": "Explain how ocean acidification occurs and why it threatens marine life.", "answer": "The ocean absorbs about a quarter of human CO2 emissions. Dissolved CO2 reacts with water to form carbonic acid (CO2 + H2O -> H2CO3), which releases hydrogen ions and lowers the pH of seawater (ocean acidification). The extra hydrogen ions combine with carbonate ions, reducing the carbonate available to organisms. Corals, shellfish and plankton need carbonate to build calcium carbonate shells and skeletons, so their growth slows and shells can dissolve, weakening reef structures and food webs.", "explanation": "三步：吸收 CO₂ → 生成碳酸、pH 下降 → 碳酸根减少、钙化受阻。最后要落到生物后果（珊瑚、贝类、浮游生物）。", "source": "Yearly Study Guide 2026 · Geography Section II（ocean acidification）", "points": [{"t": "The ocean absorbs about a quarter of human CO2 emissions", "m": 1}, {"t": "Dissolved CO2 reacts with water to form carbonic acid (CO2 + H2O -> H2CO3), which releases hydrogen ions and lowers the pH of seawater (ocean acidification)", "m": 1}, {"t": "The extra hydrogen ions combine with carbonate ions, reducing the carbonate available to organisms", "m": 1}, {"t": "Corals, shellfish and plankton need carbonate to build calcium carbonate shells and skeletons, so their growth slows and shells can dissolve, weakening reef structures and food webs", "m": 1}], "id": "geo-018", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 珊瑚白化（简答）", "difficulty": "hard", "type": "short", "stem": "Describe the process of coral bleaching and explain the conditions under which a reef can recover.", "answer": "Corals live in symbiosis with zooxanthellae, algae that live in their tissue, give them their colour and supply most of their energy through photosynthesis. When water temperatures rise well above the summer average (or the coral is stressed by pollution or extreme low tides), the coral expels the zooxanthellae. The coral tissue becomes transparent, showing the white calcium carbonate skeleton - bleaching. If the stress is short and temperatures return to normal, the coral can take up algae again and recover over weeks to months. If the heat stress persists, the coral starves and dies, and recovery can take a decade or more.", "explanation": "要写清『共生藻供给能量与颜色』这一环，否则解释不了为什么会死。恢复条件 = 热压力及时解除 + 水质好。", "source": "Yearly Study Guide 2026 · Geography Section II（ocean temperature and coral bleaching）", "points": [{"t": "Corals live in symbiosis with zooxanthellae, algae that live in their tissue, give them their colour and supply most of their energy through photosynthesis", "m": 1}, {"t": "When water temperatures rise well above the summer average (or the coral is stressed by pollution or extreme low tides), the coral expels the zooxanthellae", "m": 1}, {"t": "The coral tissue becomes transparent, showing the white calcium carbonate skeleton - bleaching", "m": 1}, {"t": "If the stress is short and temperatures return to normal, the coral can take up algae again and recover over weeks to months", "m": 1}, {"t": "If the heat stress persists, the coral starves and dies, and recovery can take a decade or more", "m": 1}], "id": "geo-019", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 天气图判读（简答）", "difficulty": "hard", "type": "short", "stem": "A synoptic chart shows a cold front approaching the NSW coast from the west, with a low pressure centre to the south and a high pressure system over the Tasman Sea. Predict the weather change over the next 24 hours and explain your reasoning.", "answer": "Before the front arrives: warm, moist north-westerly winds ahead of the front, rising temperature and humidity, increasing cloud. As the cold front crosses: a narrow band of heavy rain, thunderstorms, a sharp temperature drop and a wind shift from north-west to south-west, with a rapid rise in pressure afterwards. After the front passes: cooler, drier air, clearing skies and settled weather as the high moves in, with cold nights.", "explanation": "判读套路：锋前（暖湿、气压下降）→ 过境（暴雨、降温、风向突转）→ 锋后（干冷、转晴、气压回升）。每一项都要对应图中的要素。", "source": "Yearly Study Guide 2026 · Geography Section II（synoptic charts）", "points": [{"t": "Before the front arrives: warm, moist north-westerly winds ahead of the front, rising temperature and humidity, increasing cloud", "m": 1}, {"t": "As the cold front crosses: a narrow band of heavy rain, thunderstorms, a sharp temperature drop and a wind shift from north-west to south-west, with a rapid rise in pressure afterwards", "m": 1}, {"t": "After the front passes: cooler, drier air, clearing skies and settled weather as the high moves in, with cold nights", "m": 1}], "id": "geo-020", "options": [], "weak": false}, {"topic": "A Changing Global Climate · FLICC 反驳（简答）", "difficulty": "hard", "type": "short", "stem": "Someone posts: 'Climate has always changed, so this is natural. Scientists are only saying this to get more funding.' Identify the two FLICC techniques used and write a short, accurate rebuttal.", "answer": "The two techniques are: (1) cherry-picking/oversimplification - 'climate has always changed' ignores the rate and the different driver (natural cycles such as orbital change operated over tens of thousands of years, whereas current warming tracks the added greenhouse gases and is far faster), and (2) conspiracy theory - claiming scientists are motivated by funding rather than evidence. Rebuttal: natural factors alone cannot reproduce the observed warming of the last century, particularly the pattern of stratospheric cooling alongside tropospheric warming, which is the fingerprint of greenhouse gases. Scientific claims should be assessed on evidence and mechanism, not on assumed motives; the funding accusation is not evidence.", "explanation": "评分看两点：准确指出两种手法名称 + 给出基于证据的反驳。只骂人不给证据拿不到分。", "source": "Yearly Study Guide 2026 · Geography Section I（critical thinking · FLICC）", "points": [{"t": "The two techniques are: (1) cherry-picking/oversimplification - 'climate has always changed' ignores the rate and the different driver (natural cycles such as orbital change operated over tens of thousands of years, whereas current warming tracks the added greenhouse gases and is far faster), and (2) conspiracy theory - claiming scientists are motivated by funding rather than evidence. Rebuttal: natural factors alone cannot reproduce the observed warming of the last century, particularly the pattern of stratospheric cooling alongside tropospheric warming, which is the fingerprint of greenhouse gases. Scientific claims should be assessed on evidence and mechanism, not on assumed motives", "m": 1}, {"t": "the funding accusation is not evidence", "m": 1}], "id": "geo-021", "options": [], "weak": false}, {"topic": "A Changing Global Climate · 缓解 vs 适应（简答）", "difficulty": "medium", "type": "short", "stem": "Define mitigation and adaptation in relation to climate change and give one Australian example of each.", "answer": "Mitigation reduces the causes of climate change by cutting greenhouse gas emissions or increasing carbon sinks - for example building large-scale solar and wind generation and retiring coal-fired power, or protecting and restoring coastal wetlands as a carbon sink. Adaptation reduces vulnerability to the effects that can no longer be avoided - for example building sea walls and dune restoration programs at Collaroy-Narrabeen, or planning retreat zones and raising building floor levels.", "explanation": "Mitigation = 减少 cause（减排/增汇）；Adaptation = 降低 impact（防护/回避）。例子要落到澳洲、最好落到海岸。", "source": "Yearly Study Guide 2026 · Geography（climate change responses）", "points": [{"t": "Mitigation reduces the causes of climate change by cutting greenhouse gas emissions or increasing carbon sinks - for example building large-scale solar and wind generation and retiring coal-fired power, or protecting and restoring coastal wetlands as a carbon sink", "m": 1}, {"t": "Adaptation reduces vulnerability to the effects that can no longer be avoided - for example building sea walls and dune restoration programs at Collaroy-Narrabeen, or planning retreat zones and raising building floor levels", "m": 1}], "id": "geo-022", "options": [], "weak": false}, {"id": "geo-023", "topic": "环境变化 · 变化的速度与尺度", "difficulty": "easy", "type": "mcq", "stem": "Stimulus: A beach can lose a large volume of sand during a single East Coast Low, while a dune system may migrate inland over thousands of years. What does this comparison illustrate?", "options": ["That erosion is permanent and that deposition never occurs anywhere", "That coastal change is caused only by human activity", "That environmental change operates at different rates and scales", "That all coastal change is gradual rather than sudden"], "answer": 2, "explanation": "环境变化的时间尺度与空间尺度是 1.1 的核心概念：单次风暴可在数小时内改变海滩，沙丘迁移则需千年。两者并存，说明「变化」要按速率与尺度分别描述。", "source": "Term 3 · Lesson 1.1 Environmental Change（rate and scale of change）", "weak": false}, {"id": "geo-024", "topic": "East Coast Lows · 天气图判读", "difficulty": "medium", "type": "mcq", "stem": "Stimulus: A synoptic chart shows tightly packed isobars and a closed low-pressure centre just off the NSW coast, with a cold front crossing the coast. What does this chart indicate, and why does it matter for Collaroy–Narrabeen?", "options": ["A stationary front producing no wind and no coastal impact", "A high-pressure ridge, bringing calm seas and steady offshore winds", "A tropical cyclone tracking inland across the ranges from the west", "An East Coast Low, bringing heavy rain and large erosion-driven waves"], "answer": 3, "explanation": "密集等压线＝气压梯度大＝强风；闭合低压＋冷锋＝东海岸低压，带来暴雨、强风与大浪。这正是 2016 年该海滩遭受严重侵蚀的天气背景。", "source": "Term 3 · Lesson 2.2 Understanding East Coast Lows（synoptic map）", "weak": false}, {"id": "geo-025", "topic": "管理策略 · 预防／缓解／准备", "difficulty": "easy", "type": "mcq", "stem": "Which set correctly matches the three management categories taught in Lessons 3.1–3.2?", "options": ["Prevention — stopping change; mitigation — reducing impact; preparedness — planning response", "Prevention — reducing impact; mitigation — planning response; preparedness — stopping change", "All three categories describe the same action taken at different scales", "Prevention — planning response; mitigation — stopping change; preparedness — reducing impact"], "answer": 0, "explanation": "prevention 从源头避免（如禁止在前丘新建）、mitigation 减轻已发生变化的冲击（如海堤、补沙）、preparedness 为事件做准备（如预警与疏散）。分类决定评价标准，别混用。", "source": "Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems", "weak": false}, {"id": "geo-026", "topic": "East Coast Lows · 2016 事件的机制", "difficulty": "hard", "type": "short", "stem": "Stimulus: A synoptic chart shows tightly packed isobars and a closed low off the NSW coast with a cold front crossing the coast. Explain why this system produced such destructive conditions at Collaroy–Narrabeen in 2016. (3 marks)", "options": [], "answer": "Tightly packed isobars mean a steep pressure gradient and therefore strong winds, which generate large waves and a storm surge that raises water levels at the shore. The cold front adds intense rainfall and runoff, so the combination of higher water and bigger waves produced a major storm cut and foredune erosion.", "explanation": "机制链：密集等压线→强风→大浪＋风暴增水；冷锋→暴雨。三者叠加正好赶上涨潮，才造成破坏性侵蚀。只写「风很大」拿不到满分。", "source": "Term 3 · Lesson 2.2 Understanding East Coast Lows", "points": [{"t": "Tightly packed isobars mean a steep pressure gradient and therefore strong winds, which generate large waves and a storm surge that raises water levels at the shore", "m": 1}, {"t": "The cold front adds intense rainfall and runoff, so the combination of higher water and bigger waves produced a major storm cut and foredune erosion", "m": 1}], "weak": false}, {"id": "geo-027", "topic": "管理策略 · 分类与理由", "difficulty": "easy", "type": "short", "stem": "Classify each strategy as prevention, mitigation or preparedness, and justify your choice: (a) zoning that prevents new building on the foredune; (b) a seawall; (c) an evacuation plan. (3 marks)", "options": [], "answer": "(a) Prevention — it removes the exposure before damage can occur. (b) Mitigation — it reduces the impact of wave energy on assets that already exist. (c) Preparedness — it plans the response for when an event happens.", "explanation": "判断依据是「作用于变化之前／之中／之后」：预防在源头避免暴露，缓解降低既有资产的受损程度，准备安排事件发生时的应对。", "source": "Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems", "points": [{"t": "(a) Prevention — it removes the exposure before damage can occur", "m": 1}, {"t": "(b) Mitigation — it reduces the impact of wave energy on assets that already exist", "m": 1}, {"t": "(c) Preparedness — it plans the response for when an event happens", "m": 1}], "weak": false}, {"id": "geo-028", "topic": "海堤争议 · 立场评估", "difficulty": "hard", "type": "short", "stem": "Stimulus: Two stakeholders disagree about the Collaroy–Narrabeen seawall. One argues it protects homes; the other argues it damages the beach and shifts erosion along the coast. Evaluate both positions using your knowledge of coastal processes. (5 marks)", "options": [], "answer": "The protection argument is valid in the short term: the wall prevents wave attack on the houses immediately behind it. The criticism is also valid: a vertical wall reflects wave energy, removes sediment from the beach budget and can increase erosion at the ends of the wall, so the beach in front narrows and the problem shifts along the coast. The decision therefore trades protection of private assets against the loss of public beach.", "explanation": "评估题要「两边都成立＋说明代价」：短期保护有效，但过程代价（反射、输沙收支改变、侵蚀转移）真实存在。只站一边不给高分。", "source": "Term 3 · Lesson 3.3 The Controversial Seawall（stakeholder perspectives）", "points": [{"t": "The protection argument is valid in the short term: the wall prevents wave attack on the houses immediately behind it", "m": 1}, {"t": "The criticism is also valid: a vertical wall reflects wave energy, removes sediment from the beach budget and can increase erosion at the ends of the wall, so the beach in front narrows and the problem shifts along the coast", "m": 1}, {"t": "The decision therefore trades protection of private assets against the loss of public beach", "m": 1}], "weak": false}]};
+const KEY = "dsh-quiz-geo";
+const MULTI = DATA.slug === "all";
+const app = document.getElementById("app");
+let state = {idx:0, answers:{}, order:null};
+
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (s && s.answers) state = s;
+  } catch(e) {}
+  if (MULTI && (!state.order || !state.order.length) && !state.started) { state.setup = true; return; }
+  if (!state.order || !state.order.length) state.order = DATA.questions.map((_,i)=>i);
+  if (state.idx >= state.order.length) state.idx = state.order.length - 1;
+  try {
+    const m = location.search.match(/[?&]q=([^&]+)/);
+    if (m) {
+      const qid = decodeURIComponent(m[1]);
+      const qi = DATA.questions.findIndex(x => x.id === qid);
+      const pos = state.order.indexOf(qi);
+      if (pos >= 0) state.idx = pos;
+    }
+  } catch(e) {}
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function renderSetup() {
+  const subs = DATA.subjects || {};
+  const keys = Object.keys(subs);
+  const saved = state.pick || {};
+  const opts = keys.map(k => {
+    const on = saved[k] !== false;
+    return `<label class="pick"><input type="checkbox" data-s="${k}" ${on ? "checked" : ""}>
+      <span class="nm" title="${esc(subs[k].zh || k)}">${esc(subs[k].zh || k)}</span><em>${subs[k].n}</em></label>`;
+  }).join("");
+  const per = (state.per === undefined || state.per === null) ? 10 : state.per;
+  const DAILY = ["sci","eng","his","geo","pdh","matp","maths53"];
+  app.innerHTML = `<div class="setup">
+    <div class="setup-head">
+      <h2>综合卷 · 全科</h2>
+      <p class="muted">从各科抽题混着做；做错的题会按它原本的科目进错题本，并按第 1/3/7 天排期。</p>
+    </div>
+
+    <section class="setup-block">
+      <div class="setup-label">1 · 选科目 <span class="muted" id="pickcount"></span></div>
+      <div class="picks">${opts}</div>
+    </section>
+
+    <section class="setup-block">
+      <div class="setup-label">2 · 每科抽几题</div>
+      <div class="seg">${[5,10,20,0].map(n => `<button data-n="${n}" class="${per===n?'on':''}">${n? n+' 题':'全部'}</button>`).join("")}</div>
+    </section>
+
+    <div class="setup-foot">
+      <div class="sum">共 <b id="cnt">0</b> 题</div>
+      <button class="btn ghost" id="daily">今日挑战</button>
+      <button class="btn" id="startmix">开始答题 →</button>
+    </div>
+  </div>`;
+  const chosenCount = () => {
+    let c = 0;
+    app.querySelectorAll(".pick input").forEach(cb => { if (cb.checked) c++; });
+    return c || Object.keys(subs).filter(k => (state.pick || {})[k] !== false).length;
+  };
+  const calc = () => {
+    let n = 0;
+    app.querySelectorAll(".pick input").forEach(cb => {
+      if (!cb.checked) return;
+      const k = cb.dataset.s, c = subs[k].n;
+      n += per ? Math.min(per, c) : c;
+    });
+    document.getElementById("cnt").textContent = n;
+    const pc = document.getElementById("pickcount");
+    if (pc) pc.textContent = "已选 " + chosenCount() + " 科";
+  };
+  app.querySelectorAll(".pick input").forEach(cb => cb.onchange = () => {
+    state.pick = state.pick || {}; state.pick[cb.dataset.s] = cb.checked; save(); calc();
+  });
+  app.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
+    state.per = +b.dataset.n; save(); render();
+  });
+  function seedRnd(str){
+    var h=2166136261;
+    for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
+    return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15, t|1);
+      t^=t+Math.imul(t^t>>>7, t|61); return ((t^t>>>14)>>>0)/4294967296; };
+  }
+  function startDaily(){
+    var d=new Date(), key=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    var rnd=seedRnd("daily:"+key);
+    var idxs=[];
+    DAILY.forEach(function(sl){
+      var pool=DATA.questions.map(function(q,i){ return q.subj===sl?i:-1; }).filter(function(i){ return i>=0; });
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
+      idxs=idxs.concat(pool.slice(0,3));
+    });
+    state.order=idxs; state.idx=0; state.started=true; state.setup=false;
+    state.answers={}; state.daily=key; state.rewarded=false; state.t0=Date.now(); save(); render();
+  }
+  document.getElementById("daily").onclick = startDaily;
+  document.getElementById("startmix").onclick = () => {
+    const chosen = keys.filter(k => (state.pick || {})[k] !== false);
+    if (!chosen.length) { alert("至少选一科"); return; }
+    let idxs = [];
+    chosen.forEach(k => {
+      let pool = DATA.questions.map((q, i) => q.subj === k ? i : -1).filter(i => i >= 0);
+      pool.sort(() => Math.random() - 0.5);
+      idxs = idxs.concat(per ? pool.slice(0, per) : pool);
+    });
+    idxs.sort(() => Math.random() - 0.5);
+    state.order = idxs; state.idx = 0; state.started = true; state.setup = false;
+    state.answers = {}; state.t0 = Date.now(); save(); render();
+  };
+  calc();
+}
+
+
+/* ===== 语言切换 ===== */
+var UI_TEXT = {
+  en: { grid:"Index", exam:"Exam mode", restart:"Restart", prev:"< Previous", next:"Next >",
+        finish:"See results", back:"< Subjects", again:"Redo all", lb:"Today's leaderboard" },
+  zh: { grid:"题号", exam:"考试模式", restart:"重来", prev:"← 上一题", next:"下一题 →",
+        finish:"看成绩", back:"← 科目列表", again:"整套重做", lb:"查看今日榜单" }
+};
+function T(k){
+  var lang = LANG(); var d = UI_TEXT[lang === "zh" ? "zh" : "en"];
+  return d[k] || UI_TEXT.en[k] || k;
+}
+function applyChrome(){
+  var map = { grid:"#grid", exam:"#exam", restart:"#restart" };
+  Object.keys(map).forEach(function(k){ var el=document.querySelector(map[k]); if(el) el.textContent=T(k); });
+  var btn=document.getElementById("langBtn"), now=document.getElementById("langNow");
+  var l=LANG();
+  if(now) now.textContent = l==="en" ? "EN" : (l==="zh" ? "中文" : "EN+中");
+}
+function cycleLang(){
+  var order=["en","zh","both"], i=order.indexOf(LANG());
+  setLANG(order[(i+1)%3] || "en");
+  applyChrome(); render();
+}
+
+function render() {
+  if (MULTI && location.hash === "#daily" && !state.started && !state.dailyAuto) {
+    state.dailyAuto = true; if (typeof startDaily === "function") startDaily();
+  }
+  if (MULTI && state.setup && !state.started) return renderSetup();
+  const qs = state.order.map(i => DATA.questions[i]);
+  const q = qs[state.idx];
+  const L = LANG(), ZH = (q && q.zh) || null;
+  const total = qs.length;
+  const answered = qs.filter(x => state.answers[x.id]).length;
+  const right = qs.filter(x => state.answers[x.id] === "ok").length;
+  const wrong = qs.filter(x => state.answers[x.id] === "bad").length;
+  document.getElementById("counter").textContent = (state.idx+1) + " / " + total;
+  document.getElementById("scorepill").textContent = "✓ " + right + "  ✗ " + wrong;
+  document.getElementById("pbar").style.width = (answered/total*100).toFixed(1) + "%";
+  if (!q) { app.innerHTML = "<p>这套题是空的。</p>"; return; }
+
+  const rec = state.answers[q.id];
+  const chips = `<div class="chips">
+      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
+      <span class="chip">${esc(q.topic)}</span>
+      <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
+      <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
+      <span class="chip">第 ${state.idx+1} 题 / 共 ${total}</span>
+    </div>`;
+
+  let bodyHtml = "";
+  if (q.type === "mcq") {
+    const opts = (q.options || []).map((o, i) => {
+      let cls = "opt", mark = "";
+      if (rec) {
+        if (i === q.answer) { cls += " correct"; mark = '<span class="mk">✓</span>'; }
+        else if (rec.chosen === i) { cls += " wrong"; mark = '<span class="mk">✗</span>'; }
+      }
+      const zo = (ZH && Array.isArray(ZH.options) && ZH.options[i]) ? ZH.options[i] : "";
+      const zhSpan = (L !== "en" && zo) ? `<span class="otr">${esc(zo)}</span>` : "";
+      return `<button class="${cls}" data-i="${i}" ${rec ? "disabled" : ""}>
+        <span class="k">${"ABCDEFG"[i]}</span><span class="txt">${esc(o)}${zhSpan}</span>${mark}</button>`;
+    }).join("");
+    bodyHtml = `<div class="opts">${opts}</div>`;
+  } else {
+    const pts = q.points && q.points.length ? q.points : [{t:q.answer, m:1}];
+    const totalMarks = pts.reduce((a,p)=>a+(p.m||1),0);
+    const checked = (rec && rec.checked) ? rec.checked : [];
+    const earned = pts.reduce((a,p,i)=>a + (checked.indexOf(i)>=0 ? (p.m||1) : 0), 0);
+    const bareAns = (q.answer || "").replace(/\d+\s*marks?/gi, "").replace(/(19|20)\d{2}/g, "");
+    const hasNum = /-?\d/.test(bareAns);
+    bodyHtml = `<textarea id="ta" placeholder="先自己写（英文），写完点下面的按钮对照得分点">${rec && rec.text ? esc(rec.text) : ""}</textarea>
+      <div class="actions">
+        <button class="btn" id="reveal">${rec ? "重新对照得分点" : "对照得分点"}</button>
+        ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
+        ${rec ? `<span class="pill" style="align-self:center">已得 <b>${earned}</b> / ${totalMarks} 分</span>` : `<span class="muted" style="align-self:center">共 ${totalMarks} 分 · ${pts.length} 个得分点</span>`}
+      </div>`;
+    if (rec) {
+      bodyHtml += `<div class="panel">
+        <div class="panel-h">自评 · 勾选你写到的得分点</div>
+        <div class="pts">${pts.map((p,i)=>`
+          <label class="pt ${checked.indexOf(i)>=0?'on':''}"><input type="checkbox" data-i="${i}" ${checked.indexOf(i)>=0?'checked':''}><span>${esc(p.t)}</span><em>${p.m||1} 分</em></label>`).join("")}</div>
+        <div class="actions">
+          <button class="btn ghost" id="allpt">全部勾上</button>
+          <button class="btn ghost" id="nonept">全部取消</button>
+        </div>
+        <div class="mine"><b>你写的：</b><div>${esc(((rec.text||"").trim()) || "（空）")}</div></div>
+      </div>`;
+    }
+  }
+
+  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(q.explanation)}
+      ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
+      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
+
+  const last = state.idx >= total - 1;
+  let stemHtml;
+  if (L === "zh" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem zh"><span class="orig">${esc(q.stem)}</span>${esc(ZH.stem)}</div>`;
+  } else if (L === "both" && ZH && ZH.stem) {
+    stemHtml = `<div class="stem">${esc(q.stem)}<div class="tr">${esc(ZH.stem)}</div></div>`;
+  } else {
+    stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
+  }
+  setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
+  app.innerHTML = `<div class="card">${chips}${stemHtml}
+      ${bodyHtml}${expHtml}</div>
+      <div class="actionbar">
+        <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="finish">${T("finish")}</button>
+        <button class="btn" id="next" ${last ? "disabled" : ""}>${T("next")}</button>
+      </div>`;
+
+  if (q.type === "mcq") {
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const i = +b.dataset.i;
+      state.answers[q.id] = {chosen:i, ok: i === q.answer ? "ok" : "bad"};
+      if (window.awardForQ) awardForQ(q.id, q.difficulty, "mcq", i === q.answer);
+      reviewMark(q.subj || DATA.slug, q.id, i === q.answer);
+      logAnswer(q.subj || DATA.slug, q.id, i === q.answer, q.difficulty, "mcq");
+      save(); render();
+    }));
+  } else {
+    const ta = document.getElementById("ta");
+    const cur = () => state.answers[q.id] || {chosen:-1, text:"", checked:[]};
+    document.getElementById("reveal").onclick = () => {
+      const c = cur();
+      state.answers[q.id] = {chosen:-1, text: ta.value, checked: c.checked || [], ok:"ok"};
+      save(); render();
+    };
+    app.querySelectorAll(".pt input").forEach(cb => cb.addEventListener("change", () => {
+      const c = cur(); const i = +cb.dataset.i;
+      const set = new Set(c.checked || []);
+      if (cb.checked) set.add(i); else set.delete(i);
+      state.answers[q.id] = {chosen:-1, text: c.text, checked: [...set].sort((a,b)=>a-b), ok:"ok"};
+      const full = pts.every((_,i)=>set.has(i));
+      if (window.awardForQ && full && !(c.checked && c.checked.length >= pts.length)) awardForQ(q.id, q.difficulty, "short", true);
+      reviewMark(q.subj || DATA.slug, q.id, full);
+      logAnswer(q.subj || DATA.slug, q.id, full, q.difficulty, "short");
+      save(); render();
+    }));
+    const nc = document.getElementById("numcheck");
+    if (nc) nc.onclick = () => {
+      const u = numsOf(ta.value), a = numsOf(q.answer), res = document.getElementById("numres");
+      if (!u.length) { res.textContent = "你还没写数字"; res.style.color = "var(--dim)"; return; }
+      if (!a.length) { res.textContent = "参考答案无数字"; res.style.color = "var(--dim)"; return; }
+      const last = u[u.length-1];
+      const hit = a.some(v => Math.abs(v-last) <= Math.max(Math.abs(v)*0.01, 0.005));
+      res.textContent = hit ? "✓ 数值与参考答案一致" : "✗ 数值与参考答案不一致";
+      res.style.color = hit ? "var(--ok)" : "var(--bad)";
+    };
+    const all = document.getElementById("allpt"), none = document.getElementById("nonept");
+    if (all) all.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:pts.map((_,i)=>i),ok:"ok"}; save(); render(); };
+    if (none) none.onclick = () => { const c=cur(); state.answers[q.id]={chosen:-1,text:c.text,checked:[],ok:"ok"}; save(); render(); };
+  }
+  document.getElementById("prev").onclick = () => { if (state.idx > 0) { state.idx--; save(); render(); } };
+  const nx = document.getElementById("next");
+  if (nx) nx.onclick = () => { if (state.idx < total-1) { state.idx++; save(); render(); } };
+  document.getElementById("finish").onclick = showResult;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function showResult() {
+  const qs = state.order.map(i => DATA.questions[i]);
+  if (!state.rewarded && qs.length) {
+    state.rewarded = true; save();
+    if (state.daily) {
+      try {
+        var dAns = qs.filter(function(x){ var a = state.answers[x.id]; return a && (a.ok === "ok" || a.ok === "bad"); }).length;
+        var dOk = qs.filter(function(x){ var a = state.answers[x.id]; return a && a.ok === "ok"; }).length;
+        var dPct = dAns ? Math.round(dOk / dAns * 100) : 0;
+        var DKEY = "dsh-daily-v1";
+        if (window.lbSubmit) lbSubmit(state.t0 ? (Date.now() - state.t0) : 0);
+        var drec = JSON.parse(localStorage.getItem(DKEY) || "{}");
+        if (drec.date !== state.daily || dPct > (drec.best || 0)) {
+          drec.date = state.daily; drec.best = dPct; drec.answer = dAns;
+          localStorage.setItem(DKEY, JSON.stringify(drec));
+        }
+        if (window.lbOpen) setTimeout(function(){ lbOpen(); }, 600);
+      } catch(e) {}
+    }
+    const answered = qs.filter(x => state.answers[x.id]).length;
+    if (window.awardXP && answered > 0) awardXP(20 + Math.min(80, answered), true);
+    if (window.openChest && answered >= 3) openChest();
+  }
+  const rec = id => state.answers[id] || null;
+  const mcq = qs.filter(x => x.type === "mcq");
+  const shorts = qs.filter(x => x.type === "short");
+  const right = mcq.filter(x => (rec(x.id)||{}).ok === "ok");
+  const wrong = mcq.filter(x => (rec(x.id)||{}).ok === "bad");
+  const todo = qs.filter(x => !rec(x.id));
+  let earnedM = 0, totalM = 0, partM = 0;
+  const weak = [];
+  shorts.forEach(x => {
+    const pts = (x.points && x.points.length) ? x.points : [{m:1}];
+    const tot = pts.reduce((a,p)=>a+(p.m||1),0);
+    const r = rec(x.id);
+    const got = (r && r.checked) ? pts.reduce((a,p,i)=>a+(r.checked.indexOf(i)>=0?(p.m||1):0),0) : 0;
+    totalM += tot;
+    if (r) { earnedM += got; if (got < tot) { partM += 1; weak.push(x); } }
+  });
+  const pct = mcq.length ? Math.round(right.length / mcq.length * 100) : 0;
+  const needRedo = [...wrong, ...weak];
+  const wrongIds = needRedo.map(x => x.id);
+  app.innerHTML = `<div class="card done">
+      <h2>选择题 ${right.length} / ${mcq.length} 正确（${pct}%）</h2>
+      <div class="stats">
+        <div class="stat"><b>${right.length}</b><span>选择题答对</span></div>
+        <div class="stat"><b>${wrong.length}</b><span>选择题答错</span></div>
+        <div class="stat"><b>${earnedM}</b><span>简答得分 / ${totalM}</span></div>
+        <div class="stat"><b>${todo.length}</b><span>未做</span></div>
+      </div>
+      ${weak.length ? `<div><b>简答没拿满的题（${weak.length}）：</b><ol class="wronglist">${weak.map(x => `<li>${esc(x.topic)}</li>`).join("")}</ol></div>` : ""}
+      ${wrong.length ? `<div><b>选择题错题：</b><ol class="wronglist">${wrong.map(x => `<li>${esc(x.topic)} — ${esc((x.stem||"").slice(0,60))}…</li>`).join("")}</ol></div>` : ""}
+      <div class="actions">
+        ${needRedo.length ? `<button class="btn" id="redo">只练错题（${needRedo.length} 题）</button>` : ""}
+        <button class="btn ghost" id="showlb">${T("lb")}</button>
+        <button class="btn ghost" id="again">${T("again")}</button>
+        <a class="btn ghost" href="index.html" style="text-decoration:none;display:inline-block">← 回到科目列表</a>
+      </div></div>`;
+  const redo = document.getElementById("redo");
+  if (redo) redo.onclick = () => {
+    state.order = wrongIds.map(id => DATA.questions.findIndex(x => x.id === id)).filter(i => i >= 0);
+    wrongIds.forEach(id => delete state.answers[id]);
+    state.idx = 0; save(); render();
+  };
+  const showlb = document.getElementById("showlb");
+  if (showlb) showlb.onclick = () => { if (window.lbOpen) lbOpen(); };
+  document.getElementById("again").onclick = () => {
+    state = {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+    save(); render();
+  };
+}
+
+document.getElementById("grid").onclick = openNav;
+document.getElementById("navclose").onclick = () => document.getElementById("nav").classList.remove("on");
+document.getElementById("nav").addEventListener("click", e => {
+  if (e.target && e.target.id === "nav") e.target.classList.remove("on");
+});
+try { localStorage.setItem("__probe","1"); localStorage.removeItem("__probe"); }
+catch(e) { document.body.insertAdjacentHTML("afterbegin",
+  '<div style="background:#ff5f56;color:#fff;padding:8px 16px;text-align:center;font-size:13px">这个浏览器禁用了本地存储：进度和错题本不会保存（Safari 用 file:// 打开时常见）。建议用 Chrome 打开，或把文件夹放到本地 HTTP 服务下。</div>'); }
+
+document.getElementById("exam").onclick = startExam;
+if (state.deadline) { timerId = setInterval(tickClock, 1000); tickClock(); }
+
+var _langBtn = document.getElementById("langBtn");
+if (_langBtn) _langBtn.onclick = cycleLang;
+applyChrome();
+document.getElementById("restart").onclick = () => {
+  if (!confirm(MULTI ? "回到选科目？" : "清空进度，从头开始？")) return;
+  state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:DATA.questions.map((_,i)=>i)};
+  save(); render();
+};
+
+document.addEventListener("keydown", e => {
+  if (MULTI && state.setup && !state.started) {
+    if (e.key === "Enter") { e.preventDefault(); const b = document.getElementById("startmix"); if (b && b.onclick) b.onclick(); }
+    return;
+  }
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "TEXTAREA" || tag === "INPUT") { if (e.key === "Escape") document.getElementById("nav").classList.remove("on"); return; }
+  const q = state.order.length ? DATA.questions[state.order[state.idx]] : null;
+  if (e.key === "ArrowRight" || e.key === "j") { if (state.idx < state.order.length-1){ state.idx++; save(); render(); } return; }
+  if (e.key === "ArrowLeft" || e.key === "k") { if (state.idx > 0){ state.idx--; save(); render(); } return; }
+  if (e.key === "g" || e.key === "G") { document.getElementById("nav").classList.contains("on") ? document.getElementById("nav").classList.remove("on") : openNav(); return; }
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (state.order && state.idx < state.order.length - 1) { state.idx++; save(); render(); }
+    else showResult();
+    return;
+  }
+  if (e.key === "s" || e.key === "S") { e.preventDefault(); showResult(); return; }
+  if (!q || q.type !== "mcq") return;
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= (q.options || []).length) {
+    if (!state.answers[q.id]) {
+      state.answers[q.id] = {chosen:n-1, ok: n-1 === q.answer ? "ok" : "bad"};
+      save(); render();
+    }
+  }
+});
+
+const REVIEW_KEY = "dsh-review-v1";
+const GAPS = [1, 3, 7];
+function reviewDb(){ try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}"); } catch(e){ return {}; } }
+function reviewSave(db){ try { localStorage.setItem(REVIEW_KEY, JSON.stringify(db)); } catch(e){} }
+function reviewMark(slug, qid, correct){
+  const db = reviewDb(), id = slug + "::" + qid, now = Date.now();
+  if (correct) {
+    const it = db[id];
+    if (!it) return;
+    const st = (it.stage || 0) + 1;
+    if (st >= GAPS.length) delete db[id];
+    else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }
+  } else {
+    const old = db[id] || {};
+    db[id] = {stage:0, due: now + GAPS[0]*864e5, added: old.added || now, last: now};
+  }
+  reviewSave(db);
+}
+function numsOf(t){ return (String(t).match(/-?\d+(?:\.\d+)?/g) || []).map(Number); }
+
+const LOG_KEY = "dsh-log-v1";
+function logAnswer(slug, qid, ok, diff, ty){
+  try {
+    let arr = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+    arr.push({t: Date.now(), s: slug, q: qid, ok: ok ? 1 : 0, d: diff || "", ty: ty || ""});
+    if (arr.length > 3000) arr = arr.slice(-3000);
+    localStorage.setItem(LOG_KEY, JSON.stringify(arr));
+  } catch(e) {}
+}
+function navState(qi){
+  const q = DATA.questions[qi], a = state.answers[q.id];
+  if (!a) return "";
+  if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
+  const pts = q.points || [{m:1}], c = (a.checked || []).length;
+  if (c >= pts.length) return "ok";
+  if (c > 0) return "part";
+  return "";
+}
+function openNav(){
+  const grid = document.getElementById("navgrid");
+  grid.innerHTML = state.order.map((qi, pos) =>
+    `<button class="${navState(qi)}" data-pos="${pos}">${pos+1}</button>`).join("");
+  grid.querySelectorAll("button").forEach(b => b.onclick = () => {
+    state.idx = +b.dataset.pos; save();
+    document.getElementById("nav").classList.remove("on"); render();
+  });
+  document.getElementById("nav").classList.add("on");
+}
+
+let timerId = null;
+function fmtLeft(ms){ const s = Math.max(0, Math.round(ms/1000)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+function tickClock(){
+  const el = document.getElementById("clock");
+  if (!state.deadline) { if (el) el.style.display = "none"; return; }
+  const left = state.deadline - Date.now();
+  if (el) { el.style.display = ""; el.textContent = "⏱ " + fmtLeft(left);
+            el.style.color = left < 5*60000 ? "var(--bad)" : "var(--dim)"; }
+  if (left <= 0) { clearInterval(timerId); timerId = null; state.deadline = 0; save(); showResult(); }
+}
+function startExam(){
+  const def = DATA.examMin || 60;
+  const v = prompt("考试模式：倒计时多少分钟？（到点自动收卷）", def);
+  if (v === null) return;
+  const mins = parseInt(v, 10);
+  if (!mins || mins <= 0) return;
+  state.deadline = Date.now() + mins*60000; save();
+  if (timerId) clearInterval(timerId);
+  timerId = setInterval(tickClock, 1000);
+  tickClock();
+}
+
+
+load(); render();
 </script>
 </body>
 </html>

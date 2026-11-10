@@ -116,6 +116,7 @@ function render(){
     if (grad.length > 40) html += `<div class="empty">还有 ${grad.length - 40} 条…</div>`;
   }
   box.innerHTML = html;
+  if(window.applyI18n) setTimeout(applyI18n, 0);
 }
 var FILTER = "";
 function renderFilters(){
