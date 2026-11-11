@@ -1128,6 +1128,25 @@ rxMigrateSeen();
     "一次连对 8 题":"Get 8 correct in a row",
     "做对 3 道「较难」题":"Get 3 hard questions right",
     "完成今日挑战":"Finish the daily challenge",
+    // ── 新版仪表盘首页 ──
+    "复习总览":"Overview","总览":"Overview","综合卷":"Mixed paper","错题本":"Mistakes","商城":"Shop",
+    "今日任务":"Today's tasks","好友榜":"Friends board","年考重点":"Exam focus",
+    "搜索课程、单元或代码（电磁学 / King Lear / 10SCI）":"Search subjects, topics or codes",
+    "没有匹配的课程":"No matching subject","展开全部":"Expand all","收起":"Collapse",
+    "最近 7 天":"Last 7 days","今天":"Today",
+    "按 1 / 3 / 7 天重做":"Redo on a 1 / 3 / 7-day schedule",
+    "金币兑换主题与道具":"Spend coins on themes and items",
+    "21 题 · 每天 0 点刷新":"21 questions · resets daily",
+    "从这里开始":"Start here","继续上次的进度":"Continue where you left off",
+    "答对":"correct","完成":"done","继续答题":"Continue","开始答题":"Start",
+    "等级":"Level","已开始":"Started","已做题":"Answered","错题":"Mistakes",
+    "题待复习":"to review","今天没有到期":"Nothing due today","还没有作答记录":"No answers yet",
+    "已满级":"Max level","完成率":"done",
+    "做题、连对、连续打卡都会解锁":"Unlock them by answering, chaining correct answers and studying daily",
+    "金币":"Coins","星尘":"Stardust","音效 开":"Sound on","音效 关":"Sound off","徽章":"Badges",
+    "榜单数据由本机上报，未做服务端校验，仅供娱乐":"Scores are self-reported by each device and not verified - for fun only",
+    "进度存在本机浏览器里，换设备需导出备份":"Progress is stored in this browser - export a backup to move devices",
+    "Canvas 复习":"Canvas Revision",
     // 课程图标首字
     "科":"S","英":"E","历":"H","地":"G","数":"M","食":"F","生":"C","体":"P","户":"O","心":"W"
   };
@@ -1156,6 +1175,7 @@ rxMigrateSeen();
     [/^(\d+) 门 · 年考优先$/, "$1 subjects · exam order"],
     [/^(\d+) 门$/, "$1 subjects"],
     [/^(\d+) 天后$/, "$1 days"],
+    [/^· (\d+) 天$/, "· $1 days"],
     [/^XP · 还差 (\d+) 升级$/, "XP · $1 to next level"],
     [/^从 (\d+) 科抽题混做，(\d+) 题可选$/, "Mix questions from $1 subjects, $2 available"],
     [/^(\d+) 选择$/, "$1 MCQ"],
@@ -1172,6 +1192,20 @@ rxMigrateSeen();
     [/^，缺 (.+)$/, ", missing $1"],
     [/^(\d+) · (选科目|题型|每科抽几题)$/, "$1"],
     [/^每科抽几题$/, "Questions per subject"],
+    [/^(\d+) 科 · (\d+) 题 · 年考 (\d+)\/(\d+) 开始$/, "$1 subjects · $2 questions · exams from $3/$4"],
+    [/^(\d+) 科混抽 · (\d+) 题可选$/, "Mix of $1 subjects · $2 questions"],
+    [/^(\d+) 门 · 按考试日期排序$/, "$1 subjects · by exam date"],
+    [/^其他 (\d+) 门（非年考）$/, "Other $1 subjects (non-exam)"],
+    [/^已做 \/ (\d+) 题$/, "done / $1"],
+    [/^还差 (\d+) XP 升级 · 共 (\d+) XP$/, "$1 XP to next level · $2 total"],
+    [/^连续 (\d+) 天 · 连对 (\d+)$/, "$1-day streak · best chain $2"],
+    [/^徽章 (\d+)\/(\d+)$/, "Badges $1/$2"],
+    [/^金币 (\d+) · 星尘 (\d+)$/, "$1 coins · $2 stardust"],
+    [/^下一场 (.+) · (\d+) 天后$/, "Next: $1 · in $2 days"],
+    [/^(\d+) \/ (\d+) 科$/, "$1 / $2 subjects"],
+    [/^共 (\d+) 题$/, "$1 questions"],
+    [/^其他 (\d+) 门$/, "Other $1 subjects"],
+    [/^复习总览$/, "Overview"],
     [/^· 称号：\s*(.+)$/, "· Title: $1"],
     [/^主题：\s*(.+?)\s*· 称号：\s*(.+)$/, "Theme: $1 · Title: $2"]
   ];
@@ -1179,6 +1213,10 @@ rxMigrateSeen();
     ["关键词","keywords"],["，缺 "," , missing "],["自动","auto"]];
   function applyI18n(){
     if(window.LANG()==="zh") return;
+    try{
+      if(document.title.indexOf("Canvas 复习")>=0)
+        document.title = document.title.replace("Canvas 复习", "Canvas Revision");
+    }catch(e){}
     var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
     var n, changed=[];
     while((n=walker.nextNode())){
@@ -1709,7 +1747,8 @@ rxMigrateSeen();
         badgeHtml+
         (owned.length? '' : '<span class="ovb-hint">做题、连对、连续打卡都会解锁</span>')+
         '<span class="grow"></span>'+
-        '<span class="coinline">金币 <b>'+(c.n||0)+'</b> · 星尘 <b>'+(c.dust||0)+'</b></span>'+
+        '<span class="coinline">'+(LANG()!=="zh"?("Coins <b>"+(c.n||0)+"</b> · Stardust <b>"+(c.dust||0)+"</b>")
+          :("金币 <b>"+(c.n||0)+"</b> · 星尘 <b>"+(c.dust||0)+"</b>"))+'</span>'+
         '<button class="sfxbtn" id="sfxbtn">'+(SFX_ON?'音效 开':'音效 关')+'</button>'+
       '</div>';
     if(window.__homeStats) window.__homeStats();
@@ -1768,11 +1807,15 @@ rxMigrateSeen();
     try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
     catch(e){return "system";}
   }
-  var LABEL={light:"浅色",dark:"深色",system:"自动"};
+  function labels(){
+    try{ if(window.LANG && LANG()!=="zh") return {light:"Light",dark:"Dark",system:"Auto"}; }catch(e){}
+    return {light:"浅色",dark:"深色",system:"自动"};
+  }
+  var LABEL=labels();
   function paint(box){
     var m=mode();
     if(box.getAttribute("data-theme-ctl")==="cycle"){
-      box.innerHTML='<button class="themebtn" data-cycle="1" title="外观：'+LABEL[m]+
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="'+(LABEL===labels()&&LABEL.light==="Light"?"Theme":"外观")+'：'+LABEL[m]+
         '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
     }else{
       box.innerHTML=['light','dark','system'].map(function(k){
