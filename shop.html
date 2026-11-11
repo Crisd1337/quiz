@@ -1401,9 +1401,9 @@ rxMigrateSeen();
     return LB.list.slice(start).map(function(x,i){
       if(near && (i+start)>=near[0] && (i+start)<=near[1]) return "";
       var mine = x.name===me;
-      return '<div class="lb-row'+(mine?' me':'')+'" data-k="'+x.name+'">'+
+      return '<div class="lb-row'+(mine?' me':'')+'" data-k="'+hesc(x.name)+'">'+
         '<span class="rk">'+(i+start+1)+'</span>'+
-        '<span class="rname">'+x.name+(mine?'（我）':'')+
+        '<span class="rname">'+hesc(x.name)+(mine?'（我）':'')+
           (x.ms>0?'<span class="lb-time">'+fmtMs(x.ms)+'</span>':'')+'</span>'+
         '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
     }).join("") || '<div class="mutedsmall">今天还没有人上榜</div>';
@@ -1417,7 +1417,7 @@ rxMigrateSeen();
       var x=top[idx]; if(!x) return '<div></div>';
       var place=idx+1, cls="p"+place;
       return '<div class="pod '+cls+'"><div class="pl">第'+["一","二","三"][idx]+'名</div><div class="av">'+place+'</div>'+
-        '<div class="nm">'+x.name+(x.name===me?' ·我':'')+'</div>'+
+        '<div class="nm">'+hesc(x.name)+(x.name===me?' ·我':'')+'</div>'+
         '<div class="sc">'+lbMetric(x,LB.sort)+'</div></div>';
     }).join("")+'</div>';
   }
@@ -1427,7 +1427,7 @@ rxMigrateSeen();
     LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
     if(idx<0) return '<div class="lb-self"><span class="rk">—</span><span class="rname">你还没上榜，交卷即可参与</span></div>';
     var x=LB.list[idx];
-    return '<div class="lb-self"><span class="rk">'+(idx+1)+'</span><span class="rname">'+me+'（我）</span>'+
+    return '<div class="lb-self"><span class="rk">'+(idx+1)+'</span><span class="rname">'+hesc(me)+'（我）</span>'+
       '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
   }
 
@@ -1441,9 +1441,9 @@ rxMigrateSeen();
     var a=r[0], b=r[1], out=[];
     for(var k=a;k<=b;k++){
       var x=LB.list[k], mine=(k===idx);
-      out.push('<div class="lb-row'+(mine?' me':'')+'" data-k="'+x.name+'">'+
+      out.push('<div class="lb-row'+(mine?' me':'')+'" data-k="'+hesc(x.name)+'">'+
         '<span class="rk">'+(k+1)+'</span>'+
-        '<span class="rname">'+x.name+(mine?'（我）':'')+
+        '<span class="rname">'+hesc(x.name)+(mine?'（我）':'')+
           (x.ms>0?'<span class="lb-time">'+fmtMs(x.ms)+'</span>':'')+'</span>'+
         '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>');
     }
@@ -1620,6 +1620,12 @@ rxMigrateSeen();
   function qseed(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
     return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; }; }
   function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  /* 榜单名字来自别人的设备：渲染前必须转义（属性与文本都要） */
+  function hesc(v){
+    return String(v==null?"":v).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
   function todayLog(){ var d0=new Date(); d0.setHours(0,0,0,0); return log().filter(function(x){ return x.t>=d0.getTime(); }); }
   function questAvailable(t){
     if(!t.need) return true;
