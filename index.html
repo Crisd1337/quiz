@@ -700,6 +700,312 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
   function addCoins(n){ var c=readCoins(); c.n=(c.n||0)+n; c.earned=(c.earned||0)+Math.max(0,n); saveCoins(c); }
   function addDust(n){ var c=readCoins(); c.dust=(c.dust||0)+n; saveCoins(c); }
 
+/* ═══════════════════════════════════════════════════════════════
+   RX · 统一奖励引擎（Gamification 2.0）
+   - 所有 XP / 金币 / 星尘 只能通过 RX.award() / RX.spend() 变动
+   - 每次变动写一条流水（dsh-tx-v1），带幂等键，同一事件不可能发两次
+   - 每日上限：XP 600 / 金币 300 / 星尘 6
+   - 简答题按 AI 实际得分比例发奖；判分失败不发奖（ratio=null）
+   - 掌握度（dsh-mastery-v1）：带时间衰减的 EMA + 间隔要求，重复刷同一题不会虚高
+   ═══════════════════════════════════════════════════════════════ */
+var TX_KEY = "dsh-tx-v1", CAP_KEY = "dsh-caps-v1", MAS_KEY = "dsh-mastery-v1";
+var RX_CAPS = { xp: 600, coin: 300, dust: 6 };
+var RX_TX_MAX = 500;
+
+function rxDay(ts) {
+  var d = ts ? new Date(ts) : new Date();
+  return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+}
+function rxHash(s) {
+  var h = 2166136261, str = String(s == null ? "" : s);
+  for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return (h >>> 0).toString(36);
+}
+function rxRead(key, dflt) {
+  try { var v = JSON.parse(localStorage.getItem(key) || "null"); return v == null ? dflt : v; }
+  catch (e) { return dflt; }
+}
+function rxWrite(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+
+/* ── 流水 ─────────────────────────────────────────── */
+function rxTx() { var a = rxRead(TX_KEY, []); return Array.isArray(a) ? a : []; }
+function rxHasTx(key) {
+  var a = rxTx();
+  for (var i = 0; i < a.length; i++) if (a[i] && a[i].k === key) return true;
+  return false;
+}
+function rxPushTx(rec) {
+  var a = rxTx();
+  a.push(rec);
+  if (a.length > RX_TX_MAX) a = a.slice(a.length - RX_TX_MAX);
+  rxWrite(TX_KEY, a);
+  return rec;
+}
+
+/* ── 每日额度 ─────────────────────────────────────── */
+function rxCaps() {
+  var day = rxDay(), c = rxRead(CAP_KEY, null);
+  if (!c || c.date !== day) c = { date: day, xp: 0, coin: 0, dust: 0 };
+  return c;
+}
+function rxSaveCaps(c) { rxWrite(CAP_KEY, c); }
+function rxCapLeft(cur) {
+  var c = rxCaps();
+  return { xp: Math.max(0, RX_CAPS.xp - (c.xp || 0)),
+           coin: Math.max(0, RX_CAPS.coin - (c.coin || 0)),
+           dust: Math.max(0, RX_CAPS.dust - (c.dust || 0)) };
+}
+
+/* ── 掌握度 ───────────────────────────────────────── */
+var RX_STAGE = ["未开始", "初学", "发展中", "基本掌握", "已掌握"];
+function rxMas() { var m = rxRead(MAS_KEY, {}); return (m && typeof m === "object") ? m : {}; }
+function rxMasSave(m) { rxWrite(MAS_KEY, m); }
+
+/** 老数据迁移：dsh-seen-v1 {n,right,sealed} → 掌握度骨架（只读旧值，不删旧 key） */
+function rxMigrateSeen() {
+  if (rxRead("dsh-rx-migrated", 0)) return;
+  var seen = rxRead("dsh-seen-v1", {}), mas = rxMas(), n = 0;
+  try {
+    Object.keys(seen || {}).forEach(function (qid) {
+      if (mas[qid]) return;
+      var e = seen[qid] || {};
+      var ok = e.right ? 1 : 0;
+      mas[qid] = {
+        n: Math.max(1, e.n || 1), ok: ok, streak: ok,
+        ema: ok ? 0.55 : 0.15, last: 0, iv: 1,
+        stage: e.sealed ? 4 : (ok ? 3 : 1)
+      };
+      n++;
+    });
+    rxMasSave(mas);
+    rxWrite("dsh-rx-migrated", 1);
+    if (n) console.log("[RX] migrated " + n + " questions from dsh-seen-v1");
+  } catch (e) {}
+}
+
+/** 记录一次作答，返回 {stage, ema, gainStage, review} */
+function rxMastery(qid, ratio, opts) {
+  opts = opts || {};
+  var mas = rxMas(), now = Date.now(), e = mas[qid] || null;
+  var day = 864e5;
+  var prevStage = e ? (e.stage || 0) : 0;
+  if (!e) e = { n: 0, ok: 0, streak: 0, ema: 0, last: 0, iv: 0, stage: 0 };
+
+  // 间隔（天）：用于衰减与"间隔复习"判定
+  var gapDays = e.last ? (now - e.last) / day : 0;
+  if (gapDays > 0) {
+    // 时间衰减：每过 7 天，旧印象打 0.85 折（上限 60% 衰减）
+    var decay = Math.pow(0.85, Math.min(8, Math.floor(gapDays / 7)));
+    e.ema = (e.ema || 0) * decay;
+  }
+  var r = Math.max(0, Math.min(1, ratio == null ? 0 : ratio));
+  // 带权重 EMA：第一次直接取分，之后 0.65 旧 + 0.35 新
+  e.ema = e.n === 0 ? r : (0.65 * (e.ema || 0) + 0.35 * r);
+  e.n = (e.n || 0) + 1;
+  if (r >= 0.9) { e.ok = (e.ok || 0) + 1; e.streak = (e.streak || 0) + 1; }
+  else { e.streak = 0; if (r > 0 && !e.ok) e.ok = 0; }
+  if (gapDays >= 1) e.iv = (e.iv || 0) + (r >= 0.9 ? 1 : 0);
+  e.last = now;
+
+  // 分档：既要分数，也要次数和间隔，避免"同一道题连点三次就 Mastered"
+  var ema = e.ema, st = 0;
+  if (e.n >= 1) st = 1;
+  if (ema >= 0.55 && e.n >= 2 && e.streak >= 2) st = 2;
+  if (ema >= 0.72 && e.n >= 3 && e.streak >= 2 && e.iv >= 1) st = 3;
+  if (ema >= 0.88 && e.n >= 4 && e.streak >= 3 && e.iv >= 2) st = 4;
+  if (e.sealed) st = Math.max(st, 4);
+  e.stage = Math.max(prevStage >= 4 ? 4 : 0, st);
+  mas[qid] = e;
+  rxMasSave(mas);
+  return { stage: e.stage, prev: prevStage, ema: e.ema, n: e.n, review: (e.n > 1 && gapDays >= 1) };
+}
+
+function rxMasteryOf(qid) {
+  var e = rxMas()[qid];
+  if (!e) return { stage: 0, ema: 0, n: 0 };
+  return e;
+}
+
+/* ── 奖励计算 ─────────────────────────────────────── */
+var RX_DIFF = { easy: 0.8, medium: 1.0, hard: 1.4 };
+
+/**
+ * 发放一次奖励。
+ * o = {
+ *   kind: "answer"|"exam"|"quest"|"achievement"|"chest"|"mastery"|"review",
+ *   src:  "sci" 之类的来源,
+ *   qid, diff, type,
+ *   ratio: 0..1（简答用 AI 得分比例；选择题 1/0；null = 判分失败 → 不发奖）
+ *   answer: 学生答案原文（用于幂等键）
+ *   base: 可选，覆盖基础 XP
+ *   key: 可选，自定义幂等键
+ * }
+ * 返回 {xp, coin, dust, capped, dup, stage, stageUp}
+ */
+function rxAward(o) {
+  o = o || {};
+  var day = rxDay(), now = Date.now();
+  var ratio = (o.ratio == null) ? null : Math.max(0, Math.min(1, o.ratio));
+  var out = { xp: 0, coin: 0, dust: 0, capped: 0, dup: false, stage: 0, stageUp: 0, reason: "" };
+
+  // 判分失败：不发奖，只记录（便于排查），也不写流水污染账本
+  if (ratio == null && o.kind === "answer") { out.reason = "no-score"; return out; }
+
+  // 先取"作答前"的掌握度：重复递减必须基于历史，不能用刚刚更新的状态
+  var prevMas = o.qid ? rxMasteryOf(o.qid) : { stage: 0, ema: 0, n: 0, ok: 0 };
+  // 掌握度（选择题也走：correct → 1，错误 → 0）
+  var mres = null;
+  if (o.qid && o.ratio != null) {
+    mres = rxMastery(o.qid, ratio, o);
+    out.stage = mres.stage;
+    out.stageUp = mres.stage > mres.prev ? mres.stage : 0;
+  }
+
+  // 幂等键：同一天、同一题、同一答案、同一分数 → 只发一次
+  var key = o.key || [
+    o.kind || "answer", o.qid || "-", o.diff || "-",
+    (o.answer ? rxHash(String(o.answer).slice(0, 120)) : "-"),
+    ratio == null ? "na" : ratio.toFixed(2), day
+  ].join("|");
+  if (rxHasTx(key)) { out.dup = true; out.reason = "dup"; return out; }
+
+  var base = (typeof o.base === "number") ? o.base : 10;
+  if (o.type === "short") base *= 1.2;
+  var diffMul = RX_DIFF[o.diff] || 1;
+
+  // 连击（只对答对/满分有加成）
+  var g = db();
+  if (ratio != null && ratio >= 0.9) g.combo = (g.combo || 0) + 1; else g.combo = 0;
+  save(g);
+  var comboMul = Math.min(1.5, 1 + 0.08 * Math.max(0, (g.combo || 1) - 1));
+
+  // 重复递减：已掌握/已答对过的题降权
+  var mul = 1, note = "";
+  var prev = prevMas;
+  if (o.kind === "answer" && o.qid) {
+    if (prev.stage >= 4 && ratio >= 0.9) { mul = 0; note = "已掌握 · 重复练习不计经验"; }
+    else if ((prev.ok || 0) >= 1 && ratio >= 0.9) { mul = 0.3; note = "重做已会的题 · ×0.3"; }
+    else if ((prev.ok || 0) >= 1 && ratio > 0 && ratio < 0.9) { mul = 0.6; note = "部分得分 · ×0.6"; }
+  }
+
+  var buffs = readBuffs ? readBuffs() : {};
+  var buffMul = (buffs && buffs.xp2Until && now < buffs.xp2Until) ? 2 : 1;
+
+  var rawXp = base * diffMul * (ratio || 0) * comboMul * mul * buffMul;
+  var xp = Math.max(0, Math.round(rawXp));
+  var coin = (o.kind === "answer") ? Math.round(xp * 0.5) : 0;
+
+  // 每日上限（含道具加成后的真实发放值，避免双倍卡绕过）
+  var left = rxCapLeft();
+  if (xp > left.xp) { out.capped = 1; xp = left.xp; coin = Math.min(coin, Math.round(xp * 0.5)); }
+  if (coin > left.coin) { out.capped = 1; coin = left.coin; }
+  if (mul === 0) { xp = 0; coin = 0; }
+
+  if (xp > 0 || coin > 0) {
+    var c = rxCaps();
+    c.xp = (c.xp || 0) + xp; c.coin = (c.coin || 0) + coin;
+    rxSaveCaps(c);
+
+    var gg = db();
+    var before = levelOf(gg.xp || 0);
+    gg.xp = (gg.xp || 0) + xp;
+    gg.best = Math.max(gg.best || 0, gg.combo || 0);
+    save(gg);
+    if (coin > 0) addCoins(coin);
+    out.xp = xp; out.coin = coin;
+    out.levelUp = levelOf(gg.xp) > before;
+
+    rxPushTx({
+      id: o.kind + "-" + now.toString(36) + "-" + rxHash(key).slice(0, 5),
+      k: key, type: o.kind, cur: "xp+coin", xp: xp, coin: coin, dust: 0,
+      src: o.src || "", qid: o.qid || "", ts: now,
+      meta: { ratio: ratio, diff: o.diff, type: o.type, mul: mul, combo: g.combo, capped: out.capped }
+    });
+  }
+
+  // 掌握度里程碑（每档只发一次）
+  if (mres && out.stageUp >= 2) {
+    var mk = "ms|" + o.qid + "|" + out.stageUp;
+    if (!rxHasTx(mk)) {
+      var rew = out.stageUp >= 4 ? { xp: 40, dust: 2 } :
+                out.stageUp >= 3 ? { xp: 25, dust: 1 } : { xp: 12, dust: 0 };
+      var cl = rxCapLeft();
+      var mxp = Math.min(rew.xp, cl.xp), mdust = Math.min(rew.dust || 0, cl.dust);
+      var cc = rxCaps();
+      cc.xp += mxp; cc.dust += mdust; rxSaveCaps(cc);
+      var g2 = db(); g2.xp = (g2.xp || 0) + mxp; save(g2);
+      if (mdust) addDust(mdust);
+      if (mxp) out.xp += mxp;
+      if (mdust) out.dust += mdust;
+      rxPushTx({ id: "ms-" + now.toString(36), k: mk, type: "mastery",
+                 cur: "xp+dust", xp: mxp, coin: 0, dust: mdust,
+                 src: o.src || "", qid: o.qid, ts: now,
+                 meta: { stage: out.stageUp, stageName: RX_STAGE[out.stageUp] } });
+      out.reason = "mastery:" + RX_STAGE[out.stageUp];
+      try { toast("掌握度提升 · " + RX_STAGE[out.stageUp] + " · +" + mxp + " XP" +
+                  (mdust ? " +" + mdust + " 星尘" : ""), true); } catch (e) {}
+    }
+  }
+
+  if (note && xp === 0 && !out.dup) out.reason = note;
+  return out;
+}
+
+/** 直接花钱（商城），带流水与余额校验 */
+function rxSpend(kind, amount, cur, itemId) {
+  var c = readCoins(), bal = cur === "dust" ? (c.dust || 0) : (c.n || 0);
+  if (bal < amount) return { ok: false, msg: "余额不足" };
+  if (cur === "dust") c.dust = bal - amount; else c.n = bal - amount;
+  saveCoins(c);
+  var now = Date.now();
+  rxPushTx({ id: "sp-" + now.toString(36), k: "sp|" + itemId + "|" + now,
+             type: "spend", cur: cur, xp: 0, coin: cur === "dust" ? 0 : amount,
+             dust: cur === "dust" ? amount : 0, src: kind || "shop",
+             qid: "", ts: now, meta: { item: itemId } });
+  return { ok: true };
+}
+
+/** 一次性奖励（成就 / 任务 / 宝箱 / 交卷），自带幂等键 */
+function rxOnce(key, reward) {
+  if (rxHasTx(key)) return { dup: true, xp: 0, coin: 0, dust: 0 };
+  var cl = rxCapLeft();
+  var xp = Math.min(reward.xp || 0, cl.xp);
+  var coin = Math.min(reward.coin || 0, cl.coin);
+  var dust = Math.min(reward.dust || 0, cl.dust);
+  if (xp || coin || dust) {
+    var c = rxCaps(); c.xp += xp; c.coin += coin; c.dust += dust; rxSaveCaps(c);
+    var g = db(); g.xp = (g.xp || 0) + xp; save(g);
+    if (coin) addCoins(coin);
+    if (dust) addDust(dust);
+    var now = Date.now();
+    rxPushTx({ id: "on-" + now.toString(36), k: key, type: reward.kind || "once",
+               cur: "mixed", xp: xp, coin: coin, dust: dust, src: reward.src || "",
+               qid: reward.qid || "", ts: now, meta: reward.meta || {} });
+  }
+  return { dup: false, xp: xp, coin: coin, dust: dust };
+}
+
+/* 今日累计（给 UI 用） */
+function rxToday() {
+  var day = rxDay(), t = rxTx(), o = { xp: 0, coin: 0, dust: 0, n: 0 };
+  for (var i = 0; i < t.length; i++) {
+    var x = t[i];
+    if (!x || x.type === "spend" || rxDay(x.ts) !== day) continue;
+    o.xp += x.xp || 0; o.coin += x.coin || 0; o.dust += x.dust || 0; o.n++;
+  }
+  return o;
+}
+
+window.RX = {
+  award: rxAward, once: rxOnce, spend: rxSpend,
+  tx: rxTx, today: rxToday, caps: rxCaps, capLeft: rxCapLeft,
+  mastery: rxMasteryOf, mas: rxMas, stageName: function (s) { return RX_STAGE[s] || RX_STAGE[0]; },
+  STAGE: RX_STAGE, CAPS: RX_CAPS, day: rxDay, hash: rxHash
+};
+rxMigrateSeen();
+
+
+
   /* 音效：WebAudio 现场合成，不依赖音频文件 */
   var SFX_ON = (function(){ try{ return localStorage.getItem("dsh-sfx")!=="0"; }catch(e){ return true; } })();
   var AC=null;
@@ -764,8 +1070,8 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
     var isDust = item.cur==="dust";
     var bal = isDust ? (c.dust||0) : (c.n||0);
     if(bal < item.p) return {ok:false,msg:(isDust?"星尘":"金币")+"不够，还差 "+(item.p-bal)};
-    if(isDust){ c.dust=(c.dust||0)-item.p; } else { c.n=(c.n||0)-item.p; }
-    saveCoins(c);
+    var sp = RX.spend("shop", item.p, isDust ? "dust" : "coin", id);
+    if(!sp.ok) return {ok:false,msg:sp.msg||"支付失败"};
     if(item.t==="use"){ inv.uses[id]=(inv.uses[id]||0)+1; }
     else { inv.owned.push(id); }
     saveInv(inv);
@@ -811,7 +1117,7 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
   function unlock(id){
     var b=bdb(); if(b[id]) return false;
     b[id]=Date.now(); bsave(b);
-    addCoins(20);
+    RX.once("ach|"+id, {coin:20, kind:"achievement", meta:{badge:id}});
     var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
     if(meta) toast('解锁成就 · '+meta.n+' · +20 币', true);
     return true;
@@ -856,26 +1162,10 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
     }catch(e){}
   }
 
+  /* 兼容包装：旧代码里的 awardXP(base, ok) 仍然可用，但答错不再发经验 */
   function awardXP(base, ok){
-    var g=db();
-    if(ok){ g.combo=(g.combo||0)+1; } else { g.combo=0; }
-    var mult = ok ? Math.min(2, 1 + 0.1*Math.max(0, (g.combo||1)-1)) : 1;
-    var buffs=readBuffs(), dbl = buffs.xp2Until && Date.now()<buffs.xp2Until ? 2 : 1;
-    var gain = ok ? Math.round(base*mult*dbl) : Math.max(1, Math.round(base*0.2));
-    var before=levelOf(g.xp||0);
-    g.xp=(g.xp||0)+gain;
-    g.best=Math.max(g.best||0, g.combo||0);
-    save(g);
-    var coin = Math.max(1, Math.round(gain*0.5));
-    var crit = ok && Math.random()<0.12;
-    if(crit) coin*=2;
-    addCoins(coin);
-    if(ok) beep(crit?1180:660, 0.1, "sine", crit?0.08:0.05); else beep(180,0.14,"sawtooth",0.05);
-    toast('+'+gain+' XP · +'+coin+' 币'+(crit?' · 暴击':"")+(ok&&g.combo>1?' · 连对 '+g.combo:'')+(dbl>1?' · ×2':''), ok);
-    var after=levelOf(g.xp);
-    if(after>before){ setTimeout(function(){ toast('🎉 升到 Lv.'+after, true); levelUpSound(); }, 450); }
-    checkBadges();
-    if(window.__refreshProfile) window.__refreshProfile();
+    if(!ok) return null;
+    return RX.award({kind:"answer", base:base||10, ratio:1, diff:"medium"});
   }
 
   /* 答题计分：难度加权 + 重复递减（对标论文里盛大的“反刷”规则） */
@@ -1319,26 +1609,30 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
     setInterval(function(){ lbFetch(function(){ lbFab(); if(LB.open) lbRender(); }); }, 8000);
   }
 
-  function awardForQ(id, diff, type, ok){
-    var base = type==='short' ? ({easy:12,medium:16,hard:22}[diff]||16)
-                              : ({easy:8, medium:10,hard:14}[diff]||10);
-    var S=seen(), e=S[id]||{n:0,right:false,sealed:false}, mul=1, note="";
-    if(e.right && ok){
-      if(e.sealed || e.n>=3){ mul=0; note="已掌握，不再加分"; }
-      else { mul=0.3; note="重做已会的题，经验 ×0.3"; }
-    } else if(e.right && !ok){
-      mul=1; note="";
-    } else if(!e.right && ok && e.n>0){
-      mul=1; note="纠错 + 全额";
+  function awardForQ(id, diff, type, arg){
+    var o = (arg && typeof arg === "object") ? arg : {ratio: arg ? 1 : 0};
+    var res = RX.award({kind:"answer", qid:id, diff:diff,
+                        type:(type==="short"?"short":"mcq"),
+                        ratio:(o.ratio==null ? null : o.ratio),
+                        answer:(o.answer||""), src:(DATA&&DATA.slug)||""});
+    var g = db();
+    if(res && (res.xp>0 || res.coin>0)){
+      beep(res.xp>0?660:240, 0.1, "sine", 0.05);
+      toast('+'+res.xp+' XP · +'+res.coin+' 币'+
+            (g.combo>1?' · 连对 '+g.combo:'')+
+            (res.capped?' · 已达今日上限':"")+
+            (res.stageUp?(' · 掌握度 '+RX.stageName(res.stageUp)):''), true);
+      if(res.levelUp){ setTimeout(function(){ toast('升到 Lv.'+levelOf(db().xp), true); levelUpSound(); }, 450); }
+    } else if(res && res.dup){
+      /* 同一答案重复提交：静默 */
+    } else if(res && res.reason){
+      toast(res.reason, false);
     }
-    e.n=(e.n||0)+1;
-    if(ok){ e.right=true; if(e.n>=3 && mul===0) e.sealed=true; }
-    S[id]=e; saveSeen(S);
-    if(mul===0){ toast(note+" · 去刷没掌握的题", false); return; }
-    var gain = Math.round(base*mul);
-    if(note) toast(note, true);
-    awardXP(gain, ok);
+    checkBadges();
+    if(window.__refreshProfile) window.__refreshProfile();
+    return res;
   }
+
   /* ---- 每日挑战任务（对应“挑战”要素） ---- */
   var QKEY="dsh-quest-v1";
   var QTEMPL=[
@@ -1383,13 +1677,17 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
 
   var CHEST_KEY="dsh-chest-v1";
   function openChest(){
-    var roll=Math.random(), msg="", dust=0, coin=0;
-    if(roll<0.10){ dust=3; msg="💎 稀有宝箱：星尘 ×3"; addDust(3); }
-    else if(roll<0.45){ coin=Math.round(30+Math.random()*40); msg="🎁 宝箱：金币 +"+coin; addCoins(coin); }
-    else { dust=1; msg="🎁 宝箱：星尘 ×1"; addDust(1); }
+    var key = "chest|" + RX.day();
+    if (RX.tx().some(function(x){ return x && x.k === key; })) return false;
+    var roll=Math.random(), msg="", rew={kind:"chest"};
+    if(roll<0.10){ rew.dust=3; msg="稀有宝箱：星尘 ×3"; }
+    else if(roll<0.45){ rew.coin=Math.round(30+Math.random()*40); msg="宝箱：金币 +"+rew.coin; }
+    else { rew.dust=1; msg="宝箱：星尘 ×1"; }
+    RX.once(key, rew);
     try{ var c=JSON.parse(localStorage.getItem(CHEST_KEY)||'{"n":0}'); c.n=(c.n||0)+1; localStorage.setItem(CHEST_KEY,JSON.stringify(c)); }catch(e){}
-    setTimeout(function(){ toast(msg, true); beep(880,0.18,"triangle",0.07); }, 700);
+    setTimeout(function(){ toast(msg + " · 今天已开箱", true); beep(880,0.18,"triangle",0.07); }, 700);
     if(window.__refreshProfile) window.__refreshProfile();
+    return true;
   }
   window.openChest=openChest;
 
@@ -1402,8 +1700,8 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
     if(questValue(meta,p) < meta.target) return {ok:false,msg:"还没完成"};
     Q.claimed.push(id);
     try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
-    if(meta.r.coin) addCoins(meta.r.coin);
-    if(meta.r.dust) addDust(meta.r.dust);
+    RX.once("quest|"+Q.date+"|"+id, {coin:meta.r.coin||0, dust:meta.r.dust||0,
+                                     kind:"quest", meta:{quest:id}});
     toast("任务完成 · "+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
     beep(1046,0.16,"triangle",0.07);
     if(window.__refreshProfile) window.__refreshProfile();
@@ -1415,6 +1713,7 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
   window.GAME={db:db,levelOf:levelOf,BADGES:BADGES,bdb:bdb,todayCount:todayCount,streakDays:streakDays,
     GOAL:GOAL,coins:readCoins,inv:readInv,buffs:readBuffs,SHOP:SHOP,buy:buy,equipTheme:equipTheme,
     equipTitle:equipTitle,toast:toast,applyTheme:applyTheme,addCoins:addCoins,addDust:addDust,
+    unlock:unlock,checkBadges:checkBadges,
     shieldCount:shieldCount,toggleSfx:toggleSfx,sfxOn:function(){return SFX_ON;},beep:beep};
 
   var EXAM_LIST=[
