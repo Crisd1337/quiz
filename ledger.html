@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
+(function(){try{
+  var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
+  var s=m||localStorage.getItem("dsh-theme")||"system";
+  var r=document.documentElement;
+  if(s==="light"||s==="dark") r.setAttribute("data-theme",s);
+  r.setAttribute("data-theme-mode",s);
+}catch(e){}})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>奖励记录 · Canvas 复习</title>
+<style>
+/* ══ design tokens ═══════════════════════════════════════ */
+:root{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+  --bg: var(--background);
+  --card: var(--surface);
+  --card2: var(--surface-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-secondary);
+  --fg: var(--foreground);
+  --dim: var(--muted);
+  --line: var(--border);
+  --line2: var(--border-strong);
+  --ok: var(--success);
+  --bad: var(--error);
+  --warn: var(--warning);
+  /* 派生色：只覆盖 --accent，其余自动跟着变（商店主题用它）*/
+  --accent-text: color-mix(in srgb, var(--accent) 74%, var(--foreground));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --background: #09090B;
+    --surface: #111113;
+    --surface-secondary: #18181B;
+    --surface-inset: #1F1F23;
+    --foreground: #FAFAFA;
+    --muted: #A1A1AA;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --accent: #3291FF;
+    --success: #4ADE80;
+    --success-soft: rgba(74,222,128,.12);
+    --error: #F87171;
+    --error-soft: rgba(248,113,113,.12);
+    --warning: #F59E0B;
+    --warning-soft: rgba(245,158,11,.12);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+    --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+    --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --background: #09090B;
+  --surface: #111113;
+  --surface-secondary: #18181B;
+  --surface-inset: #1F1F23;
+  --foreground: #FAFAFA;
+  --muted: #A1A1AA;
+  --border: #27272A;
+  --border-strong: #3F3F46;
+  --primary: #FAFAFA;
+  --primary-foreground: #171717;
+  --accent: #3291FF;
+  --success: #4ADE80;
+  --success-soft: rgba(74,222,128,.12);
+  --error: #F87171;
+  --error-soft: rgba(248,113,113,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.5);
+  --shadow-lg: 0 18px 44px rgba(0,0,0,.62);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F5F5F5;
+  --surface-inset: #EFEFF1;
+  --foreground: #171717;
+  --muted: #737373;
+  --border: #EAEAEA;
+  --border-strong: #D4D4D4;
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+  --accent: #0070F3;
+  --success: #16803C;
+  --success-soft: rgba(22,128,60,.10);
+  --error: #DC2626;
+  --error-soft: rgba(220,38,38,.09);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,.10);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.10);
+}
+
+/* ══ foundations ═════════════════════════════════════════ */
+:root{
+  /* type */
+  --font-sans:"Geist Variable","Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,
+    "Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono:"Geist Mono Variable","Geist Mono",ui-monospace,SFMono-Regular,"SF Mono",
+    Menlo,Consolas,monospace;
+  --text-2xl:28px; --text-xl:20px; --text-lg:17px; --text-md:15px;
+  --text-base:14px; --text-sm:12px; --text-xs:11px;
+  --lh-tight:1.25; --lh-snug:1.45; --lh-base:1.6; --lh-prose:1.75;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s8:32px; --s10:40px; --s12:48px; --s16:64px;
+  /* radius */
+  --r-sm:6px; --r-md:8px; --r-lg:10px; --r-xl:12px; --r-full:999px;
+  /* layout */
+  --page-max:1120px;
+  --read-max:760px;
+  --page-x:32px;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --fast:.12s; --norm:.2s;
+}
+
+@font-face{
+  font-family:"Geist Variable";
+  src:url("fonts/geist-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-latin.woff2") format("woff2");
+  font-weight:400 700; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+2000-206F,
+    U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Geist Mono Variable";
+  src:url("fonts/geist-mono-latin.woff2") format("woff2-variations"),
+      url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight:400 600; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,
+    U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:var(--font-sans);
+  font-size:var(--text-base);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11";
+  font-synthesis-weight:none;
+  transition:background-color var(--norm) var(--ease),color var(--norm) var(--ease);
+}
+body,body *{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:var(--lh-tight);font-weight:600}
+h1{font-size:var(--text-2xl)}
+h2{font-size:var(--text-xl)}
+h3{font-size:var(--text-md)}
+a{color:var(--accent-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+::selection{background:var(--accent-soft);color:var(--foreground)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+hr{border:0;border-top:1px solid var(--border);margin:var(--s6) 0}
+code,kbd,samp{font-family:var(--font-mono);font-size:.92em}
+kbd{background:var(--surface-secondary);border:1px solid var(--border);border-bottom-width:2px;
+  border-radius:var(--r-sm);padding:1px 6px;color:var(--muted);font-size:11px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+/* 数字统一等宽，避免跳动 */
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ══ 共享顶栏（首页 / 商城 / 错题本）═════════════════════ */
+.topbar{position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--background) 82%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:var(--page-max);margin:0 auto;padding:0 var(--page-x);
+  height:56px;display:flex;align-items:center;gap:var(--s4)}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--foreground);
+  text-decoration:none;font-weight:600;font-size:13.5px;letter-spacing:-.01em;flex:0 0 auto}
+.brand:hover{text-decoration:none}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--primary);
+  color:var(--primary-foreground);display:grid;place-items:center;font-size:11px;
+  font-weight:600;font-family:var(--font-mono);line-height:1}
+.nav{display:flex;align-items:center;gap:1px;min-width:0;overflow:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px;color:var(--muted);padding:5px 9px;border-radius:var(--r-sm);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--fast) var(--ease),background-color var(--fast) var(--ease)}
+.nav a:hover{color:var(--foreground);background:var(--surface-secondary);text-decoration:none}
+.nav a.on{color:var(--foreground);font-weight:500}
+.grow{flex:1}
+@media (max-width:720px){
+  .topbar-in{height:auto;flex-wrap:wrap;gap:8px;padding:9px var(--page-x) 0}
+  .brand .bname{display:none}
+  .topbar .nav{order:10;width:100%;margin:2px calc(-1 * var(--page-x)) 0;
+    padding:0 var(--page-x) 8px;border-top:1px solid var(--border)}
+  .topbar .themectl{margin-left:auto}
+}
+
+/* 分段控件选中态 */
+.seg button.on{border-color:var(--foreground)!important}
+
+/* ══ components ══════════════════════════════════════════ */
+.btn,.btn-ghost,.btn2{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  height:34px;padding:0 14px;border-radius:var(--r-sm);
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),opacity var(--fast) var(--ease);
+  text-decoration:none;
+}
+.btn{
+  background:var(--primary);color:var(--primary-foreground);
+  border-color:var(--primary);
+}
+.btn:hover{opacity:.88;text-decoration:none}
+.btn:active{transform:translateY(.5px)}
+.btn:disabled,.btn[disabled]{background:var(--surface-secondary);color:var(--muted);
+  border-color:var(--border);opacity:1;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost,.btn.ghost,.btn2{
+  background:var(--surface);color:var(--foreground);border-color:var(--border);
+}
+.btn-ghost:hover,.btn.ghost:hover,.btn2:hover{
+  background:var(--surface-secondary);border-color:var(--border-strong);text-decoration:none;
+}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;background:var(--surface)}
+.btn-sm{height:28px;padding:0 10px;font-size:12px;border-radius:var(--r-sm)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent:hover{opacity:.9;color:#fff}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:none;
+}
+.input,input[type="text"],input[type="search"],input[type="number"],textarea,select{
+  font-family:inherit;font-size:var(--text-base);color:var(--foreground);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:8px 11px;outline:none;transition:border-color var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.input:hover,input:hover,textarea:hover,select:hover{border-color:var(--border-strong)}
+.input:focus,input:focus,textarea:focus,select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--muted);opacity:.85}
+
+.chip,.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:var(--text-xs);line-height:1.6;font-weight:500;
+  padding:2px 8px;border-radius:var(--r-sm);
+  background:var(--surface-secondary);border:1px solid var(--border);color:var(--muted);
+  white-space:nowrap;
+}
+
+/* 主题切换控件 */
+.themectl{display:inline-flex;align-items:center;gap:2px;padding:2px;
+  background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm)}
+.themectl button{
+  font:inherit;font-size:11.5px;font-weight:500;line-height:1;height:24px;padding:0 9px;
+  border:0;border-radius:4px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease);
+}
+.themectl button:hover{color:var(--foreground)}
+.themectl button.on{background:var(--surface);color:var(--foreground);
+  box-shadow:var(--shadow-sm)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;
+  color:var(--muted);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);height:28px;padding:0 10px;cursor:pointer;
+  transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease)}
+.themebtn:hover{color:var(--foreground);border-color:var(--border-strong)}
+.themebtn b{color:var(--foreground);font-weight:500}
+
+/* 浅色下别让深色主题的重阴影漏过来 */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .submit-card{box-shadow:var(--shadow-lg)}
+  :root:not([data-theme="dark"]) .lb-fab{box-shadow:var(--shadow-md)}
+  :root:not([data-theme="dark"]) .lang-btn{box-shadow:var(--shadow-sm)}
+}
+:root[data-theme="light"] .submit-card{box-shadow:var(--shadow-lg)}
+:root[data-theme="light"] .lb-fab{box-shadow:var(--shadow-md)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:900px){ :root{--page-x:20px} }
+@media (max-width:560px){ :root{--page-x:16px} }
+
+.wrap{max-width:var(--page-max);margin:0 auto;padding:var(--s8) var(--page-x) var(--s16)}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-.015em}
+.lead{color:var(--muted);margin:0 0 18px;font-size:12.5px}
+.sum{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px}
+.sum div{background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm);
+ padding:10px 14px;min-width:104px}
+.sum b{display:block;font-family:var(--font-mono);font-size:19px;font-weight:500;line-height:1.2;
+ font-variant-numeric:tabular-nums}
+.sum span{font-size:11px;color:var(--muted)}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.fchip{border:1px solid var(--border);background:var(--surface);color:var(--muted);
+ border-radius:999px;padding:4px 11px;font-size:11.5px;cursor:pointer;white-space:nowrap}
+.fchip.on{border-color:var(--foreground);color:var(--foreground);background:var(--surface-secondary)}
+.day{margin:0 0 18px}
+.dh{display:flex;align-items:baseline;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);
+ font-size:11.5px;color:var(--muted);letter-spacing:.03em}
+.dh b{color:var(--foreground);font-weight:500;font-family:var(--font-mono)}
+.row{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;
+ padding:8px 0;border-bottom:1px solid var(--border);font-size:12.5px}
+.row .t{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.row .m{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .m em{font-style:normal;color:var(--muted);font-size:11px;margin-left:6px}
+.row .a{font-family:var(--font-mono);font-size:12px;white-space:nowrap}
+.row .a.plus{color:var(--success)}
+.row .a.minus{color:var(--error)}
+.empty{color:var(--muted);font-size:12.5px;padding:30px 0;text-align:center}
+footer{color:var(--muted);font-size:11.5px;text-align:center;padding:30px 0 0}
+@media (max-width:560px){
+  .sum{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .sum div{min-width:0;padding:9px 12px}
+  .sum b{font-size:17px}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-in"><a class="brand" href="index.html"><span class="mark">C</span><span class="bname">Canvas 复习</span></a><nav class="nav"><a href="index.html">总览</a><a href="all.html">综合卷</a><a href="review.html">错题本</a><a href="shop.html">商城</a></nav><span class="grow"></span><span data-theme-ctl="seg"></span></div></div>
+<div class="wrap">
+  <h1 id="title">奖励记录</h1>
+  <p class="lead" id="lead"></p>
+  <div class="sum" id="sum"></div>
+  <div class="filters" id="filters"></div>
+  <div id="list"></div>
+  <footer id="foot"></footer>
+</div>
+<script>
+(function(){
+  var EN = (function(){ try{
+      var m=(location.search.match(/[?&]lang=(en|zh)/)||[])[1];
+      if(m) return m==="en";
+      var v=localStorage.getItem("dsh-lang"); if(v) return v==="en";
+      return (navigator.language||"en").toLowerCase().indexOf("zh")!==0;
+    }catch(e){ return false; } })();
+  function T(zh,en){ return EN?en:zh; }
+  var LBL = {
+    answer:["答题","Answer"], exam:["交卷","Exam"], quest:["每日任务","Daily task"],
+    achievement:["成就","Achievement"], chest:["宝箱","Chest"], mastery:["掌握度提升","Mastery up"],
+    exchange:["星尘兑换","Exchange"], spend:["消费","Spend"], once:["奖励","Reward"]
+  };
+  var TX=[]; try{ TX=JSON.parse(localStorage.getItem("dsh-tx-v1")||"[]"); }catch(e){}
+  if(!Array.isArray(TX)) TX=[];
+  TX=TX.slice().reverse();
+  function day(ts){ var d=new Date(ts); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function money(x){
+    if(x.type==="exchange"){
+      var sd=(x.meta&&x.meta.spentDust)||0;
+      return {txt:"−"+sd+T(" 尘 · "," dust · ")+"+"+(x.coin||0)+T(" 币"," coins"), cls:"plus"};
+    }
+    if(x.type==="spend"){
+      var v=(x.coin||0)+(x.dust||0);
+      return {txt:"−"+v+(x.coin?T(" 币"," coins"):T(" 尘"," dust")), cls:"minus"};
+    }
+    var p=[];
+    if(x.xp) p.push("+"+x.xp+" XP");
+    if(x.coin) p.push("+"+x.coin+T(" 币"," c"));
+    if(x.dust) p.push("+"+x.dust+T(" 尘"," dust"));
+    return {txt:p.join(" · ")||"—", cls:"plus"};
+  }
+  var FILTER="all";
+  var FILTERS=[["all",T("全部","All")],["in",T("收入","Earned")],["out",T("支出","Spent")],
+               ["mastery",T("掌握","Mastery")],["quest",T("任务成就","Tasks & badges")]];
+  function keep(x){
+    if(FILTER==="all") return true;
+    if(FILTER==="in") return x.type!=="spend";
+    if(FILTER==="out") return x.type==="spend";
+    if(FILTER==="mastery") return x.type==="mastery";
+    if(FILTER==="quest") return x.type==="quest"||x.type==="achievement"||x.type==="chest";
+    return true;
+  }
+  function render(){
+    document.getElementById("title").textContent=T("奖励记录","Reward history");
+    document.getElementById("lead").textContent=T(
+      "每一条 XP / 金币 / 星尘 的变动都在这里，按天分组，只存本机。",
+      "Every XP, coin and stardust change is listed here, grouped by day. Stored on this device only.");
+    document.getElementById("filters").innerHTML=FILTERS.map(function(f){
+      return '<button class="fchip'+(FILTER===f[0]?" on":"")+'" data-f="'+f[0]+'">'+f[1]+'</button>';
+    }).join("");
+    var list=TX.filter(keep);
+    var today=day(Date.now());
+    var inXp=0,inCoin=0,outCoin=0;
+    list.forEach(function(x){
+      if(x.type==="spend"){ outCoin+=(x.coin||0); }
+      else { inXp+=(x.xp||0); inCoin+=(x.coin||0); }
+    });
+    document.getElementById("sum").innerHTML=
+      '<div><b>'+inXp+'</b><span>'+T("累计获得 XP","XP earned")+'</span></div>'+
+      '<div><b>'+inCoin+'</b><span>'+T("累计获得金币","Coins earned")+'</span></div>'+
+      '<div><b>'+outCoin+'</b><span>'+T("累计花掉金币","Coins spent")+'</span></div>'+
+      '<div><b>'+TX.length+'</b><span>'+T("流水条数","Entries")+'</span></div>';
+    if(!list.length){
+      document.getElementById("list").innerHTML='<div class="empty">'+
+        T("还没有记录。做几道题就会出现。","No entries yet. Answer a few questions.")+'</div>';
+      return;
+    }
+    var byDay={}, order=[];
+    list.forEach(function(x){
+      var d=day(x.ts);
+      if(!byDay[d]){ byDay[d]=[]; order.push(d); }
+      byDay[d].push(x);
+    });
+    document.getElementById("list").innerHTML=order.map(function(d){
+      var rows=byDay[d].map(function(x){
+        var dt=new Date(x.ts);
+        var hm=("0"+dt.getHours()).slice(-2)+":"+("0"+dt.getMinutes()).slice(-2);
+        var lb=(LBL[x.type]||[T("奖励","Reward"),"Reward"])[EN?1:0];
+        var sub="";
+        if(x.meta){
+          sub = x.meta.stageName || x.meta.name || x.meta.badge || x.meta.quest || "";
+        }
+        var mm=money(x);
+        return '<div class="row"><span class="t">'+hm+'</span>'+
+          '<span class="m">'+lb+(sub?'<em>'+sub+'</em>':'')+'</span>'+
+          '<span class="a '+mm.cls+'">'+mm.txt+'</span></div>';
+      }).join("");
+      var dsum=byDay[d].reduce(function(a,x){
+        if(x.type==="spend") a.out+=(x.coin||0)+(x.dust||0); else { a.xp+=x.xp||0; a.coin+=x.coin||0; }
+        return a;
+      },{xp:0,coin:0,out:0});
+      var head=T(d, d)+(d===today?" · "+T("今天","today"):"");
+      return '<div class="day"><div class="dh"><b>'+head+'</b>'+
+        '<span>'+T("+"+dsum.xp+" XP · +"+dsum.coin+" 币"+(dsum.out?" · −"+dsum.out+" 币":""),
+                   "+"+dsum.xp+" XP · +"+dsum.coin+" coins"+(dsum.out?" · −"+dsum.out+" coins":""))+'</span></div>'+rows+'</div>';
+    }).join("");
+  }
+  document.getElementById("filters").addEventListener("click", function(e){
+    var b=e.target.closest&&e.target.closest("[data-f]"); if(!b) return;
+    FILTER=b.getAttribute("data-f"); render();
+  });
+  document.getElementById("foot").textContent=T(
+    "数据存在本机浏览器里；换设备不会同步，可用首页的导出备份。",
+    "Stored in this browser. It does not sync across devices - use the export backup on the home page.");
+  render();
+})();
+</script>
+<script>
+/* ── 主题（浅色 / 深色 / 跟随系统）──────────────────────── */
+(function(){
+  var KEY="dsh-theme";
+  function mode(){
+    try{var v=localStorage.getItem(KEY); return (v==="light"||v==="dark")?v:"system";}
+    catch(e){return "system";}
+  }
+  function labels(){
+    try{ if(window.LANG && LANG()!=="zh") return {light:"Light",dark:"Dark",system:"Auto"}; }catch(e){}
+    return {light:"浅色",dark:"深色",system:"自动"};
+  }
+  var LABEL=labels();
+  function paint(box){
+    var m=mode();
+    if(box.getAttribute("data-theme-ctl")==="cycle"){
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="'+(LABEL===labels()&&LABEL.light==="Light"?"Theme":"外观")+'：'+LABEL[m]+
+        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+    }else{
+      box.innerHTML=['light','dark','system'].map(function(k){
+        return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
+      }).join("");
+    }
+  }
+  function apply(m){
+    var r=document.documentElement;
+    if(m==="system") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",m);
+    r.setAttribute("data-theme-mode",m);
+    document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+  }
+  function set(m){
+    try{localStorage.setItem(KEY,m);}catch(e){}
+    apply(m);
+  }
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest ? ev.target.closest("[data-mode],[data-cycle]") : null;
+    if(!b) return;
+    if(b.hasAttribute("data-cycle")){
+      var order=["system","light","dark"], cur=mode();
+      set(order[(order.indexOf(cur)+1)%3]);
+    }else{ set(b.getAttribute("data-mode")); }
+    ev.preventDefault();
+  });
+  try{
+    var mq=window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys=function(){ if(mode()==="system") apply("system"); };
+    if(mq.addEventListener) mq.addEventListener("change",onSys);
+    else if(mq.addListener) mq.addListener(onSys);
+  }catch(e){}
+  window.DSH_THEME={set:set,mode:mode};
+  document.querySelectorAll("[data-theme-ctl]").forEach(paint);
+})();
+</script>
+</body></html>

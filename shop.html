@@ -919,7 +919,9 @@ rxMigrateSeen();
   function unlock(id){
     var b=bdb(); if(b[id]) return false;
     b[id]=Date.now(); bsave(b);
-    RX.once("ach|"+id, {coin:20, kind:"achievement", meta:{badge:id}});
+    var bmeta=null; BADGES.forEach(function(x){ if(x.id===id) bmeta=x; });
+    RX.once("ach|"+id, {coin:20, kind:"achievement",
+      meta:{badge:id, name:(bmeta&&bmeta.n)||id}});
     var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
     if(meta) toast('解锁成就 · '+meta.n+' · +20 币', true);
     return true;
@@ -1734,7 +1736,7 @@ rxMigrateSeen();
     Q.claimed.push(id);
     try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
     RX.once("quest|"+Q.date+"|"+id, {coin:meta.r.coin||0, dust:meta.r.dust||0,
-                                     kind:"quest", meta:{quest:id}});
+                                     kind:"quest", meta:{quest:id, name:meta.n}});
     toast("任务完成 · "+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
     beep(1046,0.16,"triangle",0.07);
     if(window.__refreshProfile) window.__refreshProfile();
@@ -2181,7 +2183,9 @@ rxMigrateSeen();
           }
         } else {
           var bal = x.cur==="dust" ? (c.dust||0) : (c.n||0);
-          btn = '<button class="btn primary" data-buy="'+x.id+'" '+(bal<x.p?'disabled':'')+'>购买</button>';
+          btn = '<button class="btn primary" data-buy="'+x.id+'" '+(bal<x.p?'disabled title="'+
+            (x.cur==="dust"?"星尘不足，还差 "+(x.p-bal):"金币不足，还差 "+(x.p-bal))+
+            '"':'')+'>购买</button>';
         }
         html += '<div class="item"><div class="top"><h3>'+x.n+'</h3></div>'+
                 '<div class="d">'+x.d+'</div><div class="foot"><span class="price">'+
