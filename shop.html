@@ -1955,6 +1955,8 @@ rxMigrateSeen();
                :["未开始","初学","发展中","基本掌握","已掌握"];
     var mas=RX.mas()||{}, ids=Object.keys(mas);
     if(!ids.length){
+      document.getElementById("mBar").style.display="none";
+      document.getElementById("mLegend").style.display="none";
       document.getElementById("mSum").textContent=EN?"No mastery data yet":"还没有掌握度数据";
       document.getElementById("mList").innerHTML='<div class="mempty">'+
         (EN?"Answer a few questions and your knowledge mastery will appear here."
