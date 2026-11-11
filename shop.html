@@ -1799,10 +1799,26 @@ rxMigrateSeen();
   /* ---- 好友榜：不用服务器，靠“战绩码”互传 ---- */
   var FKEY="dsh-friends-v1", NKEY="dsh-nick", AKEY="dsh-api";
   var DEFAULT_API = "https://bbc-quiz-board.chrisguo927.workers.dev";
+  /* 判分端点白名单：https 任意；http 只允许本机与内网段。
+     防止有人分享一条 ?api=https://evil 的链接，把答案骗到别处。 */
+  function safeEndpoint(v){
+    v = String(v||"").trim().replace(/\/$/,"");
+    if(!v) return "";
+    try{
+      var u = new URL(v);
+      // https 只认自己的 Worker；别的 https 主机可能是钓鱼端点
+      if(u.protocol === "https:" && u.hostname === "bbc-quiz-board.chrisguo927.workers.dev") return v;
+      if(u.protocol === "http:" &&
+         /^(127\.0\.0\.1|localhost|10\.\d+\.\d+\.\d+|192\.168\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)$/.test(u.hostname))
+        return v;
+    }catch(e){}
+    return "";
+  }
+  window.safeEndpoint = safeEndpoint;
   function apibase(){
     try{
       var m = location.search.match(/[?&]api=([^&]*)/);
-      if (m) return decodeURIComponent(m[1]||"").replace(/\/$/,"");
+      if (m) return safeEndpoint(decodeURIComponent(m[1]||""));
     }catch(e){}
     try{ return (localStorage.getItem(AKEY)||DEFAULT_API||"").replace(/\/$/,""); }catch(e){ return ""; }
   }
@@ -1908,7 +1924,7 @@ rxMigrateSeen();
     var pct = nx ? Math.round((xp-prev)/(nx-prev)*100) : 100;
     var tc=todayCount(), st=streakDays(), b=bdb(), inv=readInv(), c=readCoins();
     var title = inv.equipped && inv.equipped.title
-      ? '<span class="ptitle">'+inv.equipped.title+'</span>' : '';
+      ? '<span class="ptitle">'+hesc(inv.equipped.title)+'</span>' : '';
     var ne = nextExam();
     var owned = BADGES.filter(function(x){ return b[x.id]; });
     var badgeHtml = owned.map(function(x){
