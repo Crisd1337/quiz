@@ -883,17 +883,37 @@ rxMigrateSeen();
     streak3:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
     streak7:'<svg viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 5H4v2a3 3 0 0 0 3 3M17 5h3v2a3 3 0 0 1-3 3"/><path d="M12 14v4M9 21h6"/></svg>',
     subject:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>',
-    review:'<svg viewBox="0 0 24 24"><path d="M4 6h16M9 6V4h6v2M6 6l1 14h10l1-14"/></svg>'
+    review:'<svg viewBox="0 0 24 24"><path d="M4 6h16M9 6V4h6v2M6 6l1 14h10l1-14"/></svg>',
+    short10:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h7"/></svg>',
+    hard20:'<svg viewBox="0 0 24 24"><path d="M12 3l2.5 6h6l-5 4 2 6.5-5.5-4-5.5 4 2-6.5-5-4h6z"/></svg>',
+    fix5:'<svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 1 3 6.2"/><path d="m9 12 2.5 2.5L17 9"/></svg>',
+    wide10:'<svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.4"/><circle cx="17" cy="7" r="2.4"/><circle cx="7" cy="17" r="2.4"/><circle cx="17" cy="17" r="2.4"/></svg>',
+    mastery1:'<svg viewBox="0 0 24 24"><path d="M12 3l7 4v10l-7 4-7-4V7z"/><path d="m9 12 2 2 4-4"/></svg>',
+    master60:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
+    streak30:'<svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="4"/></svg>',
+    daily7:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>'
   };
   var BADGES=[
-    {id:'first',  n:'第一题',   d:'完成第一道题'},
-    {id:'combo5', n:'连对 5',   d:'一次连对 5 题'},
-    {id:'combo10',n:'连对 10',  d:'一次连对 10 题'},
-    {id:'daily',  n:'今日达标', d:'一天做满 30 题'},
-    {id:'streak3',n:'三天不断', d:'连续 3 天做题'},
-    {id:'streak7',n:'一周',     d:'连续 7 天做题'},
-    {id:'subject',n:'一科通关', d:'某科全部做完'},
-    {id:'review', n:'错题清零', d:'错题本清空'}
+    // 学习
+    {id:'first',   n:'第一题',   d:'完成第一道题'},
+    {id:'short10', n:'简答 10 道', d:'累计完成 10 道简答题'},
+    {id:'hard20',  n:'难题 20 道', d:'累计做对 20 道「较难」题'},
+    {id:'fix5',    n:'纠错 5 题', d:'把 5 道做错过的题重新做对'},
+    {id:'wide10',  n:'十科涉猎', d:'在 10 个以上科目练过'},
+    // 掌握
+    {id:'mastery1',n:'首次掌握', d:'把一道题练到「已掌握」'},
+    {id:'master60',n:'掌握过半', d:'掌握度达到 60%（至少 20 题）'},
+    {id:'subject', n:'一科通关', d:'某科全部做完'},
+    // 持续
+    {id:'streak3', n:'三天不断', d:'连续 3 天做题'},
+    {id:'streak7', n:'一周',     d:'连续 7 天做题'},
+    {id:'streak30',n:'一个月',   d:'连续 30 天做题'},
+    {id:'daily',   n:'今日达标', d:'一天做满 30 道不同的题'},
+    // 挑战
+    {id:'combo5',  n:'连对 5',   d:'一次连对 5 题'},
+    {id:'combo10', n:'连对 10',  d:'一次连对 10 题'},
+    {id:'daily7',  n:'挑战 7 次', d:'完成 7 次今日挑战'},
+    {id:'review',  n:'错题清零', d:'错题本清空'}
   ];
 
   function unlock(id){
@@ -934,14 +954,45 @@ rxMigrateSeen();
     return n;
   }
 
+  /* 成就条件用的累计统计（全部从日志/掌握度算，不做假数据） */
+  function badgeStats(){
+    var L=log(), byQ={};
+    L.forEach(function(x){
+      if(!x.q) return;
+      var e=byQ[x.q] || (byQ[x.q]={ok:false,bad:false,ty:x.ty,d:x.d,s:x.s});
+      if(x.ok) e.ok=true; else e.bad=true;
+      if(x.ty) e.ty=x.ty; if(x.d) e.d=x.d; if(x.s) e.s=x.s;
+    });
+    var shortN=0, hardN=0, fixedN=0, subj={};
+    Object.keys(byQ).forEach(function(k){
+      var e=byQ[k];
+      if(e.ty==="short") shortN++;
+      if(e.ok && e.d==="hard") hardN++;
+      if(e.ok && e.bad) fixedN++;
+      if(e.s) subj[e.s]=1;
+    });
+    var mas=RX.mas(), mN=0, mOk=0, mTop=0;
+    Object.keys(mas||{}).forEach(function(k){
+      var st=(mas[k]||{}).stage||0;
+      mN++; if(st>=2) mOk++; if(st>=4) mTop++;
+    });
+    var dailyN=0;
+    try{ dailyN=(JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}").n)||0; }catch(e){}
+    return {shortN:shortN, hardN:hardN, fixedN:fixedN,
+            subjN:Object.keys(subj).length,
+            masN:mN, masOk:mOk, masTop:mTop, dailyN:dailyN};
+  }
+
   function checkBadges(){
     var g=db(), L=log();
     if(L.length>=1) unlock('first');
     if((g.best||0)>=5) unlock('combo5');
     if((g.best||0)>=10) unlock('combo10');
     if(todayCount()>=GOAL) unlock('daily');
-    if(streakDays()>=3) unlock('streak3');
-    if(streakDays()>=7) unlock('streak7');
+    var st=streakDays();
+    if(st>=3) unlock('streak3');
+    if(st>=7) unlock('streak7');
+    if(st>=30) unlock('streak30');
     try{
       var rv=JSON.parse(localStorage.getItem('dsh-review-v1')||'{}');
       if(L.length>10 && Object.keys(rv).length===0) unlock('review');
@@ -950,9 +1001,19 @@ rxMigrateSeen();
       var cards=document.querySelectorAll('[data-slug][data-total]');
       for(var i=0;i<cards.length;i++){
         var c=cards[i], sl=c.dataset.slug, tot=+c.dataset.total;
-        var st=JSON.parse(localStorage.getItem('dsh-quiz-'+sl)||'null');
-        if(st && st.answers && tot && Object.keys(st.answers).length>=tot){ unlock('subject'); break; }
+        var s2=JSON.parse(localStorage.getItem('dsh-quiz-'+sl)||'null');
+        if(s2 && s2.answers && tot && Object.keys(s2.answers).length>=tot){ unlock('subject'); break; }
       }
+    }catch(e){}
+    try{
+      var bs=badgeStats();
+      if(bs.shortN>=10) unlock('short10');
+      if(bs.hardN>=20) unlock('hard20');
+      if(bs.fixedN>=5) unlock('fix5');
+      if(bs.subjN>=10) unlock('wide10');
+      if(bs.masTop>=1) unlock('mastery1');
+      if(bs.masN>=20 && bs.masOk/bs.masN>=0.6) unlock('master60');
+      if(bs.dailyN>=7) unlock('daily7');
     }catch(e){}
   }
 
@@ -1147,6 +1208,26 @@ rxMigrateSeen();
     "榜单数据由本机上报，未做服务端校验，仅供娱乐":"Scores are self-reported by each device and not verified - for fun only",
     "进度存在本机浏览器里，换设备需导出备份":"Progress is stored in this browser - export a backup to move devices",
     "Canvas 复习":"Canvas Revision",
+    // ── 新任务池与成就 ──
+    "今天做 12 道不同的题":"Answer 12 different questions today",
+    "今天做 20 道不同的题":"Answer 20 different questions today",
+    "重做 5 道错题":"Redo 5 questions you got wrong",
+    "把 3 道错题做对":"Get 3 previously-wrong questions right",
+    "完成 1 次间隔复习（隔天重做同一题）":"Complete 1 spaced review (same question on a later day)",
+    "完成 3 道简答题":"Answer 3 short-answer questions",
+    "简答得分率 70%（至少 3 道）":"Average 70% on short answers (at least 3)",
+    "把 1 个知识点练到「发展中」以上":"Bring one topic to Developing or above",
+    "在两个不同科目各做 1 题":"Practise in two different subjects",
+    "复习":"Review","纠错":"Correction","间隔":"Spaced","理解":"Comprehension","掌握":"Mastery","广度":"Breadth",
+    "简答 10 道":"Short answers x10","累计完成 10 道简答题":"Answer 10 short-answer questions in total",
+    "难题 20 道":"Hard questions x20","累计做对 20 道「较难」题":"Get 20 hard questions right in total",
+    "纠错 5 题":"Corrections x5","把 5 道做错过的题重新做对":"Fix 5 previously-wrong questions",
+    "十科涉猎":"Ten subjects","在 10 个以上科目练过":"Practise in more than 10 subjects",
+    "首次掌握":"First mastery","把一道题练到「已掌握」":"Bring one question to Mastered",
+    "掌握过半":"Majority mastered","掌握度达到 60%（至少 20 题）":"60% of studied questions at Developing+ (min 20)",
+    "一个月":"One month","连续 30 天做题":"Study 30 days in a row",
+    "挑战 7 次":"Challenges x7","完成 7 次今日挑战":"Finish the daily challenge 7 times",
+    "今日达标":"Daily goal","一天做满 30 道不同的题":"Answer 30 different questions in one day",
     // 课程图标首字
     "科":"S","英":"E","历":"H","地":"G","数":"M","食":"F","生":"C","体":"P","户":"O","心":"W"
   };
@@ -1472,27 +1553,63 @@ rxMigrateSeen();
 
   /* ---- 每日挑战任务（对应“挑战”要素） ---- */
   var QKEY="dsh-quest-v1";
+  /* 任务池：答题 / 复习 / 理解 / 持续四类；need 表示需要的前置数据（缺了就今天不抽） */
   var QTEMPL=[
-    {id:"q_ans12", n:"今天做满 12 题", tip:"数量", type:"count", target:12, r:{coin:40}},
-    {id:"q_ans20", n:"今天做满 20 题", tip:"数量", type:"count", target:20, r:{coin:60}},
-    {id:"q_combo5", n:"一次连对 5 题", tip:"连击", type:"combo", target:5, r:{coin:50}},
-    {id:"q_combo8", n:"一次连对 8 题", tip:"连击", type:"combo", target:8, r:{coin:70}},
-    {id:"q_hard3", n:"做对 3 道「较难」题", tip:"攻坚", type:"hard", target:3, r:{dust:1}},
-    {id:"q_acc80", n:"正确率 80%（至少 10 题）", tip:"精准", type:"acc", target:80, r:{coin:60}},
-    {id:"q_short3", n:"完成 3 道简答自评", tip:"写作", type:"short", target:3, r:{coin:45}},
-    {id:"q_daily", n:"完成今日挑战", tip:"每日", type:"daily", target:1, r:{dust:2}}
+    // 答题类
+    {id:"q_ans12",   n:"今天做 12 道不同的题",     tip:"数量", type:"count", target:12, r:{coin:40}},
+    {id:"q_ans20",   n:"今天做 20 道不同的题",     tip:"数量", type:"count", target:20, r:{coin:60}},
+    {id:"q_combo5",  n:"一次连对 5 题",           tip:"连击", type:"combo", target:5,  r:{coin:50}},
+    {id:"q_combo8",  n:"一次连对 8 题",           tip:"连击", type:"combo", target:8,  r:{coin:70}},
+    {id:"q_hard3",   n:"做对 3 道「较难」题",       tip:"攻坚", type:"hard",  target:3,  r:{dust:1}},
+    {id:"q_acc80",   n:"正确率 80%（至少 10 题）",  tip:"精准", type:"acc",   target:80, r:{coin:60}},
+    // 复习类
+    {id:"q_redo5",   n:"重做 5 道错题",            tip:"复习", type:"redo",  target:5, r:{coin:50}, need:"review"},
+    {id:"q_fix3",    n:"把 3 道错题做对",           tip:"纠错", type:"fixed", target:3, r:{dust:1},  need:"review"},
+    {id:"q_spaced1", n:"完成 1 次间隔复习（隔天重做同一题）", tip:"间隔", type:"spaced", target:1, r:{coin:40}, need:"history"},
+    // 理解类
+    {id:"q_short3",  n:"完成 3 道简答题",           tip:"写作", type:"short", target:3, r:{coin:45}},
+    {id:"q_marks70", n:"简答得分率 70%（至少 3 道）", tip:"理解", type:"marksPct", target:70, r:{coin:55}},
+    {id:"q_mastery1",n:"把 1 个知识点练到「发展中」以上", tip:"掌握", type:"mastery", target:1, r:{dust:2}},
+    // 持续学习类
+    {id:"q_daily",   n:"完成今日挑战",             tip:"每日", type:"daily", target:1, r:{dust:2}},
+    {id:"q_subj2",   n:"在两个不同科目各做 1 题",    tip:"广度", type:"subjects", target:2, r:{coin:35}}
   ];
   function qseed(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); }
     return function(){ h+=0x6D2B79F5; var t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; }; }
   function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
   function todayLog(){ var d0=new Date(); d0.setHours(0,0,0,0); return log().filter(function(x){ return x.t>=d0.getTime(); }); }
+  function questAvailable(t){
+    if(!t.need) return true;
+    try{
+      if(t.need==="review"){
+        var rv=JSON.parse(localStorage.getItem("dsh-review-v1")||"{}");
+        return Object.keys(rv||{}).length>0;
+      }
+      if(t.need==="history"){
+        var d0=new Date(); d0.setHours(0,0,0,0);
+        return log().some(function(x){ return x.t < d0.getTime(); });
+      }
+    }catch(e){}
+    return true;
+  }
   function quests(){
     var Q=null;
     try{ Q=JSON.parse(localStorage.getItem(QKEY)||"null"); }catch(e){}
     if(!Q || Q.date!==todayKey()){
-      var rnd=qseed("q:"+todayKey()), pool=QTEMPL.slice();
-      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=pool[k]; pool[k]=pool[j]; pool[j]=t; }
-      Q={date:todayKey(), list:pool.slice(0,3).map(function(x){return x.id;}), claimed:[]};
+      var prevList=(Q && Q.list) ? Q.list.slice() : [];
+      var recentAll=(Q && Q.recent) ? Q.recent.slice(-6) : [];
+      var banned={};
+      recentAll.forEach(function(id){ banned[id]=1; });
+      prevList.forEach(function(id){ banned[id]=1; });   // 昨天的三条今天不重复抽
+      var pool=QTEMPL.filter(function(t){ return questAvailable(t) && !banned[t.id]; });
+      if(pool.length<3) pool=QTEMPL.filter(function(t){ return questAvailable(t); });
+      var rnd=qseed("q:"+todayKey());
+      for(var k=pool.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var tmp=pool[k]; pool[k]=pool[j]; pool[j]=tmp; }
+      var picked=[], usedTip={};
+      pool.forEach(function(t){ if(picked.length<3 && !usedTip[t.tip]){ usedTip[t.tip]=1; picked.push(t.id); } });
+      pool.forEach(function(t){ if(picked.length<3 && picked.indexOf(t.id)<0) picked.push(t.id); });
+      Q={date:todayKey(), list:picked.slice(0,3), claimed:[],
+         recent: recentAll.concat(prevList).slice(-6)};
       try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
     }
     return Q;
@@ -1504,6 +1621,38 @@ rxMigrateSeen();
     raw.forEach(function(x){ if(x.q && !seen[x.q]){ seen[x.q]=1; L.push(x); } });
     var n=L.length;
     var okCnt=L.filter(function(x){return x.ok;}).length;
+
+    // 错题本 / 历史记录 / 掌握度
+    var rev={}; try{ rev=JSON.parse(localStorage.getItem("dsh-review-v1")||"{}"); }catch(e){}
+    var allLog=log(), d0=new Date(); d0.setHours(0,0,0,0);
+    var firstSeen={};
+    allLog.forEach(function(x){
+      if(!x.q) return;
+      if(!firstSeen[x.q] || x.t<firstSeen[x.q]) firstSeen[x.q]=x.t;
+    });
+    var inReview={};
+    Object.keys(rev||{}).forEach(function(k){ inReview[String(k).split("::")[1]||k]=1; });
+    var redo=0, fixed=0, spaced=0;
+    L.forEach(function(x){
+      if(inReview[x.q]) { redo++; if(x.ok) fixed++; }
+      if(firstSeen[x.q] && firstSeen[x.q] < d0.getTime()) spaced++;
+    });
+    // 简答得分率（今天）
+    var sh=L.filter(function(x){ return x.ty==="short"; });
+    var mSum=0, mxSum=0;
+    sh.forEach(function(x){ mSum += (x.m||0); mxSum += (x.mx||1); });
+    var marksPct = sh.length>=3 && mxSum>0 ? Math.round(mSum/mxSum*100) : 0;
+    // 今天提升到「发展中」以上的知识点数
+    var masteryUp=0;
+    try{
+      RX.tx().forEach(function(x){
+        if(x && x.type==="mastery" && x.meta && x.meta.stage>=2 &&
+           new Date(x.ts).toDateString()===new Date().toDateString()) masteryUp++;
+      });
+    }catch(e){}
+    // 今天碰过的科目数
+    var subj={}; L.forEach(function(x){ if(x.s) subj[x.s]=1; });
+    var subjects=Object.keys(subj).length;
     var maxCombo=0, cur=0;
     L.forEach(function(x){ if(x.ok){ cur++; maxCombo=Math.max(maxCombo,cur);} else cur=0; });
     var hard=L.filter(function(x){ return x.ok && x.d==="hard"; }).length;
@@ -1511,7 +1660,9 @@ rxMigrateSeen();
     var acc = n>=10 ? Math.round(okCnt/n*100) : 0;
     var dailyDone = 0;
     try{ var dr=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); if(dr.date===todayKey()) dailyDone=1; }catch(e){}
-    return {count:n, combo:maxCombo, hard:hard, short:short, acc:acc, daily:dailyDone};
+    return {count:n, combo:maxCombo, hard:hard, short:short, acc:acc, daily:dailyDone,
+            redo:redo, fixed:fixed, spaced:spaced, subjects:subjects,
+            marksPct:marksPct, mastery:masteryUp};
   }
   function questValue(q, p){ return p[q.type] || 0; }
   window.quests=quests; window.questProgress=questProgress; window.questValue=questValue; window.QTEMPL=QTEMPL;
