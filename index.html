@@ -544,6 +544,38 @@ details.more .gh{font-size:10.5px;color:var(--muted);letter-spacing:.04em;
 .day.zero b{color:var(--border-strong)}
 .day.today{border-color:color-mix(in srgb,var(--accent) 40%,var(--border))}
 
+/* ── 知识掌握度 ── */
+.mastery,.rewards{margin-top:var(--s10)}
+.mastery .ph h2,.rewards .ph h2{font-size:15px;letter-spacing:-.01em}
+.mbar{display:flex;height:8px;border-radius:99px;overflow:hidden;background:var(--surface-secondary);margin:2px 0 8px}
+.mbar i{display:block;height:100%}
+.mseg0{background:var(--border-strong)}
+.mseg1{background:color-mix(in srgb,var(--error) 55%,var(--surface))}
+.mseg2{background:color-mix(in srgb,var(--warning) 65%,var(--surface))}
+.mseg3{background:color-mix(in srgb,var(--accent) 70%,var(--surface))}
+.mseg4{background:var(--success)}
+.mlegend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:12px}
+.mlegend span{display:inline-flex;align-items:center;gap:5px}
+.mlegend i{width:7px;height:7px;border-radius:2px;display:inline-block}
+.mlist{border-top:1px solid var(--border)}
+.mrow{display:grid;grid-template-columns:150px minmax(0,1fr) 92px;gap:14px;align-items:center;
+  padding:8px 0;border-bottom:1px solid var(--border);font-size:12.5px}
+.mrow .mn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mrow .mb{height:4px;border-radius:99px;background:var(--surface-secondary);overflow:hidden;display:flex}
+.mrow .mb i{display:block;height:100%}
+.mrow .mv{font-family:var(--font-mono);font-size:11px;color:var(--muted);text-align:right;white-space:nowrap}
+.mempty{font-size:11.5px;color:var(--muted);padding:10px 0}
+/* ── 奖励记录 ── */
+.rlist{border-top:1px solid var(--border)}
+.rrow{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;
+  padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.rrow .rt2{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.rrow .rn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
+.rrow .ra{font-family:var(--font-mono);font-size:11.5px;white-space:nowrap;color:var(--foreground)}
+.rrow .ra em{font-style:normal;color:var(--muted)}
+@media (max-width:560px){
+  .mrow{grid-template-columns:96px minmax(0,1fr) 76px;gap:8px}
+}
 footer{color:var(--muted);font-size:11px;text-align:center;padding:var(--s10) 0 0;
   line-height:1.9}
 footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4px;font-size:10.5px}
@@ -629,6 +661,13 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
     <a class="qa" href="shop.html"><b>商城</b><span>金币兑换主题与道具</span><i>→</i></a>
   </div>
 
+  <section class="mastery" id="mastery" style="display:none">
+    <div class="ph"><h2>知识掌握度</h2><span id="mSum"></span></div>
+    <div class="mbar" id="mBar"></div>
+    <div class="mlegend" id="mLegend"></div>
+    <div class="mlist" id="mList"></div>
+  </section>
+
   <div class="cols">
     <section class="panel">
       <div class="ph"><h2>今日任务</h2><span>每天 0 点刷新</span></div>
@@ -658,6 +697,11 @@ footer code{background:var(--surface-secondary);padding:1px 5px;border-radius:4p
   <section class="activity" id="activity" style="display:none">
     <div class="ph"><h2>最近 7 天</h2><span id="weekSum"></span></div>
     <div class="week" id="week"></div>
+  </section>
+
+  <section class="rewards" id="rewards" style="display:none">
+    <div class="ph"><h2>奖励记录</h2><span id="rSum"></span></div>
+    <div class="rlist" id="rList"></div>
   </section>
 
   <footer>进度存在本机浏览器里，换设备需导出备份<br>
@@ -2142,6 +2186,90 @@ rxMigrateSeen();
   }
   function renderAll(){
     renderProfile();
+  /* ── 知识掌握度面板 ─────────────────────────────── */
+  (function(){
+    var box=document.getElementById("mastery"); if(!box||!window.RX) return;
+    var EN=(window.LANG&&LANG()!=="zh");
+    var NAME=EN?["Not started","Learning","Developing","Proficient","Mastered"]
+               :["未开始","初学","发展中","基本掌握","已掌握"];
+    var mas=RX.mas()||{}, ids=Object.keys(mas);
+    if(!ids.length){
+      document.getElementById("mSum").textContent=EN?"No mastery data yet":"还没有掌握度数据";
+      document.getElementById("mList").innerHTML='<div class="mempty">'+
+        (EN?"Answer a few questions and your knowledge mastery will appear here."
+           :"先做几道题，这里会显示每个科目真正掌握了多少。")+'</div>';
+      box.style.display=""; return;
+    }
+    var cnt=[0,0,0,0,0], per={};
+    ids.forEach(function(qid){
+      var st=Math.max(0,Math.min(4,(mas[qid]||{}).stage||0));
+      cnt[st]++;
+      var pre=String(qid).replace(/-\d+$/,"");
+      per[pre]=per[pre]||[0,0,0,0,0];
+      per[pre][st]++;
+    });
+    var n=ids.length, solid=cnt[3]+cnt[4];
+    var avg=Math.round((cnt[1]+cnt[2]*2+cnt[3]*3+cnt[4]*4)/(n*4)*100);
+    document.getElementById("mSum").textContent=EN
+      ? (n+" studied · "+solid+" solid ("+Math.round(solid/n*100)+"%) · avg "+avg+"%")
+      : ("练过 "+n+" 题 · 基本掌握以上 "+solid+" 题（"+Math.round(solid/n*100)+"%）· 平均 "+avg+"%");
+    var bar="", leg="";
+    for(var i=0;i<5;i++){
+      if(cnt[i]){ bar+='<i class="mseg'+i+'" style="width:'+(cnt[i]/n*100)+'%"></i>';
+        leg+='<span><i class="mseg'+i+'"></i>'+NAME[i]+' '+cnt[i]+'</span>'; }
+    }
+    document.getElementById("mBar").innerHTML=bar;
+    document.getElementById("mLegend").innerHTML=leg;
+    var rows=Object.keys(per).map(function(k){
+      var c=per[k], tot=c[0]+c[1]+c[2]+c[3]+c[4], okk=c[3]+c[4];
+      return {k:k, c:c, tot:tot, ok:okk, rate: tot?Math.round(okk/tot*100):0};
+    }).sort(function(a,b){ return b.tot-a.tot; });
+    document.getElementById("mList").innerHTML=rows.map(function(r){
+      var row=document.querySelector('[data-slug="'+r.k+'"]'), label=r.k;
+      if(row){ var t=row.querySelector(".rtitle"); if(t&&t.firstChild) label=String(t.firstChild.textContent||r.k).trim(); }
+      var mini="";
+      for(var i=0;i<5;i++){ if(r.c[i]) mini+='<i class="mseg'+i+'" style="width:'+(r.c[i]/r.tot*100)+'%"></i>'; }
+      return '<div class="mrow"><span class="mn">'+label+'</span>'+
+        '<span class="mb">'+mini+'</span>'+
+        '<span class="mv">'+r.ok+'/'+r.tot+' · '+r.rate+'%</span></div>';
+    }).join("");
+    box.style.display="";
+  })();
+
+  /* ── 奖励记录（最近 8 条流水）──────────────────── */
+  (function(){
+    var box=document.getElementById("rewards"); if(!box||!window.RX) return;
+    var EN=(window.LANG&&LANG()!=="zh");
+    var tx=RX.tx().slice(-8).reverse();
+    if(!tx.length) return;
+    var LBL={answer:["答题","Answer"],exam:["交卷","Exam"],quest:["每日任务","Task"],
+             achievement:["成就","Achievement"],chest:["宝箱","Chest"],
+             mastery:["掌握度提升","Mastery"],exchange:["星尘兑换","Exchange"],
+             spend:["消费","Spend"],once:["奖励","Reward"]};
+    var today=RX.day(), sumToday=RX.today();
+    document.getElementById("rSum").textContent=EN
+      ? ("today +"+sumToday.xp+" XP · +"+sumToday.coin+" coins")
+      : ("今天 +"+sumToday.xp+" XP · +"+sumToday.coin+" 币");
+    document.getElementById("rList").innerHTML=tx.map(function(x){
+      var d=new Date(x.ts), hm=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+      var lb=(LBL[x.type]||["奖励","Reward"])[EN?1:0];
+      var amt=[];
+      if(x.type==="spend"){
+        var v=(x.coin||0)+(x.dust||0);
+        amt=["−"+v+(x.coin?(EN?" coins":" 币"):(EN?" dust":" 尘"))];
+      } else {
+        if(x.xp) amt.push("+"+x.xp+" XP");
+        if(x.coin) amt.push("+"+x.coin+(EN?" c":" 币"));
+        if(x.dust) amt.push("+"+x.dust+(EN?" dust":" 尘"));
+      }
+      var when = RX.day(x.ts)===today ? hm : ((d.getMonth()+1)+"/"+d.getDate());
+      return '<div class="rrow"><span class="rt2">'+when+'</span>'+
+        '<span class="rn">'+lb+(x.meta&&x.meta.stageName?(" · "+x.meta.stageName):"")+'</span>'+
+        '<span class="ra">'+amt.join(" <em>·</em> ")+'</span></div>';
+    }).join("");
+    box.style.display="";
+  })();
+
     setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
     setTimeout(loadBoard, 0);
     renderQuests(document.getElementById("quests"));
