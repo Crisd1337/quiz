@@ -412,7 +412,7 @@ function render(){
           <div class="t"><span class="chip">${r.subj.zh || ""}</span>${r.q.t} <span class="dup">第 ${r.stage+1} 轮</span></div>
           <div class="s">${r.q.s.replace(/[<>&]/g, "")}…</div>
         </div>
-        <div class="go">去做 →</div>${passN ? `<button class="ticket" data-skip="${r.slug}::${r.qid}">🎫</button>` : ""}</a>`;
+        <div class="go">去做 →</div>${passN ? `<span class="ticket" data-skip="${r.slug}::${r.qid}">延后</span>` : ""}</a>`;
     });
   }
   if (grad.length) {
@@ -798,6 +798,18 @@ function rxSpend(kind, amount, cur, itemId) {
   return { ok: true };
 }
 
+/** 星尘兑换金币：给星尘一个无限消耗口，避免稀有资源通胀 */
+function rxExchange(dust, coin){
+  var sp = rxSpend("exchange", dust, "dust", "dust2coin");
+  if(!sp.ok) return sp;
+  var c = readCoins(); c.n = (c.n||0) + coin; saveCoins(c);
+  var now = Date.now();
+  rxPushTx({ id:"ex-" + now.toString(36), k:"ex|" + now, type:"exchange",
+             cur:"mixed", xp:0, coin:coin, dust:0, src:"shop", qid:"", ts:now,
+             meta:{ spentDust: dust } });
+  return { ok:true, msg:"已用 " + dust + " 星尘兑换 " + coin + " 金币" };
+}
+
 /** 一次性奖励（成就 / 任务 / 宝箱 / 交卷），自带幂等键 */
 function rxOnce(key, reward) {
   if (rxHasTx(key)) return { dup: true, xp: 0, coin: 0, dust: 0 };
@@ -830,7 +842,7 @@ function rxToday() {
 }
 
 window.RX = {
-  award: rxAward, once: rxOnce, spend: rxSpend,
+  award: rxAward, once: rxOnce, spend: rxSpend, exchange: rxExchange,
   tx: rxTx, today: rxToday, caps: rxCaps, capLeft: rxCapLeft,
   mastery: rxMasteryOf, mas: rxMas, stageName: function (s) { return RX_STAGE[s] || RX_STAGE[0]; },
   STAGE: RX_STAGE, CAPS: RX_CAPS, day: rxDay, hash: rxHash
@@ -868,6 +880,7 @@ rxMigrateSeen();
 
   /* 主题只改强调色：浅色 / 深色 / 跟随系统由 data-theme 决定，两者互不冲突 */
   var THEMES={
+    ink:   {accent:"#525252"},
     gold:  {accent:"#B7791F"},
     warm:  {accent:"#C2410C"},
     forest:{accent:"#047857"},
@@ -892,12 +905,16 @@ rxMigrateSeen();
     {id:"shield2",     n:"连续保护 ×2", d:"再买一次，容错两天",   p:220, t:"perm"},
     {id:"pass",        n:"延后券",      d:"把一道错题推后 1 天，账还在", p:60, t:"use"},
     {id:"theme_gold",  n:"鎏金主题",    d:"限定 · 星尘专属",       p:30, t:"theme", v:"gold",  cur:"dust"},
-    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"}
+    {id:"title_dust",  n:"星尘旅人",    d:"限定称号 · 星尘专属",    p:20, t:"title", v:"星尘旅人", cur:"dust"},
+    {id:"theme_ink",   n:"墨黑主题",    d:"低饱和灰调 · 星尘专属",  p:45, t:"theme", v:"ink", cur:"dust"},
+    {id:"title_master",n:"称号 · 掌握者", d:"掌握度里程碑 · 星尘专属", p:35, t:"title", v:"掌握者", cur:"dust"},
+    {id:"exch_1",      n:"星尘兑换",    d:"1 星尘 → 80 金币",      p:1,  t:"exchange", v:80, cur:"dust"}
   ];
 
   function buy(id){
     var item=null; SHOP.forEach(function(x){ if(x.id===id) item=x; });
     if(!item) return {ok:false,msg:"没有这件商品"};
+    if(item.t==="exchange") return RX.exchange(item.p, item.v);
     var c=readCoins(), inv=readInv();
     if(item.t!=="use" && inv.owned.indexOf(id)>=0) return {ok:false,msg:"已经拥有了"};
     var isDust = item.cur==="dust";
@@ -957,12 +974,24 @@ rxMigrateSeen();
   }
 
   function todayCount(){
-    var d0=new Date(); d0.setHours(0,0,0,0);
-    return log().filter(function(x){ return x.t>=d0.getTime(); }).length;
+    var d0=new Date(); d0.setHours(0,0,0,0), seen={}, n=0;
+    log().forEach(function(x){
+      if(x.t<d0.getTime() || !x.q) return;
+      if(!seen[x.q]){ seen[x.q]=1; n++; }
+    });
+    return n;
   }
   function streakDays(){
     var days={}, d0=new Date(); d0.setHours(0,0,0,0), t0=d0.getTime();
-    log().forEach(function(x){ var d=new Date(x.t); d.setHours(0,0,0,0); days[d.getTime()]=1; });
+    var perDay={};
+    log().forEach(function(x){
+      var d=new Date(x.t); d.setHours(0,0,0,0);
+      var k=d.getTime(); perDay[k]=perDay[k]||{};
+      perDay[k][x.q||"?"]=1;
+    });
+    Object.keys(perDay).forEach(function(k){
+      if(Object.keys(perDay[k]).length>=1) days[+k]=1;
+    });
     var gaps=shieldCount(), n=0, c=t0, used=0;
     while(true){
       if(days[c]){ n++; c-=864e5; continue; }
@@ -1096,6 +1125,11 @@ rxMigrateSeen();
     "称号 · 卷王":"Title · Grinder","称号 · 一枪一个":"Title · One Shot","称号 · 静默刷题":"Title · Silent Grinder",
     "挂在等级旁边":"Shown next to your level","卷王":"Grinder","一枪一个":"One Shot","静默刷题":"Silent Grinder",
     "星尘旅人":"Stardust Wanderer","限定称号 · 星尘专属":"Limited title · stardust only",
+    "墨黑主题":"Ink theme","低饱和灰调 · 星尘专属":"Low-saturation grey · stardust only",
+    "称号 · 掌握者":"Title · Master","掌握度里程碑 · 星尘专属":"Mastery milestone · stardust only",
+    "星尘兑换":"Stardust exchange","1 星尘 → 80 金币":"1 stardust = 80 coins","兑换":"Exchange",
+    "手动校正 · 自己勾选写到的得分点（不产生经验）":"Manual override · tick the points you covered (no XP)",
+    "本榜由各台设备自行上报，没有服务端校验，仅供同学之间娱乐参考":"Scores are self-reported by each device. No server verification - for fun among classmates only.",
     "双倍经验 30 分钟":"Double XP for 30 minutes","立刻生效":"Takes effect now",
     "连续保护 ×1":"Streak shield x1","断一天不算断":"One missed day does not break your streak",
     "连续保护 ×2":"Streak shield x2","再买一次，容错两天":"Buy again for two missed days",
@@ -1494,10 +1528,14 @@ rxMigrateSeen();
     return Q;
   }
   function questProgress(){
-    var L=todayLog(), n=L.length;
+    /* 只看"不同题目"：同一道题反复点不会推进任务进度 */
+    var raw=todayLog().slice().sort(function(a,b){return a.t-b.t;});
+    var seen={}, L=[];
+    raw.forEach(function(x){ if(x.q && !seen[x.q]){ seen[x.q]=1; L.push(x); } });
+    var n=L.length;
     var okCnt=L.filter(function(x){return x.ok;}).length;
     var maxCombo=0, cur=0;
-    L.slice().sort(function(a,b){return a.t-b.t;}).forEach(function(x){ if(x.ok){ cur++; maxCombo=Math.max(maxCombo,cur);} else cur=0; });
+    L.forEach(function(x){ if(x.ok){ cur++; maxCombo=Math.max(maxCombo,cur);} else cur=0; });
     var hard=L.filter(function(x){ return x.ok && x.d==="hard"; }).length;
     var short=L.filter(function(x){ return x.ty==="short"; }).length;
     var acc = n>=10 ? Math.round(okCnt/n*100) : 0;
