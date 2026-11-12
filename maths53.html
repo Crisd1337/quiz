@@ -1520,6 +1520,9 @@ rxMigrateSeen();
     "一个月":"One month","连续 30 天做题":"Study 30 days in a row",
     "挑战 7 次":"Challenges x7","完成 7 次今日挑战":"Finish the daily challenge 7 times",
     "今日达标":"Daily goal","一天做满 30 道不同的题":"Answer 30 different questions in one day",
+    // 榜单抽屉
+    "今日榜":"Board","今天还没有人上榜":"No one on the board yet",
+    "你还没上榜，交卷即可参与":"Not on the board yet - submit a paper to join",
     // 掌握度 / 账本（后加的区块）
     "知识掌握度":"Knowledge mastery","奖励记录":"Reward history","查看全部 →":"View all →",
     "先做几道题，这里会显示每个科目真正掌握了多少。":"Answer a few questions and your knowledge mastery will appear here.",
@@ -1558,6 +1561,8 @@ rxMigrateSeen();
     [/^(\d+) 天后$/, "$1 days"],
     [/^· (\d+) 天$/, "· $1 days"],
     [/^(\d+) 天$/, "$1 days"],
+    [/^今天 · (.+)$/, "Today · $1"],
+    [/^已交卷 (\d+) 人$/, "$1 submitted"],
     [/^(\d+) 个$/, "$1 topics"],
     [/^(\d+) 次$/, "$1 times"],
     [/^XP · 还差 (\d+) 升级$/, "XP · $1 to next level"],
@@ -1757,6 +1762,7 @@ rxMigrateSeen();
       return; }
     var before={};
     box.querySelectorAll(".lb-row").forEach(function(el){ before[el.dataset.k]=el.getBoundingClientRect().top; });
+    if(window.applyI18n) setTimeout(applyI18n, 0);
     box.innerHTML = lbPodiumHtml() + lbNeighborsHtml() +
       '<div class="lb-list" id="lbList">'+lbRowsHtml()+'</div>' + lbSelfHtml();
     // 新进榜高亮
@@ -1799,7 +1805,7 @@ rxMigrateSeen();
     LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
     if(idx>=0) el.innerHTML='第 <b>'+(idx+1)+'</b> 名';
     else if(LB.list.length) el.innerHTML='最高 <b>'+LB.list[0].pct+'%</b>';
-    else el.innerHTML='今日榜';
+    else el.innerHTML=(LANG()==="zh" ? "今日榜" : "Board");
   }
 
   var SUBMITING=false;
@@ -2404,15 +2410,22 @@ rxMigrateSeen();
     catch(e){return "system";}
   }
   function labels(){
-    try{ if(window.LANG && LANG()!=="zh") return {light:"Light",dark:"Dark",system:"Auto"}; }catch(e){}
-    return {light:"浅色",dark:"深色",system:"自动"};
+    var zh=false;
+    try{
+      if(window.LANG) zh = LANG()==="zh";
+      else { var v=localStorage.getItem("dsh-lang"); zh = v==="zh"; }   // 账本页没有 GAME_JS
+    }catch(e){}
+    return zh ? {light:"浅色",dark:"深色",system:"自动"}
+              : {light:"Light",dark:"Dark",system:"Auto"};
   }
   var LABEL=labels();
   function paint(box){
     var m=mode();
     if(box.getAttribute("data-theme-ctl")==="cycle"){
-      box.innerHTML='<button class="themebtn" data-cycle="1" title="'+(LABEL===labels()&&LABEL.light==="Light"?"Theme":"外观")+'：'+LABEL[m]+
-        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+      var en=LABEL.light==="Light";
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="'+(en?"Theme: ":"外观：")+LABEL[m]+
+        (en?" (click to cycle Light / Dark / Auto)":"（点击切换 浅色 / 深色 / 自动）")+'">'+
+        (en?"Theme ":"外观 ")+'<b>'+LABEL[m]+'</b></button>';
     }else{
       box.innerHTML=['light','dark','system'].map(function(k){
         return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';

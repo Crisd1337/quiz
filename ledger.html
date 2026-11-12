@@ -462,6 +462,17 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:30px 0 0}
     var b=e.target.closest&&e.target.closest("[data-f]"); if(!b) return;
     FILTER=b.getAttribute("data-f"); render();
   });
+  /* 顶栏是构建时写死的中文，这里按语言换掉 */
+  if(EN){
+    var MAP={"Canvas 复习":"Canvas Revision","总览":"Overview","综合卷":"Mixed paper",
+             "错题本":"Mistakes","商城":"Shop"};
+    document.querySelectorAll(".topbar a, .brand .bname").forEach(function(el){
+      var t=(el.textContent||"").trim();
+      if(MAP[t]) el.textContent=MAP[t];
+    });
+    if(document.title.indexOf("Canvas 复习")>=0)
+      document.title=document.title.replace("Canvas 复习","Canvas Revision");
+  }
   document.getElementById("foot").textContent=T(
     "数据存在本机浏览器里；换设备不会同步，可用首页的导出备份。",
     "Stored in this browser. It does not sync across devices - use the export backup on the home page.");
@@ -477,15 +488,22 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:30px 0 0}
     catch(e){return "system";}
   }
   function labels(){
-    try{ if(window.LANG && LANG()!=="zh") return {light:"Light",dark:"Dark",system:"Auto"}; }catch(e){}
-    return {light:"浅色",dark:"深色",system:"自动"};
+    var zh=false;
+    try{
+      if(window.LANG) zh = LANG()==="zh";
+      else { var v=localStorage.getItem("dsh-lang"); zh = v==="zh"; }   // 账本页没有 GAME_JS
+    }catch(e){}
+    return zh ? {light:"浅色",dark:"深色",system:"自动"}
+              : {light:"Light",dark:"Dark",system:"Auto"};
   }
   var LABEL=labels();
   function paint(box){
     var m=mode();
     if(box.getAttribute("data-theme-ctl")==="cycle"){
-      box.innerHTML='<button class="themebtn" data-cycle="1" title="'+(LABEL===labels()&&LABEL.light==="Light"?"Theme":"外观")+'：'+LABEL[m]+
-        '（点击切换 浅色 / 深色 / 自动）">外观 <b>'+LABEL[m]+'</b></button>';
+      var en=LABEL.light==="Light";
+      box.innerHTML='<button class="themebtn" data-cycle="1" title="'+(en?"Theme: ":"外观：")+LABEL[m]+
+        (en?" (click to cycle Light / Dark / Auto)":"（点击切换 浅色 / 深色 / 自动）")+'">'+
+        (en?"Theme ":"外观 ")+'<b>'+LABEL[m]+'</b></button>';
     }else{
       box.innerHTML=['light','dark','system'].map(function(k){
         return '<button data-mode="'+k+'" class="'+(k===m?"on":"")+'">'+LABEL[k]+'</button>';
