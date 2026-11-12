@@ -435,7 +435,7 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:34px 0 0;line-h
 @media(max-width:560px){ .wrap{padding:26px 14px 70px} h1{font-size:22px}
  .grid{grid-template-columns:1fr} }
 </style></head><body>
-<div class="topbar"><div class="topbar-in"><a class="brand" href="index.html"><span class="mark">C</span><span class="bname">Canvas 复习</span></a><nav class="nav"><a href="index.html">总览</a><a href="all.html">综合卷</a><a href="review.html">错题本</a><a href="shop.html" class="on">商城</a></nav><span class="grow"></span><span data-theme-ctl="seg"></span></div></div><div class="wrap">
+<div class="topbar"><div class="topbar-in"><a class="brand" href="index.html"><span class="mark">C</span><span class="bname">Canvas 复习</span></a><nav class="nav"><a href="index.html">总览</a><a href="all.html">综合卷</a><a href="review.html">错题本</a><a href="shop.html" class="on">商城</a></nav><span class="grow"></span><span data-lang-ctl></span><span data-theme-ctl="seg"></span></div></div><div class="wrap">
 <div class="bar"><h1>商城</h1><span class="spacer"></span>
   <span class="pill">金币<b id="coin">0</b></span>
   <span class="pill">星尘<b id="dust" style="color:#9ad8ff">0</b></span>
@@ -1039,8 +1039,9 @@ rxMigrateSeen();
       if(m){ localStorage.setItem("dsh-lang", m); return m; }
       var v = localStorage.getItem("dsh-lang");
       if(v) return v;
-      var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
-      return nav.indexOf("zh") === 0 ? "zh" : "en";
+      /* 默认英文：这是澳洲 Year 10 的站，同学多数看英文。
+         中文只在手动切换（或 ?lang=zh）后启用，并记住选择。 */
+      return "en";
     }catch(e){ return "en"; }
   }
   window.LANG = LANG;
@@ -2151,6 +2152,31 @@ rxMigrateSeen();
     else if(mq.addListener) mq.addListener(onSys);
   }catch(e){}
   window.DSH_THEME={set:set,mode:mode};
+
+  /* ── 语言开关（顶栏用；答题页还有自己的悬浮按钮）────── */
+  (function(){
+    var box=document.querySelector("[data-lang-ctl]");
+    if(!box) return;
+    function cur(){
+      try{ var v=localStorage.getItem("dsh-lang"); if(v) return v; }catch(e){}
+      return "en";
+    }
+    function paint(){
+      var m=cur();
+      box.innerHTML=['en','zh'].map(function(k){
+        return '<button data-lang="'+k+'" class="'+(k===m?"on":"")+'">'+
+               (k==="en"?"EN":"中")+'</button>';
+      }).join("");
+    }
+    box.className="themectl";
+    box.addEventListener("click", function(ev){
+      var b=ev.target.closest&&ev.target.closest("[data-lang]"); if(!b) return;
+      try{ localStorage.setItem("dsh-lang", b.getAttribute("data-lang")); }catch(e){}
+      var u=location.href.replace(/([?&])lang=(en|zh|both)&?/,"$1").replace(/[?&]$/,"");
+      location.replace(u);
+    });
+    paint();
+  })();
   document.querySelectorAll("[data-theme-ctl]").forEach(paint);
 })();
 </script>

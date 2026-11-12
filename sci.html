@@ -1328,8 +1328,9 @@ rxMigrateSeen();
       if(m){ localStorage.setItem("dsh-lang", m); return m; }
       var v = localStorage.getItem("dsh-lang");
       if(v) return v;
-      var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
-      return nav.indexOf("zh") === 0 ? "zh" : "en";
+      /* 默认英文：这是澳洲 Year 10 的站，同学多数看英文。
+         中文只在手动切换（或 ?lang=zh）后启用，并记住选择。 */
+      return "en";
     }catch(e){ return "en"; }
   }
   window.LANG = LANG;
@@ -2440,6 +2441,31 @@ rxMigrateSeen();
     else if(mq.addListener) mq.addListener(onSys);
   }catch(e){}
   window.DSH_THEME={set:set,mode:mode};
+
+  /* ── 语言开关（顶栏用；答题页还有自己的悬浮按钮）────── */
+  (function(){
+    var box=document.querySelector("[data-lang-ctl]");
+    if(!box) return;
+    function cur(){
+      try{ var v=localStorage.getItem("dsh-lang"); if(v) return v; }catch(e){}
+      return "en";
+    }
+    function paint(){
+      var m=cur();
+      box.innerHTML=['en','zh'].map(function(k){
+        return '<button data-lang="'+k+'" class="'+(k===m?"on":"")+'">'+
+               (k==="en"?"EN":"中")+'</button>';
+      }).join("");
+    }
+    box.className="themectl";
+    box.addEventListener("click", function(ev){
+      var b=ev.target.closest&&ev.target.closest("[data-lang]"); if(!b) return;
+      try{ localStorage.setItem("dsh-lang", b.getAttribute("data-lang")); }catch(e){}
+      var u=location.href.replace(/([?&])lang=(en|zh|both)&?/,"$1").replace(/[?&]$/,"");
+      location.replace(u);
+    });
+    paint();
+  })();
   document.querySelectorAll("[data-theme-ctl]").forEach(paint);
 })();
 </script>
