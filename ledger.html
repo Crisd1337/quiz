@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head>
+<html lang="en"><head>
 <script>/* theme boot: 在首次绘制前定好主题，避免闪烁 */
 (function(){try{
   var m=(location.search.match(/[?&]theme=(light|dark|system)/)||[])[1]||null;
@@ -537,29 +537,10 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:30px 0 0}
   }catch(e){}
   window.DSH_THEME={set:set,mode:mode};
 
-  /* ── 语言开关（顶栏用；答题页还有自己的悬浮按钮）────── */
+  /* ── 语言开关：2026-11-12 全站英文，控件已下线（保留空函数防旧引用报错）── */
   (function(){
     var box=document.querySelector("[data-lang-ctl]");
-    if(!box) return;
-    function cur(){
-      try{ var v=localStorage.getItem("dsh-lang"); if(v) return v; }catch(e){}
-      return "en";
-    }
-    function paint(){
-      var m=cur();
-      box.innerHTML=['en','zh'].map(function(k){
-        return '<button data-lang="'+k+'" class="'+(k===m?"on":"")+'">'+
-               (k==="en"?"EN":"中")+'</button>';
-      }).join("");
-    }
-    box.className="themectl";
-    box.addEventListener("click", function(ev){
-      var b=ev.target.closest&&ev.target.closest("[data-lang]"); if(!b) return;
-      try{ localStorage.setItem("dsh-lang", b.getAttribute("data-lang")); }catch(e){}
-      var u=location.href.replace(/([?&])lang=(en|zh|both)&?/,"$1").replace(/[?&]$/,"");
-      location.replace(u);
-    });
-    paint();
+    if(box) box.remove();
   })();
   document.querySelectorAll("[data-theme-ctl]").forEach(paint);
 })();
