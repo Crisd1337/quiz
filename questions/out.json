@@ -19,6 +19,7 @@
    ],
    "answer": 1,
    "explanation": "课程对 biodiversity 的定义就是“variety of living organisms”（生物种类的多样性）。它不等于某个栖息地的动物数量，也不等于非生物环境。",
+   "explanation_en": "The course defines biodiversity as the 'variety of living organisms', which is not equal to the number of animals in a particular habitat or the non-biological environment.",
    "source": "Study Guide · Lesson 1 Introduction to Environmental Awareness"
   },
   {
@@ -35,6 +36,7 @@
    ],
    "answer": 1,
    "explanation": "abiotic 指非生物因素：阳光、水、土壤、温度等；biotic 指活的生物。真菌和细菌虽然肉眼不明显，但它们是活的，属于 biotic，这是最常见的失分点。",
+   "explanation_en": "Abiotic refers to non-biological factors: sunlight, water, soil, temperature, etc.; biotic refers to living organisms, and fungi and bacteria, although not visible to the naked eye, are living and belong to biotic, which is the most common point of loss.",
    "source": "Study Guide · Lesson 2 Ecosystems and Interactions"
   },
   {
@@ -51,6 +53,7 @@
    ],
    "answer": 1,
    "explanation": "ecosystem 的关键词是“生物＋非生物＋相互作用”。只讲植物、只讲动物、或只讲非生物环境，都只是生态系统的一部分。",
+   "explanation_en": "The key to an ecosystem is the combination of 'biotic + abiotic + interactions', and just focusing on plants, animals or non-biological environments only covers part of it.",
    "source": "Study Guide · Lesson 2 Ecosystems and Interactions"
   },
   {
@@ -67,6 +70,7 @@
    ],
    "answer": 2,
    "explanation": "短期影响是立即发生的（乱丢垃圾、踩踏植被）；长期影响是随时间逐渐累积的，例如气候变化。长期影响往往更难逆转，因为栖息地可能被永久破坏。",
+   "explanation_en": "Short-term impacts happen immediately, such as littering or trampling vegetation, while long-term impacts accumulate over time, like climate change, and are often harder to reverse as habitats can be permanently damaged.",
    "source": "Study Guide · Lesson 3 Human Impact on the Environment"
   },
   {
@@ -83,6 +87,7 @@
    ],
    "answer": 1,
    "explanation": "“在耐踩踏的地表上行走和扎营（travel and camp on durable surfaces）”是七大原则之一。另外三个选项恰好都是典型的高影响行为：新建火圈、投喂野生动物、离开步道。",
+   "explanation_en": "One of the seven principles is to 'travel and camp on durable surfaces', whereas building a new fire ring, feeding wildlife, or leaving the trail are all high-impact actions.",
    "source": "Study Guide · Lesson 5 Leave No Trace"
   },
   {
@@ -99,6 +104,7 @@
    ],
    "answer": 1,
    "explanation": "Connection to Country 是精神性、文化性与环境性的关系，Country 包含土地、水道、动植物，也包含文化身份。关键观念是：Country 不是“被拥有的东西”，而是“要去照护和保护的对象”。",
+   "explanation_en": "Connection to Country is a spiritual, cultural and environmental relationship, where Country encompasses land, water, plants and animals, as well as cultural identity, and the key idea is that Country is not something to be owned, but something to be cared for and protected.",
    "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land"
   },
   {
@@ -115,6 +121,7 @@
    ],
    "answer": 1,
    "explanation": "文化燃烧是“小型、低强度、在特定时间有计划地控制燃烧”，目的是降低可燃物载量（fuel load）。它的好处是减少大火风险、促进植物再生、支持生物多样性——不是无控制放火，也不是等火灾发生才烧。",
+   "explanation_en": "Cultural burning involves small, low-intensity, planned burns at specific times to reduce fuel loads, and its benefits include reducing the risk of large fires, promoting plant regeneration and supporting biodiversity, which is different from uncontrolled fires or waiting for fires to happen.",
    "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Cultural Burning"
   },
   {
@@ -131,6 +138,7 @@
    ],
    "answer": 1,
    "explanation": "Response Guide 的示范答案说得很明确：走耐用地表“保护植被、减少踩踏造成的土壤侵蚀”。踩出来的小径会越踩越宽，最后变成冲沟，这是露营区最常见的长期损伤。",
+   "explanation_en": "The Response Guide's sample answer clearly states that walking on durable surfaces 'protects vegetation and reduces soil erosion from trampling', as creating new paths can lead to widening and eventually gullies, which is a common long-term damage in camping areas.",
    "source": "Study Guide · Lesson 5 Leave No Trace · Response Guide"
   },
   {
@@ -147,6 +155,7 @@
    ],
    "answer": 0,
    "explanation": "砍活树枝生火会直接破坏植被与栖息地，还提高灌木火风险，是典型的高影响行为。用燃料炉、用既有营位、把垃圾全部带走，都是低影响做法。",
+   "explanation_en": "Cutting live branches for firewood directly damages vegetation and habitats, and increases the risk of bushfires, which is a high-impact action, whereas using fuel stoves, existing campsites, and taking all rubbish away are low-impact practices.",
    "source": "Study Guide · Lesson 4 Sustainable Practices and Camping Impact"
   },
   {
@@ -163,6 +172,7 @@
    ],
    "answer": 1,
    "explanation": "这个案例说明生态系统的相互依存性：抽掉一个环节（顶级捕食者），食物链下游会连锁反应。课程里用来回答“为什么不干脆把鲨鱼都除掉”的正是这个逻辑。",
+   "explanation_en": "This case illustrates the interdependence of ecosystems, where removing one element, such as top predators, can have a ripple effect on the food chain, which is used to answer questions like 'why not just get rid of sharks'.",
    "source": "Study Guide · Lesson 2 Ecosystems and Interactions · Response Guide"
   },
   {
@@ -179,6 +189,7 @@
    ],
    "answer": 0,
    "explanation": "案例对比的是：对 Gayamaygal 与 Garigal 族群而言，这里是饮用水、捕鱼与扎营的重要场所，具有极高精神价值；而城市化把它排干、填平，最后变成混凝土雨水暗渠，如今只以“海边排水口”的形式存在。",
+   "explanation_en": "The case compares the high spiritual value of the area for the Gayamaygal and Garigal people as a source of drinking water, fishing and camping, to its destruction and conversion into a concrete stormwater drain through urbanisation.",
    "source": "Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Freshwater Creek Case Study"
   },
   {
@@ -190,6 +201,7 @@
    "options": [],
    "answer": "Biotic and abiotic factors interact to keep ecosystems healthy. Plants depend on abiotic factors such as sunlight, water and soil to grow, while animals depend on those plants for food and shelter. If an abiotic factor changes — for example rainfall falling during a drought — plant growth declines, which then reduces food for herbivores and, in turn, for predators further up the food chain.",
    "explanation": "要写出“非生物→生物→食物链下游”的因果链。例一可用植物依赖阳光水土；例二可用干旱导致植物减少、草食动物再受影响。只列因素不写互动关系拿不到分。",
+   "explanation_en": "To write a causal chain of 'abiotic → biotic → food chain downstream', you can use examples like plants depending on sunlight, water and soil, or drought leading to reduced plants and affected herbivores, and just listing factors without explaining the relationships won't get you marks.",
    "source": "Study Guide · Lesson 2 · Response Guide（4 分题 PEEL 范例）",
    "marks": 4,
    "criteria": [
@@ -225,6 +237,7 @@
    "options": [],
    "answer": "Short-term impacts occur immediately, while long-term impacts develop gradually over time. Littering a natural area is a short-term impact because it pollutes waterways and harms wildlife straight away. Climate change is a long-term impact because it slowly raises temperatures and reduces biodiversity over many years, and it is much harder to reverse.",
    "explanation": "区别要落在“立即发生 vs 逐渐累积”和“是否容易逆转”。各举一例，再点出长期影响更难修复（栖息地可能永久破坏、食物链被打断）。",
+   "explanation_en": "The distinction should be made between 'immediate vs cumulative' and 'reversible vs irreversible', with examples of each, and noting that long-term impacts are harder to repair as habitats can be permanently damaged or food chains disrupted.",
    "source": "Study Guide · Lesson 3 · Response Guide（4 分题 PEEL 范例）",
    "marks": 4,
    "criteria": [
@@ -260,6 +273,7 @@
    "options": [],
    "answer": "Leave No Trace principles reduce the human impact of recreation so that natural areas stay healthy and can be enjoyed by future visitors. Disposing of waste properly reduces pollution and stops wildlife being harmed or attracted to human food. Travelling and camping on durable surfaces protects vegetation and reduces soil erosion caused by foot traffic. Respecting wildlife also matters, because feeding animals changes their behaviour, makes them dependent on humans and disrupts ecosystem balance.",
    "explanation": "材料要求至少点到两项原则并解释“如何保护生态系统”。可用的组合：妥善处理垃圾、走耐用地表、尊重野生动物、减少营火影响、提前计划与准备。只背原则名称不解释作用会失分。",
+   "explanation_en": "The material requires referencing at least two principles and explaining how to protect ecosystems, with available combinations including proper waste disposal, walking on durable surfaces, respecting wildlife, minimising campfire impacts, and planning and preparation, and just reciting principle names without explaining their roles will result in lost marks.",
    "source": "Study Guide · Lesson 5 Leave No Trace + Response Guide / Practice Questions（5 分题）",
    "marks": 3,
    "criteria": [
@@ -290,6 +304,7 @@
    "options": [],
    "answer": "Caring for Country supports ecosystems through practices such as cultural burning, which uses small, low-intensity controlled fires to reduce fuel loads, lower the risk of large bushfires, encourage plant regrowth and support biodiversity, and through seasonal resource use that takes only what is needed. These practices also support communities: healthy Country provides clean water, habitats and food, while continued connection to Country strengthens cultural identity and community wellbeing. Overall, this long-term custodial approach is more sustainable than treating land purely as a resource, although neither perspective is entirely right or wrong.",
    "explanation": "评价题要有“生态＋社区”两面，再加总体判断。要点：文化燃烧降低可燃物、促进再生；季节性取用体现可持续；健康的环境反过来提供水、食物与栖息地，并强化文化身份。最后要给出评价性结论（long-term care 更可持续）。",
+   "explanation_en": "When evaluating, consider both 'ecology + community' and provide an overall judgment, focusing on how cultural practices reduce flammable materials and promote regeneration, and how a healthy environment provides water, food, and habitat, reinforcing cultural identity, leading to a conclusion that long-term care is more sustainable.",
    "source": "Study Guide · Lesson 6 · Response Guide + Practice Questions（10 分题）",
    "marks": 4,
    "criteria": [

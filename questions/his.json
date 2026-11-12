@@ -19,6 +19,7 @@
    ],
    "answer": 2,
    "explanation": "单极＝只有一个占绝对优势的力量中心，没有同级对手。两极是冷战的美苏互衡，多极是多方均衡；「Power rests with whichever state acts first without consulting others」 描述的是单边主义的行事方式，不是权力结构。",
+   "explanation_en": "A unipolar system has only one dominant power centre with no peer rivals, whereas bipolarity refers to the Cold War's US-Soviet balance, and multipolarity refers to multiple balancing powers; 'Power rests with whichever state acts first without consulting others' describes unilateralism, not the power structure.",
    "source": "Term 4 · Yearly Assessment Notification — Section One（Unipolarity）"
   },
   {
@@ -35,6 +36,7 @@
    ],
    "answer": 0,
    "explanation": "multilateral 指多国共同参与、通常经国际机构协调的行动，关键词是「多国＋授权」。「One state acting alone without notifying any other government」 和 「One state threatening to act alone unless its allies fall into line」 是单边；「Two neighbouring states signing a border and trade agreement」 只有两国，属 bilateral，不是 multilateral。",
+   "explanation_en": "Multilateral refers to actions involving multiple countries, usually coordinated through international institutions, with the key phrase being 'multiple countries + authorisation'; 'One state acting alone without notifying any other government' and 'One state threatening to act alone unless its allies fall into line' are unilateral, while 'Two neighbouring states signing a border and trade agreement' is bilateral, not multilateral.",
    "source": "Term 4 · Yearly Assessment Notification — Section One（Multilateral）"
   },
   {
@@ -51,6 +53,7 @@
    ],
    "answer": 3,
    "explanation": "unilateralism 是一种「偏好／习惯」：明知盟友反对仍倾向自行行动。collective security 强调集体回应侵略，multilateralism 强调多国协调，都与题干相反。",
+   "explanation_en": "Unilateralism is a preference or habit where a country takes action alone despite knowing its allies oppose it, which is the opposite of collective security and multilateralism.",
    "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateralism）"
   },
   {
@@ -67,6 +70,7 @@
    ],
    "answer": 1,
    "explanation": "集体安全的核心是「一国受攻＝全体受攻」，成员共同回应（通常经联合国）。「Each state builds enough weapons to deter rivals without any allies」 是自行威慑，「A powerful state intervenes inside another to stop human rights abuses」 是人道干预，「A single state decides when and where military force will be used」 是单边决策。",
+   "explanation_en": "Collective security is based on the principle that an attack on one country is an attack on all, with members responding together, usually through the United Nations, whereas self-deterrence, humanitarian intervention, and unilateral decision-making are different concepts.",
    "source": "Term 4 · Yearly Assessment Notification — Section One（Collective Security）"
   },
   {
@@ -83,6 +87,7 @@
    ],
    "answer": 0,
    "explanation": "海湾战争回应的是「跨国侵略」这一对成员国的攻击，属集体安全的典型。其余三个的动因都是保护平民或推翻政权，属人道干预或先发制人，不是集体安全。",
+   "explanation_en": "The Gulf War was a classic example of collective security as it responded to cross-border aggression, whereas the other three examples were driven by protecting civilians or overthrowing a regime, which is humanitarian intervention or pre-emption, not collective security.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）"
   },
   {
@@ -99,6 +104,7 @@
    ],
    "answer": 3,
    "explanation": "先发制人把动武时点前移到「威胁可能成真」之前，不等待实际攻击发生。这正是 Bush Doctrine 与集体安全、人道干预的关键区别。",
+   "explanation_en": "Pre-emption involves taking military action before a threat materialises, which is a key difference between the Bush Doctrine and collective security or humanitarian intervention.",
    "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption）"
   },
   {
@@ -115,6 +121,7 @@
    ],
    "answer": 2,
    "explanation": "区分点在「威胁的时间性」：先发制人针对尚未发生的威胁，人道干预针对正在发生的大规模伤害。授权方式、参与国数量、目标类型都不是二者的分界。",
+   "explanation_en": "The key distinction lies in the timing of the threat: pre-emption targets threats that have not yet occurred, while humanitarian intervention responds to ongoing large-scale harm.",
    "source": "Term 4 · Yearly Assessment Notification — Section One（Pre-emption / Humanitarian Intervention）"
   },
   {
@@ -131,6 +138,7 @@
    ],
    "answer": 1,
    "explanation": "人道干预的三个要件：进入他国、未经该国同意、目的是制止大规模人道灾难。「Economic sanctions agreed by a regional trade or security organisation」 是制裁而非军事干预，「Defensive action taken after a direct attack on one's own soil」 是自卫。",
+   "explanation_en": "Humanitarian intervention has three requirements: entering another country, without their consent, and aiming to stop a large-scale humanitarian disaster, which is different from economic sanctions or self-defence.",
    "source": "Term 4 · Yearly Assessment Notification — Section One（Humanitarian Intervention）"
   },
   {
@@ -147,6 +155,7 @@
    ],
    "answer": 0,
    "explanation": "判准是「是否有广泛授权」：A 只带少数盟友、绕过安理会，属单边；B 参与联合国授权任务，属多边。注意 A 虽有盟友，但「小圈子＋无授权」仍被归为单边行动。",
+   "explanation_en": "The criterion for judgement is whether there is widespread authorisation: A is unilateral as it involves a small group of allies and bypasses the UN Security Council, while B is multilateral as it involves a UN- authorised mission.",
    "source": "Term 4 · Yearly Assessment Notification — Body 2（invasion of Iraq）"
   },
   {
@@ -163,6 +172,7 @@
    ],
    "answer": 3,
    "explanation": "unilateral 是形容词，描述「单方采取的一次行动」；unilateralism 是名词，指「倾向单方行动的主义／政策取向」。Section One 考 metalanguage，正是要辨清词性与层级。",
+   "explanation_en": "Unilateral refers to a single action taken by one party, while unilateralism refers to a policy or ideology that tends towards solo actions, and understanding this distinction is crucial for Section One.",
    "source": "Term 4 · Yearly Assessment Notification — Section One（Unilateral / Unilateralism）"
   },
   {
@@ -174,6 +184,7 @@
    "options": [],
    "answer": "The Gulf War (1991) and Somalia (1992–94). Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene.",
    "explanation": "Body 1 只需两个事件，但要形成「对照」而非并列：一个成功多边、一个暴露局限。选 Gulf War＋Somalia、或 Gulf War＋Kosovo 都可，关键是说明为何这两个能支撑主题句。",
+   "explanation_en": "Body 1 only needs two events, but they must be contrasting, not just listed: one successful multilateral example and one that exposes its limitations, such as the Gulf War and Somalia or the Gulf War and Kosovo.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1（possible events）",
    "marks": 2,
    "criteria": [
@@ -199,6 +210,7 @@
    "options": [],
    "answer": "The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.",
    "explanation": "多边主义的两个标志：联合国授权＋多国共同承担。答题要写出「谁授权、多少方参与、为何这算多边」，只写「很多国家参加」不够。",
+   "explanation_en": "Multilateralism has two key features: UN authorisation and multiple countries sharing the burden, so answers must explain who authorised, how many parties were involved, and why it counts as multilateral, rather than just stating many countries participated.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）",
    "marks": 2,
    "criteria": [
@@ -224,6 +236,7 @@
    "options": [],
    "answer": "The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression. Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention.",
    "explanation": "关键分界是「触发原因」：集体安全回应国家对国家的侵略，人道干预回应政府对自己人民的伤害。海湾战争是前者，1990 年代后期科索沃才是后者的争议案例。",
+   "explanation_en": "The key distinction is the trigger: collective security responds to state-on-state aggression, while humanitarian intervention responds to a government harming its own people, with the Gulf War being an example of the former and the late 1990s Kosovo crisis being a controversial example of the latter.",
    "source": "Term 4 · Yearly Assessment Notification — Section One + Body 1",
    "marks": 3,
    "criteria": [
@@ -254,6 +267,7 @@
    "options": [],
    "answer": "A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal. It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country.",
    "explanation": "索马里常被用作「干预容易、收尾困难」的反面教材：任务目标从送粮扩到战斗、伤亡引发国内压力、最后撤军。写清这条因果链才能拿满分。",
+   "explanation_en": "Somalia is often used as a case study of how intervention can be easy to start but difficult to end: the mission objective expanded from delivering food to combat, casualties led to domestic pressure, and ultimately withdrawal, so answers must clearly explain this causal chain to score full marks.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1（Somalia 1992-94）＋ 课程标准补充",
    "marks": 3,
    "criteria": [
@@ -284,6 +298,7 @@
    "options": [],
    "answer": "The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide. The world stood aside, so the decade's humanitarian language was not matched by action.",
    "explanation": "答「失败」要有两层：现场力量不足＋大国政治上不愿介入（连 genocide 一词都回避）。这正好与同期科索沃的积极干预形成对照。",
+   "explanation_en": "To answer 'failure' requires two aspects: insufficient on-the-ground power and a lack of willingness to intervene in global politics (even avoiding the term 'genocide'). This contrasts with the proactive intervention in Kosovo around the same time.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1（Rwanda 1994）＋ 课程标准补充",
    "marks": 3,
    "criteria": [
@@ -314,6 +329,7 @@
    "options": [],
    "answer": "The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate. It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance.",
    "explanation": "「灰色」＝动机正当但授权缺失：合法性与正当性分离。答题要同时写出两边，只说「救了人」或只说「违法」都拿不到高分。",
+   "explanation_en": "The term 'grey' means having a justified motive but lacking authorization: a separation of legitimacy and justification. To score high, you must discuss both sides, as simply stating 'saved people' or 'illegal' won't suffice.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1（Kosovo 1999）＋ 课程标准补充",
    "marks": 4,
    "criteria": [
@@ -349,6 +365,7 @@
    "options": [],
    "answer": "In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.",
    "explanation": "主题句必须含「时段＋论点」，不能只写「1990 年代有很多事件」。好的主题句还会预告张力（多边领导 vs 局限），为结尾 link 句留接口。",
+   "explanation_en": "A topic sentence must include 'time period + argument', rather than just 'many events in the 1990s'. A good topic sentence also foreshadows tension (multilateral leadership vs limitations) and leaves an interface for the link sentence.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1（topic sentence row）",
    "marks": 2,
    "criteria": [
@@ -374,6 +391,7 @@
    "options": [],
    "answer": "They shifted US priorities from managing the post-Cold War order to a global 'war on terror'. The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation.",
    "explanation": "答题锚点是「优先级转移」：从维持后冷战秩序转向反恐。要写出至少两个具体表现（阿富汗、监控、军费、先发制人），不能只写「变得更 aggressive」。",
+   "explanation_en": "The anchor for answering is 'priority shift': from maintaining the post-Cold War order to counter-terrorism. You must write about at least two specific manifestations (Afghanistan, surveillance, military spending, pre-emptive strikes), rather than just stating 'became more aggressive'.",
    "source": "Term 4 · Lesson 3.1 9/11 Attacks; Notification — Body 2（Impact of 9/11）",
    "marks": 3,
    "criteria": [
@@ -404,6 +422,7 @@
    "options": [],
    "answer": "Pre-emption — striking first against states or groups judged to pose a future threat; a willingness to act unilaterally when multilateral agreement could not be reached; regime change and the promotion of democracy; and the claim that American security required action beyond UN authorisation.",
    "explanation": "四个特征要能分别举例对应：先发制人（伊拉克）、单边（绕开安理会）、政权更替（推翻萨达姆）、推广民主。只背名字不解释会失分。",
+   "explanation_en": "The four characteristics must be illustrated with corresponding examples: pre-emptive strikes (Iraq), unilateralism (bypassing the UN Security Council), regime change (overthrowing Saddam), and promoting democracy. Simply memorizing names without explanation will result in lost points.",
    "source": "Term 4 · Lesson 3.2 The Bush Doctrine; Notification — Body 2",
    "marks": 3,
    "criteria": [
@@ -434,6 +453,7 @@
    "options": [],
    "answer": "The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself. Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral.",
    "explanation": "判准不是「有没有盟友」，而是「有没有广泛授权与共同承担」。美国确有盟友，但小圈子＋无安理会授权，因此在教材分类中被归为单边。",
+   "explanation_en": "The criterion is not 'having allies', but 'having broad authorization and shared responsibility'. Although the US had allies, its small circle and lack of UN Security Council authorization mean it is classified as unilateral in the textbook.",
    "source": "Term 4 · Lesson 4.2 Iraq; Notification — Body 2（invasion of Iraq）",
    "marks": 3,
    "criteria": [
@@ -464,6 +484,7 @@
    "options": [],
    "answer": "In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression. In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack.",
    "explanation": "对照要落在三个可比的维度：授权（有／无）、联盟规模与分担（广泛／小圈子）、目标（恢复现状／改变政权）。三点对齐，分数就稳。",
+   "explanation_en": "Contrasts must be made in three comparable dimensions: authorization (present/absent), alliance scale and burden-sharing (broad/narrow), and goals (restoring the status quo/changing the regime). Aligning these three points will ensure a stable score.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1（Gulf War）＋ Body 2（Iraq）",
    "marks": 4,
    "criteria": [
@@ -499,6 +520,7 @@
    "options": [],
    "answer": "China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence. As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific.",
    "explanation": "单极受到挑战＝出现接近同级的对手。答题要给经济（WTO、体量）＋军事＋制度性倡议三类证据，只说「中国变强了」太空泛。",
+   "explanation_en": "A unipolar system being challenged means the emergence of near-peer competitors. Answers must provide economic (WTO, scale), military, and institutional initiative evidence, as simply stating 'China has grown stronger' is too vague.",
    "source": "Term 4 · Yearly Assessment Notification — Body 3（Rise of China）＋ 课程标准补充",
    "marks": 3,
    "criteria": [
@@ -529,6 +551,7 @@
    "options": [],
    "answer": "Soft power is influence gained through attraction — culture, values and institutions — rather than through coercion or payment. The Iraq War and the abuse of prisoners at Abu Ghraib damaged America's international reputation in the 2000s, making other states less willing to cooperate.",
    "explanation": "软实力＝吸引力（文化、价值、制度），与以军力或金钱施压的硬实力相对。举 2003 年后形象受损的例子最直接。",
+   "explanation_en": "Soft power refers to attractiveness (culture, values, institutions), as opposed to hard power, which involves coercion through military force or money. Providing examples of a damaged image after 2003 is the most direct approach.",
    "source": "Term 4 · Yearly Assessment Notification — Body 3（Decline in US soft power）＋ 课程标准补充",
    "marks": 2,
    "criteria": [
@@ -554,6 +577,7 @@
    "options": [],
    "answer": "The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade. The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation.",
    "explanation": "保护主义＝用关税与壁垒保护本国产业；去全球化＝削弱贸易与投资的一体化。答题要给具体政策（退出 TPP、对华关税），否则只是复述定义。",
+   "explanation_en": "Protectionism refers to using tariffs and barriers to protect domestic industries, while de-globalization means weakening trade and investment integration. Answers must provide specific policies (withdrawing from TPP, tariffs on China), otherwise, they are just reiterating definitions.",
    "source": "Term 4 · Yearly Assessment Notification — Body 3（protectionism/deglobalisation）＋ 课程标准补充",
    "marks": 2,
    "criteria": [
@@ -579,6 +603,7 @@
    "options": [],
    "answer": "In 1991 the United States was the only superpower, with no economic or military peer. By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant.",
    "explanation": "多极化的证据是「权力分散」：经济体量接近、区域大国自主性上升、制度性替代出现。注意区分「军事仍最强」与「总体权力不再独大」。",
+   "explanation_en": "Evidence of multipolarization is 'power diffusion': economic scale approaching parity, rising autonomy of regional powers, and emerging institutional alternatives. Be careful to distinguish between 'military strength remaining dominant' and 'overall power no longer being singularly dominant'.",
    "source": "Term 4 · Yearly Assessment Notification — Body 3 ＋ 课程标准补充",
    "marks": 3,
    "criteria": [
@@ -609,6 +634,7 @@
    "options": [],
    "answer": "Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine. The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force.",
    "explanation": "Body 2 的写法是「触发→理论→实践」三步。link 句不能只说「所以美国变了」，要指明「相对 Body 1 变了什么」。",
+   "explanation_en": "Body 2 should be written in a 'trigger → theory → practice' three-step approach. The link sentence cannot simply state 'so the US changed', but must specify 'what changed relative to Body 1'.",
    "source": "Term 4 · Yearly Assessment Notification — Body 2（events to include）",
    "marks": 3,
    "criteria": [
@@ -639,6 +665,7 @@
    "options": [],
    "answer": "Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.",
    "explanation": "论点句要能覆盖三段而不只是第一段：多边领导 → 单边先发 → 应对衰落。一句话讲清「变化方向」，就是 thesis。",
+   "explanation_en": "The topic sentence should cover all three paragraphs, not just the first one: multi-directional leadership → unilateral initiative → responding to decline, and clearly state the 'direction of change' in one sentence, which is the thesis.",
    "source": "Term 4 · Yearly Assessment Notification — Section Two（thesis statement row）",
    "marks": 3,
    "criteria": [
@@ -669,6 +696,7 @@
    "options": [],
    "answer": "Body 1 establishes the multilateral, collective-security phase of the 1990s. Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation. Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment. Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline.",
    "explanation": "论述题高分靠「一条线」而不是三段独立：每段是同一变化过程中的一个阶段。答题要写出段与段之间的转折关系，而非各段内容摘要。",
+   "explanation_en": "High-scoring essays rely on a single thread throughout, rather than three independent paragraphs, with each paragraph being a stage in the same process of change, and the relationship between paragraphs should be explained, not just a summary of each paragraph's content.",
    "source": "Term 4 · Yearly Assessment Notification — Body 1 / 2 / 3",
    "marks": 4,
    "criteria": [

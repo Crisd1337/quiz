@@ -19,6 +19,7 @@
    ],
    "answer": 1,
    "explanation": "ATAR 资格要求至少 10 个 unit 的 ATAR 课程，其中还要含 8 个 unit 的 Category A 和 2 个 unit 英语。少一个 unit 就失去 ATAR 资格。",
+   "explanation_en": "To be eligible for an ATAR, you need to complete at least 10 units of ATAR courses, including 8 units from Category A and 2 units of English; missing one unit will make you ineligible for an ATAR.",
    "source": "top-tips-for-choosing-hsc-courses.pdf（ATAR eligibility）"
   },
   {
@@ -35,6 +36,7 @@
    ],
    "answer": 0,
    "explanation": "英语是硬性要求，必须至少 2 个 unit。数学不是人人必修，Category B 是「最多只能算 2 个 unit」而不是必须选。",
+   "explanation_en": "English is a compulsory subject with a minimum of 2 units, while maths is not mandatory and Category B courses can only count for a maximum of 2 units.",
    "source": "top-tips-for-choosing-hsc-courses.pdf（ATAR eligibility）"
   },
   {
@@ -51,6 +53,7 @@
    ],
    "answer": 0,
    "explanation": "SBAT 是「校内学徒/实习生」路径，学生一边完成中学学业，一边做带薪的行业培训。它和大学提前录取、奖学金是不同概念。",
+   "explanation_en": "SBAT is an 'in-school traineeship/internship' pathway where students complete their secondary education while undertaking paid industry training, distinct from early university offers and scholarships.",
    "source": "Careers Education 2022（CAREER RESOURCES：SBAT in NSW）"
   },
   {
@@ -67,6 +70,7 @@
    ],
    "answer": 0,
    "explanation": "Category B 最多只能算 2 个 unit（例如某些 VET 课程）。剩余 unit 必须来自 Category A，这是最容易被忽略的细则。",
+   "explanation_en": "Category B courses can only count for a maximum of 2 units, and the remaining units must come from Category A, which is often overlooked.",
    "source": "top-tips-for-choosing-hsc-courses.pdf（ATAR eligibility）"
   },
   {
@@ -83,6 +87,7 @@
    ],
    "answer": 1,
    "explanation": "本科通常 3–5 年全日制，可在其中选择主修方向（majors）。研究生证书、硕士、博士是本科之后的层级，时间另算。",
+   "explanation_en": "Undergraduate degrees typically take 3-5 years of full-time study and allow you to choose a major; postgraduate certificates, masters, and PhDs are subsequent levels that take additional time.",
    "source": "Week 5 - Levels of education（University Entry）"
   },
   {
@@ -99,6 +104,7 @@
    ],
    "answer": 0,
    "explanation": "Certificate III 属于 VET 层级，通常由 TAFE 或政府认可的私立学院开设。Bachelor、Master、PhD 都是高等教育（university）层级。",
+   "explanation_en": "Certificate III is a VET qualification usually offered by TAFE or government-recognised private colleges, whereas Bachelor, Master, and PhD are university-level qualifications.",
    "source": "Week 5 - Levels of education（VET / TAFE）"
   },
   {
@@ -115,6 +121,7 @@
    ],
    "answer": 1,
    "explanation": "课程强调 resume 要简洁清晰，把长段落留给面试去讲。另外简历不是一辈子一份，会随经历不断更新。奖项可以写，但要能对上你用的技能。",
+   "explanation_en": "The course emphasises the importance of a concise and clear resume, with long paragraphs left for interviews, and notes that resumes are not static and will be updated as you gain experience.",
    "source": "Building a resume（What is important on a resume?）"
   },
   {
@@ -131,6 +138,7 @@
    ],
    "answer": 1,
    "explanation": "课程给的区间是 250–400 词，重点放在「为什么应聘、你能提供什么、如何跟进」。写成一长篇文章反而会失分。",
+   "explanation_en": "The course provides a word limit of 250-400 words, focusing on 'why you're applying, what you can offer, and how you'll follow up', warning against writing a long essay.",
    "source": "Writing a cover letter（The Cover Letter）"
   },
   {
@@ -147,6 +155,7 @@
    ],
    "answer": 1,
    "explanation": "prospecting letter 是「主动投递」性质，询问对方是否有未公开的空缺，因此更要把研究做得充分、抓住对方注意。回应广告的那类叫 application letter。",
+   "explanation_en": "A prospecting letter is a 'cold call' to inquire about unadvertised vacancies, requiring thorough research to grab the reader's attention, distinct from application letters responding to job ads.",
    "source": "Writing a cover letter（Prospecting letter）"
   },
   {
@@ -163,6 +172,7 @@
    ],
    "answer": 0,
    "explanation": "行动方案四个部分：我的档案、目标与计划、进展、复盘。它的作用是看清自己现在在哪、还缺哪些经验。",
+   "explanation_en": "The action plan consists of four parts: my profile, goals and plans, progress, and reflection, helping you identify your current position and the experiences you lack.",
    "source": "Career action plan（There are 4 sections to the action plan）"
   },
   {
@@ -179,6 +189,7 @@
    ],
    "answer": 1,
    "explanation": "课程提示要做公司调研：了解其 motto/价值观，再把你的技能与之一一对应，这会让申请显得有针对性。完全不查资料是常见失分点。",
+   "explanation_en": "The course suggests researching companies: understanding their motto and values, then matching your skills to them, making your application more targeted, as not doing so is a common mistake.",
    "source": "Week Ten- Submitting Your Resume & Cover Letter（NOTE：do your research on the company）"
   },
   {
@@ -195,6 +206,7 @@
    ],
    "answer": 1,
    "explanation": "多元智能强调「不同的人有不同的聪明方式」，用来拓宽职业方向的理解。它反对用单一分数判定能力。",
+   "explanation_en": "The theory of multiple intelligences highlights that people have different types of intelligence, broadening career direction understanding, and argues against judging ability based on a single score.",
    "source": "Week Two- Multiple Intelligences: Different Ways to be Smart"
   },
   {
@@ -211,6 +223,7 @@
    ],
    "answer": 0,
    "explanation": "USI 是全国统一的学生标识，用来串起你参加过的培训与取得的资格。它和 ATAR、TFN 都不是一回事。",
+   "explanation_en": "USI is a national student identifier that links your training and qualifications, distinct from ATAR and TFN.",
    "source": "Week Eight- Creating a USI, TFN & MyGov account"
   },
   {
@@ -227,6 +240,7 @@
    ],
    "answer": 0,
    "explanation": "TFN 是税务局编号，没有它雇主无法按正确税率扣税，你也会被按最高税率预扣。工资标准由裁定或合同决定，不是 TFN 决定的。",
+   "explanation_en": "TFN is a tax file number required for employers to deduct taxes at the correct rate; without it, you'll be taxed at the highest rate, and your pay rate is determined by awards or contracts, not TFN.",
    "source": "Week Eight- Creating a USI, TFN & MyGov account"
   },
   {
@@ -243,6 +257,7 @@
    ],
    "answer": 0,
    "explanation": "super 是雇主在工资之外额外缴入退休金账户的款项，长期投资到你退休。它不属于当期可花的工资，也不是购物税。",
+   "explanation_en": "Super is an additional amount paid by employers into your retirement account, a long-term investment for your retirement, not part of your take-home pay and not a shopping tax.",
    "source": "Week Five- Tax & Super"
   },
   {
@@ -259,6 +274,7 @@
    ],
    "answer": 0,
    "explanation": "课程的核心就是「知道自己的权利与责任」，包括最低工资、安全环境和休息时间。casual 身份并不免除安全义务，也不能随意克扣工资。",
+   "explanation_en": "The course core is 'knowing your rights and responsibilities', including minimum wage, safe environment, and rest time, noting that casual workers are not exempt from safety obligations and cannot have their pay arbitrarily deducted.",
    "source": "Week Three- Industrial Relations & Workplaces（Fair Work workplace basics）"
   },
   {
@@ -270,6 +286,7 @@
    "options": [],
    "answer": "A course's scaling depends on the average academic performance of all the students taking that course in that year, so it can change from year to year. For most courses your scaled mark is lower than your HSC mark, so the reliable strategy is to choose courses you are good at and interested in and do your best in them, rather than chasing rumours about scaling.",
    "explanation": "关键点是「scaling 由当年该科全体考生的整体表现决定」，不是课程标签决定。因此选自己擅长且需要的科目才稳。答题时别只写「不要听谣言」，要说明机制。",
+   "explanation_en": "The key point is that 'scaling is determined by the overall performance of all students in that subject that year', not the course label, so choose subjects you're good at and need, and explain the mechanism in your answer.",
    "source": "top-tips-for-choosing-hsc-courses.pdf（scaling myths 表格）",
    "marks": 3,
    "criteria": [
@@ -300,6 +317,7 @@
    "options": [],
    "answer": "I would state where I saw the advertisement and the exact position title, then respond directly to the qualifications listed by giving evidence from my own experience, showing how my skills are transferable to that role. After sending it I should follow up within the time frame indicated, preferably with a phone call or, if calls are blocked, an email, and make sure all my contact details and a normal email address are included.",
    "explanation": "两问都要答：一是「逐条对应广告里的任职要求并给证据」，二是「在说明的时限内跟进」。只写「我很想申请」是拿不到分的。",
+   "explanation_en": "Both questions must be answered: 'address each requirement in the job ad with evidence' and 'follow up within the specified timeframe', as simply stating 'I want to apply' will not score points.",
    "source": "Writing a cover letter（What You Have To Offer / How You Will Follow Up）",
    "marks": 4,
    "criteria": [
@@ -335,6 +353,7 @@
    "options": [],
    "answer": "I would list every exam date and subject first, then work backwards to allocate study blocks, putting the subjects with the earliest or hardest exams first and leaving gaps for rest and other commitments. Two strategies that improve retention are spaced practice (revisiting each topic several times over the weeks rather than cramming once) and active recall (testing yourself or writing study notes from memory instead of only re-reading).",
    "explanation": "时间表要「由考试日期倒推、留出缓冲」，而不是把时间平均分。记忆策略答「分散复习 + 主动回忆」最稳，只写「多看书」不算策略。",
+   "explanation_en": "Timetables should be 'backwards planned from exam dates with buffers', rather than evenly spaced, and the memory strategy should be 'spaced review + active recall', as just 'reading more' is not a strategy.",
    "source": "Week One- Term 4 Goals & Creating a Yearly Exam Study Timetable；Week Two- Study Skills & Memory Retention（记忆策略为课程标准知识）",
    "marks": 4,
    "criteria": [
@@ -370,6 +389,7 @@
    "options": [],
    "answer": "Work experience lets you see what the tasks, responsibilities and conditions of a job are really like, and it builds contacts and evidence of employability that you can use in future applications. Reflecting on it may show that the industry suits your strengths, or that the daily work does not match your expectations, which could lead you to change your subject choices or consider a different pathway.",
    "explanation": "得分点在「真实了解工作内容 + 积累人脉/履历」，然后是「反思可能让你确认或修正方向」。只写「很有意思」没有反思，拿不到高分。",
+   "explanation_en": "Scoring points come from 'genuinely understanding work content + building networks/experience' and then 'reflecting on possible direction confirmation or correction', as just stating 'it's interesting' without reflection will not score highly.",
    "source": "Week Nine- Work Experience；Week Ten- Reflecting on Work Experience（reflection survey）",
    "marks": 4,
    "criteria": [

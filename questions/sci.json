@@ -18,6 +18,7 @@
     "Wing length and shape"
    ],
    "explanation": "13 种雀鸟体型羽色相近，但喙的大小和形状不同，对应不同岛屿的不同食物来源，是自然选择的经典证据。",
+   "explanation_en": "There are 13 species of finches with similar body size and plumage, but different beak sizes and shapes, corresponding to different food sources on different islands, which is classic evidence of natural selection.",
    "source": "Year 10 - Evolution.pptx（Galapagos finches）",
    "answer": 1,
    "zh": {
@@ -43,6 +44,7 @@
     "Giraffe necks grew longer because the climate changed."
    ],
    "explanation": "拉马克主张「用进废退＋获得性性状可遗传」：伸长脖子并把这一改变传给后代。「Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring.」 才是达尔文自然选择的解释。",
+   "explanation_en": "Lamarck advocated for 'use and disuse + inheritance of acquired traits': stretching one's neck and passing the change on to offspring, whereas 'Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring' is Darwin's explanation of natural selection.",
    "source": "Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）",
    "answer": 1,
    "zh": {
@@ -68,6 +70,7 @@
     "Head size is not heritable, so this change cannot be evolution by natural selection."
    ],
    "explanation": "蔗蟾是选择压力：头大的蛇吞下大蟾、摄入更多毒素而死亡（被淘汰），头小或不愿吃蟾的个体存活繁殖。「Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring.」 是拉马克式错误说法。",
+   "explanation_en": "The toad is a selective pressure: snakes with larger heads that swallow larger toads and ingest more toxins die (are eliminated), while individuals with smaller heads or that don't eat toads survive and reproduce, but 'Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring' is a incorrect Lamarckian statement.",
    "source": "Term 4 - Evolution - Week 3 Answers（Cane toads / red-bellied black snake）",
    "answer": 2,
    "zh": {
@@ -89,6 +92,7 @@
    "options": [],
    "answer": "• A selection pressure is an external agent that affects an organism's ability to survive and reproduce in a given environment.\n• Examples: predators, climate and temperature, food and water supply, disease, or competition for mates and resources.",
    "explanation": "选择压力＝影响生物能否在特定环境存活繁殖的外部因素，如捕食者、气候、食物水源、疾病、竞争。",
+   "explanation_en": "Selective pressure refers to external factors that affect an organism's ability to survive and reproduce in a specific environment, such as predators, climate, food and water, disease, and competition.",
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part A · Selection pressures / B1）",
    "zh": {
     "stem": "定义「选择压力」，并给出两个选择压力的例子。（2 分）"
@@ -117,6 +121,7 @@
    "options": [],
    "answer": "• 1 Variation in a population — individuals differ in their inherited traits.\n• 2 Selection pressure — an external agent such as a predator or a change in climate acts on the population.\n• 3 Survival of the fittest — individuals whose traits suit the environment are more likely to survive.\n• 4 Reproduction and inheritance — survivors breed and pass the helpful alleles on to their offspring.\n• 5 Increased prevalence in the gene pool — over many generations the helpful trait becomes more common in the population.",
    "explanation": "顺序：变异→选择压力→适者生存→繁殖与遗传→基因库中比例上升。第 3 步的含义是「性状更适合环境的个体更容易存活」。",
+   "explanation_en": "The order is: variation → selective pressure → survival of the fittest → reproduction and inheritance → increase in the gene pool, where the third step means 'individuals with traits more suited to the environment are more likely to survive'.",
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B2）",
    "zh": {
     "stem": "下列自然选择的步骤顺序被打乱：繁殖与遗传；在基因库中比例上升；适者生存；变异……请把它们排成正确顺序。（分值见题）"
@@ -160,6 +165,7 @@
    "options": [],
    "answer": "• Mutations — random changes in the DNA (genes or chromosomes) that are inherited and create new alleles; sexual reproduction also shuffles existing alleles into new combinations.",
    "explanation": "变异的根本来源是基因突变（产生新等位基因），有性生殖再把等位基因重新组合。",
+   "explanation_en": "The fundamental source of variation is genetic mutation (producing new alleles), and sexual reproduction recombines these alleles.",
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part B3）+ Year 10 - Evolution.pptx（Mutations）",
    "zh": {
     "stem": "种群中的变异最初来自哪里？（1 分）"
@@ -183,6 +189,7 @@
    "options": [],
    "answer": "• Observation: individuals in a species vary, and much of that variation is heritable.\n• Observation: organisms produce far more offspring than can survive, while resources are limited.\n• Inference: there is a struggle for existence, and the individuals best suited to their environment survive and reproduce.\n• Over time populations adapt to their environment, and this can lead to new species.",
    "explanation": "达尔文的观察：个体有可遗传的变异；后代数量超过资源能承载的量。推论：存在生存斗争，最适应环境的个体存活繁殖，种群逐渐适应环境甚至形成新种。",
+   "explanation_en": "Darwin's observations: individuals have heritable variations; the number of offspring exceeds the resources available, leading to the conclusion that there is a struggle for survival, and the most adapted individuals survive and reproduce, with the population gradually adapting to the environment or even forming new species.",
    "source": "Year 10 - Evolution.pptx（The Theory of Evolution）",
    "zh": {
     "stem": "达尔文提出了一系列观察并据此作出推论。概述其中两项观察以及由它们得出的推论。（4 分）"
@@ -221,6 +228,7 @@
    "options": [],
    "answer": "• Lamarck proposed use and disuse plus the inheritance of acquired characteristics: an organism changes during its life by using a feature more, then passes that change to its offspring (e.g. a giraffe stretching its neck).\n• Darwin proposed natural selection: variation already exists in the population, and individuals with inherited traits suited to the environment survive and reproduce more, so those traits become more common.\n• Lamarck's mechanism has no role for genes, and acquired changes are not inherited.",
    "explanation": "拉马克靠「用进废退＋获得性性状遗传」，达尔文靠种群中已有的变异＋自然选择。关键差别：只有可遗传的变异才能传递给下一代。",
+   "explanation_en": "Lamarck relied on 'use and disuse + inheritance of acquired traits', while Darwin relied on existing variations in the population + natural selection, with the key difference being that only heritable variations can be passed on to the next generation.",
    "source": "Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）+ Year 10 - Evolution.pptx",
    "zh": {
     "stem": "说明拉马克对进化的解释与达尔文有何不同。（3 分）"
@@ -254,6 +262,7 @@
    "options": [],
    "answer": "• Soot pollution killed the lichens and blackened the tree trunks.\n• The pale peppered form then stood out against the dark bark and was eaten by birds, so it was selected against.\n• The dark melanic form was better camouflaged and survived to breed, passing its alleles to the next generation.\n• Over many generations the dark form became more common, i.e. the population evolved as the environment changed.",
    "explanation": "煤烟把树干熏黑→浅色蛾失去保护被鸟捕食→黑色型隐蔽存活并繁殖→多代后比例上升。这是自然选择方向随环境改变的例子。",
+   "explanation_en": "The soot darkened the tree trunks, causing light-coloured moths to lose their protection and be eaten by birds, while dark-coloured moths survived and reproduced, increasing their proportion over generations - an example of how natural selection changes direction with the environment.",
    "source": "Term 4 - Evolution - Week 2（Case Study: Peppered Moth）",
    "zh": {
     "stem": "用自然选择解释：为什么 1800 年代工业城镇中桦尺蛾的深色（黑化）型变得常见。（4 分）"
@@ -292,6 +301,7 @@
    "options": [],
    "answer": "• Comparative anatomy (e.g. the same bone arrangement in the forelimbs of vertebrates — homologous structures).\n• Comparative embryology (closely related species have similar embryos at early stages).\n• Biochemical / DNA evidence (the closer the DNA base sequence of two species, the more closely related they are).\n• Vestigial structures (structures that once had a function but are now functionless) also indicate common ancestry.",
    "explanation": "现存生物的证据包括比较解剖学（同源结构）、比较胚胎学、生化/DNA 证据，以及痕迹器官；它们都指向共同祖先。",
+   "explanation_en": "Evidence for existing organisms includes comparative anatomy, comparative embryology, biochemical and DNA evidence, and vestigial organs, all of which point to a common ancestor.",
    "source": "Year 10 - Evolution.pptx（Evidence for Evolution – Living Species）",
    "zh": {
     "stem": "举出三种来自现存物种、支持进化论的证据，并说明其中一种证据说明了什么。（3 分）"
@@ -325,6 +335,7 @@
    "options": [],
    "answer": "• Relative dating uses the order of the rock layers: lower layers were laid down first, so fossils in lower layers are older — it gives the order of age, not an actual age.\n• Absolute dating measures how much radioactive carbon is left in a sample to calculate when the organism died.\n• Problem with relative dating: plate movement, folding or faulting can overturn or shift layers, so the layer order no longer shows the true sequence of ages.",
    "explanation": "相对测年只看岩层上下顺序（只给先后，不给具体年代），绝对测年靠放射性碳剩余量算出死亡年代。相对测年的问题是板块运动、褶皱、断层会让岩层翻转错位。",
+   "explanation_en": "Relative dating looks at the order of rock layers, providing only a sequence, not a specific age, while absolute dating uses the amount of radioactive carbon remaining to calculate the age of death; however, relative dating has issues with plate movement, folding, and faulting causing rock layers to become inverted.",
    "source": "Year 10 - Evolution.pptx（Techniques used to date fossils）",
    "zh": {
     "stem": "描述化石的相对测年与绝对测年的区别，并指出相对测年的一个问题。（3 分）"
@@ -358,6 +369,7 @@
    "options": [],
    "answer": "• It marks the boundary between the fauna of Asia (for example tigers and elephants, which are placental mammals) and the fauna of Australia (marsupials and monotremes).\n• It runs through Bali and Borneo, north through Lombok and Sulawesi, then east of the Philippines.\n• It is approximately the collision zone between the Asian and Australian continental plates, so the two regions were isolated from each other and their species evolved separately.",
    "explanation": "华莱士线是亚洲动物区系（胎盘哺乳类）与澳洲动物区系（有袋类/单孔类）的分界，大致对应亚欧板块与澳洲板块的碰撞带——地理隔离导致两边独立演化。",
+   "explanation_en": "The Wallace Line is the boundary between the Asian animal fauna, which includes placental mammals, and the Australian animal fauna, which includes marsupials and monotremes, roughly corresponding to the collision zone between the Eurasian and Australian plates - geographic isolation led to independent evolution on both sides.",
    "source": "Year 10 - Evolution.pptx（Wallace's Line）",
    "zh": {
     "stem": "华莱士线说明了什么？最可能的解释是什么？（3 分）"
@@ -391,6 +403,7 @@
    "options": [],
    "answer": "• Miller heated water and a mixture of gases representing the early ocean and atmosphere, and passed electric sparks through them to simulate lightning.\n• After a week he found a range of amino acids, the building blocks of proteins.\n• It showed that organic molecules can form spontaneously from inorganic ingredients, but it does not prove how life actually began (and the early atmosphere may not have had the composition he assumed).",
    "explanation": "米勒用电火花模拟闪电，在模拟原始海洋与大气的混合气体中得到多种氨基酸——说明无机物可以自发形成有机分子；但这不能证明生命如何起源。",
+   "explanation_en": "Miller used electric sparks to simulate lightning and produced various amino acids in a simulated mixture of primitive ocean and atmosphere, showing that inorganic substances can spontaneously form organic molecules, but this does not prove how life originated.",
    "source": "Year 10 - Evolution.pptx（Urey-Miller experiment）",
    "zh": {
     "stem": "描述米勒–尤里实验证明了什么，并指出该实验的一个局限。（3 分）"
@@ -424,6 +437,7 @@
    "options": [],
    "answer": "• Variation: the population already contained inherited variation in colour — both light and dark brown lizards.\n• Selection pressure: the predatory bird, which hunts visually during the day.\n• Survival of the fittest: light lizards are camouflaged against the sand and are less likely to be seen and eaten, while dark lizards stand out and are removed.\n• Reproduction and inheritance: the surviving light lizards breed and pass the light-colour alleles to their offspring, so over generations light lizards become more common in the gene pool.",
    "explanation": "按五步走：原有变异（浅/深）→选择压力（白天靠视觉捕食的鸟）→浅色更隐蔽而存活、深色被吃→浅色繁殖并遗传→多代后浅色比例上升。",
+   "explanation_en": "Following the five steps: pre-existing variation, selection pressure, survival and reproduction of the fittest, inheritance, and increased proportion over generations - for example, light-coloured moths being more concealed and surviving to reproduce.",
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 1 / C1）",
    "zh": {
     "stem": "【材料 1 · 沙漠蜥蜴】某沙漠地区的蜥蜴肤色有浅棕与深棕两种。在捕食性鸟类出现之前……（按要求作答）"
@@ -462,6 +476,7 @@
    "options": [],
    "answer": "• Variation: the population contains inherited variation in colour, from bright to dull.\n• The selection pressure is different in each area — predation in one, mate choice in the other.\n• In predator-rich water the dull fish are camouflaged and survive to breed, so dull alleles are selected for and increase.\n• In predator-free water the bright males attract more mates and leave more offspring, so bright alleles are selected for and increase.\n• Different selection pressures push the same species in opposite directions, so the dominant form differs between the two areas.",
    "explanation": "同一物种在两个区域面对不同选择压力：有捕食者时「隐蔽」被选择，无捕食者时「吸引配偶」被选择，方向相反，所以优势型不同。",
+   "explanation_en": "The same species in two regions face different selection pressures: 'concealment' is selected for when there are predators, while 'attracting a mate' is selected for when there are no predators, resulting in opposite directions and different advantageous types.",
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 3 / C3）",
    "zh": {
     "stem": "【材料 3 · 孔雀鱼】某河流中的孔雀鱼体色从鲜艳到暗淡不等。在有较多捕食者的水域，暗淡的个体更不易被发现……（按要求作答）"
@@ -505,6 +520,7 @@
    "options": [],
    "answer": "• The ability to keep producing lactase is an inherited mutation, so there is heritable variation in the trait.\n• In populations with a long history of dairying, adults who could digest milk had an extra reliable food source, especially when other food was scarce.\n• Those individuals were more likely to survive and reproduce, so they passed the lactase-persistence allele to their offspring.\n• Over many generations the allele became common, so lactose intolerance is now rare in those populations (about 5%).\n• In populations without dairy herding, digesting milk gave no survival advantage, so the mutation was not selected for and lactose intolerance stayed common (about 97%).\n• This is natural selection acting on existing heritable variation — not the inheritance of a trait acquired during life.",
    "explanation": "有乳制品饲养史的人群中，成年后能消化乳糖＝多一个可靠食物来源→更易存活繁殖→乳糖酶持续表达的等位基因频率升高；无畜牧传统的人群没有这个选择优势，所以乳糖不耐仍占多数。",
+   "explanation_en": "In populations with a history of dairy farming, the ability to digest lactose into adulthood equals an additional reliable food source, making it easier to survive and reproduce, thus increasing the frequency of the lactase persistence allele; in populations without a tradition of animal husbandry, there is no such selective advantage, so lactose intolerance remains prevalent.",
    "source": "Year10_Evolution_Worksheet_Student（1）.docx（Part D · Apply your knowledge / D1）",
    "zh": {
     "stem": "【综合】乳糖是牛奶中的糖，乳糖酶是分解它的酶。多数哺乳动物在幼年后乳糖酶产量下降，从而出现乳糖不耐受……（按要求作答）"
@@ -557,6 +573,7 @@
     "Calculations, Units, Title, Line, Average, Summary"
    ],
    "explanation": "CUTLAS＝Crosses（用叉画点）、Units（两轴带单位）、Title（含两个变量）、Line（平滑趋势线，不是连点）、Axes（标注且自变量在 x 轴）、Scale（占满约 80%）。",
+   "explanation_en": "A CUTLAS graph includes Crosses, Units, Title, Line, Axes, and Scale, making up about 80% of the graph.",
    "source": "Stage 5 Graphing-1.docx（CUTLAS checklist）",
    "answer": 1,
    "zh": {
@@ -582,6 +599,7 @@
     "The temperature of the room"
    ],
    "explanation": "自变量是实验者主动改变的（导线长度），因变量是被测量的结果（电阻），其余保持不变的是控制变量。",
+   "explanation_en": "The independent variable is the factor deliberately changed by the experimenter, the dependent variable is the measured result, and the controlled variables are the factors kept constant.",
    "source": "Identifying Variables.docx（独立 / 依赖 / 控制变量定义）",
    "answer": 0,
    "zh": {
@@ -607,6 +625,7 @@
     "They are both invalid and unreliable."
    ],
    "explanation": "重复多次结果一致＝可靠（reliable）；温度计恒定偏高属于系统误差，因此不准确（accurate 指接近真值）。可靠不等于准确。",
+   "explanation_en": "Results that are consistent when repeated are reliable, but accuracy refers to how close a measurement is to the true value - for example, a thermometer with a constant high bias is unreliable and inaccurate; reliability does not equal accuracy.",
    "source": "Half Yearly Revision.pdf（Reliability / Accuracy / systematic error）",
    "answer": 0,
    "zh": {
@@ -628,6 +647,7 @@
    "options": [],
    "answer": "• Independent variable: the surface area (particle size) of the calcium carbonate.\n• Dependent variable: the rate of the reaction, e.g. the volume of gas collected per minute.\n• Controlled variables (any two): the concentration and volume of hydrochloric acid, the mass of calcium carbonate used, the temperature, or the same beaker.",
    "explanation": "自变量＝碳酸钙表面积；因变量＝反应速率（如每分钟气体体积）；控制变量＝酸浓度与体积、碳酸钙质量、温度等。",
+   "explanation_en": "The independent variable is the surface area of calcium carbonate, the dependent variable is the reaction rate, and the controlled variables include acid concentration and volume, calcium carbonate mass, and temperature.",
    "source": "Identifying Variables.docx + Term 3 Reactive Chemistry Week 7（surface area investigation）",
    "zh": {
     "stem": "某学生研究碳酸钙的表面积是否影响它与盐酸反应的速率。请指出自变量、因变量和至少两个控制变量。"
@@ -661,6 +681,7 @@
    "options": [],
    "answer": "• Put the independent variable in the leftmost column, and label every column with the quantity and its unit in the heading (units appear only in the heading, not in every cell).\n• Use a closed table with a value in every cell, with as many rows and columns as the data require, and put each measurement in the correct column.",
    "explanation": "表格最左列放自变量，列标题写「物理量（单位）」，单位只写在标题里；每个格子都要有数值，表格要封口。",
+   "explanation_en": "The leftmost column of the table contains the independent variable, with column headings written as 'Physical Quantity (Unit)', and units are only written in the headings; each cell must have a value, and the table must be closed.",
    "source": "How to Tabulate Data.docx",
    "zh": {
     "stem": "列出实验数据制表时必须遵守的两条规则。（2 分）"
@@ -689,6 +710,7 @@
    "options": [],
    "answer": "• A column graph is used when the variable on the x-axis is a set of categories being compared (for example months, states, colours or subcontinents).\n• A line graph is used when both variables are continuous numerical data, so that trends and patterns can be seen and a line of best fit drawn.",
    "explanation": "x 轴是分类（月份、州、颜色、国家）用柱状图；两个变量都是连续数值、要看趋势时用折线图。",
+   "explanation_en": "The x-axis is used for categorisation (months, states, colours, countries) with a bar graph; when both variables are continuous numerical values and you want to show a trend, use a line graph.",
    "source": "How to draw a column graph.docx + Stage 5 Graphing-1.docx",
    "zh": {
     "stem": "说明什么时候应该用柱状图而不是折线图。（2 分）"
@@ -717,6 +739,7 @@
    "options": [],
    "answer": "• Random errors are unpredictable fluctuations in either direction caused by the limitations of the measuring device or by the experimenter (e.g. reaction time); they are reduced by repeating the measurement and averaging.\n• Systematic errors are reproducible inaccuracies that are always in the same direction, caused by an inaccuracy in the system itself (e.g. a poorly calibrated thermometer reading 2 °C too high); they are reduced by calibrating and maintaining the equipment and taking careful readings.",
    "explanation": "随机误差方向不定（如反应时间），靠多次重复取平均减小；系统误差方向固定（仪器校准偏差），要靠校准仪器、规范读数减小。",
+   "explanation_en": "Random errors have an unpredictable direction (such as reaction time), and can be reduced by repeating the measurement multiple times and taking the average; systematic errors have a fixed direction (instrument calibration bias), and can be reduced by calibrating the instrument and standardising the readings.",
    "source": "Half Yearly Revision.pdf（Validity – Errors）",
    "zh": {
     "stem": "描述随机误差与系统误差的区别，并说明各自如何减小。（3 分）"
@@ -750,6 +773,7 @@
    "options": [],
    "answer": "• Validity is the extent to which the investigation actually tests what it claims to test — a fair test with one independent variable and everything else controlled.\n• Reliability is the extent to which repeated measurements taken under identical conditions give similar results, so an investigation is reliable when it has been repeated many times.",
    "explanation": "效度（validity）＝是否测到了想测的东西（单一变量、控制公平）；信度（reliability）＝重复测量结果是否一致。",
+   "explanation_en": "Validity refers to whether the measurement actually measures what it's supposed to (single variable, controlled fairly); reliability refers to whether the results of repeated measurements are consistent.",
    "source": "Half Yearly Revision.pdf（Validity / Reliability）",
    "zh": {
     "stem": "区分一项研究的效度（validity）与信度（reliability）。（2 分）"
@@ -778,6 +802,7 @@
    "options": [],
    "answer": "• (a) As the percentage of adenine increases, the percentage of guanine decreases — roughly %A + %G ≈ 50, so the two are inversely related.\n• (b) Adenine always pairs with thymine and guanine always pairs with cytosine, so %A = %T and %G = %C; because the four bases add to 100%, 2(%A) + 2(%G) = 100, i.e. %A + %G = 50.\n• (c) Thymine would be 20%.",
    "explanation": "A 增大则 G 减小，因为 A=T、G=C 且四种碱基合计 100%，所以 A+G=50；A=20% 时 T 也是 20%（物种 D 的数据正好验证）。",
+   "explanation_en": "As A increases, G decreases, because A = T, G = C, and the total of the four bases is 100%, so A + G = 50; when A is 20%, T is also 20% (the data for species D confirms this).",
    "source": "2020 Year 10 Yearly Examination Answers（Part E Q1–Q3 DNA 碱基数据分析）",
    "zh": {
     "stem": "下表给出五个物种 DNA 中腺嘌呤与鸟嘌呤的百分比。物种 A–E 的腺嘌呤为 38/26/8/20/33，鸟嘌呤为 12/2……（按碱基配对规律作答）"
@@ -816,6 +841,7 @@
    "options": [],
    "answer": "• gradient = rise ÷ run = (5 − 0) V ÷ (10 − 0) A = 0.5\n• Because R = V ÷ I, the gradient equals the resistance, so the resistance is 0.5 Ω.",
    "explanation": "梯度＝ΔV/ΔI＝5/10＝0.5；由 R=V/I 可知斜率就是电阻，所以电阻是 0.5 Ω（斜率单位 V/A 即 Ω）。",
+   "explanation_en": "The gradient is ΔV/ΔI = 5/10 = 0.5; since R = V/I, the slope is the resistance, so the resistance is 0.5 Ω (the slope unit is V/A, which is Ω).",
    "source": "2020 Year 10 Yearly Examination Answers（Part E Q7：由梯度求电阻）",
    "zh": {
     "stem": "某电阻的电压（y 轴）对电流（x 轴）图像是一条过 (0,0) 与 (10 A, 5 V) 的最佳拟合直线。计算斜率并说明它代表什么。"
@@ -849,6 +875,7 @@
    "options": [],
    "answer": "• (a) 5 m/s² is halfway between 4 m/s² (305 N) and 6 m/s² (448 N), so the force is about (305 + 448) ÷ 2 ≈ 376 N (accept 370–380 N).\n• (b) The relationship is linear: the force increases by a constant amount (about 74 N) for every extra 1 m/s² of deceleration.",
    "explanation": "5 m/s² 位于 4 与 6 之间，插值得 (305+448)/2≈376 N；两者是线性关系，每增加 1 m/s² 力约增加 74 N（梯度 960/13≈74）。",
+   "explanation_en": "5 m/s² is between 4 and 6, and interpolating gives (305 + 448)/2 ≈ 376 N; the two are linearly related, with the force increasing by approximately 74 N for each increase of 1 m/s² (gradient 960/13 ≈ 74).",
    "source": "Half Yearly Revision.pdf（Deceleration–Force 数据表）",
    "zh": {
     "stem": "下表给出乘客在不同减速度下受到的力。减速度 1/2/4/6/8/10/12/14 m/s² 对应力 80/149/305……（做插值读数）"
@@ -886,6 +913,7 @@
    ],
    "answer": 0,
    "explanation": "烷烃是饱和烃，碳碳之间全是单键，通式 CnH2n+2。CnH2n 是烯烃（一个双键），CnH2n+1OH 是醇。",
+   "explanation_en": "Alkanes are saturated hydrocarbons, with only single bonds between carbon atoms, and have the general formula CnH2n+2; alkenes have one double bond and the formula CnH2n, and alcohols have the formula CnH2n+1OH.",
    "id": "sci-028",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -911,6 +939,7 @@
    ],
    "answer": 2,
    "explanation": "三个碳的烷烃是 propane（丙烷）。methane 1 个碳，ethane 2 个，butane 4 个。",
+   "explanation_en": "The three-carbon alkane is propane; methane has one carbon, ethane has two, and butane has four.",
    "id": "sci-029",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -936,6 +965,7 @@
    ],
    "answer": 1,
    "explanation": "乙醇的官能团是羟基 –OH，化合物类别为醇。–COOH 是羧酸，C=C 是烯烃，–COO– 是酯。",
+   "explanation_en": "The functional group of ethanol is the hydroxyl group -OH, and it belongs to the category of alcohols; -COOH is a carboxylic acid, C=C is an alkene, and -COO- is an ester.",
    "id": "sci-030",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -961,6 +991,7 @@
    ],
    "answer": 1,
    "explanation": "溴水褪色是不饱和键的检验：烯烃与 Br2 加成，双键打开，颜色消失。烷烃不发生这个反应，颜色不变。",
+   "explanation_en": "The decolourisation of bromine water is a test for unsaturated bonds: alkenes undergo an addition reaction with Br2, the double bond opens, and the colour disappears; alkanes do not react, and the colour remains.",
    "id": "sci-031",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -986,6 +1017,7 @@
    ],
    "answer": 1,
    "explanation": "同分异构体：分子式相同、结构不同。丁烷是直链，2-甲基丙烷是支链。isotope 是同位素（原子），allotrope 是同素异形体（单质），polymer 是聚合物。",
+   "explanation_en": "Isomers have the same molecular formula but different structures; butane is a straight chain, and 2-methylpropane is a branched chain; isotopes are atoms of the same element with different numbers of neutrons, allotropes are different forms of the same element, and polymers are large molecules made up of many smaller molecules.",
    "id": "sci-032",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1011,6 +1043,7 @@
    ],
    "answer": 1,
    "explanation": "完全燃烧：烃 + O2 → CO2 + H2O。氧气不足（不完全燃烧）才产生 CO 和碳黑。",
+   "explanation_en": "Complete combustion involves a hydrocarbon reacting with O2 to produce CO2 and H2O, but incomplete combustion with insufficient oxygen produces CO and carbon black.",
    "id": "sci-033",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1036,6 +1069,7 @@
    ],
    "answer": 0,
    "explanation": "CO2 使石灰水变浑浊（生成 CaCO3 沉淀）。带火星木条复燃是氧气，爆鸣声是氢气，漂白湿石蕊是氯气。",
+   "explanation_en": "CO2 turns lime water cloudy by forming a CaCO3 precipitate; a glowing wooden splint indicates oxygen, a popping sound indicates hydrogen, and bleaching wet litmus indicates chlorine.",
    "id": "sci-034",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1061,6 +1095,7 @@
    ],
    "answer": 0,
    "explanation": "加氢（hydrogenation）：C2H4 + H2 → C2H6，烯烃变烷烃。加的是氢不是水，所以不是乙醇。",
+   "explanation_en": "Hydrogenation involves adding hydrogen to an alkene, such as C2H4 + H2 → C2H6, converting it to an alkane, not an alcohol like ethanol.",
    "id": "sci-035",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1086,6 +1121,7 @@
    ],
    "answer": 1,
    "explanation": "醇 + 羧酸 → 酯 + 水，需要浓硫酸催化加热。产物是乙酸乙酯，有果香味，是酯化反应。",
+   "explanation_en": "An esterification reaction involves an alcohol and a carboxylic acid producing an ester and water, requiring concentrated sulfuric acid as a catalyst and heat, resulting in a fragrant ester like ethyl acetate.",
    "id": "sci-036",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1111,6 +1147,7 @@
    ],
    "answer": 1,
    "explanation": "乙烯分子（含 C=C）彼此加成、双键打开连成长链，叫加成聚合（addition polymerisation），产物是聚乙烯。",
+   "explanation_en": "The polymerisation of ethene molecules (containing C=C) involves the opening of double bonds to form a long chain, called addition polymerisation, producing polyethylene.",
    "id": "sci-037",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1136,6 +1173,7 @@
    ],
    "answer": 1,
    "explanation": "CH3COOH 是乙酸（醋酸），含 –COOH，是弱酸，使蓝色石蕊变红。CH3OH 是醇（中性），CH3CH3 是烷烃，C2H4 是烯烃。",
+   "explanation_en": "CH3COOH is acetic acid, a weak acid containing –COOH, which turns blue litmus red, whereas CH3OH is a neutral alcohol and CH3CH3 is an alkane, and C2H4 is an alkene.",
    "id": "sci-038",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1161,6 +1199,7 @@
    ],
    "answer": 1,
    "explanation": "乙醇可由糖类发酵制得，属可再生燃料，常与汽油混合作 E10。它燃烧同样产生 CO2，能量密度也低于汽油。",
+   "explanation_en": "Ethanol can be produced by fermenting sugars and is a renewable fuel often mixed with petrol to make E10, producing CO2 when burned, but with a lower energy density than petrol.",
    "id": "sci-039",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1186,6 +1225,7 @@
    ],
    "answer": 1,
    "explanation": "四个碳、一个 C=C，是丁烯（butene），不饱和。有双键说明不是饱和化合物，也没有 –OH 或 –COOH。",
+   "explanation_en": "A four-carbon molecule with a C=C bond is butene, an unsaturated compound, as it contains a double bond but no –OH or –COOH groups.",
    "id": "sci-040",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1211,6 +1251,7 @@
    ],
    "answer": 1,
    "explanation": "同系物中碳链越长，电子云越大、分子间色散力越强，需要更多能量才能分开，所以沸点升高。烷烃是非极性的，不因极性升高。",
+   "explanation_en": "In a homologous series, the longer the carbon chain, the stronger the dispersion forces between molecules, requiring more energy to separate them, resulting in higher boiling points, which is not due to increased polarity in non-polar alkanes.",
    "id": "sci-041",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1236,6 +1277,7 @@
    ],
    "answer": 0,
    "explanation": "三个碳 + 羟基 → 丙醇；羟基在链端，写作 propan-1-ol。Propanoic acid 是丙酸，propanal 是丙醛，propane 是烷烃。",
+   "explanation_en": "A three-carbon chain with a hydroxyl group is propan-1-ol; propanoic acid is propionic acid, propanal is propionaldehyde, and propane is an alkane.",
    "id": "sci-042",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1261,6 +1303,7 @@
    ],
    "answer": 1,
    "explanation": "烷烃在紫外光下与卤素发生取代反应：一个 H 被 Cl 取代，生成 CH3Cl 和 HCl。是取代，不是加成（加成要双键）。",
+   "explanation_en": "Alkanes undergo substitution reactions with halogens under UV light, where a hydrogen atom is replaced by a chlorine atom, producing CH3Cl and HCl, which is a substitution reaction, not an addition reaction requiring a double bond.",
    "id": "sci-043",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "zh": {
@@ -1280,6 +1323,7 @@
    "stem": "Draw the full structural formula of ethanol and identify its functional group. Then explain why ethanol is soluble in water.",
    "answer": "CH3–CH2–OH, with every C–H and C–O bond shown (C2H5OH). Functional group: hydroxyl (–OH). Ethanol is soluble because the –OH group forms hydrogen bonds with water molecules.",
    "explanation": "结构式要画出所有键，不能只写 C2H6O。可溶性来自羟基与水的氢键——碳链只有 2 个碳，疏水部分小，不足以阻止溶解。",
+   "explanation_en": "Structural formulas must show all bonds and cannot be abbreviated as C2H6O; solubility arises from hydrogen bonding between the hydroxyl group and water, and the short carbon chain of only two carbon atoms is not enough to prevent dissolution.",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry（绘图 + 解释题）",
    "points": [
     {
@@ -1327,6 +1371,7 @@
    "stem": "A student adds bromine water to two unknown colourless liquids. Sample A decolourises the bromine water at room temperature; sample B does not. Explain what this tells you about the bonding in each sample, and name a possible compound for A and for B.",
    "answer": "Sample A contains a carbon–carbon double bond (unsaturated): bromine adds across the C=C, so the orange colour disappears. Sample B has only single bonds (saturated) and does not react at room temperature. A could be ethene/hexene; B could be hexane/ethane.",
    "explanation": "这道是典型的「证据 + 解释」题：先给现象对应的化学原因（加成），再分别给出饱和/不饱和的判断，最后各举一例。只写「A 不饱和」拿不到满分。",
+   "explanation_en": "This is a typical 'evidence + explanation' question: it first provides the chemical reason for a phenomenon (addition), then gives the judgment for saturated/unsaturated, and finally provides an example for each, but only writing 'A is unsaturated' won't get full marks.",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "points": [
     {
@@ -1374,6 +1419,7 @@
    "stem": "Compare the structure and reactivity of an alkane and an alkene, and explain why alkenes are used to make plastics.",
    "answer": "Alkanes have only single C–C bonds and are saturated, so they mainly undergo substitution (with UV light) and combustion. Alkenes contain a C=C double bond, are unsaturated, and readily undergo addition reactions. Because alkenes can join to each other by addition (addition polymerisation), they form long-chain polymers such as polyethene and PVC.",
    "explanation": "分值来自三块：结构差异（单键 vs 双键）、反应差异（取代/燃烧 vs 加成）、与塑料的联系（加聚）。缺一块扣一块。",
+   "explanation_en": "The marks come from three parts: structural differences (single vs double bonds), reaction differences (substitution/burning vs addition), and the connection to plastics (polymerisation), missing one part will deduct one part.",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "points": [
     {
@@ -1421,6 +1467,7 @@
    "stem": "Methanol, ethanol and propanol are members of the same homologous series. State one property that changes in a regular way down the series and explain why.",
    "answer": "Boiling point increases from methanol to propanol. As the carbon chain lengthens, the molecules have more electrons and a larger surface area, so dispersion forces between molecules become stronger and more energy is needed to separate them.",
    "explanation": "同系物题的套路：先说「指向哪个规律性变化」（沸点升高），再用分子间作用力解释。只说「分子变大」不够，要落到色散力/能量。",
+   "explanation_en": "The trick for homologous series questions is to first state 'pointing to which regular change' (boiling point increase), then explain using intermolecular forces, just saying 'molecules get bigger' is not enough, it needs to be related to dispersion force/energy.",
    "source": "Yearly Study Guide 2026 · Science Part A: Organic Chemistry",
    "points": [
     {
@@ -1459,6 +1506,7 @@
    "stem": "Describe a fair test to compare how completely ethanol and octane burn. Identify the independent, dependent and controlled variables.",
    "answer": "Independent variable: the fuel used (ethanol vs octane). Dependent variable: a measure of completeness of combustion, e.g. the amount of soot produced, the colour of the flame, or the mass of CO2/heat released per gram. Controlled: same mass of fuel, same burner, same distance from the flame to the surface, same volume of water heated, same starting temperature, same oxygen supply. Judge completeness by the least soot and the cleanest blue flame.",
    "explanation": "考纲 Part C 明确列了「Identifying Variables」和「Planning Investigations」。答案必须三项变量齐全，并给出可测量的指标，不能只写「观察火焰」。",
+   "explanation_en": "The syllabus Part C explicitly lists 'Identifying Variables' and 'Planning Investigations', the answer must have all three variables and provide measurable indicators, cannot just write 'observe the flame'.",
    "source": "Yearly Study Guide 2026 · Science Part C: Skills（Planning Investigations / Identifying Variables）",
    "points": [
     {

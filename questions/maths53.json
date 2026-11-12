@@ -1,864 +1,907 @@
 {
-  "code": "5.3 MATHS",
-  "slug": "maths53",
-  "title": "Stage 5 - 5.3 Mathematics (Year 10)",
-  "title_zh": "5.3 数学",
-  "exam_focus": "覆盖 Surds、Products & Factors、Indices、Equations & Logarithms、Quadratics & the Parabola、Coordinate Geometry、Simultaneous Equations、Graphing Curves、Functions、Non-right Angled Trigonometry 与 Probability（Chapter 12 相对频率、韦恩图、双向表、树状图、有放回/无放回、独立事件与条件概率）十一个模块的计算、法则、图像与概率推理。",
-  "questions": [
+ "code": "5.3 MATHS",
+ "slug": "maths53",
+ "title": "Stage 5 - 5.3 Mathematics (Year 10)",
+ "title_zh": "5.3 数学",
+ "exam_focus": "覆盖 Surds、Products & Factors、Indices、Equations & Logarithms、Quadratics & the Parabola、Coordinate Geometry、Simultaneous Equations、Graphing Curves、Functions、Non-right Angled Trigonometry 与 Probability（Chapter 12 相对频率、韦恩图、双向表、树状图、有放回/无放回、独立事件与条件概率）十一个模块的计算、法则、图像与概率推理。",
+ "questions": [
+  {
+   "id": "maths53-001",
+   "topic": "根式 · 化简根式",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Simplify √72.",
+   "options": [
+    "6√2",
+    "2√6",
+    "8√2",
+    "6√3"
+   ],
+   "answer": 0,
+   "explanation": "√72 = √(36×2) = 6√2。关键是把被开方数拆出最大的平方因数（36×2 而不是 9×8），一直化简到根号内不能再拆为止。",
+   "explanation_en": "√72 = √(36×2) = 6√2, the key is to break down the radicand into the largest square factor (36×2, not 9×8) and simplify until it can't be broken down further.",
+   "source": "Chapter 1 Surds · 1.02 Simplifying surds (Ex 1.02, p.8)"
+  },
+  {
+   "id": "maths53-002",
+   "topic": "根式 · 同类根式加减",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Simplify √50 + √32 − √18.",
+   "options": [
+    "4√2",
+    "6√2",
+    "9√2",
+    "6√6"
+   ],
+   "answer": 1,
+   "explanation": "先化成同类根式：5√2 + 4√2 − 3√2 = 6√2。常见错误是直接把被开方数相加减（50+32−18=64），那等于 8。",
+   "explanation_en": "First, convert to the same radical form: 5√2 + 4√2 - 3√2 = 6√2, a common mistake is to directly add or subtract the radicands (50+32-18=64), which equals 8.",
+   "source": "Chapter 1 Surds · 1.03 Adding and subtracting surds (Ex 1.03, p.11)"
+  },
+  {
+   "id": "maths53-003",
+   "topic": "根式 · 分母有理化",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Write 10/√5 with a rational denominator, in simplest form.",
+   "options": [
+    "5√2",
+    "10√5",
+    "2√5",
+    "2√10"
+   ],
+   "answer": 2,
+   "explanation": "上下同乘 √5：10√5/5 = 2√5。注意最后要约掉 10 与 5，只约系数，不要把 √5 也约掉。",
+   "explanation_en": "Multiply the numerator and denominator by √5: 10√5/5 = 2√5, note that the final result should simplify the coefficient, not the radical.",
+   "source": "Chapter 1 Surds · 1.06 Rationalising the denominator (Ex 1.06, p.20)"
+  },
+  {
+   "id": "maths53-004",
+   "topic": "根式 · 二项分母有理化",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Rationalise the denominator and simplify: 4/(√5 − 1).",
+   "options": [],
+   "answer": "Multiply by the conjugate (√5 + 1): 4(√5 + 1)/((√5)² − 1²) = 4(√5 + 1)/4 = √5 + 1.",
+   "explanation": "分母含根式相加/减时，要乘共轭 (√5+1)；乘完后分母是 5−1=4，正好与分子约成 1，答案 √5+1（≈3.24）。",
+   "explanation_en": "When adding or subtracting fractions with radicals in the denominator, multiply by the conjugate (√5+1), after multiplication, the denominator becomes 5-1=4, which simplifies to 1, and the answer is √5+1 (≈3.24).",
+   "source": "Chapter 1 Surds · 1.06 Rationalising the denominator, binomial denominators (Ex 1.06)",
+   "marks": 2,
+   "criteria": [
     {
-      "id": "maths53-001",
-      "topic": "根式 · 化简根式",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Simplify √72.",
-      "options": [
-        "6√2",
-        "2√6",
-        "8√2",
-        "6√3"
-      ],
-      "answer": 0,
-      "explanation": "√72 = √(36×2) = 6√2。关键是把被开方数拆出最大的平方因数（36×2 而不是 9×8），一直化简到根号内不能再拆为止。",
-      "source": "Chapter 1 Surds · 1.02 Simplifying surds (Ex 1.02, p.8)"
+     "id": "c1",
+     "t": "Multiplies the numerator and denominator by the conjugate (√5 + 1)",
+     "m": 1
     },
     {
-      "id": "maths53-002",
-      "topic": "根式 · 同类根式加减",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Simplify √50 + √32 − √18.",
-      "options": [
-        "4√2",
-        "6√2",
-        "9√2",
-        "6√6"
-      ],
-      "answer": 1,
-      "explanation": "先化成同类根式：5√2 + 4√2 − 3√2 = 6√2。常见错误是直接把被开方数相加减（50+32−18=64），那等于 8。",
-      "source": "Chapter 1 Surds · 1.03 Adding and subtracting surds (Ex 1.03, p.11)"
-    },
-    {
-      "id": "maths53-003",
-      "topic": "根式 · 分母有理化",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Write 10/√5 with a rational denominator, in simplest form.",
-      "options": [
-        "5√2",
-        "10√5",
-        "2√5",
-        "2√10"
-      ],
-      "answer": 2,
-      "explanation": "上下同乘 √5：10√5/5 = 2√5。注意最后要约掉 10 与 5，只约系数，不要把 √5 也约掉。",
-      "source": "Chapter 1 Surds · 1.06 Rationalising the denominator (Ex 1.06, p.20)"
-    },
-    {
-      "id": "maths53-004",
-      "topic": "根式 · 二项分母有理化",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "Rationalise the denominator and simplify: 4/(√5 − 1).",
-      "options": [],
-      "answer": "Multiply by the conjugate (√5 + 1): 4(√5 + 1)/((√5)² − 1²) = 4(√5 + 1)/4 = √5 + 1.",
-      "explanation": "分母含根式相加/减时，要乘共轭 (√5+1)；乘完后分母是 5−1=4，正好与分子约成 1，答案 √5+1（≈3.24）。",
-      "source": "Chapter 1 Surds · 1.06 Rationalising the denominator, binomial denominators (Ex 1.06)",
-      "marks": 2,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Multiplies the numerator and denominator by the conjugate (√5 + 1)",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Simplifies to √5 + 1, since the denominator (√5)² − 1² = 4 cancels with the 4 in the numerator",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-005",
-      "topic": "代数式 · 二项式展开",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Expand and simplify (2x − 3)(x + 5).",
-      "options": [
-        "2x² + 7x − 15",
-        "2x² − 7x − 15",
-        "2x² + 13x − 15",
-        "2x² + 7x + 15"
-      ],
-      "answer": 0,
-      "explanation": "2x·x=2x²，2x·5=10x，−3·x=−3x，−3·5=−15，合并得 2x²+7x−15。别漏了 −3×5 的负号。",
-      "source": "Chapter 5 Products and factors · 5.06 Expanding binomial products (Ex 5.06)"
-    },
-    {
-      "id": "maths53-006",
-      "topic": "代数式 · 非首一二次三项式因式分解",
-      "difficulty": "hard",
-      "type": "mcq",
-      "stem": "Factorise 6x² + 11x − 35.",
-      "options": [
-        "(2x − 7)(3x + 5)",
-        "(6x − 5)(x + 7)",
-        "(3x − 7)(2x + 5)",
-        "(2x + 7)(3x − 5)"
-      ],
-      "answer": 3,
-      "explanation": "要凑出 6x² 与 −35，且交叉项为 +11x：6×(−35)=−210，需两数积 −210、和 +11，即 21 与 −10。于是 6x²+21x−10x−35 = 3x(2x+7)−5(2x+7) = (2x+7)(3x−5)。",
-      "source": "Chapter 5 Products and factors · 5.09 Factorising non-monic quadratic trinomials (Ex 5.09)"
-    },
-    {
-      "id": "maths53-007",
-      "topic": "代数式 · 代数分式化简",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "Simplify (x² − 9)/(x² + x − 12), stating any restrictions on x.",
-      "options": [],
-      "answer": "(x + 3)/(x + 4), where x ≠ 3 and x ≠ −4.",
-      "explanation": "分子是平方差 (x−3)(x+3)，分母分解为 (x+4)(x−3)，约去 (x−3) 得 (x+3)/(x+4)。约掉的因式对应的 x 值必须排除：x≠3、x≠−4。",
-      "source": "Chapter 5 Products and factors · 5.11 Factorising algebraic fractions (Ex 5.11)",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Factorises the numerator and denominator: (x − 3)(x + 3) over (x + 4)(x − 3)",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Cancels (x − 3) to give (x + 3)/(x + 4)",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "States the restrictions x ≠ 3 and x ≠ −4",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-008",
-      "topic": "指数 · 幂的乘方",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Simplify (2x³)⁴.",
-      "options": [
-        "8x¹²",
-        "16x⁷",
-        "16x¹²",
-        "2x¹²"
-      ],
-      "answer": 2,
-      "explanation": "系数与字母都要取四次方：2⁴=16，(x³)⁴=x¹²，所以是 16x¹²。常见错误是只把指数相乘却漏掉 2 的幂。",
-      "source": "Chapter 5 Indices · 5.01 Index laws (Ex 5.01)"
-    },
-    {
-      "id": "maths53-009",
-      "topic": "指数 · 分数与负指数",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Evaluate 27^(−2/3).",
-      "options": [
-        "−1/9",
-        "−9",
-        "1/6",
-        "1/9"
-      ],
-      "answer": 3,
-      "explanation": "27^(1/3)=3，再平方得 9；负指数取倒数得 1/9。注意负指数只表示倒数，不会让结果变负数。",
-      "source": "Chapter 5 Indices · 5.02 Fractional indices (Ex 5.02)"
-    },
-    {
-      "id": "maths53-010",
-      "topic": "指数 · 分数指数综合",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "Simplify (8x⁶y⁻³)^(2/3), giving your answer with positive indices.",
-      "options": [],
-      "answer": "4x⁴/y²  (8^(2/3) = 4, (x⁶)^(2/3) = x⁴, (y⁻³)^(2/3) = y⁻² = 1/y²)",
-      "explanation": "把 2/3 分别乘到每个指数上：8^(2/3)=4，x^(6×2/3)=x⁴，y^(−3×2/3)=y⁻²，再用负指数法则写成 4x⁴/y²。",
-      "source": "Chapter 5 Indices · 5.02 Fractional indices / 5.04 Multiplying and dividing algebraic fractions",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Evaluates the coefficient: 8^(2/3) = 4",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Applies the index law to the x term: (x⁶)^(2/3) = x⁴",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Simplifies the y term to y⁻² and writes the answer with a positive index as 4x⁴/y²",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-011",
-      "topic": "对数 · 对数定义",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Evaluate log₃ 81.",
-      "options": [
-        "3",
-        "4",
-        "27",
-        "1/4"
-      ],
-      "answer": 1,
-      "explanation": "log₃81 问的是“3 的几次方等于 81”，3⁴=81，所以答案是 4。不要把对数当成除法 81÷3。",
-      "source": "Chapter 7 Equations and logarithms · 7.09 Logarithms (p.270)"
-    },
-    {
-      "id": "maths53-012",
-      "topic": "对数 · 对数法则",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Evaluate 2 log₃ 6 − log₃ 4.",
-      "options": [
-        "3",
-        "log₃ 8",
-        "log₃ 2",
-        "2"
-      ],
-      "answer": 3,
-      "explanation": "先由幂法则得 log₃36，再由商法则得 log₃(36/4)=log₃9=2。系数 2 要先变成指数，不能直接与后面的 4 相减。",
-      "source": "Chapter 7 Equations and logarithms · 7.10 Logarithm laws, Example 20 (p.273)"
-    },
-    {
-      "id": "maths53-013",
-      "topic": "对数 · 指数方程",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Solve 3ˣ = 243.",
-      "options": [
-        "x = 4",
-        "x = 81",
-        "x = 5",
-        "x = log 3 ÷ log 243"
-      ],
-      "answer": 2,
-      "explanation": "两边取对数：x·log3 = log243，x = log243/log3 = 5。也可直接看出 3⁵=243；注意商的方向不能颠倒。",
-      "source": "Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations, Example 23 (p.274)"
-    },
-    {
-      "id": "maths53-014",
-      "topic": "对数 · 对数方程",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "Solve log₂ x + log₂ (x − 2) = 3.",
-      "options": [],
-      "answer": "x = 4 (the solution x = −2 is rejected, because the logarithm of a negative number is undefined).",
-      "explanation": "合并左边：log₂[x(x−2)] = 3，即 x²−2x = 8，解得 x = 4 或 x = −2。必须检验定义域：x>0 且 x−2>0，所以只剩 x = 4。",
-      "source": "Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations (Ex 7.11)",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Combines the logarithms and converts: log₂[x(x − 2)] = 3, so x² − 2x = 8",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Solves the quadratic to get x = 4 or x = −2",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Rejects x = −2 because the logarithm of a negative number is undefined (the domain requires x > 2)",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-015",
-      "topic": "二次方程 · 因式分解法",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Solve x² − 5x − 24 = 0.",
-      "options": [
-        "x = 8 or x = −3",
-        "x = −8 or x = 3",
-        "x = 6 or x = −4",
-        "x = 12 or x = −2"
-      ],
-      "answer": 0,
-      "explanation": "找两数积 −24、和 −5：−8 与 3，所以 (x−8)(x+3)=0，x=8 或 x=−3。注意这里是减 24，两数异号，别都写成正。",
-      "source": "Chapter 11 Quadratic equations and the parabola · 11.01 Quadratic equations (Ex 11.01)"
-    },
-    {
-      "id": "maths53-016",
-      "topic": "抛物线 · 对称轴与顶点",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Find the coordinates of the vertex of the parabola y = 3x² − 12x + 7.",
-      "options": [
-        "(−2, −5)",
-        "(2, −5)",
-        "(2, 7)",
-        "(2, 5)"
-      ],
-      "answer": 1,
-      "explanation": "对称轴 x = −b/(2a) = 12/6 = 2；代回 y = 3(4) − 24 + 7 = −5，顶点为 (2, −5)。别把 x=2 直接当成顶点坐标。",
-      "source": "Chapter 11 Quadratic equations and the parabola · 11.08 Axis of symmetry and vertex (Ex 11.08)"
-    },
-    {
-      "id": "maths53-017",
-      "topic": "二次方程 · 求根公式",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "Solve 2x² + 3x − 7 = 0 using the quadratic formula. Give the answers correct to 2 decimal places.",
-      "options": [],
-      "answer": "x ≈ 1.27 or x ≈ −2.77  (x = (−3 ± √65)/4)",
-      "explanation": "a=2、b=3、c=−7，判别式 b²−4ac = 9+56 = 65，所以 x = (−3 ± √65)/4 ≈ (−3 ± 8.0623)/4，得 1.2656 与 −2.7656，取两位小数为 1.27 与 −2.77。",
-      "source": "Chapter 11 Quadratic equations and the parabola · 11.03 The quadratic formula (Ex 11.03)",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Identifies a = 2, b = 3, c = −7 and the discriminant b² − 4ac = 65",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Substitutes into the formula to get x = (−3 ± √65)/4 (≈ (−3 ± 8.06)/4)",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Gives both roots correct to two decimal places: x ≈ 1.27 and x ≈ −2.77",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-018",
-      "topic": "二次方程 · 高次方程",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "Solve x⁴ − 5x² + 4 = 0.",
-      "options": [],
-      "answer": "x = 1, x = −1, x = 2 or x = −2",
-      "explanation": "令 u = x²，方程化为 u²−5u+4=0，即 (u−1)(u−4)=0，u=1 或 4。再解 x²=1 与 x²=4，得四个解 x=±1、±2；不要只写 x=1 和 2。",
-      "source": "Chapter 11 Quadratic equations and the parabola · 11.05 Higher-order quadratic equations (Ex 11.05)",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Uses the substitution u = x² to obtain u² − 5u + 4 = 0 and factorises it to (u − 1)(u − 4) = 0",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Finds u = 1 or u = 4",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Gives all four solutions: x = 1, −1, 2, −2",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-019",
-      "topic": "坐标几何 · 中点公式",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Find the midpoint of the interval joining A(−3, 5) and B(7, −1).",
-      "options": [
-        "(4, 4)",
-        "(5, −3)",
-        "(2, 2)",
-        "(2, 3)"
-      ],
-      "answer": 2,
-      "explanation": "中点坐标是两端坐标的平均值：x = (−3+7)/2 = 2，y = (5−1)/2 = 2。别把中点公式当成两点相减。",
-      "source": "Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)"
-    },
-    {
-      "id": "maths53-020",
-      "topic": "坐标几何 · 两点间斜率",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Find the gradient of the line passing through (2, −1) and (6, 7).",
-      "options": [
-        "1/2",
-        "−2",
-        "4",
-        "2"
-      ],
-      "answer": 3,
-      "explanation": "m = (y₂−y₁)/(x₂−x₁) = (7−(−1))/(6−2) = 8/4 = 2。分子是 7 减 −1 得 8，符号最容易出错。",
-      "source": "Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)"
-    },
-    {
-      "id": "maths53-021",
-      "topic": "坐标几何 · 垂直直线的斜率",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "The line L has equation 3x + 4y − 8 = 0. What is the gradient of a line perpendicular to L?",
-      "options": [
-        "4/3",
-        "−3/4",
-        "3/4",
-        "−4/3"
-      ],
-      "answer": 0,
-      "explanation": "化成斜截式得 y = −(3/4)x + 2，L 的斜率是 −3/4；垂直直线斜率取负倒数，即 4/3。别忘记变号。",
-      "source": "Coordinate Geometry · 3.02 Parallel and perpendicular lines (Ex 3.02, p.69)"
-    },
-    {
-      "id": "maths53-022",
-      "topic": "坐标几何 · 由两点求直线方程",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "Find the equation of the line passing through (−2, 3) and (4, 1), giving your answer in the general form ax + by + c = 0.",
-      "options": [],
-      "answer": "x + 3y − 7 = 0",
-      "explanation": "先求斜率 m = (1−3)/(4−(−2)) = −2/6 = −1/3；用点斜式 y−3 = −(1/3)(x+2)，两边乘 3 得 3y−9 = −x−2，整理为 x+3y−7 = 0。代回两点可检验。",
-      "source": "Coordinate Geometry · 3.05 The general form ax + by + c = 0 / 3.07 Finding the equation of a line (p.81–86)",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Calculates the gradient as m = (1 − 3)/(4 − (−2)) = −1/3",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Substitutes one point into y − y₁ = m(x − x₁), e.g. y − 3 = −1/3(x + 2)",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Rearranges to the general form x + 3y − 7 = 0",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-023",
-      "topic": "联立方程 · 消元法",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Solve the simultaneous equations x + 3y = 7 and 4x − 3y = 13.",
-      "options": [
-        "x = 1, y = 4",
-        "x = 4, y = 1",
-        "x = 4, y = −1",
-        "x = 2, y = 5"
-      ],
-      "answer": 1,
-      "explanation": "两式相加消去 y：5x = 20，x = 4；代回 x+3y=7 得 y = 1。因为 +3y 与 −3y 异号，所以要相加而不是相减。",
-      "source": "Chapter 10 Simultaneous equations · 10.02 The elimination method, Example 2 (p.401)"
-    },
-    {
-      "id": "maths53-024",
-      "topic": "联立方程 · 直线与抛物线交点",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "Find the points of intersection of the parabola y = x² and the line y = x + 2.",
-      "options": [
-        "(2, 4) and (−1, 1)",
-        "(2, 4) only",
-        "(−1, 1) and (2, −4)",
-        "(2, 4) and (1, 3)"
-      ],
-      "answer": 0,
-      "explanation": "令 x² = x + 2，得 x²−x−2=0，即 (x−2)(x+1)=0，x=2 或 −1；分别代回求 y 得 (2,4) 与 (−1,1)。两个交点都要写，别只取正根。",
-      "source": "Chapter 11 · 11.09 Non-linear simultaneous equations (Ex 11.09)"
-    },
-    {
-      "id": "maths53-025",
-      "topic": "联立方程 · 应用题",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "At the school canteen, 3 pies and 2 drinks cost $14.50, while 2 pies and 5 drinks cost $17.00. Find the cost of one pie and one drink.",
-      "options": [],
-      "answer": "A pie costs $3.50 and a drink costs $2.00.",
-      "explanation": "设派为 p、饮料为 d：3p+2d=14.50，2p+5d=17.00。第一式乘 5、第二式乘 2 得 15p+10d=72.50 与 4p+10d=34.00，相减得 11p=38.50，p=3.50，代回得 d=2.00。",
-      "source": "Chapter 10 Simultaneous equations · 10.04 Problems involving simultaneous equations (Ex 10.04)",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Sets up the simultaneous equations 3p + 2d = 14.50 and 2p + 5d = 17.00",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Eliminates one variable and finds p = $3.50",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Substitutes back to find d = $2.00",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-026",
-      "topic": "函数图像 · 圆",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "State the centre and radius of the circle (x − 3)² + (y + 2)² = 25.",
-      "options": [
-        "Centre (−3, 2), radius 5",
-        "Centre (3, −2), radius 25",
-        "Centre (−3, 2), radius 12.5",
-        "Centre (3, −2), radius 5"
-      ],
-      "answer": 3,
-      "explanation": "标准式是 (x−a)² + (y−b)² = r²，故圆心 (a, b) = (3, −2)；半径是 25 的平方根即 5，不是 25。注意 y+2 对应 b=−2。",
-      "source": "Chapter 8 Graphing curves · 8.13 The circle (x − a)² + (y − b)² = r² (Ex 8.13)"
-    },
-    {
-      "id": "maths53-027",
-      "topic": "函数图像 · 指数曲线",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Which statement describes the graph of y = 3ˣ?",
-      "options": [
-        "It passes through (0, 1) and has the x-axis as an asymptote.",
-        "It passes through (1, 0) and has the y-axis as an asymptote.",
-        "It passes through (0, 0) and has no asymptote.",
-        "It passes through (0, 3) and has the line y = 3 as an asymptote."
-      ],
-      "answer": 0,
-      "explanation": "任何 y = aˣ 都过 (0,1)，因为 a⁰=1；当 x 趋于负无穷时 y 趋于 0，所以 x 轴是渐近线。它永远不等于 0，因此没有 x 截距。",
-      "source": "Chapter 8 Graphing curves · 8.12 The exponential curve y = aˣ (Ex 8.12)"
-    },
-    {
-      "id": "maths53-028",
-      "topic": "函数图像 · 三次曲线",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "At which values of x does the curve y = (x − 1)(x + 2)(x − 4) cut the x-axis?",
-      "options": [
-        "x = −1, x = 2 and x = −4",
-        "x = 1 only",
-        "x = 1, x = −2 and x = 4",
-        "x = 1, x = 2 and x = 4"
-      ],
-      "answer": 2,
-      "explanation": "令 y = 0，每个因式分别为零：x−1=0、x+2=0、x−4=0，得 x=1、−2、4。注意 (x+2) 给出的是 −2，符号容易看错。",
-      "source": "Chapter 8 Graphing curves · 8.08 The cubic curve y = a(x − r)(x − s)(x − t) (Ex 8.08)"
-    },
-    {
-      "id": "maths53-029",
-      "topic": "函数图像 · 双曲线",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "The graph of y = k/x passes through the point (4, −3). Find k and state the equations of the two asymptotes.",
-      "options": [],
-      "answer": "k = −12; the asymptotes are x = 0 (the y-axis) and y = 0 (the x-axis).",
-      "explanation": "代入得 −3 = k/4，所以 k = −12，即 y = −12/x。x 不能为 0、y 也永远不为 0，因此两条渐近线分别是 x = 0 与 y = 0。",
-      "source": "Chapter 8 Graphing curves · 8.11 The hyperbola y = k/x (Ex 8.11)",
-      "marks": 2,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Substitutes (4, −3) into y = k/x to get k = −12",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "States the asymptotes as x = 0 (the y-axis) and y = 0 (the x-axis)",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-030",
-      "topic": "函数 · 函数值",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "If f(x) = 2x² − 3x, find f(−2).",
-      "options": [
-        "2",
-        "14",
-        "−2",
-        "−14"
-      ],
-      "answer": 1,
-      "explanation": "f(−2) = 2(−2)² − 3(−2) = 2×4 + 6 = 14。平方先算得 4，第二项是 −3×(−2)=+6，两个符号都要处理对。",
-      "source": "Chapter 14 Functions · 14.02 Function notation (Ex 14.02)"
-    },
-    {
-      "id": "maths53-031",
-      "topic": "函数 · 定义域与值域",
-      "difficulty": "medium",
-      "type": "short",
-      "stem": "State the domain and range of the function f(x) = √(x − 4).",
-      "options": [],
-      "answer": "Domain: x ≥ 4; range: y ≥ 0.",
-      "explanation": "根号内必须非负，所以 x−4 ≥ 0，定义域 x ≥ 4；算术平方根的结果不会是负数，因此值域 y ≥ 0。注意值域是 y 的范围，不是 x 的范围。",
-      "source": "Chapter 14 Functions · 14.02 The domain and range of a function (p.540)",
-      "marks": 2,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "States the domain as x ≥ 4, because the expression under the square root must not be negative",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "States the range as y ≥ 0",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-032",
-      "topic": "三角 · 三角形面积",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "Find the area of a triangle with two sides of 8 cm and 11 cm and an included angle of 30°.",
-      "options": [
-        "44 cm²",
-        "88 cm²",
-        "22 cm²",
-        "11 cm²"
-      ],
-      "answer": 2,
-      "explanation": "面积 = ½ab·sinC = ½×8×11×sin30° = 44×0.5 = 22 cm²。忘记乘 ½ 就会得到 44，这是最常见的错误。",
-      "source": "Non-right Angled Trigonometry · 9.11 Area of a triangle (Ex 9.11)"
-    },
-    {
-      "id": "maths53-033",
-      "topic": "三角 · 正弦定理求边",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "In triangle ABC, ∠A = 35°, ∠B = 62° and a = 9.4 cm. Find b, correct to 1 decimal place.",
-      "options": [
-        "14.5 cm",
-        "6.1 cm",
-        "5.9 cm",
-        "10.7 cm"
-      ],
-      "answer": 0,
-      "explanation": "由正弦定理 b/sinB = a/sinA 得 b = 9.4×sin62°/sin35° ≈ 9.4×0.8830/0.5736 ≈ 14.5 cm。若把正弦比倒过来（乘以 sin35/sin62）就会得到 6.1，这是典型错误。",
-      "source": "Non-right Angled Trigonometry · 9.07 Sine rule for sides (Ex 9.07)"
-    },
-    {
-      "id": "maths53-034",
-      "topic": "三角 · 余弦定理求边",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "In a triangle, two sides of 7 cm and 9 cm include an angle of 120°. Find the third side, correct to 1 decimal place.",
-      "options": [
-        "11.4 cm",
-        "15.7 cm",
-        "8.2 cm",
-        "13.9 cm"
-      ],
-      "answer": 3,
-      "explanation": "c² = 7² + 9² − 2(7)(9)cos120° = 49 + 81 + 63 = 193，c ≈ 13.9 cm。cos120° 是负值，所以 −2ab·cosC 这一项变加号，别把符号弄丢。",
-      "source": "Non-right Angled Trigonometry · 9.09 Cosine rule for sides (Ex 9.09)"
-    },
-    {
-      "id": "maths53-035",
-      "topic": "三角 · 正弦定理的模糊情况",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "In a triangle, a = 12 cm, b = 15 cm and ∠A = 40°. Find all possible values of ∠B, correct to 1 decimal place, and explain why more than one answer exists.",
-      "options": [],
-      "answer": "∠B ≈ 53.5° or ∠B ≈ 126.5°, because sin B = b sin A / a = 15 sin40°/12 ≈ 0.8035 and the sine rule can produce an acute and an obtuse solution (the ambiguous case).",
-      "explanation": "由正弦定理 sinB = 15×sin40°/12 ≈ 0.8035，得 B ≈ 53.5°；因为 sin(180°−θ)=sinθ，B 也可能是 180°−53.5° = 126.5°。需检验两解是否都能与 40° 组成三角形；题目只给两边一角（SSA），所以出现模糊情况。",
-      "source": "Non-right Angled Trigonometry · 9.08 Sine rule for angles (Ex 9.08)",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Uses the sine rule to get sin B = 15 sin 40° / 12 ≈ 0.8035 and B ≈ 53.5°",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Finds the second solution B ≈ 126.5° using sin(180° − θ) = sin θ",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Explains that the information given is SSA (two sides and a non-included angle), so the ambiguous case allows two possible triangles",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-036",
-      "topic": "概率 · 相对频率",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "A die is rolled 50 times and a 6 appears 7 times. What is the relative frequency of rolling a 6?",
-      "options": [
-        "0.07",
-        "0.12",
-        "0.14",
-        "0.86"
-      ],
-      "answer": 2,
-      "explanation": "相对频率 = 出现次数 ÷ 试验总次数 = 7/50 = 0.14。常见错误：把试验次数当 100（7/100 = 0.07）、用点数 6 代替频数（6/50 = 0.12）、或算成补事件 43/50 = 0.86。",
-      "source": "Chapter 12 Probability · 12.01 Relative frequency"
-    },
-    {
-      "id": "maths53-037",
-      "topic": "概率 · 韦恩图（重叠事件）",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "In a class of 30 students, 18 play soccer, 12 play tennis and 7 play both. How many students play neither sport?",
-      "options": [
-        "23 students",
-        "7 students",
-        "5 students",
-        "0 students"
-      ],
-      "answer": 1,
-      "explanation": "先求并集：18 + 12 − 7 = 23 人至少会一项，再用 30 − 23 = 7 得两项都不参加。23 是\"至少会一项\"（忘了从总数里减掉），5 是只会网球（12 − 7），0 是把 18 + 12 = 30 直接当成并集（7 人被重复计算）后再 30 − 30 得到的。",
-      "source": "Chapter 12 Probability · 12.02 Venn diagrams"
-    },
-    {
-      "id": "maths53-038",
-      "topic": "概率 · 双向表读数",
-      "difficulty": "easy",
-      "type": "mcq",
-      "stem": "A survey of 100 students recorded how they travel to school:\n\n            Walk   Bus\nYear 10      28     22\nYear 11      35     15\n\nWhat is the probability that a randomly selected student catches the bus?",
-      "options": [
-        "0.37",
-        "0.22",
-        "0.15",
-        "0.63"
-      ],
-      "answer": 0,
-      "explanation": "坐校车的总人数是 22 + 15 = 37，总人数 100，所以 P = 0.37。0.22 与 0.15 只读了表格里的一行，0.63 是走路的比例（1 − 0.37），都是没把整列相加或取成补事件的错误。",
-      "source": "Chapter 12 Probability · 12.03 Two-way tables"
-    },
-    {
-      "id": "maths53-039",
-      "topic": "概率 · 独立事件的乘积法则",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "A coin is tossed and a die is rolled at the same time. What is the probability of getting a head and an even number?",
-      "options": [
-        "3/4",
-        "1/2",
-        "1/12",
-        "1/4"
-      ],
-      "answer": 3,
-      "explanation": "两事件独立，用乘积法则：P(H) × P(even) = 1/2 × 1/2 = 1/4。1/2 只算了骰子为偶数（忘了乘硬币），1/12 是错把 P(4) = 1/6 当成偶数概率，3/4 是 1 − 1/4 的补事件。",
-      "source": "Chapter 12 Probability · 12.06 Dependent and independent events (product rule)"
-    },
-    {
-      "id": "maths53-040",
-      "topic": "概率 · 无放回抽样",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "A bag contains 5 red and 3 blue counters. Two counters are drawn at random without replacement. What is the probability that both counters are red? Give your answer correct to 2 decimal places.",
-      "options": [
-        "0.39",
-        "0.36",
-        "0.63",
-        "0.57"
-      ],
-      "answer": 1,
-      "explanation": "无放回：第一次 5/8，第二次只剩 7 个其中 4 个红，所以 P = 5/8 × 4/7 = 20/56 ≈ 0.36。0.39 是错用放回的分母（25/64 = 0.3906），0.63 是只算第一次（5/8），0.57 是只算第二次（4/7）。",
-      "source": "Chapter 12 Probability · 12.05 Selecting with and without replacement"
-    },
-    {
-      "id": "maths53-041",
-      "topic": "概率 · 条件概率",
-      "difficulty": "medium",
-      "type": "mcq",
-      "stem": "A bag contains 4 red and 6 blue marbles. One marble is drawn at random and not replaced. Given that the first marble was red, what is the probability that the second marble is blue?",
-      "options": [
-        "3/5",
-        "1/3",
-        "2/3",
-        "2/5"
-      ],
-      "answer": 2,
-      "explanation": "已知第一颗是红且不放回，袋里剩 3 红 6 蓝共 9 颗，故 P(第二颗蓝 | 第一颗红) = 6/9 = 2/3。3/5 是没把总数从 10 改成 9（6/10），1/3 是算成剩下的红（3/9），2/5 是第一次抽到红的概率（4/10）。",
-      "source": "Chapter 12 Probability · 12.07 Conditional probability"
-    },
-    {
-      "id": "maths53-042",
-      "topic": "概率 · 树状图与无放回",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "A box contains 6 white and 4 black balls. Two balls are drawn at random without replacement. Using a tree diagram, find the probability that exactly one of the balls is black. Give your answer as a fraction in simplest form.",
-      "options": [],
-      "answer": "8/15  (2 × 6/10 × 4/9 = 48/90 = 8/15 ≈ 0.533)",
-      "explanation": "树状图有两条合格路径：白→黑 (6/10 × 4/9 = 24/90) 和黑→白 (4/10 × 6/9 = 24/90)，相加得 48/90 = 8/15。注意第二条分支的分母也要变成 9（不放回），且\"恰好一个黑\"两条路径都要算，只算一条会漏一半。",
-      "source": "Chapter 12 Probability · 12.04 Tree diagrams / 12.05 Selecting with and without replacement",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Identifies both valid paths: white then black, and black then white",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Calculates each path probability with a changed denominator for the second draw (6/10 × 4/9 = 24/90)",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Adds the two paths to give 48/90 = 8/15",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
-    },
-    {
-      "id": "maths53-043",
-      "topic": "概率 · 韦恩图与条件概率",
-      "difficulty": "hard",
-      "type": "short",
-      "stem": "In a survey of 80 people, 45 own a dog, 30 own a cat and 18 own both. One person is chosen at random.\n(a) Find the probability that the person owns a cat, given that they own a dog.\n(b) Find the probability that the person owns neither animal.",
-      "options": [],
-      "answer": "(a) 18/45 = 2/5 = 0.4   (b) 80 − (45 + 30 − 18) = 23, so P(neither) = 23/80 = 0.2875 ≈ 0.29",
-      "explanation": "(a) 条件概率的分母是\"已知养狗\"的 45 人，交集 18 人，故 18/45 = 2/5（≈0.4）。(b) 先求并集 45 + 30 − 18 = 57 人，再 80 − 57 = 23 人两者都没有，概率 23/80 ≈ 0.29；别把 18 在并集里重复加。",
-      "source": "Chapter 12 Probability · 12.02 Venn diagrams / 12.07 Conditional probability",
-      "marks": 3,
-      "criteria": [
-        {
-          "id": "c1",
-          "t": "Finds the conditional probability as 18/45 = 2/5 (using 45, not 80, as the denominator)",
-          "m": 1
-        },
-        {
-          "id": "c2",
-          "t": "Finds the number who own at least one animal: 45 + 30 − 18 = 57",
-          "m": 1
-        },
-        {
-          "id": "c3",
-          "t": "Gives P(neither animal) = (80 − 57)/80 = 23/80 ≈ 0.29",
-          "m": 1
-        }
-      ],
-      "auto_grade": true
+     "id": "c2",
+     "t": "Simplifies to √5 + 1, since the denominator (√5)² − 1² = 4 cancels with the 4 in the numerator",
+     "m": 1
     }
-  ]
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-005",
+   "topic": "代数式 · 二项式展开",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Expand and simplify (2x − 3)(x + 5).",
+   "options": [
+    "2x² + 7x − 15",
+    "2x² − 7x − 15",
+    "2x² + 13x − 15",
+    "2x² + 7x + 15"
+   ],
+   "answer": 0,
+   "explanation": "2x·x=2x²，2x·5=10x，−3·x=−3x，−3·5=−15，合并得 2x²+7x−15。别漏了 −3×5 的负号。",
+   "explanation_en": "2x·x=2x², 2x·5=10x, -3·x=-3x, -3·5=-15, combining to get 2x²+7x-15, don't forget the negative sign of -3×5.",
+   "source": "Chapter 5 Products and factors · 5.06 Expanding binomial products (Ex 5.06)"
+  },
+  {
+   "id": "maths53-006",
+   "topic": "代数式 · 非首一二次三项式因式分解",
+   "difficulty": "hard",
+   "type": "mcq",
+   "stem": "Factorise 6x² + 11x − 35.",
+   "options": [
+    "(2x − 7)(3x + 5)",
+    "(6x − 5)(x + 7)",
+    "(3x − 7)(2x + 5)",
+    "(2x + 7)(3x − 5)"
+   ],
+   "answer": 3,
+   "explanation": "要凑出 6x² 与 −35，且交叉项为 +11x：6×(−35)=−210，需两数积 −210、和 +11，即 21 与 −10。于是 6x²+21x−10x−35 = 3x(2x+7)−5(2x+7) = (2x+7)(3x−5)。",
+   "explanation_en": "To get 6x² and -35, with a cross term of +11x: 6×(-35)=-210, we need two numbers with a product of -210 and a sum of +11, which are 21 and -10, so 6x²+21x-10x-35 = 3x(2x+7)-5(2x+7) = (2x+7)(3x-5).",
+   "source": "Chapter 5 Products and factors · 5.09 Factorising non-monic quadratic trinomials (Ex 5.09)"
+  },
+  {
+   "id": "maths53-007",
+   "topic": "代数式 · 代数分式化简",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "Simplify (x² − 9)/(x² + x − 12), stating any restrictions on x.",
+   "options": [],
+   "answer": "(x + 3)/(x + 4), where x ≠ 3 and x ≠ −4.",
+   "explanation": "分子是平方差 (x−3)(x+3)，分母分解为 (x+4)(x−3)，约去 (x−3) 得 (x+3)/(x+4)。约掉的因式对应的 x 值必须排除：x≠3、x≠−4。",
+   "explanation_en": "The numerator is a difference of squares (x-3)(x+3), the denominator can be factored as (x+4)(x-3), cancelling out (x-3) to get (x+3)/(x+4), the values of x corresponding to the cancelled factors must be excluded: x≠3, x≠-4.",
+   "source": "Chapter 5 Products and factors · 5.11 Factorising algebraic fractions (Ex 5.11)",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Factorises the numerator and denominator: (x − 3)(x + 3) over (x + 4)(x − 3)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Cancels (x − 3) to give (x + 3)/(x + 4)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "States the restrictions x ≠ 3 and x ≠ −4",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-008",
+   "topic": "指数 · 幂的乘方",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Simplify (2x³)⁴.",
+   "options": [
+    "8x¹²",
+    "16x⁷",
+    "16x¹²",
+    "2x¹²"
+   ],
+   "answer": 2,
+   "explanation": "系数与字母都要取四次方：2⁴=16，(x³)⁴=x¹²，所以是 16x¹²。常见错误是只把指数相乘却漏掉 2 的幂。",
+   "explanation_en": "Both the coefficient and the variable should be raised to the fourth power: 2⁴=16, (x³)⁴=x¹², so it's 16x¹², a common mistake is to only multiply the exponents but forget the power of 2.",
+   "source": "Chapter 5 Indices · 5.01 Index laws (Ex 5.01)"
+  },
+  {
+   "id": "maths53-009",
+   "topic": "指数 · 分数与负指数",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Evaluate 27^(−2/3).",
+   "options": [
+    "−1/9",
+    "−9",
+    "1/6",
+    "1/9"
+   ],
+   "answer": 3,
+   "explanation": "27^(1/3)=3，再平方得 9；负指数取倒数得 1/9。注意负指数只表示倒数，不会让结果变负数。",
+   "explanation_en": "27^(1/3)=3, then squared to get 9, negative exponent becomes the reciprocal to get 1/9, note that a negative exponent only means the reciprocal, not a negative result.",
+   "source": "Chapter 5 Indices · 5.02 Fractional indices (Ex 5.02)"
+  },
+  {
+   "id": "maths53-010",
+   "topic": "指数 · 分数指数综合",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "Simplify (8x⁶y⁻³)^(2/3), giving your answer with positive indices.",
+   "options": [],
+   "answer": "4x⁴/y²  (8^(2/3) = 4, (x⁶)^(2/3) = x⁴, (y⁻³)^(2/3) = y⁻² = 1/y²)",
+   "explanation": "把 2/3 分别乘到每个指数上：8^(2/3)=4，x^(6×2/3)=x⁴，y^(−3×2/3)=y⁻²，再用负指数法则写成 4x⁴/y²。",
+   "explanation_en": "Multiply 2/3 to each exponent: 8^(2/3)=4, x^(6×2/3)=x⁴, y^(-3×2/3)=y⁻², then use the rule for negative exponents to write 4x⁴/y².",
+   "source": "Chapter 5 Indices · 5.02 Fractional indices / 5.04 Multiplying and dividing algebraic fractions",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Evaluates the coefficient: 8^(2/3) = 4",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Applies the index law to the x term: (x⁶)^(2/3) = x⁴",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Simplifies the y term to y⁻² and writes the answer with a positive index as 4x⁴/y²",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-011",
+   "topic": "对数 · 对数定义",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Evaluate log₃ 81.",
+   "options": [
+    "3",
+    "4",
+    "27",
+    "1/4"
+   ],
+   "answer": 1,
+   "explanation": "log₃81 问的是“3 的几次方等于 81”，3⁴=81，所以答案是 4。不要把对数当成除法 81÷3。",
+   "explanation_en": "log₃81 asks '3 to the power of what equals 81', since 3⁴=81, the answer is 4 - don't confuse it with division 81÷3.",
+   "source": "Chapter 7 Equations and logarithms · 7.09 Logarithms (p.270)"
+  },
+  {
+   "id": "maths53-012",
+   "topic": "对数 · 对数法则",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Evaluate 2 log₃ 6 − log₃ 4.",
+   "options": [
+    "3",
+    "log₃ 8",
+    "log₃ 2",
+    "2"
+   ],
+   "answer": 3,
+   "explanation": "先由幂法则得 log₃36，再由商法则得 log₃(36/4)=log₃9=2。系数 2 要先变成指数，不能直接与后面的 4 相减。",
+   "explanation_en": "First, use the power rule to get log₃36, then use the quotient rule to get log₃(36/4)=log₃9=2; the coefficient 2 needs to be converted to an exponent, can't be directly subtracted from 4.",
+   "source": "Chapter 7 Equations and logarithms · 7.10 Logarithm laws, Example 20 (p.273)"
+  },
+  {
+   "id": "maths53-013",
+   "topic": "对数 · 指数方程",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Solve 3ˣ = 243.",
+   "options": [
+    "x = 4",
+    "x = 81",
+    "x = 5",
+    "x = log 3 ÷ log 243"
+   ],
+   "answer": 2,
+   "explanation": "两边取对数：x·log3 = log243，x = log243/log3 = 5。也可直接看出 3⁵=243；注意商的方向不能颠倒。",
+   "explanation_en": "Take the logarithm on both sides: x·log3 = log243, x = log243/log3 = 5, or directly see 3⁵=243; note the direction of the quotient can't be reversed.",
+   "source": "Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations, Example 23 (p.274)"
+  },
+  {
+   "id": "maths53-014",
+   "topic": "对数 · 对数方程",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "Solve log₂ x + log₂ (x − 2) = 3.",
+   "options": [],
+   "answer": "x = 4 (the solution x = −2 is rejected, because the logarithm of a negative number is undefined).",
+   "explanation": "合并左边：log₂[x(x−2)] = 3，即 x²−2x = 8，解得 x = 4 或 x = −2。必须检验定义域：x>0 且 x−2>0，所以只剩 x = 4。",
+   "explanation_en": "Combine the left side: log₂[x(x−2)] = 3, i.e. x²−2x = 8, solve for x = 4 or x = −2, must check the domain: x>0 and x−2>0, so only x = 4 remains.",
+   "source": "Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations (Ex 7.11)",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Combines the logarithms and converts: log₂[x(x − 2)] = 3, so x² − 2x = 8",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Solves the quadratic to get x = 4 or x = −2",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Rejects x = −2 because the logarithm of a negative number is undefined (the domain requires x > 2)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-015",
+   "topic": "二次方程 · 因式分解法",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Solve x² − 5x − 24 = 0.",
+   "options": [
+    "x = 8 or x = −3",
+    "x = −8 or x = 3",
+    "x = 6 or x = −4",
+    "x = 12 or x = −2"
+   ],
+   "answer": 0,
+   "explanation": "找两数积 −24、和 −5：−8 与 3，所以 (x−8)(x+3)=0，x=8 或 x=−3。注意这里是减 24，两数异号，别都写成正。",
+   "explanation_en": "Find two numbers with product −24 and sum −5: −8 and 3, so (x−8)(x+3)=0, x=8 or x=−3; note the product is −24, the numbers have different signs, don't write both as positive.",
+   "source": "Chapter 11 Quadratic equations and the parabola · 11.01 Quadratic equations (Ex 11.01)"
+  },
+  {
+   "id": "maths53-016",
+   "topic": "抛物线 · 对称轴与顶点",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Find the coordinates of the vertex of the parabola y = 3x² − 12x + 7.",
+   "options": [
+    "(−2, −5)",
+    "(2, −5)",
+    "(2, 7)",
+    "(2, 5)"
+   ],
+   "answer": 1,
+   "explanation": "对称轴 x = −b/(2a) = 12/6 = 2；代回 y = 3(4) − 24 + 7 = −5，顶点为 (2, −5)。别把 x=2 直接当成顶点坐标。",
+   "explanation_en": "The axis of symmetry x = −b/(2a) = 12/6 = 2; substitute back y = 3(4) − 24 + 7 = −5, the vertex is (2, −5); don't directly take x=2 as the vertex coordinate.",
+   "source": "Chapter 11 Quadratic equations and the parabola · 11.08 Axis of symmetry and vertex (Ex 11.08)"
+  },
+  {
+   "id": "maths53-017",
+   "topic": "二次方程 · 求根公式",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "Solve 2x² + 3x − 7 = 0 using the quadratic formula. Give the answers correct to 2 decimal places.",
+   "options": [],
+   "answer": "x ≈ 1.27 or x ≈ −2.77  (x = (−3 ± √65)/4)",
+   "explanation": "a=2、b=3、c=−7，判别式 b²−4ac = 9+56 = 65，所以 x = (−3 ± √65)/4 ≈ (−3 ± 8.0623)/4，得 1.2656 与 −2.7656，取两位小数为 1.27 与 −2.77。",
+   "explanation_en": "a=2, b=3, c=−7, the discriminant b²−4ac = 9+56 = 65, so x = (−3 ± √65)/4 ≈ (−3 ± 8.0623)/4, get 1.2656 and −2.7656, rounded to two decimal places are 1.27 and −2.77.",
+   "source": "Chapter 11 Quadratic equations and the parabola · 11.03 The quadratic formula (Ex 11.03)",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Identifies a = 2, b = 3, c = −7 and the discriminant b² − 4ac = 65",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Substitutes into the formula to get x = (−3 ± √65)/4 (≈ (−3 ± 8.06)/4)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives both roots correct to two decimal places: x ≈ 1.27 and x ≈ −2.77",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-018",
+   "topic": "二次方程 · 高次方程",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "Solve x⁴ − 5x² + 4 = 0.",
+   "options": [],
+   "answer": "x = 1, x = −1, x = 2 or x = −2",
+   "explanation": "令 u = x²，方程化为 u²−5u+4=0，即 (u−1)(u−4)=0，u=1 或 4。再解 x²=1 与 x²=4，得四个解 x=±1、±2；不要只写 x=1 和 2。",
+   "explanation_en": "Let u = x², the equation becomes u²−5u+4=0, i.e. (u−1)(u−4)=0, u=1 or 4; then solve x²=1 and x²=4, get four solutions x=±1, ±2; don't just write x=1 and 2.",
+   "source": "Chapter 11 Quadratic equations and the parabola · 11.05 Higher-order quadratic equations (Ex 11.05)",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Uses the substitution u = x² to obtain u² − 5u + 4 = 0 and factorises it to (u − 1)(u − 4) = 0",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Finds u = 1 or u = 4",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives all four solutions: x = 1, −1, 2, −2",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-019",
+   "topic": "坐标几何 · 中点公式",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Find the midpoint of the interval joining A(−3, 5) and B(7, −1).",
+   "options": [
+    "(4, 4)",
+    "(5, −3)",
+    "(2, 2)",
+    "(2, 3)"
+   ],
+   "answer": 2,
+   "explanation": "中点坐标是两端坐标的平均值：x = (−3+7)/2 = 2，y = (5−1)/2 = 2。别把中点公式当成两点相减。",
+   "explanation_en": "The midpoint coordinate is the average of the endpoint coordinates: x = (−3+7)/2 = 2, y = (5−1)/2 = 2; don't confuse the midpoint formula with subtracting two points.",
+   "source": "Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)"
+  },
+  {
+   "id": "maths53-020",
+   "topic": "坐标几何 · 两点间斜率",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Find the gradient of the line passing through (2, −1) and (6, 7).",
+   "options": [
+    "1/2",
+    "−2",
+    "4",
+    "2"
+   ],
+   "answer": 3,
+   "explanation": "m = (y₂−y₁)/(x₂−x₁) = (7−(−1))/(6−2) = 8/4 = 2。分子是 7 减 −1 得 8，符号最容易出错。",
+   "explanation_en": "m = (y₂−y₁)/(x₂−x₁) = (7−(−1))/(6−2) = 8/4 = 2; the numerator is 7 minus −1 equals 8, the sign is easiest to get wrong.",
+   "source": "Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)"
+  },
+  {
+   "id": "maths53-021",
+   "topic": "坐标几何 · 垂直直线的斜率",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "The line L has equation 3x + 4y − 8 = 0. What is the gradient of a line perpendicular to L?",
+   "options": [
+    "4/3",
+    "−3/4",
+    "3/4",
+    "−4/3"
+   ],
+   "answer": 0,
+   "explanation": "化成斜截式得 y = −(3/4)x + 2，L 的斜率是 −3/4；垂直直线斜率取负倒数，即 4/3。别忘记变号。",
+   "explanation_en": "Convert to slope-intercept form to get y = −(3/4)x + 2, the slope of L is −3/4; the slope of the vertical line is the negative reciprocal, i.e. 4/3; don't forget to change the sign.",
+   "source": "Coordinate Geometry · 3.02 Parallel and perpendicular lines (Ex 3.02, p.69)"
+  },
+  {
+   "id": "maths53-022",
+   "topic": "坐标几何 · 由两点求直线方程",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "Find the equation of the line passing through (−2, 3) and (4, 1), giving your answer in the general form ax + by + c = 0.",
+   "options": [],
+   "answer": "x + 3y − 7 = 0",
+   "explanation": "先求斜率 m = (1−3)/(4−(−2)) = −2/6 = −1/3；用点斜式 y−3 = −(1/3)(x+2)，两边乘 3 得 3y−9 = −x−2，整理为 x+3y−7 = 0。代回两点可检验。",
+   "explanation_en": "First find the slope m = (1−3)/(4−(−2)) = −2/6 = −1/3; use point-slope form y−3 = −(1/3)(x+2), multiply both sides by 3 to get 3y−9 = −x−2, rearrange to x+3y−7 = 0; can check by substituting the two points.",
+   "source": "Coordinate Geometry · 3.05 The general form ax + by + c = 0 / 3.07 Finding the equation of a line (p.81–86)",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Calculates the gradient as m = (1 − 3)/(4 − (−2)) = −1/3",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Substitutes one point into y − y₁ = m(x − x₁), e.g. y − 3 = −1/3(x + 2)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Rearranges to the general form x + 3y − 7 = 0",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-023",
+   "topic": "联立方程 · 消元法",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Solve the simultaneous equations x + 3y = 7 and 4x − 3y = 13.",
+   "options": [
+    "x = 1, y = 4",
+    "x = 4, y = 1",
+    "x = 4, y = −1",
+    "x = 2, y = 5"
+   ],
+   "answer": 1,
+   "explanation": "两式相加消去 y：5x = 20，x = 4；代回 x+3y=7 得 y = 1。因为 +3y 与 −3y 异号，所以要相加而不是相减。",
+   "explanation_en": "Adding the two equations eliminates y: 5x = 20, x = 4; substituting x into x+3y=7 gives y = 1. Because +3y and −3y have opposite signs, we add instead of subtract.",
+   "source": "Chapter 10 Simultaneous equations · 10.02 The elimination method, Example 2 (p.401)"
+  },
+  {
+   "id": "maths53-024",
+   "topic": "联立方程 · 直线与抛物线交点",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "Find the points of intersection of the parabola y = x² and the line y = x + 2.",
+   "options": [
+    "(2, 4) and (−1, 1)",
+    "(2, 4) only",
+    "(−1, 1) and (2, −4)",
+    "(2, 4) and (1, 3)"
+   ],
+   "answer": 0,
+   "explanation": "令 x² = x + 2，得 x²−x−2=0，即 (x−2)(x+1)=0，x=2 或 −1；分别代回求 y 得 (2,4) 与 (−1,1)。两个交点都要写，别只取正根。",
+   "explanation_en": "Let x² = x + 2, then x²−x−2=0, which is (x−2)(x+1)=0, so x = 2 or −1; substituting these values back in to find y gives the points (2,4) and (−1,1). Both intersection points should be written, not just the positive root.",
+   "source": "Chapter 11 · 11.09 Non-linear simultaneous equations (Ex 11.09)"
+  },
+  {
+   "id": "maths53-025",
+   "topic": "联立方程 · 应用题",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "At the school canteen, 3 pies and 2 drinks cost $14.50, while 2 pies and 5 drinks cost $17.00. Find the cost of one pie and one drink.",
+   "options": [],
+   "answer": "A pie costs $3.50 and a drink costs $2.00.",
+   "explanation": "设派为 p、饮料为 d：3p+2d=14.50，2p+5d=17.00。第一式乘 5、第二式乘 2 得 15p+10d=72.50 与 4p+10d=34.00，相减得 11p=38.50，p=3.50，代回得 d=2.00。",
+   "explanation_en": "Let p be the price of a pie and d be the price of a drink: 3p+2d=14.50, 2p+5d=17.00. Multiplying the first equation by 5 and the second by 2 gives 15p+10d=72.50 and 4p+10d=34.00, subtracting these gives 11p=38.50, so p=3.50, and substituting back gives d=2.00.",
+   "source": "Chapter 10 Simultaneous equations · 10.04 Problems involving simultaneous equations (Ex 10.04)",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Sets up the simultaneous equations 3p + 2d = 14.50 and 2p + 5d = 17.00",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Eliminates one variable and finds p = $3.50",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Substitutes back to find d = $2.00",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-026",
+   "topic": "函数图像 · 圆",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "State the centre and radius of the circle (x − 3)² + (y + 2)² = 25.",
+   "options": [
+    "Centre (−3, 2), radius 5",
+    "Centre (3, −2), radius 25",
+    "Centre (−3, 2), radius 12.5",
+    "Centre (3, −2), radius 5"
+   ],
+   "answer": 3,
+   "explanation": "标准式是 (x−a)² + (y−b)² = r²，故圆心 (a, b) = (3, −2)；半径是 25 的平方根即 5，不是 25。注意 y+2 对应 b=−2。",
+   "explanation_en": "The standard form is (x−a)² + (y−b)² = r², so the centre of the circle (a, b) is (3, −2); the radius is the square root of 25, which is 5, not 25. Note that y+2 corresponds to b=−2.",
+   "source": "Chapter 8 Graphing curves · 8.13 The circle (x − a)² + (y − b)² = r² (Ex 8.13)"
+  },
+  {
+   "id": "maths53-027",
+   "topic": "函数图像 · 指数曲线",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Which statement describes the graph of y = 3ˣ?",
+   "options": [
+    "It passes through (0, 1) and has the x-axis as an asymptote.",
+    "It passes through (1, 0) and has the y-axis as an asymptote.",
+    "It passes through (0, 0) and has no asymptote.",
+    "It passes through (0, 3) and has the line y = 3 as an asymptote."
+   ],
+   "answer": 0,
+   "explanation": "任何 y = aˣ 都过 (0,1)，因为 a⁰=1；当 x 趋于负无穷时 y 趋于 0，所以 x 轴是渐近线。它永远不等于 0，因此没有 x 截距。",
+   "explanation_en": "Any curve y = aˣ passes through (0,1) because a⁰=1; as x approaches negative infinity, y approaches 0, so the x-axis is the asymptote. It never equals 0, so there is no x-intercept.",
+   "source": "Chapter 8 Graphing curves · 8.12 The exponential curve y = aˣ (Ex 8.12)"
+  },
+  {
+   "id": "maths53-028",
+   "topic": "函数图像 · 三次曲线",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "At which values of x does the curve y = (x − 1)(x + 2)(x − 4) cut the x-axis?",
+   "options": [
+    "x = −1, x = 2 and x = −4",
+    "x = 1 only",
+    "x = 1, x = −2 and x = 4",
+    "x = 1, x = 2 and x = 4"
+   ],
+   "answer": 2,
+   "explanation": "令 y = 0，每个因式分别为零：x−1=0、x+2=0、x−4=0，得 x=1、−2、4。注意 (x+2) 给出的是 −2，符号容易看错。",
+   "explanation_en": "Setting y = 0, each factor equals zero: x−1=0, x+2=0, x−4=0, giving x=1, −2, 4. Note that (x+2) gives −2, and the sign is easy to get wrong.",
+   "source": "Chapter 8 Graphing curves · 8.08 The cubic curve y = a(x − r)(x − s)(x − t) (Ex 8.08)"
+  },
+  {
+   "id": "maths53-029",
+   "topic": "函数图像 · 双曲线",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "The graph of y = k/x passes through the point (4, −3). Find k and state the equations of the two asymptotes.",
+   "options": [],
+   "answer": "k = −12; the asymptotes are x = 0 (the y-axis) and y = 0 (the x-axis).",
+   "explanation": "代入得 −3 = k/4，所以 k = −12，即 y = −12/x。x 不能为 0、y 也永远不为 0，因此两条渐近线分别是 x = 0 与 y = 0。",
+   "explanation_en": "Substituting gives −3 = k/4, so k = −12, which means y = −12/x. x cannot be 0, and y is never 0, so the two asymptotes are x = 0 and y = 0.",
+   "source": "Chapter 8 Graphing curves · 8.11 The hyperbola y = k/x (Ex 8.11)",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Substitutes (4, −3) into y = k/x to get k = −12",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States the asymptotes as x = 0 (the y-axis) and y = 0 (the x-axis)",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-030",
+   "topic": "函数 · 函数值",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "If f(x) = 2x² − 3x, find f(−2).",
+   "options": [
+    "2",
+    "14",
+    "−2",
+    "−14"
+   ],
+   "answer": 1,
+   "explanation": "f(−2) = 2(−2)² − 3(−2) = 2×4 + 6 = 14。平方先算得 4，第二项是 −3×(−2)=+6，两个符号都要处理对。",
+   "explanation_en": "f(−2) = 2(−2)² − 3(−2) = 2×4 + 6 = 14. The square is calculated first to get 4, and the second term is −3×(−2)=+6, so both signs need to be handled correctly.",
+   "source": "Chapter 14 Functions · 14.02 Function notation (Ex 14.02)"
+  },
+  {
+   "id": "maths53-031",
+   "topic": "函数 · 定义域与值域",
+   "difficulty": "medium",
+   "type": "short",
+   "stem": "State the domain and range of the function f(x) = √(x − 4).",
+   "options": [],
+   "answer": "Domain: x ≥ 4; range: y ≥ 0.",
+   "explanation": "根号内必须非负，所以 x−4 ≥ 0，定义域 x ≥ 4；算术平方根的结果不会是负数，因此值域 y ≥ 0。注意值域是 y 的范围，不是 x 的范围。",
+   "explanation_en": "The expression inside the square root must be non-negative, so x−4 ≥ 0, which means the domain is x ≥ 4; the result of the square root is never negative, so the range is y ≥ 0. Note that the range refers to the values of y, not x.",
+   "source": "Chapter 14 Functions · 14.02 The domain and range of a function (p.540)",
+   "marks": 2,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "States the domain as x ≥ 4, because the expression under the square root must not be negative",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "States the range as y ≥ 0",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-032",
+   "topic": "三角 · 三角形面积",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "Find the area of a triangle with two sides of 8 cm and 11 cm and an included angle of 30°.",
+   "options": [
+    "44 cm²",
+    "88 cm²",
+    "22 cm²",
+    "11 cm²"
+   ],
+   "answer": 2,
+   "explanation": "面积 = ½ab·sinC = ½×8×11×sin30° = 44×0.5 = 22 cm²。忘记乘 ½ 就会得到 44，这是最常见的错误。",
+   "explanation_en": "The area is ½ab·sinC = ½×8×11×sin30° = 44×0.5 = 22 cm². Forgetting to multiply by ½ would give 44, which is a common mistake.",
+   "source": "Non-right Angled Trigonometry · 9.11 Area of a triangle (Ex 9.11)"
+  },
+  {
+   "id": "maths53-033",
+   "topic": "三角 · 正弦定理求边",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "In triangle ABC, ∠A = 35°, ∠B = 62° and a = 9.4 cm. Find b, correct to 1 decimal place.",
+   "options": [
+    "14.5 cm",
+    "6.1 cm",
+    "5.9 cm",
+    "10.7 cm"
+   ],
+   "answer": 0,
+   "explanation": "由正弦定理 b/sinB = a/sinA 得 b = 9.4×sin62°/sin35° ≈ 9.4×0.8830/0.5736 ≈ 14.5 cm。若把正弦比倒过来（乘以 sin35/sin62）就会得到 6.1，这是典型错误。",
+   "explanation_en": "Using the sine rule b/sinB = a/sinA gives b = 9.4×sin62°/sin35° ≈ 9.4×0.8830/0.5736 ≈ 14.5 cm. If the sine ratio is inverted (multiplying by sin35/sin62) the result would be 6.1, which is a typical error.",
+   "source": "Non-right Angled Trigonometry · 9.07 Sine rule for sides (Ex 9.07)"
+  },
+  {
+   "id": "maths53-034",
+   "topic": "三角 · 余弦定理求边",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "In a triangle, two sides of 7 cm and 9 cm include an angle of 120°. Find the third side, correct to 1 decimal place.",
+   "options": [
+    "11.4 cm",
+    "15.7 cm",
+    "8.2 cm",
+    "13.9 cm"
+   ],
+   "answer": 3,
+   "explanation": "c² = 7² + 9² − 2(7)(9)cos120° = 49 + 81 + 63 = 193，c ≈ 13.9 cm。cos120° 是负值，所以 −2ab·cosC 这一项变加号，别把符号弄丢。",
+   "explanation_en": "c² = 7² + 9² − 2(7)(9)cos120° = 49 + 81 + 63 = 193, so c ≈ 13.9 cm. cos120° is negative, so the term −2ab·cosC becomes positive, don't lose the sign.",
+   "source": "Non-right Angled Trigonometry · 9.09 Cosine rule for sides (Ex 9.09)"
+  },
+  {
+   "id": "maths53-035",
+   "topic": "三角 · 正弦定理的模糊情况",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "In a triangle, a = 12 cm, b = 15 cm and ∠A = 40°. Find all possible values of ∠B, correct to 1 decimal place, and explain why more than one answer exists.",
+   "options": [],
+   "answer": "∠B ≈ 53.5° or ∠B ≈ 126.5°, because sin B = b sin A / a = 15 sin40°/12 ≈ 0.8035 and the sine rule can produce an acute and an obtuse solution (the ambiguous case).",
+   "explanation": "由正弦定理 sinB = 15×sin40°/12 ≈ 0.8035，得 B ≈ 53.5°；因为 sin(180°−θ)=sinθ，B 也可能是 180°−53.5° = 126.5°。需检验两解是否都能与 40° 组成三角形；题目只给两边一角（SSA），所以出现模糊情况。",
+   "explanation_en": "Using the sine rule, sinB = 15×sin40°/12 ≈ 0.8035, so B ≈ 53.5°; since sin(180°−θ)=sinθ, B could also be 180°−53.5° = 126.5°, and we need to check if both solutions can form a triangle with 40°, given the ambiguous SSA situation.",
+   "source": "Non-right Angled Trigonometry · 9.08 Sine rule for angles (Ex 9.08)",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Uses the sine rule to get sin B = 15 sin 40° / 12 ≈ 0.8035 and B ≈ 53.5°",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Finds the second solution B ≈ 126.5° using sin(180° − θ) = sin θ",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Explains that the information given is SSA (two sides and a non-included angle), so the ambiguous case allows two possible triangles",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-036",
+   "topic": "概率 · 相对频率",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "A die is rolled 50 times and a 6 appears 7 times. What is the relative frequency of rolling a 6?",
+   "options": [
+    "0.07",
+    "0.12",
+    "0.14",
+    "0.86"
+   ],
+   "answer": 2,
+   "explanation": "相对频率 = 出现次数 ÷ 试验总次数 = 7/50 = 0.14。常见错误：把试验次数当 100（7/100 = 0.07）、用点数 6 代替频数（6/50 = 0.12）、或算成补事件 43/50 = 0.86。",
+   "explanation_en": "The relative frequency is the number of occurrences divided by the total number of trials, which is 7/50 = 0.14; common mistakes include using 100 as the total number of trials (7/100 = 0.07), using the score 6 instead of the frequency (6/50 = 0.12), or calculating the complementary event 43/50 = 0.86.",
+   "source": "Chapter 12 Probability · 12.01 Relative frequency"
+  },
+  {
+   "id": "maths53-037",
+   "topic": "概率 · 韦恩图（重叠事件）",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "In a class of 30 students, 18 play soccer, 12 play tennis and 7 play both. How many students play neither sport?",
+   "options": [
+    "23 students",
+    "7 students",
+    "5 students",
+    "0 students"
+   ],
+   "answer": 1,
+   "explanation": "先求并集：18 + 12 − 7 = 23 人至少会一项，再用 30 − 23 = 7 得两项都不参加。23 是\"至少会一项\"（忘了从总数里减掉），5 是只会网球（12 − 7），0 是把 18 + 12 = 30 直接当成并集（7 人被重复计算）后再 30 − 30 得到的。",
+   "explanation_en": "First, find the union: 18 + 12 − 7 = 23 people can do at least one activity, then use 30 − 23 = 7 to find those who can do neither; 23 is the number of people who can do 'at least one activity' (forgetting to subtract from the total), 5 is the number who can only play tennis (12 − 7), and 0 is the result of directly using 18 + 12 = 30 as the union (double-counting 7 people) and then subtracting 30 from 30.",
+   "source": "Chapter 12 Probability · 12.02 Venn diagrams"
+  },
+  {
+   "id": "maths53-038",
+   "topic": "概率 · 双向表读数",
+   "difficulty": "easy",
+   "type": "mcq",
+   "stem": "A survey of 100 students recorded how they travel to school:\n\n            Walk   Bus\nYear 10      28     22\nYear 11      35     15\n\nWhat is the probability that a randomly selected student catches the bus?",
+   "options": [
+    "0.37",
+    "0.22",
+    "0.15",
+    "0.63"
+   ],
+   "answer": 0,
+   "explanation": "坐校车的总人数是 22 + 15 = 37，总人数 100，所以 P = 0.37。0.22 与 0.15 只读了表格里的一行，0.63 是走路的比例（1 − 0.37），都是没把整列相加或取成补事件的错误。",
+   "explanation_en": "The total number of people taking the bus is 22 + 15 = 37, out of 100, so P = 0.37; 0.22 and 0.15 only consider one row of the table, while 0.63 is the proportion of people walking (1 − 0.37), all of which are errors from not adding or complementing the whole column.",
+   "source": "Chapter 12 Probability · 12.03 Two-way tables"
+  },
+  {
+   "id": "maths53-039",
+   "topic": "概率 · 独立事件的乘积法则",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "A coin is tossed and a die is rolled at the same time. What is the probability of getting a head and an even number?",
+   "options": [
+    "3/4",
+    "1/2",
+    "1/12",
+    "1/4"
+   ],
+   "answer": 3,
+   "explanation": "两事件独立，用乘积法则：P(H) × P(even) = 1/2 × 1/2 = 1/4。1/2 只算了骰子为偶数（忘了乘硬币），1/12 是错把 P(4) = 1/6 当成偶数概率，3/4 是 1 − 1/4 的补事件。",
+   "explanation_en": "For two independent events, use the product rule: P(H) × P(even) = 1/2 × 1/2 = 1/4; 1/2 only considers the dice being even (forgetting to multiply by the coin), 1/12 is the mistake of using P(4) = 1/6 as the probability of being even, and 3/4 is the complementary event 1 − 1/4.",
+   "source": "Chapter 12 Probability · 12.06 Dependent and independent events (product rule)"
+  },
+  {
+   "id": "maths53-040",
+   "topic": "概率 · 无放回抽样",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "A bag contains 5 red and 3 blue counters. Two counters are drawn at random without replacement. What is the probability that both counters are red? Give your answer correct to 2 decimal places.",
+   "options": [
+    "0.39",
+    "0.36",
+    "0.63",
+    "0.57"
+   ],
+   "answer": 1,
+   "explanation": "无放回：第一次 5/8，第二次只剩 7 个其中 4 个红，所以 P = 5/8 × 4/7 = 20/56 ≈ 0.36。0.39 是错用放回的分母（25/64 = 0.3906），0.63 是只算第一次（5/8），0.57 是只算第二次（4/7）。",
+   "explanation_en": "Without replacement: the first draw is 5/8, and the second draw has 4 red balls out of 7, so P = 5/8 × 4/7 = 20/56 ≈ 0.36; 0.39 is the mistake of using replacement (25/64 = 0.3906), 0.63 only considers the first draw (5/8), and 0.57 only considers the second draw (4/7).",
+   "source": "Chapter 12 Probability · 12.05 Selecting with and without replacement"
+  },
+  {
+   "id": "maths53-041",
+   "topic": "概率 · 条件概率",
+   "difficulty": "medium",
+   "type": "mcq",
+   "stem": "A bag contains 4 red and 6 blue marbles. One marble is drawn at random and not replaced. Given that the first marble was red, what is the probability that the second marble is blue?",
+   "options": [
+    "3/5",
+    "1/3",
+    "2/3",
+    "2/5"
+   ],
+   "answer": 2,
+   "explanation": "已知第一颗是红且不放回，袋里剩 3 红 6 蓝共 9 颗，故 P(第二颗蓝 | 第一颗红) = 6/9 = 2/3。3/5 是没把总数从 10 改成 9（6/10），1/3 是算成剩下的红（3/9），2/5 是第一次抽到红的概率（4/10）。",
+   "explanation_en": "Given the first ball is red and not replaced, there are 3 red and 6 blue balls left out of 9, so P(second ball is blue | first ball is red) = 6/9 = 2/3; 3/5 is the mistake of not changing the total from 10 to 9 (6/10), 1/3 is the mistake of considering the remaining red balls (3/9), and 2/5 is the probability of drawing a red ball first (4/10).",
+   "source": "Chapter 12 Probability · 12.07 Conditional probability"
+  },
+  {
+   "id": "maths53-042",
+   "topic": "概率 · 树状图与无放回",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "A box contains 6 white and 4 black balls. Two balls are drawn at random without replacement. Using a tree diagram, find the probability that exactly one of the balls is black. Give your answer as a fraction in simplest form.",
+   "options": [],
+   "answer": "8/15  (2 × 6/10 × 4/9 = 48/90 = 8/15 ≈ 0.533)",
+   "explanation": "树状图有两条合格路径：白→黑 (6/10 × 4/9 = 24/90) 和黑→白 (4/10 × 6/9 = 24/90)，相加得 48/90 = 8/15。注意第二条分支的分母也要变成 9（不放回），且\"恰好一个黑\"两条路径都要算，只算一条会漏一半。",
+   "explanation_en": "The tree diagram has two successful paths: white→black (6/10 × 4/9 = 24/90) and black→white (4/10 × 6/9 = 24/90), which add up to 48/90 = 8/15; note that the denominator of the second branch also changes to 9 (without replacement), and 'exactly one black' must consider both paths, or half will be missed.",
+   "source": "Chapter 12 Probability · 12.04 Tree diagrams / 12.05 Selecting with and without replacement",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Identifies both valid paths: white then black, and black then white",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Calculates each path probability with a changed denominator for the second draw (6/10 × 4/9 = 24/90)",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Adds the two paths to give 48/90 = 8/15",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  },
+  {
+   "id": "maths53-043",
+   "topic": "概率 · 韦恩图与条件概率",
+   "difficulty": "hard",
+   "type": "short",
+   "stem": "In a survey of 80 people, 45 own a dog, 30 own a cat and 18 own both. One person is chosen at random.\n(a) Find the probability that the person owns a cat, given that they own a dog.\n(b) Find the probability that the person owns neither animal.",
+   "options": [],
+   "answer": "(a) 18/45 = 2/5 = 0.4   (b) 80 − (45 + 30 − 18) = 23, so P(neither) = 23/80 = 0.2875 ≈ 0.29",
+   "explanation": "(a) 条件概率的分母是\"已知养狗\"的 45 人，交集 18 人，故 18/45 = 2/5（≈0.4）。(b) 先求并集 45 + 30 − 18 = 57 人，再 80 − 57 = 23 人两者都没有，概率 23/80 ≈ 0.29；别把 18 在并集里重复加。",
+   "explanation_en": "(a) The denominator for the conditional probability is the 45 people who own dogs, with an intersection of 18 people, so 18/45 = 2/5 (≈0.4); (b) first, find the union 45 + 30 − 18 = 57 people, then 80 − 57 = 23 people have neither, with a probability of 23/80 ≈ 0.29; don't double-count the 18 in the union.",
+   "source": "Chapter 12 Probability · 12.02 Venn diagrams / 12.07 Conditional probability",
+   "marks": 3,
+   "criteria": [
+    {
+     "id": "c1",
+     "t": "Finds the conditional probability as 18/45 = 2/5 (using 45, not 80, as the denominator)",
+     "m": 1
+    },
+    {
+     "id": "c2",
+     "t": "Finds the number who own at least one animal: 45 + 30 − 18 = 57",
+     "m": 1
+    },
+    {
+     "id": "c3",
+     "t": "Gives P(neither animal) = (80 − 57)/80 = 23/80 ≈ 0.29",
+     "m": 1
+    }
+   ],
+   "auto_grade": true
+  }
+ ]
 }

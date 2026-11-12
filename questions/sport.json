@@ -19,6 +19,7 @@
    ],
    "answer": 1,
    "explanation": "热身的核心是gradually提高心率、肌肉温度和关节活动度，让身体进入运动状态并降低拉伤风险。它不能替代放松，也不是用来「消耗体力」的。",
+   "explanation_en": "The core of warming up is to gradually increase heart rate, muscle temperature, and joint mobility, letting the body enter the exercise state and reduce the risk of pulling a muscle, it cannot replace relaxation, and is not used to 'consume energy'.",
    "source": "Bally Volleyball（7:30am warm up before the 8:00am trial）"
   },
   {
@@ -35,6 +36,7 @@
    ],
    "answer": 2,
    "explanation": "室内排球每队场上 6 人，轮转发球。2 人是沙滩排球，11 人是足球/板球等项目的人数，不要混。",
+   "explanation_en": "Indoor volleyball has 6 players on each team on the court, with rotation for serving, 2 players are for beach volleyball, 11 players are for football/cricket etc., don't mix them up.",
    "source": "Bally Volleyball（Indoor volleyball team）＋课程标准知识"
   },
   {
@@ -51,6 +53,7 @@
    ],
    "answer": 1,
    "explanation": "沙滩排球每队 2 人，场地更小但没有换人轮转。室内排球才是每队 6 人。",
+   "explanation_en": "Beach volleyball has 2 players on each team, the court is smaller but there's no rotation for substitution, indoor volleyball is the one with 6 players on each team.",
    "source": "Bally Volleyball（2021 Indoor and Beach teams）＋课程标准知识"
   },
   {
@@ -67,6 +70,7 @@
    ],
    "answer": 0,
    "explanation": "同意书明确写明「佩戴合适牙套在所有比赛和训练中都是强制的」，用来降低牙齿和颌面部损伤。护腿板、护膝不是该项目的强制装备。",
+   "explanation_en": "The consent form explicitly states that 'wearing suitable mouthguards in all games and training is compulsory' to reduce teeth and facial injuries, shin guards and knee pads are not compulsory equipment for this sport.",
    "source": "Rugby_League_Trials_permission_note.docx"
   },
   {
@@ -83,6 +87,7 @@
    ],
    "answer": 1,
    "explanation": "田径嘉年华规定每个年龄组前两名进入 North Shore 嘉年华。前「十名」是越野跑的晋级标准，别把两项赛事规则搞混。",
+   "explanation_en": "The athletics carnival rules state that the top two in each age group will enter the North Shore carnival, the top 'ten' is the qualifying standard for cross-country, don't mix up the rules for the two events.",
    "source": "Bally Boys school athletics carnival permission note.doc（Zone Representation）"
   },
   {
@@ -99,6 +104,7 @@
    ],
    "answer": 0,
    "explanation": "越野跑是各年龄组前十名进入 Zone 队，比田径的前两名门槛宽。这两个数字是考试最容易设陷阱的地方。",
+   "explanation_en": "Cross-country takes the top ten in each age group to enter the Zone team, with a wider threshold than athletics' top two, these two numbers are the easiest to set traps in the exam.",
    "source": "School XC Program 2025 - amended.docx（Guidelines — To qualify for Zone）"
   },
   {
@@ -115,6 +121,7 @@
    ],
    "answer": 1,
    "explanation": "200m 自由泳、200m 个人混合泳和 100m 蝶泳只取最快的一名，其余项目取前两名。50m 自由泳是前两名，而且前四名另组接力队。",
+   "explanation_en": "Only the fastest time is taken for 200m freestyle, 200m individual medley, and 100m butterfly, the top two are taken for other events, 50m freestyle takes the top two and the next two form a relay team.",
    "source": "Swimming Carnival Program 2020 (3).pdf（Zone qualifying table 说明）"
   },
   {
@@ -131,6 +138,7 @@
    ],
    "answer": 1,
    "explanation": "50m 自由泳只有前两名进 Zone，第三名进不去；但「各年龄组 50m 自由泳最快四名组成年龄接力队」，所以第三名仍可能入选接力。另外所有项目按时间排名、不设决赛。",
+   "explanation_en": "For 50m freestyle, only the top two will enter the Zone, the third won't; but 'the top four in each age group for 50m freestyle will form an age relay team', so the third may still be selected for the relay, also all events are ranked by time, with no finals.",
    "source": "Swimming Carnival Program 2020 (3).pdf（Zone qualifiers / Age Relay Team）"
   },
   {
@@ -147,6 +155,7 @@
    ],
    "answer": 0,
    "explanation": "这是渐进超负荷原则：每次只加一点量，让身体适应，避免突然加量造成肌肉酸痛和受伤。课程原文就写明「no sudden increase in volume or intensity」。",
+   "explanation_en": "This is the progressive overload principle: only increase the amount a little at a time, allowing your body to adapt and avoiding sudden increases that can cause muscle soreness and injury, as stated in the course notes with 'no sudden increase in volume or intensity'.",
    "source": "Wednesday sport Remote Learning Week 4 / Week 5"
   },
   {
@@ -163,6 +172,7 @@
    ],
    "answer": 0,
    "explanation": "课程通知明确要求带足饮水、做好防晒并戴帽子。刻意少喝水会增加中暑和抽筋风险；全新的钉鞋容易磨出水泡，比赛日不该第一次穿。",
+   "explanation_en": "According to the course notice, it's essential to bring enough water, protect yourself from the sun, and wear a hat, as intentionally drinking less water increases the risk of heatstroke and cramps, and new spiked shoes can cause blisters, so you shouldn't wear them for the first time on competition day.",
    "source": "Bally Boys school athletics carnival permission note.doc（What to bring）"
   },
   {
@@ -179,6 +189,7 @@
    ],
    "answer": 0,
    "explanation": "AMRAP = as many reps/rounds as possible，即在规定时间内尽可能多完成循环（5 个超人式、10 个俯卧撑、15 个深蹲）。计时结束就停。",
+   "explanation_en": "AMRAP means as many reps/rounds as possible, which involves completing as many cycles as possible within the given time (5 superman poses, 10 push-ups, 15 squats), and stopping once the time is up.",
    "source": "Wednesday Sport Remote Learning week 6"
   },
   {
@@ -195,6 +206,7 @@
    ],
    "answer": 0,
    "explanation": "年龄冠军看所有项目的累计积分最高者，所以多项进名次比单项夺冠更有利。单项冠军只是拿到该项目的一份积分。",
+   "explanation_en": "The age group champion is determined by the highest cumulative score across all events, so achieving multiple placings is more beneficial than winning a single event, as a single event win only earns a single score.",
    "source": "Swimming Carnival Program 2020 (3).pdf（Age champion 说明）"
   },
   {
@@ -206,6 +218,7 @@
    "options": [],
    "answer": "He should stop running immediately, tell the teacher or coach, and get the injury assessed and treated with rest, ice, compression and elevation before returning to play. Continuing to run is risky because a strained muscle can tear further, causing a much longer recovery, and pain is a warning sign that should never be pushed through.",
    "explanation": "得分点是「立即停止 + 报告老师/教练 + RICER 处理」，并说明继续跑会加重撕裂、延长恢复期。忍着跑完是最常见的错误选择。",
+   "explanation_en": "Scoring points require 'immediate stop + reporting to the teacher/coach + RICER treatment', and explaining that continuing to run will worsen the injury and prolong the recovery period, as running through the pain is the most common incorrect choice.",
    "source": "School XC Program 2025（赛事安全指引）＋课程标准知识（RICER 急救原则）",
    "marks": 4,
    "criteria": [
@@ -241,6 +254,7 @@
    "options": [],
    "answer": "Progressive overload means gradually increasing the training demand over time, for example moving from a 45-minute walk with bodyweight exercises to jogging 4 minutes and walking 1 minute, and eventually to a continuous 25-minute run. It is safer because each small increase gives the body time to adapt, whereas a sudden jump in volume or intensity causes muscle soreness and greatly increases the risk of injury.",
    "explanation": "定义 + 材料里的具体例子 + 「为什么更安全」三部分都要有。只写「慢慢加量」而不举例子，或者不解释受伤风险，都拿不满分。",
+   "explanation_en": "The definition, specific examples from the materials, and 'why it's safer' must all be included, so simply writing 'gradually increase the amount' without providing examples or explaining the risk of injury will not earn full marks.",
    "source": "Wednesday Sport Remote Learning Week 1–6（train progressions and Week 6 25-minute run）",
    "marks": 4,
    "criteria": [
@@ -276,6 +290,7 @@
    "options": [],
    "answer": "A permission note shows that a parent or guardian knows the event details and accepts that some risk is inherent in sport, and medical information lets staff plan first aid and manage conditions such as asthma or allergy on the day. One example of a safety rule is that a correctly fitted mouthguard is mandatory in all rugby league games and training sessions.",
    "explanation": "两问：一是「家长知情同意 + 学校能提前准备急救/掌握病史」，二是举出一条真实规定（牙套强制、必须带水防晒等）。只写「学校要求签字」不解释原因会丢分。",
+   "explanation_en": "There are two questions: one is 'parental informed consent + school preparedness for first aid and knowledge of medical history', and the other is citing a genuine regulation (such as mandatory mouthguards or bringing water and sun protection), as only writing 'school requires a signature' without explaining the reason will result in lost points.",
    "source": "Rugby_League_Trials_permission_note.docx；Bally Boys school athletics carnival permission note.doc",
    "marks": 3,
    "criteria": [

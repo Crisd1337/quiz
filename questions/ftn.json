@@ -19,6 +19,7 @@
    ],
    "answer": 1,
    "explanation": "危险温区是 5°C–60°C，这个区间里有害细菌繁殖最快。0°C 以下只是抑制生长，并不等于杀菌。",
+   "explanation_en": "The danger zone for bacterial growth is 5°C–60°C, where harmful bacteria multiply the fastest, and temperatures below 0°C only slow down growth without killing the bacteria.",
    "source": "Structured Responses (Sample Answers).pdf — The Danger Zone"
   },
   {
@@ -35,6 +36,7 @@
    ],
    "answer": 2,
    "explanation": "超过 4 小时细菌数量已高到可能引发食物中毒，必须丢弃，不能靠回锅或冷冻补救。很多同学会误以为重新加热就安全。",
+   "explanation_en": "If food is left for over 4 hours, the bacterial count will be too high, and it must be discarded, as reheating or refrigeration won't fix the issue.",
    "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule"
   },
   {
@@ -51,6 +53,7 @@
    ],
    "answer": 1,
    "explanation": "超过 2 小时、不足 4 小时的食物仍可食用，但不能放回冰箱（否则只是把细菌一起冷藏）。只有 2 小时以内的食物才能冷藏。",
+   "explanation_en": "Food left for over 2 hours but less than 4 hours can still be eaten, but it can't be put back in the fridge, as this will only chill the bacteria; only food that's been out for less than 2 hours can be refrigerated.",
    "source": "Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule"
   },
   {
@@ -67,6 +70,7 @@
    ],
    "answer": 0,
    "explanation": "冷藏需控制在 4°C 或以下，才能让细菌繁殖速度降到很低。8°C、22°C 都高于安全冷藏温度，挡不住细菌增殖。",
+   "explanation_en": "To slow down bacterial growth, food must be refrigerated at 4°C or below, as temperatures like 8°C or 22°C are too high to prevent bacterial multiplication.",
    "source": "Structured Responses (Sample Answers).pdf — The Danger Zone（Industry Example）"
   },
   {
@@ -83,6 +87,7 @@
    ],
    "answer": 1,
    "explanation": "mise en place 是「备料到位」，包括切好洋葱、量好调料、预热烤箱等。缺了这一步会直接造成 poor workflow。",
+   "explanation_en": "Mise en place refers to having all ingredients ready, including chopping onions, measuring seasonings, and preheating the oven, as skipping this step can lead to poor workflow.",
    "source": "Term 1 · Assumed Knowledge Quiz 6: Mise en place；Structured Responses (Sample Answers).pdf — Poor Workflow"
   },
   {
@@ -99,6 +104,7 @@
    ],
    "answer": 1,
    "explanation": "food inequity 强调「可获得性不平等」，是有的人吃不到足量、安全、有营养的食物。不要和宗教饮食禁忌或个人选择混为一谈。",
+   "explanation_en": "Food inequity highlights the issue of unequal access to sufficient, safe, and nutritious food, and should not be confused with religious dietary restrictions or personal choices.",
    "source": "Term 1 · Food Inequity Assignment (Part 1 – Define)"
   },
   {
@@ -115,6 +121,7 @@
    ],
    "answer": 1,
    "explanation": "低收入或失业人群是课程列出的典型群体。同类的还有偏远地区居民、女性与儿童、老年人、慢性病患者、残障人士、原住民与无家可归者。",
+   "explanation_en": "Low-income or unemployed individuals are typical examples of groups affected by food inequity, along with others like rural residents, women and children, the elderly, people with chronic illnesses, people with disabilities, Indigenous Australians, and the homeless.",
    "source": "Term 1 · Food Inequity Assignment（Introduction 受影响人群列表）"
   },
   {
@@ -131,6 +138,7 @@
    ],
    "answer": 0,
    "explanation": "OzHarvest 是澳洲典型的食物救援慈善机构，把商家剩余的食材收集后分发给有需要的人。Woolworths 是超市企业，Fair Work 是职场监管机构，都不是慈善机构。",
+   "explanation_en": "OzHarvest is a typical Australian food rescue charity that collects surplus food from businesses and distributes it to those in need, whereas Woolworths is a supermarket chain, and Fair Work is a workplace regulator, neither of which are charities.",
    "source": "Term 1 · Food Inequity Assignment (Part 1 – charity list)（机构职能为课程标准知识补充）"
   },
   {
@@ -147,6 +155,7 @@
    ],
    "answer": 0,
    "explanation": "snackification 指「正餐零食化」，人们用更多小份量、便携的进食场合取代传统三餐。它和「少吃零食」正好相反。",
+   "explanation_en": "Snackification refers to the trend of replacing traditional meals with more frequent, smaller, and convenient eating occasions, which is the opposite of reducing snacking.",
    "source": "Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends"
   },
   {
@@ -163,6 +172,7 @@
    ],
    "answer": 1,
    "explanation": "这类趋势针对的是「长相不合格但完全可食用」的蔬果，目的是减少农场端和零售端的食物浪费。核心卖点是减废，而不是涨价。",
+   "explanation_en": "This trend targets 'ugly' but perfectly edible produce to reduce food waste at the farm and retail levels, with the core selling point being waste reduction, not price increases.",
    "source": "Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets"
   },
   {
@@ -179,6 +189,7 @@
    ],
    "answer": 1,
    "explanation": "明星厨师通过电视节目、社交媒体和食谱把某些食材或做法带火，形成流行趋势。他们并不制定价格、膳食指南或做卫生检查。",
+   "explanation_en": "Celebrity chefs popularise certain ingredients or cooking methods through TV shows, social media, and recipes, creating trends, but they don't set prices, dietary guidelines, or conduct health inspections.",
    "source": "Term 2 · Food Trends: Quiz 2 Celebrity Chef"
   },
   {
@@ -195,6 +206,7 @@
    ],
    "answer": 1,
    "explanation": "乳糜泻是对麸质（gluten）的自身免疫反应，必须终身严格无麸质饮食。它属于免疫反应，不是普通「面粉过敏」。",
+   "explanation_en": "Coeliac disease is an autoimmune reaction to gluten, requiring a strict gluten-free diet for life, and is an immune response, not just a ordinary 'flour allergy'.",
    "source": "Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease"
   },
   {
@@ -211,6 +223,7 @@
    ],
    "answer": 1,
    "explanation": "低 GI 食物消化吸收慢，血糖上升平缓，饱腹感也更持久。高 GI 才是快速冲高血糖。低 GI 不等于零碳水，也不是所有糖尿病患者都要完全回避。",
+   "explanation_en": "Low GI foods are digested and absorbed slowly, causing a gradual increase in blood sugar levels and a longer feeling of fullness, whereas high GI foods cause a rapid spike in blood sugar.",
    "source": "Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index"
   },
   {
@@ -227,6 +240,7 @@
    ],
    "answer": 0,
    "explanation": "食物过敏由免疫系统介导，可能引发呼吸困难等严重反应；不耐受多是消化酶不足，症状以肠胃不适为主。两者机制不同，不能互换使用。",
+   "explanation_en": "Food allergies are mediated by the immune system and can trigger severe reactions like breathing difficulties, whereas intolerances are often due to enzyme deficiencies and typically cause gastrointestinal discomfort.",
    "source": "Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances"
   },
   {
@@ -243,6 +257,7 @@
    ],
    "answer": 1,
    "explanation": "钙是骨骼的主要矿物质，维生素 D 帮助钙吸收，两者缺一都会增加骨质疏松风险。只补钙不补维生素 D 吸收效率会打折扣。",
+   "explanation_en": "Calcium is the main mineral in bones, and vitamin D helps with its absorption; a lack of either increases the risk of osteoporosis, and taking only calcium without vitamin D reduces its absorption efficiency.",
    "source": "Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis"
   },
   {
@@ -259,6 +274,7 @@
    ],
    "answer": 1,
    "explanation": "缺铁性贫血的饮食重点是补铁，红肉、豆类和深绿叶菜都是常见来源。维生素 C 能促进铁吸收，但它本身不是铁的来源。",
+   "explanation_en": "The dietary focus for iron deficiency anaemia is on increasing iron intake, with red meat, beans, and dark leafy greens being common sources, and vitamin C can enhance iron absorption but is not a source of iron itself.",
    "source": "Term 3 · Food for Specific Needs: Quiz 8A Anaemia"
   },
   {
@@ -275,6 +291,7 @@
    ],
    "answer": 1,
    "explanation": "长寿面象征长寿，讲究不断开、不剪断。金元宝形状的饺子才和财富相关，两样不要混。",
+   "explanation_en": "Longevity noodles symbolise long life and are typically served uncut and unbroken, whereas gold ingot-shaped dumplings are associated with wealth, and the two should not be confused.",
    "source": "Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year"
   },
   {
@@ -291,6 +308,7 @@
    ],
    "answer": 1,
    "explanation": "亡灵节是墨西哥 11 月初的纪念活动，家人搭建 ofrenda 祭坛，摆放逝者生前喜爱的食物与物品。它的基调是纪念与团聚，不是哀悼性禁食。",
+   "explanation_en": "The Day of the Dead is a Mexican celebration in early November where families build an ofrenda altar with the deceased's favourite foods and items, and its tone is one of remembrance and reunion rather than mourning or abstinence.",
    "source": "Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos"
   },
   {
@@ -302,6 +320,7 @@
    "options": [],
    "answer": "Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.",
    "explanation": "结构化简答要按 Is–Affects–Caused by–Improved by–Example 五步写：先定义，再说影响、成因、改进方式，最后补一个行业例子。只写「很乱」拿不到分。",
+   "explanation_en": "Structured short answers should follow the Is-Affects-Caused by-Improved by-Example format: define the concept, discuss its impact, causes, and improvement methods, and provide an industry example.",
    "source": "Structured Responses (Sample Answers).pdf — Poor Workflow",
    "marks": 4,
    "criteria": [
@@ -337,6 +356,7 @@
    "options": [],
    "answer": "Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.",
    "explanation": "答案要「两个群体 + 一个原因」。常见失分是只列群体不解释原因；能被接受的典型原因是价格、交通距离、住宿条件（无厨房）或健康限制。",
+   "explanation_en": "Answers should include 'two groups + one reason', and common reasons include price, transportation distance, accommodation conditions, or health restrictions.",
    "source": "Term 1 · Food Inequity Assignment（Introduction 与 Part 1）",
    "marks": 3,
    "criteria": [
@@ -367,6 +387,7 @@
    "options": [],
    "answer": "Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.",
    "explanation": "拿分点有两层：先说慈善机构怎么「救急」（收集余粮、再分配），再指出结构性问题无法靠捐赠解决。只说「他们帮助穷人」不够深入。",
+   "explanation_en": "To score points, explain how charities 'provide emergency relief' by collecting and redistributing surplus food, and then discuss how structural problems cannot be solved by donations alone.",
    "source": "Term 1 · Food Inequity Assignment (Part 1 – charity research)＋Part 4（未来策略）",
    "marks": 4,
    "criteria": [
@@ -402,6 +423,7 @@
    "options": [],
    "answer": "Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.",
    "explanation": "要写出「传播机制」（视觉内容、hashtag、网红）和「风险」（误导性营养信息、份量与健康问题）。只描述现象不解释机制容易被扣分。",
+   "explanation_en": "Explain the 'mechanism of transmission' and 'risks' of social media, such as misleading nutrition information and portion control issues, and simply describing the phenomenon without explaining the mechanism may result in lost points.",
    "source": "Term 2 · Food Trends: Quiz 6 #foodie；Quiz 4 Snackification and other Food Trends",
    "marks": 4,
    "criteria": [
@@ -437,6 +459,7 @@
    "options": [],
    "answer": "The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.",
    "explanation": "答案要落到「能量消耗差异 → 碳水/蛋白/水分需求差异」。只写「运动员吃得多」没有解释营养素的分配，属于低分答案。",
+   "explanation_en": "Answers should focus on 'differences in energy expenditure leading to differences in carbohydrate, protein, and water requirements', and simply stating that athletes eat more is not enough to explain the distribution of nutrients.",
    "source": "Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players；Quiz 7 Diet of an Olympic Athlete",
    "marks": 4,
    "criteria": [
@@ -472,6 +495,7 @@
    "options": [],
    "answer": "Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.",
    "explanation": "两个理由要区分开：一个是「社交团聚」，一个是「文化/宗教象征」，并各配一个例子。只举例子不说明理由会丢分。",
+   "explanation_en": "Provide two distinct reasons, one being 'social gatherings' and the other 'cultural or religious symbols', each with an example, and failing to explain the reasons and only providing examples may result in lost points.",
    "source": "Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food",
    "marks": 4,
    "criteria": [
@@ -507,6 +531,7 @@
    "options": [],
    "answer": "Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.",
    "explanation": "要点是「个体行为会导致整批食物污染」以及具体错误做法（洗手、生病上岗、对着食物咳嗽）。Food Handler Basics 模块 2 就是这一块。",
+   "explanation_en": "The key points are that individual behaviour can contaminate entire batches of food and specific incorrect practices, such as not washing hands, working while sick, and coughing over food, which is covered in Food Handler Basics Module 2.",
    "source": "Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)",
    "marks": 4,
    "criteria": [
