@@ -1520,6 +1520,10 @@ rxMigrateSeen();
     "一个月":"One month","连续 30 天做题":"Study 30 days in a row",
     "挑战 7 次":"Challenges x7","完成 7 次今日挑战":"Finish the daily challenge 7 times",
     "今日达标":"Daily goal","一天做满 30 道不同的题":"Answer 30 different questions in one day",
+    // 浏览器标签页标题
+    "复习测验":"Quiz","待复习":"due today","全科":"all subjects","总览":"Overview",
+    "综合卷 · 全科":"Mixed paper · all subjects","错题本 · 待复习":"Mistakes · due today",
+    "奖励记录":"Reward history","已掌握":"mastered",
     // 榜单抽屉
     "今日榜":"Board","今天还没有人上榜":"No one on the board yet",
     "你还没上榜，交卷即可参与":"Not on the board yet - submit a paper to join",
@@ -1603,8 +1607,15 @@ rxMigrateSeen();
   function applyI18n(){
     if(window.LANG()==="zh") return;
     try{
-      if(document.title.indexOf("Canvas 复习")>=0)
-        document.title = document.title.replace("Canvas 复习", "Canvas Revision");
+      var TAIL = " · 复习测验";
+      var t = String(document.title || "").replace("Canvas 复习", "Canvas Revision");
+      if(t.slice(-TAIL.length) === TAIL){
+        var head = t.slice(0, t.length - TAIL.length);
+        t = (I18N[head] || head) + " · " + (I18N["复习测验"] || "Quiz");
+      }else{
+        t = I18N[t] || t;
+      }
+      document.title = t;
     }catch(e){}
     var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
     var n, changed=[];
