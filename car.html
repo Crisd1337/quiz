@@ -763,6 +763,7 @@ details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
    - 掌握度（dsh-mastery-v1）：带时间衰减的 EMA + 间隔要求，重复刷同一题不会虚高
    ═══════════════════════════════════════════════════════════════ */
 var TX_KEY = "dsh-tx-v1", CAP_KEY = "dsh-caps-v1", MAS_KEY = "dsh-mastery-v1";
+var KEYS_KEY = "dsh-txkeys-v1";   // 幂等键环形表（独立于展示流水，避免被截断）
 var RX_CAPS = { xp: 600, coin: 300, dust: 6 };
 var RX_TX_MAX = 500;
 
@@ -783,9 +784,15 @@ function rxWrite(key, val) { try { localStorage.setItem(key, JSON.stringify(val)
 
 /* ── 流水 ─────────────────────────────────────────── */
 function rxTx() { var a = rxRead(TX_KEY, []); return Array.isArray(a) ? a : []; }
+function rxKeys() {
+  try{ var v = JSON.parse(localStorage.getItem(KEYS_KEY) || "[]"); return Array.isArray(v) ? v : []; }
+  catch(e){ return []; }
+}
 function rxHasTx(key) {
   var a = rxTx();
   for (var i = 0; i < a.length; i++) if (a[i] && a[i].k === key) return true;
+  var ks = rxKeys();
+  for (var j = 0; j < ks.length; j++) if (ks[j] === key) return true;
   return false;
 }
 function rxPushTx(rec) {
@@ -793,6 +800,13 @@ function rxPushTx(rec) {
   a.push(rec);
   if (a.length > RX_TX_MAX) a = a.slice(a.length - RX_TX_MAX);
   rxWrite(TX_KEY, a);
+  // 幂等键单独留一份（不随展示流水被截断，否则老事件重放还能再发一次奖励）
+  if (rec && rec.k) {
+    var ks = rxKeys();
+    ks.push(String(rec.k));
+    if (ks.length > 3000) ks = ks.slice(ks.length - 3000);
+    rxWrite(KEYS_KEY, ks);
+  }
   return rec;
 }
 
@@ -848,7 +862,7 @@ function rxMastery(qid, ratio, opts) {
   // 间隔（天）：用于衰减与"间隔复习"判定
   var gapDays = e.last ? (now - e.last) / day : 0;
   if (gapDays > 0) {
-    // 时间衰减：每过 7 天，旧印象打 0.85 折（上限 60% 衰减）
+    // 时间衰减：每过 7 天打 0.85 折，最多 8 档（0.85^8 ≈ 0.272，即最久不用会掉到原来的 27%）
     var decay = Math.pow(0.85, Math.min(8, Math.floor(gapDays / 7)));
     e.ema = (e.ema || 0) * decay;
   }
@@ -907,13 +921,6 @@ function rxAward(o) {
 
   // 先取"作答前"的掌握度：重复递减必须基于历史，不能用刚刚更新的状态
   var prevMas = o.qid ? rxMasteryOf(o.qid) : { stage: 0, ema: 0, n: 0, ok: 0 };
-  // 掌握度（选择题也走：correct → 1，错误 → 0）
-  var mres = null;
-  if (o.qid && o.ratio != null) {
-    mres = rxMastery(o.qid, ratio, o);
-    out.stage = mres.stage;
-    out.stageUp = mres.stage > mres.prev ? mres.stage : 0;
-  }
 
   // 幂等键：同一天、同一题、同一答案、同一分数 → 只发一次
   var key = o.key || [
@@ -921,7 +928,16 @@ function rxAward(o) {
     (o.answer ? rxHash(String(o.answer).slice(0, 120)) : "-"),
     ratio == null ? "na" : ratio.toFixed(2), day
   ].join("|");
+  // 重复提交：先判重，绝不能先动掌握度（否则同一次作答会被算成两次学习证据）
   if (rxHasTx(key)) { out.dup = true; out.reason = "dup"; return out; }
+
+  // 掌握度（选择题也走：correct → 1，错误 → 0）——只对"新的有效作答"生效
+  var mres = null;
+  if (o.qid && o.ratio != null) {
+    mres = rxMastery(o.qid, ratio, o);
+    out.stage = mres.stage;
+    out.stageUp = mres.stage > mres.prev ? mres.stage : 0;
+  }
 
   var base = (typeof o.base === "number") ? o.base : 10;
   if (o.type === "short") base *= 1.2;
@@ -1880,7 +1896,14 @@ rxMigrateSeen();
     var rf=document.getElementById("lbRefresh");
     if(rf) rf.onclick=function(){ LB_FREEZE=false; LB_PENDING=0; rf.classList.remove("on"); LB.at=0; lbFetch(lbRender); };
     lbFetch(function(){ lbRender(); lbFab(); });
-    setInterval(function(){ lbFetch(function(){ lbFab(); if(LB.open) lbRender(); }); }, 8000);
+    // 首屏拉一次给悬浮按钮显示名次；之后只在弹窗打开且页面可见时刷新
+    var lbFirstPaint = true;
+    setInterval(function(){
+      if (document.hidden) return;
+      if (!lbFirstPaint && !LB.open) return;
+      lbFirstPaint = false;
+      lbFetch(function(){ lbFab(); if(LB.open) lbRender(); });
+    }, 30000);
   }
 
   function awardForQ(id, diff, type, arg){
@@ -2144,9 +2167,11 @@ rxMigrateSeen();
         if(!d || !d.ok || !d.list || !d.list.length) return;
         var me=nick()||"我";
         box.innerHTML=d.list.map(function(x,i){
-          return '<div class="rrow'+(x.name===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
-                 '<span class="rname">'+x.name+(x.name===me?'（我）':'')+'</span>'+
-                 '<span class="rp">'+x.pct+'%</span></div>';
+          var nm=String(x.name==null?"":x.name);
+          var pct=Math.max(0,Math.min(100,Math.round(Number(x.pct)||0)));
+          return '<div class="rrow'+(nm===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
+                 '<span class="rname">'+hesc(nm)+(nm===me?'（我）':'')+'</span>'+
+                 '<span class="rp">'+pct+'%</span></div>';
         }).join("");
       })
       .catch(function(){});
@@ -3057,11 +3082,19 @@ function render() {
       let lastErr = "no engine";
       for (const en of engines) {
         try {
-          const r = await fetch(en.u, {
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body: payload
-          });
+          const ctl = (typeof AbortController === "function") ? new AbortController() : null;
+          const tmo = ctl ? setTimeout(function(){ try{ ctl.abort(); }catch(e){} }, 30000) : null;
+          let r;
+          try {
+            r = await fetch(en.u, {
+              method:"POST",
+              headers:{"Content-Type":"application/json"},
+              body: payload,
+              signal: ctl ? ctl.signal : undefined
+            });
+          } finally {
+            if (tmo) clearTimeout(tmo);
+          }
           const d = await r.json();
           if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
           const res = Array.isArray(d.results) ? d.results : [];
@@ -3102,21 +3135,41 @@ function render() {
             render();
             return;
           }
-          const norm = res.map(function(x,i){
-            const mx = Math.max(1, Math.round(Number(x.maximum_marks) || 1));
-            return {
-              id: String(x.criterion_id || ("c" + (i+1))),
-              awarded: Math.max(0, Math.min(mx, Math.round(Number(x.awarded_marks) || 0))),
-              max: mx,
+          /* 以本地 rubric 为准重建评分点：未知/重复 id 丢弃，满分取题库定义（不信服务端的
+             maximum_marks），总分一律由分项求和；与服务端总分对不上就标"需复核"且不发 XP。 */
+          var localMax = pts.map(function(p){ return Math.max(1, Math.round(Number(p.m) || 1)); });
+          var rubricTotal = localMax.reduce(function(a,b){ return a+b; }, 0) || totalMarks;
+          var byIdx = {};
+          res.forEach(function(x,i){
+            var id = String(x.criterion_id || ("c" + (i+1)));
+            var idx = -1;
+            for (var k2 = 0; k2 < pts.length; k2++) if (critId(pts[k2],k2) === id) { idx = k2; break; }
+            if (idx < 0 || byIdx[idx]) return;
+            byIdx[idx] = {
+              id: critId(pts[idx], idx),
+              awarded: Math.max(0, Math.min(localMax[idx], Math.round(Number(x.awarded_marks) || 0))),
+              max: localMax[idx],
               covered: !!x.covered,
               reason: String(x.reason || "").slice(0, 240)
             };
           });
+          const norm = pts.map(function(p,i){
+            return byIdx[i] || {id: critId(p,i), awarded: 0, max: localMax[i], covered: false,
+              reason: (L === "en") ? "(the model did not return this criterion; scored 0)"
+                                   : "（模型没返回这一条，按 0 分算）"};
+          });
+          const sumClamped = norm.reduce(function(a,x){ return a + x.awarded; }, 0);
+          const serverScore = (typeof d.score === "number")
+            ? Math.max(0, Math.min(rubricTotal, Math.round(d.score))) : null;
+          const mismatch = serverScore !== null && serverScore !== sumClamped;
+          const finalScore = sumClamped;
           const ai = {
-            score: score, max: totalMarks, results: norm,
+            score: finalScore, max: rubricTotal, results: norm,
             feedback: String(d.feedback || "").slice(0, 500),
             confidence: conf,
-            needsReview: conf < 0.6,
+            needsReview: conf < 0.6 || mismatch,
+            mismatch: mismatch,
+            serverScore: serverScore,
             model: String(d.model || ""),
             engine: en.n,
             at: Date.now()
@@ -3131,16 +3184,23 @@ function render() {
             chosen:-1, slots:readSlots(), text:answer,
             ai:ai, gradedAt:ai.at, gradeModel:ai.model, gradeEngine:en.n,
             checked:gotIdx, override:false,
-            ok: score >= totalMarks ? "ok" : (score > 0 ? "part" : "bad")
+            ok: finalScore >= rubricTotal ? "ok" : (finalScore > 0 ? "part" : "bad")
           });
           save();
-          if (!wasGraded) {
-            reviewMark(q.subj || DATA.slug, q.id, score >= totalMarks);
-            logAnswer(q.subj || DATA.slug, q.id, score >= totalMarks, q.difficulty, "short",
-                      score, totalMarks);
-            if (window.awardForQ) awardForQ(q.id, q.difficulty, "short",
-              {ratio: totalMarks ? score / totalMarks : 0, answer: answer});
+          // 每次有效评分都记学习尝试；只有第一次评分才发 XP（防重复刷取）
+          {
+            reviewMark(q.subj || DATA.slug, q.id, finalScore >= rubricTotal);
+            logAnswer(q.subj || DATA.slug, q.id, finalScore >= rubricTotal, q.difficulty, "short",
+                      finalScore, rubricTotal);
           }
+          if (!wasGraded) {
+            // 总分与分项对不上：可能是服务端/模型异常，不发 XP，让人工复核
+            if (window.awardForQ && !ai.mismatch) awardForQ(q.id, q.difficulty, "short",
+              {ratio: rubricTotal ? finalScore / rubricTotal : 0, answer: answer});
+          }
+          if (ai.mismatch) toast(L === "en"
+            ? "Score mismatch (" + (ai.serverScore) + " vs " + finalScore + ") - flagged for review, no XP"
+            : "总分与分项不一致（" + (ai.serverScore) + " vs " + finalScore + "），已标记复核，本次不发经验", false);
           GRADING[q.id] = false;
           render();
           return;
@@ -3361,10 +3421,10 @@ function navState(qi){
   const q = DATA.questions[qi], a = state.answers[q.id];
   if (!a) return "";
   if (q.type === "mcq") return a.ok === "ok" ? "ok" : "bad";
-  const pts = q.points || [{m:1}], c = (a.checked || []).length;
-  if (c >= pts.length) return "ok";
-  if (c > 0) return "part";
-  return "";
+  // 简答：以实际得分判断（AI 评分或手动），不再数"勾了几个评分点"
+  if (a.ok === "ok" || a.ok === "part" || a.ok === "bad") return a.ok;
+  const c = (a.checked || []).length;      // 只有旧数据才走到这里
+  return c > 0 ? "part" : "";
 }
 function openNav(){
   const grid = document.getElementById("navgrid");
