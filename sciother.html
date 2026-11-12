@@ -764,6 +764,8 @@ details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
    ═══════════════════════════════════════════════════════════════ */
 var TX_KEY = "dsh-tx-v1", CAP_KEY = "dsh-caps-v1", MAS_KEY = "dsh-mastery-v1";
 var KEYS_KEY = "dsh-txkeys-v1";   // 幂等键环形表（独立于展示流水，避免被截断）
+var ATT_KEY  = "dsh-attempts-v1"; // 作答记录：每一次有效作答都写，和是否发奖励无关
+var ATT_MAX  = 5000;              // 有限窗口：只能防住最近 5000 次作答的重放
 var RX_CAPS = { xp: 600, coin: 300, dust: 6 };
 var RX_TX_MAX = 500;
 
@@ -788,6 +790,32 @@ function rxKeys() {
   try{ var v = JSON.parse(localStorage.getItem(KEYS_KEY) || "[]"); return Array.isArray(v) ? v : []; }
   catch(e){ return []; }
 }
+/* ── 作答记录（attempt）────────────────────────────────
+   与奖励流水分离：答错、被上限截断、已掌握降权到 0 的作答也要留痕，
+   否则同一事件重复触发时判不了重，掌握度会被重复计算。 */
+function rxAttempts() {
+  try{ var v = JSON.parse(localStorage.getItem(ATT_KEY) || "[]"); return Array.isArray(v) ? v : []; }
+  catch(e){ return []; }
+}
+function rxHasAttempt(id) {
+  var a = rxAttempts();
+  for (var i = 0; i < a.length; i++) if (a[i] && a[i].a === id) return true;
+  return false;
+}
+/** 写作答记录；返回 false 表示没落盘（调用方据此放弃更新掌握度） */
+function rxPushAttempt(rec) {
+  try {
+    var a = rxAttempts();
+    a.push(rec);
+    if (a.length > ATT_MAX) a = a.slice(a.length - ATT_MAX);
+    localStorage.setItem(ATT_KEY, JSON.stringify(a));
+    // 回读校验：写失败（配额满/隐私模式）时不能假装已持久化
+    var back = JSON.parse(localStorage.getItem(ATT_KEY) || "[]");
+    for (var i = back.length - 1; i >= 0; i--) if (back[i] && back[i].a === rec.a) return true;
+    return false;
+  } catch (e) { return false; }
+}
+
 function rxHasTx(key) {
   var a = rxTx();
   for (var i = 0; i < a.length; i++) if (a[i] && a[i].k === key) return true;
@@ -914,7 +942,8 @@ function rxAward(o) {
   o = o || {};
   var day = rxDay(), now = Date.now();
   var ratio = (o.ratio == null) ? null : Math.max(0, Math.min(1, o.ratio));
-  var out = { xp: 0, coin: 0, dust: 0, capped: 0, dup: false, stage: 0, stageUp: 0, reason: "" };
+  var out = { xp: 0, coin: 0, dust: 0, capped: 0, dup: false, stage: 0, stageUp: 0,
+              reason: "", persistFail: false, attempt: "" };
 
   // 判分失败：不发奖，只记录（便于排查），也不写流水污染账本
   if (ratio == null && o.kind === "answer") { out.reason = "no-score"; return out; }
@@ -928,8 +957,26 @@ function rxAward(o) {
     (o.answer ? rxHash(String(o.answer).slice(0, 120)) : "-"),
     ratio == null ? "na" : ratio.toFixed(2), day
   ].join("|");
+  // 作答记录 id：与奖励流水分开命名空间，但输入同源（同一天/同题/同答案/同分）
+  var attId = "att|" + key;
+
   // 重复提交：先判重，绝不能先动掌握度（否则同一次作答会被算成两次学习证据）
-  if (rxHasTx(key)) { out.dup = true; out.reason = "dup"; return out; }
+  // 兼容旧版本：老用户只有奖励流水里留下的 key，没有 attempt 记录
+  if (rxHasAttempt(attId) || rxHasTx(key)) {
+    out.dup = true; out.reason = "dup"; return out;
+  }
+
+  out.attempt = attId;
+  // 先写成答记录（零奖励也要写）；写不进去就放弃本次统计，绝不假装已持久化
+  if (o.qid && o.ratio != null) {
+    var okAtt = rxPushAttempt({
+      a: attId, q: o.qid, ts: now,
+      aw: (typeof o.awarded === "number") ? o.awarded : null,
+      mx: (typeof o.maxMarks === "number") ? o.maxMarks : null,
+      r: ratio, st: o.src || "quiz", ty: o.type || "", d: o.diff || ""
+    });
+    if (!okAtt) { out.persistFail = true; out.reason = "persist-failed"; return out; }
+  }
 
   // 掌握度（选择题也走：correct → 1，错误 → 0）——只对"新的有效作答"生效
   var mres = null;
@@ -1911,7 +1958,9 @@ rxMigrateSeen();
     var res = RX.award({kind:"answer", qid:id, diff:diff,
                         type:(type==="short"?"short":"mcq"),
                         ratio:(o.ratio==null ? null : o.ratio),
-                        answer:(o.answer||""), src:(DATA&&DATA.slug)||""});
+                        answer:(o.answer||""), src:(DATA&&DATA.slug)||"",
+                        awarded:(typeof o.awarded==="number"?o.awarded:null),
+                        maxMarks:(typeof o.maxMarks==="number"?o.maxMarks:null)});
     var g = db();
     if(res && (res.xp>0 || res.coin>0)){
       beep(res.xp>0?660:240, 0.1, "sine", 0.05);
@@ -1920,6 +1969,8 @@ rxMigrateSeen();
             (res.capped?' · 已达今日上限':"")+
             (res.stageUp?(' · 掌握度 '+RX.stageName(res.stageUp)):''), true);
       if(res.levelUp){ setTimeout(function(){ toast('升到 Lv.'+levelOf(db().xp), true); levelUpSound(); }, 450); }
+    } else if(res && res.persistFail){
+      toast('本地存储写入失败，本次作答没有计入统计（请检查浏览器空间/隐私模式）', false);
     } else if(res && res.dup){
       /* 同一答案重复提交：静默 */
     } else if(res && res.reason){
@@ -3083,20 +3134,32 @@ function render() {
       for (const en of engines) {
         try {
           const ctl = (typeof AbortController === "function") ? new AbortController() : null;
-          const tmo = ctl ? setTimeout(function(){ try{ ctl.abort(); }catch(e){} }, 30000) : null;
-          let r;
+          const NOABORT = !ctl;
+          let timedOut = false;
+          const tmo = ctl ? setTimeout(function(){ timedOut = true; try{ ctl.abort(); }catch(e){} }, 30000) : null;
+          let r = null, d = null;
           try {
+            // fetch 只拿到响应头；真正的耗时在 r.json()（读正文），所以整段都要在超时保护里
             r = await fetch(en.u, {
               method:"POST",
               headers:{"Content-Type":"application/json"},
               body: payload,
               signal: ctl ? ctl.signal : undefined
             });
+            d = NOABORT
+              ? await Promise.race([
+                  r.json(),
+                  new Promise(function(_, rej){ setTimeout(function(){ rej(new Error("timeout 30s")); }, 30000); })
+                ])
+              : await r.json();
+          } catch (e) {
+            var nm = String((e && e.name) || "");
+            if (timedOut || nm === "AbortError") throw new Error("timeout 30s");
+            throw new Error("network: " + ((e && e.message) || e));
           } finally {
             if (tmo) clearTimeout(tmo);
           }
-          const d = await r.json();
-          if (!d || !d.ok) throw new Error((d && d.error) || ("http " + r.status));
+          if (!d || !d.ok) throw new Error((d && d.error) || ("http " + (r && r.status)));
           const res = Array.isArray(d.results) ? d.results : [];
           if (!res.length) throw new Error("no criterion results");
           const sum = res.reduce(function(a,x){ return a + (Number(x.awarded_marks) || 0); }, 0);
@@ -3139,15 +3202,19 @@ function render() {
              maximum_marks），总分一律由分项求和；与服务端总分对不上就标"需复核"且不发 XP。 */
           var localMax = pts.map(function(p){ return Math.max(1, Math.round(Number(p.m) || 1)); });
           var rubricTotal = localMax.reduce(function(a,b){ return a+b; }, 0) || totalMarks;
-          var byIdx = {};
+          var byIdx = {}, dupIds = [], unknownIds = [], badValue = 0;
           res.forEach(function(x,i){
             var id = String(x.criterion_id || ("c" + (i+1)));
             var idx = -1;
             for (var k2 = 0; k2 < pts.length; k2++) if (critId(pts[k2],k2) === id) { idx = k2; break; }
-            if (idx < 0 || byIdx[idx]) return;
+            if (idx < 0) { unknownIds.push(id); return; }
+            if (byIdx[idx]) { dupIds.push(id); return; }
+            var raw = Number(x.awarded_marks);
+            if (!isFinite(raw) || raw < 0 || raw > localMax[idx]) badValue++;
+            var aw = isFinite(raw) ? Math.max(0, Math.min(localMax[idx], Math.round(raw))) : 0;
             byIdx[idx] = {
               id: critId(pts[idx], idx),
-              awarded: Math.max(0, Math.min(localMax[idx], Math.round(Number(x.awarded_marks) || 0))),
+              awarded: aw,
               max: localMax[idx],
               covered: !!x.covered,
               reason: String(x.reason || "").slice(0, 240)
@@ -3158,17 +3225,29 @@ function render() {
               reason: (L === "en") ? "(the model did not return this criterion; scored 0)"
                                    : "（模型没返回这一条，按 0 分算）"};
           });
+          const missingIds = pts.map(function(p,i){ return byIdx[i] ? null : critId(p,i); })
+                                .filter(function(x){ return !!x; });
           const sumClamped = norm.reduce(function(a,x){ return a + x.awarded; }, 0);
-          const serverScore = (typeof d.score === "number")
-            ? Math.max(0, Math.min(rubricTotal, Math.round(d.score))) : null;
+          const rawServer = d.score;
+          const serverScore = (typeof rawServer === "number" && isFinite(rawServer)
+                               && rawServer >= 0 && rawServer <= rubricTotal)
+            ? Math.round(rawServer) : null;
+          const invalidTotal = (rawServer != null) && serverScore === null;
           const mismatch = serverScore !== null && serverScore !== sumClamped;
+          // 结构不完整（漏项/重复/未知/越界/非法总分）一律进复核，且不发 XP
+          const structural = missingIds.length + dupIds.length + unknownIds.length + badValue
+                             + (invalidTotal ? 1 : 0);
+          const incomplete = structural > 0;
           const finalScore = sumClamped;
           const ai = {
             score: finalScore, max: rubricTotal, results: norm,
             feedback: String(d.feedback || "").slice(0, 500),
             confidence: conf,
-            needsReview: conf < 0.6 || mismatch,
+            needsReview: conf < 0.6 || mismatch || incomplete,
             mismatch: mismatch,
+            incomplete: incomplete,
+            anomalies: {missing: missingIds, dup: dupIds, unknown: unknownIds,
+                        badValue: badValue, invalidTotal: !!invalidTotal},
             serverScore: serverScore,
             model: String(d.model || ""),
             engine: en.n,
@@ -3195,10 +3274,14 @@ function render() {
           }
           if (!wasGraded) {
             // 总分与分项对不上：可能是服务端/模型异常，不发 XP，让人工复核
-            if (window.awardForQ && !ai.mismatch) awardForQ(q.id, q.difficulty, "short",
-              {ratio: rubricTotal ? finalScore / rubricTotal : 0, answer: answer});
+            if (window.awardForQ && !ai.needsReview) awardForQ(q.id, q.difficulty, "short",
+              {ratio: rubricTotal ? finalScore / rubricTotal : 0, answer: answer,
+               awarded: finalScore, maxMarks: rubricTotal});
           }
-          if (ai.mismatch) toast(L === "en"
+          if (ai.incomplete) toast(L === "en"
+            ? "Incomplete grading result - flagged for review, no XP"
+            : "评分结构不完整（漏项/重复/越界），已标记复核，本次不发经验", false);
+          else if (ai.mismatch) toast(L === "en"
             ? "Score mismatch (" + (ai.serverScore) + " vs " + finalScore + ") - flagged for review, no XP"
             : "总分与分项不一致（" + (ai.serverScore) + " vs " + finalScore + "），已标记复核，本次不发经验", false);
           GRADING[q.id] = false;
@@ -3395,6 +3478,9 @@ function reviewMark(slug, qid, correct){
   if (correct) {
     const it = db[id];
     if (!it) return;
+    // 间隔复习：只有到了 due 才算一次有效复习；否则（改答案重评/同一天反复提交）
+    // 只更新"最后一次答对时间"，绝不推进 stage
+    if (!(it.due && now >= it.due)) { reviewSave(db); return; }
     const st = (it.stage || 0) + 1;
     if (st >= GAPS.length) delete db[id];
     else { it.stage = st; it.due = now + GAPS[st]*864e5; it.last = now; }

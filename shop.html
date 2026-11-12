@@ -475,6 +475,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:34px 0 0;line-h
    ═══════════════════════════════════════════════════════════════ */
 var TX_KEY = "dsh-tx-v1", CAP_KEY = "dsh-caps-v1", MAS_KEY = "dsh-mastery-v1";
 var KEYS_KEY = "dsh-txkeys-v1";   // 幂等键环形表（独立于展示流水，避免被截断）
+var ATT_KEY  = "dsh-attempts-v1"; // 作答记录：每一次有效作答都写，和是否发奖励无关
+var ATT_MAX  = 5000;              // 有限窗口：只能防住最近 5000 次作答的重放
 var RX_CAPS = { xp: 600, coin: 300, dust: 6 };
 var RX_TX_MAX = 500;
 
@@ -499,6 +501,32 @@ function rxKeys() {
   try{ var v = JSON.parse(localStorage.getItem(KEYS_KEY) || "[]"); return Array.isArray(v) ? v : []; }
   catch(e){ return []; }
 }
+/* ── 作答记录（attempt）────────────────────────────────
+   与奖励流水分离：答错、被上限截断、已掌握降权到 0 的作答也要留痕，
+   否则同一事件重复触发时判不了重，掌握度会被重复计算。 */
+function rxAttempts() {
+  try{ var v = JSON.parse(localStorage.getItem(ATT_KEY) || "[]"); return Array.isArray(v) ? v : []; }
+  catch(e){ return []; }
+}
+function rxHasAttempt(id) {
+  var a = rxAttempts();
+  for (var i = 0; i < a.length; i++) if (a[i] && a[i].a === id) return true;
+  return false;
+}
+/** 写作答记录；返回 false 表示没落盘（调用方据此放弃更新掌握度） */
+function rxPushAttempt(rec) {
+  try {
+    var a = rxAttempts();
+    a.push(rec);
+    if (a.length > ATT_MAX) a = a.slice(a.length - ATT_MAX);
+    localStorage.setItem(ATT_KEY, JSON.stringify(a));
+    // 回读校验：写失败（配额满/隐私模式）时不能假装已持久化
+    var back = JSON.parse(localStorage.getItem(ATT_KEY) || "[]");
+    for (var i = back.length - 1; i >= 0; i--) if (back[i] && back[i].a === rec.a) return true;
+    return false;
+  } catch (e) { return false; }
+}
+
 function rxHasTx(key) {
   var a = rxTx();
   for (var i = 0; i < a.length; i++) if (a[i] && a[i].k === key) return true;
@@ -625,7 +653,8 @@ function rxAward(o) {
   o = o || {};
   var day = rxDay(), now = Date.now();
   var ratio = (o.ratio == null) ? null : Math.max(0, Math.min(1, o.ratio));
-  var out = { xp: 0, coin: 0, dust: 0, capped: 0, dup: false, stage: 0, stageUp: 0, reason: "" };
+  var out = { xp: 0, coin: 0, dust: 0, capped: 0, dup: false, stage: 0, stageUp: 0,
+              reason: "", persistFail: false, attempt: "" };
 
   // 判分失败：不发奖，只记录（便于排查），也不写流水污染账本
   if (ratio == null && o.kind === "answer") { out.reason = "no-score"; return out; }
@@ -639,8 +668,26 @@ function rxAward(o) {
     (o.answer ? rxHash(String(o.answer).slice(0, 120)) : "-"),
     ratio == null ? "na" : ratio.toFixed(2), day
   ].join("|");
+  // 作答记录 id：与奖励流水分开命名空间，但输入同源（同一天/同题/同答案/同分）
+  var attId = "att|" + key;
+
   // 重复提交：先判重，绝不能先动掌握度（否则同一次作答会被算成两次学习证据）
-  if (rxHasTx(key)) { out.dup = true; out.reason = "dup"; return out; }
+  // 兼容旧版本：老用户只有奖励流水里留下的 key，没有 attempt 记录
+  if (rxHasAttempt(attId) || rxHasTx(key)) {
+    out.dup = true; out.reason = "dup"; return out;
+  }
+
+  out.attempt = attId;
+  // 先写成答记录（零奖励也要写）；写不进去就放弃本次统计，绝不假装已持久化
+  if (o.qid && o.ratio != null) {
+    var okAtt = rxPushAttempt({
+      a: attId, q: o.qid, ts: now,
+      aw: (typeof o.awarded === "number") ? o.awarded : null,
+      mx: (typeof o.maxMarks === "number") ? o.maxMarks : null,
+      r: ratio, st: o.src || "quiz", ty: o.type || "", d: o.diff || ""
+    });
+    if (!okAtt) { out.persistFail = true; out.reason = "persist-failed"; return out; }
+  }
 
   // 掌握度（选择题也走：correct → 1，错误 → 0）——只对"新的有效作答"生效
   var mres = null;
@@ -1622,7 +1669,9 @@ rxMigrateSeen();
     var res = RX.award({kind:"answer", qid:id, diff:diff,
                         type:(type==="short"?"short":"mcq"),
                         ratio:(o.ratio==null ? null : o.ratio),
-                        answer:(o.answer||""), src:(DATA&&DATA.slug)||""});
+                        answer:(o.answer||""), src:(DATA&&DATA.slug)||"",
+                        awarded:(typeof o.awarded==="number"?o.awarded:null),
+                        maxMarks:(typeof o.maxMarks==="number"?o.maxMarks:null)});
     var g = db();
     if(res && (res.xp>0 || res.coin>0)){
       beep(res.xp>0?660:240, 0.1, "sine", 0.05);
@@ -1631,6 +1680,8 @@ rxMigrateSeen();
             (res.capped?' · 已达今日上限':"")+
             (res.stageUp?(' · 掌握度 '+RX.stageName(res.stageUp)):''), true);
       if(res.levelUp){ setTimeout(function(){ toast('升到 Lv.'+levelOf(db().xp), true); levelUpSound(); }, 450); }
+    } else if(res && res.persistFail){
+      toast('本地存储写入失败，本次作答没有计入统计（请检查浏览器空间/隐私模式）', false);
     } else if(res && res.dup){
       /* 同一答案重复提交：静默 */
     } else if(res && res.reason){
