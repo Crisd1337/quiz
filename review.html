@@ -2038,16 +2038,43 @@ rxMigrateSeen();
       })
       .catch(function(){});
   }
+  /* 交成绩：以前是"发出去就报已提交"，服务端拒绝（日期不符/超额/来源被拒）用户看不到。
+     现在返回 Promise，只有服务端真的 ok 才算提交成功。 */
   function pushScore(){
-    if(!apibase()) return {ok:false,msg:"还没设置服务器地址"};
-    var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
-    if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
-    fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
-      .then(function(r){ return r.json(); })
-      .then(function(d){ if(d && d.ok) loadBoard(); })
-      .catch(function(){});
-    return {ok:true,msg:"已提交"};
+    var EN = (typeof LANG === "function" && LANG() === "en");
+    return new Promise(function(resolve){
+      function no(m){ resolve({ok:false, msg:m}); }
+      if(!apibase()) return no(EN?"No server configured":"还没设置服务器地址");
+      var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
+      if(rec.date!==todayKey()) return no(EN?"Finish today's challenge first":"先做完今日挑战");
+      fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
+        .then(function(r){
+          return r.json().catch(function(){ return {}; }).then(function(d){
+            return {status:r.status, d:d||{}};
+          });
+        })
+        .then(function(x){
+          var d=x.d;
+          if(d.ok){ loadBoard(); return resolve({ok:true, msg:EN?"Submitted":"已提交"}); }
+          var code=String(d.error||"");
+          var msg;
+          if(x.status===429 && code==="daily_quota")
+            msg = EN ? "Daily submit limit reached - try again tomorrow" : "今天的提交次数到上限了，明天再来";
+          else if(code==="day must be today")
+            msg = EN ? "Your device date doesn't match the server" : "设备日期和服务器对不上（检查系统时间）";
+          else if(x.status===403)
+            msg = EN ? "Submission blocked (origin not allowed)" : "提交被拒绝（来源校验没通过）";
+          else if(code.indexOf("至少答")>=0)
+            msg = EN ? "Answer at least 10 questions to join the board" : "至少答 10 题才能上榜";
+          else
+            msg = EN ? ("Submit failed" + (code?": "+code:"")) : ("提交失败" + (code?"："+code:""));
+          resolve({ok:false, msg:msg});
+        })
+        .catch(function(){
+          resolve({ok:false, msg:EN?"Network error - not submitted":"网络失败，没有提交成功"});
+        });
+    });
   }
   window.loadBoard=loadBoard; window.pushScore=pushScore; window.apibase=apibase; window.setApi=setApi;
   function b64e(str){ try{ return btoa(unescape(encodeURIComponent(str))).replace(/=+$/,"").replace(/\+/g,"-").replace(/\//g,"_"); }catch(e){ return ""; } }
@@ -2288,7 +2315,9 @@ rxMigrateSeen();
       renderAll(); return;
     }
     if(ev.target.closest && ev.target.closest("#pushscore")){
-      var r2=pushScore(); toast(r2.msg, r2.ok); return;
+      toast((typeof LANG === "function" && LANG() === "en") ? "Submitting..." : "正在提交…", true);
+      pushScore().then(function(r2){ toast(r2.msg, r2.ok); });
+      return;
     }
     if(ev.target.closest && ev.target.closest("#addcode")){
       var inp=document.getElementById("friendcode");
