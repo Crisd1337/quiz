@@ -360,12 +360,9 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:30px 0 0}
 </div>
 <script>
 (function(){
-  var EN = (function(){ try{
-      var m=(location.search.match(/[?&]lang=(en|zh)/)||[])[1];
-      if(m) return m==="en";
-      var v=localStorage.getItem("dsh-lang"); if(v) return v==="en";
-      return (navigator.language||"en").toLowerCase().indexOf("zh")!==0;
-    }catch(e){ return false; } })();
+  /* 全站英文：这里以前自己判断 ?lang= / localStorage.dsh-lang / navigator.language，
+     导致老用户（localStorage 残留 zh）或中文浏览器仍看到中文。2026-11-13 起恒为英文。 */
+  var EN = true;
   function T(zh,en){ return EN?en:zh; }
   var LBL = {
     answer:["答题","Answer"], exam:["交卷","Exam"], quest:["每日任务","Daily task"],
@@ -488,13 +485,10 @@ footer{color:var(--muted);font-size:11.5px;text-align:center;padding:30px 0 0}
     catch(e){return "system";}
   }
   function labels(){
+    /* 全站英文（2026-11-13）。这里曾读 localStorage.dsh-lang 给账本页单独判断，
+       导致老用户（残留 zh）看到中文主题按钮。恒英文。 */
     var zh=false;
-    try{
-      if(window.LANG) zh = LANG()==="zh";
-      else { var v=localStorage.getItem("dsh-lang"); zh = v==="zh"; }   // 账本页没有 GAME_JS
-    }catch(e){}
-    return zh ? {light:"浅色",dark:"深色",system:"自动"}
-              : {light:"Light",dark:"Dark",system:"Auto"};
+    return {light:"Light",dark:"Dark",system:"Auto"};
   }
   var LABEL=labels();
   function paint(box){
