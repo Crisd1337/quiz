@@ -2875,7 +2875,9 @@ function render() {
   const srcLabel = (L === "en") ? "Source: " : "出处：";
   const expHtml = rec ? `<div class="exp show"><b>${expLabel}</b>${esc(expText)}
       ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
-      <div class="src">${srcLabel}${esc(q.source || "")}</div></div>` : "";
+      <div class="src">${srcLabel}${esc((q.source || "").replace(L === "en" ? /[（）：，；]/g : /$^/, function(ch){
+        return {"（":" (", "）":")", "：":": ", "，":", ", "；":"; "}[ch] || ch;
+      }))}</div></div>` : "";
 
   const last = state.idx >= total - 1;
   let stemHtml;
