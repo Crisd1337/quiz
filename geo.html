@@ -2870,9 +2870,12 @@ function render() {
   }
 
   const expText = (L === "en" && q.explanation_en) ? q.explanation_en : q.explanation;
-  const expHtml = rec ? `<div class="exp show"><b>解析：</b>${esc(expText)}
+  // 标签随语言走（带冒号和空格），不要留给文本节点翻译器——带动态内容的段落匹配不上
+  const expLabel = (L === "en") ? "Explanation: " : "解析：";
+  const srcLabel = (L === "en") ? "Source: " : "出处：";
+  const expHtml = rec ? `<div class="exp show"><b>${expLabel}</b>${esc(expText)}
       ${q.type === "short" ? `<details class="fullans"><summary>看完整参考答案</summary><div>${esc(q.answer)}</div></details>` : ""}
-      <div class="src">出处：${esc(q.source || "")}</div></div>` : "";
+      <div class="src">${srcLabel}${esc(q.source || "")}</div></div>` : "";
 
   const last = state.idx >= total - 1;
   let stemHtml;
