@@ -1606,7 +1606,9 @@ rxMigrateSeen();
         var head = t.slice(0, t.length - TAIL.length);
         t = (I18N[head] || head) + " · " + (I18N["复习测验"] || "Quiz");
       }else{
-        t = I18N[t] || t;
+        t = I18N[t] || t.split(" · ").map(function(seg){
+          return I18N[seg] || seg;
+        }).join(" · ");
       }
       document.title = t;
     }catch(e){}
