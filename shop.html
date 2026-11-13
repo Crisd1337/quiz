@@ -9,7 +9,7 @@
   r.setAttribute("data-theme-mode",s);
 }catch(e){}})();</script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>商城 · Canvas 复习</title>
+<title>Shop · Canvas Revision</title>
 <style>
 /* ══ design tokens ═══════════════════════════════════════ */
 :root{
@@ -557,7 +557,7 @@ function rxCapLeft(cur) {
 }
 
 /* ── 掌握度 ───────────────────────────────────────── */
-var RX_STAGE = ["未开始", "初学", "发展中", "基本掌握", "已掌握"];
+var RX_STAGE = ["Not started", "Beginner", "Developing", "Mostly mastered", "Mastered"];
 function rxMas() { var m = rxRead(MAS_KEY, {}); return (m && typeof m === "object") ? m : {}; }
 function rxMasSave(m) { rxWrite(MAS_KEY, m); }
 
@@ -951,25 +951,25 @@ rxMigrateSeen();
   };
   var BADGES=[
     // 学习
-    {id:'first',   n:'第一题',   d:'完成第一道题'},
-    {id:'short10', n:'简答 10 道', d:'累计完成 10 道简答题'},
-    {id:'hard20',  n:'难题 20 道', d:'累计做对 20 道「较难」题'},
-    {id:'fix5',    n:'纠错 5 题', d:'把 5 道做错过的题重新做对'},
-    {id:'wide10',  n:'十科涉猎', d:'在 10 个以上科目练过'},
-    // 掌握
-    {id:'mastery1',n:'首次掌握', d:'把一道题练到「已掌握」'},
-    {id:'master60',n:'掌握过半', d:'掌握度达到 60%（至少 20 题）'},
-    {id:'subject', n:'一科通关', d:'某科全部做完'},
-    // 持续
-    {id:'streak3', n:'三天不断', d:'连续 3 天做题'},
-    {id:'streak7', n:'一周',     d:'连续 7 天做题'},
-    {id:'streak30',n:'一个月',   d:'连续 30 天做题'},
-    {id:'daily',   n:'今日达标', d:'一天做满 30 道不同的题'},
-    // 挑战
-    {id:'combo5',  n:'连对 5',   d:'一次连对 5 题'},
-    {id:'combo10', n:'连对 10',  d:'一次连对 10 题'},
-    {id:'daily7',  n:'挑战 7 次', d:'完成 7 次今日挑战'},
-    {id:'review',  n:'错题清零', d:'错题本清空'}
+    {id:'first',   n:'First question', d:'Answer your first question'},
+    {id:'short10', n:'10 short answers', d:'Complete 10 short-answer questions'},
+    {id:'hard20',  n:'20 hard ones',   d:'Get 20 hard questions right'},
+    {id:'fix5',    n:'5 fixed',        d:'Get 5 previously-wrong questions right again'},
+    {id:'wide10',  n:'Ten subjects',   d:'Practise in 10 or more subjects'},
+    // mastery
+    {id:'mastery1',n:'First mastered', d:'Bring one question to Mastered'},
+    {id:'master60',n:'Half mastered',  d:'Reach 60% mastery (at least 20 questions)'},
+    {id:'subject', n:'Subject cleared',d:'Finish every question in one subject'},
+    // streak
+    {id:'streak3', n:'Three days',     d:'Practise 3 days in a row'},
+    {id:'streak7', n:'One week',       d:'Practise 7 days in a row'},
+    {id:'streak30',n:'One month',      d:'Practise 30 days in a row'},
+    {id:'daily',   n:'Daily target',   d:'Answer 30 different questions in one day'},
+    // challenge
+    {id:'combo5',  n:'Combo 5',        d:'Five correct in a row'},
+    {id:'combo10', n:'Combo 10',       d:'Ten correct in a row'},
+    {id:'daily7',  n:'7 challenges',   d:'Complete 7 daily challenges'},
+    {id:'review',  n:'Mistakes cleared',d:'Empty the mistakes book'}
   ];
 
   function unlock(id){
@@ -979,7 +979,7 @@ rxMigrateSeen();
     RX.once("ach|"+id, {coin:20, kind:"achievement",
       meta:{badge:id, name:(bmeta&&bmeta.n)||id}});
     var meta=null; BADGES.forEach(function(x){ if(x.id===id) meta=x; });
-    if(meta) toast('解锁成就 · '+meta.n+' · +20 币', true);
+    if(meta) toast('Achievement unlocked · '+meta.n+' · +20 coins', true);
     return true;
   }
 
@@ -2181,7 +2181,7 @@ rxMigrateSeen();
     var q = ev.target.closest && ev.target.closest("[data-claim]");
     if(q){ claimQuest(q.getAttribute("data-claim")); renderAll(); return; }
     if(ev.target.closest && ev.target.closest("#mecode")){
-      if(!nick()){ var nm=prompt("给自己起个名字（显示在好友榜）",""); if(nm) setNick(nm.slice(0,12)); }
+      if(!nick()){ var nm=prompt("Pick a name (shown on the friends board)",""); if(nm) setNick(nm.slice(0,12)); }
       var r=myCode();
       if(!r.ok){ toast(r.msg,false); return; }
       var ta=document.createElement("textarea"); ta.value=r.code;
@@ -2193,7 +2193,7 @@ rxMigrateSeen();
     }
     if(ev.target.closest && ev.target.closest("#cfgapi")){
       var cur=apibase();
-      var v=prompt("填入 Cloudflare Worker 地址（留空则清除）", cur);
+      var v=prompt("Cloudflare Worker address (leave blank to clear)", cur);
       if(v===null) return;
       setApi(v);
       toast(v.trim()?"已保存，正在拉取云端榜…":"已清除服务器地址", true);
@@ -2330,7 +2330,7 @@ rxMigrateSeen();
         } else {
           var bal = x.cur==="dust" ? (c.dust||0) : (c.n||0);
           btn = '<button class="btn primary" data-buy="'+x.id+'" '+(bal<x.p?'disabled title="'+
-            (x.cur==="dust"?"星尘不足，还差 "+(x.p-bal):"金币不足，还差 "+(x.p-bal))+
+            (x.cur==="dust"?"Not enough stardust, "+(x.p-bal)+" short":"Not enough coins, "+(x.p-bal)+" short")+
             '"':'')+'>购买</button>';
         }
         html += '<div class="item"><div class="top"><h3>'+x.n+'</h3></div>'+

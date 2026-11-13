@@ -1,4 +1,4 @@
-# 食品科技 · 10 年级 · 复习测验（25 题）
+# Year 10 Food Technology · Revision quiz (25 questions)
 
 > Covers five units — Food Inequity, Food Trends, Food Safety & Hygiene (temperature danger zone, the 2-hour/4-hour rule, mise en place), Food for Specific Needs and Food for Special Occasions — with emphasis on definitions, legal figures and structured short answers.
 
@@ -130,146 +130,146 @@
 
 **19. [Kitchen operations · Poor workflow]** Discuss how poor workflow can impact a chef working in a commercial kitchen. In your answer, identify one cause of poor workflow and one way it could be improved.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **20. [Food equity · Inequity in developed countries]** Food inequity also exists in developed countries such as Australia. Identify two groups affected and explain one factor that makes it hard for them to access nutritious food.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **21. [Food equity · Charities — role and limits]** Explain how charities such as OzHarvest or Foodbank reduce food inequity, and outline one limitation of relying on charities to solve food insecurity.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **22. [Food trends · Social media]** Explain how social media drives food trends such as the #foodie movement and snackification, and identify one risk this creates for consumers.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **23. [Special dietary needs · Energy needs of athletes]** Explain why a professional NRL player has different daily energy and nutrient requirements from a sedentary office worker.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **24. [Special occasions · Why we celebrate with food]** Give two reasons why families and communities celebrate with particular foods, and support each reason with one example.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **25. [Food safety · Personal hygiene]** Explain why personal hygiene is the responsibility of every food handler. Give two examples of poor personal hygiene that could contaminate food.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 ---
 
-## 答案与解析
+## Answers and explanations
 
 **1.** A. 5°C to 60°C  
-　Explanation: The danger zone for bacterial growth is 5°C–60°C, where harmful bacteria multiply fastest. Temperatures below 0°C only slow growth down; they do not kill the bacteria.  
-　出处：Structured Responses (Sample Answers).pdf — The Danger Zone
+  Explanation: The danger zone for bacterial growth is 5°C–60°C, where harmful bacteria multiply fastest. Temperatures below 0°C only slow growth down; they do not kill the bacteria.  
+  Source: Structured Responses (Sample Answers).pdf — The Danger Zone
 
 **2.** B. It must be thrown away because bacteria levels are too high  
-　Explanation: If food has been out for more than 4 hours, the bacterial count will be too high and it must be thrown away; reheating or refrigerating it will not fix the problem.  
-　出处：Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule
+  Explanation: If food has been out for more than 4 hours, the bacterial count will be too high and it must be thrown away; reheating or refrigerating it will not fix the problem.  
+  Source: Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule
 
 **3.** C. Eat it now, but do not return it to the fridge  
-　Explanation: Food that has been in the danger zone for more than 2 hours but less than 4 hours can still be eaten, but it cannot go back into the fridge; only food that has been out for less than 2 hours may be refrigerated.  
-　出处：Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule
+  Explanation: Food that has been in the danger zone for more than 2 hours but less than 4 hours can still be eaten, but it cannot go back into the fridge; only food that has been out for less than 2 hours may be refrigerated.  
+  Source: Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule
 
 **4.** D. 4°C or below  
-　Explanation: To slow down bacterial growth, food must be refrigerated at 4°C or below, as temperatures like 8°C or 22°C are too high to prevent bacterial multiplication.  
-　出处：Structured Responses (Sample Answers).pdf — The Danger Zone(Industry Example)
+  Explanation: To slow down bacterial growth, food must be refrigerated at 4°C or below, as temperatures like 8°C or 22°C are too high to prevent bacterial multiplication.  
+  Source: Structured Responses (Sample Answers).pdf — The Danger Zone(Industry Example)
 
 **5.** A. Preparing ingredients and equipment before cooking  
-　Explanation: Mise en place refers to having all ingredients ready, including chopping onions, measuring seasonings, and preheating the oven, as skipping this step can lead to poor workflow.  
-　出处：Term 1 · Assumed Knowledge Quiz 6: Mise en place; Structured Responses (Sample Answers).pdf — Poor Workflow
+  Explanation: Mise en place refers to having all ingredients ready, including chopping onions, measuring seasonings, and preheating the oven, as skipping this step can lead to poor workflow.  
+  Source: Term 1 · Assumed Knowledge Quiz 6: Mise en place; Structured Responses (Sample Answers).pdf — Poor Workflow
 
 **6.** B. Some groups have limited access to affordable, safe food while others do not  
-　Explanation: Food inequity highlights the issue of unequal access to sufficient, safe, and nutritious food, and should not be confused with religious dietary restrictions or personal choices.  
-　出处：Term 1 · Food Inequity Assignment (Part 1 – Define)
+  Explanation: Food inequity highlights the issue of unequal access to sufficient, safe, and nutritious food, and should not be confused with religious dietary restrictions or personal choices.  
+  Source: Term 1 · Food Inequity Assignment (Part 1 – Define)
 
 **7.** C. People on low incomes or who are unemployed  
-　Explanation: People on low incomes or who are unemployed are the typical examples of groups affected by food inequity, along with rural residents, women and children, the elderly, people with chronic illnesses, people with disabilities, Aboriginal and Torres Strait Islander peoples, and people who are homeless.  
-　出处：Term 1 · Food Inequity Assignment (Introduction — list of affected groups)
+  Explanation: People on low incomes or who are unemployed are the typical examples of groups affected by food inequity, along with rural residents, women and children, the elderly, people with chronic illnesses, people with disabilities, Aboriginal and Torres Strait Islander peoples, and people who are homeless.  
+  Source: Term 1 · Food Inequity Assignment (Introduction — list of affected groups)
 
 **8.** D. OzHarvest  
-　Explanation: OzHarvest is an Australian food-rescue charity: it collects surplus food from businesses and distributes it to people in need. Woolworths, by contrast, is a supermarket chain and Fair Work is a workplace regulator, neither of which is a charity.  
-　出处：Term 1 · Food Inequity Assignment (Part 1 – charity list) (charity functions supplemented from syllabus knowledge)
+  Explanation: OzHarvest is an Australian food-rescue charity: it collects surplus food from businesses and distributes it to people in need. Woolworths, by contrast, is a supermarket chain and Fair Work is a workplace regulator, neither of which is a charity.  
+  Source: Term 1 · Food Inequity Assignment (Part 1 – charity list) (charity functions supplemented from syllabus knowledge)
 
 **9.** A. Replacing main meals with more frequent, smaller snacks  
-　Explanation: Snackification refers to the trend of replacing traditional meals with more frequent, smaller, and convenient eating occasions, which is the opposite of reducing snacking.  
-　出处：Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends
+  Explanation: Snackification refers to the trend of replacing traditional meals with more frequent, smaller, and convenient eating occasions, which is the opposite of reducing snacking.  
+  Source: Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends
 
 **10.** B. Reduce food waste by selling produce rejected as ugly  
-　Explanation: This trend targets 'ugly' but perfectly edible produce in order to reduce food waste at the farm and retail level. The selling point is waste reduction, not a higher price.  
-　出处：Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets
+  Explanation: This trend targets 'ugly' but perfectly edible produce in order to reduce food waste at the farm and retail level. The selling point is waste reduction, not a higher price.  
+  Source: Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets
 
 **11.** C. By popularising ingredients and dishes through media exposure  
-　Explanation: Celebrity chefs popularise particular ingredients or cooking methods through TV shows, social media and recipes, and trends follow. They do not set prices, write dietary guidelines or carry out health inspections.  
-　出处：Term 2 · Food Trends: Quiz 2 Celebrity Chef
+  Explanation: Celebrity chefs popularise particular ingredients or cooking methods through TV shows, social media and recipes, and trends follow. They do not set prices, write dietary guidelines or carry out health inspections.  
+  Source: Term 2 · Food Trends: Quiz 2 Celebrity Chef
 
 **12.** D. Gluten, found in wheat, barley and rye  
-　Explanation: Coeliac disease is an autoimmune reaction to gluten and requires a strict gluten-free diet for life. It is an immune response, not simply an ordinary allergy to flour.  
-　出处：Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease
+  Explanation: Coeliac disease is an autoimmune reaction to gluten and requires a strict gluten-free diet for life. It is an immune response, not simply an ordinary allergy to flour.  
+  Source: Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease
 
 **13.** A. Is digested slowly and raises blood glucose gradually  
-　Explanation: Low GI foods are digested and absorbed slowly, causing a gradual increase in blood sugar levels and a longer feeling of fullness, whereas high GI foods cause a rapid spike in blood sugar.  
-　出处：Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index
+  Explanation: Low GI foods are digested and absorbed slowly, causing a gradual increase in blood sugar levels and a longer feeling of fullness, whereas high GI foods cause a rapid spike in blood sugar.  
+  Source: Term 3 · Food for Specific Needs: Quiz 5 The Glycaemic Index
 
 **14.** B. An allergy involves the immune system, while an intolerance does not  
-　Explanation: Food allergies are mediated by the immune system and can trigger severe reactions like breathing difficulties, whereas intolerances are often due to enzyme deficiencies and typically cause gastrointestinal discomfort.  
-　出处：Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances
+  Explanation: Food allergies are mediated by the immune system and can trigger severe reactions like breathing difficulties, whereas intolerances are often due to enzyme deficiencies and typically cause gastrointestinal discomfort.  
+  Source: Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances
 
 **15.** C. Calcium and vitamin D  
-　Explanation: Calcium is the main mineral in bone, and vitamin D helps the body absorb it. A lack of either raises the risk of osteoporosis, and calcium taken without vitamin D is absorbed less efficiently.  
-　出处：Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis
+  Explanation: Calcium is the main mineral in bone, and vitamin D helps the body absorb it. A lack of either raises the risk of osteoporosis, and calcium taken without vitamin D is absorbed less efficiently.  
+  Source: Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis
 
 **16.** D. Iron-rich foods such as red meat, legumes and leafy greens  
-　Explanation: The dietary focus for iron-deficiency anaemia is on increasing iron intake, with red meat, legumes and dark leafy greens being common sources. Vitamin C improves iron absorption, but it is not a source of iron itself.  
-　出处：Term 3 · Food for Specific Needs: Quiz 8A Anaemia
+  Explanation: The dietary focus for iron-deficiency anaemia is on increasing iron intake, with red meat, legumes and dark leafy greens being common sources. Vitamin C improves iron absorption, but it is not a source of iron itself.  
+  Source: Term 3 · Food for Specific Needs: Quiz 8A Anaemia
 
 **17.** A. Longevity and a long life  
-　Explanation: Longevity noodles symbolise long life and are typically served uncut and unbroken, whereas gold ingot-shaped dumplings are associated with wealth, and the two should not be confused.  
-　出处：Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year
+  Explanation: Longevity noodles symbolise long life and are typically served uncut and unbroken, whereas gold ingot-shaped dumplings are associated with wealth, and the two should not be confused.  
+  Source: Term 4 · Food for Special Occasions: Quiz 2 Chinese New Year
 
 **18.** B. Build ofrendas with food to honour deceased relatives  
-　Explanation: The Day of the Dead is a Mexican celebration in early November where families build an ofrenda altar with the deceased's favourite foods and items, and its tone is one of remembrance and reunion rather than mourning or abstinence.  
-　出处：Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos
+  Explanation: The Day of the Dead is a Mexican celebration in early November where families build an ofrenda altar with the deceased's favourite foods and items, and its tone is one of remembrance and reunion rather than mourning or abstinence.  
+  Source: Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos
 
 **19.** Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.  
-　Explanation: A structured short answer should follow the 'what it is → how it affects → what causes it → how to improve it → example' pattern: define the concept, discuss its impact, causes and improvements, and give an industry example.  
-　出处：Structured Responses (Sample Answers).pdf — Poor Workflow
+  Explanation: A structured short answer should follow the 'what it is → how it affects → what causes it → how to improve it → example' pattern: define the concept, discuss its impact, causes and improvements, and give an industry example.  
+  Source: Structured Responses (Sample Answers).pdf — Poor Workflow
 
 **20.** Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.  
-　Explanation: Answers need 'two groups + one reason'. Common reasons include price, the distance to shops, housing conditions and health restrictions.  
-　出处：Term 1 · Food Inequity Assignment (Introduction and Part 1)
+  Explanation: Answers need 'two groups + one reason'. Common reasons include price, the distance to shops, housing conditions and health restrictions.  
+  Source: Term 1 · Food Inequity Assignment (Introduction and Part 1)
 
 **21.** Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.  
-　Explanation: To score points, explain how charities 'provide emergency relief' by collecting and redistributing surplus food, and then discuss how structural problems cannot be solved by donations alone.  
-　出处：Term 1 · Food Inequity Assignment (Part 1 – charity research) + Part 4 (future strategies)
+  Explanation: To score points, explain how charities 'provide emergency relief' by collecting and redistributing surplus food, and then discuss how structural problems cannot be solved by donations alone.  
+  Source: Term 1 · Food Inequity Assignment (Part 1 – charity research) + Part 4 (future strategies)
 
 **22.** Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.  
-　Explanation: You need both the 'mechanism of transmission' and the 'risks' — for example misleading nutrition information and problems with portion control. Describing the trend without explaining the mechanism loses marks.  
-　出处：Term 2 · Food Trends: Quiz 6 #foodie; Quiz 4 Snackification and other Food Trends
+  Explanation: You need both the 'mechanism of transmission' and the 'risks' — for example misleading nutrition information and problems with portion control. Describing the trend without explaining the mechanism loses marks.  
+  Source: Term 2 · Food Trends: Quiz 6 #foodie; Quiz 4 Snackification and other Food Trends
 
 **23.** The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.  
-　Explanation: Answers should focus on 'differences in energy expenditure leading to differences in carbohydrate, protein and water requirements'. Simply saying that athletes eat more is not enough; you also have to explain why the mix of nutrients changes.  
-　出处：Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players; Quiz 7 Diet of an Olympic Athlete
+  Explanation: Answers should focus on 'differences in energy expenditure leading to differences in carbohydrate, protein and water requirements'. Simply saying that athletes eat more is not enough; you also have to explain why the mix of nutrients changes.  
+  Source: Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players; Quiz 7 Diet of an Olympic Athlete
 
 **24.** Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.  
-　Explanation: Give two distinct reasons — one about 'social gatherings' and one about 'cultural or religious symbols' — and support each with an example. Listing examples without explaining the reasons loses marks.  
-　出处：Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food
+  Explanation: Give two distinct reasons — one about 'social gatherings' and one about 'cultural or religious symbols' — and support each with an example. Listing examples without explaining the reasons loses marks.  
+  Source: Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food
 
 **25.** Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.  
-　Explanation: The key points are that one person's behaviour can contaminate an entire batch of food, and that you can name specific unsafe practices such as not washing hands, working while sick or coughing over food. This material is covered in Food Handler Basics, Module 2.  
-　出处：Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)
+  Explanation: The key points are that one person's behaviour can contaminate an entire batch of food, and that you can name specific unsafe practices such as not washing hands, working while sick or coughing over food. This material is covered in Food Handler Basics, Module 2.  
+  Source: Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)

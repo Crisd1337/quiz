@@ -1,4 +1,4 @@
-# 数学 5.3 · 10 年级 · 复习测验（43 题）
+# Year 10 Maths 5.3 · Revision quiz (43 questions)
 
 > Covers eleven modules — Surds, Products & Factors, Indices, Equations & Logarithms, Quadratics & the Parabola, Coordinate Geometry, Simultaneous Equations, Graphing Curves, Functions, Non-right-angled Trigonometry and Probability (Chapter 12: relative frequency, Venn diagrams, two-way tables, tree diagrams, with and without replacement, independent events and conditional probability) — their calculations, rules, graphs and probability reasoning.
 
@@ -25,7 +25,7 @@
 
 **4. [Surds · Rationalising binomial denominators]** Rationalise the denominator and simplify: 4/(√5 − 1).
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -45,7 +45,7 @@
 
 **7. [Expressions · Simplifying fractions]** Simplify (x² − 9)/(x² + x − 12), stating any restrictions on x.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -65,7 +65,7 @@
 
 **10. [Indices · Fractional indices (mixed)]** Simplify (8x⁶y⁻³)^(2/3), giving your answer with positive indices.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -92,7 +92,7 @@
 
 **14. [Logarithms · Log equations]** Solve log₂ x + log₂ (x − 2) = 3.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -112,13 +112,13 @@
 
 **17. [Quadratics · Quadratic formula]** Solve 2x² + 3x − 7 = 0 using the quadratic formula. Give the answers correct to 2 decimal places.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **18. [Quadratics · Higher-degree equations]** Solve x⁴ − 5x² + 4 = 0.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -145,7 +145,7 @@
 
 **22. [Coordinate geometry · Line through two points]** Find the equation of the line passing through (−2, 3) and (4, 1), giving your answer in the general form ax + by + c = 0.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -165,7 +165,7 @@
 
 **25. [Simultaneous equations · Word problems]** At the school canteen, 3 pies and 2 drinks cost $14.50, while 2 pies and 5 drinks cost $17.00. Find the cost of one pie and one drink.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -192,7 +192,7 @@
 
 **29. [Graphs · Hyperbola]** The graph of y = k/x passes through the point (4, −3). Find k and state the equations of the two asymptotes.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -205,7 +205,7 @@
 
 **31. [Functions · Domain and range]** State the domain and range of the function f(x) = √(x − 4).
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -232,7 +232,7 @@
 
 **35. [Trigonometry · Ambiguous case]** In a triangle, a = 12 cm, b = 15 cm and ∠A = 40°. Find all possible values of ∠B, correct to 1 decimal place, and explain why more than one answer exists.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -286,7 +286,7 @@ What is the probability that a randomly selected student catches the bus?
 
 **42. [Probability · Tree diagrams]** A box contains 6 white and 4 black balls. Two balls are drawn at random without replacement. Using a tree diagram, find the probability that exactly one of the balls is black. Give your answer as a fraction in simplest form.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -294,182 +294,182 @@ What is the probability that a randomly selected student catches the bus?
 (a) Find the probability that the person owns a cat, given that they own a dog.
 (b) Find the probability that the person owns neither animal.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 ---
 
-## 答案与解析
+## Answers and explanations
 
 **1.** A. 6√2  
-　Explanation: √72 = √(36×2) = 6√2, the key is to break down the radicand into the largest square factor (36×2, not 9×8) and simplify until it can't be broken down further.  
-　出处：Chapter 1 Surds · 1.02 Simplifying surds (Ex 1.02, p.8)
+  Explanation: √72 = √(36×2) = 6√2, the key is to break down the radicand into the largest square factor (36×2, not 9×8) and simplify until it can't be broken down further.  
+  Source: Chapter 1 Surds · 1.02 Simplifying surds (Ex 1.02, p.8)
 
 **2.** B. 6√2  
-　Explanation: First write each surd in the same radical form: 5√2 + 4√2 − 3√2 = 6√2. A common mistake is to add or subtract the radicands directly (50 + 32 − 18 = 64), which gives 8.  
-　出处：Chapter 1 Surds · 1.03 Adding and subtracting surds (Ex 1.03, p.11)
+  Explanation: First write each surd in the same radical form: 5√2 + 4√2 − 3√2 = 6√2. A common mistake is to add or subtract the radicands directly (50 + 32 − 18 = 64), which gives 8.  
+  Source: Chapter 1 Surds · 1.03 Adding and subtracting surds (Ex 1.03, p.11)
 
 **3.** C. 2√5  
-　Explanation: Multiply the numerator and denominator by √5: 10√5/5 = 2√5, note that the final result should simplify the coefficient, not the radical.  
-　出处：Chapter 1 Surds · 1.06 Rationalising the denominator (Ex 1.06, p.20)
+  Explanation: Multiply the numerator and denominator by √5: 10√5/5 = 2√5, note that the final result should simplify the coefficient, not the radical.  
+  Source: Chapter 1 Surds · 1.06 Rationalising the denominator (Ex 1.06, p.20)
 
 **4.** Multiply by the conjugate (√5 + 1): 4(√5 + 1)/((√5)² − 1²) = 4(√5 + 1)/4 = √5 + 1.  
-　Explanation: To rationalise a denominator like this one, multiply by the conjugate (√5 + 1). After multiplying, the denominator becomes (√5)² − 1² = 5 − 1 = 4, which cancels with the 4 on top, so the answer is √5 + 1 (≈ 3.24).  
-　出处：Chapter 1 Surds · 1.06 Rationalising the denominator, binomial denominators (Ex 1.06)
+  Explanation: To rationalise a denominator like this one, multiply by the conjugate (√5 + 1). After multiplying, the denominator becomes (√5)² − 1² = 5 − 1 = 4, which cancels with the 4 on top, so the answer is √5 + 1 (≈ 3.24).  
+  Source: Chapter 1 Surds · 1.06 Rationalising the denominator, binomial denominators (Ex 1.06)
 
 **5.** D. 2x² + 7x − 15  
-　Explanation: Expand the four products: 2x·x = 2x², 2x·5 = 10x, −3·x = −3x and −3·5 = −15. Combining the like terms gives 2x² + 7x − 15; do not lose the minus sign on −3×5.  
-　出处：Chapter 5 Products and factors · 5.06 Expanding binomial products (Ex 5.06)
+  Explanation: Expand the four products: 2x·x = 2x², 2x·5 = 10x, −3·x = −3x and −3·5 = −15. Combining the like terms gives 2x² + 7x − 15; do not lose the minus sign on −3×5.  
+  Source: Chapter 5 Products and factors · 5.06 Expanding binomial products (Ex 5.06)
 
 **6.** A. (2x + 7)(3x − 5)  
-　Explanation: The product of the first and last terms is 6×(−35) = −210, and the cross term must be +11x. So you need two numbers with a product of −210 and a sum of +11: they are 21 and −10. Then 6x² + 21x − 10x − 35 = 3x(2x + 7) − 5(2x + 7) = (2x + 7)(3x − 5).  
-　出处：Chapter 5 Products and factors · 5.09 Factorising non-monic quadratic trinomials (Ex 5.09)
+  Explanation: The product of the first and last terms is 6×(−35) = −210, and the cross term must be +11x. So you need two numbers with a product of −210 and a sum of +11: they are 21 and −10. Then 6x² + 21x − 10x − 35 = 3x(2x + 7) − 5(2x + 7) = (2x + 7)(3x − 5).  
+  Source: Chapter 5 Products and factors · 5.09 Factorising non-monic quadratic trinomials (Ex 5.09)
 
 **7.** (x + 3)/(x + 4), where x ≠ 3 and x ≠ −4.  
-　Explanation: The numerator is a difference of squares, (x − 3)(x + 3), and the denominator factorises to (x + 4)(x − 3). Cancelling (x − 3) leaves (x + 3)/(x + 4). Any value of x that makes a cancelled factor zero must be excluded, so x ≠ 3 and x ≠ −4.  
-　出处：Chapter 5 Products and factors · 5.11 Factorising algebraic fractions (Ex 5.11)
+  Explanation: The numerator is a difference of squares, (x − 3)(x + 3), and the denominator factorises to (x + 4)(x − 3). Cancelling (x − 3) leaves (x + 3)/(x + 4). Any value of x that makes a cancelled factor zero must be excluded, so x ≠ 3 and x ≠ −4.  
+  Source: Chapter 5 Products and factors · 5.11 Factorising algebraic fractions (Ex 5.11)
 
 **8.** B. 16x¹²  
-　Explanation: Both the coefficient and the variable are raised to the fourth power: 2⁴ = 16 and (x³)⁴ = x¹², so the answer is 16x¹². A common mistake is to multiply the indices but forget the power of 2.  
-　出处：Chapter 5 Indices · 5.01 Index laws (Ex 5.01)
+  Explanation: Both the coefficient and the variable are raised to the fourth power: 2⁴ = 16 and (x³)⁴ = x¹², so the answer is 16x¹². A common mistake is to multiply the indices but forget the power of 2.  
+  Source: Chapter 5 Indices · 5.01 Index laws (Ex 5.01)
 
 **9.** C. 1/9  
-　Explanation: 27^(1/3) = 3, and squaring that gives 9. The negative index turns the result into its reciprocal, giving 1/9. A negative index means the reciprocal only — not a negative result.  
-　出处：Chapter 5 Indices · 5.02 Fractional indices (Ex 5.02)
+  Explanation: 27^(1/3) = 3, and squaring that gives 9. The negative index turns the result into its reciprocal, giving 1/9. A negative index means the reciprocal only — not a negative result.  
+  Source: Chapter 5 Indices · 5.02 Fractional indices (Ex 5.02)
 
 **10.** 4x⁴/y²  (8^(2/3) = 4, (x⁶)^(2/3) = x⁴, (y⁻³)^(2/3) = y⁻² = 1/y²)  
-　Explanation: Multiply each index by 2/3: 8^(2/3) = 4, x^(6×2/3) = x⁴, y^(−3×2/3) = y⁻². Then use the rule for negative indices to write 4x⁴/y².  
-　出处：Chapter 5 Indices · 5.02 Fractional indices / 5.04 Multiplying and dividing algebraic fractions
+  Explanation: Multiply each index by 2/3: 8^(2/3) = 4, x^(6×2/3) = x⁴, y^(−3×2/3) = y⁻². Then use the rule for negative indices to write 4x⁴/y².  
+  Source: Chapter 5 Indices · 5.02 Fractional indices / 5.04 Multiplying and dividing algebraic fractions
 
 **11.** D. 4  
-　Explanation: log₃81 asks '3 to the power of what equals 81?'. Since 3⁴ = 81, the answer is 4 — do not confuse it with the division 81 ÷ 3.  
-　出处：Chapter 7 Equations and logarithms · 7.09 Logarithms (p.270)
+  Explanation: log₃81 asks '3 to the power of what equals 81?'. Since 3⁴ = 81, the answer is 4 — do not confuse it with the division 81 ÷ 3.  
+  Source: Chapter 7 Equations and logarithms · 7.09 Logarithms (p.270)
 
 **12.** A. 2  
-　Explanation: First use the power rule to get log₃36, then the quotient rule to get log₃(36/4) = log₃9 = 2. The coefficient 2 has to be turned into an index first; it cannot be subtracted from 4 directly.  
-　出处：Chapter 7 Equations and logarithms · 7.10 Logarithm laws, Example 20 (p.273)
+  Explanation: First use the power rule to get log₃36, then the quotient rule to get log₃(36/4) = log₃9 = 2. The coefficient 2 has to be turned into an index first; it cannot be subtracted from 4 directly.  
+  Source: Chapter 7 Equations and logarithms · 7.10 Logarithm laws, Example 20 (p.273)
 
 **13.** B. x = 5  
-　Explanation: Take the logarithm on both sides: x·log3 = log243, x = log243/log3 = 5, or directly see 3⁵=243; note the direction of the quotient can't be reversed.  
-　出处：Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations, Example 23 (p.274)
+  Explanation: Take the logarithm on both sides: x·log3 = log243, x = log243/log3 = 5, or directly see 3⁵=243; note the direction of the quotient can't be reversed.  
+  Source: Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations, Example 23 (p.274)
 
 **14.** x = 4 (the solution x = −2 is rejected, because the logarithm of a negative number is undefined).  
-　Explanation: Combine the left side: log₂[x(x − 2)] = 3, so x² − 2x = 8. Solving gives x = 4 or x = −2, but you must check the domain, x > 0 and x − 2 > 0, so only x = 4 survives.  
-　出处：Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations (Ex 7.11)
+  Explanation: Combine the left side: log₂[x(x − 2)] = 3, so x² − 2x = 8. Solving gives x = 4 or x = −2, but you must check the domain, x > 0 and x − 2 > 0, so only x = 4 survives.  
+  Source: Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations (Ex 7.11)
 
 **15.** C. x = 8 or x = −3  
-　Explanation: Find two numbers with product −24 and sum −5: −8 and 3, so (x−8)(x+3)=0, x=8 or x=−3; note the product is −24, the numbers have different signs, don't write both as positive.  
-　出处：Chapter 11 Quadratic equations and the parabola · 11.01 Quadratic equations (Ex 11.01)
+  Explanation: Find two numbers with product −24 and sum −5: −8 and 3, so (x−8)(x+3)=0, x=8 or x=−3; note the product is −24, the numbers have different signs, don't write both as positive.  
+  Source: Chapter 11 Quadratic equations and the parabola · 11.01 Quadratic equations (Ex 11.01)
 
 **16.** D. (2, −5)  
-　Explanation: The axis of symmetry x = −b/(2a) = 12/6 = 2; substitute back y = 3(4) − 24 + 7 = −5, the vertex is (2, −5); don't directly take x=2 as the vertex coordinate.  
-　出处：Chapter 11 Quadratic equations and the parabola · 11.08 Axis of symmetry and vertex (Ex 11.08)
+  Explanation: The axis of symmetry x = −b/(2a) = 12/6 = 2; substitute back y = 3(4) − 24 + 7 = −5, the vertex is (2, −5); don't directly take x=2 as the vertex coordinate.  
+  Source: Chapter 11 Quadratic equations and the parabola · 11.08 Axis of symmetry and vertex (Ex 11.08)
 
 **17.** x ≈ 1.27 or x ≈ −2.77  (x = (−3 ± √65)/4)  
-　Explanation: a=2, b=3, c=−7, the discriminant b²−4ac = 9+56 = 65, so x = (−3 ± √65)/4 ≈ (−3 ± 8.0623)/4, get 1.2656 and −2.7656, rounded to two decimal places are 1.27 and −2.77.  
-　出处：Chapter 11 Quadratic equations and the parabola · 11.03 The quadratic formula (Ex 11.03)
+  Explanation: a=2, b=3, c=−7, the discriminant b²−4ac = 9+56 = 65, so x = (−3 ± √65)/4 ≈ (−3 ± 8.0623)/4, get 1.2656 and −2.7656, rounded to two decimal places are 1.27 and −2.77.  
+  Source: Chapter 11 Quadratic equations and the parabola · 11.03 The quadratic formula (Ex 11.03)
 
 **18.** x = 1, x = −1, x = 2 or x = −2  
-　Explanation: Let u = x², the equation becomes u²−5u+4=0, i.e. (u−1)(u−4)=0, u=1 or 4; then solve x²=1 and x²=4, get four solutions x=±1, ±2; don't just write x=1 and 2.  
-　出处：Chapter 11 Quadratic equations and the parabola · 11.05 Higher-order quadratic equations (Ex 11.05)
+  Explanation: Let u = x², the equation becomes u²−5u+4=0, i.e. (u−1)(u−4)=0, u=1 or 4; then solve x²=1 and x²=4, get four solutions x=±1, ±2; don't just write x=1 and 2.  
+  Source: Chapter 11 Quadratic equations and the parabola · 11.05 Higher-order quadratic equations (Ex 11.05)
 
 **19.** A. (2, 2)  
-　Explanation: Each midpoint coordinate is the mean of the endpoint coordinates: x = (−3 + 7)/2 = 2 and y = (5 − 1)/2 = 2. Do not confuse the midpoint formula with subtracting the coordinates.  
-　出处：Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)
+  Explanation: Each midpoint coordinate is the mean of the endpoint coordinates: x = (−3 + 7)/2 = 2 and y = (5 − 1)/2 = 2. Do not confuse the midpoint formula with subtracting the coordinates.  
+  Source: Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)
 
 **20.** B. 2  
-　Explanation: m = (y₂−y₁)/(x₂−x₁) = (7−(−1))/(6−2) = 8/4 = 2; the numerator is 7 minus −1 equals 8, the sign is easiest to get wrong.  
-　出处：Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)
+  Explanation: m = (y₂−y₁)/(x₂−x₁) = (7−(−1))/(6−2) = 8/4 = 2; the numerator is 7 minus −1 equals 8, the sign is easiest to get wrong.  
+  Source: Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)
 
 **21.** C. 4/3  
-　Explanation: Rearrange into gradient–intercept form to get y = −(3/4)x + 2, so the gradient of L is −3/4. A line perpendicular to L has the negative reciprocal gradient, i.e. 4/3 — do not forget to change the sign.  
-　出处：Coordinate Geometry · 3.02 Parallel and perpendicular lines (Ex 3.02, p.69)
+  Explanation: Rearrange into gradient–intercept form to get y = −(3/4)x + 2, so the gradient of L is −3/4. A line perpendicular to L has the negative reciprocal gradient, i.e. 4/3 — do not forget to change the sign.  
+  Source: Coordinate Geometry · 3.02 Parallel and perpendicular lines (Ex 3.02, p.69)
 
 **22.** x + 3y − 7 = 0  
-　Explanation: First find the gradient: m = (1−3)/(4−(−2)) = −2/6 = −1/3. Then use point–gradient form y − 3 = −(1/3)(x + 2), multiply both sides by 3 to get 3y − 9 = −x − 2, and rearrange to x + 3y − 7 = 0. You can check by substituting the two points.  
-　出处：Coordinate Geometry · 3.05 The general form ax + by + c = 0 / 3.07 Finding the equation of a line (p.81–86)
+  Explanation: First find the gradient: m = (1−3)/(4−(−2)) = −2/6 = −1/3. Then use point–gradient form y − 3 = −(1/3)(x + 2), multiply both sides by 3 to get 3y − 9 = −x − 2, and rearrange to x + 3y − 7 = 0. You can check by substituting the two points.  
+  Source: Coordinate Geometry · 3.05 The general form ax + by + c = 0 / 3.07 Finding the equation of a line (p.81–86)
 
 **23.** D. x = 4, y = 1  
-　Explanation: Adding the two equations eliminates y: 5x = 20, x = 4; substituting x into x+3y=7 gives y = 1. Because +3y and −3y have opposite signs, we add instead of subtract.  
-　出处：Chapter 10 Simultaneous equations · 10.02 The elimination method, Example 2 (p.401)
+  Explanation: Adding the two equations eliminates y: 5x = 20, x = 4; substituting x into x+3y=7 gives y = 1. Because +3y and −3y have opposite signs, we add instead of subtract.  
+  Source: Chapter 10 Simultaneous equations · 10.02 The elimination method, Example 2 (p.401)
 
 **24.** A. (2, 4) and (−1, 1)  
-　Explanation: Let x² = x + 2, then x²−x−2=0, which is (x−2)(x+1)=0, so x = 2 or −1; substituting these values back in to find y gives the points (2,4) and (−1,1). Both intersection points should be written, not just the positive root.  
-　出处：Chapter 11 · 11.09 Non-linear simultaneous equations (Ex 11.09)
+  Explanation: Let x² = x + 2, then x²−x−2=0, which is (x−2)(x+1)=0, so x = 2 or −1; substituting these values back in to find y gives the points (2,4) and (−1,1). Both intersection points should be written, not just the positive root.  
+  Source: Chapter 11 · 11.09 Non-linear simultaneous equations (Ex 11.09)
 
 **25.** A pie costs $3.50 and a drink costs $2.00.  
-　Explanation: Multiplying the first equation by 5 and the second by 2 gives 15p + 10d = 72.50 and 4p + 10d = 34.00. Subtracting them gives 11p = 38.50, so p = 3.50, and substituting back gives d = 2.00.  
-　出处：Chapter 10 Simultaneous equations · 10.04 Problems involving simultaneous equations (Ex 10.04)
+  Explanation: Multiplying the first equation by 5 and the second by 2 gives 15p + 10d = 72.50 and 4p + 10d = 34.00. Subtracting them gives 11p = 38.50, so p = 3.50, and substituting back gives d = 2.00.  
+  Source: Chapter 10 Simultaneous equations · 10.04 Problems involving simultaneous equations (Ex 10.04)
 
 **26.** B. Centre (3, −2), radius 5  
-　Explanation: The standard form is (x−a)² + (y−b)² = r², so the centre of the circle (a, b) is (3, −2); the radius is the square root of 25, which is 5, not 25. Note that y+2 corresponds to b=−2.  
-　出处：Chapter 8 Graphing curves · 8.13 The circle (x − a)² + (y − b)² = r² (Ex 8.13)
+  Explanation: The standard form is (x−a)² + (y−b)² = r², so the centre of the circle (a, b) is (3, −2); the radius is the square root of 25, which is 5, not 25. Note that y+2 corresponds to b=−2.  
+  Source: Chapter 8 Graphing curves · 8.13 The circle (x − a)² + (y − b)² = r² (Ex 8.13)
 
 **27.** C. It passes through (0, 1) and has the x-axis as an asymptote.  
-　Explanation: Any curve y = aˣ passes through (0,1) because a⁰=1; as x approaches negative infinity, y approaches 0, so the x-axis is the asymptote. It never equals 0, so there is no x-intercept.  
-　出处：Chapter 8 Graphing curves · 8.12 The exponential curve y = aˣ (Ex 8.12)
+  Explanation: Any curve y = aˣ passes through (0,1) because a⁰=1; as x approaches negative infinity, y approaches 0, so the x-axis is the asymptote. It never equals 0, so there is no x-intercept.  
+  Source: Chapter 8 Graphing curves · 8.12 The exponential curve y = aˣ (Ex 8.12)
 
 **28.** D. x = 1, x = −2 and x = 4  
-　Explanation: Setting y = 0, each factor equals zero: x−1=0, x+2=0, x−4=0, giving x=1, −2, 4. Note that (x+2) gives −2, and the sign is easy to get wrong.  
-　出处：Chapter 8 Graphing curves · 8.08 The cubic curve y = a(x − r)(x − s)(x − t) (Ex 8.08)
+  Explanation: Setting y = 0, each factor equals zero: x−1=0, x+2=0, x−4=0, giving x=1, −2, 4. Note that (x+2) gives −2, and the sign is easy to get wrong.  
+  Source: Chapter 8 Graphing curves · 8.08 The cubic curve y = a(x − r)(x − s)(x − t) (Ex 8.08)
 
 **29.** k = −12; the asymptotes are x = 0 (the y-axis) and y = 0 (the x-axis).  
-　Explanation: Substituting gives −3 = k/4, so k = −12, which means y = −12/x. x cannot be 0, and y is never 0, so the two asymptotes are x = 0 and y = 0.  
-　出处：Chapter 8 Graphing curves · 8.11 The hyperbola y = k/x (Ex 8.11)
+  Explanation: Substituting gives −3 = k/4, so k = −12, which means y = −12/x. x cannot be 0, and y is never 0, so the two asymptotes are x = 0 and y = 0.  
+  Source: Chapter 8 Graphing curves · 8.11 The hyperbola y = k/x (Ex 8.11)
 
 **30.** A. 14  
-　Explanation: f(−2) = 2(−2)² − 3(−2) = 2×4 + 6 = 14. The square is calculated first to get 4, and the second term is −3×(−2)=+6, so both signs need to be handled correctly.  
-　出处：Chapter 14 Functions · 14.02 Function notation (Ex 14.02)
+  Explanation: f(−2) = 2(−2)² − 3(−2) = 2×4 + 6 = 14. The square is calculated first to get 4, and the second term is −3×(−2)=+6, so both signs need to be handled correctly.  
+  Source: Chapter 14 Functions · 14.02 Function notation (Ex 14.02)
 
 **31.** Domain: x ≥ 4; range: y ≥ 0.  
-　Explanation: The expression inside the square root must be non-negative, so x−4 ≥ 0, which means the domain is x ≥ 4; the result of the square root is never negative, so the range is y ≥ 0. Note that the range refers to the values of y, not x.  
-　出处：Chapter 14 Functions · 14.02 The domain and range of a function (p.540)
+  Explanation: The expression inside the square root must be non-negative, so x−4 ≥ 0, which means the domain is x ≥ 4; the result of the square root is never negative, so the range is y ≥ 0. Note that the range refers to the values of y, not x.  
+  Source: Chapter 14 Functions · 14.02 The domain and range of a function (p.540)
 
 **32.** B. 22 cm²  
-　Explanation: The area is ½ab·sinC = ½×8×11×sin30° = 44×0.5 = 22 cm². Forgetting to multiply by ½ would give 44, which is a common mistake.  
-　出处：Non-right Angled Trigonometry · 9.11 Area of a triangle (Ex 9.11)
+  Explanation: The area is ½ab·sinC = ½×8×11×sin30° = 44×0.5 = 22 cm². Forgetting to multiply by ½ would give 44, which is a common mistake.  
+  Source: Non-right Angled Trigonometry · 9.11 Area of a triangle (Ex 9.11)
 
 **33.** C. 14.5 cm  
-　Explanation: Using the sine rule b/sinB = a/sinA gives b = 9.4×sin62°/sin35° ≈ 9.4×0.8830/0.5736 ≈ 14.5 cm. If the sine ratio is inverted (multiplying by sin35/sin62) the result would be 6.1, which is a typical error.  
-　出处：Non-right Angled Trigonometry · 9.07 Sine rule for sides (Ex 9.07)
+  Explanation: Using the sine rule b/sinB = a/sinA gives b = 9.4×sin62°/sin35° ≈ 9.4×0.8830/0.5736 ≈ 14.5 cm. If the sine ratio is inverted (multiplying by sin35/sin62) the result would be 6.1, which is a typical error.  
+  Source: Non-right Angled Trigonometry · 9.07 Sine rule for sides (Ex 9.07)
 
 **34.** D. 13.9 cm  
-　Explanation: c² = 7² + 9² − 2(7)(9)cos120° = 49 + 81 + 63 = 193, so c ≈ 13.9 cm. cos120° is negative, so the term −2ab·cosC becomes positive, don't lose the sign.  
-　出处：Non-right Angled Trigonometry · 9.09 Cosine rule for sides (Ex 9.09)
+  Explanation: c² = 7² + 9² − 2(7)(9)cos120° = 49 + 81 + 63 = 193, so c ≈ 13.9 cm. cos120° is negative, so the term −2ab·cosC becomes positive, don't lose the sign.  
+  Source: Non-right Angled Trigonometry · 9.09 Cosine rule for sides (Ex 9.09)
 
 **35.** ∠B ≈ 53.5° or ∠B ≈ 126.5°, because sin B = b sin A / a = 15 sin40°/12 ≈ 0.8035 and the sine rule can produce an acute and an obtuse solution (the ambiguous case).  
-　Explanation: Using the sine rule, sinB = 15×sin40°/12 ≈ 0.8035, so B ≈ 53.5°; since sin(180°−θ)=sinθ, B could also be 180°−53.5° = 126.5°, and we need to check if both solutions can form a triangle with 40°, given the ambiguous SSA situation.  
-　出处：Non-right Angled Trigonometry · 9.08 Sine rule for angles (Ex 9.08)
+  Explanation: Using the sine rule, sinB = 15×sin40°/12 ≈ 0.8035, so B ≈ 53.5°; since sin(180°−θ)=sinθ, B could also be 180°−53.5° = 126.5°, and we need to check if both solutions can form a triangle with 40°, given the ambiguous SSA situation.  
+  Source: Non-right Angled Trigonometry · 9.08 Sine rule for angles (Ex 9.08)
 
 **36.** A. 0.14  
-　Explanation: The relative frequency is the number of occurrences divided by the total number of trials, which is 7/50 = 0.14; common mistakes include using 100 as the total number of trials (7/100 = 0.07), using the score 6 instead of the frequency (6/50 = 0.12), or calculating the complementary event 43/50 = 0.86.  
-　出处：Chapter 12 Probability · 12.01 Relative frequency
+  Explanation: The relative frequency is the number of occurrences divided by the total number of trials, which is 7/50 = 0.14; common mistakes include using 100 as the total number of trials (7/100 = 0.07), using the score 6 instead of the frequency (6/50 = 0.12), or calculating the complementary event 43/50 = 0.86.  
+  Source: Chapter 12 Probability · 12.01 Relative frequency
 
 **37.** B. 7 students  
-　Explanation: First, find the union: 18 + 12 − 7 = 23 people can do at least one activity, then use 30 − 23 = 7 to find those who can do neither; 23 is the number of people who can do 'at least one activity' (forgetting to subtract from the total), 5 is the number who can only play tennis (12 − 7), and 0 is the result of directly using 18 + 12 = 30 as the union (double-counting 7 people) and then subtracting 30 from 30.  
-　出处：Chapter 12 Probability · 12.02 Venn diagrams
+  Explanation: First, find the union: 18 + 12 − 7 = 23 people can do at least one activity, then use 30 − 23 = 7 to find those who can do neither; 23 is the number of people who can do 'at least one activity' (forgetting to subtract from the total), 5 is the number who can only play tennis (12 − 7), and 0 is the result of directly using 18 + 12 = 30 as the union (double-counting 7 people) and then subtracting 30 from 30.  
+  Source: Chapter 12 Probability · 12.02 Venn diagrams
 
 **38.** C. 0.37  
-　Explanation: The total number of people taking the bus is 22 + 15 = 37, out of 100, so P = 0.37; 0.22 and 0.15 only consider one row of the table, while 0.63 is the proportion of people walking (1 − 0.37), all of which are errors from not adding or complementing the whole column.  
-　出处：Chapter 12 Probability · 12.03 Two-way tables
+  Explanation: The total number of people taking the bus is 22 + 15 = 37, out of 100, so P = 0.37; 0.22 and 0.15 only consider one row of the table, while 0.63 is the proportion of people walking (1 − 0.37), all of which are errors from not adding or complementing the whole column.  
+  Source: Chapter 12 Probability · 12.03 Two-way tables
 
 **39.** D. 1/4  
-　Explanation: For two independent events, use the product rule: P(H) × P(even) = 1/2 × 1/2 = 1/4; 1/2 only considers the dice being even (forgetting to multiply by the coin), 1/12 is the mistake of using P(4) = 1/6 as the probability of being even, and 3/4 is the complementary event 1 − 1/4.  
-　出处：Chapter 12 Probability · 12.06 Dependent and independent events (product rule)
+  Explanation: For two independent events, use the product rule: P(H) × P(even) = 1/2 × 1/2 = 1/4; 1/2 only considers the dice being even (forgetting to multiply by the coin), 1/12 is the mistake of using P(4) = 1/6 as the probability of being even, and 3/4 is the complementary event 1 − 1/4.  
+  Source: Chapter 12 Probability · 12.06 Dependent and independent events (product rule)
 
 **40.** A. 0.36  
-　Explanation: Without replacement: the first draw is 5/8, and the second draw has 4 red balls out of 7, so P = 5/8 × 4/7 = 20/56 ≈ 0.36; 0.39 is the mistake of using replacement (25/64 = 0.3906), 0.63 only considers the first draw (5/8), and 0.57 only considers the second draw (4/7).  
-　出处：Chapter 12 Probability · 12.05 Selecting with and without replacement
+  Explanation: Without replacement: the first draw is 5/8, and the second draw has 4 red balls out of 7, so P = 5/8 × 4/7 = 20/56 ≈ 0.36; 0.39 is the mistake of using replacement (25/64 = 0.3906), 0.63 only considers the first draw (5/8), and 0.57 only considers the second draw (4/7).  
+  Source: Chapter 12 Probability · 12.05 Selecting with and without replacement
 
 **41.** B. 2/3  
-　Explanation: Given the first ball is red and not replaced, there are 3 red and 6 blue balls left out of 9, so P(second ball is blue | first ball is red) = 6/9 = 2/3; 3/5 is the mistake of not changing the total from 10 to 9 (6/10), 1/3 is the mistake of considering the remaining red balls (3/9), and 2/5 is the probability of drawing a red ball first (4/10).  
-　出处：Chapter 12 Probability · 12.07 Conditional probability
+  Explanation: Given the first ball is red and not replaced, there are 3 red and 6 blue balls left out of 9, so P(second ball is blue | first ball is red) = 6/9 = 2/3; 3/5 is the mistake of not changing the total from 10 to 9 (6/10), 1/3 is the mistake of considering the remaining red balls (3/9), and 2/5 is the probability of drawing a red ball first (4/10).  
+  Source: Chapter 12 Probability · 12.07 Conditional probability
 
 **42.** 8/15  (2 × 6/10 × 4/9 = 48/90 = 8/15 ≈ 0.533)  
-　Explanation: The tree diagram has two successful paths: white→black (6/10 × 4/9 = 24/90) and black→white (4/10 × 6/9 = 24/90), which add up to 48/90 = 8/15; note that the denominator of the second branch also changes to 9 (without replacement), and 'exactly one black' must consider both paths, or half will be missed.  
-　出处：Chapter 12 Probability · 12.04 Tree diagrams / 12.05 Selecting with and without replacement
+  Explanation: The tree diagram has two successful paths: white→black (6/10 × 4/9 = 24/90) and black→white (4/10 × 6/9 = 24/90), which add up to 48/90 = 8/15; note that the denominator of the second branch also changes to 9 (without replacement), and 'exactly one black' must consider both paths, or half will be missed.  
+  Source: Chapter 12 Probability · 12.04 Tree diagrams / 12.05 Selecting with and without replacement
 
 **43.** (a) 18/45 = 2/5 = 0.4   (b) 80 − (45 + 30 − 18) = 23, so P(neither) = 23/80 = 0.2875 ≈ 0.29  
-　Explanation: (a) The denominator for the conditional probability is the 45 people who own dogs, with an intersection of 18 people, so 18/45 = 2/5 (≈0.4); (b) first, find the union 45 + 30 − 18 = 57 people, then 80 − 57 = 23 people have neither, with a probability of 23/80 ≈ 0.29; don't double-count the 18 in the union.  
-　出处：Chapter 12 Probability · 12.02 Venn diagrams / 12.07 Conditional probability
+  Explanation: (a) The denominator for the conditional probability is the 45 people who own dogs, with an intersection of 18 people, so 18/45 = 2/5 (≈0.4); (b) first, find the union 45 + 30 − 18 = 57 people, then 80 − 57 = 23 people have neither, with a probability of 23/80 ≈ 0.29; don't double-count the 18 in the union.  
+  Source: Chapter 12 Probability · 12.02 Venn diagrams / 12.07 Conditional probability

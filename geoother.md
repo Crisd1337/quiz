@@ -1,4 +1,4 @@
-# 地理 · 非年考 · 复习测验（14 题）
+# Geography · non-exam · Revision quiz (14 questions)
 
 > Content outside this coastal unit exam: human wellbeing and development indicators (GDP/HDI), population structure, circle sentencing and ACCOs, geographical skills (ternary graphs, area and grid references), and climate change (FLICC, enhanced greenhouse effect, coral bleaching, ocean acidification, sea level rise case studies).
 
@@ -25,7 +25,7 @@
 
 **4. [Wellbeing differences · Sydney socio-economic patterns]** Describe the spatial pattern of advantage and disadvantage in Sydney and explain one factor that produces it.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -52,7 +52,7 @@
 
 **8. [Indigenous wellbeing · Evaluating sentencing outcomes]** Explain one way circle sentencing could improve outcomes for Aboriginal and Torres Strait Islander peoples compared with a standard court process.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -86,72 +86,72 @@
 
 **13. [Climate change · Ocean acidification]** Explain how ocean acidification impacts marine life.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **14. [Climate change · Sea level rise examples]** Using the Solomon Islands case study, explain two impacts of sea level rise on low-lying Pacific nations.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 ---
 
-## 答案与解析
+## Answers and explanations
 
 **1.** A. It divides GDP by population, so countries of different sizes can be compared  
-　Explanation: GDP per capita is GDP divided by population, which removes the problem that large countries naturally have large totals. It still does not show how evenly income is distributed, though, and it cannot replace an indicator such as HDI.  
-　出处：Term 1 · Week 2 Global — Measuring and Mapping Human Wellbeing
+  Explanation: GDP per capita is GDP divided by population, which removes the problem that large countries naturally have large totals. It still does not show how evenly income is distributed, though, and it cannot replace an indicator such as HDI.  
+  Source: Term 1 · Week 2 Global — Measuring and Mapping Human Wellbeing
 
 **2.** B. Health, education and standard of living (GNI per capita)  
-　Explanation: The three HDI dimensions are health, education and standard of living. Because it measures health and education as well as income, the HDI is more comprehensive than a single economic indicator such as GDP.  
-　出处：Term 1 · Week 2 Global — Lesson 3: quantitative (GDP) vs qualitative (HDI)
+  Explanation: The three HDI dimensions are health, education and standard of living. Because it measures health and education as well as income, the HDI is more comprehensive than a single economic indicator such as GDP.  
+  Source: Term 1 · Week 2 Global — Lesson 3: quantitative (GDP) vs qualitative (HDI)
 
 **3.** C. A smaller workforce supporting a larger elderly group, straining pensions  
-　Explanation: An elderly population of nearly 40% means a higher dependency ratio, a smaller workforce and financial pressure on health care and aged care. A 'population pyramid with a very wide base and a much narrower top', by contrast, describes a high birth rate and an expanding population — the opposite of an ageing one.  
-　出处：Term 1 · Weeks 3–4 Geographic Skills — China's Ageing Population (37.8% over 60 by 2100)
+  Explanation: An elderly population of nearly 40% means a higher dependency ratio, a smaller workforce and financial pressure on health care and aged care. A 'population pyramid with a very wide base and a much narrower top', by contrast, describes a high birth rate and an expanding population — the opposite of an ageing one.  
+  Source: Term 1 · Weeks 3–4 Geographic Skills — China's Ageing Population (37.8% over 60 by 2100)
 
 **4.** Advantage is concentrated in the east, north and harbour-side suburbs, while disadvantage is concentrated in the west and south-west. Higher incomes, employment and better access to services, schools and healthy food cluster in the advantaged areas, while high housing costs push lower-income households further from those opportunities.  
-　Explanation: The answer needs 'pattern plus one cause'. The pattern is the contrast between the east and north on one side and the west and south-west on the other; the cause can be income, housing prices, or access to services and employment, following the course scaffold.  
-　出处：Term 1 · Weeks 7–8 Local — Sydney's socio-economic divide (East vs West)
+  Explanation: The answer needs 'pattern plus one cause'. The pattern is the contrast between the east and north on one side and the west and south-west on the other; the cause can be income, housing prices, or access to services and employment, following the course scaffold.  
+  Source: Term 1 · Weeks 7–8 Local — Sydney's socio-economic divide (East vs West)
 
 **5.** D. A sentencing process where Elders sit with a magistrate after a guilty verdict  
-　Explanation: Circle sentencing happens after a guilty verdict: community members and Elders take part in deciding the sentence, which improves cultural appropriateness and reduces reoffending. It does not replace the court, and it is not a pre-trial process.  
-　出处：Term 2 · Week 2.3 First Nations Justice — Action (circle sentencing)
+  Explanation: Circle sentencing happens after a guilty verdict: community members and Elders take part in deciding the sentence, which improves cultural appropriateness and reduces reoffending. It does not replace the court, and it is not a pre-trial process.  
+  Source: Term 2 · Week 2.3 First Nations Justice — Action (circle sentencing)
 
 **6.** A. Three parts of a whole that add to 100%, read off one point  
-　Explanation: A ternary graph shows the proportions of three components that add to 100%, such as employment structure or soil composition. Each axis gives one component, and the three values must add to 100%.  
-　出处：Term 2 · Week 10.1 Ternary Graphs
+  Explanation: A ternary graph shows the proportions of three components that add to 100%, such as employment structure or soil composition. Each axis gives one component, and the three values must add to 100%.  
+  Source: Term 2 · Week 10.1 Ternary Graphs
 
 **7.** B. An AR uses four figures for a square; a GR uses six for a point  
-　Explanation: An AR uses four digits to locate a square of about 1 km × 1 km, while a GR uses six digits to locate a specific point inside that square, accurate to 100 m. Do not mix up the order of the digits.  
-　出处：Term 1 · Weeks 3–4 Topographic Skills — AR, GR and elevation
+  Explanation: An AR uses four digits to locate a square of about 1 km × 1 km, while a GR uses six digits to locate a specific point inside that square, accurate to 100 m. Do not mix up the order of the digits.  
+  Source: Term 1 · Weeks 3–4 Topographic Skills — AR, GR and elevation
 
 **8.** It involves Elders and community members in deciding the sentence, so the outcome reflects the offender's community and culture and the offender is held accountable in front of people they know. This can increase respect for the process and reduce reoffending, which matters given the over-representation of Aboriginal people in custody.  
-　Explanation: You need 'mechanism → result': community and Elder involvement produces cultural safety and accountability, which makes the sentence more likely to be accepted and reduces reoffending. Writing only 'fairer' gains no marks.  
-　出处：Term 2 · Weeks 2.3 / 3.1 First Nations Justice — Action & Outcome
+  Explanation: You need 'mechanism → result': community and Elder involvement produces cultural safety and accountability, which makes the sentence more likely to be accepted and reduces reoffending. Writing only 'fairer' gains no marks.  
+  Source: Term 2 · Weeks 2.3 / 3.1 First Nations Justice — Action & Outcome
 
 **9.** C. Selecting data that support a position while ignoring contrary data  
-　Explanation: Cherry-picking is one of the five FLICC techniques: only the data points that support the position are selected and the overall trend is ignored. The reflection questions in class are designed to make you notice this.  
-　出处：Term 4 · Lessons 1.1–1.2 Climate misinformation (FLICC) / Lesson 2.1
+  Explanation: Cherry-picking is one of the five FLICC techniques: only the data points that support the position are selected and the overall trend is ignored. The reflection questions in class are designed to make you notice this.  
+  Source: Term 4 · Lessons 1.1–1.2 Climate misinformation (FLICC) / Lesson 2.1
 
 **10.** D. Human greenhouse gas emissions trap more infrared radiation, adding to warming  
-　Explanation: The natural greenhouse effect makes the Earth habitable; the extra greenhouse gases released by human activity strengthen it, so more infrared radiation is absorbed and re-radiated back to the surface. Telling the two apart is a common exam point.  
-　出处：Term 4 · Lesson 2.2 What are the causes of climate change? (Part 1)
+  Explanation: The natural greenhouse effect makes the Earth habitable; the extra greenhouse gases released by human activity strengthen it, so more infrared radiation is absorbed and re-radiated back to the surface. Telling the two apart is a common exam point.  
+  Source: Term 4 · Lesson 2.2 What are the causes of climate change? (Part 1)
 
 **11.** A. Heat stress makes corals expel their symbiotic algae, losing colour and food  
-　Explanation: Corals live in a symbiotic relationship with zooxanthellae. When heat stresses them, the corals expel the zooxanthellae and lose both their colour and their main food source; if the heat persists, the coral dies rather than simply turning white.  
-　出处：Term 4 · Lesson 3.3 How does sea temperature rise lead to coral bleaching?
+  Explanation: Corals live in a symbiotic relationship with zooxanthellae. When heat stresses them, the corals expel the zooxanthellae and lose both their colour and their main food source; if the heat persists, the coral dies rather than simply turning white.  
+  Source: Term 4 · Lesson 3.3 How does sea temperature rise lead to coral bleaching?
 
 **12.** B. Global warming is the rise in average temperature; climate change also covers rainfall and sea level  
-　Explanation: Global warming is the rise in average temperature, which is only one part of climate change — a broader concept that also includes changes in precipitation, sea level, ice caps and extreme weather events.  
-　出处：Term 4 · Lesson 2.1 EVIDENCE — distinguishing global warming from climate change
+  Explanation: Global warming is the rise in average temperature, which is only one part of climate change — a broader concept that also includes changes in precipitation, sea level, ice caps and extreme weather events.  
+  Source: Term 4 · Lesson 2.1 EVIDENCE — distinguishing global warming from climate change
 
 **13.** The ocean absorbs extra carbon dioxide, which forms carbonic acid and lowers the pH of seawater. This reduces the availability of carbonate ions, so organisms such as corals, shellfish and some plankton cannot build or maintain their shells and skeletons, which then affects the wider food chain.  
-　Explanation: The mechanism involves: CO₂ dissolving in seawater → forming carbonic acid → decreasing pH → reducing carbonate ions → making it difficult for calcifying organisms to form shells and skeletons → affecting the food chain.  
-　出处：Term 4 · Lesson 4.1 Ocean Acidification & Its Impact on Marine Life
+  Explanation: The mechanism involves: CO₂ dissolving in seawater → forming carbonic acid → decreasing pH → reducing carbonate ions → making it difficult for calcifying organisms to form shells and skeletons → affecting the food chain.  
+  Source: Term 4 · Lesson 4.1 Ocean Acidification & Its Impact on Marine Life
 
 **14.** First, higher seas and larger storm surges erode beaches and inundate low-lying land, so villages, gardens and fresh-water supplies are lost and communities are forced to relocate. Second, salt water intrudes into soil and groundwater, reducing the land available for growing food and increasing dependence on outside aid.  
-　Explanation: This can be answered on two levels: environmental and land (erosion, flooding, saltwater intrusion) and socio-economic (forced relocation, food and water shortages, reliance on aid).  
-　出处：Term 4 · Lesson 3.2 Sea level rise — Solomon Islands case study
+  Explanation: This can be answered on two levels: environmental and land (erosion, flooding, saltwater intrusion) and socio-economic (forced relocation, food and water shortages, reliance on aid).  
+  Source: Term 4 · Lesson 3.2 Sea level rise — Solomon Islands case study

@@ -1,7 +1,5 @@
 # Canvas Revision · Year 10
 
-**English** · [中文说明](README.zh-CN.md)
-
 A self-hosted study site built from Year 10 course material: **16 subjects, 428 questions**, with AI-graded short answers, a spaced-repetition mistake book, and a small gamified study loop. Plain static HTML — no framework, no build server, no login.
 
 | | |
@@ -9,14 +7,14 @@ A self-hosted study site built from Year 10 course material: **16 subjects, 428 
 | **Live site** | <https://crisd1337.github.io/quiz/> |
 | **Mirror** | <https://y10-quiz.pages.dev> (Cloudflare Pages) |
 | **Short links** | `crisd1337.github.io` · `/a` mixed paper · `/r` mistakes · `/k` shop · `/e` `/c` `/m` `/m5` `/h` `/g` `/p` subjects |
-| **Language** | English by default, switch to 中文 in the top bar (`?lang=zh`) |
+| **Language** | English only |
 | **Theme** | Light / Dark / System |
 
 ## What's inside
 
 - **428 questions** — 266 multiple choice, 162 short answer, across 16 subjects (English, Science, Maths P, Maths 5.3, History, Geography, PDHPE, and the non-exam electives).
 - **Short answers are actually marked.** Each one carries a rubric: per-criterion marks that must sum to the question's total. The browser posts the answer to a Cloudflare Worker, which asks an LLM to award the marks criterion by criterion and returns per-criterion feedback. If the answer covers the reference closely enough, a deterministic exact-match rule short-circuits it (no model call, no cost).
-- **Everything is double-labelled.** English is the default; every screen, label and explanation also exists in Chinese.
+- **English only.** The site was bilingual until 2026-11-12; it is now English throughout, including page titles, tooltips, native dialogs and the exported `.md` files — verified by `test_cjk_all.mjs`, which also checks `<title>`, attribute values and `alert/confirm/prompt`, not just visible text.
 - **Mistake book with spaced repetition.** Wrong answers enter a queue and come back after 1 / 3 / 7 days; answer them correctly twice and they graduate.
 - **Study loop.** XP by score ratio, a mastery model per subject, daily quests, coins, a shop, badges and an optional friends leaderboard.
 - **Offline-friendly.** All progress lives in `localStorage`. The site works without the API except for AI grading and the leaderboard.

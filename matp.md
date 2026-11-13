@@ -1,4 +1,4 @@
-# 数学 P · 10 年级 · 复习测验（49 题）
+# Year 10 Maths (Standard) · Revision quiz (49 questions)
 
 > Follows the 10MATP 26 Scope & Sequence and the format of the 2025 school half-yearly paper: interest and depreciation, income tax (tax tables, taxable income, PAYG and net income), algebra and index laws, equations and inequalities (including simultaneous equations), coordinate geometry and graphs of functions, right-angled trigonometry, surface area and volume, statistics (including standard deviation) and probability — nine strands.
 
@@ -18,7 +18,7 @@
 
 **3. [Finance · Declining-balance depreciation]** A delivery van is bought for $42,000. It depreciates at 15% per annum using the reducing-balance formula A = P(1 − R)^n. Find (a) its value after 4 years, correct to the nearest dollar, and (b) the total amount it has depreciated over those 4 years.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -59,7 +59,7 @@
 
 **9. [Algebra · Factorising]** Factorise each expression fully. (a) 12a²b − 21ab²  (b) x² + 7x + 10
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -79,7 +79,7 @@
 
 **12. [Equations · Equations with fractions]** Solve x/3 − (x − 2)/4 = 2.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -92,7 +92,7 @@
 
 **14. [Simultaneous equations · Modelling]** At the school canteen, 3 sandwiches and 2 drinks cost $19.50, while 2 sandwiches and 3 drinks cost $18.00. Find the cost of one sandwich and one drink.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -119,7 +119,7 @@
 
 **18. [Coordinate geometry · Perpendicular lines]** Find the equation of the line that is perpendicular to y = 2x + 5 and passes through the point (4, 1). Give your answer in the form y = mx + b.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -139,7 +139,7 @@
 
 **21. [Functions · Equation of a circle]** A circle has equation x² + y² = 49. State its centre and radius, and determine whether the point (5, 5) lies on the circle.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -166,13 +166,13 @@
 
 **25. [Trigonometry · Angle of elevation]** From a point on level ground 45 m from the base of a vertical tower, the angle of elevation of the top of the tower is 62°. Find the height of the tower, correct to one decimal place.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **26. [Trigonometry · Bearings]** A plane flies 15 km due north and then 20 km due east. Find (a) its distance from the starting point and (b) its bearing from the starting point, correct to the nearest degree.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -192,7 +192,7 @@
 
 **29. [Surface area · Cylinder and paint cost]** A cylindrical water tank has a radius of 5 m and a height of 10 m. Its entire surface, including the top and the bottom, is to be painted. (a) Find the total surface area, correct to the nearest square metre. (b) If paint costs $12 per square metre, find the total cost.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -212,7 +212,7 @@
 
 **32. [Statistics · Five-number summary and skew]** The ages of 13 participants in a sports event are: 12, 14, 15, 16, 17, 17, 18, 20, 21, 22, 25, 27, 30. (a) Write the five-number summary. (b) Calculate the interquartile range. (c) State, with a reason, whether the distribution is symmetrical or skewed.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -232,7 +232,7 @@
 
 **35. [Probability · Sampling without replacement]** A bag contains 3 red and 5 blue marbles. Two marbles are drawn at random one after the other without replacement. Find the probability that both marbles are red.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -259,13 +259,13 @@
 
 **39. [Finance · Tax bracket boundaries]** Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Ann's taxable income is $80,000 and Ben's is $80,001. Ignoring the Medicare levy, calculate the tax each person pays and state how much more tax Ben pays than Ann.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **40. [Finance · Net income]** Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Kim's gross pay for the year is $54,300. She has no allowable deductions, so her taxable income is also $54,300. Calculate (a) her income tax payable and (b) her net pay, given that she also pays $960 in other deductions (union fees and health fund contributions).
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -285,7 +285,7 @@
 
 **43. [Statistics · Mean and standard deviation]** A team scored the following number of goals in its 10 matches: 0, 1, 1, 2, 2, 2, 3, 3, 5, 6. (a) Find the mean. (b) Find the standard deviation, correct to two decimal places, using σ = √(Σ(x − x̄)² ÷ n).
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
@@ -333,200 +333,200 @@
 
 ---
 
-## 答案与解析
+## Answers and explanations
 
 **1.** A. $1,358  
-　Explanation: For the first 38 hours, 38×$28=$1,064, and for the 7 overtime hours (45−38=7), the pay is $42 per hour, so 7×$42=$294, for a total of $1,358; common mistakes include calculating the total as $1,260 using only the basic hourly rate for 45 hours, or $1,456 using double the hourly rate for overtime.  
-　出处：Topic1 Interest and Depreciation.pdf · 1-01 Earning an income
+  Explanation: For the first 38 hours, 38×$28=$1,064, and for the 7 overtime hours (45−38=7), the pay is $42 per hour, so 7×$42=$294, for a total of $1,358; common mistakes include calculating the total as $1,260 using only the basic hourly rate for 45 hours, or $1,456 using double the hourly rate for overtime.  
+  Source: Topic1 Interest and Depreciation.pdf · 1-01 Earning an income
 
 **2.** B. $1,393.77  
-　Explanation: For monthly compounding, convert both the interest rate and the number of periods to months: R=0.05/12, n=3×12=36, A=1200(1+0.05/12)^36≈$1,393.77; using simple interest gives $1,380, and using 5% as the annual interest rate with only 3 compounding periods gives $1,389.15, both of which are common mistakes.  
-　出处：1-04_ Compound Interest.pdf · A = P(1 + R)^n (R is the rate per period)
+  Explanation: For monthly compounding, convert both the interest rate and the number of periods to months: R=0.05/12, n=3×12=36, A=1200(1+0.05/12)^36≈$1,393.77; using simple interest gives $1,380, and using 5% as the annual interest rate with only 3 compounding periods gives $1,389.15, both of which are common mistakes.  
+  Source: 1-04_ Compound Interest.pdf · A = P(1 + R)^n (R is the rate per period)
 
 **3.** (a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924. (b) Depreciation = 42,000 − 21,924 = $20,076.  
-　Explanation: The reducing balance depreciation is multiplied by 0.85 each year for 4 years, not 42,000×(1−0.15×4); using the straight-line method (reducing by a fixed $6,300 each year) gives $16,800, which is another model.  
-　出处：1-07_ Depreciation.pdf · A = P(1 − R)^n(reducing balance)
+  Explanation: The reducing balance depreciation is multiplied by 0.85 each year for 4 years, not 42,000×(1−0.15×4); using the straight-line method (reducing by a fixed $6,300 each year) gives $16,800, which is another model.  
+  Source: 1-07_ Depreciation.pdf · A = P(1 − R)^n(reducing balance)
 
 **4.** C. 9a⁸  
-　Explanation: Each term inside the brackets is squared: 3² = 9, and the indices multiply, 4×2 = 8, so the answer is 9a⁸. The two most common mistakes are writing the coefficient 3 as 6, or working out 4×2 as 6.  
-　出处：Algebra Topic test + Solutions.pdf · Part A Q12 · 4-01_ Index Laws
+  Explanation: Each term inside the brackets is squared: 3² = 9, and the indices multiply, 4×2 = 8, so the answer is 9a⁸. The two most common mistakes are writing the coefficient 3 as 6, or working out 4×2 as 6.  
+  Source: Algebra Topic test + Solutions.pdf · Part A Q12 · 4-01_ Index Laws
 
 **5.** D. 30m²np  
-　Explanation: The coefficient is 2×5×3 = 30; m×m = m² because the indices are added, and p and n each appear once, giving 30m²np. Treating m×m as 2m gives 10m²np, and treating it as m³ gives the wrong index.  
-　出处：Topic2 Algebra.pdf · 4-01 The index laws
+  Explanation: The coefficient is 2×5×3 = 30; m×m = m² because the indices are added, and p and n each appear once, giving 30m²np. Treating m×m as 2m gives 10m²np, and treating it as m³ gives the wrong index.  
+  Source: Topic2 Algebra.pdf · 4-01 The index laws
 
 **6.** A. 2x / (3y²)  
-　Explanation: The coefficient simplifies to 6/9 = 2/3; when dividing like bases you subtract the indices, so x²÷x = x and y÷y³ = 1/y². The answer is 2x/(3y²). Common mistakes include writing the index of y as 3, or forgetting to simplify the coefficient.  
-　出处：4-03_ Multiplying and dividing algebraic fractions.pdf
+  Explanation: The coefficient simplifies to 6/9 = 2/3; when dividing like bases you subtract the indices, so x²÷x = x and y÷y³ = 1/y². The answer is 2x/(3y²). Common mistakes include writing the index of y as 3, or forgetting to simplify the coefficient.  
+  Source: 4-03_ Multiplying and dividing algebraic fractions.pdf
 
 **7.** B. 6x² − x − 35  
-　Explanation: Multiplying each term gives 6x² + 14x − 15x − 35 = 6x² − x − 35. The middle terms 14x − 15x = −x; if −15x is written as +15x, it results in errors like 6x² + 29x.  
-　出处：4-05_ Expanding Binomial Products.pdf · Algebra Topic test + Solutions.pdf Q24c
+  Explanation: Multiplying each term gives 6x² + 14x − 15x − 35 = 6x² − x − 35. The middle terms 14x − 15x = −x; if −15x is written as +15x, it results in errors like 6x² + 29x.  
+  Source: 4-05_ Expanding Binomial Products.pdf · Algebra Topic test + Solutions.pdf Q24c
 
 **8.** C. 42  
-　Explanation: The middle term of the perfect square is 2×7g×3 = 42g, so h = 42. The most common mistake is calculating only 7×3 = 21, missing the 2 in the formula.  
-　出处：Algebra Topic test + Solutions.pdf · Part A Q14(perfect squares)
+  Explanation: The middle term of the perfect square is 2×7g×3 = 42g, so h = 42. The most common mistake is calculating only 7×3 = 21, missing the 2 in the formula.  
+  Source: Algebra Topic test + Solutions.pdf · Part A Q14(perfect squares)
 
 **9.** (a) 3ab(4a − 7b)   (b) (x + 5)(x + 2)  
-　Explanation: (a) Take the greatest common factor: the HCF of 12 and 21 is 3, and the common factor of the variables a and b is ab, resulting in 3ab; inside the brackets, 3ab×4a=12a²b and 3ab×(−7b)=−21ab². (b) Find two numbers with a sum of 7 and a product of 10, which are 5 and 2.  
-　出处：4-06 Factorising monic quadratics.pdf · 2025 BBHS 10 (5.2) T2 Q14
+  Explanation: (a) Take the greatest common factor: the HCF of 12 and 21 is 3, and the common factor of the variables a and b is ab, resulting in 3ab; inside the brackets, 3ab×4a=12a²b and 3ab×(−7b)=−21ab². (b) Find two numbers with a sum of 7 and a product of 10, which are 5 and 2.  
+  Source: 4-06 Factorising monic quadratics.pdf · 2025 BBHS 10 (5.2) T2 Q14
 
 **10.** D. x = −8  
-　Explanation: Subtracting 7x and 10 from both sides gives 2x = −16, so x = −8. Common mistakes include forgetting to change the sign when moving the 10 (getting −2) or calculating −16 ÷ 2 as +8.  
-　出处：Topic 2 Equations and Inequality.pdf · 6-01 Equations(Example 1c)
+  Explanation: Subtracting 7x and 10 from both sides gives 2x = −16, so x = −8. Common mistakes include forgetting to change the sign when moving the 10 (getting −2) or calculating −16 ÷ 2 as +8.  
+  Source: Topic 2 Equations and Inequality.pdf · 6-01 Equations(Example 1c)
 
 **11.** A. x ≤ −3  
-　Explanation: Expanding gives −3x + 6 ≥ 15, which simplifies to −3x ≥ 9; when dividing both sides by −3, the inequality sign must be reversed, resulting in x ≤ −3. This can be verified by substituting x = −4: −3(−6)=18 ≥ 15, which holds true.  
-　出处：Topic 2 Equations and Inequality.pdf · 6-07 Solving inequalities (reverse the sign when dividing by a negative)
+  Explanation: Expanding gives −3x + 6 ≥ 15, which simplifies to −3x ≥ 9; when dividing both sides by −3, the inequality sign must be reversed, resulting in x ≤ −3. This can be verified by substituting x = −4: −3(−6)=18 ≥ 15, which holds true.  
+  Source: Topic 2 Equations and Inequality.pdf · 6-07 Solving inequalities (reverse the sign when dividing by a negative)
 
 **12.** Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.  
-　Explanation: The least common multiple of 3 and 4 is 12. The negative sign before the second term must be multiplied into the brackets, becoming +6; writing it as −6 results in x = 30, which is a common mistake.  
-　出处：Topic 2 Equations and Inequality.pdf · 6-02 Equations with algebraic fractions
+  Explanation: The least common multiple of 3 and 4 is 12. The negative sign before the second term must be multiplied into the brackets, becoming +6; writing it as −6 results in x = 30, which is a common mistake.  
+  Source: Topic 2 Equations and Inequality.pdf · 6-02 Equations with algebraic fractions
 
 **13.** B. x = 3, y = 2  
-　Explanation: Adding the two equations eliminates y: 8x = 24, x = 3; substituting back into the first equation gives 2y = 19 − 15 = 4, y = 2. The distractor (4, −0.5) only satisfies the first equation and can be eliminated by substituting into the second.  
-　出处：Topic 2 Simultaneous Equations.pdf · 9-02 The elimination method
+  Explanation: Adding the two equations eliminates y: 8x = 24, x = 3; substituting back into the first equation gives 2y = 19 − 15 = 4, y = 2. The distractor (4, −0.5) only satisfies the first equation and can be eliminated by substituting into the second.  
+  Source: Topic 2 Simultaneous Equations.pdf · 9-02 The elimination method
 
 **14.** Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.  
-　Explanation: List the two equations and then eliminate one variable (multiplying the first equation by 3 and the second by 2 gives 5s = 22.50). Substituting back to check gives 3×4.50+2×3 = $19.50, which is correct.  
-　出处：Topic 2 Simultaneous Equations.pdf · 9-04 Simultaneous equations problems
+  Explanation: List the two equations and then eliminate one variable (multiplying the first equation by 3 and the second by 2 gives 5s = 22.50). Substituting back to check gives 3×4.50+2×3 = $19.50, which is correct.  
+  Source: Topic 2 Simultaneous Equations.pdf · 9-04 Simultaneous equations problems
 
 **15.** C. 5  
-　Explanation: d = √[(5−2)² + (3−(−1))²] = √(9+16) = √25 = 5. Forgetting to take the square root results in 25, and adding the differences directly gives 7.  
-　出处：Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval
+  Explanation: d = √[(5−2)² + (3−(−1))²] = √(9+16) = √25 = 5. Forgetting to take the square root results in 25, and adding the differences directly gives 7.  
+  Source: Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval
 
 **16.** D. −2  
-　Explanation: The gradient is m = (y₂−y₁)/(x₂−x₁) = (−3−5)/(6−2) = −8/4 = −2, not −1/2 or 2.  
-　出处：Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval
+  Explanation: The gradient is m = (y₂−y₁)/(x₂−x₁) = (−3−5)/(6−2) = −8/4 = −2, not −1/2 or 2.  
+  Source: Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval
 
 **17.** A. y = 3x − 7  
-　Explanation: Substituting into y = mx + b gives −1 = 3(2) + b, so b = −7, hence y = 3x − 7, not y = 3x − 1.  
-　出处：Topic 1 Coordinate Geometry.pdf · 2-06 Finding the equation of a line
+  Explanation: Substituting into y = mx + b gives −1 = 3(2) + b, so b = −7, hence y = 3x − 7, not y = 3x − 1.  
+  Source: Topic 1 Coordinate Geometry.pdf · 2-06 Finding the equation of a line
 
 **18.** The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.  
-　Explanation: For perpendicular lines the product of the gradients is −1, so the gradient is −1/2; then substitute (4, 1) to find the y-intercept, which is 3.  
-　出处：Topic 1 Coordinate Geometry.pdf · 2-07 Equations of parallel and perpendicular lines
+  Explanation: For perpendicular lines the product of the gradients is −1, so the gradient is −1/2; then substitute (4, 1) to find the y-intercept, which is 3.  
+  Source: Topic 1 Coordinate Geometry.pdf · 2-07 Equations of parallel and perpendicular lines
 
 **19.** B. 12.5  
-　Explanation: For direct proportion, write y = kx, find k = 12/5 = 2.4, then when y = 30, x = 30 ÷ 2.4 = 12.5, not 72.  
-　出处：Topic 1 Graphs.pdf · 7-01 Direct proportion
+  Explanation: For direct proportion, write y = kx, find k = 12/5 = 2.4, then when y = 30, x = 30 ÷ 2.4 = 12.5, not 72.  
+  Source: Topic 1 Graphs.pdf · 7-01 Direct proportion
 
 **20.** C. 2  
-　Explanation: For inverse proportion, write y = k/x, find k = 40 from 5×8, then when x = 20, y = 40/20 = 2, not 32.  
-　出处：Topic 1 Graphs.pdf · 7-02 Inverse proportion
+  Explanation: For inverse proportion, write y = k/x, find k = 40 from 5×8, then when x = 20, y = 40/20 = 2, not 32.  
+  Source: Topic 1 Graphs.pdf · 7-02 Inverse proportion
 
 **21.** Centre (0, 0) and radius 7. The point (5, 5) does not lie on the circle, because 5² + 5² = 50, not 49.  
-　Explanation: The circle with equation x² + y² = r² has its centre at the origin and radius r = √49 = 7, so check if points are on the circle by substituting their coordinates.  
-　出处：Topic 1 Graphs.pdf · 7-06 The circle
+  Explanation: The circle with equation x² + y² = r² has its centre at the origin and radius r = √49 = 7, so check if points are on the circle by substituting their coordinates.  
+  Source: Topic 1 Graphs.pdf · 7-06 The circle
 
 **22.** D. 15 cm  
-　Explanation: The hypotenuse is √(9² + 12²) = √225 = 15 cm, not 21 cm or 225 cm.  
-　出处：Topic 3 Trigonometry.pdf · 8-01 Pythagoras' theorem
+  Explanation: The hypotenuse is √(9² + 12²) = √225 = 15 cm, not 21 cm or 225 cm.  
+  Source: Topic 3 Trigonometry.pdf · 8-01 Pythagoras' theorem
 
 **23.** A. 8.40 m  
-　Explanation: tan 35° = opposite side/adjacent side, so the opposite side is 12 × tan 35° ≈ 8.40 m, not 6.88 m or 17.14 m.  
-　出处：Topic 3 Trigonometry.pdf · 8-03 Finding an unknown side
+  Explanation: tan 35° = opposite side/adjacent side, so the opposite side is 12 × tan 35° ≈ 8.40 m, not 6.88 m or 17.14 m.  
+  Source: Topic 3 Trigonometry.pdf · 8-03 Finding an unknown side
 
 **24.** B. 35.7°  
-　Explanation: θ = sin⁻¹(7/12) ≈ 35.7°, not 30.3° or 54.3°.  
-　出处：Topic 3 Trigonometry.pdf · 8-04 Finding an unknown angle
+  Explanation: θ = sin⁻¹(7/12) ≈ 35.7°, not 30.3° or 54.3°.  
+  Source: Topic 3 Trigonometry.pdf · 8-04 Finding an unknown angle
 
 **25.** tan 62° = h / 45, so h = 45 × tan 62° ≈ 84.6 m.  
-　Explanation: The angle of elevation uses tan, with 45 m as the adjacent side to 62°, so use tan, not sin, which would give 39.7 m.  
-　出处：Topic 3 Trigonometry.pdf · 8-05 Angles of elevation and depression
+  Explanation: The angle of elevation uses tan, with 45 m as the adjacent side to 62°, so use tan, not sin, which would give 39.7 m.  
+  Source: Topic 3 Trigonometry.pdf · 8-05 Angles of elevation and depression
 
 **26.** Distance = √(15² + 20²) = 25 km. Bearing = tan⁻¹(20/15) ≈ 53°, measured clockwise from north, so the bearing is 053°.  
-　Explanation: The bearing is measured clockwise from north: the displacement is «15 north, 20 east», so the angle is 53° east of north, not 037°.  
-　出处：Topic 3 Trigonometry.pdf · 8-06 Bearings / 8-07 Problems involving bearings
+  Explanation: The bearing is measured clockwise from north: the displacement is «15 north, 20 east», so the angle is 53° east of north, not 037°.  
+  Source: Topic 3 Trigonometry.pdf · 8-06 Bearings / 8-07 Problems involving bearings
 
 **27.** C. 3078.8 cm³  
-　Explanation: First, find the radius r = 14 ÷ 2 = 7 cm, then V = πr²h = π × 49 × 20 = 980π ≈ 3078.8 cm³, not 12315.0 cm³.  
-　出处：Topic3 Surface area and Volume.pdf · 3-05 Volumes of prisms and cylinders(V = πr²h)
+  Explanation: First, find the radius r = 14 ÷ 2 = 7 cm, then V = πr²h = π × 49 × 20 = 980π ≈ 3078.8 cm³, not 12315.0 cm³.  
+  Source: Topic3 Surface area and Volume.pdf · 3-05 Volumes of prisms and cylinders(V = πr²h)
 
 **28.** D. 121.1 cm²  
-　Explanation: The rectangle is 12 × 8 = 96 cm², the semicircle is ½ × π × 4² = 8π ≈ 25.13 cm², for a total of ≈ 121.1 cm². Forgetting to halve it results in 146.3, and only calculating a quarter circle results in 108.6.  
-　出处：Topic3 Surface area and Volume.pdf · 3-01 Areas of composite shapes
+  Explanation: The rectangle is 12 × 8 = 96 cm², the semicircle is ½ × π × 4² = 8π ≈ 25.13 cm², for a total of ≈ 121.1 cm². Forgetting to halve it results in 146.3, and only calculating a quarter circle results in 108.6.  
+  Source: Topic3 Surface area and Volume.pdf · 3-01 Areas of composite shapes
 
 **29.** (a) SA = 2πr² + 2πrh = 50π + 100π = 150π ≈ 471.24 m², so 471 m². (b) Cost = 471 × 12 = $5,652.  
-　Explanation: Two circular faces and one side face total 150π. Calculating only the side face (100π ≈ 314 m²) misses the top and bottom; if the middle value is not rounded and 471.24 × 12 is used to get $5,654.88, it is also correct.  
-　出处：2025 BBHS 10 (5.2) T2 - soln.pdf · Q19 · Topic3 Surface area and Volume.pdf
+  Explanation: Two circular faces and one side face total 150π. Calculating only the side face (100π ≈ 314 m²) misses the top and bottom; if the middle value is not rounded and 471.24 × 12 is used to get $5,654.88, it is also correct.  
+  Source: 2025 BBHS 10 (5.2) T2 - soln.pdf · Q19 · Topic3 Surface area and Volume.pdf
 
 **30.** A. Positively skewed  
-　Explanation: A positively skewed distribution has its tail pointing to the high score side, while a negatively skewed distribution has its tail pointing to the low score side. The easiest way to remember this is by the phrase 'the tail swings to the side it's biased to'.  
-　出处：Topic 1 Investigating Data.pdf · 5-01 The shape of a frequency distribution
+  Explanation: A positively skewed distribution has its tail pointing to the high score side, while a negatively skewed distribution has its tail pointing to the low score side. The easiest way to remember this is by the phrase 'the tail swings to the side it's biased to'.  
+  Source: Topic 1 Investigating Data.pdf · 5-01 The shape of a frequency distribution
 
 **31.** B. 11  
-　Explanation: With n = 10, the median is (12+15)/2 = 13.5; the lower quartile Q1 is 7 and the upper quartile Q3 is 18, so the IQR is 18 − 7 = 11. Choosing 13.5 is incorrect because it's the median, not the IQR.  
-　出处：Topic 1 Investigating Data.pdf · 5-02 Quartiles and interquartile range
+  Explanation: With n = 10, the median is (12+15)/2 = 13.5; the lower quartile Q1 is 7 and the upper quartile Q3 is 18, so the IQR is 18 − 7 = 11. Choosing 13.5 is incorrect because it's the median, not the IQR.  
+  Source: Topic 1 Investigating Data.pdf · 5-02 Quartiles and interquartile range
 
 **32.** (a) Lowest 12, Q1 = 15.5, median = 18, Q3 = 23.5, highest 30. (b) IQR = 23.5 − 15.5 = 8. (c) Positively skewed, because the upper whisker (23.5 to 30) is longer than the lower whisker (12 to 15.5).  
-　Explanation: For 13 numbers, the median is the 7th number, and Q1 and Q3 are the medians of the lower and upper 6 numbers respectively. The upper whisker being 6.5 and the lower whisker being 3.5 indicates a longer tail on the high score side, so it's positively skewed.  
-　出处：Topic 1 Investigating Data.pdf · 5-03 Boxplots · 2025 BBHS 10 (5.2) T2 - soln.pdf Q9
+  Explanation: For 13 numbers, the median is the 7th number, and Q1 and Q3 are the medians of the lower and upper 6 numbers respectively. The upper whisker being 6.5 and the lower whisker being 3.5 indicates a longer tail on the high score side, so it's positively skewed.  
+  Source: Topic 1 Investigating Data.pdf · 5-03 Boxplots · 2025 BBHS 10 (5.2) T2 - soln.pdf Q9
 
 **33.** C. 6  
-　Explanation: The number of people who can do at least one activity is 18 + 12 − 6 = 24, where the intersection of 6 people is counted twice and must be subtracted. So, the number of people who can do neither activity is 30 − 24 = 6. Forgetting to subtract the intersection results in 0.  
-　出处：Topic 3 Probability.pdf · 10-02 Venn diagrams
+  Explanation: The number of people who can do at least one activity is 18 + 12 − 6 = 24, where the intersection of 6 people is counted twice and must be subtracted. So, the number of people who can do neither activity is 30 − 24 = 6. Forgetting to subtract the intersection results in 0.  
+  Source: Topic 3 Probability.pdf · 10-02 Venn diagrams
 
 **34.** D. 43/70  
-　Explanation: The denominator of the conditional probability must be the total number of boys, which is 43 + 27 = 70, so it's 43/70. Using the total number of students (43/136) or the total number of part-time workers (43/78) as the denominator is incorrect because it doesn't account for the condition.  
-　出处：Topic 3 Probability.pdf · 10-03 Two-way tables(Example 5)
+  Explanation: The denominator of the conditional probability must be the total number of boys, which is 43 + 27 = 70, so it's 43/70. Using the total number of students (43/136) or the total number of part-time workers (43/78) as the denominator is incorrect because it doesn't account for the condition.  
+  Source: Topic 3 Probability.pdf · 10-03 Two-way tables(Example 5)
 
 **35.** P(both red) = 3/8 × 2/7 = 6/56 = 3/28.  
-　Explanation: For sampling without replacement, the sample space for the second draw is reduced by one ball, so it's 3/8 × 2/7. Writing it as 3/8 × 3/8 is incorrect because it assumes replacement.  
-　出处：Topic 3 Probability.pdf · 10-05 Selecting with and without replacement
+  Explanation: For sampling without replacement, the sample space for the second draw is reduced by one ball, so it's 3/8 × 2/7. Writing it as 3/8 × 3/8 is incorrect because it assumes replacement.  
+  Source: Topic 3 Probability.pdf · 10-05 Selecting with and without replacement
 
 **36.** A. $61,960  
-　Explanation: The total income is $62,400 + $310 + $200 = $62,910; only expenses and donations related to earning income are deductible: $680 for tools + $150 for donations + $120 for tax agent fees = $950, so the taxable income is $61,960. Private school fees and fines are not allowable deductions, and deducting them results in an incorrect answer of $56,740.  
-　出处：1-02_ Income tax.pdf(Taxable income = gross income − allowable deductions)· 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J
+  Explanation: The total income is $62,400 + $310 + $200 = $62,910; only expenses and donations related to earning income are deductible: $680 for tools + $150 for donations + $120 for tax agent fees = $950, so the taxable income is $61,960. Private school fees and fines are not allowable deductions, and deducting them results in an incorrect answer of $56,740.  
+  Source: 1-02_ Income tax.pdf(Taxable income = gross income − allowable deductions)· 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J
 
 **37.** B. $2,242.00  
-　Explanation: The $30,000 falls in the 19c bracket: 0.19 × (30,000 − 18,200) = 0.19 × 11,800 = $2,242. The tax-free threshold of $18,200 must be subtracted first; directly using 0.19 × 30,000 results in $5,700, and $11,800 is the result of subtracting the threshold but not multiplying by the tax rate.  
-　出处：2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5a (official answer $2,242) · 1-02_ Income tax.pdf
+  Explanation: The $30,000 falls in the 19c bracket: 0.19 × (30,000 − 18,200) = 0.19 × 11,800 = $2,242. The tax-free threshold of $18,200 must be subtracted first; directly using 0.19 × 30,000 results in $5,700, and $11,800 is the result of subtracting the threshold but not multiplying by the tax rate.  
+  Source: 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5a (official answer $2,242) · 1-02_ Income tax.pdf
 
 **38.** C. $43,447.00  
-　Explanation: The $150,000 is in the 37c bracket: $17,547 + 0.37 × (150,000 − 80,000) = $17,547 + $25,900 = $43,447. Two common errors are omitting the base amount (0.37 × 150,000 = $55,500) and using the wrong base (using the top of the previous bracket to get $80,447); $40,297 is the result of using the wrong tax rate of 32.5c.  
-　出处：2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5c (official answer $43,447)
+  Explanation: The $150,000 is in the 37c bracket: $17,547 + 0.37 × (150,000 − 80,000) = $17,547 + $25,900 = $43,447. Two common errors are omitting the base amount (0.37 × 150,000 = $55,500) and using the wrong base (using the top of the previous bracket to get $80,447); $40,297 is the result of using the wrong tax rate of 32.5c.  
+  Source: 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q5c (official answer $43,447)
 
 **39.** Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547. Ben pays $17,547 + 0.37 × $1 = $17,547.37. Ben pays 37 cents more than Ann.  
-　Explanation: The tax brackets are continuous: the top of the 32.5c bracket ($17,547) is exactly the base amount of the 37c bracket, so Ben pays 37c on the extra $1, a difference of only 37 cents.  
-　出处：2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q4 (official answer: 37 cents)
+  Explanation: The tax brackets are continuous: the top of the 32.5c bracket ($17,547) is exactly the base amount of the 37c bracket, so Ben pays 37c on the extra $1, a difference of only 37 cents.  
+  Source: 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q4 (official answer: 37 cents)
 
 **40.** (a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50. (b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50.  
-　Explanation: The formula is net pay = gross pay − tax − other deductions, so both tax and other deductions must be subtracted. Subtracting only tax gives $45,105.50, which is the main error in this question.  
-　出处：1-02_ Income tax.pdf(Net pay = gross pay − tax − other deduction; Example 3)
+  Explanation: The formula is net pay = gross pay − tax − other deductions, so both tax and other deductions must be subtracted. Subtracting only tax gives $45,105.50, which is the main error in this question.  
+  Source: 1-02_ Income tax.pdf(Net pay = gross pay − tax − other deduction; Example 3)
 
 **41.** D. Team A's scores were more consistent from game to game than Team B's.  
-　Explanation: The standard deviation measures the spread of the data around the mean: when two means are equal, a larger standard deviation means more variation in the scores, so Team A is the more consistent team. Standard deviation is unrelated to the total score and is not the same as the range, so the first two options cannot be concluded.  
-　出处：New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation · 2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf Q7(e)
+  Explanation: The standard deviation measures the spread of the data around the mean: when two means are equal, a larger standard deviation means more variation in the scores, so Team A is the more consistent team. Standard deviation is unrelated to the total score and is not the same as the range, so the first two options cannot be concluded.  
+  Source: New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation · 2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf Q7(e)
 
 **42.** A. 2.0  
-　Explanation: The mean x̄ = 40 ÷ 8 = 5, the sum of squared deviations = 9+1+1+1+0+0+4+16 = 32, and σ = √(32 ÷ 8) = √4 = 2.0; choosing 4.0 forgets to take the square root (that's variance), and 2.1 is the sample standard deviation divided by n−1.  
-　出处：New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation(σ = √(Σ(x − x̄)² ÷ n))
+  Explanation: The mean x̄ = 40 ÷ 8 = 5, the sum of squared deviations = 9+1+1+1+0+0+4+16 = 32, and σ = √(32 ÷ 8) = √4 = 2.0; choosing 4.0 forgets to take the square root (that's variance), and 2.1 is the sample standard deviation divided by n−1.  
+  Source: New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation(σ = √(Σ(x − x̄)² ÷ n))
 
 **43.** (a) Mean = 25 ÷ 10 = 2.5 goals. (b) Σ(x − 2.5)² = 30.5, so σ = √(30.5 ÷ 10) = √3.05 ≈ 1.75 goals.  
-　Explanation: First, find the mean 2.5, then calculate the squared deviations individually: 6.25+2.25+2.25+0.25+0.25+0.25+0.25+0.25+6.25+12.25 = 30.5, and after dividing by n=10 and taking the square root, the result is 1.75; this question uses the population standard deviation (divided by n), and if divided by n−1=9, the result would be 1.84, which is the sample standard deviation.  
-　出处：2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf · Q7(e) · New Century 10 Standard-Core Textbook.pdf · 5.03
+  Explanation: First, find the mean 2.5, then calculate the squared deviations individually: 6.25+2.25+2.25+0.25+0.25+0.25+0.25+0.25+6.25+12.25 = 30.5, and after dividing by n=10 and taking the square root, the result is 1.75; this question uses the population standard deviation (divided by n), and if divided by n−1=9, the result would be 1.84, which is the sample standard deviation.  
+  Source: 2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf · Q7(e) · New Century 10 Standard-Core Textbook.pdf · 5.03
 
 **44.** B. Degree  
-　Explanation: The number of edges connected to a vertex is called the degree, and the number of vertices with odd degrees determines whether it can be drawn in one stroke: all even → can return to the starting point; exactly two odd → can be drawn in one stroke but with a different ending point.  
-　出处：Yearly Study Guide 2026 · Mathematics Core/Standard(Networks: terminology)
+  Explanation: The number of edges connected to a vertex is called the degree, and the number of vertices with odd degrees determines whether it can be drawn in one stroke: all even → can return to the starting point; exactly two odd → can be drawn in one stroke but with a different ending point.  
+  Source: Yearly Study Guide 2026 · Mathematics Core/Standard(Networks: terminology)
 
 **45.** C. It has an Eulerian circuit because every vertex has even degree  
-　Explanation: If every vertex has an even degree, the graph has an Eulerian circuit: start anywhere, traverse each edge once and return to the starting point. If any vertex has an odd degree, that is not possible.  
-　出处：Yearly Study Guide 2026 · Mathematics Standard(Eulerian trails and circuits)
+  Explanation: If every vertex has an even degree, the graph has an Eulerian circuit: start anywhere, traverse each edge once and return to the starting point. If any vertex has an odd degree, that is not possible.  
+  Source: Yearly Study Guide 2026 · Mathematics Standard(Eulerian trails and circuits)
 
 **46.** D. An Eulerian trail exists, starting and finishing at the two odd-degree vertices  
-　Explanation: Having exactly two odd-degree vertices → there is an Eulerian path (can be drawn in one stroke), which must start from one odd vertex and end at the other; to return to the starting point (a circuit), all vertices must have even degrees.  
-　出处：Yearly Study Guide 2026 · Mathematics Standard(Eulerian trials and circuits)
+  Explanation: Having exactly two odd-degree vertices → there is an Eulerian path (can be drawn in one stroke), which must start from one odd vertex and end at the other; to return to the starting point (a circuit), all vertices must have even degrees.  
+  Source: Yearly Study Guide 2026 · Mathematics Standard(Eulerian trials and circuits)
 
 **47.** A. 6 km  
-　Explanation: The minimum spanning tree = select 3 edges to connect the whole without forming a cycle; sort by length: CD 1, AB 2, BC 3 → the three edges connect A-B-C-D without a cycle, with a total length of 1+2+3=6; adding any other edge would form a cycle.  
-　出处：Yearly Study Guide 2026 · Mathematics Core/Standard(Shortest path and minimum spanning trees)
+  Explanation: The minimum spanning tree = select 3 edges to connect the whole without forming a cycle; sort by length: CD 1, AB 2, BC 3 → the three edges connect A-B-C-D without a cycle, with a total length of 1+2+3=6; adding any other edge would form a cycle.  
+  Source: Yearly Study Guide 2026 · Mathematics Core/Standard(Shortest path and minimum spanning trees)
 
 **48.** B. 6 km  
-　Explanation: All routes go through C or B: A→B→D=6, A→B→C→D=6, A→C→D=6, and the shortest is 6 km, so the answer is 6 km.  
-　出处：Yearly Study Guide 2026 · Mathematics Core/Standard(Shortest path)
+  Explanation: All routes go through C or B: A→B→D=6, A→B→C→D=6, A→C→D=6, and the shortest is 6 km, so the answer is 6 km.  
+  Source: Yearly Study Guide 2026 · Mathematics Core/Standard(Shortest path)
 
 **49.** C. Can be drawn on a plane without any edges crossing  
-　Explanation: A planar graph refers to a graph that can be drawn on a plane without any edges intersecting; whether it looks intersecting or not is irrelevant, what matters is whether it can be redrawn without intersecting.  
-　出处：Yearly Study Guide 2026 · Mathematics Core(Network terminology and planar graphs)
+  Explanation: A planar graph refers to a graph that can be drawn on a plane without any edges intersecting; whether it looks intersecting or not is irrelevant, what matters is whether it can be redrawn without intersecting.  
+  Source: Yearly Study Guide 2026 · Mathematics Core(Network terminology and planar graphs)

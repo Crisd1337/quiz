@@ -1,4 +1,4 @@
-# 体育 · 10 年级 · 复习测验（15 题）
+# Sport · Revision quiz (15 questions)
 
 > Uses real school sport materials as the setting: sport knowledge, rules, competition progression rules, sport safety and first aid, fitness training principles (progressive overload) and healthy living. Moderate difficulty.
 
@@ -88,82 +88,82 @@
 
 **13. [Sport safety · Managing injuries]** During a 25-minute run a student feels a sharp pain in his hamstring. Describe what he should do and explain why continuing to run would be risky.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **14. [Fitness training · Applying progressive overload]** Using the Wednesday Sport program as an example, explain what progressive overload means and why it is safer than suddenly training much harder.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 **15. [Sport safety · Informed consent]** Explain why a signed permission note and accurate medical information are required before a student competes in a representative sport event, and give one example of a safety rule from the school's sport documents.
 
-- （简答，写在下面）
+- (short answer — write below)
 
   ______________________________
 
 ---
 
-## 答案与解析
+## Answers and explanations
 
 **1.** A. To raise heart rate and muscle temperature and lower injury risk  
-　Explanation: The point of a warm-up is to raise heart rate, muscle temperature and joint mobility gradually, so that the body is ready for exercise and the risk of a muscle strain is lower. It does not replace a cool-down, and it is not a way of 'using up energy'.  
-　出处：Bally Volleyball(7:30am warm up before the 8:00am trial)
+  Explanation: The point of a warm-up is to raise heart rate, muscle temperature and joint mobility gradually, so that the body is ready for exercise and the risk of a muscle strain is lower. It does not replace a cool-down, and it is not a way of 'using up energy'.  
+  Source: Bally Volleyball(7:30am warm up before the 8:00am trial)
 
 **2.** B. 6  
-　Explanation: Indoor volleyball has 6 players per team on the court, and players rotate when it is their turn to serve. Beach volleyball has 2, while 11 is the number for football, cricket and similar sports — do not mix the codes up.  
-　出处：Bally Volleyball (indoor volleyball team) + syllabus knowledge
+  Explanation: Indoor volleyball has 6 players per team on the court, and players rotate when it is their turn to serve. Beach volleyball has 2, while 11 is the number for football, cricket and similar sports — do not mix the codes up.  
+  Source: Bally Volleyball (indoor volleyball team) + syllabus knowledge
 
 **3.** C. 2  
-　Explanation: Beach volleyball has 2 players on each team. The court is smaller and there is no rotation or substitution, unlike indoor volleyball, which has 6 players per team.  
-　出处：Bally Volleyball (2021 indoor and beach teams) + syllabus knowledge
+  Explanation: Beach volleyball has 2 players on each team. The court is smaller and there is no rotation or substitution, unlike indoor volleyball, which has 6 players per team.  
+  Source: Bally Volleyball (2021 indoor and beach teams) + syllabus knowledge
 
 **4.** D. A correctly fitted mouthguard  
-　Explanation: The consent form states explicitly that 'wearing suitable mouthguards in all games and training is compulsory', to reduce teeth and facial injuries. Shin pads and knee strapping are not compulsory equipment in this sport.  
-　出处：Rugby_League_Trials_permission_note.docx
+  Explanation: The consent form states explicitly that 'wearing suitable mouthguards in all games and training is compulsory', to reduce teeth and facial injuries. Shin pads and knee strapping are not compulsory equipment in this sport.  
+  Source: Rugby_League_Trials_permission_note.docx
 
 **5.** A. The top two finishers in each age group  
-　Explanation: The athletics carnival rules send the top two in each age group to the North Shore carnival; the top 'ten' is the qualifying standard for cross-country. Do not mix up the rules for the two events.  
-　出处：Bally Boys school athletics carnival permission note.doc(Zone Representation)
+  Explanation: The athletics carnival rules send the top two in each age group to the North Shore carnival; the top 'ten' is the qualifying standard for cross-country. Do not mix up the rules for the two events.  
+  Source: Bally Boys school athletics carnival permission note.doc(Zone Representation)
 
 **6.** B. Finish in the top ten of their age group  
-　Explanation: Cross-country takes the top ten in each age group into the Zone team, a much wider threshold than the top two for athletics. These two numbers are the pair an exam question is most likely to trip you up on.  
-　出处：School XC Program 2025 - amended.docx(Guidelines — To qualify for Zone)
+  Explanation: Cross-country takes the top ten in each age group into the Zone team, a much wider threshold than the top two for athletics. These two numbers are the pair an exam question is most likely to trip you up on.  
+  Source: School XC Program 2025 - amended.docx(Guidelines — To qualify for Zone)
 
 **7.** C. 100 m butterfly  
-　Explanation: Only the fastest swimmer is taken for the 200 m freestyle, the 200 m individual medley and the 100 m butterfly; the top two go through in the other events. In the 50 m freestyle the top two qualify and the next two form the relay team.  
-　出处：Swimming Carnival Program 2020 (3).pdf (zone qualifying table)
+  Explanation: Only the fastest swimmer is taken for the 200 m freestyle, the 200 m individual medley and the 100 m butterfly; the top two go through in the other events. In the 50 m freestyle the top two qualify and the next two form the relay team.  
+  Source: Swimming Carnival Program 2020 (3).pdf (zone qualifying table)
 
 **8.** D. He misses Zone in that event but may still make the age relay as a fastest four  
-　Explanation: In the 50 m freestyle only the top two go through to Zone, so third place misses out on that event; but 'the top four in each age group for 50 m freestyle will form an age relay team', so the third-placed swimmer can still be picked for the relay. All events are also ranked on time, with no finals.  
-　出处：Swimming Carnival Program 2020 (3).pdf(Zone qualifiers / Age Relay Team)
+  Explanation: In the 50 m freestyle only the top two go through to Zone, so third place misses out on that event; but 'the top four in each age group for 50 m freestyle will form an age relay team', so the third-placed swimmer can still be picked for the relay. All events are also ranked on time, with no finals.  
+  Source: Swimming Carnival Program 2020 (3).pdf(Zone qualifiers / Age Relay Team)
 
 **9.** A. So students can overload gradually and avoid injury  
-　Explanation: This is the principle of progressive overload: increase the load only a little at a time so that the body can adapt, avoiding sudden jumps that cause muscle soreness and injury. The course notes put it as 'no sudden increase in volume or intensity'.  
-　出处：Wednesday sport Remote Learning Week 4 / Week 5
+  Explanation: This is the principle of progressive overload: increase the load only a little at a time so that the body can adapt, avoiding sudden jumps that cause muscle soreness and injury. The course notes put it as 'no sudden increase in volume or intensity'.  
+  Source: Wednesday sport Remote Learning Week 4 / Week 5
 
 **10.** B. Drink plenty of water and bring a hat and sun protection  
-　Explanation: The course notice says it is essential to bring enough water, protect yourself from the sun and wear a hat. Deliberately drinking less water raises the risk of heatstroke and cramps, and new spiked shoes cause blisters, so they should not be worn for the first time on competition day.  
-　出处：Bally Boys school athletics carnival permission note.doc(What to bring)
+  Explanation: The course notice says it is essential to bring enough water, protect yourself from the sun and wear a hat. Deliberately drinking less water raises the risk of heatstroke and cramps, and new spiked shoes cause blisters, so they should not be worn for the first time on competition day.  
+  Source: Bally Boys school athletics carnival permission note.doc(What to bring)
 
 **11.** C. As many reps or rounds as possible in the set time  
-　Explanation: AMRAP means as many reps or rounds as possible: you complete as many cycles of the circuit as you can within the set time — 5 superman poses, 10 push-ups and 15 squats — and stop when the time is up.  
-　出处：Wednesday Sport Remote Learning week 6
+  Explanation: AMRAP means as many reps or rounds as possible: you complete as many cycles of the circuit as you can within the set time — 5 superman poses, 10 push-ups and 15 squats — and stop when the time is up.  
+  Source: Wednesday Sport Remote Learning week 6
 
 **12.** D. By the highest aggregate point score across events  
-　Explanation: The age champion is decided by the highest cumulative score across all events, so several placings are worth more than a single win, which earns only one score.  
-　出处：Swimming Carnival Program 2020 (3).pdf (age champion rules)
+  Explanation: The age champion is decided by the highest cumulative score across all events, so several placings are worth more than a single win, which earns only one score.  
+  Source: Swimming Carnival Program 2020 (3).pdf (age champion rules)
 
 **13.** He should stop running immediately, tell the teacher or coach, and get the injury assessed and treated with rest, ice, compression and elevation before returning to play. Continuing to run is risky because a strained muscle can tear further, causing a much longer recovery, and pain is a warning sign that should never be pushed through.  
-　Explanation: The marks come from 'stopping immediately + reporting to the teacher or coach + RICER treatment', and from explaining that continuing to run will worsen the injury and lengthen recovery. Running through the pain is the most common wrong choice.  
-　出处：School XC Program 2025 (event safety guidelines) + syllabus knowledge (RICER first-aid principles)
+  Explanation: The marks come from 'stopping immediately + reporting to the teacher or coach + RICER treatment', and from explaining that continuing to run will worsen the injury and lengthen recovery. Running through the pain is the most common wrong choice.  
+  Source: School XC Program 2025 (event safety guidelines) + syllabus knowledge (RICER first-aid principles)
 
 **14.** Progressive overload means gradually increasing the training demand over time, for example moving from a 45-minute walk with bodyweight exercises to jogging 4 minutes and walking 1 minute, and eventually to a continuous 25-minute run. It is safer because each small increase gives the body time to adapt, whereas a sudden jump in volume or intensity causes muscle soreness and greatly increases the risk of injury.  
-　Explanation: All three parts are needed: the definition, specific examples from the materials and the reason it is safer. Writing only 'gradually increase the amount', with no examples and no explanation of the injury risk, will not earn full marks.  
-　出处：Wednesday Sport Remote Learning Week 1–6(train progressions and Week 6 25-minute run)
+  Explanation: All three parts are needed: the definition, specific examples from the materials and the reason it is safer. Writing only 'gradually increase the amount', with no examples and no explanation of the injury risk, will not earn full marks.  
+  Source: Wednesday Sport Remote Learning Week 1–6(train progressions and Week 6 25-minute run)
 
 **15.** A permission note shows that a parent or guardian knows the event details and accepts that some risk is inherent in sport, and medical information lets staff plan first aid and manage conditions such as asthma or allergy on the day. One example of a safety rule is that a correctly fitted mouthguard is mandatory in all rugby league games and training sessions.  
-　Explanation: Two things are asked for: 'parental informed consent + the school's first-aid preparedness and knowledge of medical history', and a genuine rule from the documents, such as mandatory mouthguards or bringing water and sun protection. Writing only 'the school requires a signature', without explaining why, loses marks.  
-　出处：Rugby_League_Trials_permission_note.docx; Bally Boys school athletics carnival permission note.doc
+  Explanation: Two things are asked for: 'parental informed consent + the school's first-aid preparedness and knowledge of medical history', and a genuine rule from the documents, such as mandatory mouthguards or bringing water and sun protection. Writing only 'the school requires a signature', without explaining why, loses marks.  
+  Source: Rugby_League_Trials_permission_note.docx; Bally Boys school athletics carnival permission note.doc
