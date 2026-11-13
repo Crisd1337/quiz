@@ -1122,7 +1122,7 @@ rxMigrateSeen();
     "粘贴同学的战绩码":"Paste a classmate's code","加入":"Add","提交到服务器":"Submit",
     "你附近 · 再对一道题就能超过":"Near you · one more correct answer to overtake",
     "今日榜单":"Today's leaderboard","好友榜":"Friends board","关闭":"Close","答对题数":"Correct answers","用时":"Time",
-    "我":"Me","（我）":" (me)","第一名":"1st","第二名":"2nd","第三名":"3rd",
+    "我":"Me"," (me)":" (me)","第一名":"1st","第二名":"2nd","第三名":"3rd",
     "已交卷":"Submitted by","人":"students","近 7 天正确率":"Accuracy, last 7 days",
     // 首页
     "复习测验":"Revision Quizzes","今日挑战":"Daily challenge","错题本":"Mistakes","商城":"Shop",
@@ -1459,14 +1459,14 @@ rxMigrateSeen();
   }
 
   function lbNearRange(){
-    var me=nick()||"我", idx=-1;
+    var me=nick()||"Me", idx=-1;
     LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
     if(idx<3) return null;
     return [Math.max(0,idx-2), Math.min(LB.list.length-1, idx+2)];
   }
 
   function lbRowsHtml(){
-    var me=nick()||"我";
+    var me=nick()||"Me";
     var start = LB.list.length>3 ? 3 : 0;
     var near = lbNearRange();
     return LB.list.slice(start).map(function(x,i){
@@ -1474,14 +1474,14 @@ rxMigrateSeen();
       var mine = x.name===me;
       return '<div class="lb-row'+(mine?' me':'')+'" data-k="'+hesc(x.name)+'">'+
         '<span class="rk">'+(i+start+1)+'</span>'+
-        '<span class="rname">'+hesc(x.name)+(mine?'（我）':'')+
+        '<span class="rname">'+hesc(x.name)+(mine?' (me)':'')+
           (x.ms>0?'<span class="lb-time">'+fmtMs(x.ms)+'</span>':'')+'</span>'+
         '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
     }).join("") || '<div class="mutedsmall">今天还没有人上榜</div>';
   }
 
   function lbPodiumHtml(){
-    var top=LB.list.slice(0,3), me=nick()||"我";
+    var top=LB.list.slice(0,3), me=nick()||"Me";
     if(!top.length) return "";
     var order=[1,0,2]; // 2nd, 1st, 3rd
     return '<div class="podium">'+order.map(function(idx){
@@ -1494,18 +1494,18 @@ rxMigrateSeen();
   }
 
   function lbSelfHtml(){
-    var me=nick()||"我", idx=-1;
+    var me=nick()||"Me", idx=-1;
     LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
     if(idx<0) return '<div class="lb-self"><span class="rk">—</span><span class="rname">你还没上榜，交卷即可参与</span></div>';
     var x=LB.list[idx];
-    return '<div class="lb-self"><span class="rk">'+(idx+1)+'</span><span class="rname">'+hesc(me)+'（我）</span>'+
+    return '<div class="lb-self"><span class="rk">'+(idx+1)+'</span><span class="rname">'+hesc(me)+' (me)</span>'+
       '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>';
   }
 
   var LB_FREEZE=false, LB_PENDING=0, LB_SCROLL_T=null, LB_PREV=null;
 
   function lbNeighborsHtml(){
-    var me=nick()||"我", idx=-1;
+    var me=nick()||"Me", idx=-1;
     LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
     var r=lbNearRange();
     if(!r) return "";
@@ -1514,7 +1514,7 @@ rxMigrateSeen();
       var x=LB.list[k], mine=(k===idx);
       out.push('<div class="lb-row'+(mine?' me':'')+'" data-k="'+hesc(x.name)+'">'+
         '<span class="rk">'+(k+1)+'</span>'+
-        '<span class="rname">'+hesc(x.name)+(mine?'（我）':'')+
+        '<span class="rname">'+hesc(x.name)+(mine?' (me)':'')+
           (x.ms>0?'<span class="lb-time">'+fmtMs(x.ms)+'</span>':'')+'</span>'+
         '<span class="rpct">'+lbMetric(x,LB.sort)+'</span></div>');
     }
@@ -1573,7 +1573,7 @@ rxMigrateSeen();
   function lbFab(){
     var el=document.getElementById("lbFab");
     if(!el || !apibase()) return;
-    var me=nick()||"我", idx=-1;
+    var me=nick()||"Me", idx=-1;
     LB.list.forEach(function(x,i){ if(x.name===me) idx=i; });
     if(idx>=0) el.innerHTML='第 <b>'+(idx+1)+'</b> 名';
     else if(LB.list.length) el.innerHTML='最高 <b>'+LB.list[0].pct+'%</b>';
@@ -1595,7 +1595,7 @@ rxMigrateSeen();
     if(rec.date!==todayKey()) return;
     fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify(Object.assign({
-        name:nick()||"我", pct:rec.best||0, answered:rec.answer||21,
+        name:nick()||"Me", pct:rec.best||0, answered:rec.answer||21,
         ms:ms||0, day:rec.date}, weekStats()))})
       .then(function(r){ return r.json(); })
       .then(function(d){ if(d&&d.ok){ LB.list=d.list||LB.list; lbRender(); lbFab(); } })
@@ -1912,12 +1912,12 @@ rxMigrateSeen();
       .then(function(r){ return r.json(); })
       .then(function(d){
         if(!d || !d.ok || !d.list || !d.list.length) return;
-        var me=nick()||"我";
+        var me=nick()||"Me";
         box.innerHTML=d.list.map(function(x,i){
           var nm=String(x.name==null?"":x.name);
           var pct=Math.max(0,Math.min(100,Math.round(Number(x.pct)||0)));
           return '<div class="rrow'+(nm===me?' me':'')+'"><span class="rn">'+(i+1)+'</span>'+
-                 '<span class="rname">'+hesc(nm)+(nm===me?'（我）':'')+'</span>'+
+                 '<span class="rname">'+hesc(nm)+(nm===me?' (me)':'')+'</span>'+
                  '<span class="rp">'+pct+'%</span></div>';
         }).join("");
       })
@@ -1933,7 +1933,7 @@ rxMigrateSeen();
       var rec={}; try{ rec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
       if(rec.date!==todayKey()) return no(EN?"Finish today's challenge first":"先做完今日挑战");
       fetch(apibase()+"/score",{method:"POST",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({name:nick()||"我", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
+        body:JSON.stringify({name:nick()||"Me", pct:rec.best||0, answered:rec.answer||21, day:rec.date})})
         .then(function(r){
           return r.json().catch(function(){ return {}; }).then(function(d){
             return {status:r.status, d:d||{}};
@@ -1945,15 +1945,15 @@ rxMigrateSeen();
           var code=String(d.error||"");
           var msg;
           if(x.status===429 && code==="daily_quota")
-            msg = EN ? "Daily submit limit reached - try again tomorrow" : "今天的提交次数到上限了，明天再来";
+            msg = "Daily submit limit reached - try again tomorrow";
           else if(code==="day must be today")
-            msg = EN ? "Your device date doesn't match the server" : "设备日期和服务器对不上（检查系统时间）";
+            msg = "Your device date doesn't match the server";
           else if(x.status===403)
-            msg = EN ? "Submission blocked (origin not allowed)" : "提交被拒绝（来源校验没通过）";
-          else if(code.indexOf("至少答")>=0)
-            msg = EN ? "Answer at least 10 questions to join the board" : "至少答 10 题才能上榜";
+            msg = "Submission blocked (origin not allowed)";
+          else if(code.indexOf("answer_at_least_10")>=0)
+            msg = "Answer at least 10 questions to join the board";
           else
-            msg = EN ? ("Submit failed" + (code?": "+code:"")) : ("提交失败" + (code?"："+code:""));
+            msg = "Submit failed" + (code ? ": " + code : "");
           resolve({ok:false, msg:msg});
         })
         .catch(function(){
@@ -1974,7 +1974,7 @@ rxMigrateSeen();
     if(rec.date!==todayKey()) return {ok:false,msg:"先做完今日挑战"};
     var g=db();
     return {ok:true, code:b64e(JSON.stringify({v:1,d:rec.date,p:rec.best,n:rec.answer||21,
-      name:(nick()||"我"), xp:g.xp||0}))};
+      name:(nick()||"Me"), xp:g.xp||0}))};
   }
   function addCode(str){
     var raw=b64d((str||"").trim());
@@ -1983,9 +1983,9 @@ rxMigrateSeen();
     if(!o || o.v!==1 || !o.d || o.p===undefined) return {ok:false,msg:"码不对"};
     var list=friends();
     list=list.filter(function(x){ return !(x.d===o.d && x.name===o.name); });
-    list.push({d:o.d, p:o.p, n:o.n||0, name:String(o.name||"同学").slice(0,12), xp:o.xp||0, t:Date.now()});
+    list.push({d:o.d, p:o.p, n:o.n||0, name:String(o.name||"classmate").slice(0,12), xp:o.xp||0, t:Date.now()});
     saveFriends(list);
-    return {ok:true,msg:"已加入 "+String(o.name||"同学").slice(0,12)+" 的 "+o.p+"%"};
+    return {ok:true,msg:"Added "+String(o.name||"classmate").slice(0,12)+" at "+o.p+"%"};
   }
   window.myCode=myCode; window.addCode=addCode; window.nick=nick; window.setNick=setNick;
 
@@ -1997,7 +1997,7 @@ rxMigrateSeen();
 
     var myRec={}; try{ myRec=JSON.parse(localStorage.getItem("dsh-daily-v1")||"{}"); }catch(e){}
     var rows=[];
-    if(myRec.date===todayKey()) rows.push({name:nick()||"我", p:myRec.best||0, me:true});
+    if(myRec.date===todayKey()) rows.push({name:nick()||"Me", p:myRec.best||0, me:true});
     friends().filter(function(x){ return x.d===todayKey(); }).forEach(function(x){
       rows.push({name:x.name, p:x.p, me:false});
     });
@@ -2005,7 +2005,7 @@ rxMigrateSeen();
 
     var list = rows.length ? rows.map(function(r,i){
       return '<div class="rankrow'+(r.me?' me':'')+'"><span class="rk">'+(i+1)+'</span>'+
-        '<span class="rname">'+r.name+(r.me?'（我）':'')+'</span>'+
+        '<span class="rname">'+r.name+(r.me?' (me)':'')+'</span>'+
         '<span class="rpct">'+r.p+'%</span></div>';
     }).join("") : '<div class="mutedsmall">今天还没人交榜。做完今日挑战后点「提交」，或复制战绩码发给同学互换。</div>';
 
