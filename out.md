@@ -108,15 +108,15 @@
 ## 答案与解析
 
 **1.** A. The variety of living organisms present  
-　Explanation: The course defines biodiversity as the 'variety of living organisms', which is not equal to the number of animals in a particular habitat or the non-biological environment.  
+　Explanation: The course defines biodiversity as the 'variety of living organisms', which is not the same as the number of animals in a habitat, or the non-living environment.  
 　出处：Study Guide · Lesson 1 Introduction to Environmental Awareness
 
 **2.** B. Sunlight and soil moisture  
-　Explanation: Abiotic refers to non-biological factors: sunlight, water, soil, temperature, etc.; biotic refers to living organisms, and fungi and bacteria, although not visible to the naked eye, are living and belong to biotic, which is the most common point of loss.  
+　Explanation: Abiotic means non-living: sunlight, water, soil, temperature and so on. Biotic refers to living organisms — fungi and bacteria are invisible to the naked eye, but they are alive and therefore biotic. That distinction is where marks are most commonly lost.  
 　出处：Study Guide · Lesson 2 Ecosystems and Interactions
 
 **3.** C. A community of living and non-living things interacting  
-　Explanation: The key to an ecosystem is the combination of 'biotic + abiotic + interactions', and just focusing on plants, animals or non-biological environments only covers part of it.  
+　Explanation: The key to an ecosystem is the combination of 'biotic + abiotic + interactions'. Focusing on the plants, the animals or the non-living environment alone covers only part of it.  
 　出处：Study Guide · Lesson 2 Ecosystems and Interactions
 
 **4.** D. Climate change gradually reducing biodiversity over decades  
@@ -128,7 +128,7 @@
 　出处：Study Guide · Lesson 5 Leave No Trace
 
 **6.** B. A spiritual and cultural relationship with land and waterways  
-　Explanation: Connection to Country is a spiritual, cultural and environmental relationship, where Country encompasses land, water, plants and animals, as well as cultural identity, and the key idea is that Country is not something to be owned, but something to be cared for and protected.  
+　Explanation: Connection to Country is a spiritual, cultural and environmental relationship in which Country takes in land, water, plants and animals as well as cultural identity. The key idea is that Country is not something to be owned but something to be cared for and protected.  
 　出处：Study Guide · Lesson 6 Cultural Perspectives & Connection to Land
 
 **7.** C. Small, low-intensity controlled fires that safely reduce fuel loads  
@@ -136,15 +136,15 @@
 　出处：Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Cultural Burning
 
 **8.** D. It protects vegetation and reduces soil erosion  
-　Explanation: The Response Guide's sample answer clearly states that walking on durable surfaces 'protects vegetation and reduces soil erosion from trampling', as creating new paths can lead to widening and eventually gullies, which is a common long-term damage in camping areas.  
+　Explanation: The sample answer in the Response Guide states that walking on durable surfaces 'protects vegetation and reduces soil erosion from trampling', because new paths widen over time and can turn into gullies — a common form of long-term damage in camping areas.  
 　出处：Study Guide · Lesson 5 Leave No Trace · Response Guide
 
 **9.** A. Cutting branches from live trees for a campfire  
-　Explanation: Cutting live branches for firewood directly damages vegetation and habitats, and increases the risk of bushfires, which is a high-impact action, whereas using fuel stoves, existing campsites, and taking all rubbish away are low-impact practices.  
+　Explanation: Cutting live branches for firewood damages vegetation and habitat directly and raises the risk of bushfire, so it is a high-impact action. Using a fuel stove, camping on an established site and carrying out all your rubbish are low-impact practices.  
 　出处：Study Guide · Lesson 4 Sustainable Practices and Camping Impact
 
 **10.** B. Ecosystems are interconnected, so removing one part affects the rest  
-　Explanation: This case illustrates the interdependence of ecosystems, where removing one element, such as top predators, can have a ripple effect on the food chain, which is used to answer questions like 'why not just get rid of sharks'.  
+　Explanation: This case illustrates the interdependence of ecosystems: removing one element, such as a top predator, has a ripple effect along the food chain. That is the reasoning used to answer a question such as 'why not just get rid of sharks?'  
 　出处：Study Guide · Lesson 2 Ecosystems and Interactions · Response Guide
 
 **11.** C. Indigenous use kept the wetlands alive; urbanisation drained and piped them away  
@@ -152,17 +152,17 @@
 　出处：Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Freshwater Creek Case Study
 
 **12.** Biotic and abiotic factors interact to keep ecosystems healthy. Plants depend on abiotic factors such as sunlight, water and soil to grow, while animals depend on those plants for food and shelter. If an abiotic factor changes — for example rainfall falling during a drought — plant growth declines, which then reduces food for herbivores and, in turn, for predators further up the food chain.  
-　Explanation: To write a causal chain of 'abiotic → biotic → food chain downstream', you can use examples like plants depending on sunlight, water and soil, or drought leading to reduced plants and affected herbivores, and just listing factors without explaining the relationships won't get you marks.  
+　Explanation: You need to write a causal chain: 'abiotic → biotic → downstream food chain'. Useful examples are plants depending on sunlight, water and soil, or drought reducing plant growth, which then leaves herbivores short of food. Simply listing factors without explaining the links gains no marks.  
 　出处：Study Guide · Lesson 2 · Response Guide (PEEL model answer for a 4-mark question)
 
 **13.** Short-term impacts occur immediately, while long-term impacts develop gradually over time. Littering a natural area is a short-term impact because it pollutes waterways and harms wildlife straight away. Climate change is a long-term impact because it slowly raises temperatures and reduces biodiversity over many years, and it is much harder to reverse.  
-　Explanation: The distinction should be made between 'immediate vs cumulative' and 'reversible vs irreversible', with examples of each, and noting that long-term impacts are harder to repair as habitats can be permanently damaged or food chains disrupted.  
+　Explanation: You need the distinction between 'immediate vs cumulative' and 'reversible vs irreversible', with an example of each, plus the point that long-term impacts are harder to repair because habitats can be permanently damaged or food chains disrupted.  
 　出处：Study Guide · Lesson 3 · Response Guide (PEEL model answer for a 4-mark question)
 
 **14.** Leave No Trace principles reduce the human impact of recreation so that natural areas stay healthy and can be enjoyed by future visitors. Disposing of waste properly reduces pollution and stops wildlife being harmed or attracted to human food. Travelling and camping on durable surfaces protects vegetation and reduces soil erosion caused by foot traffic. Respecting wildlife also matters, because feeding animals changes their behaviour, makes them dependent on humans and disrupts ecosystem balance.  
-　Explanation: The material requires referencing at least two principles and explaining how to protect ecosystems, with available combinations including proper waste disposal, walking on durable surfaces, respecting wildlife, minimising campfire impacts, and planning and preparation, and just reciting principle names without explaining their roles will result in lost marks.  
+　Explanation: You must refer to at least two principles and explain how each one protects ecosystems. Usable choices include disposing of waste properly, travelling and camping on durable surfaces, respecting wildlife, minimising campfire impacts, and planning and preparation. Reciting principle names without explaining what they do loses marks.  
 　出处：Study Guide · Lesson 5 Leave No Trace + Response Guide / Practice Questions (5-mark question)
 
 **15.** Caring for Country supports ecosystems through practices such as cultural burning, which uses small, low-intensity controlled fires to reduce fuel loads, lower the risk of large bushfires, encourage plant regrowth and support biodiversity, and through seasonal resource use that takes only what is needed. These practices also support communities: healthy Country provides clean water, habitats and food, while continued connection to Country strengthens cultural identity and community wellbeing. Overall, this long-term custodial approach is more sustainable than treating land purely as a resource, although neither perspective is entirely right or wrong.  
-　Explanation: When evaluating, consider both 'ecology + community' and provide an overall judgment, focusing on how cultural practices reduce flammable materials and promote regeneration, and how a healthy environment provides water, food, and habitat, reinforcing cultural identity, leading to a conclusion that long-term care is more sustainable.  
+　Explanation: For an evaluation, cover both 'ecology + community' and finish with an overall judgement: cultural practices reduce flammable material and promote regeneration, and a healthy environment provides water, food and habitat that reinforce cultural identity. That is what supports the conclusion that long-term care is more sustainable.  
 　出处：Study Guide · Lesson 6 · Response Guide + Practice Questions (10-mark question)

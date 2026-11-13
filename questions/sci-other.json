@@ -18,7 +18,7 @@
    ],
    "answer": 3,
    "explanation_en": "The main drivers of Earth's processes that reach the surface are visible light and infrared radiation: visible light provides energy for photosynthesis, and infrared radiation heats the hydrosphere, driving the water cycle. X-rays and microwaves are mostly absorbed by the atmosphere and do not reach the surface.",
-   "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 Earth · Solar radiation）"
+   "source": "Term 1 · Earth's Energy – Earth.pdf(Topic 6 Earth · Solar radiation)"
   },
   {
    "id": "sciother-002",
@@ -34,7 +34,7 @@
    ],
    "answer": 0,
    "explanation_en": "The lithosphere = crust + upper mantle, approximately 100 km thick. The atmosphere is a layer of gas, the biosphere is the range of biological survival, and the hydrosphere is the solid/liquid/gaseous water on the surface.",
-   "source": "Term 1 · Earth's Energy – Revision Booklet（Topic 6 Earth · Terminology）"
+   "source": "Term 1 · Earth's Energy – Revision Booklet(Topic 6 Earth · Terminology)"
   },
   {
    "id": "sciother-003",
@@ -49,8 +49,8 @@
     "Albedo decreases, so more radiation is reflected back to space and the temperature falls."
    ],
    "answer": 1,
-   "explanation_en": "Albedo ranges from 0 to 1, with whiter surfaces being more reflective. As ice melts, exposing dark seawater, the albedo decreases, absorbing more solar radiation, and the temperature rises, accelerating ice melting and forming a positive feedback loop.",
-   "source": "Term 1 · Earth's Energy – STUDENT 5. Earth.docx（Practical 2 Albedo Effect）"
+   "explanation_en": "As ice melts it exposes dark seawater, so the albedo falls, more solar radiation is absorbed and the temperature rises, which melts even more ice: a positive feedback loop.",
+   "source": "Term 1 · Earth's Energy – STUDENT 5. Earth.docx(Practical 2 Albedo Effect)"
   },
   {
    "id": "sciother-004",
@@ -60,8 +60,8 @@
    "stem": "Explain how solar radiation drives the water cycle.",
    "options": [],
    "answer": "Infrared radiation from the Sun warms the hydrosphere, so liquid water evaporates into water vapour. The vapour rises and cools, condenses into clouds, and eventually falls back to the surface as precipitation such as rain, hail or snow.",
-   "explanation_en": "The energy for the water cycle comes from solar infrared radiation heating the hydrosphere: evaporation → rising, cooling, and condensation → precipitation, returning water to the oceans, lakes, and rivers.",
-   "source": "Term 1 · Earth's Energy – Earth.pdf（Topic 6 · The Water Cycle）",
+   "explanation_en": "The water cycle is driven by solar infrared radiation heating the hydrosphere: evaporation → rising and cooling → condensation → precipitation, which returns water to the oceans, lakes and rivers.",
+   "source": "Term 1 · Earth's Energy – Earth.pdf(Topic 6 · The Water Cycle)",
    "marks": 3,
    "criteria": [
     {
@@ -96,7 +96,7 @@
    ],
    "answer": 1,
    "explanation_en": "A gene is a segment of DNA that encodes a protein. A chromosome is a form of DNA organisation (23 pairs in humans), and DNA is composed of nucleotides; the three are not at the same level.",
-   "source": "Term 1 · Genetics – Revision Booklet（Topic 8 Genetics · Terminology）"
+   "source": "Term 1 · Genetics – Revision Booklet(Topic 8 Genetics · Terminology)"
   },
   {
    "id": "sciother-006",
@@ -111,8 +111,8 @@
     "AGU UAC CUG"
    ],
    "answer": 2,
-   "explanation_en": "DNA complementary base pairing is A-T and G-C, so AGT becomes TCA, TAC becomes ATG, and CTG becomes GAC, and options containing U are mRNA sequences, not complementary DNA strands.",
-   "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers（Part D Q3）"
+   "explanation_en": "Complementary DNA base pairing is A–T and G–C, so AGT pairs with TCA, TAC with ATG and CTG with GAC. Any option containing U is an mRNA sequence, not a complementary DNA strand.",
+   "source": "Term 1 · Genetics – 2020 Year 10 Yearly Examination Answers(Part D Q3)"
   },
   {
    "id": "sciother-007",
@@ -139,7 +139,7 @@
    "options": [],
    "answer": "Mitosis produces two genetically identical diploid daughter cells and is used for growth and repair of body cells. Meiosis produces four genetically different haploid gametes, each with half the chromosome number of the parent cell.",
    "explanation_en": "Mitosis produces 2 diploid daughter cells for growth and repair, while meiosis produces 4 haploid gametes for sexual reproduction (23+23=46 to restore diploidy).",
-   "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 2 · Compare mitosis and meiosis）",
+   "source": "Term 1 · Genetics – Genetics.pdf(Knowledge 2 · Compare mitosis and meiosis)",
    "marks": 3,
    "criteria": [
     {
@@ -173,8 +173,8 @@
     "The DNA double helix can no longer be replicated."
    ],
    "answer": 1,
-   "explanation_en": "Codons are read in groups of three bases, and inserting one base will shift all subsequent codons (frameshift), usually greatly altering the protein sequence, and only inserting a multiple of 3 bases will affect just one amino acid.",
-   "source": "Term 1 · Genetics – Genetics.pdf（Knowledge 3 · Frameshift - Insertion）"
+   "explanation_en": "Codons are read in groups of three bases, so inserting a single base shifts every codon after it (a frameshift) and usually changes the protein sequence drastically. Only inserting a multiple of three bases affects just one amino acid.",
+   "source": "Term 1 · Genetics – Genetics.pdf(Knowledge 3 · Frameshift - Insertion)"
   },
   {
    "id": "sciother-010",
@@ -189,7 +189,7 @@
     "3/4"
    ],
    "answer": 2,
-   "explanation_en": "For Tt x Tt, the ratio is 1TT:2Tt:1tt, or 3:1 for tall to short plants, and since the question asks for the ratio within the tall plants (3 parts), the heterozygous Tt makes up 2/3 of them.",
+   "explanation_en": "For Tt × Tt the ratio is 1TT : 2Tt : 1tt, which is 3 : 1 tall to short. Because the question asks for the ratio within the tall plants (3 parts), the heterozygous Tt makes up 2/3 of them.",
    "source": "Term 1 · Genetics – Half Yearly Revision.pdf (Punnett squares: genotype and phenotype ratios)"
   },
   {
@@ -205,8 +205,8 @@
     "320 m/s"
    ],
    "answer": 0,
-   "explanation_en": "The speed is v = d/t = 300m / 20s = 15 m/s, and 0.067 m/s is the result of inverting the formula (20/300), while 320 m/s is the sum of the two numbers.",
-   "source": "Term 1 · Motion – Speed and Velocity Problem Solving Jan 10（v = d/t）"
+   "explanation_en": "The speed is v = d/t = 300 m / 20 s = 15 m/s, and 0.067 m/s is the result of inverting the formula (20/300), while 320 m/s is the sum of the two numbers.",
+   "source": "Term 1 · Motion – Speed and Velocity Problem Solving Jan 10(v = d/t)"
   },
   {
    "id": "sciother-012",
@@ -221,8 +221,8 @@
     "Displacement"
    ],
    "answer": 3,
-   "explanation_en": "Displacement has both magnitude and direction, and is a vector; distance, speed, and time only have magnitude, and are scalars, as are velocity and force.",
-   "source": "Term 1 · Motion – Half Yearly Revision.pdf（Scalar vs Vector）"
+   "explanation_en": "Displacement has both magnitude and direction, and is a vector; distance, speed, and time have magnitude only, and are scalars.",
+   "source": "Term 1 · Motion – Half Yearly Revision.pdf(Scalar vs Vector)"
   },
   {
    "id": "sciother-013",
@@ -237,7 +237,7 @@
     "67 m/s"
    ],
    "answer": 3,
-   "explanation_en": "The final velocity is v_f = v_i + at = 25 + 7.0 * 6.0 = 25 + 42 = 67 m/s, and 42 m/s is just the change in velocity, forgetting to add the initial velocity, while 175 m/s is 25 * 7, using the wrong operation.",
+   "explanation_en": "The final velocity is v_f = v_i + at = 25 + 7.0 × 6.0 = 25 + 42 = 67 m/s. The 42 m/s option is only the change in velocity, from forgetting to add the initial velocity, and 175 m/s comes from 25 × 7, the wrong operation.",
    "source": "Term 1 · Motion – Acceleration Problems (Practice) (Question 10)"
   },
   {
@@ -245,7 +245,7 @@
    "topic": "Motion · Motion graphs",
    "difficulty": "medium",
    "type": "mcq",
-   "stem": "On a velocity–time graph, what does the gradient (slope) of the line represent?",
+   "stem": "On a velocity–time graph, what does the gradient of the line represent?",
    "options": [
     "The distance travelled",
     "The average speed",
@@ -253,8 +253,8 @@
     "The acceleration"
    ],
    "answer": 3,
-   "explanation_en": "The slope of a v-t graph is Δv/Δt = acceleration, and the area under the line represents displacement, which is a common point of confusion (area vs slope).",
-   "source": "Term 1 · Motion – SG 1.1 Study Guide（velocity–time graph）"
+   "explanation_en": "The gradient of a velocity–time graph is Δv/Δt, which is acceleration, while the area under the line represents displacement — a common point of confusion (area vs gradient).",
+   "source": "Term 1 · Motion – SG 1.1 Study Guide(velocity–time graph)"
   },
   {
    "id": "sciother-015",
@@ -264,13 +264,13 @@
    "stem": "A 1200 kg car travelling at 20 m/s brakes and comes to rest in 5.0 s. Calculate (a) its acceleration and (b) the net force acting on it.",
    "options": [],
    "answer": "a = (v_f − v_i)/t = (0 − 20)/5.0 = −4.0 m/s², so the car decelerates at 4.0 m/s². F = ma = 1200 × (−4.0) = −4800 N, that is, a net force of 4800 N opposite to the car's motion.",
-   "explanation_en": "First use the acceleration formula (final velocity minus initial velocity divided by time, with a negative sign for deceleration), then substitute into F = ma, with a net force of 4800 N in the opposite direction of motion.",
+   "explanation_en": "First use the acceleration formula — final velocity minus initial velocity, divided by time, which gives a negative value for deceleration — then substitute into F = ma. The net force is 4800 N, in the opposite direction to the motion.",
    "source": "Term 1 · Motion – Half Yearly Revision.pdf (DESA: average acceleration and F = ma)",
    "marks": 2,
    "criteria": [
     {
      "id": "c1",
-     "t": "Calculates the acceleration as a = (0 - 20)/5.0 = -4.0 m/s2, i.e. the car decelerates at 4.0 m/s2",
+     "t": "Calculates the acceleration as a = (0 − 20)/5.0 = −4.0 m/s², i.e. the car decelerates at 4.0 m/s²",
      "m": 1
     },
     {
@@ -294,8 +294,8 @@
     "Chlorine"
    ],
    "answer": 2,
-   "explanation_en": "Acid + metal produces salt + hydrogen gas, which can be tested with a lit wooden splint (pop test), whereas acid + carbonate produces CO2, which requires a lime water test.",
-   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 5 Answers（Acid-Metal Reaction）"
+   "explanation_en": "Acid + metal gives a salt and hydrogen gas, and the hydrogen can be tested with a lit wooden splint (the pop test). Acid + carbonate gives CO₂, which is tested with limewater.",
+   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 5 Answers(Acid-Metal Reaction)"
   },
   {
    "id": "sciother-017",
@@ -305,8 +305,8 @@
    "stem": "Sodium hydroxide solution is added to hydrochloric acid. Name the type of reaction and write the word equation.",
    "options": [],
    "answer": "This is a neutralisation reaction. The word equation is: hydrochloric acid + sodium hydroxide → sodium chloride + water.",
-   "explanation_en": "Acid + base produces salt + water, a neutralization reaction, where the metal part of the salt comes from the base (Na⁺) and the nonmetal part comes from the acid (Cl⁻), resulting in sodium chloride.",
-   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Neutralisation Reaction）",
+   "explanation_en": "Acid + base → salt + water: a neutralisation reaction. The metal part of the salt comes from the base (Na⁺) and the non-metal part from the acid (Cl⁻), giving sodium chloride.",
+   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers(Neutralisation Reaction)",
    "marks": 2,
    "criteria": [
     {
@@ -316,7 +316,7 @@
     },
     {
      "id": "c2",
-     "t": "Writes the word equation: hydrochloric acid + sodium hydroxide -> sodium chloride + water",
+     "t": "Writes the word equation: hydrochloric acid + sodium hydroxide → sodium chloride + water",
      "m": 1
     }
    ],
@@ -347,12 +347,12 @@
    "options": [],
    "answer": "copper carbonate + nitric acid → copper nitrate + water + carbon dioxide. The salt formed is copper nitrate. Bubble the gas through limewater; if the limewater turns milky (chalky white), the gas is carbon dioxide.",
    "explanation_en": "Acid + carbonate → salt + water + carbon dioxide; the second part of the salt's name comes from the acid (nitric acid → nitrate), so it's copper nitrate.",
-   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（balanced equations / acid-carbonate）",
+   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers(balanced equations / acid-carbonate)",
    "marks": 3,
    "criteria": [
     {
      "id": "c1",
-     "t": "Writes the word equation: copper carbonate + nitric acid -> copper nitrate + water + carbon dioxide",
+     "t": "Writes the word equation: copper carbonate + nitric acid → copper nitrate + water + carbon dioxide",
      "m": 1
     },
     {
@@ -382,7 +382,7 @@
    ],
    "answer": 1,
    "explanation_en": "2Al + 6HCl → 2AlCl₃ + 3H₂: the number of atoms on the left side is Al 2, H 6, Cl 6, and on the right side is Al 2, Cl 6, H 6, making them equal.",
-   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers（Balanced Equations part 2）"
+   "source": "Term 2 · Reactive Chemistry – Term 3 Reactive Chemistry Week 7 Answers(Balanced Equations part 2)"
   },
   {
    "id": "sciother-021",
@@ -398,7 +398,7 @@
    ],
    "answer": 3,
    "explanation_en": "Isotopes refer to atoms of the same element with the same number of protons but different numbers of neutrons.",
-   "source": "Term 2 · Nuclear Reactions – atomic_models_interactive_v2.html（Isotopes）"
+   "source": "Term 2 · Nuclear Reactions – atomic_models_interactive_v2.html(Isotopes)"
   },
   {
    "id": "sciother-022",
@@ -425,7 +425,7 @@
    "options": [],
    "answer": "While an organism is alive it continuously takes in small amounts of radioactive carbon dioxide from the air. When it dies the intake stops, so the radioactive carbon slowly decays into the non-radioactive form. Measuring how much radioactive carbon is left in the remains therefore shows how long ago the organism died.",
    "explanation_en": "Living things constantly take in radioactive carbon; after death, the intake stops, and the remaining radioactive carbon decays at a fixed rate, allowing us to calculate the time of death.",
-   "source": "Term 2 · Nuclear Reactions – Year 10 - Evolution.pptx（Techniques used to date fossils · Absolute dating）",
+   "source": "Term 2 · Nuclear Reactions – Year 10 - Evolution.pptx(Techniques used to date fossils · Absolute dating)",
    "marks": 3,
    "criteria": [
     {
@@ -460,7 +460,7 @@
    ],
    "answer": 2,
    "explanation_en": "The natural greenhouse effect is the absorption of infrared radiation by greenhouse gases in the atmosphere, keeping the Earth's temperature relatively stable.",
-   "source": "Term 3 · Climate Science – Term 3 Earth Week 1 Answers（natural vs enhanced greenhouse effect）"
+   "source": "Term 3 · Climate Science – Term 3 Earth Week 1 Answers(natural vs enhanced greenhouse effect)"
   },
   {
    "id": "sciother-025",
@@ -476,7 +476,7 @@
    ],
    "answer": 0,
    "explanation_en": "The answer is carbon dioxide, as methane is combustible and nitrogen and argon are not the main greenhouse gases or products.",
-   "source": "Term 3 · Climate Science – 2020 Year 10 Yearly Examination Answers（Part B Q2）"
+   "source": "Term 3 · Climate Science – 2020 Year 10 Yearly Examination Answers(Part B Q2)"
   },
   {
    "id": "sciother-026",
@@ -492,7 +492,7 @@
    ],
    "answer": 2,
    "explanation_en": "Mitigation involves reducing emissions and stabilising atmospheric greenhouse gas concentrations, while adaptation involves reducing social vulnerability to the impacts that are already happening.",
-   "source": "Term 3 · Climate Science – Revision Booklet（Topic 6 · Mitigation / Adaptation strategies）"
+   "source": "Term 3 · Climate Science – Revision Booklet(Topic 6 · Mitigation / Adaptation strategies)"
   },
   {
    "id": "sciother-027",
@@ -508,7 +508,7 @@
    ],
    "answer": 0,
    "explanation_en": "An excess of H⁺ ions will combine with carbonate ions to form bicarbonate, competing with shell formation for carbonate ions, making it harder for shells to form.",
-   "source": "Term 3 · Climate Science – Term 3 Earth Week 2 Answers（Ocean Acidification）"
+   "source": "Term 3 · Climate Science – Term 3 Earth Week 2 Answers(Ocean Acidification)"
   },
   {
    "id": "sciother-028",
@@ -554,7 +554,7 @@
    ],
    "answer": 1,
    "explanation_en": "The prefix hex- indicates 6 carbon atoms, and the suffix -ane indicates an alkane, so it's hexane.",
-   "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 3 Naming Organic Compounds）"
+   "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS(Lesson 3 Naming Organic Compounds)"
   },
   {
    "id": "sciother-030",
@@ -570,7 +570,7 @@
    ],
    "answer": 2,
    "explanation_en": "The general formula for alkanes is CnH2n+2 (e.g. C5H12 when n=5), while alkenes are CnH2n and alkynes are CnH2n−2, with the last being alcohol classes (containing the -OH functional group).",
-   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part C Q6）"
+   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet(Part C Q6)"
   },
   {
    "id": "sciother-031",
@@ -580,8 +580,8 @@
    "stem": "Explain how fractional distillation separates crude oil into fractions, and why the smaller molecules are collected near the top of the column.",
    "options": [],
    "answer": "Crude oil is heated so that most of it vaporises, and the vapours rise up the fractionating column, which is hot at the bottom and cooler at the top. Each fraction condenses at the level where the temperature falls below its boiling point. Smaller molecules have lower boiling points, so they rise further and are collected near the top.",
-   "explanation_en": "Distillation uses the difference in boiling points: the temperature inside the tower decreases from bottom to top, and each component condenses at a height where the temperature is lower than its boiling point, with smaller molecules having lower boiling points and rising higher to the top (LPG, gasoline), and larger molecules remaining at the bottom (asphalt).",
-   "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS（Lesson 2 Fractional Distillation）",
+   "explanation_en": "Distillation uses the difference in boiling points. The temperature inside the tower falls from bottom to top, so each component condenses at the height where the temperature drops below its boiling point. Smaller molecules have lower boiling points, rise higher and are drawn off near the top (LPG, gasoline), while larger molecules stay at the bottom (asphalt).",
+   "source": "Term 3 · Organic Chemistry – KATZ - WEEK 3 LESSONS(Lesson 2 Fractional Distillation)",
    "marks": 4,
    "criteria": [
     {
@@ -621,7 +621,7 @@
    ],
    "answer": 0,
    "explanation_en": "The longest carbon chain has 4 carbon atoms (butane), with a methyl branch attached to the 2nd carbon; numbering must start from the end closest to the branch to get the smallest possible position number, so it's 2-methylbutane, and 3-methylbutane is an incorrect name for the same molecule numbered from the other end.",
-   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part G Q12）"
+   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet(Part G Q12)"
   },
   {
    "id": "sciother-033",
@@ -637,7 +637,7 @@
    ],
    "answer": 0,
    "explanation_en": "Substituting n=5 into the alkane formula CnH2n+2 gives C5H12; C5H10 has two fewer hydrogens, matching CnH2n, which is an alkene (or cycloalkane), and can't be a straight-chain alkane.",
-   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet（Part N Q32）"
+   "source": "Term 3 · Organic Chemistry – Year 10 Organic Chemistry Homework Worksheet(Part N Q32)"
   }
  ]
 }

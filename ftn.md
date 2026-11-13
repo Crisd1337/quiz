@@ -7,16 +7,16 @@
 - A. 5°C to 60°C
 - B. 0°C to 5°C
 - C. 60°C to 100°C
-- D. -18°C to 4°C
+- D. −18°C to 4°C
 
-**2. [Food safety · 2-hour / 4-hour rule]** Under the 2-hour / 4-hour rule, what must happen to potentially hazardous food that has been in the danger zone for more than 4 hours?
+**2. [Food safety · 2-hour / 4-hour rule]** Under the 2-hour/4-hour rule, what must happen to potentially hazardous food that has been in the danger zone for more than 4 hours?
 
 - A. It can be returned to the fridge and used again the next day
 - B. It must be thrown away because bacteria levels are too high
 - C. It can be frozen and kept for up to one week
 - D. It can be reheated to 100°C and then served
 
-**3. [Food safety · 2-hour / 4-hour rule]** A tray of cooked chicken has been sitting at room temperature for 3 hours. Under the 2-hour / 4-hour rule, which action is correct?
+**3. [Food safety · 2-hour / 4-hour rule]** A tray of cooked chicken has been sitting at room temperature for 3 hours. Under the 2-hour/4-hour rule, which action is correct?
 
 - A. Reheat it, then freeze it for the following week
 - B. Return it to the fridge and use it later
@@ -175,35 +175,35 @@
 ## 答案与解析
 
 **1.** A. 5°C to 60°C  
-　Explanation: The danger zone for bacterial growth is 5°C–60°C, where harmful bacteria multiply the fastest, and temperatures below 0°C only slow down growth without killing the bacteria.  
+　Explanation: The danger zone for bacterial growth is 5°C–60°C, where harmful bacteria multiply fastest. Temperatures below 0°C only slow growth down; they do not kill the bacteria.  
 　出处：Structured Responses (Sample Answers).pdf — The Danger Zone
 
 **2.** B. It must be thrown away because bacteria levels are too high  
-　Explanation: If food is left for over 4 hours, the bacterial count will be too high, and it must be discarded, as reheating or refrigeration won't fix the issue.  
+　Explanation: If food has been out for more than 4 hours, the bacterial count will be too high and it must be thrown away; reheating or refrigerating it will not fix the problem.  
 　出处：Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule
 
 **3.** C. Eat it now, but do not return it to the fridge  
-　Explanation: Food left for over 2 hours but less than 4 hours can still be eaten, but it can't be put back in the fridge, as this will only chill the bacteria; only food that's been out for less than 2 hours can be refrigerated.  
+　Explanation: Food that has been in the danger zone for more than 2 hours but less than 4 hours can still be eaten, but it cannot go back into the fridge; only food that has been out for less than 2 hours may be refrigerated.  
 　出处：Structured Responses (Sample Answers).pdf — The 2-Hour / 4-Hour Rule
 
 **4.** D. 4°C or below  
 　Explanation: To slow down bacterial growth, food must be refrigerated at 4°C or below, as temperatures like 8°C or 22°C are too high to prevent bacterial multiplication.  
-　出处：Structured Responses (Sample Answers).pdf — The Danger Zone（Industry Example）
+　出处：Structured Responses (Sample Answers).pdf — The Danger Zone(Industry Example)
 
 **5.** A. Preparing ingredients and equipment before cooking  
 　Explanation: Mise en place refers to having all ingredients ready, including chopping onions, measuring seasonings, and preheating the oven, as skipping this step can lead to poor workflow.  
-　出处：Term 1 · Assumed Knowledge Quiz 6: Mise en place；Structured Responses (Sample Answers).pdf — Poor Workflow
+　出处：Term 1 · Assumed Knowledge Quiz 6: Mise en place; Structured Responses (Sample Answers).pdf — Poor Workflow
 
 **6.** B. Some groups have limited access to affordable, safe food while others do not  
 　Explanation: Food inequity highlights the issue of unequal access to sufficient, safe, and nutritious food, and should not be confused with religious dietary restrictions or personal choices.  
 　出处：Term 1 · Food Inequity Assignment (Part 1 – Define)
 
 **7.** C. People on low incomes or who are unemployed  
-　Explanation: Low-income or unemployed individuals are typical examples of groups affected by food inequity, along with others like rural residents, women and children, the elderly, people with chronic illnesses, people with disabilities, Indigenous Australians, and the homeless.  
+　Explanation: People on low incomes or who are unemployed are the typical examples of groups affected by food inequity, along with rural residents, women and children, the elderly, people with chronic illnesses, people with disabilities, Aboriginal and Torres Strait Islander peoples, and people who are homeless.  
 　出处：Term 1 · Food Inequity Assignment (Introduction — list of affected groups)
 
 **8.** D. OzHarvest  
-　Explanation: OzHarvest is a typical Australian food rescue charity that collects surplus food from businesses and distributes it to those in need, whereas Woolworths is a supermarket chain, and Fair Work is a workplace regulator, neither of which are charities.  
+　Explanation: OzHarvest is an Australian food-rescue charity: it collects surplus food from businesses and distributes it to people in need. Woolworths, by contrast, is a supermarket chain and Fair Work is a workplace regulator, neither of which is a charity.  
 　出处：Term 1 · Food Inequity Assignment (Part 1 – charity list) (charity functions supplemented from syllabus knowledge)
 
 **9.** A. Replacing main meals with more frequent, smaller snacks  
@@ -211,15 +211,15 @@
 　出处：Term 2 · Food Trends: Quiz 4 Snackification and other Food Trends
 
 **10.** B. Reduce food waste by selling produce rejected as ugly  
-　Explanation: This trend targets 'ugly' but perfectly edible produce to reduce food waste at the farm and retail levels, with the core selling point being waste reduction, not price increases.  
+　Explanation: This trend targets 'ugly' but perfectly edible produce in order to reduce food waste at the farm and retail level. The selling point is waste reduction, not a higher price.  
 　出处：Term 2 · Food Trends: Quiz 3 Veggies and Fruit too ugly for the supermarkets
 
 **11.** C. By popularising ingredients and dishes through media exposure  
-　Explanation: Celebrity chefs popularise certain ingredients or cooking methods through TV shows, social media, and recipes, creating trends, but they don't set prices, dietary guidelines, or conduct health inspections.  
+　Explanation: Celebrity chefs popularise particular ingredients or cooking methods through TV shows, social media and recipes, and trends follow. They do not set prices, write dietary guidelines or carry out health inspections.  
 　出处：Term 2 · Food Trends: Quiz 2 Celebrity Chef
 
 **12.** D. Gluten, found in wheat, barley and rye  
-　Explanation: Coeliac disease is an autoimmune reaction to gluten, requiring a strict gluten-free diet for life, and is an immune response, not just a ordinary 'flour allergy'.  
+　Explanation: Coeliac disease is an autoimmune reaction to gluten and requires a strict gluten-free diet for life. It is an immune response, not simply an ordinary allergy to flour.  
 　出处：Term 3 · Food for Specific Needs: Quiz 6 Coeliac Disease
 
 **13.** A. Is digested slowly and raises blood glucose gradually  
@@ -231,11 +231,11 @@
 　出处：Term 3 · Food for Specific Needs: Quiz 8 Allergies and Intolerances
 
 **15.** C. Calcium and vitamin D  
-　Explanation: Calcium is the main mineral in bones, and vitamin D helps with its absorption; a lack of either increases the risk of osteoporosis, and taking only calcium without vitamin D reduces its absorption efficiency.  
+　Explanation: Calcium is the main mineral in bone, and vitamin D helps the body absorb it. A lack of either raises the risk of osteoporosis, and calcium taken without vitamin D is absorbed less efficiently.  
 　出处：Term 3 · Food for Specific Needs: Quiz 11 Osteoporosis
 
 **16.** D. Iron-rich foods such as red meat, legumes and leafy greens  
-　Explanation: The dietary focus for iron deficiency anaemia is on increasing iron intake, with red meat, beans, and dark leafy greens being common sources, and vitamin C can enhance iron absorption but is not a source of iron itself.  
+　Explanation: The dietary focus for iron-deficiency anaemia is on increasing iron intake, with red meat, legumes and dark leafy greens being common sources. Vitamin C improves iron absorption, but it is not a source of iron itself.  
 　出处：Term 3 · Food for Specific Needs: Quiz 8A Anaemia
 
 **17.** A. Longevity and a long life  
@@ -247,11 +247,11 @@
 　出处：Term 4 · Food for Special Occasions: Quiz 3 Día de los muertos
 
 **19.** Poor workflow is when a chef is unorganised in the commercial kitchen. It reduces the restaurant's efficiency in preparing food on time and lowers the quality of the food; it is caused by not completing mise en place or not following the recipe in a logical order, and it can be improved by preparing ingredients in advance and communicating clearly with the team.  
-　Explanation: Structured short answers should follow the Is-Affects-Caused by-Improved by-Example format: define the concept, discuss its impact, causes, and improvement methods, and provide an industry example.  
+　Explanation: A structured short answer should follow the 'what it is → how it affects → what causes it → how to improve it → example' pattern: define the concept, discuss its impact, causes and improvements, and give an industry example.  
 　出处：Structured Responses (Sample Answers).pdf — Poor Workflow
 
 **20.** Groups affected include people on low incomes or unemployed, rural and isolated people, the elderly, Aboriginal and Torres Strait Islander people, people with disabilities and homeless people. One key factor is the cost of fresh food combined with limited transport, which makes affordable nutritious food physically and financially hard to reach.  
-　Explanation: Answers should include 'two groups + one reason', and common reasons include price, transportation distance, accommodation conditions, or health restrictions.  
+　Explanation: Answers need 'two groups + one reason'. Common reasons include price, the distance to shops, housing conditions and health restrictions.  
 　出处：Term 1 · Food Inequity Assignment (Introduction and Part 1)
 
 **21.** Charities collect surplus or donated food and redistribute it, free or at low cost, to people who cannot afford enough nutritious food. A limitation is that supply is unpredictable and depends on donations, so they treat the symptom rather than fixing the underlying causes such as low income and high housing costs.  
@@ -259,17 +259,17 @@
 　出处：Term 1 · Food Inequity Assignment (Part 1 – charity research) + Part 4 (future strategies)
 
 **22.** Social media spreads visually appealing food content quickly, so dishes and products become popular through shares, hashtags and influencer posts, and manufacturers respond with convenient snack-style products. One risk is that consumers may copy unhealthy or unverified food advice and choose foods for appearance rather than nutrition.  
-　Explanation: Explain the 'mechanism of transmission' and 'risks' of social media, such as misleading nutrition information and portion control issues, and simply describing the phenomenon without explaining the mechanism may result in lost points.  
-　出处：Term 2 · Food Trends: Quiz 6 #foodie；Quiz 4 Snackification and other Food Trends
+　Explanation: You need both the 'mechanism of transmission' and the 'risks' — for example misleading nutrition information and problems with portion control. Describing the trend without explaining the mechanism loses marks.  
+　出处：Term 2 · Food Trends: Quiz 6 #foodie; Quiz 4 Snackification and other Food Trends
 
 **23.** The NRL player trains and plays at high intensity for long periods, so he burns far more kilojoules and needs more carbohydrate to refuel muscles, plus extra protein for muscle repair and fluid and electrolytes to replace sweat losses. A sedentary office worker uses much less energy, so eating the same amount would lead to excess energy being stored as fat.  
-　Explanation: Answers should focus on 'differences in energy expenditure leading to differences in carbohydrate, protein, and water requirements', and simply stating that athletes eat more is not enough to explain the distribution of nutrients.  
-　出处：Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players；Quiz 7 Diet of an Olympic Athlete
+　Explanation: Answers should focus on 'differences in energy expenditure leading to differences in carbohydrate, protein and water requirements'. Simply saying that athletes eat more is not enough; you also have to explain why the mix of nutrients changes.  
+　出处：Term 3 · Food for Specific Needs: Quiz 4 Fuel Requirements for NRL Players; Quiz 7 Diet of an Olympic Athlete
 
 **24.** Food is used to mark significant events and bring people together, for example a birthday cake at a birthday party or a shared feast at Christmas. Particular foods also carry cultural or religious meaning and are used to pass on traditions, for example long noodles symbolising longevity at Chinese New Year.  
-　Explanation: Provide two distinct reasons, one being 'social gatherings' and the other 'cultural or religious symbols', each with an example, and failing to explain the reasons and only providing examples may result in lost points.  
+　Explanation: Give two distinct reasons — one about 'social gatherings' and one about 'cultural or religious symbols' — and support each with an example. Listing examples without explaining the reasons loses marks.  
 　出处：Term 4 · Food for Special Occasions: Quiz 6 Reasons for Celebrating with Food
 
 **25.** Every food handler can pass bacteria or viruses from their body to food, and food poisoning outbreaks are often traced back to one person's hygiene practices, so each worker is legally and ethically responsible. Examples include not washing hands after using the toilet or handling raw meat, and coughing or sneezing over food or working while sick with gastro.  
-　Explanation: The key points are that individual behaviour can contaminate entire batches of food and specific incorrect practices, such as not washing hands, working while sick, and coughing over food, which is covered in Food Handler Basics Module 2.  
+　Explanation: The key points are that one person's behaviour can contaminate an entire batch of food, and that you can name specific unsafe practices such as not washing hands, working while sick or coughing over food. This material is covered in Food Handler Basics, Module 2.  
 　出处：Term 1 · Food Handler Basics Training (Module 2: Personal hygiene)

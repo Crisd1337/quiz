@@ -307,7 +307,7 @@ What is the probability that a randomly selected student catches the bus?
 　出处：Chapter 1 Surds · 1.02 Simplifying surds (Ex 1.02, p.8)
 
 **2.** B. 6√2  
-　Explanation: First, convert to the same radical form: 5√2 + 4√2 - 3√2 = 6√2, a common mistake is to directly add or subtract the radicands (50+32-18=64), which equals 8.  
+　Explanation: First write each surd in the same radical form: 5√2 + 4√2 − 3√2 = 6√2. A common mistake is to add or subtract the radicands directly (50 + 32 − 18 = 64), which gives 8.  
 　出处：Chapter 1 Surds · 1.03 Adding and subtracting surds (Ex 1.03, p.11)
 
 **3.** C. 2√5  
@@ -315,39 +315,39 @@ What is the probability that a randomly selected student catches the bus?
 　出处：Chapter 1 Surds · 1.06 Rationalising the denominator (Ex 1.06, p.20)
 
 **4.** Multiply by the conjugate (√5 + 1): 4(√5 + 1)/((√5)² − 1²) = 4(√5 + 1)/4 = √5 + 1.  
-　Explanation: When adding or subtracting fractions with radicals in the denominator, multiply by the conjugate (√5+1), after multiplication, the denominator becomes 5-1=4, which simplifies to 1, and the answer is √5+1 (≈3.24).  
+　Explanation: To rationalise a denominator like this one, multiply by the conjugate (√5 + 1). After multiplying, the denominator becomes (√5)² − 1² = 5 − 1 = 4, which cancels with the 4 on top, so the answer is √5 + 1 (≈ 3.24).  
 　出处：Chapter 1 Surds · 1.06 Rationalising the denominator, binomial denominators (Ex 1.06)
 
 **5.** D. 2x² + 7x − 15  
-　Explanation: 2x·x=2x², 2x·5=10x, -3·x=-3x, -3·5=-15, combining to get 2x²+7x-15, don't forget the negative sign of -3×5.  
+　Explanation: Expand the four products: 2x·x = 2x², 2x·5 = 10x, −3·x = −3x and −3·5 = −15. Combining the like terms gives 2x² + 7x − 15; do not lose the minus sign on −3×5.  
 　出处：Chapter 5 Products and factors · 5.06 Expanding binomial products (Ex 5.06)
 
 **6.** A. (2x + 7)(3x − 5)  
-　Explanation: To get 6x² and -35, with a cross term of +11x: 6×(-35)=-210, we need two numbers with a product of -210 and a sum of +11, which are 21 and -10, so 6x²+21x-10x-35 = 3x(2x+7)-5(2x+7) = (2x+7)(3x-5).  
+　Explanation: The product of the first and last terms is 6×(−35) = −210, and the cross term must be +11x. So you need two numbers with a product of −210 and a sum of +11: they are 21 and −10. Then 6x² + 21x − 10x − 35 = 3x(2x + 7) − 5(2x + 7) = (2x + 7)(3x − 5).  
 　出处：Chapter 5 Products and factors · 5.09 Factorising non-monic quadratic trinomials (Ex 5.09)
 
 **7.** (x + 3)/(x + 4), where x ≠ 3 and x ≠ −4.  
-　Explanation: The numerator is a difference of squares (x-3)(x+3), the denominator can be factored as (x+4)(x-3), cancelling out (x-3) to get (x+3)/(x+4), the values of x corresponding to the cancelled factors must be excluded: x≠3, x≠-4.  
+　Explanation: The numerator is a difference of squares, (x − 3)(x + 3), and the denominator factorises to (x + 4)(x − 3). Cancelling (x − 3) leaves (x + 3)/(x + 4). Any value of x that makes a cancelled factor zero must be excluded, so x ≠ 3 and x ≠ −4.  
 　出处：Chapter 5 Products and factors · 5.11 Factorising algebraic fractions (Ex 5.11)
 
 **8.** B. 16x¹²  
-　Explanation: Both the coefficient and the variable should be raised to the fourth power: 2⁴=16, (x³)⁴=x¹², so it's 16x¹², a common mistake is to only multiply the exponents but forget the power of 2.  
+　Explanation: Both the coefficient and the variable are raised to the fourth power: 2⁴ = 16 and (x³)⁴ = x¹², so the answer is 16x¹². A common mistake is to multiply the indices but forget the power of 2.  
 　出处：Chapter 5 Indices · 5.01 Index laws (Ex 5.01)
 
 **9.** C. 1/9  
-　Explanation: 27^(1/3)=3, then squared to get 9, negative exponent becomes the reciprocal to get 1/9, note that a negative exponent only means the reciprocal, not a negative result.  
+　Explanation: 27^(1/3) = 3, and squaring that gives 9. The negative index turns the result into its reciprocal, giving 1/9. A negative index means the reciprocal only — not a negative result.  
 　出处：Chapter 5 Indices · 5.02 Fractional indices (Ex 5.02)
 
 **10.** 4x⁴/y²  (8^(2/3) = 4, (x⁶)^(2/3) = x⁴, (y⁻³)^(2/3) = y⁻² = 1/y²)  
-　Explanation: Multiply 2/3 to each exponent: 8^(2/3)=4, x^(6×2/3)=x⁴, y^(-3×2/3)=y⁻², then use the rule for negative exponents to write 4x⁴/y².  
+　Explanation: Multiply each index by 2/3: 8^(2/3) = 4, x^(6×2/3) = x⁴, y^(−3×2/3) = y⁻². Then use the rule for negative indices to write 4x⁴/y².  
 　出处：Chapter 5 Indices · 5.02 Fractional indices / 5.04 Multiplying and dividing algebraic fractions
 
 **11.** D. 4  
-　Explanation: log₃81 asks '3 to the power of what equals 81', since 3⁴=81, the answer is 4 - don't confuse it with division 81÷3.  
+　Explanation: log₃81 asks '3 to the power of what equals 81?'. Since 3⁴ = 81, the answer is 4 — do not confuse it with the division 81 ÷ 3.  
 　出处：Chapter 7 Equations and logarithms · 7.09 Logarithms (p.270)
 
 **12.** A. 2  
-　Explanation: First, use the power rule to get log₃36, then use the quotient rule to get log₃(36/4)=log₃9=2; the coefficient 2 needs to be converted to an exponent, can't be directly subtracted from 4.  
+　Explanation: First use the power rule to get log₃36, then the quotient rule to get log₃(36/4) = log₃9 = 2. The coefficient 2 has to be turned into an index first; it cannot be subtracted from 4 directly.  
 　出处：Chapter 7 Equations and logarithms · 7.10 Logarithm laws, Example 20 (p.273)
 
 **13.** B. x = 5  
@@ -355,7 +355,7 @@ What is the probability that a randomly selected student catches the bus?
 　出处：Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations, Example 23 (p.274)
 
 **14.** x = 4 (the solution x = −2 is rejected, because the logarithm of a negative number is undefined).  
-　Explanation: Combine the left side: log₂[x(x−2)] = 3, i.e. x²−2x = 8, solve for x = 4 or x = −2, must check the domain: x>0 and x−2>0, so only x = 4 remains.  
+　Explanation: Combine the left side: log₂[x(x − 2)] = 3, so x² − 2x = 8. Solving gives x = 4 or x = −2, but you must check the domain, x > 0 and x − 2 > 0, so only x = 4 survives.  
 　出处：Chapter 7 Equations and logarithms · 7.11 Exponential and logarithmic equations (Ex 7.11)
 
 **15.** C. x = 8 or x = −3  
@@ -375,7 +375,7 @@ What is the probability that a randomly selected student catches the bus?
 　出处：Chapter 11 Quadratic equations and the parabola · 11.05 Higher-order quadratic equations (Ex 11.05)
 
 **19.** A. (2, 2)  
-　Explanation: The midpoint coordinate is the average of the endpoint coordinates: x = (−3+7)/2 = 2, y = (5−1)/2 = 2; don't confuse the midpoint formula with subtracting two points.  
+　Explanation: Each midpoint coordinate is the mean of the endpoint coordinates: x = (−3 + 7)/2 = 2 and y = (5 − 1)/2 = 2. Do not confuse the midpoint formula with subtracting the coordinates.  
 　出处：Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)
 
 **20.** B. 2  
@@ -383,11 +383,11 @@ What is the probability that a randomly selected student catches the bus?
 　出处：Coordinate Geometry · 3.01 Length, midpoint and gradient of an interval (Ex 3.01, p.62)
 
 **21.** C. 4/3  
-　Explanation: Convert to slope-intercept form to get y = −(3/4)x + 2, the slope of L is −3/4; the slope of the vertical line is the negative reciprocal, i.e. 4/3; don't forget to change the sign.  
+　Explanation: Rearrange into gradient–intercept form to get y = −(3/4)x + 2, so the gradient of L is −3/4. A line perpendicular to L has the negative reciprocal gradient, i.e. 4/3 — do not forget to change the sign.  
 　出处：Coordinate Geometry · 3.02 Parallel and perpendicular lines (Ex 3.02, p.69)
 
 **22.** x + 3y − 7 = 0  
-　Explanation: First find the slope m = (1−3)/(4−(−2)) = −2/6 = −1/3; use point-slope form y−3 = −(1/3)(x+2), multiply both sides by 3 to get 3y−9 = −x−2, rearrange to x+3y−7 = 0; can check by substituting the two points.  
+　Explanation: First find the gradient: m = (1−3)/(4−(−2)) = −2/6 = −1/3. Then use point–gradient form y − 3 = −(1/3)(x + 2), multiply both sides by 3 to get 3y − 9 = −x − 2, and rearrange to x + 3y − 7 = 0. You can check by substituting the two points.  
 　出处：Coordinate Geometry · 3.05 The general form ax + by + c = 0 / 3.07 Finding the equation of a line (p.81–86)
 
 **23.** D. x = 4, y = 1  
@@ -399,7 +399,7 @@ What is the probability that a randomly selected student catches the bus?
 　出处：Chapter 11 · 11.09 Non-linear simultaneous equations (Ex 11.09)
 
 **25.** A pie costs $3.50 and a drink costs $2.00.  
-　Explanation: Let p be the price of a pie and d be the price of a drink: 3p+2d=14.50, 2p+5d=17.00. Multiplying the first equation by 5 and the second by 2 gives 15p+10d=72.50 and 4p+10d=34.00, subtracting these gives 11p=38.50, so p=3.50, and substituting back gives d=2.00.  
+　Explanation: Multiplying the first equation by 5 and the second by 2 gives 15p + 10d = 72.50 and 4p + 10d = 34.00. Subtracting them gives 11p = 38.50, so p = 3.50, and substituting back gives d = 2.00.  
 　出处：Chapter 10 Simultaneous equations · 10.04 Problems involving simultaneous equations (Ex 10.04)
 
 **26.** B. Centre (3, −2), radius 5  

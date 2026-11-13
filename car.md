@@ -16,7 +16,7 @@
 - C. At least 1 unit of a Category B course
 - D. At least 4 units of Mathematics
 
-**3. [Australian pathways · SBAT]** In the course's careers resource list, 'SBAT in NSW' refers to:
+**3. [Australian pathways · SBAT]** In this course's careers resource list, 'SBAT in NSW' refers to:
 
 - A. A university early entry scheme for Year 10 students
 - B. An online platform for sitting the HSC exams
@@ -65,7 +65,7 @@
 - C. Is sent to a referee instead of an employer
 - D. Responds to a position that has been advertised
 
-**10. [Career planning · Action plan]** The career action plan has four sections. Which set is correct?
+**10. [Career planning · Action plan]** The career action plan has four sections. Which set lists them correctly?
 
 - A. My Subjects, My Marks, My School, My Teacher
 - B. My Profile, My Goals and Plans, My Progress, My Review
@@ -144,50 +144,50 @@
 
 **1.** A. 10 units  
 　Explanation: To be eligible for an ATAR, you need to complete at least 10 units of ATAR courses, including 8 units from Category A and 2 units of English; missing one unit will make you ineligible for an ATAR.  
-　出处：top-tips-for-choosing-hsc-courses.pdf（ATAR eligibility）
+　出处：top-tips-for-choosing-hsc-courses.pdf(ATAR eligibility)
 
 **2.** B. At least 2 units of English  
 　Explanation: English is a compulsory subject with a minimum of 2 units, while maths is not mandatory and Category B courses can only count for a maximum of 2 units.  
-　出处：top-tips-for-choosing-hsc-courses.pdf（ATAR eligibility）
+　出处：top-tips-for-choosing-hsc-courses.pdf(ATAR eligibility)
 
 **3.** C. School Based Apprenticeships and Traineeships  
-　Explanation: SBAT is an 'in-school traineeship/internship' pathway where students complete their secondary education while undertaking paid industry training, distinct from early university offers and scholarships.  
-　出处：Careers Education 2022（CAREER RESOURCES：SBAT in NSW）
+　Explanation: SBAT stands for School Based Apprenticeships and Traineeships: an in-school pathway in which students finish their secondary education while completing paid industry training. It is not a scholarship, an online exam platform or an early entry scheme.  
+　出处：Careers Education 2022(CAREER RESOURCES: SBAT in NSW)
 
 **4.** D. 2 units  
 　Explanation: Category B courses can only count for a maximum of 2 units, and the remaining units must come from Category A, which is often overlooked.  
-　出处：top-tips-for-choosing-hsc-courses.pdf（ATAR eligibility）
+　出处：top-tips-for-choosing-hsc-courses.pdf(ATAR eligibility)
 
 **5.** A. 3 to 5 years of full-time study  
-　Explanation: Undergraduate degrees typically take 3-5 years of full-time study and allow you to choose a major; postgraduate certificates, masters, and PhDs are subsequent levels that take additional time.  
-　出处：Week 5 - Levels of education（University Entry）
+　Explanation: Undergraduate degrees usually take 3–5 years of full-time study and let you choose a major. Postgraduate certificates, masters degrees and PhDs are the levels that come after, and each takes additional time.  
+　出处：Week 5 - Levels of education(University Entry)
 
 **6.** B. Certificate III in Electrotechnology  
 　Explanation: Certificate III is a VET qualification usually offered by TAFE or government-recognised private colleges, whereas Bachelor, Master, and PhD are university-level qualifications.  
-　出处：Week 5 - Levels of education（VET / TAFE）
+　出处：Week 5 - Levels of education(VET / TAFE)
 
 **7.** C. Be brief and clear so it is quick to read  
-　Explanation: The course emphasises the importance of a concise and clear resume, with long paragraphs left for interviews, and notes that resumes are not static and will be updated as you gain experience.  
-　出处：Building a resume（What is important on a resume?）
+　Explanation: The course stresses that a resume should be concise and clear so that it can be read quickly, and that a resume is not static — you update it as you gain experience. Long, detailed paragraphs about every job you have had are better left for the interview.  
+　出处：Building a resume(What is important on a resume?)
 
 **8.** D. 250 to 400 words  
-　Explanation: The course provides a word limit of 250-400 words, focusing on 'why you're applying, what you can offer, and how you'll follow up', warning against writing a long essay.  
-　出处：Writing a cover letter（The Cover Letter）
+　Explanation: The course sets a limit of 250–400 words, and the letter should focus on 'why you're applying, what you can offer, and how you'll follow up'; writing a long essay is exactly what the course warns against.  
+　出处：Writing a cover letter(The Cover Letter)
 
 **9.** A. Asks about jobs that have not been advertised  
-　Explanation: A prospecting letter is a 'cold call' to inquire about unadvertised vacancies, requiring thorough research to grab the reader's attention, distinct from application letters responding to job ads.  
-　出处：Writing a cover letter（Prospecting letter）
+　Explanation: A prospecting letter is a 'cold call' that asks about vacancies which have not been advertised. It needs thorough research to grab the reader's attention, which is what separates it from an application letter responding to a job advertisement.  
+　出处：Writing a cover letter(Prospecting letter)
 
 **10.** B. My Profile, My Goals and Plans, My Progress, My Review  
-　Explanation: The action plan consists of four parts: my profile, goals and plans, progress, and reflection, helping you identify your current position and the experiences you lack.  
-　出处：Career action plan（There are 4 sections to the action plan）
+　Explanation: The action plan has four parts — my profile, my goals and plans, my progress and my review — and it helps you see where you are now and which experiences you still lack.  
+　出处：Career action plan(There are 4 sections to the action plan)
 
 **11.** C. Research its values so you can align your skills  
-　Explanation: The course suggests researching companies: understanding their motto and values, then matching your skills to them, making your application more targeted, as not doing so is a common mistake.  
-　出处：Week Ten- Submitting Your Resume & Cover Letter（NOTE：do your research on the company）
+　Explanation: The course advises researching the company: understand its motto and values, then match your skills to them so that the application is targeted. Not doing that research is a common mistake.  
+　出处：Week Ten- Submitting Your Resume & Cover Letter(NOTE: do your research on the company)
 
 **12.** D. People are smart in several different ways  
-　Explanation: The theory of multiple intelligences highlights that people have different types of intelligence, broadening career direction understanding, and argues against judging ability based on a single score.  
+　Explanation: The theory of multiple intelligences holds that people are intelligent in several different ways, which widens the range of careers worth considering, and it argues against judging ability from a single test score.  
 　出处：Week Two- Multiple Intelligences: Different Ways to be Smart
 
 **13.** A. A national number linking your training records  
@@ -195,29 +195,29 @@
 　出处：Week Eight- Creating a USI, TFN & MyGov account
 
 **14.** B. The employer uses it so your pay and tax are recorded correctly  
-　Explanation: TFN is a tax file number required for employers to deduct taxes at the correct rate; without it, you'll be taxed at the highest rate, and your pay rate is determined by awards or contracts, not TFN.  
+　Explanation: A TFN is a tax file number, and employers need it to deduct tax at the correct rate; without one you are taxed at the highest rate. Your hourly pay rate, by contrast, is set by an award or a contract, not by your TFN.  
 　出处：Week Eight- Creating a USI, TFN & MyGov account
 
 **15.** C. Money your employer pays into your retirement fund  
-　Explanation: Super is an additional amount paid by employers into your retirement account, a long-term investment for your retirement, not part of your take-home pay and not a shopping tax.  
+　Explanation: Superannuation is an extra amount that your employer pays into your retirement account. It is a long-term investment for your retirement, it is separate from your take-home pay, and it is not a tax on purchases.  
 　出处：Week Five- Tax & Super
 
 **16.** D. Know your rights and responsibilities at work  
-　Explanation: The course core is 'knowing your rights and responsibilities', including minimum wage, safe environment, and rest time, noting that casual workers are not exempt from safety obligations and cannot have their pay arbitrarily deducted.  
-　出处：Week Three- Industrial Relations & Workplaces（Fair Work workplace basics）
+　Explanation: The core of the course is 'knowing your rights and responsibilities', which includes minimum wage, a safe workplace and rest breaks. Casual workers are not exempt from safety obligations, and their pay cannot be deducted arbitrarily.  
+　出处：Week Three- Industrial Relations & Workplaces(Fair Work workplace basics)
 
 **17.** A course's scaling depends on the average academic performance of all the students taking that course in that year, so it can change from year to year. For most courses your scaled mark is lower than your HSC mark, so the reliable strategy is to choose courses you are good at and interested in and do your best in them, rather than chasing rumours about scaling.  
-　Explanation: The key point is that 'scaling is determined by the overall performance of all students in that subject that year', not the course label, so choose subjects you're good at and need, and explain the mechanism in your answer.  
+　Explanation: The key point is that 'scaling is determined by the overall performance of all students in that subject that year', not by how hard the course is said to be. Choose subjects you are good at and that you need, and make sure you explain the mechanism in your answer.  
 　出处：top-tips-for-choosing-hsc-courses.pdf (scaling myths table)
 
 **18.** I would state where I saw the advertisement and the exact position title, then respond directly to the qualifications listed by giving evidence from my own experience, showing how my skills are transferable to that role. After sending it I should follow up within the time frame indicated, preferably with a phone call or, if calls are blocked, an email, and make sure all my contact details and a normal email address are included.  
 　Explanation: Both questions must be answered: 'address each requirement in the job ad with evidence' and 'follow up within the specified timeframe', as simply stating 'I want to apply' will not score points.  
-　出处：Writing a cover letter（What You Have To Offer / How You Will Follow Up）
+　出处：Writing a cover letter(What You Have To Offer / How You Will Follow Up)
 
 **19.** I would list every exam date and subject first, then work backwards to allocate study blocks, putting the subjects with the earliest or hardest exams first and leaving gaps for rest and other commitments. Two strategies that improve retention are spaced practice (revisiting each topic several times over the weeks rather than cramming once) and active recall (testing yourself or writing study notes from memory instead of only re-reading).  
-　Explanation: Timetables should be 'backwards planned from exam dates with buffers', rather than evenly spaced, and the memory strategy should be 'spaced review + active recall', as just 'reading more' is not a strategy.  
+　Explanation: A timetable should be 'backwards planned from the exam dates with buffers', not spread evenly across the term, and the memory strategies should be 'spaced practice + active recall'. Simply 'reading more' is not a strategy.  
 　出处：Week One - Term 4 Goals & Creating a Yearly Exam Study Timetable; Week Two - Study Skills & Memory Retention (memory strategies are syllabus content)
 
 **20.** Work experience lets you see what the tasks, responsibilities and conditions of a job are really like, and it builds contacts and evidence of employability that you can use in future applications. Reflecting on it may show that the industry suits your strengths, or that the daily work does not match your expectations, which could lead you to change your subject choices or consider a different pathway.  
-　Explanation: Scoring points come from 'genuinely understanding work content + building networks/experience' and then 'reflecting on possible direction confirmation or correction', as just stating 'it's interesting' without reflection will not score highly.  
-　出处：Week Nine- Work Experience；Week Ten- Reflecting on Work Experience（reflection survey）
+　Explanation: Marks come from 'genuinely understanding the work content + building networks and experience', and then from 'reflecting on whether the direction was confirmed or corrected'. Saying only that 'it was interesting', without any reflection, will not score well.  
+　出处：Week Nine- Work Experience; Week Ten- Reflecting on Work Experience(reflection survey)

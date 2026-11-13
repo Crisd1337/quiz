@@ -61,7 +61,7 @@ KING LEAR: Nothing will come of nothing: speak again.
 **8. [King Lear · Flattering language (1.1)]** Section 1 — King Lear, Act 1 Scene 1:
 
 GONERIL: Sir, I love you more than words can wield the matter;
-Dearer than eye-sight, space, and liberty;
+Dearer than eyesight, space, and liberty;
 Beyond what can be valued, rich or rare;
 
 (a) Identify two features of Goneril's language. (2 marks)
@@ -332,7 +332,7 @@ What does this line show about Lear's changed identity? (4 marks)
 
 **1.** A. By asking each daughter to say how much she loves him  
 　Explanation: King Lear asks his three daughters to express their love for him, which will determine their share of the kingdom, making love a measurable performance.  
-　出处：Yearly Study Guide 2026 · English（5 multiple choice questions based on the events of your play）
+　出处：Yearly Study Guide 2026 · English(5 multiple choice questions based on the events of your play)
 
 **2.** B. Nothing  
 　Explanation: Cordelia replies 'Nothing', refusing to use flattery to gain land, and Lear mistakes her honesty for denial, stripping her of her inheritance.  
@@ -351,7 +351,7 @@ What does this line show about Lear's changed identity? (4 marks)
 　出处：Yearly Study Guide 2026 · English
 
 **6.** B. Cordelia is hanged on Edmund's orders and Lear dies of grief with her body  
-　Explanation: Edmund orders Cordelia's execution, and when Lear arrives, it's too late, and he dies holding her body, with no happy ending to restore order, only Albany and Edgar picking up the pieces.  
+　Explanation: Edmund orders Cordelia's execution, and by the time Lear arrives it is too late: he dies holding her body. No happy ending restores order; only Albany and Edgar are left to pick up the pieces.  
 　出处：Yearly Study Guide 2026 · English
 
 **7.** (a) 1 mark — Cordelia refuses to flatter or perform love for a reward; she will not compete with her sisters' speeches.
@@ -359,7 +359,7 @@ What does this line show about Lear's changed identity? (4 marks)
 (b) 1 mark — Lear equates love with public declaration, so silence is read as rejection.
 1 mark — his pun, 'Nothing will come of nothing', shows him thinking in terms of a bargain or debt rather than affection.
 1 mark — he banishes Cordelia (and Kent) and divides the kingdom between Goneril and Regan, handing power to the daughters who will destroy him.  
-　Explanation: The two questions form a causal chain: (a) why Cordelia says 'Nothing' (refusing to perform love, which is a 'duty' not a quote), and (b) linking three points - taking words as love, using puns as transactions, and exile creating a power vacuum.  
+　Explanation: The two questions form a causal chain: (a) why Cordelia says 'Nothing' (refusing to perform love, which is a 'duty' not a quote), and (b) linking three points — taking words as love, using puns as transactions, and exile creating a power vacuum.  
 　出处：King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage
 
 **8.** (a) 1 mark — hyperbole and unverifiable comparison ('more than words can wield', 'dearer than eyesight, space and liberty').
@@ -373,26 +373,26 @@ What does this line show about Lear's changed identity? (4 marks)
 **9.** 1 mark — sight here means judgement or insight, not physical vision: Kent is telling Lear that he is misreading his daughters.
 1 mark — Kent offers to be the 'blank' (the true target/centre) of Lear's eye, that is, the honest perspective Lear refuses.
 1 mark — the image plants the blindness motif that structures the whole play: Gloucester is literally blinded, and Lear only learns to 'see' once he has lost everything.  
-　Explanation: 3 marks are given for: sight = judgment (not vision), Kent's voluntary loyalty as a 'target', and this metaphor setting up the blindness theme throughout the play (leading to Gloucester's eye gouging and Lear's eventual loss).  
+　Explanation: 3 marks are given for: sight = judgement (not vision), Kent's voluntary loyalty as a 'target', and this metaphor setting up the blindness theme throughout the play (leading to Gloucester's eye gouging and Lear's eventual loss).  
 　出处：King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage
 
 **10.** 1 mark — the dragon is Lear's self-image: power, terror and untouchability, a king who sees himself as beyond challenge.
 1 mark — wrath has replaced judgement: he acts from injured pride rather than reason, and cannot tolerate being contradicted.
 1 mark — because this flaw (not fate) drives the banishments and the division of the kingdom, his downfall follows from character, which is what makes the play a tragedy.  
-　Explanation: Hamartia is not 'bad luck', but a character flaw: Lear's anger overrides his judgment, making him expel and divide the kingdom, driven by his character, as required by tragic structure.  
+　Explanation: Hamartia is not 'bad luck' but a character flaw: Lear's anger overrides his judgement and drives him to expel Cordelia and divide the kingdom. The tragedy is driven by his own character, as the tragic structure requires.  
 　出处：King Lear Act 1 Scene 1 (quote: Shakespeare, King Lear 1.1); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage
 
 **11.** 1 mark — Lear still speaks as the giver: his identity is bound up in what he handed over, so he assumes authority continues after the gift.
 1 mark — Regan's 'in good time' turns the gift into a completed transaction and cancels his claim on gratitude.
 1 mark — the daughters now own the power he thought he kept; the title of king remains but the substance has gone.
 1 mark — the play shows identity collapsing when power is transferred: Lear is reduced to 'a poor old man' and has to rebuild a self from bare humanity.  
-　Explanation: 4 marks cover three concepts: power has shifted, identity remains with the 'giver', and the work illustrates 'title ≠ substance', with Regan's cold 'in good time' marking a turning point in power relations.  
+　Explanation: The 4 marks cover three concepts: power has shifted, identity still belongs to the 'giver', and the extract illustrates 'title ≠ substance'. Regan's cold 'in good time' marks the turning point in the power relationship.  
 　出处：King Lear Act 2 Scene 4 (quote: Shakespeare, King Lear 2.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage
 
 **12.** 1 mark — he argues that bare necessity is not enough for human dignity: even beggars have something 'superfluous' beyond survival.
 1 mark — he is defending his hundred knights as a symbol of status and respect, not as a practical requirement.
 1 mark — the speech shows him reasoning about humanity and hardship, but still from a king's position, so the insight is genuine yet incomplete.  
-　Explanation: The key to this question is 'need has two layers': survival needs vs human dignity needs, and while Lear can now speak for the poor, he still fights for pomp and dignity, showing his recognition is incomplete.  
+　Explanation: The key to this question is that 'need has two layers': survival needs and human dignity needs. Lear can now speak for the poor, but he still fights for pomp and dignity, which shows that his recognition is incomplete.  
 　出处：King Lear Act 2 Scene 4 (quote: Shakespeare, King Lear 2.4); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage
 
 **13.** (a) 1 mark — the storm externalises Lear's inner rage and gives his fury a cosmic scale.
@@ -401,7 +401,7 @@ What does this line show about Lear's changed identity? (4 marks)
 (b) 1 mark — he sees himself chiefly as a victim: 'sinn'd against' comes first and carries the weight.
 1 mark — he concedes only a lesser share of blame ('more ... than'), so the self-knowledge is partial, not full confession.
 1 mark — fuller recognition comes later (Act 4, 'they told me I was every thing; 'tis a lie'), so this scene is a middle stage of his moral journey.  
-　Explanation: (a) The storm has three functions: externalising anger, showing nature's indifference, and stripping away the facade of power. (b) Note the concessional structure 'more ... than' - he admits fault but portrays himself as a victim, so it's 'partly self-aware', not 'completely repentant'.  
+　Explanation: (a) The storm has three functions: externalising anger, showing nature's indifference, and stripping away the facade of power. (b) Note the concessional structure 'more ... than' — he admits fault but portrays himself as a victim, so it's 'partly self-aware', not 'completely repentant'.  
 　出处：King Lear Act 3 Scene 2 (quote: Shakespeare, King Lear 3.2); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage
 
 **14.** 1 mark — for the first time he thinks about other people's suffering instead of listing his own injuries.
@@ -479,11 +479,11 @@ What does this line show about Lear's changed identity? (4 marks)
 1 mark — makes one arguable claim about the failure of justice.
 1 mark — signals the comparative angle (how the two composers differ in method).
 1 mark — uses the question's key term ('failure of justice') rather than drifting into a general statement about racism.  
-　Explanation: To score well, you need to cover four key points: both texts are discussed, a debatable argument is presented, comparative angles are explored, and the question's keywords are addressed. Simply stating that 'both texts show injustice' without comparison will only get you 2 points.  
+　Explanation: To score well you must cover four points: discuss both texts, present a debatable argument, explore comparative angles, and address the keywords of the question.  
 　出处：Section 2 · Comparative essay — thesis writing (LEEDER 10ENGB exam outline: comparative essay, 20 marks)
 
 **26.** A. Quote only the few words that carry the technique, then analyse how they shape meaning in the whole text.  
-　Explanation: Integration means embedding short quotes into your own sentences, analysing how the language creates meaning, and linking it back to the whole text and question. Copying a whole paragraph (0 points) is just repetition, only paraphrasing (1 point) loses language evidence, and quoting without analysis (3 points) won't get you analysis marks.  
+　Explanation: Integration means embedding short quotes into your own sentences, analysing how the language creates meaning, and linking it back to the whole text and question. Copying a whole paragraph is just repetition, paraphrasing alone loses the language evidence, and quoting without analysis earns no analysis marks.  
 　出处：Section 2 · Comparative essay — integrating the supplied extract (LEEDER 10ENGB exam outline, 20 marks)
 
 **27.** 1 mark — quote selectively: a few words that carry the technique or idea you need.

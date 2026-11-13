@@ -1,6 +1,6 @@
 # 历史 · 10 年级 · 复习测验（28 题）
 
-> Follows the Yearly Assessment Notification: Section One's seven terms (unipolarity, collective security, pre-emption, unilateralism, humanitarian intervention, multilateral, unilateral) plus Section Two's essay “Explain the development of US foreign policy between 1991 and 2019” in three parts (four 1990s events / 9-11, the Bush Doctrine and Iraq / the rise of China and the shift from unipolar to multipolar), with practice writing body paragraphs.
+> Follows the Yearly Assessment Notification: Section One's seven terms (unipolarity, collective security, pre-emption, unilateralism, humanitarian intervention, multilateral, unilateral) plus Section Two's essay "Explain the development of US foreign policy between 1991 and 2019" in three parts (four 1990s events / 9-11, the Bush Doctrine and Iraq / the rise of China and the shift from unipolar to multipolar), with practice writing body paragraphs.
 
 **1. [Terms · Unipolarity]** Which statement best defines unipolarity?
 
@@ -186,58 +186,58 @@
 
 **1.** A. One state is dominant, with no rival of comparable power  
 　Explanation: A unipolar system has only one dominant power centre with no peer rivals, whereas bipolarity refers to the Cold War's US-Soviet balance, and multipolarity refers to multiple balancing powers; 'Power rests with whichever state acts first without consulting others' describes unilateralism, not the power structure.  
-　出处：Term 4 · Yearly Assessment Notification — Section One（Unipolarity）
+　出处：Term 4 · Yearly Assessment Notification — Section One(Unipolarity)
 
 **2.** B. A coalition of states acting together under UN Security Council authorisation  
 　Explanation: Multilateral refers to actions involving multiple countries, usually coordinated through international institutions, with the key phrase being 'multiple countries + authorisation'; 'One state acting alone without notifying any other government' and 'One state threatening to act alone unless its allies fall into line' are unilateral, while 'Two neighbouring states signing a border and trade agreement' is bilateral, not multilateral.  
-　出处：Term 4 · Yearly Assessment Notification — Section One（Multilateral）
+　出处：Term 4 · Yearly Assessment Notification — Section One(Multilateral)
 
 **3.** C. Unilateralism — the habit of acting alone by choice  
 　Explanation: Unilateralism is a preference or habit where a country takes action alone despite knowing its allies oppose it, which is the opposite of collective security and multilateralism.  
-　出处：Term 4 · Yearly Assessment Notification — Section One（Unilateralism）
+　出处：Term 4 · Yearly Assessment Notification — Section One(Unilateralism)
 
 **4.** D. States agree that an attack on one member is an attack on all  
-　Explanation: Collective security is based on the principle that an attack on one country is an attack on all, with members responding together, usually through the United Nations, whereas self-deterrence, humanitarian intervention, and unilateral decision-making are different concepts.  
-　出处：Term 4 · Yearly Assessment Notification — Section One（Collective Security）
+　Explanation: Collective security rests on the principle that an attack on one country is an attack on all, with members responding together, usually through the United Nations. Self-deterrence, humanitarian intervention and unilateral decision-making are different concepts.  
+　出处：Term 4 · Yearly Assessment Notification — Section One(Collective Security)
 
 **5.** A. A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait  
-　Explanation: The Gulf War was a classic example of collective security as it responded to cross-border aggression, whereas the other three examples were driven by protecting civilians or overthrowing a regime, which is humanitarian intervention or pre-emption, not collective security.  
-　出处：Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）
+　Explanation: The Gulf War is the classic example of collective security, because it responded to cross-border aggression. The other examples were driven by protecting civilians or overthrowing a regime, which makes them humanitarian intervention or pre-emption, not collective security.  
+　出处：Term 4 · Yearly Assessment Notification — Body 1(Gulf War 1991)
 
 **6.** B. Striking first at a state or group judged to pose a future threat  
 　Explanation: Pre-emption involves taking military action before a threat materialises, which is a key difference between the Bush Doctrine and collective security or humanitarian intervention.  
-　出处：Term 4 · Yearly Assessment Notification — Section One（Pre-emption）
+　出处：Term 4 · Yearly Assessment Notification — Section One(Pre-emption)
 
 **7.** C. Pre-emption answers a future threat; intervention answers harm under way  
 　Explanation: The key distinction lies in the timing of the threat: pre-emption targets threats that have not yet occurred, while humanitarian intervention responds to ongoing large-scale harm.  
-　出处：Term 4 · Yearly Assessment Notification — Section One（Pre-emption / Humanitarian Intervention）
+　出处：Term 4 · Yearly Assessment Notification — Section One(Pre-emption / Humanitarian Intervention)
 
 **8.** D. Military action inside a state, without consent, to stop mass suffering  
 　Explanation: Humanitarian intervention has three requirements: entering another country, without their consent, and aiming to stop a large-scale humanitarian disaster, which is different from economic sanctions or self-defence.  
-　出处：Term 4 · Yearly Assessment Notification — Section One（Humanitarian Intervention）
+　出处：Term 4 · Yearly Assessment Notification — Section One(Humanitarian Intervention)
 
 **9.** A. A — unilateral action; B — multilateral action  
 　Explanation: The criterion for judgement is whether there is widespread authorisation: A is unilateral as it involves a small group of allies and bypasses the UN Security Council, while B is multilateral as it involves a UN- authorised mission.  
-　出处：Term 4 · Yearly Assessment Notification — Body 2（invasion of Iraq）
+　出处：Term 4 · Yearly Assessment Notification — Body 2(invasion of Iraq)
 
 **10.** B. 'Unilateral' is one action taken alone; 'unilateralism' is the doctrine  
 　Explanation: Unilateral refers to a single action taken by one party, while unilateralism refers to a policy or ideology that tends towards solo actions, and understanding this distinction is crucial for Section One.  
-　出处：Term 4 · Yearly Assessment Notification — Section One（Unilateral / Unilateralism）
+　出处：Term 4 · Yearly Assessment Notification — Section One(Unilateral / Unilateralism)
 
 **11.** The Gulf War (1991) and Somalia (1992–94). Together they show the two ends of the decade: a UN-authorised, broadly multilateral success, and a humanitarian mission whose failure produced a rapid US withdrawal and shaped later reluctance to intervene.  
-　Explanation: Body 1 only needs two events, but they must be contrasting, not just listed: one successful multilateral example and one that exposes its limitations, such as the Gulf War and Somalia or the Gulf War and Kosovo.  
-　出处：Term 4 · Yearly Assessment Notification — Body 1（possible events）
+　Explanation: Body 1 needs only two events, but they must contrast rather than simply be listed: one successful multilateral example and one that exposes its limits — the Gulf War and Somalia, or the Gulf War and Kosovo.  
+　出处：Term 4 · Yearly Assessment Notification — Body 1(possible events)
 
 **12.** The United States led a broad coalition of states acting with United Nations Security Council authorisation to reverse Iraq's invasion of Kuwait, so the response was collectively authorised and its costs and risks were shared rather than carried by one state.  
-　Explanation: Multilateralism has two key features: UN authorisation and multiple countries sharing the burden, so answers must explain who authorised, how many parties were involved, and why it counts as multilateral, rather than just stating many countries participated.  
-　出处：Term 4 · Yearly Assessment Notification — Body 1（Gulf War 1991）
+　Explanation: Multilateralism has two key features: UN authorisation and several countries sharing the burden. Answers must explain who authorised the action, how many parties took part and why it counts as multilateral, rather than just saying that many countries were involved.  
+　出处：Term 4 · Yearly Assessment Notification — Body 1(Gulf War 1991)
 
 **13.** The war responded to a cross-border act of aggression — Iraq's invasion and annexation of Kuwait — and was authorised collectively against that aggression. Its purpose was to restore Kuwait's sovereignty and the regional order, not to protect civilians from their own government, which is the trigger that defines humanitarian intervention.  
 　Explanation: The key distinction is the trigger: collective security responds to state-on-state aggression, while humanitarian intervention responds to a government harming its own people, with the Gulf War being an example of the former and the late 1990s Kosovo crisis being a controversial example of the latter.  
 　出处：Term 4 · Yearly Assessment Notification — Section One + Body 1
 
 **14.** A humanitarian mission to protect food relief expanded into peace enforcement and fighting with local militias, and the deaths of US soldiers in 1993 led to a rapid withdrawal. It showed that without clear objectives and local consent, casualties can end an intervention before it stabilises the country.  
-　Explanation: Somalia is often used as a case study of how intervention can be easy to start but difficult to end: the mission objective expanded from delivering food to combat, casualties led to domestic pressure, and ultimately withdrawal, so answers must clearly explain this causal chain to score full marks.  
+　Explanation: Somalia is often used to show that intervention can be easy to start but hard to end: the mission's objective grew from delivering food aid to combat, casualties created domestic pressure, and the result was withdrawal. Answers must set out that causal chain clearly to score full marks.  
 　出处：Term 4 · Yearly Assessment Notification — Body 1 (Somalia 1992-94) + syllabus supplement
 
 **15.** The genocide of Tutsi and moderate Hutu civilians was carried out while the international community had a small, under-resourced peacekeeping force on the ground and refused to reinforce it or even to describe the killings as genocide. The world stood aside, so the decade's humanitarian language was not matched by action.  
@@ -245,28 +245,28 @@
 　出处：Term 4 · Yearly Assessment Notification — Body 1 (Rwanda 1994) + syllabus supplement
 
 **16.** The motive was genuinely humanitarian — halting the ethnic cleansing of Kosovar Albanians — but NATO acted without explicit UN Security Council authorisation, so the intervention was of questionable legality while being widely seen as legitimate. It therefore sits between a legitimate humanitarian rescue and a unilateral use of force by an alliance.  
-　Explanation: The term 'grey' means having a justified motive but lacking authorization: a separation of legitimacy and justification. To score high, you must discuss both sides, as simply stating 'saved people' or 'illegal' won't suffice.  
+　Explanation: The term 'grey' means having a justified motive but lacking authorisation: a separation of legitimacy and justification. To score high, you must discuss both sides, as simply stating 'saved people' or 'illegal' won't suffice.  
 　出处：Term 4 · Yearly Assessment Notification — Body 1 (Kosovo 1999) + syllabus supplement
 
 **17.** In the 1990s the United States used its position as the world's single superpower to lead broadly multilateral, UN-authorised interventions, but its retreat from Somalia and its inaction over Rwanda exposed the limits of that approach.  
 　Explanation: A topic sentence must include 'time period + argument', rather than just 'many events in the 1990s'. A good topic sentence also foreshadows tension (multilateral leadership vs limitations) and leaves an interface for the link sentence.  
-　出处：Term 4 · Yearly Assessment Notification — Body 1（topic sentence row）
+　出处：Term 4 · Yearly Assessment Notification — Body 1(topic sentence row)
 
 **18.** They shifted US priorities from managing the post-Cold War order to a global 'war on terror'. The response included the invasion of Afghanistan in 2001, expanded surveillance and detention powers, much higher defence spending, and a willingness to use force pre-emptively and with limited international authorisation.  
 　Explanation: The anchor for answering is 'priority shift': from maintaining the post-Cold War order to counter-terrorism. You must write about at least two specific manifestations (Afghanistan, surveillance, military spending, pre-emptive strikes), rather than just stating 'became more aggressive'.  
-　出处：Term 4 · Lesson 3.1 9/11 Attacks; Notification — Body 2（Impact of 9/11）
+　出处：Term 4 · Lesson 3.1 9/11 Attacks; Notification — Body 2(Impact of 9/11)
 
 **19.** Pre-emption — striking first against states or groups judged to pose a future threat; a willingness to act unilaterally when multilateral agreement could not be reached; regime change and the promotion of democracy; and the claim that American security required action beyond UN authorisation.  
-　Explanation: The four characteristics must be illustrated with corresponding examples: pre-emptive strikes (Iraq), unilateralism (bypassing the UN Security Council), regime change (overthrowing Saddam), and promoting democracy. Simply memorizing names without explanation will result in lost points.  
+　Explanation: The four characteristics must be illustrated with corresponding examples: pre-emptive strikes (Iraq), unilateralism (bypassing the UN Security Council), regime change (overthrowing Saddam), and promoting democracy. Simply memorising names without explanation will lose marks.  
 　出处：Term 4 · Lesson 3.2 The Bush Doctrine; Notification — Body 2
 
 **20.** The United States proceeded with a 'coalition of the willing' after failing to obtain explicit UN Security Council authorisation, and supplied most of the troops and funding itself. Key allies such as France and Germany opposed the war, so it lacked the broad, institutionally authorised coalition that made the 1991 Gulf War multilateral.  
-　Explanation: The criterion is not 'having allies', but 'having broad authorization and shared responsibility'. Although the US had allies, its small circle and lack of UN Security Council authorization mean it is classified as unilateral in the textbook.  
-　出处：Term 4 · Lesson 4.2 Iraq; Notification — Body 2（invasion of Iraq）
+　Explanation: The criterion is not 'having allies', but 'having broad authorisation and shared responsibility'. Although the US had allies, its small circle and lack of UN Security Council authorisation mean it is classified as unilateral in the textbook.  
+　出处：Term 4 · Lesson 4.2 Iraq; Notification — Body 2(invasion of Iraq)
 
 **21.** In 1991 the United States operated through the UN Security Council, built a large coalition with shared costs, and limited the objective to reversing Iraq's aggression. In 2003 it acted after failing to secure explicit Security Council authorisation, with a smaller ad hoc coalition and US forces dominating, and the objective was regime change and disarmament rather than repelling an attack.  
-　Explanation: Contrasts must be made in three comparable dimensions: authorization (present/absent), alliance scale and burden-sharing (broad/narrow), and goals (restoring the status quo/changing the regime). Aligning these three points will ensure a stable score.  
-　出处：Term 4 · Yearly Assessment Notification — Body 1（Gulf War）＋ Body 2（Iraq）
+　Explanation: Contrasts must be made in three comparable dimensions: authorisation (present/absent), alliance scale and burden-sharing (broad/narrow), and goals (restoring the status quo/changing the regime). Aligning these three points will ensure a stable score.  
+　出处：Term 4 · Yearly Assessment Notification — Body 1(Gulf War) + Body 2(Iraq)
 
 **22.** China's rapid economic growth, its entry into the World Trade Organization in 2001, sustained military modernisation, and initiatives such as the Belt and Road and the Asian Infrastructure Investment Bank gave it regional and global influence. As a result the United States could no longer act as an unchallenged single pole, especially in the Indo-Pacific.  
 　Explanation: A unipolar system being challenged means the emergence of near-peer competitors. Answers must provide economic (WTO, scale), military, and institutional initiative evidence, as simply stating 'China has grown stronger' is too vague.  
@@ -277,21 +277,21 @@
 　出处：Term 4 · Yearly Assessment Notification — Body 3 (Decline in US soft power) + syllabus supplement
 
 **24.** The global financial crisis and the loss of manufacturing jobs pushed US policy away from promoting free trade. The United States withdrew from the Trans-Pacific Partnership in 2017 and imposed tariffs on Chinese goods from 2018, so trade became a tool of economic pressure rather than of liberal cooperation.  
-　Explanation: Protectionism refers to using tariffs and barriers to protect domestic industries, while de-globalization means weakening trade and investment integration. Answers must provide specific policies (withdrawing from TPP, tariffs on China), otherwise, they are just reiterating definitions.  
+　Explanation: Protectionism refers to using tariffs and barriers to protect domestic industries, while de-globalisation means weakening trade and investment integration. Answers must provide specific policies (withdrawing from TPP, tariffs on China), otherwise, they are just reiterating definitions.  
 　出处：Term 4 · Yearly Assessment Notification — Body 3 (protectionism/deglobalisation) + syllabus supplement
 
 **25.** In 1991 the United States was the only superpower, with no economic or military peer. By 2019 China had become a near-peer economically, the European Union and Russia asserted independent positions, and regional powers had more room to act, so influence was more widely distributed even though the United States remained militarily dominant.  
-　Explanation: Evidence of multipolarization is 'power diffusion': economic scale approaching parity, rising autonomy of regional powers, and emerging institutional alternatives. Be careful to distinguish between 'military strength remaining dominant' and 'overall power no longer being singularly dominant'.  
+　Explanation: Evidence of multipolarisation is 'power diffusion': economic scale approaching parity, rising autonomy of regional powers, and emerging institutional alternatives. Be careful to distinguish between 'military strength remaining dominant' and 'overall power no longer being singularly dominant'.  
 　出处：Term 4 · Yearly Assessment Notification — Body 3 + syllabus supplement
 
 **26.** Open with the 9/11 attacks as the trigger, then the Bush Doctrine as the doctrinal response (pre-emption, unilateralism, regime change), then the invasion of Iraq in 2003 as the application of that doctrine. The link sentence must draw out the change: from multilateral, UN-authorised action in the 1990s to pre-emptive, largely unilateral force.  
 　Explanation: Body 2 should be written in a 'trigger → theory → practice' three-step approach. The link sentence cannot simply state 'so the US changed', but must specify 'what changed relative to Body 1'.  
-　出处：Term 4 · Yearly Assessment Notification — Body 2（events to include）
+　出处：Term 4 · Yearly Assessment Notification — Body 2(events to include)
 
 **27.** Between 1991 and 2019, US foreign policy moved from leading multilateral, UN-authorised interventions as the world's single superpower, to asserting pre-emptive and largely unilateral force after 9/11, and finally to defending a declining position against a rising China.  
-　Explanation: The topic sentence should cover all three paragraphs, not just the first one: multi-directional leadership → unilateral initiative → responding to decline, and clearly state the 'direction of change' in one sentence, which is the thesis.  
-　出处：Term 4 · Yearly Assessment Notification — Section Two（thesis statement row）
+　Explanation: The topic sentence must cover all three paragraphs, not just the first: multi-directional leadership → unilateral initiative → responding to decline. It should state the 'direction of change' in one sentence, and that sentence is the thesis.  
+　出处：Term 4 · Yearly Assessment Notification — Section Two(thesis statement row)
 
 **28.** Body 1 establishes the multilateral, collective-security phase of the 1990s. Body 2 explains the rupture after 9/11, when pre-emption and unilateralism displaced UN authorisation. Body 3 shows the consequences up to 2019, as China's rise, declining US soft power and a turn to protectionism ended the unipolar moment. Together they trace one line: from multilateral leadership, to unilateral assertiveness, to managed decline.  
-　Explanation: High-scoring essays rely on a single thread throughout, rather than three independent paragraphs, with each paragraph being a stage in the same process of change, and the relationship between paragraphs should be explained, not just a summary of each paragraph's content.  
+　Explanation: High-scoring essays run a single thread throughout instead of writing three independent paragraphs: each paragraph is a stage in the same process of change, and the link between paragraphs must be explained rather than each one merely summarised.  
 　出处：Term 4 · Yearly Assessment Notification — Body 1 / 2 / 3

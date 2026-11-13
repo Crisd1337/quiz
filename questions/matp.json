@@ -45,7 +45,7 @@
    "options": [],
    "answer": "(a) A = 42,000 × (1 − 0.15)^4 = 42,000 × 0.85^4 = $21,924. (b) Depreciation = 42,000 − 21,924 = $20,076.",
    "explanation_en": "The reducing balance depreciation is multiplied by 0.85 each year for 4 years, not 42,000×(1−0.15×4); using the straight-line method (reducing by a fixed $6,300 each year) gives $16,800, which is another model.",
-   "source": "1-07_ Depreciation.pdf · A = P(1 − R)^n（reducing balance）",
+   "source": "1-07_ Depreciation.pdf · A = P(1 − R)^n(reducing balance)",
    "marks": 3,
    "criteria": [
     {
@@ -79,7 +79,7 @@
     "9a⁸"
    ],
    "answer": 3,
-   "explanation_en": "Each term in the brackets is squared: 3²=9, the exponents are multiplied 4×2=8, so it's 9a⁸. The two most common mistakes are writing the coefficient 3 as 6 or miscalculating 4×2 as 6.",
+   "explanation_en": "Each term inside the brackets is squared: 3² = 9, and the indices multiply, 4×2 = 8, so the answer is 9a⁸. The two most common mistakes are writing the coefficient 3 as 6, or working out 4×2 as 6.",
    "source": "Algebra Topic test + Solutions.pdf · Part A Q12 · 4-01_ Index Laws"
   },
   {
@@ -95,7 +95,7 @@
     "30m³np"
    ],
    "answer": 0,
-   "explanation_en": "The coefficient is 2×5×3=30; m×m=m² (exponents are added), p and n each appear once, resulting in 30m²np. Treating m×m as 2m gives 10m²np, and treating it as m³ gives an incorrect exponent.",
+   "explanation_en": "The coefficient is 2×5×3 = 30; m×m = m² because the indices are added, and p and n each appear once, giving 30m²np. Treating m×m as 2m gives 10m²np, and treating it as m³ gives the wrong index.",
    "source": "Topic2 Algebra.pdf · 4-01 The index laws"
   },
   {
@@ -111,7 +111,7 @@
     "2y² / (3x)"
    ],
    "answer": 0,
-   "explanation_en": "The coefficient is simplified to 6/9=2/3; when dividing like bases, subtract the exponents: x²÷x=x, y÷y³=1/y². So it's 2x/(3y²). Common mistakes include writing the exponent of y as 3 or forgetting to simplify the coefficient.",
+   "explanation_en": "The coefficient simplifies to 6/9 = 2/3; when dividing like bases you subtract the indices, so x²÷x = x and y÷y³ = 1/y². The answer is 2x/(3y²). Common mistakes include writing the index of y as 3, or forgetting to simplify the coefficient.",
    "source": "4-03_ Multiplying and dividing algebraic fractions.pdf"
   },
   {
@@ -144,7 +144,7 @@
    ],
    "answer": 2,
    "explanation_en": "The middle term of the perfect square is 2×7g×3 = 42g, so h = 42. The most common mistake is calculating only 7×3 = 21, missing the 2 in the formula.",
-   "source": "Algebra Topic test + Solutions.pdf · Part A Q14（perfect squares）"
+   "source": "Algebra Topic test + Solutions.pdf · Part A Q14(perfect squares)"
   },
   {
    "id": "matp-009",
@@ -185,7 +185,7 @@
    ],
    "answer": 0,
    "explanation_en": "Subtracting 7x and 10 from both sides gives 2x = −16, so x = −8. Common mistakes include forgetting to change the sign when moving the 10 (getting −2) or calculating −16 ÷ 2 as +8.",
-   "source": "Topic 2 Equations and Inequality.pdf · 6-01 Equations（Example 1c）"
+   "source": "Topic 2 Equations and Inequality.pdf · 6-01 Equations(Example 1c)"
   },
   {
    "id": "matp-011",
@@ -211,7 +211,7 @@
    "stem": "Solve x/3 − (x − 2)/4 = 2.",
    "options": [],
    "answer": "Multiply every term by 12: 4x − 3(x − 2) = 24, so 4x − 3x + 6 = 24 and x = 18.",
-   "explanation_en": "The least common multiple of 3 and 4 is 12. The negative sign before the second term must be multiplied into the brackets, becoming +6; writing it as −6 results in x = 6, which is a common mistake.",
+   "explanation_en": "The least common multiple of 3 and 4 is 12. The negative sign before the second term must be multiplied into the brackets, becoming +6; writing it as −6 results in x = 30, which is a common mistake.",
    "source": "Topic 2 Equations and Inequality.pdf · 6-02 Equations with algebraic fractions",
    "marks": 2,
    "criteria": [
@@ -252,7 +252,7 @@
    "stem": "At the school canteen, 3 sandwiches and 2 drinks cost $19.50, while 2 sandwiches and 3 drinks cost $18.00. Find the cost of one sandwich and one drink.",
    "options": [],
    "answer": "Solve 3s + 2d = 19.50 and 2s + 3d = 18.00 simultaneously: 5s = 22.50, so s = $4.50 and d = $3.00.",
-   "explanation_en": "List the two equations and then eliminate one variable (multiplying the first equation by 3 and the second by 2 gives 5s = 22.50). With only one condition, the two prices cannot be determined; substituting back to check gives 3×4.50+2×3 = $19.50, which is correct.",
+   "explanation_en": "List the two equations and then eliminate one variable (multiplying the first equation by 3 and the second by 2 gives 5s = 22.50). Substituting back to check gives 3×4.50+2×3 = $19.50, which is correct.",
    "source": "Topic 2 Simultaneous Equations.pdf · 9-04 Simultaneous equations problems",
    "marks": 3,
    "criteria": [
@@ -303,7 +303,7 @@
     "1/2"
    ],
    "answer": 0,
-   "explanation_en": "The slope m is calculated as (y₂−y₁)/(x₂−x₁) = (−3−5)/(6−2) = −8/4 = −2, not −1/2 or 2.",
+   "explanation_en": "The gradient is m = (y₂−y₁)/(x₂−x₁) = (−3−5)/(6−2) = −8/4 = −2, not −1/2 or 2.",
    "source": "Topic 1 Coordinate Geometry.pdf · 2-01 Length, midpoint and gradient of an interval"
   },
   {
@@ -330,7 +330,7 @@
    "stem": "Find the equation of the line that is perpendicular to y = 2x + 5 and passes through the point (4, 1). Give your answer in the form y = mx + b.",
    "options": [],
    "answer": "The perpendicular gradient is −1/2, so y − 1 = −1/2 (x − 4), which gives y = −1/2 x + 3.",
-   "explanation_en": "For perpendicular lines, the product of their slopes is −1, so use −1/2; then substitute (4, 1) to find the y-intercept, which is 3.",
+   "explanation_en": "For perpendicular lines the product of the gradients is −1, so the gradient is −1/2; then substitute (4, 1) to find the y-intercept, which is 3.",
    "source": "Topic 1 Coordinate Geometry.pdf · 2-07 Equations of parallel and perpendicular lines",
    "marks": 3,
    "criteria": [
@@ -526,7 +526,7 @@
    ],
    "answer": 2,
    "explanation_en": "First, find the radius r = 14 ÷ 2 = 7 cm, then V = πr²h = π × 49 × 20 = 980π ≈ 3078.8 cm³, not 12315.0 cm³.",
-   "source": "Topic3 Surface area and Volume.pdf · 3-05 Volumes of prisms and cylinders（V = πr²h）"
+   "source": "Topic3 Surface area and Volume.pdf · 3-05 Volumes of prisms and cylinders(V = πr²h)"
   },
   {
    "id": "matp-028",
@@ -671,7 +671,7 @@
    ],
    "answer": 3,
    "explanation_en": "The denominator of the conditional probability must be the total number of boys, which is 43 + 27 = 70, so it's 43/70. Using the total number of students (43/136) or the total number of part-time workers (43/78) as the denominator is incorrect because it doesn't account for the condition.",
-   "source": "Topic 3 Probability.pdf · 10-03 Two-way tables（Example 5）"
+   "source": "Topic 3 Probability.pdf · 10-03 Two-way tables(Example 5)"
   },
   {
    "id": "matp-035",
@@ -712,7 +712,7 @@
    ],
    "answer": 1,
    "explanation_en": "The total income is $62,400 + $310 + $200 = $62,910; only expenses and donations related to earning income are deductible: $680 for tools + $150 for donations + $120 for tax agent fees = $950, so the taxable income is $61,960. Private school fees and fines are not allowable deductions, and deducting them results in an incorrect answer of $56,740.",
-   "source": "1-02_ Income tax.pdf（Taxable income = gross income − allowable deductions）· 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J"
+   "source": "1-02_ Income tax.pdf(Taxable income = gross income − allowable deductions)· 2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J"
   },
   {
    "id": "matp-037",
@@ -754,7 +754,7 @@
    "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Ann's taxable income is $80,000 and Ben's is $80,001. Ignoring the Medicare levy, calculate the tax each person pays and state how much more tax Ben pays than Ann.",
    "options": [],
    "answer": "Ann pays $3,572 + 0.325 × (80,000 − 37,000) = $3,572 + $13,975 = $17,547. Ben pays $17,547 + 0.37 × $1 = $17,547.37. Ben pays 37 cents more than Ann.",
-   "explanation_en": "The tax brackets are continuous: the top amount of the 32.5c bracket ($17,547) is exactly the base amount of the 37c bracket, so Ben only pays 37c on the extra $1, resulting in a difference of only 37 cents. Mistakenly recalculating the entire income at 37% results in a difference of thousands of dollars.",
+   "explanation_en": "The tax brackets are continuous: the top of the 32.5c bracket ($17,547) is exactly the base amount of the 37c bracket, so Ben pays 37c on the extra $1, a difference of only 37 cents.",
    "source": "2022 Year 10 5.2 Term 1 Revision Booklet.pdf · Exercise 1J Q4 (official answer: 37 cents)",
    "marks": 3,
    "criteria": [
@@ -784,8 +784,8 @@
    "stem": "Australian resident tax rates — $0–$18,200: Nil; $18,201–$37,000: 19c for each $1 over $18,200; $37,001–$80,000: $3,572 plus 32.5c for each $1 over $37,000; $80,001–$180,000: $17,547 plus 37c for each $1 over $80,000; $180,001 and over: $54,547 plus 45c for each $1 over $180,000. Kim's gross pay for the year is $54,300. She has no allowable deductions, so her taxable income is also $54,300. Calculate (a) her income tax payable and (b) her net pay, given that she also pays $960 in other deductions (union fees and health fund contributions).",
    "options": [],
    "answer": "(a) Tax = $3,572 + 0.325 × ($54,300 − $37,000) = $3,572 + $5,622.50 = $9,194.50. (b) Net pay = $54,300 − $9,194.50 − $960 = $44,145.50.",
-   "explanation_en": "The net income formula is net pay = gross pay − tax − other deductions, where both tax and other deductions are subtracted, and subtracting only tax will result in $45,105.50, which is the main error in this question.",
-   "source": "1-02_ Income tax.pdf（Net pay = gross pay − tax − other deduction；Example 3）",
+   "explanation_en": "The formula is net pay = gross pay − tax − other deductions, so both tax and other deductions must be subtracted. Subtracting only tax gives $45,105.50, which is the main error in this question.",
+   "source": "1-02_ Income tax.pdf(Net pay = gross pay − tax − other deduction; Example 3)",
    "marks": 3,
    "criteria": [
     {
@@ -819,7 +819,7 @@
     "Team A's scores were more consistent from game to game than Team B's."
    ],
    "answer": 3,
-   "explanation_en": "The standard deviation measures the spread of data relative to the mean: when two means are the same, a larger standard deviation indicates more variation in scores, so Team A is more stable, and standard deviation is unrelated to total score and not equal to range, so the first two options cannot be concluded.",
+   "explanation_en": "The standard deviation measures the spread of the data around the mean: when two means are equal, a larger standard deviation means more variation in the scores, so Team A is the more consistent team. Standard deviation is unrelated to the total score and is not the same as the range, so the first two options cannot be concluded.",
    "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation · 2025 BBHS 10 (5.2) T2 Ana (IntDep+Alg+Data+Pav).pdf Q7(e)"
   },
   {
@@ -836,7 +836,7 @@
    ],
    "answer": 1,
    "explanation_en": "The mean x̄ = 40 ÷ 8 = 5, the sum of squared deviations = 9+1+1+1+0+0+4+16 = 32, and σ = √(32 ÷ 8) = √4 = 2.0; choosing 4.0 forgets to take the square root (that's variance), and 2.1 is the sample standard deviation divided by n−1.",
-   "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation（σ = √(Σ(x − x̄)² ÷ n)）"
+   "source": "New Century 10 Standard-Core Textbook.pdf · 5.03 Standard deviation(σ = √(Σ(x − x̄)² ÷ n))"
   },
   {
    "id": "matp-043",
@@ -881,7 +881,7 @@
    ],
    "answer": 1,
    "explanation_en": "The number of edges connected to a vertex is called the degree, and the number of vertices with odd degrees determines whether it can be drawn in one stroke: all even → can return to the starting point; exactly two odd → can be drawn in one stroke but with a different ending point.",
-   "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Networks: terminology）",
+   "source": "Yearly Study Guide 2026 · Mathematics Core/Standard(Networks: terminology)",
    "id": "matp-044"
   },
   {
@@ -896,8 +896,8 @@
     "It cannot be drawn without lifting the pen"
    ],
    "answer": 1,
-   "explanation_en": "If all vertex degrees are even, then there is an Eulerian circuit (starting from any point, traversing each edge once, and returning to the starting point), but if there is at least one odd degree, this does not hold.",
-   "source": "Yearly Study Guide 2026 · Mathematics Standard（Eulerian trails and circuits）",
+   "explanation_en": "If every vertex has an even degree, the graph has an Eulerian circuit: start anywhere, traverse each edge once and return to the starting point. If any vertex has an odd degree, that is not possible.",
+   "source": "Yearly Study Guide 2026 · Mathematics Standard(Eulerian trails and circuits)",
    "id": "matp-045"
   },
   {
@@ -913,7 +913,7 @@
    ],
    "answer": 1,
    "explanation_en": "Having exactly two odd-degree vertices → there is an Eulerian path (can be drawn in one stroke), which must start from one odd vertex and end at the other; to return to the starting point (a circuit), all vertices must have even degrees.",
-   "source": "Yearly Study Guide 2026 · Mathematics Standard（Eulerian trials and circuits）",
+   "source": "Yearly Study Guide 2026 · Mathematics Standard(Eulerian trials and circuits)",
    "id": "matp-046"
   },
   {
@@ -929,7 +929,7 @@
    ],
    "answer": 0,
    "explanation_en": "The minimum spanning tree = select 3 edges to connect the whole without forming a cycle; sort by length: CD 1, AB 2, BC 3 → the three edges connect A-B-C-D without a cycle, with a total length of 1+2+3=6; adding any other edge would form a cycle.",
-   "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path and minimum spanning trees）",
+   "source": "Yearly Study Guide 2026 · Mathematics Core/Standard(Shortest path and minimum spanning trees)",
    "id": "matp-047"
   },
   {
@@ -945,7 +945,7 @@
    ],
    "answer": 1,
    "explanation_en": "All routes go through C or B: A→B→D=6, A→B→C→D=6, A→C→D=6, and the shortest is 6 km, so the answer is 6 km.",
-   "source": "Yearly Study Guide 2026 · Mathematics Core/Standard（Shortest path）",
+   "source": "Yearly Study Guide 2026 · Mathematics Core/Standard(Shortest path)",
    "id": "matp-048"
   },
   {
@@ -961,7 +961,7 @@
    ],
    "answer": 1,
    "explanation_en": "A planar graph refers to a graph that can be drawn on a plane without any edges intersecting; whether it looks intersecting or not is irrelevant, what matters is whether it can be redrawn without intersecting.",
-   "source": "Yearly Study Guide 2026 · Mathematics Core（Network terminology and planar graphs）",
+   "source": "Yearly Study Guide 2026 · Mathematics Core(Network terminology and planar graphs)",
    "id": "matp-049"
   }
  ]

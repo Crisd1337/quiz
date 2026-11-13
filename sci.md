@@ -83,13 +83,13 @@
 
   ______________________________
 
-**14. [Evolution · Lizard scenario]** Stimulus 1 – Desert lizards: In a desert region a population of lizards varies in skin colour; some are light brown, some dark brown. Before a predatory bird arrived in the 1990s both forms were common. Since then the light-coloured lizards, which blend into the sand, have become more common, while dark lizards remain common in areas without the bird. Using the steps of natural selection, explain why the light-coloured trait has become more prevalent. (4 marks)
+**14. [Evolution · Lizard scenario]** Stimulus 1 — Desert lizards: In a desert region a population of lizards varies in skin colour; some are light brown, some dark brown. Before a predatory bird arrived in the 1990s both forms were common. Since then the light-coloured lizards, which blend into the sand, have become more common, while dark lizards remain common in areas without the bird. Using the steps of natural selection, explain why the light-coloured trait has become more prevalent. (4 marks)
 
 - （简答，写在下面）
 
   ______________________________
 
-**15. [Evolution · Guppy scenario]** Stimulus 3 – Guppies: A river population of guppies varies in body colour, from bright to dull. Where predators are common, dull guppies are harder to see and survive better. In predator-free stretches, bright males attract more mates and reproduce more successfully. Over time dull guppies dominate predator-rich areas and bright guppies dominate predator-free areas. Explain why the two areas ended up with different dominant forms. (5 marks)
+**15. [Evolution · Guppy scenario]** Stimulus 3 — Guppies: A river population of guppies varies in body colour, from bright to dull. Where predators are common, dull guppies are harder to see and survive better. In predator-free stretches, bright males attract more mates and reproduce more successfully. Over time dull guppies dominate predator-rich areas and bright guppies dominate predator-free areas. Explain why the two areas ended up with different dominant forms. (5 marks)
 
 - （简答，写在下面）
 
@@ -104,7 +104,7 @@
 **17. [Skills · Graphing (CUTLAS)]** The CUTLAS checklist is used to mark a line graph. Which list gives the six things a good line graph must have?
 
 - A. Calculations, Units, Title, Line, Average, Summary
-- B. Crosses, Variables, Title, Legend, Axes, Slope
+- B. Crosses, Variables, Title, Legend, Axes, Gradient
 - C. Colour, Units, Table, Labels, Arrows, Scale
 - D. Crosses, Units, Title, Line, Axes, Scale
 
@@ -154,10 +154,6 @@
 
 **25. [Skills · Data trends and base pairing]** The table gives the percentage of adenine and guanine in the DNA of five species.
 
-Species: A | B | C | D | E
-% Adenine: 38 | 26 | 8 | 20 | 33
-% Guanine: 12 | 22 | 40 | 32 | 18
-
 (a) Describe the trend shown in the table. (b) Explain the trend using the base-pairing rule. (c) Predict the percentage of thymine when adenine is 20%. (4 marks)
 
 - （简答，写在下面）
@@ -171,9 +167,6 @@ Species: A | B | C | D | E
   ______________________________
 
 **27. [Skills · Interpolating values]** The table shows the force acting on a passenger at different decelerations.
-
-Deceleration (m/s²): 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14
-Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 
 (a) Estimate the force on the passenger when the deceleration is 5 m/s². (b) Describe the relationship between deceleration and force. (3 marks)
 
@@ -223,7 +216,7 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 - C. Carbon and oxygen
 - D. Carbon dioxide and water
 
-**34. [Organic chemistry · Testing for CO2]** Which test identifies the gas produced when a hydrocarbon burns completely?
+**34. [Organic chemistry · Testing for CO₂]** Which test identifies the gas produced when a hydrocarbon burns completely?
 
 - A. It turns limewater milky
 - B. It pops with a lighted splint
@@ -254,7 +247,7 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 **38. [Organic chemistry · Identifying functional groups]** Which of these compounds contains a carboxyl group and will turn blue litmus red?
 
 - A. CH3COOH
-- B. C2H4
+- B. C₂H₄
 - C. CH3OH
 - D. CH3CH3
 
@@ -328,21 +321,21 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 ## 答案与解析
 
 **1.** A. Beak size and shape  
-　Explanation: There are 13 species of finches with similar body size and plumage, but different beak sizes and shapes, corresponding to different food sources on different islands, which is classic evidence of natural selection.  
-　出处：Year 10 - Evolution.pptx（Galapagos finches）
+　Explanation: There are 13 species of finch with similar body size and plumage but different beak sizes and shapes, each matched to a different food source on a different island — the classic evidence for natural selection.  
+　出处：Year 10 - Evolution.pptx(Galapagos finches)
 
 **2.** B. Giraffes stretched their necks to reach high leaves and passed the longer necks on to their offspring.  
 　Explanation: Lamarck advocated for 'use and disuse + inheritance of acquired traits': stretching one's neck and passing the change on to offspring, whereas 'Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring' is Darwin's explanation of natural selection.  
-　出处：Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）
+　出处：Term 4 - Evolution - Week 2(Lamarckian Theory vs Darwinian Theory)
 
 **3.** C. Snakes with larger heads could swallow the bigger, more toxic toads and died, so smaller-headed snakes survived and reproduced.  
 　Explanation: The toad is a selective pressure: snakes with larger heads that swallow larger toads and ingest more toxins die (are eliminated), while individuals with smaller heads or that don't eat toads survive and reproduce, but 'Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring' is a incorrect Lamarckian statement.  
-　出处：Term 4 - Evolution - Week 3 Answers（Cane toads / red-bellied black snake）
+　出处：Term 4 - Evolution - Week 3 Answers(Cane toads / red-bellied black snake)
 
 **4.** • A selection pressure is an external agent that affects an organism's ability to survive and reproduce in a given environment.
 • Examples: predators, climate and temperature, food and water supply, disease, or competition for mates and resources.  
-　Explanation: Selective pressure refers to external factors that affect an organism's ability to survive and reproduce in a specific environment, such as predators, climate, food and water, disease, and competition.  
-　出处：Year10_Evolution_Worksheet_Student（1）.docx（Part A · Selection pressures / B1）
+　Explanation: A selective pressure is an external factor that affects an organism's ability to survive and reproduce in a particular environment — predators, climate, food and water, disease, or competition.  
+　出处：Year10_Evolution_Worksheet_Student(1).docx(Part A · Selection pressures / B1)
 
 **5.** • 1 Variation in a population — individuals differ in their inherited traits.
 • 2 Selection pressure — an external agent such as a predator or a change in climate acts on the population.
@@ -350,63 +343,63 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 • 4 Reproduction and inheritance — survivors breed and pass the helpful alleles on to their offspring.
 • 5 Increased prevalence in the gene pool — over many generations the helpful trait becomes more common in the population.  
 　Explanation: The order is: variation → selective pressure → survival of the fittest → reproduction and inheritance → increase in the gene pool, where the third step means 'individuals with traits more suited to the environment are more likely to survive'.  
-　出处：Year10_Evolution_Worksheet_Student（1）.docx（Part B2）
+　出处：Year10_Evolution_Worksheet_Student(1).docx(Part B2)
 
 **6.** • Mutations — random changes in the DNA (genes or chromosomes) that are inherited and create new alleles; sexual reproduction also shuffles existing alleles into new combinations.  
 　Explanation: The fundamental source of variation is genetic mutation (producing new alleles), and sexual reproduction recombines these alleles.  
-　出处：Year10_Evolution_Worksheet_Student（1）.docx（Part B3）+ Year 10 - Evolution.pptx（Mutations）
+　出处：Year10_Evolution_Worksheet_Student(1).docx(Part B3)+ Year 10 - Evolution.pptx(Mutations)
 
 **7.** • Observation: individuals in a species vary, and much of that variation is heritable.
 • Observation: organisms produce far more offspring than can survive, while resources are limited.
 • Inference: there is a struggle for existence, and the individuals best suited to their environment survive and reproduce.
 • Over time populations adapt to their environment, and this can lead to new species.  
 　Explanation: Darwin's observations: individuals have heritable variations; the number of offspring exceeds the resources available, leading to the conclusion that there is a struggle for survival, and the most adapted individuals survive and reproduce, with the population gradually adapting to the environment or even forming new species.  
-　出处：Year 10 - Evolution.pptx（The Theory of Evolution）
+　出处：Year 10 - Evolution.pptx(The Theory of Evolution)
 
 **8.** • Lamarck proposed use and disuse plus the inheritance of acquired characteristics: an organism changes during its life by using a feature more, then passes that change to its offspring (e.g. a giraffe stretching its neck).
 • Darwin proposed natural selection: variation already exists in the population, and individuals with inherited traits suited to the environment survive and reproduce more, so those traits become more common.
 • Lamarck's mechanism has no role for genes, and acquired changes are not inherited.  
 　Explanation: Lamarck relied on 'use and disuse + inheritance of acquired traits', while Darwin relied on existing variations in the population + natural selection, with the key difference being that only heritable variations can be passed on to the next generation.  
-　出处：Term 4 - Evolution - Week 2（Lamarckian Theory vs Darwinian Theory）+ Year 10 - Evolution.pptx
+　出处：Term 4 - Evolution - Week 2(Lamarckian Theory vs Darwinian Theory)+ Year 10 - Evolution.pptx
 
 **9.** • Soot pollution killed the lichens and blackened the tree trunks.
 • The pale peppered form then stood out against the dark bark and was eaten by birds, so it was selected against.
 • The dark melanic form was better camouflaged and survived to breed, passing its alleles to the next generation.
 • Over many generations the dark form became more common, i.e. the population evolved as the environment changed.  
-　Explanation: The soot darkened the tree trunks, causing light-coloured moths to lose their protection and be eaten by birds, while dark-coloured moths survived and reproduced, increasing their proportion over generations - an example of how natural selection changes direction with the environment.  
-　出处：Term 4 - Evolution - Week 2（Case Study: Peppered Moth）
+　Explanation: The soot darkened the tree trunks, so light-coloured moths lost their camouflage and were eaten by birds, while dark-coloured moths survived and reproduced, increasing their share of the population over generations — an example of natural selection changing direction as the environment changes.  
+　出处：Term 4 - Evolution - Week 2(Case Study: Peppered Moth)
 
 **10.** • Comparative anatomy (e.g. the same bone arrangement in the forelimbs of vertebrates — homologous structures).
 • Comparative embryology (closely related species have similar embryos at early stages).
 • Biochemical / DNA evidence (the closer the DNA base sequence of two species, the more closely related they are).
 • Vestigial structures (structures that once had a function but are now functionless) also indicate common ancestry.  
-　Explanation: Evidence for existing organisms includes comparative anatomy, comparative embryology, biochemical and DNA evidence, and vestigial organs, all of which point to a common ancestor.  
-　出处：Year 10 - Evolution.pptx（Evidence for Evolution – Living Species）
+　Explanation: Evidence from living organisms includes comparative anatomy, comparative embryology, biochemical and DNA evidence, and vestigial organs, all of which point to a common ancestor.  
+　出处：Year 10 - Evolution.pptx(Evidence for Evolution – Living Species)
 
 **11.** • Relative dating uses the order of the rock layers: lower layers were laid down first, so fossils in lower layers are older — it gives the order of age, not an actual age.
 • Absolute dating measures how much radioactive carbon is left in a sample to calculate when the organism died.
 • Problem with relative dating: plate movement, folding or faulting can overturn or shift layers, so the layer order no longer shows the true sequence of ages.  
 　Explanation: Relative dating looks at the order of rock layers, providing only a sequence, not a specific age, while absolute dating uses the amount of radioactive carbon remaining to calculate the age of death; however, relative dating has issues with plate movement, folding, and faulting causing rock layers to become inverted.  
-　出处：Year 10 - Evolution.pptx（Techniques used to date fossils）
+　出处：Year 10 - Evolution.pptx(Techniques used to date fossils)
 
 **12.** • It marks the boundary between the fauna of Asia (for example tigers and elephants, which are placental mammals) and the fauna of Australia (marsupials and monotremes).
-• It runs through Bali and Borneo, north through Lombok and Sulawesi, then east of the Philippines.
+• It runs between Bali and Lombok, between Borneo and Sulawesi, then northeast past the Philippines.
 • It is approximately the collision zone between the Asian and Australian continental plates, so the two regions were isolated from each other and their species evolved separately.  
-　Explanation: The Wallace Line is the boundary between the Asian animal fauna, which includes placental mammals, and the Australian animal fauna, which includes marsupials and monotremes, roughly corresponding to the collision zone between the Eurasian and Australian plates - geographic isolation led to independent evolution on both sides.  
-　出处：Year 10 - Evolution.pptx（Wallace's Line）
+　Explanation: The Wallace Line is the boundary between the Asian fauna, which includes placental mammals, and the Australian fauna, which includes marsupials and monotremes. It roughly follows the collision zone between the Eurasian and Australian plates, and the geographic isolation on each side led to independent evolution.  
+　出处：Year 10 - Evolution.pptx(Wallace's Line)
 
 **13.** • Miller heated water and a mixture of gases representing the early ocean and atmosphere, and passed electric sparks through them to simulate lightning.
 • After a week he found a range of amino acids, the building blocks of proteins.
 • It showed that organic molecules can form spontaneously from inorganic ingredients, but it does not prove how life actually began (and the early atmosphere may not have had the composition he assumed).  
 　Explanation: Miller used electric sparks to simulate lightning and produced various amino acids in a simulated mixture of primitive ocean and atmosphere, showing that inorganic substances can spontaneously form organic molecules, but this does not prove how life originated.  
-　出处：Year 10 - Evolution.pptx（Urey-Miller experiment）
+　出处：Year 10 - Evolution.pptx(Urey-Miller experiment)
 
 **14.** • Variation: the population already contained inherited variation in colour — both light and dark brown lizards.
 • Selection pressure: the predatory bird, which hunts visually during the day.
 • Survival of the fittest: light lizards are camouflaged against the sand and are less likely to be seen and eaten, while dark lizards stand out and are removed.
 • Reproduction and inheritance: the surviving light lizards breed and pass the light-colour alleles to their offspring, so over generations light lizards become more common in the gene pool.  
-　Explanation: Following the five steps: pre-existing variation, selection pressure, survival and reproduction of the fittest, inheritance, and increased proportion over generations - for example, light-coloured moths being more concealed and surviving to reproduce.  
-　出处：Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 1 / C1）
+　Explanation: Follow the five steps: pre-existing variation, selection pressure, survival and reproduction of the fittest, inheritance, and an increased proportion over generations — for example, light-coloured lizards being better concealed and so surviving to reproduce.  
+　出处：Year10_Evolution_Worksheet_Student(1).docx(Part C · Stimulus 1 / C1)
 
 **15.** • Variation: the population contains inherited variation in colour, from bright to dull.
 • The selection pressure is different in each area — predation in one, mate choice in the other.
@@ -414,7 +407,7 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 • In predator-free water the bright males attract more mates and leave more offspring, so bright alleles are selected for and increase.
 • Different selection pressures push the same species in opposite directions, so the dominant form differs between the two areas.  
 　Explanation: The same species in two regions face different selection pressures: 'concealment' is selected for when there are predators, while 'attracting a mate' is selected for when there are no predators, resulting in opposite directions and different advantageous types.  
-　出处：Year10_Evolution_Worksheet_Student（1）.docx（Part C · Stimulus 3 / C3）
+　出处：Year10_Evolution_Worksheet_Student(1).docx(Part C · Stimulus 3 / C3)
 
 **16.** • The ability to keep producing lactase is an inherited mutation, so there is heritable variation in the trait.
 • In populations with a long history of dairying, adults who could digest milk had an extra reliable food source, especially when other food was scarce.
@@ -423,25 +416,25 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 • In populations without dairy herding, digesting milk gave no survival advantage, so the mutation was not selected for and lactose intolerance stayed common (about 97%).
 • This is natural selection acting on existing heritable variation — not the inheritance of a trait acquired during life.  
 　Explanation: In populations with a history of dairy farming, the ability to digest lactose into adulthood equals an additional reliable food source, making it easier to survive and reproduce, thus increasing the frequency of the lactase persistence allele; in populations without a tradition of animal husbandry, there is no such selective advantage, so lactose intolerance remains prevalent.  
-　出处：Year10_Evolution_Worksheet_Student（1）.docx（Part D · Apply your knowledge / D1）
+　出处：Year10_Evolution_Worksheet_Student(1).docx(Part D · Apply your knowledge / D1)
 
 **17.** D. Crosses, Units, Title, Line, Axes, Scale  
 　Explanation: A CUTLAS graph includes Crosses, Units, Title, Line, Axes, and Scale, making up about 80% of the graph.  
-　出处：Stage 5 Graphing-1.docx（CUTLAS checklist）
+　出处：Stage 5 Graphing-1.docx(CUTLAS checklist)
 
 **18.** A. The resistance of the wire  
 　Explanation: The independent variable is the factor deliberately changed by the experimenter, the dependent variable is the measured result, and the controlled variables are the factors kept constant.  
 　出处：Identifying Variables.docx (definitions of independent / dependent / controlled variables)
 
 **19.** B. They are reliable but not accurate.  
-　Explanation: Results that are consistent when repeated are reliable, but accuracy refers to how close a measurement is to the true value - for example, a thermometer with a constant high bias is unreliable and inaccurate; reliability does not equal accuracy.  
-　出处：Half Yearly Revision.pdf（Reliability / Accuracy / systematic error）
+　Explanation: Results that are consistent when repeated are reliable, but accuracy refers to how close a measurement is to the true value — for example, a thermometer with a constant high bias is reliable but not accurate; reliability does not equal accuracy.  
+　出处：Half Yearly Revision.pdf(Reliability / Accuracy / systematic error)
 
 **20.** • Independent variable: the surface area (particle size) of the calcium carbonate.
 • Dependent variable: the rate of the reaction, e.g. the volume of gas collected per minute.
 • Controlled variables (any two): the concentration and volume of hydrochloric acid, the mass of calcium carbonate used, the temperature, or the same beaker.  
-　Explanation: The independent variable is the surface area of calcium carbonate, the dependent variable is the reaction rate, and the controlled variables include acid concentration and volume, calcium carbonate mass, and temperature.  
-　出处：Identifying Variables.docx + Term 3 Reactive Chemistry Week 7（surface area investigation）
+　Explanation: The independent variable is the surface area of the calcium carbonate; the dependent variable is the reaction rate; and the controlled variables are acid concentration and volume, calcium carbonate mass, and temperature.  
+　出处：Identifying Variables.docx + Term 3 Reactive Chemistry Week 7(surface area investigation)
 
 **21.** • Put the independent variable in the leftmost column, and label every column with the quantity and its unit in the heading (units appear only in the heading, not in every cell).
 • Use a closed table with a value in every cell, with as many rows and columns as the data require, and put each measurement in the correct column.  
@@ -456,12 +449,12 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 **23.** • Random errors are unpredictable fluctuations in either direction caused by the limitations of the measuring device or by the experimenter (e.g. reaction time); they are reduced by repeating the measurement and averaging.
 • Systematic errors are reproducible inaccuracies that are always in the same direction, caused by an inaccuracy in the system itself (e.g. a poorly calibrated thermometer reading 2 °C too high); they are reduced by calibrating and maintaining the equipment and taking careful readings.  
 　Explanation: Random errors have an unpredictable direction (such as reaction time), and can be reduced by repeating the measurement multiple times and taking the average; systematic errors have a fixed direction (instrument calibration bias), and can be reduced by calibrating the instrument and standardising the readings.  
-　出处：Half Yearly Revision.pdf（Validity – Errors）
+　出处：Half Yearly Revision.pdf(Validity – Errors)
 
 **24.** • Validity is the extent to which the investigation actually tests what it claims to test — a fair test with one independent variable and everything else controlled.
 • Reliability is the extent to which repeated measurements taken under identical conditions give similar results, so an investigation is reliable when it has been repeated many times.  
 　Explanation: Validity refers to whether the measurement actually measures what it's supposed to (single variable, controlled fairly); reliability refers to whether the results of repeated measurements are consistent.  
-　出处：Half Yearly Revision.pdf（Validity / Reliability）
+　出处：Half Yearly Revision.pdf(Validity / Reliability)
 
 **25.** • (a) As the percentage of adenine increases, the percentage of guanine decreases — roughly %A + %G ≈ 50, so the two are inversely related.
 • (b) Adenine always pairs with thymine and guanine always pairs with cytosine, so %A = %T and %G = %C; because the four bases add to 100%, 2(%A) + 2(%G) = 100, i.e. %A + %G = 50.
@@ -471,7 +464,7 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 
 **26.** • gradient = rise ÷ run = (5 − 0) V ÷ (10 − 0) A = 0.5
 • Because R = V ÷ I, the gradient equals the resistance, so the resistance is 0.5 Ω.  
-　Explanation: The gradient is ΔV/ΔI = 5/10 = 0.5; since R = V/I, the slope is the resistance, so the resistance is 0.5 Ω (the slope unit is V/A, which is Ω).  
+　Explanation: The gradient is ΔV/ΔI = 5/10 = 0.5. Since R = V/I, the gradient gives the resistance, so the resistance is 0.5 Ω (the gradient's unit is V/A, which is Ω).  
 　出处：2020 Year 10 Yearly Examination Answers (Part E Q7: resistance from a gradient)
 
 **27.** • (a) 5 m/s² is halfway between 4 m/s² (305 N) and 6 m/s² (448 N), so the force is about (305 + 448) ÷ 2 ≈ 376 N (accept 370–380 N).
@@ -492,7 +485,7 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **31.** B. The sample contains an alkene (C=C)  
-　Explanation: The decolourisation of bromine water is a test for unsaturated bonds: alkenes undergo an addition reaction with Br2, the double bond opens, and the colour disappears; alkanes do not react, and the colour remains.  
+　Explanation: The decolourisation of bromine water is a test for unsaturated bonds: alkenes undergo an addition reaction with Br₂, the double bond opens, and the colour disappears; alkanes do not react, and the colour remains.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **32.** C. Isomers  
@@ -500,15 +493,15 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **33.** D. Carbon dioxide and water  
-　Explanation: Complete combustion involves a hydrocarbon reacting with O2 to produce CO2 and H2O, but incomplete combustion with insufficient oxygen produces CO and carbon black.  
+　Explanation: Complete combustion involves a hydrocarbon reacting with O₂ to produce CO₂ and H₂O, but incomplete combustion with insufficient oxygen produces CO and carbon black.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **34.** A. It turns limewater milky  
-　Explanation: CO2 turns lime water cloudy by forming a CaCO3 precipitate; a glowing wooden splint indicates oxygen, a popping sound indicates hydrogen, and bleaching wet litmus indicates chlorine.  
+　Explanation: CO₂ turns lime water cloudy by forming a CaCO₃ precipitate; a glowing wooden splint indicates oxygen, a popping sound indicates hydrogen, and bleaching wet litmus indicates chlorine.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **35.** B. Ethane  
-　Explanation: Hydrogenation involves adding hydrogen to an alkene, such as C2H4 + H2 → C2H6, converting it to an alkane, not an alcohol like ethanol.  
+　Explanation: Hydrogenation involves adding hydrogen to an alkene, such as C₂H₄ + H2 → C₂H₆, converting it to an alkane, not an alcohol like ethanol.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **36.** C. Esterification  
@@ -520,11 +513,11 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **38.** A. CH3COOH  
-　Explanation: CH3COOH is acetic acid, a weak acid containing –COOH, which turns blue litmus red, whereas CH3OH is a neutral alcohol and CH3CH3 is an alkane, and C2H4 is an alkene.  
+　Explanation: CH3COOH is acetic acid, a weak acid containing –COOH, which turns blue litmus red, whereas CH3OH is a neutral alcohol and CH3CH3 is an alkane, and C₂H₄ is an alkene.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **39.** B. Can be produced by fermentation of plant material and is renewable  
-　Explanation: Ethanol can be produced by fermenting sugars and is a renewable fuel often mixed with petrol to make E10, producing CO2 when burned, but with a lower energy density than petrol.  
+　Explanation: Ethanol can be produced by fermenting sugars and is a renewable fuel often mixed with petrol to make E10, producing CO₂ when burned, but with a lower energy density than petrol.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **40.** C. It contains four carbon atoms and one double bond  
@@ -532,7 +525,7 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **41.** D. Increases, because dispersion forces between molecules get stronger  
-　Explanation: In a homologous series, the longer the carbon chain, the stronger the dispersion forces between molecules, requiring more energy to separate them, resulting in higher boiling points, which is not due to increased polarity in non-polar alkanes.  
+　Explanation: In a homologous series, the longer the carbon chain, the stronger the dispersion forces between molecules, so more energy is needed to separate them and the boiling point is higher. In non-polar alkanes this is not caused by increased polarity.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **42.** A. Propan-1-ol  
@@ -540,25 +533,25 @@ Force (N): 80 | 149 | 305 | 448 | 598 | 756 | 902 | 1040
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **43.** B. Substitution  
-　Explanation: Alkanes undergo substitution reactions with halogens under UV light, where a hydrogen atom is replaced by a chlorine atom, producing CH3Cl and HCl, which is a substitution reaction, not an addition reaction requiring a double bond.  
+　Explanation: Under UV light, alkanes react with halogens by substitution: a hydrogen atom is replaced by a chlorine atom, producing CH₃Cl and HCl. This is substitution, not addition, which would require a double bond.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**44.** CH3–CH2–OH, with every C–H and C–O bond shown (C2H5OH). Functional group: hydroxyl (–OH). Ethanol is soluble because the –OH group forms hydrogen bonds with water molecules.  
+**44.** CH3–CH2–OH, with every C–H and C–O bond shown (C₂H₅OH). Functional group: hydroxyl (–OH). Ethanol is soluble because the –OH group forms hydrogen bonds with water molecules.  
 　Explanation: Structural formulas must show all bonds and cannot be abbreviated as C2H6O; solubility arises from hydrogen bonding between the hydroxyl group and water, and the short carbon chain of only two carbon atoms is not enough to prevent dissolution.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry (drawing + explanation questions)
 
 **45.** Sample A contains a carbon–carbon double bond (unsaturated): bromine adds across the C=C, so the orange colour disappears. Sample B has only single bonds (saturated) and does not react at room temperature. A could be ethene/hexene; B could be hexane/ethane.  
-　Explanation: This is a typical 'evidence + explanation' question: it first provides the chemical reason for a phenomenon (addition), then gives the judgment for saturated/unsaturated, and finally provides an example for each, but only writing 'A is unsaturated' won't get full marks.  
+　Explanation: This is a typical 'evidence + explanation' question: give the chemical reason for what happens (addition), then the judgement for saturated vs unsaturated, then an example of each. Writing only 'A is unsaturated' will not earn full marks.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **46.** Alkanes have only single C–C bonds and are saturated, so they mainly undergo substitution (with UV light) and combustion. Alkenes contain a C=C double bond, are unsaturated, and readily undergo addition reactions. Because alkenes can join to each other by addition (addition polymerisation), they form long-chain polymers such as polyethene and PVC.  
-　Explanation: The marks come from three parts: structural differences (single vs double bonds), reaction differences (substitution/burning vs addition), and the connection to plastics (polymerisation), missing one part will deduct one part.  
+　Explanation: Marks come from three parts: structural differences (single vs double bonds), reaction differences (substitution or burning vs addition), and the link to plastics (polymerisation). Miss one part and you lose a third of the marks.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
 **47.** Boiling point increases from methanol to propanol. As the carbon chain lengthens, the molecules have more electrons and a larger surface area, so dispersion forces between molecules become stronger and more energy is needed to separate them.  
-　Explanation: The trick for homologous series questions is to first state 'pointing to which regular change' (boiling point increase), then explain using intermolecular forces, just saying 'molecules get bigger' is not enough, it needs to be related to dispersion force/energy.  
+　Explanation: For homologous series questions, first state which regular change the data points to (the rise in boiling point), then explain it in terms of intermolecular forces. Saying 'the molecules get bigger' is not enough: you have to link it to dispersion forces and the energy needed to separate the molecules.  
 　出处：Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**48.** Independent variable: the fuel used (ethanol vs octane). Dependent variable: a measure of completeness of combustion, e.g. the amount of soot produced, the colour of the flame, or the mass of CO2/heat released per gram. Controlled: same mass of fuel, same burner, same distance from the flame to the surface, same volume of water heated, same starting temperature, same oxygen supply. Judge completeness by the least soot and the cleanest blue flame.  
+**48.** Independent variable: the fuel used (ethanol vs octane). Dependent variable: a measure of completeness of combustion, e.g. the amount of soot produced, the colour of the flame, or the mass of CO₂/heat released per gram. Controlled: same mass of fuel, same burner, same distance from the flame to the surface, same volume of water heated, same starting temperature, same oxygen supply. Judge completeness by the least soot and the cleanest blue flame.  
 　Explanation: The syllabus Part C explicitly lists 'Identifying Variables' and 'Planning Investigations', the answer must have all three variables and provide measurable indicators, cannot just write 'observe the flame'.  
-　出处：Yearly Study Guide 2026 · Science Part C: Skills（Planning Investigations / Identifying Variables）
+　出处：Yearly Study Guide 2026 · Science Part C: Skills(Planning Investigations / Identifying Variables)
