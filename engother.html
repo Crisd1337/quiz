@@ -463,6 +463,9 @@ main{display:flex;flex-direction:column}
 .chips{opacity:.92}
 .chip{font-size:11px;padding:2px 8px}
 .stem{font-size:19px;line-height:1.62;font-weight:500;margin:12px 0 20px}
+.figwrap{margin:6px auto 22px;padding:14px 12px;background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--r-sm);max-width:644px}
+.fig{display:block;width:100%;height:auto}
+@media(max-width:700px){.figwrap{padding:10px 8px;max-width:100%}}
 .opts{gap:12px}
 .opt{padding:14px 16px;font-size:15.5px;position:relative;border-left-width:3px}
 .opt .txt{flex:1;min-width:0}
@@ -2949,7 +2952,8 @@ function render() {
   const last = state.idx >= total - 1;
   const stemHtml = `<div class="stem">${esc(q.stem)}</div>`;
   setTimeout(function(){ if(window.applyI18n) applyI18n(); }, 0);
-  app.innerHTML = `<div class="card">${chips}${stemHtml}
+  const figHtml = q.fig ? `<div class="figwrap">${q.fig}</div>` : "";
+  app.innerHTML = `<div class="card">${chips}${stemHtml}${figHtml}
       ${bodyHtml}${expHtml}</div>
       <div class="actionbar">
         <button class="btn ghost" id="prev" ${state.idx === 0 ? "disabled" : ""}>${T("prev")}</button>
