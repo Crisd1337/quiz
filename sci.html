@@ -2870,7 +2870,7 @@ function render() {
       <div class="actions">
         <button class="btn" id="submitq">${submitLabel}</button>
         <button class="btn ghost" id="manualtoggle">Manual override</button>
-        <button class="btn ghost" id="hint">${hinted ? "藏起提示" : "给点提示"}</button>
+        <button class="btn ghost" id="hint">${hinted ? "Hide hint" : "Hint"}</button>
         ${hasNum ? `<button class="btn ghost" id="numcheck">数值自检</button><span class="muted" id="numres"></span>` : ""}
         <span class="muted" id="slotsum">${slots.filter(function(x){return (x||"").trim();}).length} / ${pts.length} points written</span>
         ${aiRec
@@ -2918,7 +2918,9 @@ function render() {
       return autoScore(p.t, mine);
     });
     const autoHit = autoRes.filter(function(r){ return r.hit; }).length;
-    bodyHtml += `<details class="panel manual"${aiRec ? "" : " open"} id="manualbox">
+    /* 作答前默认收起：这个面板里逐条列出评分点，很多题（如排序题）评分点本身就是答案。
+   无 AI 引擎提交后、或判分服务失败时会由 JS 主动展开（见 submit 分支）。 */
+    bodyHtml += `<details class="panel manual" id="manualbox">
       <summary class="panel-h">Manual override · tick the points you covered (no XP)
         <span class="autotag">Auto-check ${autoHit} / ${pts.length} (reference only, not scored)</span>
       </summary>
@@ -2930,19 +2932,19 @@ function render() {
           : '<span class="auto ' + (autoRes[i].hit ? "ok" : "no") + '">'
             + (autoRes[i].hit ? "Keywords: likely covered" : "Keywords: likely missed")
             + "（" + autoRes[i].matched + "/" + autoRes[i].total + " keywords"
-            + (autoRes[i].missing.length ? "，缺 " + esc(autoRes[i].missing.join(", ")) : "") + "）</span>";
+            + (autoRes[i].missing.length ? ", missing: " + esc(autoRes[i].missing.join(", ")) : "") + "）</span>";
         return '<label class="pt ' + (checked.indexOf(i)>=0 ? "on" : "") + '">'
           + '<input type="checkbox" data-i="' + i + '"' + (checked.indexOf(i)>=0 ? " checked" : "") + '>'
           + "<span>" + esc(p.t) + hint + "</span><em>" + (p.m||1) + " mark(s)</em></label>";
       }).join("")}</div>
       <div class="actions">
-        <button class="btn ghost" id="allpt">全部勾上</button>
-        <button class="btn ghost" id="nonept">全部取消</button>
+        <button class="btn ghost" id="allpt">Tick all</button>
+        <button class="btn ghost" id="nonept">Clear all</button>
         <button class="btn ghost" id="applyauto">Tick matching points</button>
         <button class="btn ghost" id="aiconf" title="Grading server address">Engine</button>
       </div>
     </details>`;
-    bodyHtml += `<div class="mine"><b>你写的：</b><div>${esc(((rec && rec.text) || "").trim() || "（空）").split(String.fromCharCode(10)).join("<br>")}</div></div>`;
+    bodyHtml += `<div class="mine"><b>Your answer:</b><div>${esc(((rec && rec.text) || "").trim() || "(empty)").split(String.fromCharCode(10)).join("<br>")}</div></div>`;
 
   }
 
@@ -3096,7 +3098,7 @@ function render() {
     if (submitBtn) submitBtn.onclick = async function(){
       const answer = joinSlots(readSlots());
       const c0 = cur();
-      if (!answer.trim()) { toast("先写点答案再提交", false); return; }
+      if (!answer.trim()) { toast("Write something before submitting", false); return; }
       if (!canAuto) {
         put({override:true, ok:"ok"});
         const mb = document.getElementById("manualbox");
@@ -3111,7 +3113,7 @@ function render() {
       GRADING[q.id] = true;
       submitBtn.disabled = true;
       const oldTxt = submitBtn.textContent;
-      submitBtn.textContent = "判分中…";
+      submitBtn.textContent = "Grading…";
       const payload = JSON.stringify({
         stem: q.stem,
         max_marks: totalMarks,
@@ -3289,7 +3291,7 @@ function render() {
       GRADING[q.id] = false;
       submitBtn.disabled = false;
       submitBtn.textContent = oldTxt;
-      toast("Grading service unavailable (" + lastErr + "), switched to manual override", false);
+      toast("Grading service unavailable (" + lastErr + "). Use Manual override to mark it yourself.", false);
       const mb2 = document.getElementById("manualbox");
       if (mb2) mb2.open = true;
     };
