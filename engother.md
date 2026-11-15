@@ -11,40 +11,40 @@
 
 **2. [Core concepts · Empathy]** According to the unit's key definitions, which statement best defines 'empathy'?
 
-- A. Treating every individual in an equitable and fair way
-- B. Understanding and sharing the feelings of another person
-- C. A system of moral principles that guides behaviour
-- D. The belief that one's own race is superior to another
+- A. A system of moral principles that guides behaviour
+- B. Treating every individual in an equitable and fair way
+- C. The belief that one's own race is superior to another
+- D. Understanding and sharing the feelings of another person
 
 **3. [Core concepts · Pathos in war writing]** The Term 1 unit defines 'the pathos of war' as:
 
-- A. The historical timeline of the Western Front from 1914 to 1918
-- B. The patriotic pride soldiers feel when they enlist
-- C. The deep emotional suffering and human tragedy caused by conflict
-- D. The strategic and political causes of a particular battle
+- A. The patriotic pride soldiers feel when they enlist
+- B. The strategic and political causes of a particular battle
+- C. The historical timeline of the Western Front from 1914 to 1918
+- D. The deep emotional suffering and human tragedy caused by conflict
 
 **4. [War unit · Identity and youth]** Read the extract: 'Young men of iron. Young? None of us is more than twenty. But young? Young men? That was a long time ago. We are old now.'
 What does this extract most strongly suggest about the soldiers?
 
-- A. That they are physically the oldest soldiers in the whole regiment
-- B. That they are proud of being described as 'young men of iron'
-- C. That they have genuinely forgotten how old they actually are
-- D. That the war has aged them psychologically, so they no longer feel young
+- A. That they have genuinely forgotten how old they actually are
+- B. That the war has aged them psychologically, so they no longer feel young
+- C. That they are physically the oldest soldiers in the whole regiment
+- D. That they are proud of being described as 'young men of iron'
 
 **5. [War unit · Rhetorical questions]** Read the extract: 'Like an emptying tube, after a couple of minutes he collapses. What good is it to him now that he was such a good mathematician at school?'
 The rhetorical question mainly works to:
 
-- A. Emphasise how pointless his education now seems
+- A. Suggest that Leer had never been a good student
 - B. Praise Leer's achievements at school before he dies
-- C. Suggest that Leer had never been a good student
+- C. Emphasise how pointless his education now seems
 - D. Blame Leer himself for the injury that kills him
 
 **6. [War unit · Traditional view of war]** An essay question asks: 'How does Remarque refute traditional notions of war?' What does 'traditional notions of war' refer to?
 
 - A. Ideas about the causes of the Treaty of Versailles
 - B. Ideas of honour, glory, duty and patriotic heroism
-- C. Ideas about how novels should be structured
-- D. Ideas about trench construction and military logistics
+- C. Ideas about trench construction and military logistics
+- D. Ideas about how novels should be structured
 
 **7. [War unit · De-romanticising techniques]** Explain how Remarque challenges traditional, romanticised ideas about war in All Quiet on the Western Front. Refer to at least one technique. (4 marks)
 
@@ -54,24 +54,24 @@ The rhetorical question mainly works to:
 
 **8. [Poetry unit · Frost's poetry]** Which Robert Frost poem studied in Term 2 is built around a speaker choosing between two paths in a wood?
 
-- A. 'Mending Wall'
+- A. 'The Road Not Taken'
 - B. 'Birches'
-- C. 'The Road Not Taken'
+- C. 'Mending Wall'
 - D. 'Stopping by Woods on a Snowy Evening'
 
 **9. [Poetry unit · Themes in Mending Wall]** Which Frost poem studied in Term 2 is built around two neighbours repairing a stone wall between their properties?
 
-- A. 'Birches'
-- B. 'The Road Not Taken'
+- A. 'Mending Wall'
+- B. 'Birches'
 - C. 'Stopping by Woods on a Snowy Evening'
-- D. 'Mending Wall'
+- D. 'The Road Not Taken'
 
 **10. [Poetry unit · Duty and temptation]** The exam study materials say an imaginative response may draw on 'the central idea of obligation and responsibility' from 'Stopping by Woods on a Snowy Evening'. Which situation best matches that idea?
 
-- A. A traveller lingers in beautiful woods but remembers his promises
-- B. A speaker boasting that he took the difficult path
-- C. A child swinging on birch trees and dreaming of escape
-- D. Two neighbours arguing about who owns the strip of land between them
+- A. Two neighbours arguing about who owns the strip of land between them
+- B. A traveller lingers in beautiful woods but remembers his promises
+- C. A speaker boasting that he took the difficult path
+- D. A child swinging on birch trees and dreaming of escape
 
 **11. [Poetry unit · Creative imitation]** A question asks you to write an imaginative piece 'dealing with solitude and reflection', using a character from the world of Frost's poetry. Explain how you would develop setting, character and structure without simply retelling the poem. (5 marks)
 
@@ -81,17 +81,17 @@ The rhetorical question mainly works to:
 
 **12. [Reading paper · Text types]** In the Term 3 Reading Section (15 marks), which texts are you asked to analyse?
 
-- A. Australian newspaper editorials and film reviews
-- B. Historical images, protest poetry and speech extracts
-- C. Shakespearean soliloquies and Romantic poetry
+- A. Shakespearean soliloquies and Romantic poetry
+- B. Australian newspaper editorials and film reviews
+- C. Historical images, protest poetry and speech extracts
 - D. Novel chapters and wartime diary entries
 
 **13. [Reading paper · Tone and attitude]** 'Still I Rise' is studied in the Term 3 Reading Section. Which attitude does the speaker most clearly represent?
 
-- A. Indifference towards history, politics and the struggle for change
-- B. Nostalgia for a lost childhood home and the songs of the past
+- A. Nostalgia for a lost childhood home and the songs of the past
+- B. Resigned acceptance of injustice and a longing for silence
 - C. Defiant pride and a refusal to be diminished by oppression
-- D. Resigned acceptance of injustice and a longing for silence
+- D. Indifference towards history, politics and the struggle for change
 
 **14. [Reading paper · Protest poetry techniques]** Explain how repetition and direct address help a protest poem construct resistance. (4 marks)
 
@@ -107,19 +107,19 @@ The rhetorical question mainly works to:
   Explanation: The Term 3 vocabulary list defines prejudice as 'a preconceived opinion that is not based on reason or experience'. Empathy is understanding and sharing the feelings of others, ethics is a system of moral principles, and justice is fairness.  
   Source: Term 3 · Justice, Ethics and Morality — Key Definitions glossary (10ENGA)
 
-**2.** B. Understanding and sharing the feelings of another person  
+**2.** D. Understanding and sharing the feelings of another person  
   Explanation: Empathy is defined in the vocabulary list as 'understanding and sharing the feelings of others'; the other items on the list are ethics, justice, and racism, which need to be distinguished from one another.  
   Source: Term 3 · JEM Key Definitions (10ENGA / LEEDER 10ENGB Homepage)
 
-**3.** C. The deep emotional suffering and human tragedy caused by conflict  
+**3.** D. The deep emotional suffering and human tragedy caused by conflict  
   Explanation: The term 'pathos of war' refers to the deep emotional pain and human tragedy, such as grief, loss, and devastation, that result from conflict, rather than strategic, political or patriotic aspects.  
   Source: Term 1 · Pathos of War — All Quiet on the Western Front, introductory definition (10ENGR)
 
-**4.** D. That the war has aged them psychologically, so they no longer feel young  
+**4.** B. That the war has aged them psychologically, so they no longer feel young  
   Explanation: The repeated questioning and the phrase 'We are old now' create a paradox: the war has aged the soldiers psychologically, although they are not old in years. An answer should name the techniques involved — rhetorical question + contrast.  
   Source: Term 2 · AQWF essay extract — 'the impact of war on a soldier's identity' (Glover 10ENGY)
 
-**5.** A. Emphasise how pointless his education now seems  
+**5.** C. Emphasise how pointless his education now seems  
   Explanation: The rhetorical question sets 'being good at maths' beside 'dying' and implies that the skill is now useless, which heightens the absurdity of war and the waste of life — a typical example of pathos.  
   Source: Term 2 · AQWF essay extract — Leer's death passage (Glover 10ENGY)
 
@@ -134,15 +134,15 @@ The rhetorical question mainly works to:
   Explanation: Four points carry the marks: vivid detail about bodies, disease and corpses; personalising the loss through first-person narration; contrasting the schoolmaster's patriotic speeches with the soldiers' reality; and focusing on the reader's experience of 'harm' rather than 'glory'. Name at least one literary device, such as imagery, irony or narrative perspective.  
   Source: Term 1 · The Pathos of War — 'Romanticism of War' lesson and AQWF novel study (LEEDER 10ENGB)
 
-**8.** C. 'The Road Not Taken'  
+**8.** A. 'The Road Not Taken'  
   Explanation: The central situation of 'The Road Not Taken' is a choice at a fork in the road, whereas 'Mending Wall' is about two neighbours repairing the wall between their properties, 'Birches' is about childhood and escape, and 'Stopping by Woods on a Snowy Evening' is about pausing in snowy woods.  
   Source: Term 2 · Robert Frost Poetry — The Road Not Taken, poem and questions (LEEDER 10ENGB Homepage)
 
-**9.** D. 'Mending Wall'  
+**9.** A. 'Mending Wall'  
   Explanation: The central situation of 'Mending Wall' is two neighbours repairing the stone wall between their properties each spring; the wall becomes a way of discussing boundaries and tradition, and gives the poem its key line, 'Good fences make good neighbours'.  
   Source: Term 2 · Robert Frost Poetry — Mending Wall, poem and questions (LEEDER 10ENGB Homepage)
 
-**10.** A. A traveller lingers in beautiful woods but remembers his promises  
+**10.** B. A traveller lingers in beautiful woods but remembers his promises  
   Explanation: The material stresses that the poem's core is obligation and responsibility: the traveller is drawn to the snowy woods but remembers his 'promises to keep' and travels on. 'Birches' corresponds to childhood and escape, 'Mending Wall' to neighbourly boundaries, and 'The Road Not Taken' to choice.  
   Source: Year 10 English 2026 — YEAR 10 EXAM STUDY MATERIALS (Frost imaginative prompts)
 
@@ -154,7 +154,7 @@ The rhetorical question mainly works to:
   Explanation: The task asks you to use Frost's language features, conventions and themes to make something new rather than simply retelling. The five points are: borrow the situation, not the plot; give the character a voice and a memory; use a single recurring image and sentence structure to control pace; use a flashback to create a turn; and focus on 'transformation', not on summarising the original poem.  
   Source: Term 2 · Frost imaginative task — 'construct an imaginative piece that deals with solitude and reflection' (Glover 10ENGY)
 
-**12.** B. Historical images, protest poetry and speech extracts  
+**12.** C. Historical images, protest poetry and speech extracts  
   Explanation: The material lists three text types: historical images, protest and civil rights poetry, and excerpts from the speeches of civil rights figures. Each needs its own analytical terms, so practise them separately.  
   Source: Term 3 · Reading Section (15 marks) — task outline (10ENGA)
 

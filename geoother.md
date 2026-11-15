@@ -4,24 +4,24 @@
 
 **1. [Human wellbeing · GDP]** Why do geographers use GDP per capita rather than total GDP when comparing the wellbeing of different countries?
 
-- A. It divides GDP by population, so countries of different sizes can be compared
-- B. It measures only the income earned by the very richest people in that country
-- C. It measures the value of unpaid work done inside the household
-- D. It removes the need for any other development measure or index
+- A. It removes the need for any other development measure or index
+- B. It divides GDP by population, so countries of different sizes can be compared
+- C. It measures only the income earned by the very richest people in that country
+- D. It measures the value of unpaid work done inside the household
 
 **2. [Human wellbeing · Human Development Index]** The Human Development Index (HDI) combines which three dimensions?
 
 - A. GDP, inflation rate and the unemployment rate
-- B. Health, education and standard of living (GNI per capita)
+- B. Life expectancy, birth rate and the death rate
 - C. Population size, land area and length of coastline
-- D. Life expectancy, birth rate and the death rate
+- D. Health, education and standard of living (GNI per capita)
 
 **3. [Population · Interpreting ageing data]** In the population-pyramid lesson students study China's ageing population. The source states that by 2100, 37.8% of China's population is projected to be aged over 60. Which is the most likely implication of this figure?
 
-- A. A rising birth rate that will require many new schools and many more teachers
-- B. A population pyramid with a very wide base and a much narrower top
+- A. A rapidly growing labour force that will raise industrial output sharply
+- B. A rising birth rate that will require many new schools and many more teachers
 - C. A smaller workforce supporting a larger elderly group, straining pensions
-- D. A rapidly growing labour force that will raise industrial output sharply
+- D. A population pyramid with a very wide base and a much narrower top
 
 **4. [Wellbeing differences · Sydney socio-economic patterns]** Describe the spatial pattern of advantage and disadvantage in Sydney and explain one factor that produces it.
 
@@ -31,24 +31,24 @@
 
 **5. [Indigenous wellbeing · Circle sentencing]** Circle sentencing in NSW is best described as:
 
-- A. A separate court that hears only cases involving young offenders
-- B. A process that replaces the court entirely with a community tribunal
+- A. A sentencing process where Elders sit with a magistrate after a guilty verdict
+- B. A separate court that hears only cases involving young offenders
 - C. A police caution given before any charge is laid against an offender
-- D. A sentencing process where Elders sit with a magistrate after a guilty verdict
+- D. A process that replaces the court entirely with a community tribunal
 
 **6. [Geographical skills · Ternary graphs]** On a ternary graph, what do the three axes represent?
 
-- A. Three parts of a whole that add to 100%, read off one point
-- B. Three separate time periods shown along a single horizontal line
-- C. Three separate graphs placed side by side on one page
-- D. Three countries compared by their total population
+- A. Three separate graphs placed side by side on one page
+- B. Three parts of a whole that add to 100%, read off one point
+- C. Three countries compared by their total population
+- D. Three separate time periods shown along a single horizontal line
 
 **7. [Geographical skills · Area and grid references]** Which statement correctly distinguishes an area reference (AR) from a grid reference (GR)?
 
-- A. An AR gives elevation in metres; a GR gives distance in km
-- B. An AR uses four figures for a square; a GR uses six for a point
-- C. An AR is used on small-scale maps; a GR only on précis maps
-- D. An AR uses six figures for a point; a GR uses four for a grid square
+- A. An AR uses four figures for a square; a GR uses six for a point
+- B. An AR uses six figures for a point; a GR uses four for a grid square
+- C. An AR gives elevation in metres; a GR gives distance in km
+- D. An AR is used on small-scale maps; a GR only on précis maps
 
 **8. [Indigenous wellbeing · Evaluating sentencing outcomes]** Explain one way circle sentencing could improve outcomes for Aboriginal and Torres Strait Islander peoples compared with a standard court process.
 
@@ -58,31 +58,31 @@
 
 **9. [Climate change · Cherry-picking]** In the climate misinformation lessons, 'cherry-picking' as a science-denial technique means:
 
-- A. Choosing only the most reliable long-term dataset available
-- B. Repeating an experiment until the results agree with the theory you hold
+- A. Refusing to accept any scientific evidence whatsoever on the topic
+- B. Choosing only the most reliable long-term dataset available
 - C. Selecting data that support a position while ignoring contrary data
-- D. Refusing to accept any scientific evidence whatsoever on the topic
+- D. Repeating an experiment until the results agree with the theory you hold
 
 **10. [Climate change · Enhanced greenhouse effect]** How does the enhanced greenhouse effect differ from the natural greenhouse effect?
 
-- A. The enhanced effect is caused by more solar radiation reaching Earth
-- B. Human activity has removed the natural effect, so less heat is trapped
-- C. The natural effect involves only incoming solar radiation, with no re-emission of heat
-- D. Human greenhouse gas emissions trap more infrared radiation, adding to warming
+- A. Human greenhouse gas emissions trap more infrared radiation, adding to warming
+- B. The natural effect involves only incoming solar radiation, with no re-emission of heat
+- C. The enhanced effect is caused by more solar radiation reaching Earth
+- D. Human activity has removed the natural effect, so less heat is trapped
 
 **11. [Climate change · Coral bleaching]** How does rising sea temperature cause coral bleaching?
 
-- A. Heat stress makes corals expel their symbiotic algae, losing colour and food
-- B. Warmer water dissolves the corals' calcium carbonate skeleton directly
-- C. Warmer water multiplies the algae living inside corals, making them overgrow faster
-- D. Corals absorb more dissolved carbon dioxide and so grow much faster
+- A. Corals absorb more dissolved carbon dioxide and so grow much faster
+- B. Heat stress makes corals expel their symbiotic algae, losing colour and food
+- C. Warmer water dissolves the corals' calcium carbonate skeleton directly
+- D. Warmer water multiplies the algae living inside corals, making them overgrow faster
 
 **12. [Climate change · Global warming vs climate change]** Lesson 2.1 asks students to distinguish between global warming and climate change. Which statement is correct?
 
-- A. Global warming refers only to sea temperatures; climate change only to air temperatures
-- B. Global warming is the rise in average temperature; climate change also covers rainfall and sea level
+- A. Climate change happens naturally, while global warming is a separate process unrelated to it
+- B. Global warming refers only to sea temperatures; climate change only to air temperatures
 - C. The two terms mean exactly the same thing and can be used interchangeably in every case
-- D. Climate change happens naturally, while global warming is a separate process unrelated to it
+- D. Global warming is the rise in average temperature; climate change also covers rainfall and sea level
 
 **13. [Climate change · Ocean acidification]** Explain how ocean acidification impacts marine life.
 
@@ -100,11 +100,11 @@
 
 ## Answers and explanations
 
-**1.** A. It divides GDP by population, so countries of different sizes can be compared  
+**1.** B. It divides GDP by population, so countries of different sizes can be compared  
   Explanation: GDP per capita is GDP divided by population, which removes the problem that large countries naturally have large totals. It still does not show how evenly income is distributed, though, and it cannot replace an indicator such as HDI.  
   Source: Term 1 · Week 2 Global — Measuring and Mapping Human Wellbeing
 
-**2.** B. Health, education and standard of living (GNI per capita)  
+**2.** D. Health, education and standard of living (GNI per capita)  
   Explanation: The three HDI dimensions are health, education and standard of living. Because it measures health and education as well as income, the HDI is more comprehensive than a single economic indicator such as GDP.  
   Source: Term 1 · Week 2 Global — Lesson 3: quantitative (GDP) vs qualitative (HDI)
 
@@ -116,15 +116,15 @@
   Explanation: The answer needs 'pattern plus one cause'. The pattern is the contrast between the east and north on one side and the west and south-west on the other; the cause can be income, housing prices, or access to services and employment, following the course scaffold.  
   Source: Term 1 · Weeks 7–8 Local — Sydney's socio-economic divide (East vs West)
 
-**5.** D. A sentencing process where Elders sit with a magistrate after a guilty verdict  
+**5.** A. A sentencing process where Elders sit with a magistrate after a guilty verdict  
   Explanation: Circle sentencing happens after a guilty verdict: community members and Elders take part in deciding the sentence, which improves cultural appropriateness and reduces reoffending. It does not replace the court, and it is not a pre-trial process.  
   Source: Term 2 · Week 2.3 First Nations Justice — Action (circle sentencing)
 
-**6.** A. Three parts of a whole that add to 100%, read off one point  
+**6.** B. Three parts of a whole that add to 100%, read off one point  
   Explanation: A ternary graph shows the proportions of three components that add to 100%, such as employment structure or soil composition. Each axis gives one component, and the three values must add to 100%.  
   Source: Term 2 · Week 10.1 Ternary Graphs
 
-**7.** B. An AR uses four figures for a square; a GR uses six for a point  
+**7.** A. An AR uses four figures for a square; a GR uses six for a point  
   Explanation: An AR uses four digits to locate a square of about 1 km × 1 km, while a GR uses six digits to locate a specific point inside that square, accurate to 100 m. Do not mix up the order of the digits.  
   Source: Term 1 · Weeks 3–4 Topographic Skills — AR, GR and elevation
 
@@ -136,15 +136,15 @@
   Explanation: Cherry-picking is one of the five FLICC techniques: only the data points that support the position are selected and the overall trend is ignored. The reflection questions in class are designed to make you notice this.  
   Source: Term 4 · Lessons 1.1–1.2 Climate misinformation (FLICC) / Lesson 2.1
 
-**10.** D. Human greenhouse gas emissions trap more infrared radiation, adding to warming  
+**10.** A. Human greenhouse gas emissions trap more infrared radiation, adding to warming  
   Explanation: The natural greenhouse effect makes the Earth habitable; the extra greenhouse gases released by human activity strengthen it, so more infrared radiation is absorbed and re-radiated back to the surface. Telling the two apart is a common exam point.  
   Source: Term 4 · Lesson 2.2 What are the causes of climate change? (Part 1)
 
-**11.** A. Heat stress makes corals expel their symbiotic algae, losing colour and food  
+**11.** B. Heat stress makes corals expel their symbiotic algae, losing colour and food  
   Explanation: Corals live in a symbiotic relationship with zooxanthellae. When heat stresses them, the corals expel the zooxanthellae and lose both their colour and their main food source; if the heat persists, the coral dies rather than simply turning white.  
   Source: Term 4 · Lesson 3.3 How does sea temperature rise lead to coral bleaching?
 
-**12.** B. Global warming is the rise in average temperature; climate change also covers rainfall and sea level  
+**12.** D. Global warming is the rise in average temperature; climate change also covers rainfall and sea level  
   Explanation: Global warming is the rise in average temperature, which is only one part of climate change — a broader concept that also includes changes in precipitation, sea level, ice caps and extreme weather events.  
   Source: Term 4 · Lesson 2.1 EVIDENCE — distinguishing global warming from climate change
 

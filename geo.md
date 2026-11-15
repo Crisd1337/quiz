@@ -5,100 +5,100 @@
 **1. [Climate · Greenhouse gases]** Which group lists only greenhouse gases?
 
 - A. Carbon dioxide, methane, water vapour
-- B. Oxygen, nitrogen, argon
+- B. Oxygen, carbon dioxide, helium
 - C. Nitrogen, methane, neon
-- D. Oxygen, carbon dioxide, helium
+- D. Oxygen, nitrogen, argon
 
 **2. [Climate · Enhanced greenhouse effect]** The enhanced greenhouse effect refers to:
 
-- A. The reflection of sunlight by clouds
-- B. Extra warming caused by human increases in greenhouse gas concentrations
+- A. The cooling effect of volcanic ash
+- B. The reflection of sunlight by clouds
 - C. The natural warming that keeps Earth habitable
-- D. The cooling effect of volcanic ash
+- D. Extra warming caused by human increases in greenhouse gas concentrations
 
 **3. [Climate · How the greenhouse effect works]** In the greenhouse effect, which sequence is correct?
 
-- A. The ozone layer traps heat near the surface
-- B. Long-wave radiation from the Sun is absorbed by the surface
-- C. Short-wave solar radiation passes through the atmosphere, is absorbed by the surface and re-emitted as long-wave radiation, which is then trapped
-- D. Greenhouse gases reflect short-wave radiation back to space
+- A. Long-wave radiation from the Sun is absorbed by the surface
+- B. Greenhouse gases reflect short-wave radiation back to space
+- C. The ozone layer traps heat near the surface
+- D. Short-wave solar radiation passes through the atmosphere, is absorbed by the surface and re-emitted as long-wave radiation, which is then trapped
 
 **4. [Climate · Carbon sources and sinks]** Which of the following is best described as a carbon sink?
 
-- A. Deforestation in the Amazon
-- B. Cattle producing methane
-- C. A coal-fired power station
-- D. The ocean absorbing dissolved carbon dioxide
+- A. A coal-fired power station
+- B. Deforestation in the Amazon
+- C. The ocean absorbing dissolved carbon dioxide
+- D. Cattle producing methane
 
 **5. [Climate · Sea level rise]** Global sea level is rising mainly because of:
 
 - A. Thermal expansion of warming seawater and melting of land-based ice
-- B. More rain falling into the oceans
+- B. Volcanic eruptions under the sea
 - C. The ocean becoming saltier
-- D. Volcanic eruptions under the sea
+- D. More rain falling into the oceans
 
 **6. [Climate · Ocean acidification]** Ocean acidification occurs because:
 
 - A. Coral reefs release acid
-- B. Carbon dioxide dissolves in seawater forming carbonic acid, lowering pH
+- B. Acid rain falls directly into the sea
 - C. Salt concentration increases
-- D. Acid rain falls directly into the sea
+- D. Carbon dioxide dissolves in seawater forming carbonic acid, lowering pH
 
 **7. [Climate · Coral bleaching]** Coral bleaching is caused by:
 
-- A. Too much oxygen in the water
-- B. An increase in coral predators only
-- C. Loss of the symbiotic algae (zooxanthellae) due to heat stress, exposing the white skeleton
-- D. Corals being covered by sand
+- A. Loss of the symbiotic algae (zooxanthellae) due to heat stress, exposing the white skeleton
+- B. Corals being covered by sand
+- C. An increase in coral predators only
+- D. Too much oxygen in the water
 
 **8. [Climate · Synoptic charts · Front symbols]** On a synoptic chart, a line with triangles pointing in the direction of movement represents:
 
-- A. An isobar
-- B. A high pressure centre
-- C. A warm front
-- D. A cold front
+- A. A high pressure centre
+- B. An isobar
+- C. A cold front
+- D. A warm front
 
 **9. [Climate · Synoptic charts · High pressure]** An area of high pressure on a synoptic chart is usually associated with:
 
-- A. Clear skies and settled weather
-- B. Thunderstorms
-- C. A cold front passing
-- D. Heavy rain and strong winds
+- A. Thunderstorms
+- B. Clear skies and settled weather
+- C. Heavy rain and strong winds
+- D. A cold front passing
 
 **10. [Climate · FLICC · Cherry-picking]** A website says: 'It snowed heavily last winter, so global warming is a hoax.' Which FLICC technique is this?
 
-- A. Fake experts
-- B. Logical fallacy (cherry-picking)
-- C. Conspiracy theory
-- D. Impossible expectations
+- A. Conspiracy theory
+- B. Impossible expectations
+- C. Fake experts
+- D. Logical fallacy (cherry-picking)
 
 **11. [Climate · FLICC · Fake experts]** A blog cites 'a retired physicist' with no climate science background as proof that CO₂ does not trap heat. Which FLICC technique is this?
 
-- A. Cherry picking
-- B. Conspiracy theory
+- A. Conspiracy theory
+- B. Impossible expectations
 - C. Fake experts
-- D. Impossible expectations
+- D. Cherry picking
 
 **12. [Climate · Feedback · Albedo]** As sea ice melts, the darker ocean surface absorbs more sunlight, which causes further warming. This is an example of:
 
-- A. Ocean acidification
-- B. The greenhouse effect
-- C. A negative feedback loop
-- D. A positive feedback loop (albedo effect)
+- A. The greenhouse effect
+- B. A positive feedback loop (albedo effect)
+- C. Ocean acidification
+- D. A negative feedback loop
 
 **13. [Climate · Reading graphs]** A graph shows CO₂ concentration and global average temperature rising together over 150 years. The most defensible conclusion is:
 
-- A. There is a positive correlation, consistent with CO₂ driving warming
-- B. Temperature causes CO₂ only
-- C. CO₂ has no effect on temperature
-- D. The data proves nothing at all
+- A. Temperature causes CO₂ only
+- B. The data proves nothing at all
+- C. There is a positive correlation, consistent with CO₂ driving warming
+- D. CO₂ has no effect on temperature
 
 **14. [Climate · Coastal impacts]** Which combination most increases coastal erosion risk in eastern Australia?
 
-- A. Lower sea level and weaker storms
-- B. Higher sea level, larger storm surges and more intense East Coast Lows
+- A. Higher sea level, larger storm surges and more intense East Coast Lows
+- B. Colder ocean temperatures
 - C. Less coastal development
-- D. Colder ocean temperatures
+- D. Lower sea level and weaker storms
 
 **15. [Climate · Greenhouse effect (short answer)]** Explain, step by step, how the greenhouse effect keeps Earth warmer than it would otherwise be.
 
@@ -150,24 +150,24 @@
 
 **23. [Environmental change · Rate and scale]** Stimulus: A beach can lose a large volume of sand during a single East Coast Low, while a dune system may migrate inland over thousands of years. What does this comparison illustrate?
 
-- A. That erosion is permanent and that deposition never occurs anywhere
-- B. That coastal change is caused only by human activity
-- C. That environmental change operates at different rates and scales
-- D. That all coastal change is gradual rather than sudden
+- A. That coastal change is caused only by human activity
+- B. That environmental change operates at different rates and scales
+- C. That all coastal change is gradual rather than sudden
+- D. That erosion is permanent and that deposition never occurs anywhere
 
 **24. [East Coast Lows · Chart reading]** Stimulus: A synoptic chart shows tightly packed isobars and a closed low-pressure centre just off the NSW coast, with a cold front crossing the coast. What does this chart indicate, and why does it matter for Collaroy–Narrabeen?
 
-- A. A stationary front producing no wind and no coastal impact
-- B. A high-pressure ridge, bringing calm seas and steady offshore winds
-- C. A tropical cyclone tracking inland across the ranges from the west
-- D. An East Coast Low, bringing heavy rain and large erosion-driven waves
+- A. An East Coast Low, bringing heavy rain and large erosion-driven waves
+- B. A tropical cyclone tracking inland across the ranges from the west
+- C. A high-pressure ridge, bringing calm seas and steady offshore winds
+- D. A stationary front producing no wind and no coastal impact
 
 **25. [Management · Prevent / mitigate / prepare]** Which set correctly matches the three management categories taught in Lessons 3.1–3.2?
 
-- A. Prevention — stopping change; mitigation — reducing impact; preparedness — planning response
-- B. Prevention — reducing impact; mitigation — planning response; preparedness — stopping change
-- C. All three categories describe the same action taken at different scales
-- D. Prevention — planning response; mitigation — stopping change; preparedness — reducing impact
+- A. Prevention — planning response; mitigation — stopping change; preparedness — reducing impact
+- B. Prevention — stopping change; mitigation — reducing impact; preparedness — planning response
+- C. Prevention — reducing impact; mitigation — planning response; preparedness — stopping change
+- D. All three categories describe the same action taken at different scales
 
 **26. [East Coast Lows · 2016 event mechanics]** Stimulus: A synoptic chart shows tightly packed isobars and a closed low off the NSW coast with a cold front crossing the coast. Explain why this system produced such destructive conditions at Collaroy–Narrabeen in 2016. (3 marks)
 
@@ -195,15 +195,15 @@
   Explanation: Greenhouse gases that absorb and re-emit infrared radiation include CO₂, CH₄, water vapour, N₂O and CFCs. Oxygen and nitrogen make up 99% of the atmosphere, but they do not absorb infrared radiation and are not greenhouse gases.  
   Source: Yearly Study Guide 2026 · Geography Section I(terms / metalanguage)
 
-**2.** B. Extra warming caused by human increases in greenhouse gas concentrations  
+**2.** D. Extra warming caused by human increases in greenhouse gas concentrations  
   Explanation: The natural greenhouse effect keeps the Earth's average temperature at about 15°C rather than −18°C, and it is essential. 'Enhanced' refers to the additional greenhouse gases released by human activities, which strengthen that effect.  
   Source: Yearly Study Guide 2026 · Geography Section I
 
-**3.** C. Short-wave solar radiation passes through the atmosphere, is absorbed by the surface and re-emitted as long-wave radiation, which is then trapped  
+**3.** D. Short-wave solar radiation passes through the atmosphere, is absorbed by the surface and re-emitted as long-wave radiation, which is then trapped  
   Explanation: Solar radiation, mainly short-wave, passes through the atmosphere to reach the Earth's surface; as the surface warms, it radiates long-wave (infrared) radiation, which is absorbed and re-emitted by greenhouse gases, with some returning to the surface.  
   Source: Yearly Study Guide 2026 · Geography Section II(greenhouse effect)
 
-**4.** D. The ocean absorbing dissolved carbon dioxide  
+**4.** C. The ocean absorbing dissolved carbon dioxide  
   Explanation: Carbon sinks, such as oceans, forests, and soil, absorb and store carbon, while sources like coal burning, deforestation, and ruminant animals release carbon.  
   Source: Yearly Study Guide 2026 · Geography Section I
 
@@ -211,23 +211,23 @@
   Explanation: There are two main mechanisms: thermal expansion of seawater (accounting for about half of the contribution) and the melting of land-based ice (glaciers, Greenland, Antarctica) flowing into the oceans; note that 'sea ice melting' does not raise sea levels as it already floats on water.  
   Source: Yearly Study Guide 2026 · Geography Section II(sea level rise)
 
-**6.** B. Carbon dioxide dissolves in seawater forming carbonic acid, lowering pH  
+**6.** D. Carbon dioxide dissolves in seawater forming carbonic acid, lowering pH  
   Explanation: The reaction CO₂ + H₂O → H₂CO₃ (carbonic acid) releases H⁺, decreasing pH; since the Industrial Revolution, the pH of surface seawater has decreased by about 0.1 (an increase in acidity of around 30%).  
   Source: Yearly Study Guide 2026 · Geography Section II(ocean acidification)
 
-**7.** C. Loss of the symbiotic algae (zooxanthellae) due to heat stress, exposing the white skeleton  
+**7.** A. Loss of the symbiotic algae (zooxanthellae) due to heat stress, exposing the white skeleton  
   Explanation: When water temperatures remain high, corals expel their symbiotic algae (zooxanthellae), losing their colour and primary source of energy, revealing their white skeletons; if high temperatures persist for too long, corals will die.  
   Source: Yearly Study Guide 2026 · Geography Section II(ocean temperature and coral bleaching)
 
-**8.** D. A cold front  
+**8.** C. A cold front  
   Explanation: Cold fronts are represented by a triangle symbol (▲) and warm fronts by a semicircle symbol (◗), with the direction of the triangle or semicircle indicating the direction of the front's movement; isobars are shown as fine solid lines.  
   Source: Yearly Study Guide 2026 · Geography Section I(synoptic charts)
 
-**9.** A. Clear skies and settled weather  
+**9.** B. Clear skies and settled weather  
   Explanation: High-pressure systems have sinking air, which is less likely to form clouds and rain, resulting in stable and clear weather; low-pressure systems have rising air, which easily forms clouds and precipitation.  
   Source: Yearly Study Guide 2026 · Geography Section I(skills · synoptic charts)
 
-**10.** B. Logical fallacy (cherry-picking)  
+**10.** D. Logical fallacy (cherry-picking)  
   Explanation: Cherry-picking involves selecting a short-term, local weather event to dispute long-term, global trends, but weather is not the same as climate: a single cold snap cannot overturn a 30-year warming trend.  
   Source: Yearly Study Guide 2026 · Geography Section I(critical thinking · FLICC)
 
@@ -235,15 +235,15 @@
   Explanation: Fake experts are used to create the illusion of 'expert controversy' by using people without relevant field credentials; judge them based on their research field and peer review record, not just their title.  
   Source: Yearly Study Guide 2026 · Geography Section I(FLICC)
 
-**12.** D. A positive feedback loop (albedo effect)  
+**12.** B. A positive feedback loop (albedo effect)  
   Explanation: High albedo ice reflects sunlight, but when it melts, the exposed dark sea surface absorbs more heat, leading to further warming and ice melting, which is a positive feedback loop.  
   Source: Yearly Study Guide 2026 · Geography Section I(critical thinking / climate system)
 
-**13.** A. There is a positive correlation, consistent with CO₂ driving warming  
+**13.** C. There is a positive correlation, consistent with CO₂ driving warming  
   Explanation: Correlation is not causation, but where a positive correlation is consistent with physical mechanisms, the conclusion should be worded as 'consistent with'. Saying 'proven' is wrong, and so is saying the data means nothing.  
   Source: Yearly Study Guide 2026 · Geography Section I(graph interpretation)
 
-**14.** B. Higher sea level, larger storm surges and more intense East Coast Lows  
+**14.** A. Higher sea level, larger storm surges and more intense East Coast Lows  
   Explanation: Sea level rise allows the same storm surge to act on a higher base, and the combined effects of storm surge, East Coast Lows, and increased exposure due to coastal development amplify the risk.  
   Source: Yearly Study Guide 2026 · Geography(climate change and impacts on coastal environments)
 
@@ -279,15 +279,15 @@
   Explanation: Mitigation reduces the cause of the problem — cutting emissions or increasing absorption — while adaptation reduces the impact, through protection or avoidance. Examples should be Australian ones, ideally from the coast.  
   Source: Yearly Study Guide 2026 · Geography(climate change responses)
 
-**23.** C. That environmental change operates at different rates and scales  
+**23.** B. That environmental change operates at different rates and scales  
   Explanation: The core concept is that environmental change has both time and spatial scales: a single storm can reshape a beach in hours, while dune migration takes thousands of years. That is why 'change' has to be described in terms of rate and scale.  
   Source: Term 3 · Lesson 1.1 Environmental Change(rate and scale of change)
 
-**24.** D. An East Coast Low, bringing heavy rain and large erosion-driven waves  
+**24.** A. An East Coast Low, bringing heavy rain and large erosion-driven waves  
   Explanation: Dense isobars mean a large pressure gradient, which equals strong winds; a closed low-pressure system with a cold front brings heavy rain, strong winds, and large waves to the east coast, which was the weather context for the severe erosion of the beach in 2016.  
   Source: Term 3 · Lesson 2.2 Understanding East Coast Lows(synoptic map)
 
-**25.** A. Prevention — stopping change; mitigation — reducing impact; preparedness — planning response  
+**25.** B. Prevention — stopping change; mitigation — reducing impact; preparedness — planning response  
   Explanation: Prevention stops the problem from arising, mitigation reduces the impact of change, and preparedness plans the response to an event. The category a strategy belongs to decides the standard it is evaluated against, so do not mix them up.  
   Source: Term 3 · Lessons 3.1–3.2 Sustainable Management of Coastal Ecosystems
 

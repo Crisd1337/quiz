@@ -4,52 +4,52 @@
 
 **1. [Terms · Unipolarity]** Which statement best defines unipolarity?
 
-- A. One state is dominant, with no rival of comparable power
-- B. Power is dispersed among several competing great powers
+- A. Power rests with whichever state acts first without consulting others
+- B. One state is dominant, with no rival of comparable power
 - C. Power is shared between two rival blocs that balance each other
-- D. Power rests with whichever state acts first without consulting others
+- D. Power is dispersed among several competing great powers
 
 **2. [Terms · Multilateral action]** Which action is the clearest example of multilateral action?
 
-- A. One state acting alone without notifying any other government
+- A. Two neighbouring states signing a border and trade agreement
 - B. A coalition of states acting together under UN Security Council authorisation
 - C. One state threatening to act alone unless its allies fall into line
-- D. Two neighbouring states signing a border and trade agreement
+- D. One state acting alone without notifying any other government
 
 **3. [Terms · Unilateralism]** A government repeatedly insists it will act alone when allies disagree, even at the cost of isolation. This pattern of behaviour is best described as:
 
 - A. Humanitarian intervention — force to protect civilians
-- B. Multilateralism — several states act together
+- B. Collective security — allies respond together
 - C. Unilateralism — the habit of acting alone by choice
-- D. Collective security — allies respond together
+- D. Multilateralism — several states act together
 
 **4. [Terms · Collective security]** Which statement best defines collective security?
 
-- A. A single state decides when and where military force will be used
+- A. States agree that an attack on one member is an attack on all
 - B. Each state builds enough weapons to deter rivals without any allies
 - C. A powerful state intervenes inside another to stop human rights abuses
-- D. States agree that an attack on one member is an attack on all
+- D. A single state decides when and where military force will be used
 
 **5. [Terms · Collective security vs intervention]** Which action is the clearest example of collective security rather than humanitarian intervention?
 
-- A. A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait
-- B. US troops landing in Somalia in 1992 to protect food convoys
+- A. US troops landing in Somalia in 1992 to protect food convoys
+- B. NATO aircraft bombing Serbia in 1999 to stop ethnic cleansing
 - C. US-led forces invading Iraq in 2003 without any explicit UN approval
-- D. NATO aircraft bombing Serbia in 1999 to stop ethnic cleansing
+- D. A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait
 
 **6. [Terms · Pre-emption]** In the Bush Doctrine, pre-emption means:
 
-- A. Intervening to stop a government killing its own citizens
-- B. Striking first at a state or group judged to pose a future threat
-- C. Waiting for an attack, then responding with UN approval
-- D. Working through alliances so no single state decides on war
+- A. Striking first at a state or group judged to pose a future threat
+- B. Intervening to stop a government killing its own citizens
+- C. Working through alliances so no single state decides on war
+- D. Waiting for an attack, then responding with UN approval
 
 **7. [Terms · Pre-emption vs humanitarian intervention]** Which feature most clearly separates pre-emption from humanitarian intervention?
 
-- A. Pre-emption targets only non-state groups; intervention only states
-- B. Pre-emption is always multilateral; intervention is always unilateral in form
-- C. Pre-emption answers a future threat; intervention answers harm under way
-- D. Pre-emption always needs UN authorisation; intervention never does
+- A. Pre-emption answers a future threat; intervention answers harm under way
+- B. Pre-emption targets only non-state groups; intervention only states
+- C. Pre-emption always needs UN authorisation; intervention never does
+- D. Pre-emption is always multilateral; intervention is always unilateral in form
 
 **8. [Terms · Humanitarian intervention]** Which statement best defines humanitarian intervention?
 
@@ -60,17 +60,17 @@
 
 **9. [Terms · Unilateral vs multilateral]** In 2003 State A went to war with a small group of allies after failing to win UN Security Council support, while State B sent troops to a UN-authorised mission. Which pairing is correct?
 
-- A. A — unilateral action; B — multilateral action
-- B. A — multilateral action; B — unilateral action
-- C. A — collective security; B — humanitarian intervention
-- D. A — humanitarian intervention; B — collective security
+- A. A — humanitarian intervention; B — collective security
+- B. A — collective security; B — humanitarian intervention
+- C. A — unilateral action; B — multilateral action
+- D. A — multilateral action; B — unilateral action
 
 **10. [Terms · Unilateral vs unilateralism]** Why does the course list both 'unilateral' and 'unilateralism' as separate terms?
 
 - A. 'Unilateralism' describes one action; 'unilateral' a whole doctrine
 - B. 'Unilateral' is one action taken alone; 'unilateralism' is the doctrine
-- C. They are synonyms, listed twice for emphasis in the notes
-- D. 'Unilateral' describes economic policy; 'unilateralism' military policy
+- C. 'Unilateral' describes economic policy; 'unilateralism' military policy
+- D. They are synonyms, listed twice for emphasis in the notes
 
 **11. [Essay · Choosing evidence for Body 1]** Body 1 of the essay covers the 1990s. Name the two events from the notification's list that you would use, and justify your choice in one sentence. (2 marks)
 
@@ -184,7 +184,7 @@
 
 ## Answers and explanations
 
-**1.** A. One state is dominant, with no rival of comparable power  
+**1.** B. One state is dominant, with no rival of comparable power  
   Explanation: A unipolar system has only one dominant power centre with no peer rivals, whereas bipolarity refers to the Cold War's US-Soviet balance, and multipolarity refers to multiple balancing powers; 'Power rests with whichever state acts first without consulting others' describes unilateralism, not the power structure.  
   Source: Term 4 · Yearly Assessment Notification — Section One(Unipolarity)
 
@@ -196,19 +196,19 @@
   Explanation: Unilateralism is a preference or habit where a country takes action alone despite knowing its allies oppose it, which is the opposite of collective security and multilateralism.  
   Source: Term 4 · Yearly Assessment Notification — Section One(Unilateralism)
 
-**4.** D. States agree that an attack on one member is an attack on all  
+**4.** A. States agree that an attack on one member is an attack on all  
   Explanation: Collective security rests on the principle that an attack on one country is an attack on all, with members responding together, usually through the United Nations. Self-deterrence, humanitarian intervention and unilateral decision-making are different concepts.  
   Source: Term 4 · Yearly Assessment Notification — Section One(Collective Security)
 
-**5.** A. A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait  
+**5.** D. A UN-authorised coalition repelling Iraq's 1990 invasion of Kuwait  
   Explanation: The Gulf War is the classic example of collective security, because it responded to cross-border aggression. The other examples were driven by protecting civilians or overthrowing a regime, which makes them humanitarian intervention or pre-emption, not collective security.  
   Source: Term 4 · Yearly Assessment Notification — Body 1(Gulf War 1991)
 
-**6.** B. Striking first at a state or group judged to pose a future threat  
+**6.** A. Striking first at a state or group judged to pose a future threat  
   Explanation: Pre-emption involves taking military action before a threat materialises, which is a key difference between the Bush Doctrine and collective security or humanitarian intervention.  
   Source: Term 4 · Yearly Assessment Notification — Section One(Pre-emption)
 
-**7.** C. Pre-emption answers a future threat; intervention answers harm under way  
+**7.** A. Pre-emption answers a future threat; intervention answers harm under way  
   Explanation: The key distinction lies in the timing of the threat: pre-emption targets threats that have not yet occurred, while humanitarian intervention responds to ongoing large-scale harm.  
   Source: Term 4 · Yearly Assessment Notification — Section One(Pre-emption / Humanitarian Intervention)
 
@@ -216,7 +216,7 @@
   Explanation: Humanitarian intervention has three requirements: entering another country, without their consent, and aiming to stop a large-scale humanitarian disaster, which is different from economic sanctions or self-defence.  
   Source: Term 4 · Yearly Assessment Notification — Section One(Humanitarian Intervention)
 
-**9.** A. A — unilateral action; B — multilateral action  
+**9.** C. A — unilateral action; B — multilateral action  
   Explanation: The criterion for judgement is whether there is widespread authorisation: A is unilateral as it involves a small group of allies and bypasses the UN Security Council, while B is multilateral as it involves a UN- authorised mission.  
   Source: Term 4 · Yearly Assessment Notification — Body 2(invasion of Iraq)
 

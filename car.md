@@ -4,86 +4,86 @@
 
 **1. [Australian pathways · ATAR eligibility]** To be eligible for an ATAR in NSW, a Year 12 student must complete at least how many units of ATAR courses?
 
-- A. 10 units
+- A. 6 units
 - B. 12 units
-- C. 8 units
-- D. 6 units
+- C. 10 units
+- D. 8 units
 
 **2. [Australian pathways · ATAR eligibility]** Which of these is a compulsory part of ATAR eligibility?
 
-- A. At least 6 different subjects
+- A. At least 1 unit of a Category B course
 - B. At least 2 units of English
-- C. At least 1 unit of a Category B course
+- C. At least 6 different subjects
 - D. At least 4 units of Mathematics
 
 **3. [Australian pathways · SBAT]** In this course's careers resource list, 'SBAT in NSW' refers to:
 
-- A. A university early entry scheme for Year 10 students
+- A. School Based Apprenticeships and Traineeships
 - B. An online platform for sitting the HSC exams
-- C. School Based Apprenticeships and Traineeships
-- D. A scholarship program for elite athletes only
+- C. A scholarship program for elite athletes only
+- D. A university early entry scheme for Year 10 students
 
 **4. [Australian pathways · Category B limit]** Under the ATAR eligibility rules, what is the maximum number of Category B units a student may include?
 
 - A. 4 units
-- B. 6 units
+- B. 2 units
 - C. None
-- D. 2 units
+- D. 6 units
 
 **5. [Australian pathways · Qualification levels]** How long does an undergraduate bachelor degree usually take in Australia?
 
-- A. 3 to 5 years of full-time study
+- A. 6 to 8 years of full-time study
 - B. 1 to 2 years of full-time study
 - C. 10 years of full-time study
-- D. 6 to 8 years of full-time study
+- D. 3 to 5 years of full-time study
 
 **6. [Australian pathways · VET]** Which of these is a vocational education and training (VET) qualification?
 
-- A. Master of Teaching (Secondary)
-- B. Certificate III in Electrotechnology
-- C. Bachelor of Science (Physics major)
-- D. Doctorate of Philosophy (PhD)
+- A. Bachelor of Science (Physics major)
+- B. Doctorate of Philosophy (PhD)
+- C. Certificate III in Electrotechnology
+- D. Master of Teaching (Secondary)
 
 **7. [Job seeking · Resumes]** What is the main advice given about writing a resume?
 
-- A. Leave out sporting and academic awards completely
+- A. Include long, detailed paragraphs about every job you have had
 - B. Use exactly the same resume for your whole working life
-- C. Be brief and clear so it is quick to read
-- D. Include long, detailed paragraphs about every job you have had
+- C. Leave out sporting and academic awards completely
+- D. Be brief and clear so it is quick to read
 
 **8. [Job seeking · Cover letter length]** According to the cover letter resource, an appropriate length for a cover letter is about:
 
-- A. Same as the resume
-- B. 800 to 1000 words
-- C. 50 to 100 words
-- D. 250 to 400 words
+- A. 50 to 100 words
+- B. 250 to 400 words
+- C. Same as the resume
+- D. 800 to 1000 words
 
 **9. [Job seeking · Types of cover letter]** A 'prospecting letter' is a cover letter that:
 
 - A. Asks about jobs that have not been advertised
-- B. Thanks an employer after an interview
-- C. Is sent to a referee instead of an employer
+- B. Is sent to a referee instead of an employer
+- C. Thanks an employer after an interview
 - D. Responds to a position that has been advertised
 
 **10. [Career planning · Action plan]** The career action plan has four sections. Which set lists them correctly?
 
-- A. My Subjects, My Marks, My School, My Teacher
+- A. My Budget, My Tax, My Super, My Bank
 - B. My Profile, My Goals and Plans, My Progress, My Review
-- C. My Resume, My Interview, My Salary, My Holidays
-- D. My Budget, My Tax, My Super, My Bank
+- C. My Subjects, My Marks, My School, My Teacher
+- D. My Resume, My Interview, My Salary, My Holidays
 
 **11. [Job seeking · Interviews and researching employers]** Before you apply or interview for a job, what does the course advise you to do about the company?
 
-- A. Avoid researching it so your answers sound spontaneous
+- A. Research its values so you can align your skills
 - B. Bring no documents so you appear confident
-- C. Research its values so you can align your skills
-- D. Memorise one answer and use it for every question
+- C. Memorise one answer and use it for every question
+- D. Avoid researching it so your answers sound spontaneous
 
 **12. [Aptitude · Multiple intelligences]** The theory of multiple intelligences suggests that:
 
-- A. Only mathematical ability matters for choosing a career
-- B. Intelligence is a single number fixed at birth
-- C. One standard test can measure all of a person's ability
+- A. Intelligence is a single number fixed at birth
+- B. One standard test can measure all of a person's ability
+- C. Only mathematical ability matters for choosing a career
 - D. People are smart in several different ways
 
 **13. [Australian pathways · USI]** What is a Unique Student Identifier (USI)?
@@ -95,24 +95,24 @@
 
 **14. [Australian pathways · Tax File Number]** Why does a student need a Tax File Number (TFN) when starting a job?
 
-- A. It replaces a passport when travelling overseas
-- B. The employer uses it so your pay and tax are recorded correctly
-- C. It is the same number as your USI and MyGov password
-- D. It sets the hourly pay rate your employer must pay you
+- A. It sets the hourly pay rate your employer must pay you
+- B. It replaces a passport when travelling overseas
+- C. The employer uses it so your pay and tax are recorded correctly
+- D. It is the same number as your USI and MyGov password
 
 **15. [Workplace finances · Superannuation]** In Australia, superannuation is best described as:
 
 - A. A tax added to every purchase you make
 - B. A bank fee for keeping a savings account
-- C. Money your employer pays into your retirement fund
-- D. A bonus paid to students who finish their Year 12 studies
+- C. A bonus paid to students who finish their Year 12 studies
+- D. Money your employer pays into your retirement fund
 
 **16. [Workplace rights · Industrial relations]** Under Australian workplace law, all workers are entitled to:
 
-- A. Ignore workplace safety rules because they are casual employees
+- A. Work any hours required without breaks or overtime pay
 - B. Be paid only when the employer decides the work was good enough
-- C. Work any hours required without breaks or overtime pay
-- D. Know your rights and responsibilities at work
+- C. Know your rights and responsibilities at work
+- D. Ignore workplace safety rules because they are casual employees
 
 **17. [Australian pathways · Subject choice and scaling myths]** Explain why choosing subjects that are believed to be 'harder' or always 'scaled up' does not guarantee a higher ATAR.
 
@@ -142,7 +142,7 @@
 
 ## Answers and explanations
 
-**1.** A. 10 units  
+**1.** C. 10 units  
   Explanation: To be eligible for an ATAR, you need to complete at least 10 units of ATAR courses, including 8 units from Category A and 2 units of English; missing one unit will make you ineligible for an ATAR.  
   Source: top-tips-for-choosing-hsc-courses.pdf(ATAR eligibility)
 
@@ -150,27 +150,27 @@
   Explanation: English is a compulsory subject with a minimum of 2 units, while maths is not mandatory and Category B courses can only count for a maximum of 2 units.  
   Source: top-tips-for-choosing-hsc-courses.pdf(ATAR eligibility)
 
-**3.** C. School Based Apprenticeships and Traineeships  
+**3.** A. School Based Apprenticeships and Traineeships  
   Explanation: SBAT stands for School Based Apprenticeships and Traineeships: an in-school pathway in which students finish their secondary education while completing paid industry training. It is not a scholarship, an online exam platform or an early entry scheme.  
   Source: Careers Education 2022(CAREER RESOURCES: SBAT in NSW)
 
-**4.** D. 2 units  
+**4.** B. 2 units  
   Explanation: Category B courses can only count for a maximum of 2 units, and the remaining units must come from Category A, which is often overlooked.  
   Source: top-tips-for-choosing-hsc-courses.pdf(ATAR eligibility)
 
-**5.** A. 3 to 5 years of full-time study  
+**5.** D. 3 to 5 years of full-time study  
   Explanation: Undergraduate degrees usually take 3–5 years of full-time study and let you choose a major. Postgraduate certificates, masters degrees and PhDs are the levels that come after, and each takes additional time.  
   Source: Week 5 - Levels of education(University Entry)
 
-**6.** B. Certificate III in Electrotechnology  
+**6.** C. Certificate III in Electrotechnology  
   Explanation: Certificate III is a VET qualification usually offered by TAFE or government-recognised private colleges, whereas Bachelor, Master, and PhD are university-level qualifications.  
   Source: Week 5 - Levels of education(VET / TAFE)
 
-**7.** C. Be brief and clear so it is quick to read  
+**7.** D. Be brief and clear so it is quick to read  
   Explanation: The course stresses that a resume should be concise and clear so that it can be read quickly, and that a resume is not static — you update it as you gain experience. Long, detailed paragraphs about every job you have had are better left for the interview.  
   Source: Building a resume(What is important on a resume?)
 
-**8.** D. 250 to 400 words  
+**8.** B. 250 to 400 words  
   Explanation: The course sets a limit of 250–400 words, and the letter should focus on 'why you're applying, what you can offer, and how you'll follow up'; writing a long essay is exactly what the course warns against.  
   Source: Writing a cover letter(The Cover Letter)
 
@@ -182,7 +182,7 @@
   Explanation: The action plan has four parts — my profile, my goals and plans, my progress and my review — and it helps you see where you are now and which experiences you still lack.  
   Source: Career action plan(There are 4 sections to the action plan)
 
-**11.** C. Research its values so you can align your skills  
+**11.** A. Research its values so you can align your skills  
   Explanation: The course advises researching the company: understand its motto and values, then match your skills to them so that the application is targeted. Not doing that research is a common mistake.  
   Source: Week Ten- Submitting Your Resume & Cover Letter(NOTE: do your research on the company)
 
@@ -194,15 +194,15 @@
   Explanation: USI is a national student identifier that links your training and qualifications, distinct from ATAR and TFN.  
   Source: Week Eight- Creating a USI, TFN & MyGov account
 
-**14.** B. The employer uses it so your pay and tax are recorded correctly  
+**14.** C. The employer uses it so your pay and tax are recorded correctly  
   Explanation: A TFN is a tax file number, and employers need it to deduct tax at the correct rate; without one you are taxed at the highest rate. Your hourly pay rate, by contrast, is set by an award or a contract, not by your TFN.  
   Source: Week Eight- Creating a USI, TFN & MyGov account
 
-**15.** C. Money your employer pays into your retirement fund  
+**15.** D. Money your employer pays into your retirement fund  
   Explanation: Superannuation is an extra amount that your employer pays into your retirement account. It is a long-term investment for your retirement, it is separate from your take-home pay, and it is not a tax on purchases.  
   Source: Week Five- Tax & Super
 
-**16.** D. Know your rights and responsibilities at work  
+**16.** C. Know your rights and responsibilities at work  
   Explanation: The core of the course is 'knowing your rights and responsibilities', which includes minimum wage, a safe workplace and rest breaks. Casual workers are not exempt from safety obligations, and their pay cannot be deducted arbitrarily.  
   Source: Week Three- Industrial Relations & Workplaces(Fair Work workplace basics)
 

@@ -5,23 +5,23 @@
 **1. [Evolution · Darwin's evidence]** Darwin collected 13 species of finch on the Galapagos Islands. Which feature differed most clearly between the specimens?
 
 - A. Beak size and shape
-- B. Number of legs on each bird
-- C. Wing length and shape
+- B. Wing length and shape
+- C. Number of legs on each bird
 - D. Body colour and pattern
 
 **2. [Evolution · Lamarck vs Darwin]** How did Lamarck explain the long necks of giraffes?
 
-- A. Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring.
-- B. Giraffes stretched their necks to reach high leaves and passed the longer necks on to their offspring.
-- C. Long necks appeared suddenly because of a mutation in a single generation.
-- D. Giraffe necks grew longer because the climate changed.
+- A. Giraffes stretched their necks to reach high leaves and passed the longer necks on to their offspring.
+- B. Giraffe necks grew longer because the climate changed.
+- C. Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring.
+- D. Long necks appeared suddenly because of a mutation in a single generation.
 
 **3. [Evolution · Selection pressure]** In parts of Australia where cane toads live, the average head size of red-bellied black snakes has become smaller. Which explanation is consistent with natural selection?
 
-- A. The toads release a chemical that directly shrinks the heads of the snakes they meet.
+- A. Head size is not heritable, so this change cannot be evolution by natural selection.
 - B. Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring.
-- C. Snakes with larger heads could swallow the bigger, more toxic toads and died, so smaller-headed snakes survived and reproduced.
-- D. Head size is not heritable, so this change cannot be evolution by natural selection.
+- C. The toads release a chemical that directly shrinks the heads of the snakes they meet.
+- D. Snakes with larger heads could swallow the bigger, more toxic toads and died, so smaller-headed snakes survived and reproduced.
 
 **4. [Evolution · Defining selection pressure]** Define the term 'selection pressure' and give two examples of selection pressures. (2 marks)
 
@@ -103,24 +103,24 @@
 
 **17. [Skills · Graphing (CUTLAS)]** The CUTLAS checklist is used to mark a line graph. Which list gives the six things a good line graph must have?
 
-- A. Calculations, Units, Title, Line, Average, Summary
-- B. Crosses, Variables, Title, Legend, Axes, Gradient
-- C. Colour, Units, Table, Labels, Arrows, Scale
+- A. Colour, Units, Table, Labels, Arrows, Scale
+- B. Calculations, Units, Title, Line, Average, Summary
+- C. Crosses, Variables, Title, Legend, Axes, Gradient
 - D. Crosses, Units, Title, Line, Axes, Scale
 
 **18. [Skills · Identifying variables]** A student investigates how the length of a wire affects its resistance. Which is the dependent variable?
 
-- A. The resistance of the wire
+- A. The length of the wire
 - B. The temperature of the room
-- C. The type of wire used
-- D. The length of the wire
+- C. The resistance of the wire
+- D. The type of wire used
 
 **19. [Skills · Error and reliability]** A student repeats a measurement five times and gets almost identical results, but the thermometer used always reads 2 °C too high. Which statement best describes the results?
 
-- A. They are both accurate and reliable.
-- B. They are reliable but not accurate.
-- C. They are accurate but not reliable.
-- D. They are both invalid and unreliable.
+- A. They are reliable but not accurate.
+- B. They are both accurate and reliable.
+- C. They are both invalid and unreliable.
+- D. They are accurate but not reliable.
 
 **20. [Skills · Experimental design]** A student investigates whether the surface area of calcium carbonate affects the rate at which it reacts with hydrochloric acid. Identify the independent variable, the dependent variable and two controlled variables. (3 marks)
 
@@ -176,115 +176,115 @@
 
 **28. [Organic chemistry · Alkane formula]** Which general formula correctly represents the alkanes?
 
-- A. CnH2n
-- B. CnH2n-2
-- C. CnH2n+2
+- A. CnH2n+2
+- B. CnH2n
+- C. CnH2n-2
 - D. CnH2n+1OH
 
 **29. [Organic chemistry · Naming]** What is the IUPAC name of the compound CH3–CH2–CH3?
 
-- A. Ethane
-- B. Butane
-- C. Methane
+- A. Butane
+- B. Methane
+- C. Ethane
 - D. Propane
 
 **30. [Organic chemistry · Functional groups]** Which functional group is present in ethanol, CH3CH2OH?
 
-- A. Hydroxyl group (–OH)
-- B. Carboxyl group (–COOH)
-- C. Ester linkage (–COO–)
-- D. Carbon–carbon double bond (C=C)
+- A. Carboxyl group (–COOH)
+- B. Hydroxyl group (–OH)
+- C. Carbon–carbon double bond (C=C)
+- D. Ester linkage (–COO–)
 
 **31. [Organic chemistry · Test for unsaturation]** Bromine water is added to a sample. The orange-brown colour disappears. What does this show?
 
-- A. The sample is an alkane
-- B. The sample contains an alkene (C=C)
-- C. The sample contains only single bonds
-- D. The sample contains a carboxylic acid
+- A. The sample contains only single bonds
+- B. The sample contains a carboxylic acid
+- C. The sample contains an alkene (C=C)
+- D. The sample is an alkane
 
 **32. [Organic chemistry · Isomers]** Butane and 2-methylpropane both have the molecular formula C4H10. They are best described as:
 
-- A. Polymers
-- B. Isotopes
-- C. Isomers
-- D. Allotropes
+- A. Isotopes
+- B. Polymers
+- C. Allotropes
+- D. Isomers
 
 **33. [Organic chemistry · Combustion products]** A hydrocarbon burns completely in excess oxygen. Which two products are formed?
 
 - A. Ethanol and carbon dioxide
-- B. Carbon monoxide and hydrogen
-- C. Carbon and oxygen
+- B. Carbon and oxygen
+- C. Carbon monoxide and hydrogen
 - D. Carbon dioxide and water
 
 **34. [Organic chemistry · Testing for CO₂]** Which test identifies the gas produced when a hydrocarbon burns completely?
 
-- A. It turns limewater milky
+- A. It bleaches damp litmus paper
 - B. It pops with a lighted splint
-- C. It bleaches damp litmus paper
+- C. It turns limewater milky
 - D. It relights a glowing splint
 
 **35. [Organic chemistry · Addition reactions]** Ethene reacts with hydrogen in the presence of a nickel catalyst. The product is:
 
 - A. Ethanol
 - B. Ethane
-- C. Ethyl ethanoate
-- D. Ethanoic acid
+- C. Ethanoic acid
+- D. Ethyl ethanoate
 
 **36. [Organic chemistry · Esterification]** Ethanol reacts with ethanoic acid to produce a compound with a sweet smell. This reaction is called:
 
-- A. Polymerisation
+- A. Esterification
 - B. Combustion
-- C. Esterification
-- D. Neutralisation
+- C. Neutralisation
+- D. Polymerisation
 
 **37. [Organic chemistry · Addition polymerisation]** Polythene (polyethylene) is made from ethene. Which type of reaction produces it?
 
-- A. Substitution
-- B. Condensation
-- C. Fermentation
-- D. Addition polymerisation
+- A. Condensation
+- B. Addition polymerisation
+- C. Substitution
+- D. Fermentation
 
 **38. [Organic chemistry · Identifying functional groups]** Which of these compounds contains a carboxyl group and will turn blue litmus red?
 
-- A. CH3COOH
+- A. CH3OH
 - B. C₂H₄
-- C. CH3OH
+- C. CH3COOH
 - D. CH3CH3
 
 **39. [Organic chemistry · Uses of ethanol]** Ethanol is increasingly used as a fuel because it:
 
-- A. Burns without releasing carbon dioxide
-- B. Can be produced by fermentation of plant material and is renewable
-- C. Has a higher energy density than octane
-- D. Does not require oxygen to burn
+- A. Does not require oxygen to burn
+- B. Burns without releasing carbon dioxide
+- C. Can be produced by fermentation of plant material and is renewable
+- D. Has a higher energy density than octane
 
 **40. [Organic chemistry · Formula and structure]** A molecule has the structural formula CH3–CH=CH–CH3. Which statement is correct?
 
-- A. It is an alcohol
-- B. It is a saturated compound with no double bonds
-- C. It contains four carbon atoms and one double bond
+- A. It contains four carbon atoms and one double bond
+- B. It is an alcohol
+- C. It is a saturated compound with no double bonds
 - D. It contains a carboxyl group
 
 **41. [Organic chemistry · Boiling point trend]** As the carbon chain of a homologous series of alkanes increases, the boiling point:
 
 - A. Decreases, because molecules get lighter
-- B. Increases, because the molecules become more polar
+- B. Increases, because dispersion forces between molecules get stronger
 - C. Stays the same
-- D. Increases, because dispersion forces between molecules get stronger
+- D. Increases, because the molecules become more polar
 
 **42. [Organic chemistry · Naming practice]** The compound CH3–CH2–CH2–OH is named:
 
-- A. Propan-1-ol
-- B. Propane
-- C. Propanal
-- D. Propanoic acid
+- A. Propanoic acid
+- B. Propan-1-ol
+- C. Propane
+- D. Propanal
 
 **43. [Organic chemistry · Reaction types]** Methane reacts with chlorine in the presence of ultraviolet light. This is an example of:
 
-- A. Polymerisation
+- A. Addition
 - B. Substitution
-- C. Addition
-- D. Esterification
+- C. Esterification
+- D. Polymerisation
 
 **44. [Organic chemistry · Drawing structures]** Draw the full structural formula of ethanol and identify its functional group. Then explain why ethanol is soluble in water.
 
@@ -324,11 +324,11 @@
   Explanation: There are 13 species of finch with similar body size and plumage but different beak sizes and shapes, each matched to a different food source on a different island — the classic evidence for natural selection.  
   Source: Year 10 - Evolution.pptx(Galapagos finches)
 
-**2.** B. Giraffes stretched their necks to reach high leaves and passed the longer necks on to their offspring.  
+**2.** A. Giraffes stretched their necks to reach high leaves and passed the longer necks on to their offspring.  
   Explanation: Lamarck advocated for 'use and disuse + inheritance of acquired traits': stretching one's neck and passing the change on to offspring, whereas 'Giraffes with longer necks obtained food more easily, survived and passed the trait on to their offspring' is Darwin's explanation of natural selection.  
   Source: Term 4 - Evolution - Week 2(Lamarckian Theory vs Darwinian Theory)
 
-**3.** C. Snakes with larger heads could swallow the bigger, more toxic toads and died, so smaller-headed snakes survived and reproduced.  
+**3.** D. Snakes with larger heads could swallow the bigger, more toxic toads and died, so smaller-headed snakes survived and reproduced.  
   Explanation: The toad is a selective pressure: snakes with larger heads that swallow larger toads and ingest more toxins die (are eliminated), while individuals with smaller heads or that don't eat toads survive and reproduce, but 'Snakes that ate toads pulled their heads smaller during their lifetime and passed the smaller heads on to their offspring' is an incorrect Lamarckian statement.  
   Source: Term 4 - Evolution - Week 3 Answers(Cane toads / red-bellied black snake)
 
@@ -422,11 +422,11 @@
   Explanation: A CUTLAS graph includes Crosses, Units, Title, Line, Axes, and Scale, making up about 80% of the graph.  
   Source: Stage 5 Graphing-1.docx(CUTLAS checklist)
 
-**18.** A. The resistance of the wire  
+**18.** C. The resistance of the wire  
   Explanation: The independent variable is the factor deliberately changed by the experimenter, the dependent variable is the measured result, and the controlled variables are the factors kept constant.  
   Source: Identifying Variables.docx (definitions of independent / dependent / controlled variables)
 
-**19.** B. They are reliable but not accurate.  
+**19.** A. They are reliable but not accurate.  
   Explanation: Results that are consistent when repeated are reliable, but accuracy refers to how close a measurement is to the true value — for example, a thermometer with a constant high bias is reliable but not accurate; reliability does not equal accuracy.  
   Source: Half Yearly Revision.pdf(Reliability / Accuracy / systematic error)
 
@@ -472,7 +472,7 @@
   Explanation: 5 m/s² is between 4 and 6, and interpolating gives (305 + 448)/2 ≈ 376 N; the two are linearly related, with the force increasing by approximately 74 N for each increase of 1 m/s² (gradient 960/13 ≈ 74).  
   Source: Half Yearly Revision.pdf (deceleration–force data table)
 
-**28.** C. CnH2n+2  
+**28.** A. CnH2n+2  
   Explanation: Alkanes are saturated hydrocarbons, with only single bonds between carbon atoms, and have the general formula CnH2n+2; alkenes have one double bond and the formula CnH2n, and alcohols have the formula CnH2n+1OH.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
@@ -480,15 +480,15 @@
   Explanation: The three-carbon alkane is propane; methane has one carbon, ethane has two, and butane has four.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**30.** A. Hydroxyl group (–OH)  
+**30.** B. Hydroxyl group (–OH)  
   Explanation: The functional group of ethanol is the hydroxyl group -OH, and it belongs to the category of alcohols; -COOH is a carboxylic acid, C=C is an alkene, and -COO- is an ester.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**31.** B. The sample contains an alkene (C=C)  
+**31.** C. The sample contains an alkene (C=C)  
   Explanation: The decolourisation of bromine water is a test for unsaturated bonds: alkenes undergo an addition reaction with Br₂, the double bond opens, and the colour disappears; alkanes do not react, and the colour remains.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**32.** C. Isomers  
+**32.** D. Isomers  
   Explanation: Isomers have the same molecular formula but different structures; butane is a straight chain, and 2-methylpropane is a branched chain; isotopes are atoms of the same element with different numbers of neutrons, allotropes are different forms of the same element, and polymers are large molecules made up of many smaller molecules.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
@@ -496,7 +496,7 @@
   Explanation: Complete combustion involves a hydrocarbon reacting with O₂ to produce CO₂ and H₂O, but incomplete combustion with insufficient oxygen produces CO and carbon black.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**34.** A. It turns limewater milky  
+**34.** C. It turns limewater milky  
   Explanation: CO₂ turns lime water cloudy by forming a CaCO₃ precipitate; a glowing wooden splint indicates oxygen, a popping sound indicates hydrogen, and bleaching wet litmus indicates chlorine.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
@@ -504,31 +504,31 @@
   Explanation: Hydrogenation involves adding hydrogen to an alkene, such as C₂H₄ + H2 → C₂H₆, converting it to an alkane, not an alcohol like ethanol.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**36.** C. Esterification  
+**36.** A. Esterification  
   Explanation: An esterification reaction involves an alcohol and a carboxylic acid producing an ester and water, requiring concentrated sulfuric acid as a catalyst and heat, resulting in a fragrant ester like ethyl acetate.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**37.** D. Addition polymerisation  
+**37.** B. Addition polymerisation  
   Explanation: The polymerisation of ethene molecules (containing C=C) involves the opening of double bonds to form a long chain, called addition polymerisation, producing polyethylene.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**38.** A. CH3COOH  
+**38.** C. CH3COOH  
   Explanation: CH3COOH is acetic acid, a weak acid containing –COOH, which turns blue litmus red, whereas CH3OH is a neutral alcohol and CH3CH3 is an alkane, and C₂H₄ is an alkene.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**39.** B. Can be produced by fermentation of plant material and is renewable  
+**39.** C. Can be produced by fermentation of plant material and is renewable  
   Explanation: Ethanol can be produced by fermenting sugars and is a renewable fuel often mixed with petrol to make E10, producing CO₂ when burned, but with a lower energy density than petrol.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**40.** C. It contains four carbon atoms and one double bond  
+**40.** A. It contains four carbon atoms and one double bond  
   Explanation: A four-carbon molecule with a C=C bond is butene, an unsaturated compound, as it contains a double bond but no –OH or –COOH groups.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**41.** D. Increases, because dispersion forces between molecules get stronger  
+**41.** B. Increases, because dispersion forces between molecules get stronger  
   Explanation: In a homologous series, the longer the carbon chain, the stronger the dispersion forces between molecules, so more energy is needed to separate them and the boiling point is higher. In non-polar alkanes this is not caused by increased polarity.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 
-**42.** A. Propan-1-ol  
+**42.** B. Propan-1-ol  
   Explanation: A three-carbon chain with a hydroxyl group is propan-1-ol; propanoic acid is propionic acid, propanal is propionaldehyde, and propane is an alkane.  
   Source: Yearly Study Guide 2026 · Science Part A: Organic Chemistry
 

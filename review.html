@@ -867,7 +867,7 @@ function rxAward(o) {
                  src: o.src || "", qid: o.qid, ts: now,
                  meta: { stage: out.stageUp, stageName: RX_STAGE[out.stageUp] } });
       out.reason = "mastery:" + RX_STAGE[out.stageUp];
-      try { toast("掌握度提升 · " + RX_STAGE[out.stageUp] + " · +" + mxp + " XP" +
+      try { toast("Mastery up · " + RX_STAGE[out.stageUp] + " · +" + mxp + " XP" +
                   (mdust ? " +" + mdust + " 星尘" : ""), true); } catch (e) {}
     }
   }
@@ -1627,14 +1627,14 @@ rxMigrateSeen();
 
   function lbCountAnim(real){
     var el=document.getElementById("lbCount");
-    if(el) el.textContent = "已交卷 " + real + " 人";
+    if(el) el.textContent = real + " submitted";
   }
 
   function lbRender(){
     var box=document.getElementById("lbBody"); if(!box) return;
     lbCountAnim(LB.list.length);
     if(LB_FREEZE){ LB_PENDING++; var p=document.getElementById("lbRefresh");
-      if(p){ p.textContent="有 "+LB_PENDING+" 条新动态 · 点击刷新榜单"; p.classList.add("on"); }
+      if(p){ p.textContent=LB_PENDING+" new on the board · tap to refresh"; p.classList.add("on"); }
       return; }
     var before={};
     box.querySelectorAll(".lb-row").forEach(function(el){ before[el.dataset.k]=el.getBoundingClientRect().top; });
@@ -1736,7 +1736,7 @@ rxMigrateSeen();
         if(LB_SCROLL_T) clearTimeout(LB_SCROLL_T);
         LB_SCROLL_T=setTimeout(function(){ LB_FREEZE=false;
           var p=document.getElementById("lbRefresh");
-          if(p && LB_PENDING){ p.textContent="有 "+LB_PENDING+" 条新动态 · 点击刷新榜单"; p.classList.add("on"); }
+          if(p && LB_PENDING){ p.textContent=LB_PENDING+" new on the board · tap to refresh"; p.classList.add("on"); }
         }, 900);
       }
     });
@@ -1764,13 +1764,13 @@ rxMigrateSeen();
     var g = db();
     if(res && (res.xp>0 || res.coin>0)){
       beep(res.xp>0?660:240, 0.1, "sine", 0.05);
-      toast('+'+res.xp+' XP · +'+res.coin+' 币'+
-            (g.combo>1?' · 连对 '+g.combo:'')+
-            (res.capped?' · 已达今日上限':"")+
-            (res.stageUp?(' · 掌握度 '+RX.stageName(res.stageUp)):''), true);
-      if(res.levelUp){ setTimeout(function(){ toast('升到 Lv.'+levelOf(db().xp), true); levelUpSound(); }, 450); }
+      toast('+'+res.xp+' XP · +'+res.coin+' coins'+
+            (g.combo>1?' · combo '+g.combo:'')+
+            (res.capped?' · daily cap reached':"")+
+            (res.stageUp?(' · mastery '+RX.stageName(res.stageUp)):''), true);
+      if(res.levelUp){ setTimeout(function(){ toast('Level up: Lv.'+levelOf(db().xp), true); levelUpSound(); }, 450); }
     } else if(res && res.persistFail){
-      toast('本地存储写入失败，本次作答没有计入统计（请检查浏览器空间/隐私模式）', false);
+      toast('Could not write to local storage — this answer was not counted (check browser space / private mode)', false);
     } else if(res && res.dup){
       /* 同一答案重复提交：静默 */
     } else if(res && res.reason){
@@ -1913,7 +1913,7 @@ rxMigrateSeen();
     else { rew.dust=1; msg="宝箱：星尘 ×1"; }
     RX.once(key, rew);
     try{ var c=JSON.parse(localStorage.getItem(CHEST_KEY)||'{"n":0}'); c.n=(c.n||0)+1; localStorage.setItem(CHEST_KEY,JSON.stringify(c)); }catch(e){}
-    setTimeout(function(){ toast(msg + " · 今天已开箱", true); beep(880,0.18,"triangle",0.07); }, 700);
+    setTimeout(function(){ toast(msg + " · chest opened today", true); beep(880,0.18,"triangle",0.07); }, 700);
     if(window.__refreshProfile) window.__refreshProfile();
     return true;
   }
@@ -1930,7 +1930,7 @@ rxMigrateSeen();
     try{ localStorage.setItem(QKEY,JSON.stringify(Q)); }catch(e){}
     RX.once("quest|"+Q.date+"|"+id, {coin:meta.r.coin||0, dust:meta.r.dust||0,
                                      kind:"quest", meta:{quest:id, name:meta.n}});
-    toast("任务完成 · "+meta.n+" · +"+(meta.r.coin?meta.r.coin+" 币":meta.r.dust+" 星尘"), true);
+    toast("Task complete · "+meta.n+" · +"+(meta.r.coin?meta.r.coin+" coins":meta.r.dust+" stardust"), true);
     beep(1046,0.16,"triangle",0.07);
     if(window.__refreshProfile) window.__refreshProfile();
     return {ok:true,msg:"已领取"};
@@ -2281,7 +2281,7 @@ rxMigrateSeen();
   window.__refreshProfile=renderAll;
   document.addEventListener("click", function(ev){
     var s = ev.target.closest && ev.target.closest("#sfxbtn");
-    if(s){ var on = toggleSfx(); s.textContent = on ? "音效 开" : "音效 关"; return; }
+    if(s){ var on = toggleSfx(); s.textContent = on ? "Sound on" : "Sound off"; return; }
     var q = ev.target.closest && ev.target.closest("[data-claim]");
     if(q){ claimQuest(q.getAttribute("data-claim")); renderAll(); return; }
     if(ev.target.closest && ev.target.closest("#mecode")){
@@ -2290,8 +2290,8 @@ rxMigrateSeen();
       if(!r.ok){ toast(r.msg,false); return; }
       var ta=document.createElement("textarea"); ta.value=r.code;
       document.body.appendChild(ta); ta.select();
-      try{ document.execCommand("copy"); toast("战绩码已复制，发给同学吧", true); }
-      catch(e){ toast("复制失败，手动选中："+r.code.slice(0,20)+"…", false); }
+      try{ document.execCommand("copy"); toast("Score code copied — send it to a classmate", true); }
+      catch(e){ toast("Copy failed — select it manually: "+r.code.slice(0,20)+"…", false); }
       ta.remove();
       return;
     }
@@ -2300,11 +2300,11 @@ rxMigrateSeen();
       var v=prompt("Cloudflare Worker address (leave blank to clear)", cur);
       if(v===null) return;
       setApi(v);
-      toast(v.trim()?"已保存，正在拉取云端榜…":"已清除服务器地址", true);
+      toast(v.trim()?"Saved — fetching the cloud board…":"Server address cleared", true);
       renderAll(); return;
     }
     if(ev.target.closest && ev.target.closest("#pushscore")){
-      toast((typeof LANG === "function" && LANG() === "en") ? "Submitting..." : "正在提交…", true);
+      toast("Submitting...", true);
       pushScore().then(function(r2){ toast(r2.msg, r2.ok); });
       return;
     }

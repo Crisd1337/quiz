@@ -11,73 +11,73 @@
 
 **2. [Ecosystems · Biotic and abiotic factors]** Which of the following is an ABIOTIC factor in an ecosystem?
 
-- A. Bacteria living in soil
-- B. Sunlight and soil moisture
+- A. Fungi breaking down leaves
+- B. Bacteria living in soil
 - C. Kangaroos grazing on grass
-- D. Fungi breaking down leaves
+- D. Sunlight and soil moisture
 
 **3. [Ecosystems · Definition]** Which definition of an ecosystem matches the course?
 
-- A. A group of animals of the same species in an area
-- B. All the plants that grow in a particular region
-- C. A community of living and non-living things interacting
-- D. The physical features of a landscape, such as soil and rain
+- A. A community of living and non-living things interacting
+- B. The physical features of a landscape, such as soil and rain
+- C. A group of animals of the same species in an area
+- D. All the plants that grow in a particular region
 
 **4. [Human impacts · Short term and long term]** Which of the following is an example of a LONG-TERM human impact on ecosystems?
 
-- A. Littering a campsite with food packaging and cans
-- B. Dropping a plastic bag into a creek during a picnic
-- C. A bushwalker crushing vegetation by leaving the marked track
-- D. Climate change gradually reducing biodiversity over decades
+- A. Dropping a plastic bag into a creek during a picnic
+- B. A bushwalker crushing vegetation by leaving the marked track
+- C. Climate change gradually reducing biodiversity over decades
+- D. Littering a campsite with food packaging and cans
 
 **5. [Leave No Trace · Seven principles]** Which of the following is one of the seven Leave No Trace principles taught in this unit?
 
-- A. Travel and camp on durable surfaces
-- B. Build a fire ring at each campsite
-- C. Leave marked tracks to find quiet spots
-- D. Feed wildlife so they stay calm near people
+- A. Feed wildlife so they stay calm near people
+- B. Travel and camp on durable surfaces
+- C. Build a fire ring at each campsite
+- D. Leave marked tracks to find quiet spots
 
 **6. [Indigenous perspectives · Connection to Country]** What does 'Connection to Country' mean for Aboriginal and Torres Strait Islander peoples?
 
 - A. A legal title to land that allows selling its natural resources
-- B. A spiritual and cultural relationship with land and waterways
-- C. An agreement with government to manage national parks
-- D. A seasonal camp used for hunting and fishing only
+- B. An agreement with government to manage national parks
+- C. A seasonal camp used for hunting and fishing only
+- D. A spiritual and cultural relationship with land and waterways
 
 **7. [Indigenous perspectives · Cultural burning]** Which description of cultural burning matches the lesson?
 
 - A. Burning at random times with no planning or control at all
-- B. Large, high-intensity fires lit in summer to clear all vegetation
-- C. Small, low-intensity controlled fires that safely reduce fuel loads
-- D. Burning only after a wildfire has already started, to stop it spreading
+- B. Small, low-intensity controlled fires that safely reduce fuel loads
+- C. Burning only after a wildfire has already started, to stop it spreading
+- D. Large, high-intensity fires lit in summer to clear all vegetation
 
 **8. [Leave No Trace · Durable surfaces]** Why does Leave No Trace advise walking and camping on durable surfaces?
 
-- A. It increases the chance of seeing wildlife up close
-- B. It makes finding the way back much easier
-- C. It keeps hikers' boots and tents cleaner
-- D. It protects vegetation and reduces soil erosion
+- A. It protects vegetation and reduces soil erosion
+- B. It increases the chance of seeing wildlife up close
+- C. It makes finding the way back much easier
+- D. It keeps hikers' boots and tents cleaner
 
 **9. [Sustainable practice · High-impact camping]** Which camper behaviour is a HIGH-IMPACT practice?
 
-- A. Cutting branches from live trees for a campfire
-- B. Camping in an already established campsite
+- A. Carrying all your own rubbish out in a sealed bag
+- B. Cutting branches from live trees for a campfire
 - C. Using a fuel stove instead of lighting a fire
-- D. Carrying all your own rubbish out in a sealed bag
+- D. Camping in an already established campsite
 
 **10. [Ecosystems · Interdependence]** In the Yellowstone example used in the unit, removing wolves caused elk numbers to rise and damage plant life, and reintroducing them gradually restored balance. What does this best demonstrate?
 
-- A. Predators are harmful to ecosystems and should be removed
-- B. Ecosystems are interconnected, so removing one part affects the rest
-- C. Only abiotic factors can change the balance of an ecosystem
+- A. Only abiotic factors can change the balance of an ecosystem
+- B. Predators are harmful to ecosystems and should be removed
+- C. Ecosystems are interconnected, so removing one part affects the rest
 - D. Plant life always recovers on its own, whatever happens to animals
 
 **11. [Indigenous perspectives · Freshwater stream case study]** The Freshwater Creek case study compares an Indigenous significant site with the effects of Western urbanisation. Which statement BEST describes the difference?
 
-- A. Indigenous management had little effect because the local clans did not use the wetlands
-- B. Both approaches treated the wetlands mainly as a drinking water source
+- A. Both approaches treated the wetlands mainly as a drinking water source
+- B. Indigenous management drained the wetlands, while urbanisation restored them as parkland
 - C. Indigenous use kept the wetlands alive; urbanisation drained and piped them away
-- D. Indigenous management drained the wetlands, while urbanisation restored them as parkland
+- D. Indigenous management had little effect because the local clans did not use the wetlands
 
 **12. [Ecosystems · Biotic and abiotic interactions]** Explain how biotic and abiotic factors interact within an ecosystem. Use TWO examples in your response.
 
@@ -111,39 +111,39 @@
   Explanation: The course defines biodiversity as the 'variety of living organisms', which is not the same as the number of animals in a habitat, or the non-living environment.  
   Source: Study Guide · Lesson 1 Introduction to Environmental Awareness
 
-**2.** B. Sunlight and soil moisture  
+**2.** D. Sunlight and soil moisture  
   Explanation: Abiotic means non-living: sunlight, water, soil, temperature and so on. Biotic refers to living organisms — fungi and bacteria are invisible to the naked eye, but they are alive and therefore biotic. That distinction is where marks are most commonly lost.  
   Source: Study Guide · Lesson 2 Ecosystems and Interactions
 
-**3.** C. A community of living and non-living things interacting  
+**3.** A. A community of living and non-living things interacting  
   Explanation: The key to an ecosystem is the combination of 'biotic + abiotic + interactions'. Focusing on the plants, the animals or the non-living environment alone covers only part of it.  
   Source: Study Guide · Lesson 2 Ecosystems and Interactions
 
-**4.** D. Climate change gradually reducing biodiversity over decades  
+**4.** C. Climate change gradually reducing biodiversity over decades  
   Explanation: Short-term impacts happen immediately, such as littering or trampling vegetation, while long-term impacts accumulate over time, like climate change, and are often harder to reverse as habitats can be permanently damaged.  
   Source: Study Guide · Lesson 3 Human Impact on the Environment
 
-**5.** A. Travel and camp on durable surfaces  
+**5.** B. Travel and camp on durable surfaces  
   Explanation: One of the seven principles is to 'travel and camp on durable surfaces', whereas building a new fire ring, feeding wildlife, or leaving the trail are all high-impact actions.  
   Source: Study Guide · Lesson 5 Leave No Trace
 
-**6.** B. A spiritual and cultural relationship with land and waterways  
+**6.** D. A spiritual and cultural relationship with land and waterways  
   Explanation: Connection to Country is a spiritual, cultural and environmental relationship in which Country takes in land, water, plants and animals as well as cultural identity. The key idea is that Country is not something to be owned but something to be cared for and protected.  
   Source: Study Guide · Lesson 6 Cultural Perspectives & Connection to Land
 
-**7.** C. Small, low-intensity controlled fires that safely reduce fuel loads  
+**7.** B. Small, low-intensity controlled fires that safely reduce fuel loads  
   Explanation: Cultural burning involves small, low-intensity, planned burns at specific times to reduce fuel loads, and its benefits include reducing the risk of large fires, promoting plant regeneration and supporting biodiversity, which is different from uncontrolled fires or waiting for fires to happen.  
   Source: Study Guide · Lesson 6 Cultural Perspectives & Connection to Land · Cultural Burning
 
-**8.** D. It protects vegetation and reduces soil erosion  
+**8.** A. It protects vegetation and reduces soil erosion  
   Explanation: The sample answer in the Response Guide states that walking on durable surfaces 'protects vegetation and reduces soil erosion from trampling', because new paths widen over time and can turn into gullies — a common form of long-term damage in camping areas.  
   Source: Study Guide · Lesson 5 Leave No Trace · Response Guide
 
-**9.** A. Cutting branches from live trees for a campfire  
+**9.** B. Cutting branches from live trees for a campfire  
   Explanation: Cutting live branches for firewood damages vegetation and habitat directly and raises the risk of bushfire, so it is a high-impact action. Using a fuel stove, camping on an established site and carrying out all your rubbish are low-impact practices.  
   Source: Study Guide · Lesson 4 Sustainable Practices and Camping Impact
 
-**10.** B. Ecosystems are interconnected, so removing one part affects the rest  
+**10.** C. Ecosystems are interconnected, so removing one part affects the rest  
   Explanation: This case illustrates the interdependence of ecosystems: removing one element, such as a top predator, has a ripple effect along the food chain. That is the reasoning used to answer a question such as 'why not just get rid of sharks?'  
   Source: Study Guide · Lesson 2 Ecosystems and Interactions · Response Guide
 

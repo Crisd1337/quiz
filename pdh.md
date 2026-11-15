@@ -22,10 +22,10 @@
 
 **4. [Road safety · Ranking causes of crashes]** Which list ranks the leading causes of fatal road crashes in NSW from LARGEST to SMALLEST contribution (2025 data)?
 
-- A. Speeding — Fatigue — Drink/drug impairment — Not wearing a seatbelt — Distraction
-- B. Distraction — Speeding — Fatigue — Not wearing a seatbelt — Drink/drug impairment
-- C. Drink/drug impairment — Speeding — Fatigue — Distraction — Not wearing a seatbelt
-- D. Fatigue — Speeding — Distraction — Drink/drug impairment — Not wearing a seatbelt
+- A. Drink/drug impairment — Speeding — Fatigue — Distraction — Not wearing a seatbelt
+- B. Fatigue — Speeding — Distraction — Drink/drug impairment — Not wearing a seatbelt
+- C. Speeding — Fatigue — Drink/drug impairment — Not wearing a seatbelt — Distraction
+- D. Distraction — Speeding — Fatigue — Not wearing a seatbelt — Drink/drug impairment
 
 **5. [Road safety · Haddon matrix]** Road crashes are caused by a combination of human, vehicle and environmental factors. Classify each of the following, then explain which category is easiest to change and why: (a) a driver using a mobile phone; (b) worn brake pads; (c) a wet road on a bend.
 
@@ -35,24 +35,24 @@
 
 **6. [Road safety · In-car distractions]** Which two are the most common distractions for a driver that come from INSIDE the vehicle?
 
-- A. Checking a map and setting a GPS destination
-- B. Using a mobile phone and interacting with passengers
-- C. Adjusting the radio and the air-conditioning controls
-- D. Eating food and drinking coffee while driving
+- A. Using a mobile phone and interacting with passengers
+- B. Eating food and drinking coffee while driving
+- C. Checking a map and setting a GPS destination
+- D. Adjusting the radio and the air-conditioning controls
 
 **7. [Driving · BAC limits]** What are the legal blood alcohol concentration (BAC) limits in NSW for a learner, a provisional and a full licence holder?
 
-- A. 0.00 for learner, 0.05 for provisional, 0.05 for full
-- B. 0.02 for learner, 0.02 for provisional, 0.05 for full
+- A. 0.02 for learner, 0.02 for provisional, 0.05 for full
+- B. 0.00 for learner, 0.05 for provisional, 0.05 for full
 - C. 0.00 for learner, 0.00 for provisional, 0.05 for full
 - D. 0.05 for learner, 0.05 for provisional, 0.05 for full
 
 **8. [Gaming · Three motivations]** The lesson says games fall into three motivational drives. Which set is correct?
 
 - A. Social, competition and loss of rewards
-- B. Social, peer pressure and punishment for logging off
+- B. Social, pleasure (intermittent reward) and pain
 - C. Skill, reward and punishment for losing rank
-- D. Social, pleasure (intermittent reward) and pain
+- D. Social, peer pressure and punishment for logging off
 
 **9. [Relationships · Five features of respect]** List FIVE common features of respectful relationships.
 
@@ -117,16 +117,16 @@
 **19. [First aid · DRSABCD order]** In the DRSABCD action plan, what must you do FIRST before attending to a casualty?
 
 - A. Check the area is safe for you, bystanders and the casualty
-- B. Send another person to dial triple zero (000) straight away
-- C. Check for a response by squeezing their shoulders firmly
-- D. Start chest compressions on the casualty straight away
+- B. Check for a response by squeezing their shoulders firmly
+- C. Start chest compressions on the casualty straight away
+- D. Send another person to dial triple zero (000) straight away
 
 **20. [First aid · CPR compression ratio]** When performing CPR on an adult, what is the correct compression-to-breath ratio?
 
-- A. 50 compressions : 5 breaths
-- B. 30 compressions : 2 breaths
-- C. 15 compressions then 2 breaths
-- D. 5 compressions : 1 breath
+- A. 15 compressions then 2 breaths
+- B. 50 compressions : 5 breaths
+- C. 5 compressions : 1 breath
+- D. 30 compressions : 2 breaths
 
 **21. [First aid · DRSABCD at a crash]** You are the first person to arrive at a motorcycle crash on a busy road. Describe, in order, the actions you would take using DRSABCD, including two hazards you would manage.
 
@@ -137,15 +137,15 @@
 **22. [Road safety · Blind distance when distracted]** At 60 km/h, how far does a car travel in the two seconds a driver's eyes are off the road?
 
 - A. About 60 m
-- B. About 120 m
-- C. About 33 m
-- D. About 17 m
+- B. About 33 m
+- C. About 17 m
+- D. About 120 m
 
 **23. [Road safety · Novice driver risk]** A 17-year-old driver on a P1 licence is how much more likely to be involved in a fatal crash than a driver over 26 years?
 
 - A. Ten times as likely
-- B. Three times as likely
-- C. Two times as likely
+- B. Two times as likely
+- C. Three times as likely
 - D. Four times as likely
 
 **24. [Mental health · Prevalence and types]** What proportion of Australians aged 16–85 experience a mental illness in any one year? Name the three most common types and explain why they often occur together.
@@ -156,10 +156,10 @@
 
 **25. [Mental health · Resilience]** Which of the following is one of the characteristics of resilient people identified in the lesson?
 
-- A. A strong sense of control over their own life
-- B. Seeing themselves as a victim of circumstance
-- C. Never asking anybody for help at all
-- D. Avoiding every situation that feels difficult
+- A. Avoiding every situation that feels difficult
+- B. Never asking anybody for help at all
+- C. A strong sense of control over their own life
+- D. Seeing themselves as a victim of circumstance
 
 **26. [Mental health · Barriers to help-seeking]** Explain TWO barriers that stop young people, especially young males, from seeking help for a mental health issue, and outline one way each barrier could be reduced.
 
@@ -169,10 +169,10 @@
 
 **27. [Nutrition · Types of health services]** Which of the following is listed in the course as a type of health service available to young people?
 
-- A. Private driving lessons
+- A. Careers counselling
 - B. Nutritional support
 - C. Private exam tutoring
-- D. Careers counselling
+- D. Private driving lessons
 
 **28. [Nutrition · Self-management]** Explain why nutrition and physical activity are described as self-management skills for adulthood, and give one specific example of each.
 
@@ -184,15 +184,15 @@
 
 - A. How colourful and modern does the website look to you?
 - B. Is the product cheap enough to be worth trying anyway?
-- C. What qualifications and training does the practitioner have?
-- D. How many people have shared this advertisement on social media?
+- C. How many people have shared this advertisement on social media?
+- D. What qualifications and training does the practitioner have?
 
 **30. [Gambling · Four influences]** What are the four main influences on a young person's attitude to gambling identified in the lesson?
 
-- A. Personality, fatigue, alcohol use and speeding
+- A. Advertising, friends, easy access and gambling-like games
 - B. Cost, transport, language barriers and long waiting times
-- C. Family income, suburb, age and gender of the player
-- D. Advertising, friends, easy access and gambling-like games
+- C. Personality, fatigue, alcohol use and speeding
+- D. Family income, suburb, age and gender of the player
 
 ---
 
@@ -210,7 +210,7 @@
   Explanation: Marks are awarded for naming a specific service (1 mark each, 5 marks in total); a named institution or a type of service is required. An extra mark is available for noting which services are free or low-cost for adolescents (Medicare, Headspace, school counsellors).  
   Source: Year 10 PDHPE Yearly Revision Questions 2023 · Health services for young people
 
-**4.** A. Speeding — Fatigue — Drink/drug impairment — Not wearing a seatbelt — Distraction  
+**4.** C. Speeding — Fatigue — Drink/drug impairment — Not wearing a seatbelt — Distraction  
   Explanation: Marking points are broken down into correct ordering, with 2 points for a fully correct order and 1 point for only the first half correct, based on 2025 NSW data: speeding first (around 39–40% of fatal crashes involved speeding, 134 deaths), fatigue second (around 20–21%, 75 deaths), drink-driving third, not wearing a seatbelt fourth (29 deaths), and distraction fifth (often underreported).  
   Source: Year 10 PDHPE Yearly Revision Questions 2023 · Rank the top 5 causes + Term 1 · Lesson 2–3 (2025 Fatal Five)
 
@@ -218,7 +218,7 @@
   Explanation: Marks are awarded for classifying all three categories (1 mark each, 3 marks). Identifying human factors as the most changeable is worth 1 mark, and the reasons are worth 2 marks: human factors are controllable, and around 95% of crashes involve human error, which can be changed through education, legislation and enforcement.  
   Source: Term 1 · Lesson 2–3 Factors influencing road and traffic incidents (matches the "list the major causes" question)
 
-**6.** B. Using a mobile phone and interacting with passengers  
+**6.** A. Using a mobile phone and interacting with passengers  
   Explanation: Marks are awarded for recognising two items (1 mark each, 2 marks); the two main ones are phone use and passenger interaction. Using a phone raises crash risk about fourfold, and P-plate drivers carrying three or more passengers more than double their crash rate.  
   Source: Year 10 PDHPE Yearly Revision Questions 2023 · Driver distractions + Term 1 · Lesson 2–3 & Lesson 5 Safety Plans
 
@@ -226,7 +226,7 @@
   Explanation: Marks are awarded for filling in three blanks (1 mark each): Learner 0.00, Provisional 0.00 and Full 0.05. The most common mistake is writing 0.05 for a P-plate; in NSW both P-plate and L-plate drivers must be at zero, and only a full licence has a 0.05 limit.  
   Source: Year 10 PDHPE Yearly Revision Questions 2023 · BAC (values per NSW legal standard; syllabus supplement)
 
-**8.** D. Social, pleasure (intermittent reward) and pain  
+**8.** B. Social, pleasure (intermittent reward) and pain  
   Explanation: Marks are awarded for filling in three blanks (1 mark each, 3 marks): Social (e.g. Farmville), Pleasure/intermittent reward (e.g. Call of Duty) and Pain (e.g. World of Warcraft). Only specific examples are accepted, not general terms such as 'fun' or 'addictive'.  
   Source: Year 10 PDHPE Yearly Revision Questions 2023 · Games – three motivational drives + Term 1 · Lesson 9 Online Safety
 
@@ -274,7 +274,7 @@
   Explanation: Marks are awarded for the sequence (1 mark — D comes first) and the reason (1 mark — the rescuer's safety comes first). D stands for Danger, not Defibrillation.  
   Source: Term 3 · Lesson 5 First Aid · DANGER
 
-**20.** B. 30 compressions : 2 breaths  
+**20.** D. 30 compressions : 2 breaths  
   Explanation: Marks are awarded for the ratio 30:2 (1 mark), and for knowing that CPR can be stopped in only three situations: help arrives, the casualty recovers, or the rescuer is physically unable to continue.  
   Source: Term 3 · Lesson 5 First Aid · CPR
 
@@ -282,7 +282,7 @@
   Explanation: Marks are awarded for: D, describing the danger at the scene and how to protect yourself (2 marks); R, checking for a response (1 mark); S, calling for help and specifying 000 or directing someone to do it (1 mark); the A-B-C sequence and the judgement involved (3 marks); D, getting the AED (1 mark); and naming two or more dangers at the scene — oncoming cars, fuel, power lines, broken glass (1–2 marks).  
   Source: Term 1 · First Aid – Road Trauma + Term 3 · Lesson 5 First Aid · DRSABCD
 
-**22.** C. About 33 m  
+**22.** B. About 33 m  
   Explanation: Marks are awarded for the working: 60 ÷ 3.6 = 16.7 m/s, then × 2 seconds ≈ 33 m (1 mark).  
   Source: Term 1 · Lesson 2–3 · Are you driving blind?
 
@@ -294,7 +294,7 @@
   Explanation: The marks are broken down as follows: 20% (1 in 5) is 1 mark; three types each worth 1 mark (3 marks); explaining comorbidities and mutual triggers is 2 marks. Writing numbers as 1 in 10 or 50% will result in a loss of marks; simply stating that the three diseases are common without explaining their relationship will not be awarded marks.  
   Source: Term 2 · Lesson 1 Common Mental Health Conditions · Prevalence
 
-**25.** A. A strong sense of control over their own life  
+**25.** C. A strong sense of control over their own life  
   Explanation: Marks are awarded for identifying the correct characteristic (1 mark) and for listing additional ones (a further 1 mark). The five characteristics are: control, strong problem-solving skills, solid social connections, seeing oneself as a 'survivor' rather than a 'victim', and being able to seek help. 'Never seeking help' and a 'victim mentality' are the opposite.  
   Source: Term 2 · Lesson 3 Characteristics of Resilient people
 
@@ -310,10 +310,10 @@
   Explanation: Marks are awarded for explaining why it is self-management — you have to plan it yourself, with no one planning it for you, and it directly affects long-term health (2 marks); a nutrition example (1 mark); a physical activity example (1 mark); and pointing out the link to disease risk (1 mark). Examples must name a specific behaviour; 'eating healthily' does not count.  
   Source: Term 3 · Lesson 8 Life Challenges · Self-Management Skills (nutrition and fitness detail supplemented from the syllabus)
 
-**29.** C. What qualifications and training does the practitioner have?  
+**29.** D. What qualifications and training does the practitioner have?  
   Explanation: Marks are awarded for choosing 'qualifications and training' (1 mark), and for supplementing that judgement with further questions drawn from the material (a further 2 marks): what treatment is provided, what effects it has, the cost, and whether it can be used alongside conventional medicine. A website's appearance, how often it has been forwarded and its price cannot prove effectiveness — this is a common trap in this type of question.  
   Source: Term 3 · Lesson 3 Assessing Credibility of Health Information
 
-**30.** D. Advertising, friends, easy access and gambling-like games  
+**30.** A. Advertising, friends, easy access and gambling-like games  
   Explanation: Marks are awarded for each of the four items (1 mark each, 4 marks): advertising, whether friends gamble (peer pressure), ease of access, and games that look like gambling. 'Cost, transport, language barriers and long waiting times' are barriers to health services, and 'personality, fatigue, alcohol use and speeding' are the Fatal Five of road safety, which students often confuse with this question.  
   Source: Term 1 · Lesson 8 Gambling · Potential Influences on Gambling (explicitly required by Study Guide Section 2)

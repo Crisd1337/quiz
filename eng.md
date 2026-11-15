@@ -4,15 +4,15 @@
 
 **1. [King Lear · Plot]** How does King Lear decide how to divide his kingdom at the start of the play?
 
-- A. By asking each daughter to say how much she loves him
+- A. By holding a tournament between the dukes
 - B. By drawing lots with his daughters
-- C. By holding a tournament between the dukes
+- C. By asking each daughter to say how much she loves him
 - D. By giving the largest share to the eldest daughter
 
 **2. [King Lear · Plot]** What word does Cordelia use when asked to declare her love, which triggers Lear's rage?
 
-- A. Everything
-- B. Nothing
+- A. Nothing
+- B. Everything
 - C. Half
 - D. Love
 
@@ -20,29 +20,29 @@
 
 - A. Edmund, disguised as a messenger
 - B. Albany, disguised as a knight
-- C. Kent, disguised as the servant Caius
-- D. Gloucester, disguised as Poor Tom
+- C. Gloucester, disguised as Poor Tom
+- D. Kent, disguised as the servant Caius
 
 **4. [King Lear · Plot]** How does Goneril and Regan's treatment of Lear change after they gain power?
 
-- A. They crown him king of a smaller region
-- B. They exile him to France
-- C. They give him more knights than he had before
-- D. They reduce the number of knights he may keep, eventually refusing them entirely
+- A. They exile him to France
+- B. They reduce the number of knights he may keep, eventually refusing them entirely
+- C. They crown him king of a smaller region
+- D. They give him more knights than he had before
 
 **5. [King Lear · Plot]** Edmund plots against Edgar and Gloucester. Which action most directly sets his plan in motion?
 
-- A. He tells Edgar that Gloucester wants him dead, then claims Edgar plotted to kill Gloucester
-- B. He forges a letter and calls a tournament
+- A. He forges a letter and calls a tournament
+- B. He tells Edgar that Gloucester wants him dead, then claims Edgar plotted to kill Gloucester
 - C. He reports Edgar to the King
 - D. He openly challenges Edgar to a duel
 
 **6. [King Lear · Plot]** How does the play end for Lear and Cordelia?
 
-- A. They rule the kingdom together
-- B. Cordelia is hanged on Edmund's orders and Lear dies of grief with her body
-- C. Lear is killed in battle by Albany
-- D. They flee to France and survive
+- A. Cordelia is hanged on Edmund's orders and Lear dies of grief with her body
+- B. They rule the kingdom together
+- C. They flee to France and survive
+- D. Lear is killed in battle by Albany
 
 **7. [King Lear · Division and Cordelia's 'Nothing']** Section 1 — King Lear, Act 1 Scene 1:
 
@@ -235,15 +235,15 @@ What does this line show about Lear's changed identity? (4 marks)
 **23. [Comparative essay · Judging a thesis]** Section 2 asks: 'How do Lee and Parker expose systemic racism?' Which thesis best answers the question?
 
 - A. Lee's novel is more effective than Parker's film because a novel can explain what characters are thinking, while a film can only show what they do.
-- B. Parker relies on music and camera angles to create meaning, while Lee relies on first-person narration and on dialogue between the characters.
-- C. Both Lee and Parker show racism as a system that shields the guilty, but Lee builds a child's slow awareness while Parker forces the viewer to watch.
-- D. Both texts show that racism is a serious problem in America and that it damages the lives of ordinary people in small towns across the country.
+- B. Both Lee and Parker show racism as a system that shields the guilty, but Lee builds a child's slow awareness while Parker forces the viewer to watch.
+- C. Both texts show that racism is a serious problem in America and that it damages the lives of ordinary people in small towns across the country.
+- D. Parker relies on music and camera angles to create meaning, while Lee relies on first-person narration and on dialogue between the characters.
 
 **24. [Comparative essay · Function of topic sentences]** What is the main job of a topic sentence in a comparative body paragraph?
 
-- A. To provide a quotation from each text and explain what happens in that scene
-- B. To summarise the plot of both texts so the reader can follow the argument
-- C. To introduce the paragraph by naming the text and the technique it will discuss
+- A. To introduce the paragraph by naming the text and the technique it will discuss
+- B. To provide a quotation from each text and explain what happens in that scene
+- C. To summarise the plot of both texts so the reader can follow the argument
 - D. To state a comparative claim about both texts that answers part of the essay question
 
 **25. [Comparative essay · Writing a thesis]** Write a thesis statement for the question: 'How do Lee and Parker represent the failure of justice?' (4 marks)
@@ -254,10 +254,10 @@ What does this line show about Lear's changed identity? (4 marks)
 
 **26. [Comparative essay · Integrating quotations]** You want to use one line from the supplied extract in a body paragraph. Which approach integrates it most effectively?
 
-- A. Quote only the few words that carry the technique, then analyse how they shape meaning in the whole text.
+- A. Quote the whole extract so the marker can see you have read it, then explain what it means.
 - B. Paraphrase the extract without quoting, because quotations take up too much of your word count.
 - C. Quote the line, then say that it shows the theme of justice without explaining how the words create that effect.
-- D. Quote the whole extract so the marker can see you have read it, then explain what it means.
+- D. Quote only the few words that carry the technique, then analyse how they shape meaning in the whole text.
 
 **27. [Comparative essay · Using the supplied extract]** Section 2 requires you to integrate the extract you are given. Explain what this means in practice, and what you should avoid. (4 marks)
 
@@ -267,24 +267,24 @@ What does this line show about Lear's changed identity? (4 marks)
 
 **28. [Comparative essay · Technique (prose vs film)]** Which option states a genuine point of comparison between Lee's novel and Parker's film?
 
-- A. Lee uses words to describe things and Parker uses pictures, which means the film is easier to understand.
-- B. Lee controls what Scout notices and when she understands it, while Parker controls what the camera shows and when the viewer sees it.
+- A. Lee controls what Scout notices and when she understands it, while Parker controls what the camera shows and when the viewer sees it.
+- B. Lee's novel has chapters and a narrator, while Parker's film has scenes and actors who speak dialogue.
 - C. Lee's novel is set in the 1930s and Parker's film is set in the 1960s, so the film is more historically accurate than the novel.
-- D. Lee's novel has chapters and a narrator, while Parker's film has scenes and actors who speak dialogue.
+- D. Lee uses words to describe things and Parker uses pictures, which means the film is easier to understand.
 
 **29. [Comparative essay · Theme: law failing]** Which pair of moments best supports the claim that both texts show the law failing?
 
-- A. The novel criticises the town's gossip about Boo Radley, and the film criticises the way the agents speak to local people.
-- B. The novel shows a young child learning about her neighbours, and the film shows two agents slowly learning about a small town.
+- A. The novel shows a young child learning about her neighbours, and the film shows two agents slowly learning about a small town.
+- B. The novel criticises the town's gossip about Boo Radley, and the film criticises the way the agents speak to local people.
 - C. Tom Robinson is convicted despite Atticus's defence, and the film's inquiry begins only because local police are implicated.
 - D. Scout narrates the trial from the gallery, and the film's opening shows two water fountains side by side in the street.
 
 **30. [Comparative essay · Theme: individual responsibility]** Which claim best fits the theme of individual responsibility in both texts?
 
-- A. Both texts place responsibility on the main characters, since the wider community is never shown to be at fault.
-- B. Both texts place responsibility on families, since children learn prejudice at home and not in public.
-- C. Both texts place responsibility on the law alone, since individuals cannot be held accountable for prejudice.
-- D. Both texts place responsibility on individuals who let prejudice pass unchallenged, not only on the law.
+- A. Both texts place responsibility on individuals who let prejudice pass unchallenged, not only on the law.
+- B. Both texts place responsibility on the main characters, since the wider community is never shown to be at fault.
+- C. Both texts place responsibility on families, since children learn prejudice at home and not in public.
+- D. Both texts place responsibility on the law alone, since individuals cannot be held accountable for prejudice.
 
 **31. [Comparative essay · Paragraph planning]** Plan one comparative body paragraph for the question: 'How do Lee and Parker expose systemic racism?' Give a topic sentence, one textual point from each text, and the comparison you would draw. (5 marks)
 
@@ -294,10 +294,10 @@ What does this line show about Lear's changed identity? (4 marks)
 
 **32. [Comparative essay · Conclusion]** Which conclusion best completes a comparative essay without simply repeating the introduction?
 
-- A. The comparison matters because Lee's slow recognition and Parker's forced witness demand different responses, so empathy must become action.
-- B. In conclusion, both Harper Lee and Alan Parker show that racism is bad, and this is why the two texts are still studied in schools today.
-- C. In conclusion, Lee's novel and Parker's film are both important texts that teach readers and viewers about the dangers of prejudice.
-- D. In conclusion, this essay has discussed characterisation, setting and narrative in To Kill a Mockingbird and Mississippi Burning as I set out.
+- A. In conclusion, both Harper Lee and Alan Parker show that racism is bad, and this is why the two texts are still studied in schools today.
+- B. In conclusion, this essay has discussed characterisation, setting and narrative in To Kill a Mockingbird and Mississippi Burning as I set out.
+- C. The comparison matters because Lee's slow recognition and Parker's forced witness demand different responses, so empathy must become action.
+- D. In conclusion, Lee's novel and Parker's film are both important texts that teach readers and viewers about the dangers of prejudice.
 
 **33. [Writing · Describing vs analysing]** Which sentence analyses rather than describes?
 
@@ -308,10 +308,10 @@ What does this line show about Lear's changed identity? (4 marks)
 
 **34. [Writing · What 'using the extract' means]** What does it mean to 'use' the extract supplied with an essay question?
 
-- A. Copying the extract into your essay so the marker knows you have read the question.
-- B. Mentioning that the extract exists and then writing about the rest of the text only.
-- C. Quoting a few words from the extract inside your own sentence and analysing their effect.
-- D. Summarising the extract in your own words without discussing its language.
+- A. Summarising the extract in your own words without discussing its language.
+- B. Copying the extract into your essay so the marker knows you have read the question.
+- C. Mentioning that the extract exists and then writing about the rest of the text only.
+- D. Quoting a few words from the extract inside your own sentence and analysing their effect.
 
 **35. [Writing · Writing topic sentences]** Write one comparative topic sentence for a paragraph arguing that both texts show communities protecting their own. (3 marks)
 
@@ -321,36 +321,36 @@ What does this line show about Lear's changed identity? (4 marks)
 
 **36. [Writing · Comparative topic sentences]** Why does a comparative essay need a comparative topic sentence in every body paragraph?
 
-- A. Because the examiner only reads the first sentence of each paragraph when marking the essay.
+- A. Because quotations from two texts must appear in the same sentence for the essay to count.
 - B. Because the introduction cannot mention either text and the body must do it instead.
-- C. Because quotations from two texts must appear in the same sentence for the essay to count.
-- D. Because the argument must run across both texts, so every paragraph has to keep both in view.
+- C. Because the argument must run across both texts, so every paragraph has to keep both in view.
+- D. Because the examiner only reads the first sentence of each paragraph when marking the essay.
 
 ---
 
 ## Answers and explanations
 
-**1.** A. By asking each daughter to say how much she loves him  
+**1.** C. By asking each daughter to say how much she loves him  
   Explanation: King Lear asks his three daughters to express their love for him, which will determine their share of the kingdom, making love a measurable performance.  
   Source: Yearly Study Guide 2026 · English(5 multiple choice questions based on the events of your play)
 
-**2.** B. Nothing  
+**2.** A. Nothing  
   Explanation: Cordelia replies 'Nothing', refusing to use flattery to gain land, and Lear mistakes her honesty for denial, stripping her of her inheritance.  
   Source: Yearly Study Guide 2026 · English
 
-**3.** C. Kent, disguised as the servant Caius  
+**3.** D. Kent, disguised as the servant Caius  
   Explanation: Kent is banished for defending Cordelia and continues to serve Lear in disguise as Caius, while Poor Tom is Edgar's disguise and Albany is not in disguise.  
   Source: Yearly Study Guide 2026 · English
 
-**4.** D. They reduce the number of knights he may keep, eventually refusing them entirely  
+**4.** B. They reduce the number of knights he may keep, eventually refusing them entirely  
   Explanation: Lear's request to keep 100 knights is reduced to 50 by Goneril and then to 25 by Regan, who eventually refuses to accommodate him, and the removal of his attendants is a key point of humiliation.  
   Source: Yearly Study Guide 2026 · English
 
-**5.** A. He tells Edgar that Gloucester wants him dead, then claims Edgar plotted to kill Gloucester  
+**5.** B. He tells Edgar that Gloucester wants him dead, then claims Edgar plotted to kill Gloucester  
   Explanation: Edmund forges letters, tricks Edgar into fleeing, and reports to Gloucester that 'Edgar is plotting against his father', making Edgar a wanted man and himself the legitimate heir.  
   Source: Yearly Study Guide 2026 · English
 
-**6.** B. Cordelia is hanged on Edmund's orders and Lear dies of grief with her body  
+**6.** A. Cordelia is hanged on Edmund's orders and Lear dies of grief with her body  
   Explanation: Edmund orders Cordelia's execution, and by the time Lear arrives it is too late: he dies holding her body. No happy ending restores order; only Albany and Edgar are left to pick up the pieces.  
   Source: Yearly Study Guide 2026 · English
 
@@ -466,7 +466,7 @@ What does this line show about Lear's changed identity? (4 marks)
   Explanation: 4 marks: ① being flattered into 'omnipotence' ② self-denial ③ confirming human vulnerability through physical weakness (ague = malaria) ④ thus 'loss' also brings a more realistic self. The last mark is at the theme level, don't miss it.  
   Source: King Lear Act 4 Scene 6 (quote: Shakespeare, King Lear 4.6); Section 1 · King Lear short answer — exam format per LEEDER 10ENGB Homepage
 
-**23.** C. Both Lee and Parker show racism as a system that shields the guilty, but Lee builds a child's slow awareness while Parker forces the viewer to watch.  
+**23.** B. Both Lee and Parker show racism as a system that shields the guilty, but Lee builds a child's slow awareness while Parker forces the viewer to watch.  
   Explanation: A good thesis should: cover two texts, provide a controversial argument (racism is 'an institution that protects the guilty'), and forecast the comparison angle (child's perspective vs forced watching). The other options are just general discussions, evaluating merits, and listing techniques without an argument.  
   Source: Section 2 · Comparative essay — thesis and introduction (10ENGA unit overview; LEEDER 10ENGB exam outline)
 
@@ -482,7 +482,7 @@ What does this line show about Lear's changed identity? (4 marks)
   Explanation: To score well you must cover four points: discuss both texts, present a debatable argument, explore comparative angles, and address the keywords of the question.  
   Source: Section 2 · Comparative essay — thesis writing (LEEDER 10ENGB exam outline: comparative essay, 20 marks)
 
-**26.** A. Quote only the few words that carry the technique, then analyse how they shape meaning in the whole text.  
+**26.** D. Quote only the few words that carry the technique, then analyse how they shape meaning in the whole text.  
   Explanation: Integration means embedding short quotes into your own sentences, analysing how the language creates meaning, and linking it back to the whole text and question. Copying a whole paragraph is just repetition, paraphrasing alone loses the language evidence, and quoting without analysis earns no analysis marks.  
   Source: Section 2 · Comparative essay — integrating the supplied extract (LEEDER 10ENGB exam outline, 20 marks)
 
@@ -493,7 +493,7 @@ What does this line show about Lear's changed identity? (4 marks)
   Explanation: The four scoring points are: quote → analyse language → link to whole text → avoid 'copying a whole paragraph/only mentioning at the start/just retelling the plot'. This is where Section 2 students often lose marks, as the marking criteria clearly state 'integrate the extract'.  
   Source: Section 2 · Comparative essay — extract integration (LEEDER 10ENGB exam outline)
 
-**28.** B. Lee controls what Scout notices and when she understands it, while Parker controls what the camera shows and when the viewer sees it.  
+**28.** A. Lee controls what Scout notices and when she understands it, while Parker controls what the camera shows and when the viewer sees it.  
   Explanation: Effective comparison focuses on 'how the authors control information and the reader's response': Lee uses Scout's limited perspective to delay understanding, while Parker uses camera angles and editing to control what the audience sees. Saying 'Lee's novel has chapters and a narrator, while Parker's film has scenes and actors' just states the difference in medium, and doesn't constitute a comparison point.  
   Source: Section 2 · Comparative essay — comparing literary and film techniques (10ENGA film study: visual storytelling, cinematography, director's purpose)
 
@@ -501,7 +501,7 @@ What does this line show about Lear's changed identity? (4 marks)
   Explanation: Evidence of 'legal failure' must directly relate to the justice system: Tom being found guilty, and the local law enforcement being involved in the case, requiring federal intervention. Other options discuss perspective, rumour, or 'learning about the town', which don't prove legal failure.  
   Source: Section 2 · Comparative essay — theme axis: the law fails (10ENGA unit overview; film study context)
 
-**30.** D. Both texts place responsibility on individuals who let prejudice pass unchallenged, not only on the law.  
+**30.** A. Both texts place responsibility on individuals who let prejudice pass unchallenged, not only on the law.  
   Explanation: Individual responsibility means ordinary people who condone prejudice are also responsible, and responsibility isn't just limited to institutions. Saying 'both texts place responsibility on the law alone' or 'on families' or 'on the main characters' goes against the theme of both works.  
   Source: Section 2 · Comparative essay — theme axis: individual responsibility (10ENGA unit overview)
 
@@ -513,7 +513,7 @@ What does this line show about Lear's changed identity? (4 marks)
   Explanation: For 5 points, you need: a topic sentence (including both texts and comparative argument) → Lee's evidence and technique → Parker's evidence and technique → comparative sentence (effect difference) → conclusion on 'institutional'. Note that both sides need evidence with technique, and just stating the plot won't get you analysis marks.  
   Source: Section 2 · Comparative essay — paragraph planning (TKAMB BP scaffolds + film deconstruction lessons)
 
-**32.** A. The comparison matters because Lee's slow recognition and Parker's forced witness demand different responses, so empathy must become action.  
+**32.** C. The comparison matters because Lee's slow recognition and Parker's forced witness demand different responses, so empathy must become action.  
   Explanation: The conclusion should 'recap the argument and take it further': discussing how the comparison leads to different moral demands on the reader/audience (empathy must lead to action), rather than just restating the argument. The other options are vague evaluations, retelling the structure, or just repeating 'opposing prejudice'.  
   Source: Section 2 · Comparative essay — conclusion (LEEDER 10ENGB exam outline: integrate the extract, sustain the argument)
 
@@ -521,7 +521,7 @@ What does this line show about Lear's changed identity? (4 marks)
   Explanation: Analysis sentences should have 'technique → effect → impact on the audience' in three steps: the camera angle makes segregation seem like a 'normal arrangement', making the audience accept before judging. Simply retelling the content, defining terms, or making vague assertions won't suffice.  
   Source: Writing skills · Analytical vs descriptive sentences (Term 3 weeks 8–10: refining analytical writing)
 
-**34.** C. Quoting a few words from the extract inside your own sentence and analysing their effect.  
+**34.** D. Quoting a few words from the extract inside your own sentence and analysing their effect.  
   Explanation: 'Using' the extract means embedding it as evidence: quoting, analysing language, and linking back to the question and whole text. Copying a whole paragraph, only mentioning at the start, or just paraphrasing don't count as integration.  
   Source: Writing skills · Using the supplied extract (LEEDER 10ENGB exam outline, Section 2 criteria)
 
@@ -532,6 +532,6 @@ What does this line show about Lear's changed identity? (4 marks)
   Explanation: For 3 points, you need to discuss both texts, have a comparative argument (protection → complicity), and forecast comparative angles. Simply stating 'both have community' is parallel, not comparative, and will only get you 1 point.  
   Source: Writing skills · Topic sentences for comparative paragraphs (TKAMB BP scaffolds)
 
-**36.** D. Because the argument must run across both texts, so every paragraph has to keep both in view.  
+**36.** C. Because the argument must run across both texts, so every paragraph has to keep both in view.  
   Explanation: Comparison essay marks come from 'sustained comparative argument throughout the text', so every paragraph's topic sentence should cover both texts and advance the argument. The other options are incorrect statements about marking or format.  
   Source: Writing skills · Comparative topic sentences (LEEDER 10ENGB exam outline: comparative essay, 20 marks)
