@@ -2814,7 +2814,7 @@ function render() {
 
   const rec = state.answers[q.id];
   const chips = `<div class="chips">
-      ${MULTI && q.subjZh ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
+      ${q.subjZh && q.subj !== DATA.slug ? `<span class="chip">${esc(q.subjZh)}</span>` : ""}
       <span class="chip">${esc(q.topic)}</span>
       <span class="chip ${esc(q.difficulty)}">${ {easy:"简单",medium:"中等",hard:"较难"}[q.difficulty] || esc(q.difficulty) }</span>
       <span class="chip">${q.type === "mcq" ? "选择题" : "简答"}</span>
