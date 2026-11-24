@@ -705,6 +705,7 @@ details.manual .pts,details.manual .actions{padding:0 14px 14px;margin:0}
     <a class="pill" style="text-decoration:none" href="index.html">← Subjects</a>
     <span class="pill" id="scorepill">✓ 0 ✗ 0</span>
     <button class="btn ghost btn-sm" id="tfilter">全部</button>
+    <button class="btn ghost btn-sm" id="figfilter" style="display:none">Figures</button>
     <button class="btn ghost btn-sm" id="grid">题号</button>
     <button class="btn ghost btn-sm" id="exam">考试模式</button>
     <span class="pill" id="clock" style="display:none"></span>
@@ -2589,6 +2590,19 @@ function TFILTER(){
   }catch(e){ return "all"; }
 }
 function setTFILTER(v){ try{ localStorage.setItem(FKEY, v); }catch(e){} }
+const FKEY_FIG = "dsh-figonly";
+function FIGONLY(){
+  /* 本页一道有图的题都没有时，一律视为关闭——否则从数学页带着开关切到历史，
+     会得到一个 0 / 0 的空页面。开关状态本身仍保留，切回数学页会自动恢复。 */
+  var has = DATA.questions.some(function(q){ return !!q.fig; });
+  if(!has) return false;
+  try{
+    var m=(location.search.match(/[?&]fig=(1|0)/)||[])[1];
+    if(m){ localStorage.setItem(FKEY_FIG, m); return m==="1"; }
+    return localStorage.getItem(FKEY_FIG)==="1";
+  }catch(e){ return false; }
+}
+function setFIGONLY(on){ try{ localStorage.setItem(FKEY_FIG, on?"1":"0"); }catch(e){} }
 const HINTED = {};
 const AI_RES = {};
 const AI_ENGINE = {};
@@ -2638,9 +2652,9 @@ function autoScore(pointText, answerText){
   return {hit: ratio >= 0.5, ratio: ratio, matched: matched, total: kw.length, missing: missing.slice(0,4)};
 }
 function buildOrder(){
-  var f = TFILTER();
+  var f = TFILTER(), fo = FIGONLY();
   return DATA.questions.map(function(q,i){ return {q:q,i:i}; })
-    .filter(function(x){ return f==="all" || x.q.type===f; })
+    .filter(function(x){ return (f==="all" || x.q.type===f) && (!fo || !!x.q.fig); })
     .map(function(x){ return x.i; });
 }
 const app = document.getElementById("app");
@@ -3421,6 +3435,20 @@ function paintFilter(){
   var f = TFILTER();
   _tf.textContent = f==="all" ? T("全部") : (f==="mcq" ? T("选择题") : T("简答"));
 }
+/* 「只看有图」：本页一道有图的题都没有时不显示这个按钮 */
+var _ff = document.getElementById("figfilter");
+var _hasFig = DATA.questions.some(function(q){ return !!q.fig; });
+function paintFig(){
+  if(!_ff) return;
+  _ff.style.display = _hasFig ? "" : "none";
+  _ff.classList.toggle("on", FIGONLY());
+  _ff.textContent = FIGONLY() ? "Figures · on" : "Figures";
+}
+if (_ff && _hasFig) _ff.onclick = function(){
+  setFIGONLY(!FIGONLY());
+  state.order = buildOrder(); state.idx = 0; save();
+  paintFig(); render();
+};
 if (_tf) _tf.onclick = function(){
   var order = ["all","mcq","short"], cur = TFILTER();
   var nx = order[(order.indexOf(cur)+1) % 3];
@@ -3432,6 +3460,7 @@ var _langBtn = document.getElementById("langBtn");
 if (_langBtn) _langBtn.onclick = cycleLang;
 applyChrome();
 paintFilter();
+paintFig();
 document.getElementById("restart").onclick = () => {
   if (!confirm(MULTI ? "Back to subject selection?" : "Clear progress and start over?")) return;
   state = MULTI ? {setup:true, pick:state.pick, per:state.per} : {idx:0, answers:{}, order:buildOrder()};
